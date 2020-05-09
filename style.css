@@ -11,16 +11,16 @@
   float: left;
   color: black;
   text-align: center;
-  padding: 12px;
+  padding: 1em;
   text-decoration: none;
-  font-size: 25px;
-  line-height: 25px;
+  font-size: 2em;
+  line-height: 2em;
   border-radius: 4px;
 }
 
 /* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
 .header a.logo {
-  font-size: 50px;
+  font-size: 3em;
   font-weight: bold;
 }
 
@@ -71,17 +71,17 @@ body{
 }
 #values{
     align-items: center;
-    height: 80px;
+    height: 10%;
     width: 80%;
-    font-size: 40px;
+    font-size: 3em;
     color: black;
     margin: 10px 0px;
     border-color: black;
 }
 #stat{
-    height: 80px;
-    width:15%;
-    font-size: 40px;
+    height: 10%;
+    width:10%;
+    font-size: 3em;
     margin: 10px 5px;
 }
 #output{
@@ -89,7 +89,7 @@ body{
     height: 600;
     width: 1100;
     margin: 5px 5px;
-    font-size:40px;
+    font-size:3em;
     background-color: white;
     margin: 30px 0px;
 }
