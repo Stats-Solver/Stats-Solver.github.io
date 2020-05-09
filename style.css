@@ -30,7 +30,7 @@
 }
 
 /* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 50em) {
   .header a {
     float: none;
     display: block;
@@ -50,7 +50,7 @@ body{
     text-align: center;
     font-size: 2em;
     color: black;
-    margin: 0px 0px;
+    margin: 0em 0em;
 }
 #getstarted{
     font-size: 2em;
@@ -94,7 +94,7 @@ body{
     height: 1em;
     width: 5em;
     font-size: 2.5em;
-    margin: 30px 0px;
+    margin: 1em 0em;
 }
 #values2{
     align-items: center;
@@ -122,9 +122,9 @@ body{
 
 .slider {
   -webkit-appearance: none;
-  width: 1100px;
-  height: 15px;
-  border-radius: 5px;
+  width: 75%;
+  height: 1em;
+  border-radius: .25em;
   background: #d3d3d3;
   outline: none;
   opacity: 0.7;
