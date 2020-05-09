@@ -2,9 +2,7 @@
 <html>
    
     <head>
-        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" type="text/css" href="style.css">
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
         <script src="jquery-3.5.0.min.js"></script>
@@ -31,10 +29,8 @@
             <h1>Stats Solver</h1>
         </div>
         <div id="input">
-            <span style="display:inline-block">
-                <label for=values style="display:block">Enter X Values (separated by commas)</label>
-                <input type="text" id="values">
-            </span>
+            <label for=values style="display:block">Enter Values (separated by commas)</label>
+            <input type="text" id="values" placeholder="Example: 1, 2, 3, 4, 5">
             <select id="stat" onchange="stat()">
                 <option value="choose">Choose</option>
                 <option value="mean">Mean</option>
@@ -51,9 +47,6 @@
                 <option value="covariance">Covariance</option>
                 <option value="correlation">Correlation</option>
             </select>
-        </div>
-        <div id="label2">
-            <label for=values style="display:block">Example: 1,2,3,4,5</label>
         </div>
         <div class="slidecontainer">
             <input type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
