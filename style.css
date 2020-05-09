@@ -1,0 +1,182 @@
+/* Style the header with a grey background and some padding */
+.header {
+    overflow: hidden;
+    background-color: white;
+    padding: 20px 200px;
+    margin-bottom: 50px;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: black;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 25px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 50px;
+  font-weight: bold;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+body{
+    font-family: 'Open Sans',sans-serif;
+    background-color: white;
+    margin: 20px 100px;
+}
+#mainpage{
+    text-align: center;
+    font-size: 40px;
+    color: black;
+    margin: 0px 0px;
+}
+#getstarted{
+    font-size: 40px;
+    color: white;
+    background-color: black;
+    margin: 25px 0px;
+    padding: 15px 30px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+#title{
+    align-items: left;
+    height: 50px;
+    width: 500px;
+    font-size: 30px;
+    color: black;
+    margin: 50px 0px;
+}
+#values{
+    align-items: center;
+    height: 80px;
+    width: 80%;
+    font-size: 40px;
+    color: black;
+    margin: 10px 0px;
+    border-color: black;
+}
+#stat{
+    height: 80px;
+    width:15%;
+    font-size: 40px;
+    margin: 10px 5px;
+}
+#output{
+    text-align: left;
+    height: 600;
+    width: 1100;
+    margin: 5px 5px;
+    font-size:40px;
+    background-color: white;
+    margin: 30px 0px;
+}
+#valquart{
+    height: 70px;
+    width: 180px;
+    font-size: 35px;
+    margin: 30px 0px;
+}
+#tablevar{
+    height: 70px;
+    width: 230px;
+    font-size: 35px;
+    margin: 30px 0px;
+}
+#values2{
+    align-items: center;
+    height: 80px;
+    width: 80%;
+    font-size: 40px;
+    color: black;
+    margin: 10px 0px;
+    border-color: black;
+}
+#values3{
+    align-items: center;
+    height: 80px;
+    width: 80%;
+    font-size: 40px;
+    color: black;
+    margin: 10px 0px;
+    border-color: black;
+}
+.slidecontainer {
+    width: 50%;
+    font-size: 40px;
+    margin: 20px 0px;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 1100px;
+  height: 15px;
+  border-radius: 5px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+label{
+    font-size: 30px;
+}
+
+.button {
+    padding: 15px 40px;
+    font-size: 40px;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    margin: 10px 5px;
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: 100%
+}
