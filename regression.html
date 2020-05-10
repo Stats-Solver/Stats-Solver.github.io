@@ -29,10 +29,16 @@
             <p style="text-align:left;"><a href="index.html">
                 <span style="font-size: 50px;">Stats Solver</span>
                 </a>
-                <span style="float:right;">
-                    <a href="index.html"><span>Home</span></a> &nbsp; &nbsp; &nbsp;
-                    <a href="descriptive.html"><span>Solvers</span></a> &nbsp; &nbsp; &nbsp;
-                    <a href="regression.html"><span>Contact</span></a>
+                <span style="float:right; font-size: 30px;">
+                    <button class="dropbtn"><a href="index.html">Home</a></button> &nbsp; &nbsp; &nbsp;
+                    <span class="dropdown">
+                            <button class="dropbtn">Solvers</button>
+                            <span class="dropdown-content">
+                                <a href="descriptive.html">Descriptive Statistics</a>
+                                <a href="regression.html">Simple Regression</a>
+                            </span>
+                        </span> &nbsp; &nbsp; &nbsp;
+                    <button class="dropbtn"><a href="contact.html">Contact</a></button>
                 </span>
             </p>    
         </div>
@@ -41,14 +47,13 @@
         </div>
         <div id="input">
             <span style="display:inline-block">
-                <label for=valuesx style="display:block">Enter X Values (separated by commas)</label>
+                <label for=valuesx style="display:block">Enter Values (separated by commas)</label>
                 <input type="text" id="valuesx" placeholder="Example: 1, 2, 3, 4, 5">
             </span>
         </div>
         <div id="input2">
             <span style="display:inline-block">
-                <label for=valuesy style="display:block">Enter Y Values (separated by commas)</label>
-                <input type="text" id="valuesy" placeholder="Example: 5, 4, 3, 2, 1">
+                <input type="text" id="valuesy" placeholder="Example: 1, 2, 3, 4, 5">
             </span>
             <select id="stat" onchange="stat()">
                 <option value="choose">Choose</option>

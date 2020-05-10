@@ -29,19 +29,26 @@
             <p style="text-align:left;"><a href="index.html">
                 <span style="font-size: 50px;">Stats Solver</span>
                 </a>
-                <span style="float:right;">
-                    <a href="index.html"><span>Home</span></a> &nbsp; &nbsp; &nbsp;
-                    <a href="descriptive.html"><span>Solvers</span></a> &nbsp; &nbsp; &nbsp;
-                    <a href="regression.html"><span>Contact</span></a>
+                <span style="float:right; font-size: 30px;">
+                    <button class="dropbtn"><a href="index.html">Home</a></button> &nbsp; &nbsp; &nbsp;
+                    <span class="dropdown">
+                            <button class="dropbtn">Solvers</button>
+                            <span class="dropdown-content">
+                                <a href="descriptive.html">Descriptive Statistics</a>
+                                <a href="regression.html">Simple Regression</a>
+                            </span>
+                        </span> &nbsp; &nbsp; &nbsp;
+                    <button class="dropbtn"><a href="contact.html">Contact</a></button>
                 </span>
             </p>    
         </div>
         <div style="clear: both;"></div>
-        <div id="mainpage">
+        <div class="mainpage">
             <img src="calculator.png" width="125" height="125" alt="Calculator">
             <h1>Step-by-Step Statistics Solutions</h1>
             <p>Get help on your statistics homework with our easy to use solvers.</p>
-            <button id="getstarted" onclick="location.href = 'descriptive.html'">Get Started</button>
+            <button class="getstarted" onclick="location.href = 'descriptive.html'">Descriptive Statistics</button>
+            <button class="getstarted" onclick="location.href = 'regression.html'">Simple Regression</button>
         </div>
     </body>
 </html>
