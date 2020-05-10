@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+        <script src="jquery-3.5.0.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div id="title">
+            <p style="text-align:left;"><a href="index.html">
+                <span style="font-size: 50px;">Stats Solver</span>
+                </a>
+                <span style="float:right;">
+                    <a href="index.html"><span>Home</span></a> &nbsp; &nbsp; &nbsp;
+                    <a href="descriptive.html"><span>Solvers</span></a> &nbsp; &nbsp; &nbsp;
+                    <a href="regression.html"><span>Contact</span></a>
+                </span>
+            </p>    
+        </div>
+        <div class="subtitle">
+            <h2>Simple Regression Solver</h2>
+        </div>
+        <div id="input">
+            <span style="display:inline-block">
+                <label for=valuesx style="display:block">Enter X Values (separated by commas)</label>
+                <input type="text" id="valuesx" placeholder="Example: 1, 2, 3, 4, 5">
+            </span>
+        </div>
+        <div id="input2">
+            <span style="display:inline-block">
+                <label for=valuesy style="display:block">Enter Y Values (separated by commas)</label>
+                <input type="text" id="valuesy" placeholder="Example: 5, 4, 3, 2, 1">
+            </span>
+            <select id="stat" onchange="stat()">
+                <option value="choose">Choose</option>
+                <option value="slope">Slope</option>
+                <option value="intercept">Intercept</option>
+                <option value="sse">SSE</option>
+                <option value="sst">SST</option>
+                <option value="ssr">SSR</option>
+                <option value="rsquared">R-Squared</option>
+                <option value="correlation">Correlation</option>
+                <option value="mse">MSE</option>
+                <option value="see">SEE</option>
+                <option value="ses">SES</option>
+                <option value="tstat">t-Statistic</option>
+                <option value="msr">MSR</option>
+                <option value="fstat">F-Statistic</option>
+            </select>
+        </div>
+        <div id="output">
+        </div>
+        <script src="regscript.js"></script>
+    </body>
+</html>

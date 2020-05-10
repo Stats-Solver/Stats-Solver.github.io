@@ -69,7 +69,7 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
+    document.getElementById("output").innerHTML+= " $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
     MathJax.typeset();
 }
 
@@ -323,11 +323,11 @@ function zscores(){
 
     var zscrs = [];
     for (let i=0; i<len; i++){
-        zscrs += "$$z_"+each[i]+" = \\frac{"+each[i]+"-\\bar{x}}{s} = \\frac{"+ each[i] +" - "+mn.toFixed(2)+"}{"+ansstd.toFixed(2)+"}= \\frac{"+ (each[i]-mn).toFixed(2)+"}{"+ansstd.toFixed(2)+"}="+((each[i]-mn)/ansstd).toFixed(2)+"$$"
+        zscrs += "z_"+each[i]+" &= \\frac{"+each[i]+"-\\bar{x}}{s} = \\frac{"+ each[i] +" - "+mn.toFixed(2)+"}{"+ansstd.toFixed(2)+"} = \\frac{"+ (each[i]-mn).toFixed(2)+"}{"+ansstd.toFixed(2)+"} ="+((each[i]-mn)/ansstd).toFixed(2)+"\\\\"
     }
    
 
-    document.getElementById("output").innerHTML = zscrs
+    document.getElementById("output").innerHTML = "$$ \\begin{align} " + zscrs + " \\end{align} $$"
     MathJax.typeset()
 }
 
@@ -376,7 +376,7 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$"
+    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br> $$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$"
     MathJax.typeset();
 }
 

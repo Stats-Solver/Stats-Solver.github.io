@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+        <script src="jquery-3.5.0.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div id="title">
+            <p style="text-align:left;"><a href="index.html">
+                <span style="font-size: 50px;">Stats Solver</span>
+                </a>
+                <span style="float:right;">
+                    <a href="index.html"><span>Home</span></a> &nbsp; &nbsp; &nbsp;
+                    <a href="descriptive.html"><span>Solvers</span></a> &nbsp; &nbsp; &nbsp;
+                    <a href="regression.html"><span>Contact</span></a>
+                </span>
+            </p>    
+        </div>
+        <div class="subtitle">
+            <h2>Descriptive Statistics Solver</h2>
+        </div>
+        <div id="input">
+            <span style="display:inline-block">
+                <label for=values style="display:block">Enter X Values (separated by commas)</label>
+                <input type="text" id="values" placeholder="Example: 1, 2, 3, 4, 5">
+            </span>
+            <select id="stat" onchange="stat()">
+                <option value="choose">Choose</option>
+                <option value="mean">Mean</option>
+                <option value="median">Median</option>
+                <option value="mode">Mode</option>
+                <option value="percentiles">Percentiles</option>
+                <option value="quartiles">Quartiles</option>
+                <option value="range">Range</option>
+                <option value="iqr">Int Range</option>
+                <option value="variance">Variance</option>
+                <option value="stdev">Stnd Dev</option>
+                <option value="cv">Coef of Var</option>
+                <option value="zscores">z-Scores</option>
+                <option value="covariance">Covariance</option>
+                <option value="correlation">Corr Coef</option>
+            </select>
+        </div>
+        <div class="slidecontainer">
+            <input type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
+            <p>Percentile: <span id="demo"></span></p>
+        </div>
+        <div id="inputqu">
+            <input type="text" style="display:none;" id="valqu">
+            <select id="valquart" onchange="calcquart()">
+                <option value="choose">Choose</option>
+                <option value=25>First</option>
+                <option value=50>Second</option>
+                <option value=75>Third</option>
+            </select>
+        </div>
+        <div id="input2">
+            <label for=values2 style="display:block">Enter Y Values (separated by commas)</label>
+            <input type="text" id="values2" placeholder="Example: 5, 4, 3, 2, 1">
+            <button class="button" onclick="calccov()">Calculate</button>
+        </div>
+        <div id="input3">
+            <label for=values3 style="display:block">Enter Y Values (separated by commas)</label>
+            <input type="text" id="values3" placeholder="Example: 5, 4, 3, 2, 1">
+            <button class="button" onclick="calccor()">Calculate</button>
+        </div>
+        <div id="output">
+        </div>
+        <script src="desscript.js"></script>
+    </body>
+</html>
