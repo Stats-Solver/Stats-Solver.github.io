@@ -371,7 +371,341 @@ function rsquared(){
     var ansrsqu = ansssr / anssst;
     var ansrsquper = ansrsqu.toFixed(2) * 100;
     var interpret = "Interpretation: " + ansrsquper + "% of the variation in y is explained by the linear relationship between x and y."
-    document.getElementById("output").innerHTML = "Coefficient of Determination $$ \\begin{align} R^2 &= \\frac{\\text{SSE}}{\\text{SST}} \\\\ &= \\frac{"+ansssr.toFixed(2)+"}{" +anssst.toFixed(2) +"} \\\\ &= "+ansrsqu.toFixed(2)+" \\end{align} $$" + interpret
+    document.getElementById("output").innerHTML = "Coefficient of Determination $$ \\begin{align} R^2 &= \\frac{\\text{SSR}}{\\text{SST}} \\\\ &= \\frac{"+ansssr.toFixed(2)+"}{" +anssst.toFixed(2) +"} \\\\ &= "+ansrsqu.toFixed(2)+" \\end{align} $$" + interpret
+    MathJax.typeset();
+}
+
+function mse(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2);
+    document.getElementById("output").innerHTML = "Mean Square Error $$ \\begin{align} s^2 = MSE &= \\frac{\\text{SSE}}{\\text{n-2}} \\\\ &= \\frac{"+anssse.toFixed(2)+"}{" + n_x +" - 2} \\\\ &= "+ansrsqu.toFixed(2)+" \\end{align} $$"
+    MathJax.typeset();
+}
+
+function see(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2);
+    var anssee = Math.sqrt(ansmse);
+    document.getElementById("output").innerHTML = "Standard Error of the Estimate $$ \\begin{align} s = \\sqrt{MSE} &= \\sqrt{\\frac{\\text{SSE}}{\\text{n-2}}}\\\\ &= \\sqrt{"+ansmse.toFixed(2)+"} \\\\ &= " + anssee.toFixed(2) +" \\end{align} $$"
+    MathJax.typeset();
+}
+
+function ses(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
+    var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
+    document.getElementById("output").innerHTML = "Standard Error of the Slope $$ \\begin{align} s_{b_1} &= \\frac{s}{\\sqrt{\\sum(x - \\bar{x})^2}} \\\\ &= \\frac{"+anssee.toFixed(2)+"}{\\sqrt{"+sum_xminusx_bar2.toFixed(2)+"}} \\\\ &= " + anssee.toFixed(2) +" \\end{align} $$"
+    MathJax.typeset();
+}
+
+function tstat(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
+    var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
+    var anststat = ansslope / ansses;
+    document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$"
+    MathJax.typeset();
+}
+
+function msr(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
+    var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
+    var anststat = ansslope / ansses;
+    var ansmsr = ansssr;
+    document.getElementById("output").innerHTML = "Mean Square Regression $$ \\begin{align} MSR &= \\frac{SSR}{1} \\\\ &= "+ansmsr.toFixed(2)+" \\end{align} $$"
+    MathJax.typeset();
+}
+
+function fstat(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
+    var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
+    var anststat = ansslope / ansses; var ansmsr = ansssr;
+    var ansfstat = ansmsr / ansmse;
+    document.getElementById("output").innerHTML = "$$ \\begin{align} F &= \\frac{MSR}{MSE} \\\\ &= \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} \\\\ &= "+ ansfstat.toFixed(2) + " \\end{align} $$"
     MathJax.typeset();
 }
 

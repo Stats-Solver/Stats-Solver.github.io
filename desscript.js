@@ -333,6 +333,8 @@ function zscores(){
 
 function covariance(){
     $("#input2").show();
+    $("#buttoncov").show();
+    $("#buttoncor").hide();
 }
 
 function calccov(){
@@ -388,12 +390,14 @@ function calccov(){
 }
 
 function correlation(){
-    $("#input3").show();
+    $("#input2").show();
+    $("#buttoncor").show();
+    $("#buttoncov").hide();
 }
 
 function calccor(){
     var str = document.getElementById("values").value;
-    var str2 = document.getElementById("values3").value;
+    var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
     var sumeach = sum(each); var sumeach2 = sum(each2);
