@@ -69,7 +69,7 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "Sample Mean $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
+    document.getElementById("output").innerHTML+= "Sample Mean $$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
     MathJax.typeset();
 }
 
@@ -81,10 +81,10 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-        document.getElementById("output").innerHTML = "Median <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an odd number of values, take the middle value.$$\\text{Median} = " + valm + "$$"
+        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an odd number of values, take the middle value.$$\\text{Median} = " + valm + "$$"
    
     }else{
-        document.getElementById("output").innerHTML = "Median <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an even number of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\frac{" + sumlr + "}{2}" + " = " + avelr + "$$"
+        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an even number of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\frac{" + sumlr + "}{2}" + " = " + avelr + "$$"
     }
     MathJax.typeset();
 }
@@ -114,12 +114,12 @@ function mode(){
     var maxcount = Math.max.apply(Math,count)
    
     if (maxcount == 1) {
-        document.getElementById("output").innerHTML = "Mode <br><br> There is no mode."
+        document.getElementById("output").innerHTML = "There is no mode."
     } else if (lenmode == 1) {
-        document.getElementById("output").innerHTML = "Mode <br><br> The mode is " + modes + "."
+        document.getElementById("output").innerHTML = "The mode is " + modes + "."
     }
     else {
-        document.getElementById("output").innerHTML = "Mode <br><br> The modes are " + modes + "."
+        document.getElementById("output").innerHTML = "The modes are " + modes + "."
     }
 
 }
@@ -159,10 +159,10 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "Percentiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
+        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
    
     }else{
-        document.getElementById("output").innerHTML = "Percentiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = " + answr + "$$"
+        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = " + answr + "$$"
     }
     MathJax.typeset();
 }
@@ -193,10 +193,10 @@ function calcquart(){
         var quartnum = ""
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "Quartiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
+        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
    
     }else{
-        document.getElementById("output").innerHTML = "Quartiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = " + answr + "$$"
+        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = " + answr + "$$"
     }
     MathJax.typeset();
 }
@@ -206,7 +206,7 @@ function range(){
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "Range $$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ "\\\\ &=" + rng + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ "\\\\ &=" + rng + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -327,7 +327,7 @@ function zscores(){
     }
    
 
-    document.getElementById("output").innerHTML = "z-Scores $$ \\begin{align} " + zscrs + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} " + zscrs + " \\end{align} $$"
     MathJax.typeset()
 }
 
