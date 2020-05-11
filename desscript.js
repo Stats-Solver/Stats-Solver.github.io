@@ -69,7 +69,7 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= " $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
+    document.getElementById("output").innerHTML+= "Sample Mean $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
     MathJax.typeset();
 }
 
@@ -81,10 +81,10 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an odd number of values, take the middle value.$$\\text{Median} = " + valm + "$$"
+        document.getElementById("output").innerHTML = "Median <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an odd number of values, take the middle value.$$\\text{Median} = " + valm + "$$"
    
     }else{
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an even number of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\frac{" + sumlr + "}{2}" + " = " + avelr + "$$"
+        document.getElementById("output").innerHTML = "Median <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an even number of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\frac{" + sumlr + "}{2}" + " = " + avelr + "$$"
     }
     MathJax.typeset();
 }
@@ -114,12 +114,12 @@ function mode(){
     var maxcount = Math.max.apply(Math,count)
    
     if (maxcount == 1) {
-        document.getElementById("output").innerHTML = "There is no mode."
+        document.getElementById("output").innerHTML = "Mode <br><br> There is no mode."
     } else if (lenmode == 1) {
-        document.getElementById("output").innerHTML = "The mode is " + modes + "."
+        document.getElementById("output").innerHTML = "Mode <br><br> The mode is " + modes + "."
     }
     else {
-        document.getElementById("output").innerHTML = "The modes are " + modes + "."
+        document.getElementById("output").innerHTML = "Mode <br><br> The modes are " + modes + "."
     }
 
 }
@@ -159,10 +159,10 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
+        document.getElementById("output").innerHTML = "Percentiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
    
     }else{
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = " + answr + "$$"
+        document.getElementById("output").innerHTML = "Percentiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = " + answr + "$$"
     }
     MathJax.typeset();
 }
@@ -193,10 +193,10 @@ function calcquart(){
         var quartnum = ""
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
+        document.getElementById("output").innerHTML = "Quartiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = " + valavg + "$$"
    
     }else{
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = " + answr + "$$"
+        document.getElementById("output").innerHTML = "Quartiles <br><br> Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = " + answr + "$$"
     }
     MathJax.typeset();
 }
@@ -206,7 +206,7 @@ function range(){
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ "\\\\ &=" + rng + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "Range $$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ "\\\\ &=" + rng + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -222,14 +222,14 @@ function iqr(){
     var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
     var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+val25avg+" \\\\ &= "+ansiqr1+"\\end{align} $$"
+        document.getElementById("output").innerHTML = "Interquartile Range $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+val25avg+" \\\\ &= "+ansiqr1+"\\end{align} $$"
     } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+val25avg+" \\\\ &= "+ansiqr2+"\\end{align} $$"
+        document.getElementById("output").innerHTML = "Interquartile Range $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+val25avg+" \\\\ &= "+ansiqr2+"\\end{align} $$"
     } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+answr25+" \\\\ &= "+ansiqr3+"\\end{align} $$"
+        document.getElementById("output").innerHTML = "Interquartile Range $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+answr25+" \\\\ &= "+ansiqr3+"\\end{align} $$"
     }
     else{
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+answr25+" \\\\ &= "+ansiqr4+"\\end{align} $$"
+        document.getElementById("output").innerHTML = "Interquartile Range $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+answr25+" \\\\ &= "+ansiqr4+"\\end{align} $$"
     }
 
     MathJax.typeset();
@@ -260,7 +260,7 @@ function variance(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+sumeachminus2.toFixed(2)+"$$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}="+ansvar.toFixed(2)+"$$"
+    document.getElementById("output").innerHTML = "Sample Variance <br><br> <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}="+ansvar.toFixed(2)+"$$"
     MathJax.typeset();
 }
 
@@ -279,7 +279,7 @@ function stdev(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= "+ansstd.toFixed(2)+"\\end{align} $$"
+    document.getElementById("output").innerHTML = "Sample Standard Deviation $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= "+ansstd.toFixed(2)+"\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -300,7 +300,7 @@ function cv(){
     var ansstd = Math.sqrt(ansvar);
     var stdmn = ansstd / mn;
     var anscv = (ansstd / mn) * 100
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}}\\right)100\\% \\\\ &= \\left(\\frac{"+ansstd.toFixed(2)+"}{"+mn.toFixed(2)+"}\\right)100\\% \\\\ &= "+ stdmn.toFixed(2) +"*100\\% \\\\ &= "+anscv.toFixed(2)+"\\% \\end{align} $$"
+    document.getElementById("output").innerHTML = "Coefficient of Variation $$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}}\\right)100\\% \\\\ &= \\left(\\frac{"+ansstd.toFixed(2)+"}{"+mn.toFixed(2)+"}\\right)100\\% \\\\ &= "+ stdmn.toFixed(2) +"*100\\% \\\\ &= "+anscv.toFixed(2)+"\\% \\end{align} $$"
     MathJax.typeset()
 }
 
@@ -327,7 +327,7 @@ function zscores(){
     }
    
 
-    document.getElementById("output").innerHTML = "$$ \\begin{align} " + zscrs + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "z-Scores $$ \\begin{align} " + zscrs + " \\end{align} $$"
     MathJax.typeset()
 }
 
@@ -363,6 +363,13 @@ function calccov(){
     var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var anscov = sumeacheach2 / lenmin1;
+    if (anscov > 0){
+        var interpret = "Interpretation: There is a positive linear relationship between x and y."
+    } else if (anscov < 0){
+        var interpret = "Interpretation: There is a negative linear relationship between x and y."
+    } else {
+        var interpret = "Interpretation: There is no relationship between x and y."
+    }
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 5;
@@ -376,7 +383,7 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br> $$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$"
+    document.getElementById("output").innerHTML = "Sample Covariance <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$" + interpret
     MathJax.typeset();
 }
 
@@ -412,7 +419,32 @@ function calccor(){
     var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
-    var anscov = sumeacheach2 / lenmin1; var anscor = anscov / (ansstd * ansstd2);
+    var anscov = sumeacheach2 / lenmin1; var covden = ansstd * ansstd2;
+    var anscor = anscov / covden;
+    if (anscor = 1){
+        var interpret = "Interpretation: There is a perfect positive linear relationship between x and y."
+    } else if (anscor >= .75 && anscor < 1){
+        var interpret = "Interpretation: There is a strong positive linear relationship between x and y."
+    } else if (anscor > .25 && anscor < .75){
+        var interpret = "Interpretation: There is a mild positive linear relationshhip between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a weak positive linear relationship between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a negative relationship between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a negative relationship between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a negative relationship between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a negative relationship between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a negative relationship between x and y."
+    } else if (anscor < 0){
+        var interpret = "Interpretation: There is a negative relationship between x and y."
+    }else {
+        var interpret = "Interpretation: There is no relationship between x and y."
+    }
+    
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 6;
@@ -427,6 +459,6 @@ function calccor(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+anscor.toFixed(2)+"  \\end{align} $$"
+    document.getElementById("output").innerHTML = "Sample Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+anscor.toFixed(2)+"  \\end{align} $$" + interpret + anscov
     MathJax.typeset();
 }

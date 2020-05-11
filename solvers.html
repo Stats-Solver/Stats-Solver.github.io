@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+        <script src="jquery-3.5.0.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div id="title">
+            <p style="text-align:left;"><a href="index.html">
+                <span style="font-size: 50px;">Stats Solver</span>
+                </a>
+                <span style="float:right; font-size: 30px;">
+                    <button class="dropbtn"><a href="index.html">Home</a></button> &nbsp; &nbsp; &nbsp;
+                    <span class="dropdown">
+                            <button class="dropbtn">Solvers</button>
+                            <span class="dropdown-content">
+                                <a href="descriptive.html">Descriptive Statistics</a>
+                                <a href="regression.html">Simple Regression</a>
+                            </span>
+                        </span> &nbsp; &nbsp; &nbsp;
+                    <button class="dropbtn"><a href="contact.html">Contact</a></button>
+                </span>
+            </p>    
+        </div>
+        <div class="subtitle">
+            <h2>Solvers</h2>
+        </div>
+        <div id="solverspage">
+            <p>Table and Graphs: Frequency Distribution, Pie Chart, Bar Chart, Scatter Diagram, etc...</p>
+            <p>Descriptive Statistics: Mean, Median, Variance, Standard Deviation, etc...</p>
+            <p>Probability Theory: Combination, Permutation, Normal Distribution, etc...</p>
+            <p>Hypothesis Testing: Lower-Tail Test, Upper-Tail Test, Two-Tailed Test, etc...</p>
+            <p>Simple Regression: Slope, Intercept, R-Squared, t-Statistic, F-Statistic, etc...</p>
+            <p>Time-Series Forecasting: Moving Average, Exponential Smoothing, Decomposition, etc...</p>
+            <p></p>
+        </div>
+        <script src="desscript.js"></script>
+    </body>
+</html>

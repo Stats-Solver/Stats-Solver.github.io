@@ -36,7 +36,10 @@ function stat(){
         slope()
     } else if (x == "intercept"){
         intercept()
-    } else if (x == "sse") {
+    } else if (x == "equation"){
+        equation()
+    }
+    else if (x == "sse") {
         sse()
     } else if (x == "sst") {
         sst()
@@ -65,20 +68,20 @@ function stat(){
 }
 
 function slope(){
-    var strx = document.getElementById("valuesx").value;
-    var stry = document.getElementById("valuesy").value;
-    var x = str.split(",").map(Number); var n_x = each.length; var lenmin1 = len - 1;
-    var y = str2.split(",").map(Number); var n_y = each2.length; var len2min1 = len2 - 1;
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
     var mean_x = avg(x); var mean_y = avg(y);
-    var xminusx_bar = each.map( function(value) {
-        return x - mean_x;
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
     } );
-    var yminusy_bar = each2.map( function(value) {
+    var yminusy_bar = y.map( function(value) {
         return value - mean_y;
     } );
     var xxbminyyb = [];
-    for(var i = 0; i < len; i++){
+    for(var i = 0; i < n_x; i++){
         xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
     }
     var xminusx_bar2 = xminusx_bar.map( function(value) {
@@ -89,68 +92,154 @@ function slope(){
     } );
     var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
     var sum_xxbminyyb = sum(xxbminyyb);
-    var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
-    var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
-    var ansslope = sumeacheach2 / lenmin1;
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2;
+    var interpret = ""
+    if (ansslope > 0){
+        var interpret = "Interpretation: For every one-unit increase in x, y is predicted to increas by "+ansslope+" units."
+    } else if (ansslope < 0){
+        var interpret = "Interpretation: For every one-unit increase in x, y is predicted to decrease by "+Math.abs(ansslope)+" units."
+    } else {
+        var interpret = "Interpretation: For every one-unit increase in x, y is neither predicted to increase nor decrease."
+    }
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" +"<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "</tr>";
-    var rows = len; var cols = 6;
+    var rows = n_x; var cols = 6;
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>$$" + each[r] + "$$</td>";
-        table += "<td>$$" + each2[r] + "$$</td>";
-        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
-        table += "<td>$$" + each2minus[r].toFixed(2) + "$$</td>";
-        table += "<td>$$" + eacheach2[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + x[r] + "$$</td>";
+        table += "<td>$$" + y[r] + "$$</td>";
+        table += "<td>$$" + xminusx_bar[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + yminusy_bar[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + xxbminyyb[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + xminusx_bar2[r].toFixed(2) + "$$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+ansslope.toFixed(2)+"$$"
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sum_xminusx_bar)+"$$</td>"+ "<td>$$"+Math.round(sum_yminusy_bar)+"$$</td>" +"<td>$$"+sum_xxbminyyb.toFixed(2)+"$$</td>"+"<td>$$"+sum_xxbminyyb.toFixed(2)+"$$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "Slope <br><br> <table border=1>" + table + "</table><br>$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{"+sum_xxbminyyb.toFixed(2)+"}{"+sum_xminusx_bar2.toFixed(2)+"}="+ansslope.toFixed(2)+"$$" + interpret
     MathJax.typeset();
 }
 
-function calccor(){
-    var str = document.getElementById("values").value;
-    var str2 = document.getElementById("values3").value;
-    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
-    var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
-    var sumeach = sum(each); var sumeach2 = sum(each2);
-    var mn = avg(each); var mn2 = avg(each2);
-    var eachminus = each.map( function(value) {
-        return value - mn;
+function intercept(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
     } );
-    var each2minus = each2.map( function(value) {
-        return value - mn2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
     } );
-    var eacheach2 = [];
-    for(var i = 0; i < len; i++){
-        eacheach2[i] = eachminus[i] * each2minus[i]
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
     }
-    var eachminus2 = eachminus.map( function(value) {
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
         return value * value;
     } );
-    var each2minus2 = each2minus.map( function(value) {
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
         return value * value;
     } );
-    var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
-    var sumeacheach2 = sum(eacheach2);
-    var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
-    var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
-    var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
-    var anscov = sumeacheach2 / lenmin1; var anscor = anscov / (ansstd * ansstd2);
-    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
-    var rows = len;
-    var cols = 6;
-    for (var r = 0; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$$" + each[r] + "$$</td>";
-        table += "<td>$$" + each2[r] + "$$</td>";
-        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
-        table += "<td>$$" + each2minus[r].toFixed(2) + "$$</td>";
-        table += "<td>$$" + eachminus2[r].toFixed(2) + "$$</td>";
-        table += "<td>$$" + each2minus2[r].toFixed(2) + "$$</td>";
-        table += "</tr>";
-    }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+anscor.toFixed(2)+"  \\end{align} $$"
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var interpret = "Interpretation: The predicted value of y when x = 0 is " + ansint + "."
+    document.getElementById("output").innerHTML = "Intercept $$ \\begin{align} b_{0} &= \\bar{y} - b_{1} \\bar{x} \\\\ &= "+mean_y+" - (" +ansslope + ")(" + mean_x+ ") \\\\ &= "+ansint+" \\end{align} $$" + interpret
     MathJax.typeset();
 }
+
+function equation(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var interpret = "Interpretation: The predicted value of y when x = 0 is " + ansint + "."
+    document.getElementById("output").innerHTML = "Regression Equation <br> $$ \\begin{align} \\hat{y} &= b_{0} + b_{1} x \\\\ \\hat{y} &= "+ansint+" + " +ansslope + "x \\end{align} $$"
+    MathJax.typeset();
+}
+
+function sse(){
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$\\hat{y}$$" + "</td>" + "<td>" + "$$y - \\hat{y}$$" + "</td>"+ "<td>" + "$$(y - \\hat{y})^2$$" + "</td>" + "</tr>";
+    var rows = n_x; var cols = 5;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + x[r] + "$$</td>";
+        table += "<td>$$" + y[r] + "$$</td>";
+        table += "<td>$$" + yhat[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + yminusyhat[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + yminusyhat2[r].toFixed(2) + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+Math.round(sum_yminusyhat)+"$$</td>" +"<td>$$"+sum_yminusyhat2.toFixed(2)+"$$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "Sum of Squares due to Error <br><br> <table border=1>" + table + "</table><br>$$ \\text{SSE} = \\sum(y - \\hat{y})^2 = "+anssse.toFixed(2)+"$$"
+    MathJax.typeset();
+}
+
+
