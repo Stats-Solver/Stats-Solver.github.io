@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+   
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" type="text/css" href="hypstyle.css">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
+        <script src="jquery-3.5.0.min.js"></script>
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div id="title">
+            <p style="text-align:left;"><a href="index.html">
+                <span style="font-size: 50px;">Stats Solver</span>
+                </a>
+                <span style="float:right; font-size: 30px;">
+                    <button class="dropbtn"><a href="index.html">Home</a></button> &nbsp; &nbsp; &nbsp;
+                    <span class="dropdown">
+                            <button class="dropbtn">Solvers</button>
+                            <span class="dropdown-content">
+                                <a href="numerical.html">Numerical Summaries</a>
+                                <a href="hypothesis.html">Hypothesis Testing</a>
+                                <a href="regression.html">Simple Regression</a>
+                            </span>
+                        </span> &nbsp; &nbsp; &nbsp;
+                    <button class="dropbtn"><a href="contact.html">Contact</a></button>
+                </span>
+            </p>    
+        </div>
+        <div class="subtitle">
+            <h2>Hypothesis Testing</h2>
+        </div>
+              
+        <div id="hyppage">
+            
+        <table>
+          <tr>
+            <td>$H_o$:</td>
+            <td>$\mu $</td> 
+            <td><select id="tail" class="hypinput1"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+            <td><input type="text" id="muknot" class="hypinput2"></td>
+            <td>$\qquad$</td>
+            <td>$n$</td>
+            <td>=</td>
+            <td><input type="text" id="size" class="hypinput2"></td>
+            <td>$\qquad$</td>
+            <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
+            <td>=</td>
+            <td><input type="text" id="alpha" class="hypinput2"></td>
+            <td>$\qquad$</td>
+            <td rowspan="2"><button id = "hyptest" class="button" onclick="hyptest()">Calculate</button></td>
+          </tr>
+          <tr>
+            <td>$H_a$:</td>
+            <td>$\mu $</td>
+            <td><</td>
+            <td>$\mu_0 $</td>
+            <td>$\qquad$</td>
+            <td>$\bar{x}$</td>
+            <td>=</td>
+            <td><input type="text" id="xbar" class="hypinput2"></td>
+            <td>$\qquad$</td>
+            <td>$\alpha$</td>
+            <td>=</td>
+            <td><input type="text" id="alpha" class="hypinput2"></td>
+            <td>$\qquad$</td>
+          </tr>
+        </table>
+        </div>
+        
+        
+        
+        <div id="output">
+        </div>
+        <script src="hypscript.js"></script>
+    </body>
+</html>
