@@ -423,32 +423,29 @@ function calccor(){
     var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
-    var anscov = sumeacheach2 / lenmin1; var covden = ansstd * ansstd2;
-    var anscor = anscov / covden;
-    if (anscor = 1){
-        var interpret = "Interpretation: There is a perfect positive linear relationship between x and y."
-    } else if (anscor >= .75 && anscor < 1){
-        var interpret = "Interpretation: There is a strong positive linear relationship between x and y."
-    } else if (anscor > .25 && anscor < .75){
-        var interpret = "Interpretation: There is a mild positive linear relationshhip between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a weak positive linear relationship between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a negative relationship between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a negative relationship between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a negative relationship between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a negative relationship between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a negative relationship between x and y."
-    } else if (anscor < 0){
-        var interpret = "Interpretation: There is a negative relationship between x and y."
-    }else {
-        var interpret = "Interpretation: There is no relationship between x and y."
+    var anscov = sumeacheach2 / lenmin1;
+    var anscor = anscov / (ansstd * ansstd2);
+    var anscor2 = anscov / (ansstd * ansstd2);
+    if (anscor2 = 1){
+        var intinside = "a perfect positive"
+    } else if (anscor2 >= .75 && anscor2 < 1){
+        var intinside = "a strong positive"
+    } else if (anscor2 > .25 && anscor2 < .75){
+        var intinside = "a moderate positive"
+    } else if (anscor2 > 0 && anscor2 < .25){
+        var intinside = "a weak positive"
+    } else if (anscor2 < 0 && anscor2 >= -.25){
+        var intinside = "a weak negative"
+    } else if (anscor2 < -.25 && anscor >2 -.75){
+        var intinside = "a moderate negative"
+    } else if (anscor2 <= -.75 && anscor2 > -1){
+        var intinside = "a strong negative"
+    } else if (anscor2 = -1){
+        var intinside = "a perfect negative"
+    } else {
+        var intinside = "no"
     }
-    
+    var interpret = "Interpretation: There is "+ intinside +" linear relationship between x and y."
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 6;
@@ -463,6 +460,6 @@ function calccor(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "Sample Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+anscor.toFixed(2)+"  \\end{align} $$" + interpret + anscov
+    document.getElementById("output").innerHTML = "Sample Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+anscor2.toFixed(2)+"  \\end{align} $$" + interpret
     MathJax.typeset();
 }

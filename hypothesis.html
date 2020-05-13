@@ -44,7 +44,7 @@
             </p>    
         </div>
         <div class="subtitle">
-            <h2>Hypothesis Testing</h2>
+            <a href="hypothesis.html"><h2>Hypothesis Testing</h2></a>
         </div>
               
         <div id="hyppage">
@@ -52,39 +52,37 @@
         <table>
           <tr>
             <td>$H_o$:</td>
-            <td>$\mu $</td> 
-            <td><select id="tail" class="hypinput1"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td><input type="text" id="muknot" class="hypinput2"></td>
+            <td>$\mu$</td> 
+            <td><select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+            <td><input type="text" id="muknot" class="hypinput2" oninput="muknotval()"></td>
             <td>$\qquad$</td>
             <td>$n$</td>
-            <td>=</td>
+            <td> = </td>
             <td><input type="text" id="size" class="hypinput2"></td>
             <td>$\qquad$</td>
             <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
-            <td>=</td>
-            <td><input type="text" id="alpha" class="hypinput2"></td>
+            <td> = </td>
+            <td><input type="text" id="stdev" class="hypinput2"></td>
             <td>$\qquad$</td>
-            <td rowspan="2"><button id = "hyptest" class="button" onclick="hyptest()">Calculate</button></td>
+            <td rowspan="2"><button id = "hyptest" class="button" onclick="hyptest()">Go</button></td>
           </tr>
           <tr>
             <td>$H_a$:</td>
-            <td>$\mu $</td>
-            <td><</td>
-            <td>$\mu_0 $</td>
+            <td>$\mu$</td>
+            <td> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
+            <td><span id = "muknotvalue"></span></td>
             <td>$\qquad$</td>
             <td>$\bar{x}$</td>
-            <td>=</td>
+            <td> = </td>
             <td><input type="text" id="xbar" class="hypinput2"></td>
             <td>$\qquad$</td>
             <td>$\alpha$</td>
-            <td>=</td>
-            <td><input type="text" id="alpha" class="hypinput2"></td>
-            <td>$\qquad$</td>
+            <td> = </td>
+            <td><select id="alpha" class="hypinputalpha"> <option value=.05> .05 </option> <option value=.01> .01 </option> </select></td>
           </tr>
-        </table>
+        </table>  
         </div>
-        
-        
+
         
         <div id="output">
         </div>
