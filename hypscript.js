@@ -82,6 +82,7 @@ function hyptest(){
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
     var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
+    var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2));
     if (sigma == "known" && tail == "lower"){
         var testtype = "Lower-Tail Test"
         var testsymb = "z";
@@ -111,12 +112,14 @@ function hyptest(){
         var tailsign = "\\geq";
         var stndsymb = "s"
         var cvalsymb = "-t_\\alpha";
+        var pvalue = normalcdf(test);
     } else if (sigma == "unknown" && tail == "upper"){
         var testtype = "Upper-Tail Test"
         var testsymb = "t";
         var tailsign = "\\leq";
         var stndsymb = "s"
         var cvalsymb = "t_\\alpha";
+        var pvalue = 1 - normalcdf(test);
     } else if (sigma == "unknown" && tail == "two"){
         var testtype = "Two-Tailed Test"
         var testsymb = "t";
@@ -124,18 +127,40 @@ function hyptest(){
         var stndsymb = "s"
         var cvalsymb1 = "-t_{\\alpha / 2}";
         var cvalsymb2 = "t_{\\alpha / 2}";
+        var pvalhalf = normalcdf(testtwo);
+        var pvalue = 2 * pvalhalf;
     }
     
     if (pvalue <= alpha) {
+        var pinequ = "\\leq"
         var concl = "\\text{Reject } H_o"
+        var critsignlower = "\\leq"
+        var critsignupper = "\\geq"
     } else if (pvalue > alpha) {
+        var pinequ = ">"
         var concl = "\\text{Do Not Reject } H_o"
+        var critsignlower = ">"
+        var critsignupper = "<"
     }
     
-    if (tail == "lower" || tail == "upper") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+"\\leq \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcless.toFixed(2) + "$$ $$z="+test.toFixed(2) +"\\leq "+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
+    if (testtwo <= zctwo1) {
+        var twosign1 = "\\leq"
+    } else if (testtwo > zctwo1) {
+        var twosign1 = ">"
+    }
+    
+    if (testtwo >= zctwo1) {
+        var twosign2 = "\\geq"
+    } else if (testtwo < zctwo1) {
+        var twosign2 = "<"
+    }
+    
+    if (tail == "lower") {
+        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcless.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
+    } else if (tail == "upper") {
+        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcmore.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
     } else if (tail == "two") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) = 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" $$ $$\\text{p-value}="+zptwo2.toFixed(4)+"\\leq \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }" + concl +" $$ Critical Value Approach $$ \\text{Critical Values: }"+cvalsymb1+" = " + zcless.toFixed(2) + " \\text{ and } "+cvalsymb2+" = "+zcless.toFixed(2) + "$$ $$z="+test.toFixed(2) +"\\leq "+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
+        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }" + concl +" $$ Critical Value Approach $$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + zctwo1.toFixed(2) + "\\\\ \\text{ and } "+cvalsymb2+" &= "+zctwo2.toFixed(2) + "\\end{align} $$ $$ \\begin{align}"+testsymb+ "&="+test.toFixed(2) + twosign1 + " " + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and } "+testsymb+"&="+test.toFixed(2) + twosign2 + " "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align} $$ $$ \\text{Conclusion: }" + concl + "$$"
     }
     
     MathJax.typeset();
