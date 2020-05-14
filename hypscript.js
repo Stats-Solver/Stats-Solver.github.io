@@ -142,7 +142,7 @@ function hyptest(){
         var critsignlower = ">"
         var critsignupper = "<"
     }
-    
+     
     if (testtwo <= zctwo1) {
         var twosign1 = "\\leq"
     } else if (testtwo > zctwo1) {
@@ -155,12 +155,20 @@ function hyptest(){
         var twosign2 = "<"
     }
     
+    if (test <= zctwo1) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+zctwo1.toFixed(2);
+    } else if (test >= zctwo2) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+zctwo2.toFixed(2);
+    } else {
+        var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
+    }
+    
     if (tail == "lower") {
         document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcless.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
     } else if (tail == "upper") {
         document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcmore.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
     } else if (tail == "two") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }" + concl +" $$ Critical Value Approach $$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + zctwo1.toFixed(2) + "\\\\ \\text{ and } "+cvalsymb2+" &= "+zctwo2.toFixed(2) + "\\end{align} $$ $$ \\begin{align}"+testsymb+ "&="+test.toFixed(2) + twosign1 + " " + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and } "+testsymb+"&="+test.toFixed(2) + twosign2 + " "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align} $$ $$ \\text{Conclusion: }" + concl + "$$"
+        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }" + concl +" $$ Critical Value Approach $$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + zctwo1.toFixed(2) + "\\\\ \\text{ and } "+cvalsymb2+" &= "+zctwo2.toFixed(2) + "\\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: }" + concl + "$$"
     }
     
     MathJax.typeset();
