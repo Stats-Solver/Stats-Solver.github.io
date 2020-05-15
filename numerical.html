@@ -1,11 +1,136 @@
-<!DOCTYPE html>
-<html>
-   
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="style.css">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:600,700" rel="stylesheet">
-        <script src="jquery-3.5.0.min.js"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="style.css">
+      
+    <title>Stats Solver</title>
+  </head>
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="index.html">Stats Solver</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Solvers
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="regression.html">Simple Regression</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#">Help</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+          </div>
+    
+      
+    <div class = "container">
+        <h2 class="page-header text-center">Numerical Summaries</h2>
+    </div>
+      
+      <hr>
+      
+      <div class="container">
+          <div class="row">
+        <div class="col-9">
+            <input id="values" type="text" class="form-control" placeholder="X Values (Separated by Commas)">
+        </div>
+        <div class="col-3">
+            <select id="stat" class="form-control" onchange="stat()">
+                <option value="choose">Choose</option>
+                <option value="mean">Mean</option>
+                <option value="median">Median</option>
+                <option value="mode">Mode</option>
+                <option value="percentiles">Percentiles</option>
+                <option value="quartiles">Quartiles</option>
+                <option value="range">Range</option>
+                <option value="iqr">Interquartile Range</option>
+                <option value="variance">Variance</option>
+                <option value="stdev">Standard Deviation</option>
+                <option value="cv">Coefficient of Variation</option>
+                <option value="zscores">z-Scores</option>
+                <option value="covariance">Covariance</option>
+                <option value="correlation">Correlation Coefficient</option>
+            </select>
+        </div> 
+              </div>
+        </div>
+      
+      <div class="container mt-2">
+          <div class="slidecontainer">
+            <input class="col-9" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
+            <p>Percentile: <span id="demo"></span></p>
+        </div>
+        </div>
+          
+          
+         <div class="container mt-2"> 
+        <div id="inputqu">
+            <input type="text" style="display:none;" id="valqu">
+            <select id="valquart" onchange="calcquart()">
+                <option value="choose">Choose</option>
+                <option value=25>First</option>
+                <option value=50>Second</option>
+                <option value=75>Third</option>
+            </select>
+        </div>
+             </div>
+        
+      
+      <div id="input2" class="container  mt-2">
+          <div class="row">
+        <div class="col-9">
+            <input type="text" id="values2" class="form-control" placeholder="Y Values (Separated by Commas)">
+        </div>
+        
+        <div class="col-3">
+            <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
+            <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
+        </div> 
+              </div>
+    </div>
+      
+      <hr>
+    
+    
+      <div class="container">
+        <div id="output">
+        </div>
+      </div>
+     
+      
+    <div style = "height: 400px"></div>
+    <!-- Optional JavaScript -->  
+      
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      
+      
+      
+                    <!-- MathJax -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {
@@ -22,72 +147,10 @@
                 fontCache: 'global'
                 }
             };
-        </script>
-    </head>
-    <body>
-        <div id="title">
-            <p style="text-align:left;"><a href="index.html">
-                <span style="font-size: 50px;">Stats Solver</span>
-                </a>
-                <span style="float:right; font-size: 30px;">
-                    <button class="dropbtn"><a href="index.html">Home</a></button> &nbsp; &nbsp; &nbsp;
-                    <span class="dropdown">
-                            <button class="dropbtn">Solvers</button>
-                            <span class="dropdown-content">
-                                <a href="numerical.html">Numerical Summaries</a>
-                                <a href="hypothesis.html">Hypothesis Testing</a>
-                                <a href="regression.html">Simple Regression</a>
-                            </span>
-                        </span> &nbsp; &nbsp; &nbsp;
-                    <button class="dropbtn"><a href="contact.html">Contact</a></button>
-                </span>
-            </p>    
-        </div>
-        <div class="subtitle">
-            <a href="numerical.html"><h2>Numerical Summaries</h2></a>
-        </div>
-        <div id="input">
-            <span style="display:inline-block">
-                <label for=values style="display:block">Enter Values (separated by commas)</label>
-                <input type="text" id="values" placeholder="Example: 1, 2, 3, 4, 5">
-            </span>
-            <select id="stat" onchange="stat()">
-                <option value="choose">Choose</option>
-                <option value="mean">Mean</option>
-                <option value="median">Median</option>
-                <option value="mode">Mode</option>
-                <option value="percentiles">Percentiles</option>
-                <option value="quartiles">Quartiles</option>
-                <option value="range">Range</option>
-                <option value="iqr">Int Range</option>
-                <option value="variance">Variance</option>
-                <option value="stdev">St Dev</option>
-                <option value="cv">Coeff of Var</option>
-                <option value="zscores">z-Scores</option>
-                <option value="covariance">Covariance</option>
-                <option value="correlation">Corr Coeff</option>
-            </select>
-        </div>
-        <div class="slidecontainer">
-            <input type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
-            <p>Percentile: <span id="demo"></span></p>
-        </div>
-        <div id="inputqu">
-            <input type="text" style="display:none;" id="valqu">
-            <select id="valquart" onchange="calcquart()">
-                <option value="choose">Choose</option>
-                <option value=25>First</option>
-                <option value=50>Second</option>
-                <option value=75>Third</option>
-            </select>
-        </div>
-        <div id="input2">
-            <input type="text" id="values2" placeholder="Example: 1, 2, 3, 4, 5">
-            <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
-            <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
-        </div>
-        <div id="output">
-        </div>
-        <script src="numscript.js"></script>
-    </body>
+        </script> 
+ 
+      
+      
+      <script src="numscript.js"></script>
+  </body>
 </html>
