@@ -41,13 +41,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Solvers
+              Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
@@ -85,8 +85,7 @@
             <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
             <td> = </td>
             <td><input type="text" style="width:40px;" id="stdev" class="hypinput2"></td>
-            <td>$\quad$</td>
-            <td rowspan="2"><button id = "hyptest" class="button" onclick="hyptest()">Go</button></td>
+
           </tr>
           <tr>
             <td>$H_a:$</td>
@@ -103,7 +102,14 @@
             <td><select id="alpha" class="hypinputalpha"> <option value=.05> .05 </option> <option value=.01> .01 </option> </select></td>
           </tr>
         </table>  
+          
+          <div class = "text-center mt-2">
+          <button id = "hyptest" class="button" onclick="hyptest()">Calculate</button>
+        </div>
+          
           </div>
+      
+      
       
     <hr>
       
