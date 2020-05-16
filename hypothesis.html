@@ -47,10 +47,12 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Calculators
+              Solvers
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="regression.html">Simple Regression</a>
             </div>
@@ -76,15 +78,15 @@
             <td>$H_o:$</td>
             <td>$\mu$</td> 
             <td><select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td><input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()"></td>
+            <td><input type="text" style="width:30px;" id="muknot" class="hypinput2" oninput="muknotval()"></td>
             <td>$\quad$</td>
             <td>$n$</td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="size" class="hypinput2"></td>
+            <td><input type="text" style="width:30px;" id="size" class="hypinput2"></td>
             <td>$\quad$</td>
             <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="stdev" class="hypinput2"></td>
+            <td><input type="text" style="width:30px;" id="stdev" class="hypinput2"></td>
 
           </tr>
           <tr>
@@ -95,7 +97,7 @@
             <td>$\quad$</td>
             <td>$\bar{x}$</td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="xbar" class="hypinput2"></td>
+            <td><input type="text" style="width:30px;" id="xbar" class="hypinput2"></td>
             <td>$\quad$</td>
             <td>$\alpha$</td>
             <td> = </td>

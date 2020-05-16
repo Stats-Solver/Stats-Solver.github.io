@@ -28,10 +28,12 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Calculators
+              Solvers
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="regression.html">Simple Regression</a>
             </div>
@@ -53,7 +55,7 @@
       
       <div class="container">
           <div class="row">
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-8">
             <input type="text" id="valuesx" class="form-control" placeholder="X Values (separated by commas)">
         </div>
               </div>
@@ -61,11 +63,11 @@
       
       <div class="container mt-2">
           <div class="row">
-        <div class="col-12 col-md-9">
+        <div class="col-12 col-md-8">
             <input type="text" id="valuesy" class="form-control" placeholder="Y Values (separated by commas)">
         </div>
         
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-4">
             <select id="stat" class="form-control" onchange="stat()">
                 <option value="choose">Choose</option>
                 <option value="slope">Slope</option>
