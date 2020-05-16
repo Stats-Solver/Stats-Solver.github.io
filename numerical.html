@@ -48,17 +48,17 @@
     
       
     <div class = "container">
-        <h2 class="page-header text-center">Numerical Summaries</h2>
+        <h2 class="page-header text-center mt-2"><a href="numerical.html">Numerical Summaries</a></h2>
     </div>
       
       <hr>
       
       <div class="container">
           <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 mt-2">
             <input id="values" type="text" class="form-control" placeholder="X Values (separated by commas)">
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mt-2">
             <select id="stat" class="form-control" onchange="stat()">
                 <option value="choose">Choose</option>
                 <option value="mean">Mean</option>
@@ -100,13 +100,13 @@
              </div>
         
       
-      <div id="input2" class="container  mt-2">
+      <div id="input2" class="container">
           <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 mt-2">
             <input type="text" id="values2" class="form-control" placeholder="Y Values (separated by commas)">
         </div>
         
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mt-2">
             <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
             <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
         </div> 
@@ -121,6 +121,7 @@
         </div>
       </div>
      
+      
       
     <div style = "height: 400px"></div>
     <!-- Optional JavaScript -->  

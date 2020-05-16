@@ -70,10 +70,46 @@ function frequency(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$$" + each[r] + "$$</td>";
-        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + each[r] + "$$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+sumeachminus2.toFixed(2)+"$$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}="+ansvar.toFixed(2)+"$$"
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ "5" +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function relative(){
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var sumeach = sum(each);
+    var table = "<tr>" + "<td>" + "$$x$$" + "</td>" + "<td>" + "Relative <br> Frequency" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 2;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ "5" +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function percent(){
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var sumeach = sum(each);
+    var table = "<tr>" + "<td>" + "$$x$$" + "</td>" + "<td>" + "Percent <br> Frequency" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 2;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ "5" +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
     MathJax.typeset();
 }
