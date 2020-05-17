@@ -67,7 +67,7 @@ function avg(input){
 
 function stat(){
     $("#input2").hide(); $("#myCanvas").hide();
-    $("#output").empty();
+    $("#output").empty(); 
     var x = document.getElementById("stat").value;
     if (x == "frequency"){
         frequency()
@@ -171,8 +171,6 @@ function bar(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Percent Frequency" + "</td>" + "</tr>";
-    var rows = len; var cols = 2;
     var tot = sum(counts);
     
     var graphValues = counts;
@@ -190,13 +188,78 @@ function bar(){
     var width=30;
     var height=100;
     
+    var xaxislen = 15 + 45*graphValues.length;
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 20);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(xaxislen, 130);
+    ctx.stroke();
+    
+    ctx.fillText("Frequency",5,15);
+    ctx.fillText("x",xaxislen + 5,132);
+    
+    
     for (var i=0; i<graphValues.length; i++) {
         var k = graphValuesScaled[i];
         var m = eachonesort[i];
-        ctx.fillRect(X,canvas.height-k,width,k);
-        ctx.fillText(m,X+15,canvas.height-k-10);
+        ctx.fillRect(X+20,canvas.height-k-20,width,k);
+        ctx.fillText(m,X+15+20,canvas.height-10);
         X += width+10;
     }
     
+    for (var i=1; i<maxval+1; i++) {
+        ctx.fillText(i+"-",10,canvas.height-30-Y);
+        Y += 10;
+    }
+    
+    MathJax.typeset();
+}
+
+function pie(){
+    $("#myCanvas").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    
+    var degvals = relfreq.map( function(value) {
+        return value * 360;
+    } );
+    
+    var radvals = degvals.map( function(value) {
+        return value * (Math.PI / 180);
+    } );
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.beginPath();
+    ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(100, 75);
+    ctx.lineTo(100, 25);
+    ctx.stroke();
+    
+    var h = radvals[0];
+    ctx.beginPath();
+    ctx.moveTo(100, 75);
+    ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
+    ctx.stroke();
+    
+    for (var i=1; i<radvals.length; i++) {
+        ctx.beginPath();
+        ctx.moveTo(100, 75);
+        ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
+        ctx.stroke();
+        h += radvals[i]
+    }
+
     MathJax.typeset();
 }

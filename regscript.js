@@ -1,6 +1,14 @@
 //global variables
 
-
+function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
+	var T=1/(1+.2316419*Math.abs(X));
+	var D=.3989423*Math.exp(-X*X/2);
+	var Prob=D*T*(.3193815+T*(-.3565638+T*(1.781478+T*(-1.821256+T*1.330274))));
+	if (X>0) {
+		Prob=1-Prob
+	}
+	return Prob
+} 
 
 
 function addnum(num){
@@ -180,7 +188,7 @@ function equation(){
     var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
     var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= b_{0} + b_{1} x \\\\ \\hat{y} &= "+ansint.toFixed(2) +" + "+ansslope.toFixed(2)+"x \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= b_{0} + b_{1} x \\\\ \\hat{y} &= "+ansint.toFixed(2) +" + "+ansslope.toFixed(2)+"x \\end{align} $$ Predict $y$ when $x=$"
     MathJax.typeset();
 }
 
@@ -693,8 +701,9 @@ function tstat(){
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
-    var anststat = ansslope / ansses;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$"
+    var anststat = ansslope / ansses; var anststatneg = -Math.abs(anststat)
+    var zptwo = normalcdf(anststatneg); var zptwo2 = 2 * zptwo;
+    document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{p-value}&=2*P(t \\leq "+anststatneg.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+"\\leq \\alpha = .05 $$ $$ \\text{Conclusion: There is a significant relationship between x and y} $$"
     MathJax.typeset();
 }
 
