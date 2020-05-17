@@ -228,6 +228,10 @@ function pie(){
         return value / tot;
     } );
     
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    
     var degvals = relfreq.map( function(value) {
         return value * 360;
     } );
@@ -247,18 +251,28 @@ function pie(){
     ctx.lineTo(100, 25);
     ctx.stroke();
     
-    var h = radvals[0];
-    ctx.beginPath();
-    ctx.moveTo(100, 75);
-    ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
-    ctx.stroke();
+    //var h = radvals[0];
+    //ctx.beginPath();
+    //ctx.moveTo(100, 75);
+    //ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
+    //ctx.stroke();
+    //ctx.fillText(eachonesort[0],100+25*Math.sin(h/2),75-25*Math.cos(h/2));
     
-    for (var i=1; i<radvals.length; i++) {
+    var h = radvals[0];
+    for (var i=0; i<radvals.length-1; i++) {
         ctx.beginPath();
         ctx.moveTo(100, 75);
         ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
         ctx.stroke();
-        h += radvals[i]
+        h += radvals[i+1];
+    }
+    var h = radvals[0];
+    var k = h / 2;
+    for (var i=0; i<radvals.length; i++) {
+        ctx.fillText(eachonesort[i],100+25*Math.sin(k),75-25*Math.cos(k));
+        ctx.fillText(perfreq[i].toFixed(2)+"%",100+65*Math.sin(k),75-65*Math.cos(k));
+        k = h + radvals[i+1]/2;
+        h += radvals[i+1];
     }
 
     MathJax.typeset();
