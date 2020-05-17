@@ -1,4 +1,4 @@
-$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();
+$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide();
 
 function addnum(num){
     var str = document.getElementById("values").value;
@@ -27,7 +27,7 @@ function avg(input){
 }
 
 function stat(){
-    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();
+    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
     if (x == "mean"){
@@ -76,7 +76,9 @@ function mean(){
 function median(){
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
-    var eachsort = each.sort();
+    var eachsort = each.sort(function(a,b) {
+        return a - b;
+    });
     var mid = (len-1)/2; var midr = len/2;  var midl = (len-2)/2;
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
@@ -142,7 +144,9 @@ function calcper(){
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
-    var eachsort = each.sort();
+    var eachsort = each.sort(function(a,b) {
+        return a - b;
+    });
     var indxval = (val/100)*len; var indxvalplus1 = indxval+1;
     var valindx = eachsort[indxval-1]; var valindxplus1 = eachsort[indxvalplus1-1];
     var valsum = valindx+valindxplus1; var valavg = valsum/2;
@@ -176,7 +180,9 @@ function calcquart(){
     var val = document.getElementById("valquart").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
-    var eachsort = each.sort();
+    var eachsort = each.sort(function(a,b) {
+        return a - b;
+    });
     var indxval = (val/100)*len; var indxvalplus1 = indxval+1;
     var valindx = eachsort[indxval-1]; var valindxplus1 = eachsort[indxvalplus1-1];
     var valsum = valindx+valindxplus1; var valavg = valsum/2;
@@ -305,6 +311,7 @@ function cv(){
 }
 
 function zscores(){
+    //$("#inputzscore").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -325,7 +332,6 @@ function zscores(){
     for (let i=0; i<len; i++){
         zscrs += "z_"+each[i]+" &= \\frac{"+each[i]+"-\\bar{x}}{s} = \\frac{"+ each[i] +" - "+mn.toFixed(2)+"}{"+ansstd.toFixed(2)+"} = \\frac{"+ (each[i]-mn).toFixed(2)+"}{"+ansstd.toFixed(2)+"} ="+((each[i]-mn)/ansstd).toFixed(2)+"\\\\"
     }
-   
 
     document.getElementById("output").innerHTML = "$$ \\begin{align} " + zscrs + " \\end{align} $$"
     MathJax.typeset()

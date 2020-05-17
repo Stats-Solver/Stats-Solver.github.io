@@ -15,7 +15,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">Stats Solver</a>
+            <a class="navbar-brand" href="index.html">Stats Solver <sup class="text-primary">beta</sup></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -101,6 +101,15 @@
             </select>
         </div>
              </div>
+      
+        <div class="container mt-2"> 
+            <div id="inputzscore">
+                <input type="text" style="display:none;" id="inputz">
+                <select id="inputzs" onchange="calcz()">
+                    <option value="choose">Choose</option>
+                </select>
+            </div>
+        </div>
         
       
       <div id="input2" class="container">

@@ -277,3 +277,69 @@ function pie(){
 
     MathJax.typeset();
 }
+
+function histogram(){
+    $("#myCanvas").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var graphValues = counts;
+    var maxval = Math.max.apply(Math, graphValues);
+    var minval = Math.min.apply(Math, graphValues);
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 5);
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    for (var i=0; i<5; i++) {
+        classlimits[i] = value1 + "-" + value2
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var graphValuesScaled = graphValues.map( function(value) {
+        return 10 * value
+    } );
+    
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var X=10;
+    var Y=0;
+    var width=30;
+    var height=100;
+    
+    var xaxislen = 15 + 45*graphValues.length;
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 20);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(xaxislen, 130);
+    ctx.stroke();
+    
+    ctx.fillText("Frequency",5,15);
+    ctx.fillText("x",xaxislen + 5,132);
+    
+    
+    for (var i=0; i<graphValues.length; i++) {
+        var k = graphValuesScaled[i];
+        var m = eachonesort[i];
+        ctx.fillRect(X+20,canvas.height-k-20,width,k);
+        ctx.fillText(m,X+15+20,canvas.height-10);
+        X += width+10;
+    }
+    
+    for (var i=1; i<maxval+1; i++) {
+        ctx.fillText(i+"-",10,canvas.height-30-Y);
+        Y += 10;
+    }
+    
+    document.getElementById("output").innerHTML = maxvalue +""+ minvalue +""+ classwidth + "" + classlimits
+    
+    MathJax.typeset();
+}
