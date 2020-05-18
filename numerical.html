@@ -133,51 +133,96 @@
         </div>
       </div>
       
-      <div class="container text-center" id="explanations">
-        <div id="expmean" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Sample Mean (Average)" data-content="Measure of central location. The most commonly used measure of central location.">Explanation</a>
-        </div>
+      <div class="container text-center">
+        <div>
+            <div id="expmean" class="explanation text-center bottomlinks">
+                <a href="#" data-toggle="popover" data-placement="bottom" title="Mean (Average)" data-content="The most commonly used measure of central location.">Explanation</a>
+                &bull;
+            </div>
+            <div id="popmean" class="population text-center bottomlinks">
+                <a href="#" onclick="meanpop()">Population</a>
+            </div>
+            <div id="sammean" class="sample text-center bottomlinks">
+                <a href="#" onclick="mean()">Sample</a>
+            </div>
+        </div> 
         <div id="expmedian" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Median" data-content="Measure of central location. Useful when there are extreme values (outliers) in the data.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Median" data-content="Measure of central location that's useful when there are extreme values in the data.">Explanation</a>
         </div>
         <div id="expmode" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Mode" data-content="The most frequently occuring value in the data. When there are two modes, the data is said to be bimodal. When there are more than two, multimodal.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Mode" data-content="The most frequently occuring value in the data.">Explanation</a>
         </div>
            <div id="exppercentiles" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Percentile" data-content="At least p% of the values are less than or equal to the p-th percentile. At least (100-p)% of the values are greater than or equal to the p-th percentile.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Percentiles" data-content="At least p% of the values are less than or equal to the p-th percentile.">Explanation</a>
         </div>
         <div id="expquartiles" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Quartiles" data-content="First quartile is the 25th percentile. Second quartile is the 50th percentile. Third quartile is the 75th percentile. ">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Quartiles" data-content="The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile. ">Explanation</a>
         </div>
         <div id="exprange" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Range" data-content="Measure of variability. The simplest measure of variability as it only uses two values: largest and smallest.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Range" data-content="The simplest measure of variability as it only uses two values: largest and smallest.">Explanation</a>
         </div>
           <div id="expiqr" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Interquartile Range" data-content="Measure of variability. Useful when there are extreme values (outliers) in the data.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Interquartile Range" data-content="Measure of variability that's useful when there are extreme values in the data.">Explanation</a>
         </div>
-        <div id="expvariance" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Variance" data-content="Measure of variability. Uses all of the data.">Explanation</a>
+        <div>
+            <div id="expvariance" class="explanation bottomlinks">
+                <a href="#" data-toggle="popover" data-placement="bottom" title="Variance" data-content="Measure of variability that uses all of the data.">Explanation</a>
+                &bull;
+            </div>
+            <div id="popvariance" class="population bottomlinks">
+                <a href="#" onclick="variancepop()">Population</a>
+            </div>
+            <div id="samvariance" class="sample bottomlinks">
+                <a href="#" onclick="variance()">Sample</a>
+            </div>
         </div>
-        <div id="expstdev" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Standard Deviation" data-content="Measure of variability. In the same units as the data.">Explanation</a>
+        <div>
+            <div id="expstdev" class="explanation bottomlinks">
+                <a href="#" data-toggle="popover" data-placement="bottom" title="Standard Deviation" data-content="Measure of variability that uses all of the data and is in the same units as the original data.">Explanation</a>
+                &bull;
+            </div>
+            <div id="popstdev" class="population bottomlinks">
+                <a href="#" onclick="stdevpop()">Population</a>
+            </div>
+            <div id="samstdev" class="sample bottomlinks">
+                <a href="#" onclick="stdev()">Sample</a>
+            </div>
         </div>
            <div id="expcv" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Percentile" data-content="At least p% of the values are less than or equal to the p-th percentile. At least (100-p)% of the values are greater than or equal to the p-th percentile.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Coefficient of Variation" data-content=".">Explanation</a>
         </div>
         <div id="expzscores" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Quartiles" data-content="First quartile is the 25th percentile. Second quartile is the 50th percentile. Third quartile is the 75th percentile. ">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="z-Scores" data-content="The number of standard deviations a value is from the mean.">Explanation</a>
         </div>
-        <div id="expcovariance" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Range" data-content="Measure of variability. The simplest measure of variability as it only uses two values: largest and smallest.">Explanation</a>
+        <div>
+            <div id="expcovariance" class="explanation bottomlinks">
+                <a href="#" data-toggle="popover" data-placement="bottom" title="Covariance" data-content="Measure of linear relationship with a meaningful sign.">Explanation</a>
+                &bull;
+            </div>
+            <div id="popcovariance" class="population bottomlinks">
+                <a href="#" onclick="calccovpop()">Population</a>
+            </div>
+            <div id="samcovariance" class="sample bottomlinks">
+                <a href="#" onclick="calccov()">Sample</a>
+            </div>
         </div>
-        <div id="expcorrelation" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Range" data-content="Measure of variability. The simplest measure of variability as it only uses two values: largest and smallest.">Explanation</a>
+        <div>
+            <div id="expcorrelation" class="explanation bottomlinks">
+                <a href="#" data-toggle="popover" data-placement="bottom" title="Correlationn Coefficient" data-content="Measure of linear relationship with a meaningful sign and size.">Explanation</a>
+                &bull;
+            </div>
+            <div id="popcorrelation" class="population bottomlinks">
+                <a href="#" onclick="calccorpop()">Population</a>
+            </div>
+            <div id="samcorrelation" class="sample bottomlinks">
+                <a href="#" onclick="calccor()">Sample</a>
+            </div>
         </div>
       </div>
      
       
       
-    <div style = "height: 400px"></div>
+    <div style = "height: 40px"></div>
     <!-- Optional JavaScript -->  
       
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -1,4 +1,5 @@
-$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $(".explanation").hide();
+$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); 
+$(".explanation").hide(); $(".population").hide(); $(".sample").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -31,7 +32,8 @@ function avg(input){
 }
 
 function stat(){
-    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $(".explanation").hide();
+    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
+    $(".explanation").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
     if (x == "mean"){
@@ -67,14 +69,28 @@ function stat(){
 }
 
 function mean(){
-    $("#expmean").show();
+    $("#output").empty();
+    $("#expmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
+    document.getElementById("output").innerHTML+= "Sample Mean $$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
+    MathJax.typeset();
+}
+
+function meanpop(){
+    $("#output").empty();
+    $("#expmean").show(); $("#popmean").hide(); $("#sammean").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var adds = each[0];  var avgeach = avg(each);  
+    for (let i=1; i<len; i++){
+        adds += "+" + each[i]
+    }
+    document.getElementById("output").innerHTML+= "Population Mean $$\\begin{align} \\mu &= \\frac{\\sum{x}}{N} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + "\\end{align}$$"
     MathJax.typeset();
 }
 
@@ -252,7 +268,8 @@ function iqr(){
 }
 
 function variance(){
-    $("#expvariance").show();
+    $("#output").empty();
+    $("#expvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -277,12 +294,44 @@ function variance(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+sumeachminus2.toFixed(2)+"$$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}="+ansvar.toFixed(2)+"$$"
+    document.getElementById("output").innerHTML = "Sample Variance <br><br> <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}="+ansvar.toFixed(2)+"$$"
+    MathJax.typeset();
+}
+
+function variancepop(){
+    $("#output").empty();
+    $("#expvariance").show(); $("#popvariance").hide(); $("#samvariance").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var sumeach = sum(each);
+    var mn = avg(each);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus);
+    var sumeachminus2 = sum(eachminus2);
+    var ansvar = sumeachminus2 / lenmin1;
+    var table = "<tr>" + "<td>" + "$$x$$" + "</td>" + "<td>" + "$$x - \\mu$$" + "</td>" + "<td>" + "$$(x - \\mu)^2$$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 3;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + eachminus2[r].toFixed(2) + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+sumeachminus2.toFixed(2)+"$$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "Population Variance <br><br> <table border=1>" + table + "</table><br>$$\\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"}="+ansvar.toFixed(2)+"$$"
     MathJax.typeset();
 }
 
 function stdev(){
-    $("#expstdev").show();
+    $("#output").empty();
+    $("#expstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -297,11 +346,33 @@ function stdev(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= "+ansstd.toFixed(2)+"\\end{align} $$"
+    document.getElementById("output").innerHTML = "Sample Standard Deviation $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= "+ansstd.toFixed(2)+"\\end{align} $$"
+    MathJax.typeset();
+}
+
+function stdevpop(){
+    $("#output").empty();
+    $("#expstdev").show(); $("#popstdev").hide(); $("#samstdev").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var sumeach = sum(each);
+    var mn = avg(each);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus);
+    var sumeachminus2 = sum(eachminus2);
+    var ansvar = sumeachminus2 / lenmin1;
+    var ansstd = Math.sqrt(ansvar);
+    document.getElementById("output").innerHTML = "Population Standard Deviation $$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= "+ansstd.toFixed(2)+"\\end{align} $$"
     MathJax.typeset();
 }
 
 function cv(){
+    $("#expcv").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -323,6 +394,7 @@ function cv(){
 }
 
 function zscores(){
+    $("#expzscores").show();
     //$("#inputzscore").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -356,6 +428,8 @@ function covariance(){
 }
 
 function calccov(){
+    $("#output").empty();
+    $("#expcovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -403,7 +477,61 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$" + interpret
+    document.getElementById("output").innerHTML = "Sample Covariance <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$" + interpret + "<br><br>" + " "
+    MathJax.typeset();
+}
+
+function calccovpop(){
+    $("#output").empty();
+    $("#expcovariance").show(); $("#popcovariance").hide(); $("#samcovariance").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
+    var sumeach = sum(each); var sumeach2 = sum(each2);
+    var mn = avg(each); var mn2 = avg(each2);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var each2minus = each2.map( function(value) {
+        return value - mn2;
+    } );
+    var eacheach2 = [];
+    for(var i = 0; i < len; i++){
+        eacheach2[i] = eachminus[i] * each2minus[i]
+    }
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var each2minus2 = each2minus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+    var sumeacheach2 = sum(eacheach2);
+    var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
+    var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
+    var anscov = sumeacheach2 / lenmin1;
+    if (anscov > 0){
+        var interpret = "Interpretation: There is a positive linear relationship between x and y."
+    } else if (anscov < 0){
+        var interpret = "Interpretation: There is a negative linear relationship between x and y."
+    } else {
+        var interpret = "Interpretation: There is no relationship between x and y."
+    }
+    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\mu_x$$" + "</td>" + "<td>" + "$$y - \\mu_y$$" + "</td>"+ "<td>" + "$$(x - \\mu_x)(y - \\mu_y)$$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 5;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "<td>$$" + each2[r] + "$$</td>";
+        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + each2minus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + eacheach2[r].toFixed(2) + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "Population Covariance <br><br> <table border=1>" + table + "</table><br> $$\\sigma_{xy} = \\frac{(x - \\mu_x)(y - \\mu_y)}{N} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"}="+anscov.toFixed(2)+"$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
@@ -414,6 +542,8 @@ function correlation(){
 }
 
 function calccor(){
+    $("#output").empty();
+    $("#expcorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -443,8 +573,7 @@ function calccor(){
     var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
     var anscov = sumeacheach2 / lenmin1;
     var anscor = anscov / (ansstd * ansstd2);
-    var anscor2 = anscov / (ansstd * ansstd2);
-    if (anscor2 = 1){
+    if (anscor = 1){
         var intinside = "a perfect positive"
     } else if (anscor2 >= .75 && anscor2 < 1){
         var intinside = "a strong positive"
@@ -478,6 +607,76 @@ function calccor(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+anscor2.toFixed(2)+"  \\end{align} $$" + interpret
+    document.getElementById("output").innerHTML = "Sample Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+ (anscov / (ansstd * ansstd2)).toFixed(2) +"  \\end{align} $$" + interpret + "<br><br>" + " "
+    MathJax.typeset();
+}
+
+function calccorpop(){
+    $("#output").empty();
+    $("#expcorrelation").show(); $("#popcorrelation").hide(); $("#samcorrelation").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
+    var sumeach = sum(each); var sumeach2 = sum(each2);
+    var mn = avg(each); var mn2 = avg(each2);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var each2minus = each2.map( function(value) {
+        return value - mn2;
+    } );
+    var eacheach2 = [];
+    for(var i = 0; i < len; i++){
+        eacheach2[i] = eachminus[i] * each2minus[i]
+    }
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var each2minus2 = each2minus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+    var sumeacheach2 = sum(eacheach2);
+    var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
+    var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
+    var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
+    var anscov = sumeacheach2 / lenmin1;
+    var anscor = anscov / (ansstd * ansstd2);
+    if (anscor = 1){
+        var intinside = "a perfect positive"
+    } else if (anscor2 >= .75 && anscor2 < 1){
+        var intinside = "a strong positive"
+    } else if (anscor2 > .25 && anscor2 < .75){
+        var intinside = "a moderate positive"
+    } else if (anscor2 > 0 && anscor2 < .25){
+        var intinside = "a weak positive"
+    } else if (anscor2 < 0 && anscor2 >= -.25){
+        var intinside = "a weak negative"
+    } else if (anscor2 < -.25 && anscor >2 -.75){
+        var intinside = "a moderate negative"
+    } else if (anscor2 <= -.75 && anscor2 > -1){
+        var intinside = "a strong negative"
+    } else if (anscor2 = -1){
+        var intinside = "a perfect negative"
+    } else {
+        var intinside = "no"
+    }
+    var interpret = "Interpretation: There is "+ intinside +" linear relationship between x and y."
+    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\mu_x$$" + "</td>" + "<td>" + "$$y - \\mu_y$$" + "</td>"+ "<td>" + "$$(x - \\mu_x)^2$$" + "</td>"+ "<td>" + "$$(y - \\mu_y)^2$$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 6;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "<td>$$" + each2[r] + "$$</td>";
+        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + each2minus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + eachminus2[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + each2minus2[r].toFixed(2) + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "Population Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} \\sigma_x &= \\sqrt{\\frac{\\sum{(x-\\mu_x)^2}}{N}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ \\sigma_y &= \\sqrt{\\frac{\\sum{(y-\\mu_y)^2}}{N}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ \\sigma_{xy} &= "+anscov.toFixed(2)+"\\\\ \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+ (anscov / (ansstd * ansstd2)).toFixed(2) +"  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }

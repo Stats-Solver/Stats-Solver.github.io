@@ -11,3 +11,7 @@ table {
 th, td {
   padding: 0px 10px;
 }
+
+.bottomlinks{
+    display: inline;
+}
