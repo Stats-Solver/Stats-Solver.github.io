@@ -1,4 +1,8 @@
-$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide();
+$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $(".explanation").hide();
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
 
 function addnum(num){
     var str = document.getElementById("values").value;
@@ -27,7 +31,7 @@ function avg(input){
 }
 
 function stat(){
-    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide();
+    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $(".explanation").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
     if (x == "mean"){
@@ -63,6 +67,7 @@ function stat(){
 }
 
 function mean(){
+    $("#expmean").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
@@ -74,6 +79,7 @@ function mean(){
 }
 
 function median(){
+    $("#expmedian").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -92,6 +98,7 @@ function median(){
 }
 
 function mode(){
+    $("#expmode").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var modes = [], count = [], i, number, maxIndex = 0;
@@ -141,6 +148,7 @@ function percentiles(){
 }
 
 function calcper(){
+    $("#exppercentiles").show();
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -176,7 +184,7 @@ function quartiles(){
 }
 
 function calcquart(){
-    $("#inputqu").show();
+    $("#inputqu").show(); $("#expquartiles").show();
     var val = document.getElementById("valquart").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -208,15 +216,17 @@ function calcquart(){
 }
 
 function range(){
+    $("#exprange").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ "\\\\ &=" + rng + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ "\\\\ &=" + rng + "\\end{align} $$"
     MathJax.typeset();
 }
 
 function iqr(){
+    $("#expiqr").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort();
@@ -242,6 +252,7 @@ function iqr(){
 }
 
 function variance(){
+    $("#expvariance").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -271,6 +282,7 @@ function variance(){
 }
 
 function stdev(){
+    $("#expstdev").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);

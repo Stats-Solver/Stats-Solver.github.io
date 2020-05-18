@@ -76,7 +76,6 @@
                 <option value="cumpercent">Cumulative Percent Frequency</option>
                 <option value="crosstabulation">Crosstabulation</option>
                 <option value="scatter">Scatter Diagram</option>
-                <option value="trend">Trendline</option>
             </select>
         </div> 
               </div>
@@ -91,7 +90,8 @@
         </div>
         
         <div class="col-12 col-md-4">
-            <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
+            <button id = "buttoncross" class="button" onclick="calccross()">Calculate</button>
+            <button id = "buttonscatt" class="button" onclick="calcscatt()">Calculate</button>
         </div> 
               </div>
     </div>
@@ -107,9 +107,22 @@
         <div id="output">
         </div>
       </div>
+      
+      <div class="container text-center" id="explanations">
+        <div id="expfrequency" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number (frequency) of items in each class.">Explanation</a>
+        </div>
+        <div id="exprelative" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion (relative frequency) of items in each class.">Explanation</a>
+        </div>
+        <div id="exppercent" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Percent Frequency Distribution" data-content="Table showing the percentage (percent frequency) of items in each class.">Explanation</a>
+        </div>
+      </div>
      
       
-    <div style = "height: 400px"></div>
+    <!--<div style = "height: 400px"></div>--> 
+      
     <!-- Optional JavaScript --> 
       
       

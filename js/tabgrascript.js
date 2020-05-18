@@ -1,7 +1,15 @@
-$("#input2").hide(); $("#myCanvas").hide();
+$("#input2").hide(); $("#myCanvas").hide(); $(".explanation").hide();
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
 
 function removeDuplicates(array) {
         return [...new Set(array)]
+}
+
+function inRange (x) {
+  return this[0] <= x && x <= this[1]
 }
 
 function sortrem(arr) {
@@ -66,7 +74,7 @@ function avg(input){
 }
 
 function stat(){
-    $("#input2").hide(); $("#myCanvas").hide();
+    $("#input2").hide(); $("#myCanvas").hide(); $(".explanation").hide();
     $("#output").empty(); 
     var x = document.getElementById("stat").value;
     if (x == "frequency"){
@@ -91,8 +99,6 @@ function stat(){
         crosstabulation()
     } else if (x == "scatter") {
         scatter()
-    } else if (x == "trend") {
-        trend()
     } else{
         document.getElementById("output").innerHTML = ""
     }
@@ -100,6 +106,7 @@ function stat(){
 }
 
 function frequency(){
+    $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -119,11 +126,12 @@ function frequency(){
 }
 
 function relative(){
+    $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Relative Frequency" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "<td>" + "Relative<br>Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -132,20 +140,22 @@ function relative(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + counts[r] + "</td>";
         table += "<td>" + relfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ "1" +"</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
     MathJax.typeset();
 }
 
 function percent(){
+    $("#exppercent").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Percent Frequency" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td>" + "x" + "</td>" +"<td>" + "Frequency" + "</td>" + "<td>" + "Relative<br>Frequency" + "</td>"+ "<td>" + "Percent<br>Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -157,10 +167,12 @@ function percent(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + counts[r] + "</td>";
+        table += "<td>" + relfreq[r].toFixed(2) + "</td>";
         table += "<td>" + perfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ "100" +"</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>" +tot +"</td>" + "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
     MathJax.typeset();
 }
@@ -297,11 +309,178 @@ function histogram(){
     var value1 = minvalue;
     var value2 = minvalue + classwidth - 1;
     var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
     for (var i=0; i<5; i++) {
         classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
     }
+    
+    var quants = [];
+    for (var i=0; i<5; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var quantsscaled = quants.map( function(value) {
+        return 10 * value
+    } );
+    
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    var X=10;
+    var Y=0;
+    var width=30;
+    var height=100;
+    
+    var xaxislen = 15 + 45*quants.length;
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 20);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(xaxislen, 130);
+    ctx.stroke();
+    
+    ctx.fillText("Frequency",5,15);
+    ctx.fillText("x",xaxislen + 5,132);
+    
+    
+    for (var i=0; i<quants.length; i++) {
+        var k = quantsscaled[i];
+        var m = classlimits[i];
+        ctx.fillRect(X+20,canvas.height-k-20,width+9,k);
+        ctx.fillText(m,X+2+20,canvas.height-10);
+        X += width+10;
+    }
+    
+    for (var i=1; i<maxval+1; i++) {
+        ctx.fillText(i+"-",10,canvas.height-30-Y);
+        Y += 10;
+    }
+    
+    MathJax.typeset();
+}
+
+function cumfrequency(){
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each);
+    let cumcounts = [counts[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumcounts[i] = cumcounts[i-1] + counts[i]
+    }
+    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" +"<td>" + "Cumulative<br>Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + counts[r] + "</td>";
+        table += "<td>" + cumcounts[r] + "</td>";
+        table += "</tr>";
+    }
+
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function cumrelative(){
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr>" + "<td>" + "x" + "</td>" +"<td>" + "Relative<br>Frequency" + "</td>" + "<td>" + "Cumulative<br>Relative<br>Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    let cumrelfreq = [relfreq[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumrelfreq[i] = cumrelfreq[i-1] + relfreq[i]
+    }
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + relfreq[r].toFixed(2) + "</td>";
+        table += "<td>" + cumrelfreq[r].toFixed(2) + "</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function cumpercent(){
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Percent<br>Frequency" + "</td>" +"<td>" + "Cumulative<br>Percent<br>Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    let cumperfreq = [perfreq[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumperfreq[i] = cumperfreq[i-1] + perfreq[i]
+    }
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + perfreq[r].toFixed(2) + "</td>";
+        table += "<td>" + cumperfreq[r].toFixed(2) + "</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function crosstabulation(){
+    $("#input2").show(); $("#buttonscatt").hide();
+}
+
+function calccross(){
+    $("#input2").show(); $("#buttonscatt").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + counts[r] + "</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function scatter(){
+    $("#input2").show(); $("#buttoncross").hide();
+}
+
+function calcscatt(){
+    $("#myCanvas").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var graphValues = counts;
+    var maxval = Math.max.apply(Math, graphValues);
+    var minval = Math.min.apply(Math, graphValues);
     
     var graphValuesScaled = graphValues.map( function(value) {
         return 10 * value
@@ -338,8 +517,6 @@ function histogram(){
         ctx.fillText(i+"-",10,canvas.height-30-Y);
         Y += 10;
     }
-    
-    document.getElementById("output").innerHTML = maxvalue +""+ minvalue +""+ classwidth + "" + classlimits
     
     MathJax.typeset();
 }
