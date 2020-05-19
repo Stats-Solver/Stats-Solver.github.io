@@ -8,14 +8,33 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
 
+                         <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>  
+      
     <title>Stats Solver</title>
   </head>
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">Stats Solver <sup class="text-primary">beta</sup></a>
+            <a class="navbar-brand" href="https://www.statssolver.com/">Stats Solver <sup class="text-primary">beta</sup></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +42,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://www.statssolver.com/">Home <span class="sr-only">(current)</span></a>
           </li>
           
           <li class="nav-item dropdown">
@@ -31,7 +50,7 @@
               Solvers
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
+              <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
@@ -51,50 +70,55 @@
     
       
     <div class = "container">
-        <h2 class="page-header text-center mt-2"><a href="regression.html">Simple Regression</a></h2>
+        <h2 class="page-header text-center mt-2"><a href="hypothesis.html">Hypothesis Testing</a></h2>
     </div>
       
       <hr>
       
       <div class="container">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input type="text" id="valuesx" class="form-control" placeholder="X Values (separated by commas)">
+          <table>
+          <tr>
+            <td>$H_o:$</td>
+            <td>$\mu$</td> 
+            <td><select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+            <td><input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()"></td>
+            <td>$\quad$</td>
+            <td>$n$</td>
+            <td> = </td>
+            <td><input type="text" style="width:40px;" id="size" class="hypinput2"></td>
+            <td>$\quad$</td>
+            <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
+            <td> = </td>
+            <td><input type="text" style="width:40px;" id="stdev" class="hypinput2"></td>
+
+          </tr>
+          <tr>
+            <td>$H_a:$</td>
+            <td>$\mu$</td>
+            <td> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
+            <td><span id = "muknotvalue"></span></td>
+            <td>$\quad$</td>
+            <td>$\bar{x}$</td>
+            <td> = </td>
+            <td><input type="text" style="width:40px;" id="xbar" class="hypinput2"></td>
+            <td>$\quad$</td>
+            <td>$\alpha$</td>
+            <td> = </td>
+            <td><select id="alpha" class="hypinputalpha"> <option value=.05> .05 </option> <option value=.01> .01 </option> </select></td>
+          </tr>
+        </table>  
+          
+          <div class = "text-center mt-2">
+          <button id = "hyptest" class="button" onclick="hyptest()">Calculate</button>
         </div>
-              </div>
-    </div>
+          
+          </div>
       
-      <div class="container">
-          <div class="row">
-        <div class="col-12 col-md-8 mt-2">
-            <input type="text" id="valuesy" class="form-control" placeholder="Y Values (separated by commas)">
-        </div>
-        
-        <div class="col-12 col-md-4">
-            <select id="stat" class="form-control mt-2" onchange="stat()">
-                <option value="choose">Choose</option>
-                <option value="slope">Slope</option>
-                <option value="intercept">Intercept</option>
-                <option value="equation">Regression Equation</option>
-                <option value="sse">Sum of Squares Error</option>
-                <option value="sst">Sum of Squares Total</option>
-                <option value="ssr">Sum of Squares Regression</option>
-                <option value="rsquared">Coefficient of Determination</option>
-                <option value="correlation">Correlation Coefficient</option>
-                <option value="mse">Mean Square Error</option>
-                <option value="see">Standard Error of Estimate</option>
-                <option value="ses">Standard Error of Slope</option>
-                <option value="tstat">t-Statistic</option>
-                <option value="msr">Mean Square Regression</option>
-                <option value="fstat">F-Statistic</option>
-            </select>
-        </div> 
-              </div>
-    </div>
+      
       
     <hr>
       
-      <div class="container">
+     <div class="container">
         <div id="output">
         </div>
       </div>
@@ -107,27 +131,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      
-                          <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script> 
-      
-      <script src="/js/regscript.js"></script>
-      
+      <script src="/js/hypscript.js"></script>
   </body>
 </html>

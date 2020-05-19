@@ -5,6 +5,40 @@ $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
 });
 
+function sortrem(arr) {
+    var a = [], b = [], prev;
+
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = arr[i];
+    }
+
+    return a;
+}
+
+function countem(arr) {
+    var a = [], b = [], prev;
+
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = arr[i];
+    }
+
+    return b;
+}
+
 function addnum(num){
     var str = document.getElementById("values").value;
     str = str+num
@@ -117,6 +151,18 @@ function mode(){
     $("#expmode").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + counts[r] + "</td>";
+        table += "</tr>";
+    }
+
     var modes = [], count = [], i, number, maxIndex = 0;
     var numbers = each;
     for (i = 0; i < numbers.length; i += 1) {
@@ -139,12 +185,12 @@ function mode(){
     var maxcount = Math.max.apply(Math,count)
    
     if (maxcount == 1) {
-        document.getElementById("output").innerHTML = "There is no mode."
+        document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br> There is no mode.<br><br>"
     } else if (lenmode == 1) {
-        document.getElementById("output").innerHTML = "The mode is " + modes + "."
+        document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br> The mode is " + modes + ".<br><br>"
     }
     else {
-        document.getElementById("output").innerHTML = "The modes are " + modes + "."
+        document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br> The modes are " + modes + ".<br><br>"
     }
 
 }

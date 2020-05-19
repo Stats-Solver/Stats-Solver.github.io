@@ -9,14 +9,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
       <link rel="stylesheet" type="text/css" href="/css/style.css">
-      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
-      
+
     <title>Stats Solver</title>
   </head>
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="index.html">Stats Solver <sup class="text-primary">beta</sup></a>
+            <a class="navbar-brand" href="https://www.statssolver.com/">Stats Solver <sup class="text-primary">beta</sup></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -24,7 +23,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="https://www.statssolver.com/">Home <span class="sr-only">(current)</span></a>
           </li>
           
           <li class="nav-item dropdown">
@@ -32,7 +31,7 @@
               Solvers
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
+              <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
@@ -50,90 +49,66 @@
     </nav>
           </div>
     
-    
+      
     <div class = "container">
-        <h2 class="page-header text-center mt-2"><a href="tablesgraphs.html">Tables and Graphs</a></h2>
+        <h2 class="page-header text-center mt-2"><a href="regression.html">Simple Regression</a></h2>
     </div>
       
       <hr>
+      
+      <div class="container">
+          <div class="row">
+        <div class="col-12 col-md-8">
+            <input type="text" id="valuesx" class="form-control" placeholder="X Values (separated by commas)">
+        </div>
+              </div>
+    </div>
       
       <div class="container">
           <div class="row">
         <div class="col-12 col-md-8 mt-2">
-            <input id="values" type="text" class="form-control" placeholder="X Values (separated by commas)">
-        </div>
-        <div class="col-12 col-md-4 mt-2">
-            <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">Choose</option>
-                <option value="frequency">Frequency Distribution</option>
-                <option value="relative">Relative Frequency Distribution</option>
-                <option value="percent">Percent Frequency Distribution</option>
-                <option value="bar">Bar Chart</option>
-                <option value="pie">Pie Chart</option>
-                <option value="histogram">Histogram</option>
-                <option value="cumfrequency">Cumulative Frequency</option>
-                <option value="cumrelative">Cumulative Relative Frequency</option>
-                <option value="cumpercent">Cumulative Percent Frequency</option>
-                <option value="crosstabulation">Crosstabulation</option>
-                <option value="scatter">Scatter Diagram</option>
-            </select>
-        </div> 
-              </div>
-        </div>
-      
-        
-      
-      <div id="input2" class="container  mt-2">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input type="text" id="values2" class="form-control" placeholder="Y Values (separated by commas)">
+            <input type="text" id="valuesy" class="form-control" placeholder="Y Values (separated by commas)">
         </div>
         
         <div class="col-12 col-md-4">
-            <button id = "buttoncross" class="button" onclick="calccross()">Calculate</button>
-            <button id = "buttonscatt" class="button" onclick="calcscatt()">Calculate</button>
+            <select id="stat" class="form-control mt-2" onchange="stat()">
+                <option value="choose">Choose</option>
+                <option value="slope">Slope</option>
+                <option value="intercept">Intercept</option>
+                <option value="equation">Regression Equation</option>
+                <option value="sse">Sum of Squares Error</option>
+                <option value="sst">Sum of Squares Total</option>
+                <option value="ssr">Sum of Squares Regression</option>
+                <option value="rsquared">Coefficient of Determination</option>
+                <option value="correlation">Correlation Coefficient</option>
+                <option value="mse">Mean Square Error</option>
+                <option value="see">Standard Error of Estimate</option>
+                <option value="ses">Standard Error of Slope</option>
+                <option value="tstat">t-Statistic</option>
+                <option value="msr">Mean Square Regression</option>
+                <option value="fstat">F-Statistic</option>
+            </select>
         </div> 
               </div>
     </div>
       
-      <hr>
+    <hr>
       
-      <div class="container">
-    <canvas id="myCanvas">
-          </canvas>
-       </div>
-        
       <div class="container">
         <div id="output">
         </div>
       </div>
       
-      <div class="container text-center" id="explanations">
-        <div id="expfrequency" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number of items in each category.">Explanation</a>
-        </div>
-        <div id="exprelative" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion of items in each category.">Explanation</a>
-        </div>
-        <div id="exppercent" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Percent Frequency Distribution" data-content="Table showing the percentage of items in each category.">Explanation</a>
-        </div>
-      </div>
-     
+
       
-    <!--<div style = "height: 400px"></div>--> 
-      
-    <!-- Optional JavaScript --> 
-      
-      
+    <div style = "height: 400px"></div>
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
       
-      
-      
-                    <!-- MathJax -->
+                          <!-- MathJax -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
         <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
         <script>window.MathJax = {
@@ -151,7 +126,8 @@
                 }
             };
         </script> 
- 
-      <script src="/js/tabgrascript.js"></script>
+      
+      <script src="/js/regscript.js"></script>
+      
   </body>
 </html>
