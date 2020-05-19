@@ -34,7 +34,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="https://www.statssolver.com/">Stats Solver <sup class="text-primary">beta</sup></a>
+            <a class="navbar-brand" href="/index.html">Stats Solver <sup class="text-primary">beta</sup></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,7 +42,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="https://www.statssolver.com/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           
           <li class="nav-item dropdown">
@@ -79,17 +79,17 @@
           <table>
           <tr>
             <td>$H_o:$</td>
-            <td>$\mu$</td> 
+            <td><select id="target" class="hypinput1"> <option value="mu"> &mu; </option> <option value="proportion"> p </option> </select></td> 
             <td><select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
             <td><input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()"></td>
             <td>$\quad$</td>
             <td>$n$</td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="size" class="hypinput2"></td>
+            <td><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
             <td>$\quad$</td>
             <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="stdev" class="hypinput2"></td>
+            <td><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
 
           </tr>
           <tr>
@@ -100,7 +100,7 @@
             <td>$\quad$</td>
             <td>$\bar{x}$</td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="xbar" class="hypinput2"></td>
+            <td><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
             <td>$\quad$</td>
             <td>$\alpha$</td>
             <td> = </td>
@@ -108,10 +108,11 @@
           </tr>
         </table>  
           
-          <div class = "text-center mt-2">
-          <button id = "hyptest" class="button" onclick="hyptest()">Calculate</button>
+        <div class = "text-center mt-2">
+            <button id = "hyptest" class="button" onclick="hyptest()">Calculate</button>
+            <button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>
+              <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
         </div>
-          
           </div>
       
       
@@ -125,7 +126,7 @@
       
 
       
-    <div style = "height: 400px"></div>
+    <!--<div style = "height: 400px"></div>-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

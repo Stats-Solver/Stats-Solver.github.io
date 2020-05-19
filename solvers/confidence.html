@@ -34,7 +34,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="https://www.statssolver.com/">Stats Solver <sup class="text-primary">beta</sup></a>
+            <a class="navbar-brand" href="/index.html">Stats Solver <sup class="text-primary">beta</sup></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -42,7 +42,7 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link" href="https://www.statssolver.com/">Home <span class="sr-only">(current)</span></a>
+            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           
           <li class="nav-item dropdown">
@@ -80,24 +80,26 @@
           <tr>
             <td>$n$</td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="size" class="hypinput2"></td>
+            <td><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
             <td>$\quad$</td>
-            <td>$\bar{x}$</td>
+            <td><select id="target" class="hypinput1"> <option value="xbar"> x&#x0304; </option> <option value="proportion"> p&#x0304; </option> </select></td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="xbar" class="hypinput2"></td>
+            <td><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
             <td>$\quad$</td>
             <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
             <td> = </td>
-            <td><input type="text" style="width:40px;" id="stdev" class="hypinput2"></td>
+            <td><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
           </tr>
         </table>  
           
         <div class = "text-center mt-2">
             Confidence Level:
-            <input type="text" style="width:40px;" id="conlev" class="hypinput2">$\%$
+            <input type="number" id="conlev" value="95" min="70" max="99"> $\%$
+            <!--<input type="text" style="width:40px;" id="conlev" class="hypinput2">$\%$-->
         </div>
-          <div class = "text-center mt-2">
+        <div class = "text-center mt-2">
             <button id = "conint" class="button" onclick="conint()">Calculate</button>
+            <button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>
         </div>
           
           </div>
