@@ -8,6 +8,11 @@ table {
     margin-right:auto;
 }
 
+th, td {
+  padding: 0px 0px;
+  text-align: center;
+}
+
 button {
 
     background-color: white;
@@ -32,4 +37,5 @@ select {
     -moz-appearance: none;
     text-indent: 1px;
     text-overflow: '';
+    text-align-last:center;
 }
