@@ -1,4 +1,14 @@
 $("#values").hide(); $("#enterstats").hide();
+$("#expconf").hide();
+
+function toFixing(num, fixed) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+    return num.toString().match(re)[0];
+}
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
 
 function showvals(){
     $("#values").show(); 
@@ -63,6 +73,7 @@ function NormSInv(p) {
 }
 
 function conint(){
+    $("#expconf").show();
     var sigma = document.getElementById("sigma").value;
     var size = document.getElementById("size").value;
     var xbar = document.getElementById("xbar").value;
@@ -95,9 +106,10 @@ function conint(){
     ctx.lineTo(280, 130);
     ctx.stroke();
     
-    ctx.fillText("x",285,132);
-    ctx.fillText("Zα/2",220,145);
-    ctx.fillText("α/2",250,100);
+    ctx.fillText("0",150,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("Zα/2 = "+zalphahalf.toFixed(2),220,145);
+    ctx.fillText("α/2 = "+alphahalf,250,100);
      
     ctx.beginPath();
     ctx.moveTo(230, 96);
@@ -201,10 +213,34 @@ function conint(){
     ctx.lineTo(278, 130);
     ctx.stroke();
     
+    
+    var zvalue = toFixing(zalphahalf,1)
+    var zvaluemin1 = (zvalue - .1).toFixed(1)
+    var zvalueplus1 = (parseFloat(zvalue) + .1).toFixed(1)
+    
+    
+    table1 = []
+    for (var r = 0; r < 10; r++){
+        table1 += "<td>" + (.1*r).toFixed(1) + "</td>";
+    }
+    
+    table2 = []
+    for (var r = 0; r < 10; r++){
+        table2 += "<td>" + normalcdf(parseFloat(zvaluemin1) + parseFloat(.01*r)).toFixed(3) + "</td>";
+    }
+    
+    table3 = []
+    for (var r = 0; r < 10; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(3) + "</td>";
+    }
+    
+    var table = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+        document.getElementById("output2").innerHTML = table + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = "$$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+        document.getElementById("output2").innerHTML = table + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
     } 
     
     MathJax.typeset();
