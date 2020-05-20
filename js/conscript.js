@@ -74,9 +74,137 @@ function conint(){
     var anslow = xbar - marginerror; var anshigh = parseInt(xbar) + parseInt(marginerror);
     
     if (sigma == "known") {
-        document.getElementById("output").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$  $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
     } else if (sigma == "unknown") {
-        document.getElementById("output").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$  $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
+    } 
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 400, 300);
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText("Zα/2",220,145);
+    ctx.fillText("α/2",250,100);
+     
+    ctx.beginPath();
+    ctx.moveTo(230, 96);
+    ctx.lineTo(230, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(232, 97);
+    ctx.lineTo(232, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(234, 98);
+    ctx.lineTo(234, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(236, 99);
+    ctx.lineTo(236, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(238, 100);
+    ctx.lineTo(238, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(240, 102);
+    ctx.lineTo(240, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(242, 103);
+    ctx.lineTo(242, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(244, 104);
+    ctx.lineTo(244, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(246, 105);
+    ctx.lineTo(246, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(248, 106);
+    ctx.lineTo(248, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(250, 107);
+    ctx.lineTo(250, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(252, 108);
+    ctx.lineTo(252, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(254, 109);
+    ctx.lineTo(254, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(256, 110);
+    ctx.lineTo(256, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(258, 111);
+    ctx.lineTo(258, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(260, 112);
+    ctx.lineTo(260, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(262, 113);
+    ctx.lineTo(262, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(264, 114);
+    ctx.lineTo(264, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(266, 115);
+    ctx.lineTo(266, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(268, 116);
+    ctx.lineTo(268, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(270, 116);
+    ctx.lineTo(270, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(272, 117);
+    ctx.lineTo(272, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(274, 117);
+    ctx.lineTo(274, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(276, 118);
+    ctx.lineTo(276, 130);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(278, 119);
+    ctx.lineTo(278, 130);
+    ctx.stroke();
+    
+    if (sigma == "known") {
+        document.getElementById("output2").innerHTML = "$$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+    } else if (sigma == "unknown") {
+        document.getElementById("output2").innerHTML = "$$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
     } 
     
     MathJax.typeset();
