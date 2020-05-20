@@ -209,15 +209,16 @@ function bar(){
         return (value / maxval)*230
     } );
     
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
     var X=20;
     var Y=intervals;
-    var width=40;
+    var width=30;
     var height=100;
     
-    var xaxislen = 40 + 60*graphValues.length;
+    var xaxislen = 40 + 45*graphValues.length;
     
+    var canvas = document.getElementById("myCanvas");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, 400, 300);
     ctx.beginPath();
     ctx.moveTo(20, 20);
     ctx.lineTo(20, 280);
@@ -231,9 +232,9 @@ function bar(){
     for (var i=0; i<graphValues.length; i++) {
         var k = graphValuesScaled[i];
         var m = eachonesort[i];
-        ctx.fillRect(X+20,canvas.height-k-20,width,k);
-        ctx.fillText(m,X+15+20,canvas.height-10);
-        X += width+20;
+        ctx.fillRect(X+15,canvas.height-k-20,width,k);
+        ctx.fillText(m,X+15+15,canvas.height-10);
+        X += width+15;
     }
     
     for (var i=1; i<maxval+1; i++) {
@@ -270,13 +271,14 @@ function pie(){
     
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 400, 300);
     ctx.beginPath();
-    ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    ctx.arc(200, 150, 100, 0, 2 * Math.PI);
     ctx.stroke();
     
     ctx.beginPath();
-    ctx.moveTo(100, 75);
-    ctx.lineTo(100, 25);
+    ctx.moveTo(200, 150);
+    ctx.lineTo(200, 50);
     ctx.stroke();
     
     //var h = radvals[0];
@@ -289,16 +291,16 @@ function pie(){
     var h = radvals[0];
     for (var i=0; i<radvals.length-1; i++) {
         ctx.beginPath();
-        ctx.moveTo(100, 75);
-        ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
+        ctx.moveTo(200, 150);
+        ctx.lineTo(200+100*Math.sin(h), 150-100*Math.cos(h));
         ctx.stroke();
         h += radvals[i+1];
     }
     var h = radvals[0];
     var k = h / 2;
     for (var i=0; i<radvals.length; i++) {
-        ctx.fillText(eachonesort[i],100+30*Math.sin(k),75-30*Math.cos(k));
-        ctx.fillText(perfreq[i].toFixed(2)+"%",100+55*Math.sin(k),75-55*Math.cos(k));
+        ctx.fillText(eachonesort[i],200+60*Math.sin(k),150-60*Math.cos(k));
+        ctx.fillText(perfreq[i].toFixed(2)+"%",200+110*Math.sin(k),150-110*Math.cos(k));
         k = h + radvals[i+1]/2;
         h += radvals[i+1];
     }
@@ -317,7 +319,7 @@ function histogram(){
     var graphValues = counts;
     var maxval = Math.max.apply(Math, graphValues);
     var minval = Math.min.apply(Math, graphValues);
-    var intervals = 90/maxval;
+    var intervals = 230/maxval;
     
     var maxvalue = Math.max.apply(Math, each);
     var minvalue = Math.min.apply(Math, each);
@@ -342,26 +344,27 @@ function histogram(){
     }
     
     var quantsscaled = quants.map( function(value) {
-        return (value / maxval)*90
+        return (value / maxval)*230
     } );
+    
+    var X=10;
+    var Y=intervals;
+    var width=50;
+    var height=100;
+    
+    var xaxislen = 40 + 60*quants.length;
     
     var canvas = document.getElementById("myCanvas");
     var ctx = canvas.getContext("2d");
-    var X=10;
-    var Y=intervals;
-    var width=30;
-    var height=100;
-    
-    var xaxislen = 15 + 45*quants.length;
-    
+    ctx.clearRect(0, 0, 400, 300);
     ctx.beginPath();
     ctx.moveTo(20, 20);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(xaxislen, 130);
+    ctx.lineTo(20, 280);
+    ctx.lineTo(xaxislen, 280);
     ctx.stroke();
     
     ctx.fillText("Frequency",5,15);
-    ctx.fillText("x",xaxislen + 5,132);
+    ctx.fillText("x",xaxislen + 5,280);
     
     
     for (var i=0; i<quants.length; i++) {
