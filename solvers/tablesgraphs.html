@@ -71,9 +71,9 @@
                 <option value="bar">Bar Chart</option>
                 <option value="pie">Pie Chart</option>
                 <option value="histogram">Histogram</option>
-                <option value="cumfrequency">Cumulative Frequency</option>
-                <option value="cumrelative">Cumulative Relative Frequency</option>
-                <option value="cumpercent">Cumulative Percent Frequency</option>
+                <option value="cumfrequency">Cum. Frequency Distribution</option>
+                <option value="cumrelative">Cum. Relative Frequency Distribution</option>
+                <option value="cumpercent">Cum. Percent Frequency Distribution</option>
                 <option value="crosstabulation">Crosstabulation</option>
                 <option value="scatter">Scatter Diagram</option>
             </select>
@@ -98,8 +98,8 @@
       
       <hr>
       
-      <div class="container">
-    <canvas id="myCanvas">
+      <div class="container text-center">
+    <canvas width="500" height="300" id="myCanvas">
           </canvas>
        </div>
         
@@ -110,13 +110,23 @@
       
       <div class="container text-center" id="explanations">
         <div id="expfrequency" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number of items in each category.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number of items in each class.">Explanation</a>
         </div>
         <div id="exprelative" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion of items in each category.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion of items in each class.">Explanation</a>
         </div>
         <div id="exppercent" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Percent Frequency Distribution" data-content="Table showing the percentage of items in each category.">Explanation</a>
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Percent Frequency Distribution" data-content="Table showing the percentage of items in each class.">Explanation</a>
+        </div>
+        
+        <div id="expcumfrequency" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Frequency Distribution" data-content="Table showing the number of items less than or equal to the upper limit of each class.">Explanation</a>
+        </div>
+        <div id="expcumrelative" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Relative Frequency Distribution" data-content="Table showing the proportion of items less than or equal to the upper limit of each class.">Explanation</a>
+        </div>
+        <div id="expcumpercent" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Percent Frequency Distribution" data-content="Table showing the percentage of items less than or equal to the upper limit of each class.">Explanation</a>
         </div>
       </div>
      

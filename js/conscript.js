@@ -1,3 +1,20 @@
+$("#values").hide(); $("#enterstats").hide();
+
+function showvals(){
+    $("#values").show(); 
+    $("#statistics").hide();
+    $("#entervals").hide();
+    $("#enterstats").show();
+    
+}
+
+function showstats(){
+    $("#values").hide(); 
+    $("#statistics").show();
+    $("#entervals").show();
+    $("#enterstats").hide();
+}
+
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
 	var T=1/(1+.2316419*Math.abs(X));
 	var D=.3989423*Math.exp(-X*X/2);
@@ -55,11 +72,6 @@ function conint(){
     var zalphahalf = NormSInv(1 - alphahalf);
     var marginerror = zalphahalf * (stdev / Math.sqrt(size));
     var anslow = xbar - marginerror; var anshigh = parseInt(xbar) + parseInt(marginerror);
-    if (sigma == "known"){
-
-    } else if (sigma == "unknown"){
-
-    }
     
     if (sigma == "known") {
         document.getElementById("output").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$  $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
