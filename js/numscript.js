@@ -1,9 +1,13 @@
 $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); 
-$(".explanation").hide(); $(".population").hide(); $(".sample").hide();
+$(".description").hide(); $(".population").hide(); $(".sample").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
 });
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
 
 function sortrem(arr) {
     var a = [], b = [], prev;
@@ -67,7 +71,7 @@ function avg(input){
 
 function stat(){
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
-    $(".explanation").hide(); $(".population").hide(); $(".sample").hide();
+    $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
     if (x == "mean"){
@@ -104,7 +108,7 @@ function stat(){
 
 function mean(){
     $("#output").empty();
-    $("#expmean").show(); $("#popmean").show(); $("#sammean").hide();
+    $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
@@ -117,7 +121,7 @@ function mean(){
 
 function meanpop(){
     $("#output").empty();
-    $("#expmean").show(); $("#popmean").hide(); $("#sammean").show();
+    $("#desmean").show(); $("#popmean").hide(); $("#sammean").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
@@ -129,7 +133,7 @@ function meanpop(){
 }
 
 function median(){
-    $("#expmedian").show();
+    $("#desmedian").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -148,7 +152,7 @@ function median(){
 }
 
 function mode(){
-    $("#expmode").show();
+    $("#desmode").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -210,7 +214,7 @@ function percentiles(){
 }
 
 function calcper(){
-    $("#exppercentiles").show();
+    $("#despercentiles").show();
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -246,7 +250,7 @@ function quartiles(){
 }
 
 function calcquart(){
-    $("#inputqu").show(); $("#expquartiles").show();
+    $("#inputqu").show(); $("#desquartiles").show();
     var val = document.getElementById("valquart").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -278,7 +282,7 @@ function calcquart(){
 }
 
 function range(){
-    $("#exprange").show();
+    $("#desrange").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
@@ -288,7 +292,7 @@ function range(){
 }
 
 function iqr(){
-    $("#expiqr").show();
+    $("#desiqr").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort();
@@ -315,7 +319,7 @@ function iqr(){
 
 function variance(){
     $("#output").empty();
-    $("#expvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
+    $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -346,7 +350,7 @@ function variance(){
 
 function variancepop(){
     $("#output").empty();
-    $("#expvariance").show(); $("#popvariance").hide(); $("#samvariance").show();
+    $("#desvariance").show(); $("#popvariance").hide(); $("#samvariance").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -377,7 +381,7 @@ function variancepop(){
 
 function stdev(){
     $("#output").empty();
-    $("#expstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
+    $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -398,7 +402,7 @@ function stdev(){
 
 function stdevpop(){
     $("#output").empty();
-    $("#expstdev").show(); $("#popstdev").hide(); $("#samstdev").show();
+    $("#desstdev").show(); $("#popstdev").hide(); $("#samstdev").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -418,7 +422,7 @@ function stdevpop(){
 }
 
 function cv(){
-    $("#expcv").show();
+    $("#descv").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -440,7 +444,7 @@ function cv(){
 }
 
 function zscores(){
-    $("#expzscores").show();
+    $("#deszscores").show();
     //$("#inputzscore").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -475,7 +479,7 @@ function covariance(){
 
 function calccov(){
     $("#output").empty();
-    $("#expcovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
+    $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -523,13 +527,13 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "Sample Covariance <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "Sample Covariance <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}="+anscov.toFixed(2)+"$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
 function calccovpop(){
     $("#output").empty();
-    $("#expcovariance").show(); $("#popcovariance").hide(); $("#samcovariance").show();
+    $("#descovariance").show(); $("#popcovariance").hide(); $("#samcovariance").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -589,7 +593,7 @@ function correlation(){
 
 function calccor(){
     $("#output").empty();
-    $("#expcorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
+    $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -659,7 +663,7 @@ function calccor(){
 
 function calccorpop(){
     $("#output").empty();
-    $("#expcorrelation").show(); $("#popcorrelation").hide(); $("#samcorrelation").show();
+    $("#descorrelation").show(); $("#popcorrelation").hide(); $("#samcorrelation").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -725,4 +729,8 @@ function calccorpop(){
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
     document.getElementById("output").innerHTML = "Population Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} \\sigma_x &= \\sqrt{\\frac{\\sum{(x-\\mu_x)^2}}{N}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ \\sigma_y &= \\sqrt{\\frac{\\sum{(y-\\mu_y)^2}}{N}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ \\sigma_{xy} &= "+anscov.toFixed(2)+"\\\\ \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+ (anscov / (ansstd * ansstd2)).toFixed(2) +"  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
+}
+
+function meanexp() {
+    document.getElementById("output2").innerHTML = "The mean is calculated by summing up the values and dividing by the number of values."
 }

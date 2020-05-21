@@ -16,3 +16,7 @@ th, td {
 .bottomlinks{
     display: inline;
 }
+
+html,body{
+    height: 100%
+}

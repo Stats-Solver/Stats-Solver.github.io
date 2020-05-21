@@ -55,7 +55,9 @@
         <h2 class="page-header text-center mt-2"><a href="tablesgraphs.html">Tables and Graphs</a></h2>
     </div>
       
+      <div class="container">
       <hr>
+          </div>
       
       <div class="container">
           <div class="row">
@@ -96,7 +98,9 @@
               </div>
     </div>
       
+      <div class="container">
       <hr>
+          </div>
       
       <div class="container text-center">
     <canvas width="400" height="300" id="myCanvas">
@@ -108,25 +112,40 @@
         </div>
       </div>
       
-      <div class="container text-center" id="explanations">
-        <div id="expfrequency" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number of items in each class.">Explanation</a>
+      <div class="container text-center">
+        <div>
+            <div id="desfrequency" class="description bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number of items in each class.">Description</a>
+            </div>
+            <div id="expfrequency" class="explanation bottomlinks">
+               <!--  <a href="#" onclick="frequencyexp()">Explanation</a>--> 
+            </div>
         </div>
-        <div id="exprelative" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion of items in each class.">Explanation</a>
+        <div>
+            <div id="desrelative" class="description bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion of items in each class.">Description</a>
+            </div>
+            <div id="exprelative" class="explanation bottomlinks">
+                <!-- <a href="#" onclick="relativeexp()">Explanation</a>--> 
+            </div>
         </div>
-        <div id="exppercent" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Percent Frequency Distribution" data-content="Table showing the percentage of items in each class.">Explanation</a>
+        <div id="despercent" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Percent Frequency Distribution" data-content="Table showing the percentage of items in each class.">Description</a>
         </div>
         
-        <div id="expcumfrequency" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Frequency Distribution" data-content="Table showing the number of items less than or equal to the upper limit of each class.">Explanation</a>
+        <div id="descumfrequency" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Frequency Distribution" data-content="Table showing the number of items less than or equal to the upper limit of each class.">Description</a>
         </div>
-        <div id="expcumrelative" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Relative Frequency Distribution" data-content="Table showing the proportion of items less than or equal to the upper limit of each class.">Explanation</a>
+        <div id="descumrelative" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Relative Frequency Distribution" data-content="Table showing the proportion of items less than or equal to the upper limit of each class.">Description</a>
         </div>
-        <div id="expcumpercent" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Percent Frequency Distribution" data-content="Table showing the percentage of items less than or equal to the upper limit of each class.">Explanation</a>
+        <div id="descumpercent" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Percent Frequency Distribution" data-content="Table showing the percentage of items less than or equal to the upper limit of each class.">Description</a>
+        </div>
+      </div>
+      
+      <div class="container">
+        <div id="output2" class="text-center">
         </div>
       </div>
      

@@ -82,7 +82,7 @@ function conint(){
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var zalphahalf = NormSInv(1 - alphahalf);
     var marginerror = zalphahalf * (stdev / Math.sqrt(size));
-    var anslow = xbar - marginerror; var anshigh = parseInt(xbar) + parseInt(marginerror);
+    var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror)
     
     if (sigma == "known") {
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
@@ -106,10 +106,19 @@ function conint(){
     ctx.lineTo(280, 130);
     ctx.stroke();
     
-    ctx.fillText("0",150,145);
+    ctx.fillText("0",148,145);
     ctx.fillText("z",285,132);
     ctx.fillText("Zα/2 = "+zalphahalf.toFixed(2),220,145);
     ctx.fillText("α/2 = "+alphahalf,250,100);
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.stroke();
      
     ctx.beginPath();
     ctx.moveTo(230, 96);
@@ -226,12 +235,12 @@ function conint(){
     
     table2 = []
     for (var r = 0; r < 10; r++){
-        table2 += "<td>" + normalcdf(parseFloat(zvaluemin1) + parseFloat(.01*r)).toFixed(3) + "</td>";
+        table2 += "<td>" + normalcdf(parseFloat(zvaluemin1) + parseFloat(.01*r)).toFixed(4) + "</td>";
     }
     
     table3 = []
     for (var r = 0; r < 10; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(3) + "</td>";
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4) + "</td>";
     }
     
     var table = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"

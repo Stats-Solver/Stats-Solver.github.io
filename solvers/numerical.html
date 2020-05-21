@@ -54,7 +54,9 @@
         <h2 class="page-header text-center mt-2"><a href="numerical.html">Numerical Summaries</a></h2>
     </div>
       
+      <div class="container">
       <hr>
+          </div>
       
       <div class="container">
           <div class="row">
@@ -125,7 +127,9 @@
               </div>
     </div>
       
+      <div class="container">
       <hr>
+          </div>
     
     
       <div class="container">
@@ -135,10 +139,14 @@
       
       <div class="container text-center">
         <div>
-            <div id="expmean" class="explanation text-center bottomlinks">
-                <a href="#" data-toggle="popover" data-placement="bottom" title="Mean (Average)" data-content="The most commonly used measure of central location.">Explanation</a>
+            <div id="desmean" class="description text-center bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Mean" data-content="The most commonly used measure of central location.">Description</a>
                 &bull;
             </div>
+            <!--<div id="expmean" class="explanation text-center bottomlinks">
+                <a href="#" onclick="meanexp()">Explanation</a>
+                &bull;
+            </div>-->
             <div id="popmean" class="population text-center bottomlinks">
                 <a href="#" onclick="meanpop()">Population</a>
             </div>
@@ -146,27 +154,27 @@
                 <a href="#" onclick="mean()">Sample</a>
             </div>
         </div> 
-        <div id="expmedian" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Median" data-content="Measure of central location that's useful when there are extreme values in the data.">Explanation</a>
+        <div id="desmedian" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Median" data-content="Measure of central location that's useful when there are extreme values in the data.">Description</a>
         </div>
-        <div id="expmode" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Mode" data-content="The most frequently occuring value in the data.">Explanation</a>
+        <div id="desmode" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Mode" data-content="The most frequently occuring value in the data.">Description</a>
         </div>
-           <div id="exppercentiles" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Percentiles" data-content="At least p% of the values are less than or equal to the p-th percentile.">Explanation</a>
+           <div id="despercentiles" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Percentiles" data-content="At least p% of the values are less than or equal to the p-th percentile.">Description</a>
         </div>
-        <div id="expquartiles" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Quartiles" data-content="The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile. ">Explanation</a>
+        <div id="desquartiles" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Quartiles" data-content="The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile. ">Description</a>
         </div>
-        <div id="exprange" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Range" data-content="The simplest measure of variability as it only uses two values: largest and smallest.">Explanation</a>
+        <div id="desrange" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Range" data-content="The simplest measure of variability as it only uses two values: largest and smallest.">Description</a>
         </div>
-          <div id="expiqr" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Interquartile Range" data-content="Measure of variability that's useful when there are extreme values in the data.">Explanation</a>
+          <div id="desiqr" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Interquartile Range" data-content="Measure of variability that's useful when there are extreme values in the data.">Description</a>
         </div>
         <div>
-            <div id="expvariance" class="explanation bottomlinks">
-                <a href="#" data-toggle="popover" data-placement="bottom" title="Variance" data-content="Measure of variability that uses all of the data.">Explanation</a>
+            <div id="desvariance" class="description bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Variance" data-content="Measure of variability that uses all of the data.">Description</a>
                 &bull;
             </div>
             <div id="popvariance" class="population bottomlinks">
@@ -177,8 +185,8 @@
             </div>
         </div>
         <div>
-            <div id="expstdev" class="explanation bottomlinks">
-                <a href="#" data-toggle="popover" data-placement="bottom" title="Standard Deviation" data-content="Measure of variability that uses all of the data and is in the same units as the original data.">Explanation</a>
+            <div id="desstdev" class="description bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Standard Deviation" data-content="Measure of variability that is in the same units as the original data.">Description</a>
                 &bull;
             </div>
             <div id="popstdev" class="population bottomlinks">
@@ -188,15 +196,15 @@
                 <a href="#" onclick="stdev()">Sample</a>
             </div>
         </div>
-           <div id="expcv" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Coefficient of Variation" data-content=".">Explanation</a>
+           <div id="descv" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Coefficient of Variation" data-content=".">Description</a>
         </div>
-        <div id="expzscores" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="z-Scores" data-content="The number of standard deviations a value is from the mean.">Explanation</a>
+        <div id="deszscores" class="description">
+            <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="z-Scores" data-content="The number of standard deviations a value is from the mean.">Description</a>
         </div>
         <div>
-            <div id="expcovariance" class="explanation bottomlinks">
-                <a href="#" data-toggle="popover" data-placement="bottom" title="Covariance" data-content="Measure of linear relationship with a meaningful sign.">Explanation</a>
+            <div id="descovariance" class="description bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Covariance" data-content="Measure of linear relationship with a meaningful sign.">Description</a>
                 &bull;
             </div>
             <div id="popcovariance" class="population bottomlinks">
@@ -207,8 +215,8 @@
             </div>
         </div>
         <div>
-            <div id="expcorrelation" class="explanation bottomlinks">
-                <a href="#" data-toggle="popover" data-placement="bottom" title="Correlationn Coefficient" data-content="Measure of linear relationship with a meaningful sign and size.">Explanation</a>
+            <div id="descorrelation" class="description bottomlinks">
+                <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Correlationn Coefficient" data-content="Measure of linear relationship with a meaningful sign and size.">Description</a>
                 &bull;
             </div>
             <div id="popcorrelation" class="population bottomlinks">
@@ -220,7 +228,23 @@
         </div>
       </div>
      
+    
+    <div class="container">
+        <div id="output2">
+        </div>
+      </div>  
       
+      
+    <div class="container fixed-bottom text-center">
+          <footer>
+             <p> <svg class="bi bi-envelope" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
+              <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
+                </svg>
+          <a href="mailto:contact@statssolver.com">contact@statssolver.com</a></p>
+          </footer>
+    </div> 
       
     <!--<div style = "height: 400px"></div>-->  
     <!-- Optional JavaScript -->  

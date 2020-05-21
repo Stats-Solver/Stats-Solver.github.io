@@ -44,3 +44,7 @@ select {
     text-overflow: '';
     text-align-last:center;
 }
+
+.button {
+    border-radius: 6px;
+}

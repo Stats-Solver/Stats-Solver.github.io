@@ -1,4 +1,8 @@
-$("#input2").hide(); $("#myCanvas").hide(); $(".explanation").hide();
+$("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
 
 function resizeCanvasToDisplaySize(canvas) {
    // look up the size the canvas is being displayed
@@ -89,8 +93,8 @@ function avg(input){
 }
 
 function stat(){
-    $("#input2").hide(); $("#myCanvas").hide(); $(".explanation").hide();
-    $("#output").empty(); 
+    $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
+    $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
     if (x == "frequency"){
         frequency()
@@ -121,7 +125,7 @@ function stat(){
 }
 
 function frequency(){
-    $("#expfrequency").show();
+    $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -136,12 +140,12 @@ function frequency(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
 function relative(){
-    $("#exprelative").show();
+    $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -160,12 +164,12 @@ function relative(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
 function percent(){
-    $("#exppercent").show();
+    $("#despercent").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -188,7 +192,7 @@ function percent(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>" +tot +"</td>" + "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table>"
+    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -384,7 +388,7 @@ function histogram(){
 }
 
 function cumfrequency(){
-    $("#expcumfrequency").show();
+    $("#descumfrequency").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -409,7 +413,7 @@ function cumfrequency(){
 }
 
 function cumrelative(){
-    $("#expcumrelative").show();
+    $("#descumrelative").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -436,7 +440,7 @@ function cumrelative(){
 }
 
 function cumpercent(){
-    $("#expcumpercent").show();
+    $("#descumpercent").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -541,5 +545,14 @@ function calcscatt(){
         Y += 10;
     }
     
+    MathJax.typeset();
+}
+
+function frequencyexp(){
+    document.getElementById("output2").innerHTML = "hello"
+}
+
+function relativeexp(){
+    document.getElementById("output2").innerHTML = "$$ \\text{Relative Frequency} = \\frac{\\text{Percent Frequency}}{n}$$"
     MathJax.typeset();
 }
