@@ -47,4 +47,5 @@ select {
 
 .button {
     border-radius: 6px;
+    padding: 6px 6px;
 }
