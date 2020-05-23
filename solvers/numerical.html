@@ -49,16 +49,16 @@
     
       
     <div class = "container">
-        <h2 class="page-header text-center"><a href="numerical.html">Numerical Summaries</a></h2>
+        <h2 class="page-header text-center mt-2"><a href="numerical.html">Numerical Summaries</a></h2>
     </div>
       
       <div class="container">
       <hr>
           </div>
       
-      <div class="container">
+      <div class="container center">
           <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
             <label>Enter Values:</label>
             <input id="values" type="text" class="form-control" placeholder="X Values">
             <label>Example: <a href="">1, 2, 3, 4, 5</a></label>
@@ -88,7 +88,7 @@
       
       <div class="container">
           <div class="slidecontainer">
-            <input class="col-12 col-md-8" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
+            <input class="col-12 col-md-6" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
             <p>Percentile: <span id="demo"></span></p>
         </div>
         </div>
@@ -116,14 +116,16 @@
         </div>
         
       
-      <div id="input2" class="container">
+      <div id="input2" class="container center">
           <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-6">
+            <label>Enter Values:</label>
             <input type="text" id="values2" class="form-control" placeholder="Y Values">
             <label>Example: <a href="">2, 4, 6, 8, 10</a></label>
         </div>
         
         <div class="col-12 col-md-4 inputWrapper">
+            <label>Click Here:</label>
             <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
             <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
         </div> 
