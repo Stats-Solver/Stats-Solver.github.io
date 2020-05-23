@@ -21,13 +21,13 @@
             </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
           </li>
           
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="index.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="solvers.html" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Solvers
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -39,7 +39,7 @@
             </div>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+            <a class="nav-link" href="index.html">Help <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
@@ -77,35 +77,35 @@
       <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <h4 class="text-center"><a href="solvers/tablesgraphs.html"> Tables and Graphs </a> </h4>
+                <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Frequency Distribution, Bar Chart, Histogram, Scatter Diagram, ..."><a href="solvers/tablesgraphs.html"> Tables and Graphs </a> </h4>
             </div>
             <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/numerical.html"> Numerical Summaries </a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Mean, Median, Variance, Standard Deviation, Correlation Coefficient, ..."><a href="solvers/numerical.html"> Numerical Summaries </a> </h4>
             </div>
             <div class="col-md-4">
-             <h4 class="text-center"><a href="#"> Probability Basics</a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Combinations, Permutations, Union, Intersection, ..."><a href="#"> Probability Basics</a> </h4>
             </div>   
           </div>
           <div class="row">
             <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/confidence.html"> Discrete Distributions </a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Expected Value, Binomial Distribution, Poisson Distribution, ..."><a href="solvers/confidence.html"> Discrete Distributions </a> </h4>
             </div>
               <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/hypothesis.html">  Continuous Distributions </a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Uniform Distribution, Normal Distribution, Exponential Distribution, ..."><a href="solvers/hypothesis.html">  Continuous Distributions </a> </h4>
             </div>
             <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/regression.html"> Sampling Distributions</a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Random Sampling, Point Estimation, Central Limit Theorem, ..."><a href="solvers/regression.html"> Sampling Distributions</a> </h4>
             </div>    
           </div>
           <div class="row">
             <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/confidence.html"> Confidence Intervals </a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Margin of Error, Confidence Level, Confidence Coefficient, ..."><a href="solvers/confidence.html"> Confidence Intervals </a> </h4>
             </div>
               <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/hypothesis.html">  Hypothesis Testing </a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Lower Tail Test, p-Value, Critical Value, Level of Significance, ..."><a href="solvers/hypothesis.html">  Hypothesis Testing </a> </h4>
             </div>
             <div class="col-md-4">
-             <h4 class="text-center"><a href="solvers/regression.html"> Simple Regression</a> </h4>
+             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Slope, Intercept, Coefficient of Determination, t-Statistic, ..."><a href="solvers/regression.html"> Simple Regression</a> </h4>
             </div>    
           </div>
       </div>
@@ -220,5 +220,12 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      
+    <script>
+      $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+      
+      </script>
   </body>
 </html>

@@ -21,7 +21,7 @@
             </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -39,7 +39,7 @@
             </div>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+            <a class="nav-link" href="index.html">Help <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
@@ -58,7 +58,8 @@
       <div class="container">
           <div class="row">
         <div class="col-12 col-md-8">
-            <input type="text" id="valuesx" class="form-control" placeholder="X Values (separated by commas)">
+            <label>Enter Values:</label>
+            <input type="text" id="valuesx" class="form-control" placeholder="X Values">
         </div>
               </div>
     </div>
@@ -66,12 +67,13 @@
       <div class="container">
           <div class="row">
         <div class="col-12 col-md-8 mt-2">
-            <input type="text" id="valuesy" class="form-control" placeholder="Y Values (separated by commas)">
+            <input type="text" id="valuesy" class="form-control" placeholder="Y Values">
+            <label>Example: <a href="">1, 2, 3, 4, 5; 2, 4, 6, 8, 10</a></label>
         </div>
         
-        <div class="col-12 col-md-4">
-            <select id="stat" class="form-control mt-2" onchange="stat()">
-                <option value="choose">Choose</option>
+        <div class="col-12 col-md-4 mt-2">
+            <select id="stat" class="form-control" onchange="stat()">
+                <option value="choose">None</option>
                 <option value="slope">Slope</option>
                 <option value="intercept">Intercept</option>
                 <option value="equation">Regression Equation</option>
@@ -87,6 +89,7 @@
                 <option value="msr">Mean Square Regression</option>
                 <option value="fstat">F-Statistic</option>
             </select>
+            <label>Example: <a href="">Coefficient of Determination</a></label>
         </div> 
               </div>
     </div>

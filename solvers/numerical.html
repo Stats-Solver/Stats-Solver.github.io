@@ -21,7 +21,7 @@
             </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto">
+        <ul class="navbar-nav ml-auto">
           <li class="nav-item">
             <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
           </li>
@@ -39,16 +39,17 @@
             </div>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="#">Help</a>
+            <a class="nav-link" href="index.html">Help <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
+      
     </nav>
           </div>
     
       
     <div class = "container">
-        <h2 class="page-header text-center mt-2"><a href="numerical.html">Numerical Summaries</a></h2>
+        <h2 class="page-header text-center"><a href="numerical.html">Numerical Summaries</a></h2>
     </div>
       
       <div class="container">
@@ -57,12 +58,15 @@
       
       <div class="container">
           <div class="row">
-        <div class="col-12 col-md-8 mt-2">
-            <input id="values" type="text" class="form-control" placeholder="X Values (separated by commas)">
+        <div class="col-12 col-md-8">
+            <label>Enter Values:</label>
+            <input id="values" type="text" class="form-control" placeholder="X Values">
+            <label>Example: <a href="">1, 2, 3, 4, 5</a></label>
         </div>
-        <div class="col-12 col-md-4 mt-2">
+        <div class="col-12 col-md-4">
+            <label>Choose One: </label>
             <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">Choose</option>
+                <option value="choose">None</option>
                 <option value="mean">Mean</option>
                 <option value="median">Median</option>
                 <option value="mode">Mode</option>
@@ -77,11 +81,12 @@
                 <option value="covariance">Covariance</option>
                 <option value="correlation">Correlation Coefficient</option>
             </select>
+            <label>Example: <a href="">Standard Deviation</a></label>
         </div> 
               </div>
         </div>
       
-      <div class="container mt-2">
+      <div class="container">
           <div class="slidecontainer">
             <input class="col-12 col-md-8" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
             <p>Percentile: <span id="demo"></span></p>
@@ -89,7 +94,7 @@
         </div>
           
           
-         <div class="container mt-2"> 
+         <div class="container"> 
         <div id="inputqu">
             <input type="text" style="display:none;" id="valqu">
             <select id="valquart" onchange="calcquart()">
@@ -101,7 +106,7 @@
         </div>
              </div>
       
-        <div class="container mt-2"> 
+        <div class="container"> 
             <div id="inputzscore">
                 <input type="text" style="display:none;" id="inputz">
                 <select id="inputzs" onchange="calcz()">
@@ -113,11 +118,14 @@
       
       <div id="input2" class="container">
           <div class="row">
-        <div class="col-12 col-md-8 mt-2">
-            <input type="text" id="values2" class="form-control" placeholder="Y Values (separated by commas)">
+        <div class="col-12 col-md-8">
+            <label>Enter Values:</label>
+            <input type="text" id="values2" class="form-control" placeholder="Y Values">
+            <label>Example: <a href="">2, 4, 6, 8, 10</a></label>
         </div>
         
-        <div class="col-12 col-md-4 mt-2">
+        <div class="col-12 col-md-4 inputWrapper">
+            <label>Click Here:</label>
             <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
             <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
         </div> 
@@ -231,7 +239,7 @@
         </div>
       </div>  
       
-    <div class="container text-center">
+     <div class="container text-center">
           <footer id="footer">
           <p> <svg class="bi bi-envelope" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
@@ -240,7 +248,7 @@
                 </svg>
           <a href="mailto:contact@statssolver.com">contact@statssolver.com</a></p>
           </footer>
-    </div>   
+    </div> 
       
     <!--<div style = "height: 400px"></div>-->  
     <!-- Optional JavaScript -->  

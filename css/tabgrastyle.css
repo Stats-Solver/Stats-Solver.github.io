@@ -6,3 +6,7 @@ canvas{
     border-radius: 6px;
     padding: 6px 6px;
 }
+
+.inputWrapper label{
+  display:block;
+}
