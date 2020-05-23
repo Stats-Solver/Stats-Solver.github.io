@@ -56,17 +56,15 @@
       <hr>
           </div>
       
-      <div class="container center">
+      <div class="container">
           <div class="row">
-        <div class="col-12 col-md-6">
-            <label>Enter Values:</label>
-            <input id="values" type="text" class="form-control" placeholder="X Values">
+        <div class="col-12 col-md-8">
+            <input id="values" type="text" class="form-control" placeholder="Enter X Values">
             <label>Example: <a href="">a, b, b, c, c, c</a></label>
         </div>
         <div class="col-12 col-md-4">
-            <label>Choose One: </label>
             <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">None</option>
+                <option value="choose">Choose</option>
                 <option value="frequency">Frequency Distribution</option>
                 <option value="relative">Relative Frequency Distribution</option>
                 <option value="percent">Percent Frequency Distribution</option>
@@ -86,16 +84,14 @@
       
         
       
-      <div id="input2" class="container center">
+      <div id="input2" class="container">
           <div class="row">
-        <div class="col-12 col-md-6">
-            <label>Enter Values:</label>
-            <input type="text" id="values2" class="form-control" placeholder="Y Values">
+        <div class="col-12 col-md-8">
+            <input type="text" id="values2" class="form-control" placeholder="Enter Y Values">
             <label>Example: <a href="">a, b, b, c, c, c</a></label>
         </div>
         
         <div class="col-12 col-md-4 inputWrapper">
-            <label>Click Here:</label>
             <button id = "buttoncross" class="button" onclick="calccross()">Calculate</button>
             <button id = "buttonscatt" class="button" onclick="calcscatt()">Calculate</button>
         </div> 

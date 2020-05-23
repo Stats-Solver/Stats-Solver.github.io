@@ -58,15 +58,13 @@
       
       <div class="container center">
           <div class="row">
-        <div class="col-12 col-md-6">
-            <label>Enter Values:</label>
-            <input id="values" type="text" class="form-control" placeholder="X Values">
+        <div class="col-12 col-md-8">
+            <input id="values" type="text" class="form-control" placeholder="Enter X Values">
             <label>Example: <a href="">1, 2, 3, 4, 5</a></label>
         </div>
         <div class="col-12 col-md-4">
-            <label>Choose One: </label>
             <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">None</option>
+                <option value="choose">Choose</option>
                 <option value="mean">Mean</option>
                 <option value="median">Median</option>
                 <option value="mode">Mode</option>
@@ -118,14 +116,12 @@
       
       <div id="input2" class="container center">
           <div class="row">
-        <div class="col-12 col-md-6">
-            <label>Enter Values:</label>
+        <div class="col-12 col-md-8">
             <input type="text" id="values2" class="form-control" placeholder="Y Values">
             <label>Example: <a href="">2, 4, 6, 8, 10</a></label>
         </div>
         
         <div class="col-12 col-md-4 inputWrapper">
-            <label>Click Here:</label>
             <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
             <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
         </div> 
