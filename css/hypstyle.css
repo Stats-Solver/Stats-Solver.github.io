@@ -64,3 +64,12 @@ footer {
   margin: 0 auto;
   width: 100%;
 }
+
+.examplelink {
+     cursor:pointer;
+     color:#0275d8;
+}
+
+.examplelink:hover {
+     text-decoration:underline;
+}

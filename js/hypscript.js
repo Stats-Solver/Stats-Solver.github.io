@@ -1,5 +1,14 @@
 $("#greater").hide(); $("#notequal").hide();
 
+$(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+
+function toFixing(num, fixed) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+    return num.toString().match(re)[0];
+}
+
 function tailsigns() {
     var x = document.getElementById("tail").value;
     if (x == "lower"){
@@ -69,11 +78,248 @@ function NormSInv(p) {
     return retVal;
 }
 
+function LogGamma(Z) {
+	with (Math) {
+		var S=1+76.18009173/Z-86.50532033/(Z+1)+24.01409822/(Z+2)-1.231739516/(Z+3)+.00120858003/(Z+4)-.00000536382/(Z+5);
+		var LG= (Z-.5)*log(Z+4.5)-(Z+4.5)+log(S*2.50662827465);
+	}
+	return LG
+}
+
+function Betinc(X,A,B) {
+	var A0=0;
+	var B0=1;
+	var A1=1;
+	var B1=1;
+	var M9=0;
+	var A2=0;
+	var C9;
+	while (Math.abs((A1-A2)/A1)>.00001) {
+		A2=A1;
+		C9=-(A+M9)*(A+B+M9)*X/(A+2*M9)/(A+2*M9+1);
+		A0=A1+C9*A0;
+		B0=B1+C9*B0;
+		M9=M9+1;
+		C9=M9*(B-M9)*X/(A+2*M9-1)/(A+2*M9);
+		A1=A0+C9*A1;
+		B1=B0+C9*B1;
+		A0=A0/B1;
+		B0=B0/B1;
+		A1=A1/B1;
+		B1=1;
+	}
+	return A1/A
+}
+
+function compute(X,df) {
+    with (Math) {
+		if (df<=0) {
+			alert("Degrees of freedom must be positive")
+		} else {
+			A=df/2;
+			S=A+.5;
+			Z=df/(df+X*X);
+			BT=exp(LogGamma(S)-LogGamma(.5)-LogGamma(A)+A*log(Z)+.5*log(1-Z));
+			if (Z<(A+1)/(S+2)) {
+				betacdf=BT*Betinc(Z,A,.5)
+			} else {
+				betacdf=1-BT*Betinc(1-Z,.5,A)
+			}
+			if (X<0) {
+				tcdf=betacdf/2
+			} else {
+				tcdf=1-betacdf/2
+			}
+		}
+		tcdf=round(tcdf*100000)/100000;
+	}
+    return tcdf;
+}
+
+function ibetainv(p, a, b) {
+		var EPS = 1e-8,
+			a1 = a - 1,
+			b1 = b - 1,
+			j = 0,
+			lna, lnb, pp, t, u, err, x, al, h, w, afac;
+		if(p <= 0) return 0;
+		if(p >= 1) return 1;
+		if(a >= 1 && b >= 1) {
+			pp = (p < 0.5) ? p : 1 - p;
+			t = Math.sqrt(-2 * Math.log(pp));
+			x = (2.30753 + t * 0.27061) / (1 + t* (0.99229 + t * 0.04481)) - t;
+			if(p < 0.5) x = -x;
+			al = (x * x - 3) / 6;
+			h = 2 / (1 / (2 * a - 1)  + 1 / (2 * b - 1));
+			w = (x * Math.sqrt(al + h) / h) - (1 / (2 * b - 1) - 1 / (2 * a - 1)) * (al + 5 / 6 - 2 / (3 * h));
+			x = a / (a + b * Math.exp(2 * w));
+		} else {
+			lna = Math.log(a / (a + b));
+			lnb = Math.log(b / (a + b));
+			t = Math.exp(a * lna) / a;
+			u = Math.exp(b * lnb) / b;
+			w = t + u;
+			if(p < t / w) x = Math.pow(a * w * p, 1 / a);
+			else x = 1 - Math.pow(b * w * (1 - p), 1 / b);
+		}
+		afac = -gammaln(a) - gammaln(b) + gammaln(a + b);
+		for(; j < 10; j++) {
+			if(x === 0 || x === 1) return x;
+			err = ibeta(x, a, b) - p;
+			t = Math.exp(a1 * Math.log(x) + b1 * Math.log(1 - x) + afac);
+			u = err / t;
+			x -= (t = u / (1 - 0.5 * Math.min(1, u * (a1 / x - b1 / (1 - x)))));
+			if(x <= 0) x = 0.5 * (x + t);
+			if(x >= 1) x = 0.5 * (x + t + 1);
+			if(Math.abs(t) < EPS * x && j > 0) break;
+		}
+		return x;
+	}
+	
+function ibeat(x, a, b) {
+		// Factors in front of the continued fraction.
+		var bt = (x === 0 || x === 1) ?  0 :
+			Math.exp(gammaln(a + b) - gammaln(a) -
+			gammaln(b) + a * Math.log(x) + b *
+			Math.log(1 - x));
+		if(x < 0 || x > 1) return false;
+		if(x < (a + 1) / (a + b + 2))
+			// Use continued fraction directly.
+			return bt * betacf(x, a, b) / a;
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf(1 - x, b, a) / b;
+}
+
+function gammaln(x) {
+		var j = 0,
+			cof = [
+				76.18009172947146, -86.50532032941677, 24.01409824083091,
+				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
+			],
+			ser = 1.000000000190015,
+			xx, y, tmp;
+		tmp = (y = xx = x) + 5.5;
+		tmp -= (xx + 0.5) * Math.log(tmp);
+		for (; j < 6; j++) ser += cof[j] / ++y;
+		return Math.log(2.5066282746310005 * ser / xx) - tmp;
+	}
+
+	// gamma of x
+function gammafn(x) {
+		var p = [
+				-1.716185138865495, 24.76565080557592, -379.80425647094563,
+				629.3311553128184, 866.9662027904133, -31451.272968848367,
+				-36144.413418691176, 66456.14382024054
+			],
+			q = [
+				-30.8402300119739, 315.35062697960416, -1015.1563674902192,
+				-3107.771671572311, 22538.118420980151, 4755.8462775278811,
+				-134659.9598649693, -115132.2596755535
+			],
+			fact = false,
+			n = 0,
+			xden = 0,
+			xnum = 0,
+			y = x,
+			i, z, yi, res, sum, ysq;
+		if(y <= 0) {
+			res = y % 1 + 3.6e-16;
+			if (res) {
+				fact = (!(y & 1) ? 1 : -1) * Math.PI / Math.sin(Math.PI * res);
+				y = 1 - y;
+			} else {
+				return Infinity;
+			}
+		}
+		yi = y;
+		if (y < 1) {
+			z = y++;
+		} else {
+			z = (y -= n = (y | 0) - 1) - 1;
+		}
+		for (i = 0; i < 8; ++i) {
+			xnum = (xnum + p[i]) * z;
+			xden = xden * z + q[i];
+		}
+		res = xnum / xden + 1;
+		if (yi < y) {
+			res /= yi;
+		} else if (yi > y) {
+			for (i = 0; i < n; ++i) {
+				res *= y;
+				y++;
+			}
+		}
+		if (fact) {
+			res = fact / res;
+		}
+		return res;
+	}
+	
+function betacf(x, a, b) {
+		var fpmin = 1e-30,
+			m = 1,
+			m2, aa, c, d, del, h, qab, qam, qap;
+		// These q's will be used in factors that occur in the coefficients
+		qab = a + b;
+		qap = a + 1;
+		qam = a - 1;
+		c = 1;
+		d = 1 - qab * x / qap;
+		if(Math.abs(d) < fpmin) d = fpmin;
+		d = 1 / d;
+		h = d;
+		for (; m <= 100; m++) {
+			m2 = 2 * m;
+			aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+			// One step (the even one) of the recurrence
+			d = 1 + aa * d;
+			if(Math.abs(d) < fpmin) d = fpmin;
+			c = 1 + aa / c;
+			if(Math.abs(c) < fpmin) c = fpmin;
+			d = 1 / d;
+			h *= d * c;
+			aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+			// Next step of the recurrence (the odd one)
+			d = 1 + aa * d;
+			if(Math.abs(d) < fpmin) d = fpmin;
+			c = 1 + aa / c;
+			if(Math.abs(c) < fpmin) c = fpmin;
+			d = 1 / d;
+			del = d * c;
+			h *= del;
+			if(Math.abs(del - 1.0) < 3e-7) break;
+		}
+		return h;
+	}
+	
+	
+	 function ibeta (x, a, b) {
+		// Factors in front of the continued fraction.
+		var bt = (x === 0 || x === 1) ?  0 :
+			Math.exp(gammaln(a + b) - gammaln(a) -
+			gammaln(b) + a * Math.log(x) + b *
+			Math.log(1 - x));
+		if(x < 0 || x > 1) return false;
+		if(x < (a + 1) / (a + b + 2))
+			// Use continued fraction directly.
+			return bt * betacf(x, a, b) / a;
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf(1 - x, b, a) / b;
+	}
+
+function tinv(p, dof) {
+		var x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+		x = Math.sqrt(dof * (1 - x) / x);
+		return (p > 0) ? x : -x;
+	
+}
+
 function hyptest(){
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
-    var size = document.getElementById("size").value;
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
     var xbar = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
     var alpha = document.getElementById("alpha").value;
@@ -112,14 +358,14 @@ function hyptest(){
         var tailsign = "\\geq";
         var stndsymb = "s"
         var cvalsymb = "-t_\\alpha";
-        var pvalue = normalcdf(test);
+        var pvalue = compute(test,size-1);
     } else if (sigma == "unknown" && tail == "upper"){
         var testtype = "Upper-Tail Test"
         var testsymb = "t";
         var tailsign = "\\leq";
         var stndsymb = "s"
         var cvalsymb = "t_\\alpha";
-        var pvalue = 1 - normalcdf(test);
+        var pvalue = 1 - compute(test,size-1);
     } else if (sigma == "unknown" && tail == "two"){
         var testtype = "Two-Tailed Test"
         var testsymb = "t";
@@ -163,8 +409,39 @@ function hyptest(){
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }
     
+    var zvalue = toFixing(test,1);
+    var zcrit = toFixing(zcless,1);
+    
+    table1 = []
+    for (var r = 0; r < 10; r++){
+        table1 += "<td>" + (.01*r).toFixed(2) + "</td>";
+    }
+    
+    table3 = []
+    for (var r = 0; r < 10; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4) + "</td>";
+    }
+    
+    table2 = []
+    for (var r = 0; r < 10; r++){
+        table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4) + "</td>";
+    }
+    
+    var tablez = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    var tablezc = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zcrit+"</td>"+table2+"</tr></table>"
+    
+    table4 = "<td></td><td colspan='6'>Area in the Upper Tail</td>"
+    
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    
+    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    
+    
+    var tablet = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
     if (tail == "lower") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcless.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
+        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach</u><br><br>"+tablez+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ <u>Critical Value Approach</u><br><br>"+tablezc+" $$ \\text{Critical Value: }"+cvalsymb+" = " + zcless.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
     } else if (tail == "upper") {
         document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcmore.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
     } else if (tail == "two") {
@@ -172,4 +449,34 @@ function hyptest(){
     }
     
     MathJax.typeset();
+}
+
+function example1(){
+    $("#less").show();
+    $("#greater").hide();
+    $("#notequal").hide();
+    document.getElementById('tail').value="lower"
+    document.getElementById('muknot').value="20"
+    document.getElementById('muknotvalue').innerHTML="20"
+    document.getElementById('size').value="50"
+    document.getElementById('xbar').value="19.4"
+    document.getElementById('stdev').value="2"
+    document.getElementById('sigma').value="known"
+    document.getElementById('alpha').value=".05"
+    hyptest()
+}
+
+function example2(){
+    $("#less").hide();
+    $("#greater").show();
+    $("#notequal").hide();
+    document.getElementById('tail').value="upper"
+    document.getElementById('muknot').value="12"
+    document.getElementById('muknotvalue').innerHTML="12"
+    document.getElementById('size').value="25"
+    document.getElementById('xbar').value="14"
+    document.getElementById('stdev').value="4.32"
+    document.getElementById('sigma').value="unknown"
+    document.getElementById('alpha').value=".05"
+    hyptest()
 }

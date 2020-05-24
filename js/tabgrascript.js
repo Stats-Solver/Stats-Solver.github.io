@@ -560,3 +560,12 @@ function relativeexp(){
     document.getElementById("output2").innerHTML = "$$ \\text{Relative Frequency} = \\frac{\\text{Percent Frequency}}{n}$$"
     MathJax.typeset();
 }
+
+function examplexvalues(){
+    document.getElementById('values').value="a, b, b, c, c, c"
+}
+
+function examplechoose(){
+    document.getElementById('stat').value="bar"
+    stat()
+}

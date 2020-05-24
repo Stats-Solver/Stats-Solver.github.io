@@ -734,3 +734,12 @@ function calccorpop(){
 function meanexp() {
     document.getElementById("output2").innerHTML = "The mean is calculated by summing up the values and dividing by the number of values."
 }
+
+function examplexvalues(){
+    document.getElementById('values').value="1, 2, 3, 4, 5"
+}
+
+function examplechoose(){
+    document.getElementById('stat').value="stdev"
+    stat()
+}

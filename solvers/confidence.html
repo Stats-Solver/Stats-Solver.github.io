@@ -78,15 +78,15 @@
 
         <table id="statistics">
           <tr>
-            <td>$n$</td>
+            <td data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
             <td> = </td>
             <td><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
             <td>$\quad$</td>
-            <td>$\bar{x}$</td>
+            <td data-toggle="tooltip" data-placement="top" title="Sample Mean">$\bar{x}$</td>
             <td> = </td>
             <td><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
             <td>$\quad$</td>
-            <td><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
+            <td data-toggle="tooltip" data-placement="top" title="Standard Deviation"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
             <td> = </td>
             <td><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
           </tr>
@@ -105,7 +105,7 @@
         </div>
           
           <div class = "text-center mt-2">
-            <a href="">Example 1</a> &bull; <a href="">Example 2</a>
+            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
         </div>
           
           </div>
