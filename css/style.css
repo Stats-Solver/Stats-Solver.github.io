@@ -53,3 +53,8 @@ footer {
 .examplelink:hover {
      text-decoration:underline;
 }
+
+.answer {
+ border-style:solid;
+ border-color:black;
+}

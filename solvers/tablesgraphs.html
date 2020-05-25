@@ -71,9 +71,7 @@
                 <option value="bar">Bar Chart</option>
                 <option value="pie">Pie Chart</option>
                 <option value="histogram">Histogram</option>
-                <option value="cumfrequency">Cum. Frequency Distribution</option>
-                <option value="cumrelative">Cum. Relative Frequency Distribution</option>
-                <option value="cumpercent">Cum. Percent Frequency Distribution</option>
+                <option value="cumfrequency">Cumulative Distributions</option>
                 <option value="crosstabulation">Crosstabulation</option>
                 <option value="scatter">Scatter Diagram</option>
             </select>
@@ -111,13 +109,25 @@
         </div>
       </div>
       
+      
+      <!--
+      <div class="container text-center">
+        <div>
+            <div id="exprelative" class="explanation bottomlinks">
+                <span onclick="relativeexp()">Explanation</span>
+            </div>
+        </div>
+      </div>
+      
+      
+      
       <div class="container text-center">
         <div>
             <div id="desfrequency" class="description bottomlinks">
                 <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Frequency Distribution" data-content="Table showing the number of items in each class.">Description</a>
             </div>
             <div id="expfrequency" class="explanation bottomlinks">
-               <!--  <a href="#" onclick="frequencyexp()">Explanation</a>--> 
+                <a href="#" onclick="frequencyexp()">Explanation</a>
             </div>
         </div>
         <div>
@@ -125,7 +135,7 @@
                 <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Relative Frequency Distribution" data-content="Table showing the proportion of items in each class.">Description</a>
             </div>
             <div id="exprelative" class="explanation bottomlinks">
-                <!-- <a href="#" onclick="relativeexp()">Explanation</a>--> 
+                <a href="#" onclick="relativeexp()">Explanation</a>
             </div>
         </div>
         <div id="despercent" class="description">
@@ -142,9 +152,11 @@
             <a tabindex="0" data-trigger="focus" href="#" data-toggle="popover" data-placement="bottom" title="Cumulative Percent Frequency Distribution" data-content="Table showing the percentage of items less than or equal to the upper limit of each class.">Description</a>
         </div>
       </div>
+        --> 
       
       <div class="container">
-        <div id="output2" class="text-center">
+        <div id="exprel" class="explanations">
+            <p>$$ \text{Relative Frequency} = \frac{\text{Percent Frequency}}{\text{Total}}$$</p>
         </div>
       </div>
      

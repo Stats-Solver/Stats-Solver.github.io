@@ -1,4 +1,5 @@
 $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
+$(".explanations").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -552,13 +553,8 @@ function calcscatt(){
     MathJax.typeset();
 }
 
-function frequencyexp(){
-    document.getElementById("output2").innerHTML = "hello"
-}
-
 function relativeexp(){
-    document.getElementById("output2").innerHTML = "$$ \\text{Relative Frequency} = \\frac{\\text{Percent Frequency}}{n}$$"
-    MathJax.typeset();
+    $("#exprel").show();
 }
 
 function examplexvalues(){
