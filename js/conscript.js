@@ -269,11 +269,11 @@ function conint(){
     var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror)
     
     if (sigma == "known") {
-        document.getElementById("explanationtext").innerHTML = "The first step is setting 1 - &alpha; equal to the confidence coefficient, the decimal form of the confidence level (i.e. 95% -> .95). Then solving for &alpha;/2 allows you to find z&alpha;/2, which is the z value providing an area of &alpha;/2 in the upper tail of the z distribution. Since the z table provides areas to the left of z values, first subtract &alpha;/2 from 1."
-        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
+        document.getElementById("explanationtext").innerHTML = "The first step is setting 1 - &alpha; equal to the confidence coefficient, the decimal form of the confidence level (i.e. 95% -> .95). Then solving for &alpha;/2 allows you to find z&alpha;/2, which is the z value providing an area of &alpha;/2 in the upper tail of the z distribution."
+        document.getElementById("output1").innerHTML = "$$ \\textbf{"+conlev + "% Confidence Interval} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
     } else if (sigma == "unknown") {
         document.getElementById("explanationtext").innerHTML = "The first step is setting 1 - &alpha; equal to the confidence coefficient, the decimal form of the confidence level (i.e. 95% -> .95). Then solving for &alpha;/2 allows you to find t&alpha;/2, which is the t value providing an area of &alpha;/2 in the upper tail of the t distribution with n - 1 degrees of freedom."
-        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
+        document.getElementById("output1").innerHTML = "$$ \\textbf{"+conlev + "% Confidence Interval} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\textbf{Degrees of Freedom: } \\text{df} = n - 1 = "+size+ " - 1 = \\underline{"+sizem1+"}  $$"
     } 
     
     var c = document.getElementById("myCanvas");
@@ -293,17 +293,15 @@ function conint(){
     ctx.stroke();
     
     ctx.fillText("0",148,145);
-    ctx.fillText("α/2 = "+alphahalf.toFixed(3),250,100);
+    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
 
     if (sigma == "known") {
         ctx.fillText("z",285,132);
-        ctx.fillText("Zα/2 = "+zalphahalf.toFixed(2),220,145);
-        ctx.fillText("1 - α/2",135,80);
-        ctx.fillText("= 1 - "+alphahalf.toFixed(3),127,90);
-        ctx.fillText("= "+(1-alphahalf).toFixed(3),127,100);
+        ctx.fillText("Zα/2",220,145);
     } else if (sigma == "unknown") {
         ctx.fillText("t",285,132);
-        ctx.fillText("tα/2 = "+zalphahalf.toFixed(2),220,145);      
+        ctx.fillText("tα/2",220,145);   
+        ctx.fillText("df = "+sizem1,220,40); 
     }
     
     ctx.beginPath();
@@ -467,9 +465,9 @@ function conint(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = tablez + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+        document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } 
     
     MathJax.typeset();

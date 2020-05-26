@@ -499,15 +499,15 @@ function hyptest(){
     if (tail == "lower") {
         document.getElementById("explanationtext").innerHTML = "In a lower tail test, the p-value is the probability of getting a value for the test statistic that's less than or equal to the value from the sample. Reject the null if the p-value is less than or equal to alpha. The critical value is the value of the test statistic corresponding to an area of alpha in the lower tail. Reject the null if the test statistic is less than or equal to the critical value."
         
-        document.getElementById("output1").innerHTML = testtype + " $$ \\textbf{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} =\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}}  = \\underline{"+test.toFixed(2)+"} $$"+degfree+" <b><u>p-Value Approach</u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
     } else if (tail == "upper") {
         document.getElementById("explanationtext").innerHTML = "In an upper tail test, the p-value is the probability of getting a value for the test statistic that's greater than or equal to the value from the sample. The critical value is the value of the test statistic corresponding to an area of alpha in the upper tail."
         
-        document.getElementById("output1").innerHTML = testtype + " $$  \\textbf{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} =\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}}  = \\underline{"+test.toFixed(2)+"}  $$ <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$"+degfree+" <b><u>p-Value Approach<u></b>"
     } else if (tail == "two") {
         document.getElementById("explanationtext").innerHTML = "In an two-tailed test, the p-value is the probability of getting a value for the test statistic that's at least as unlikely as the value from the sample. The critical valuse are the values of the test statistic corresponding to areas of alpha/2 in the lower and upper tails."
         
-        document.getElementById("output1").innerHTML = testtype + " $$ \\textbf{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} =\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\underline{"+test.toFixed(2)+"} $$ <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach<u></b>"
     }
     
     
@@ -533,10 +533,11 @@ function hyptest(){
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("z",68,145);
+            ctx.fillText("z = "+test.toFixed(2),68,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("t",68,145);  
+            ctx.fillText("t = "+test.toFixed(2),68,145);  
+            ctx.fillText("df = "+sizem1,220,40);
         }
         
         ctx.beginPath();
@@ -668,8 +669,14 @@ function hyptest(){
         ctx.fillText("0",148,145);
         ctx.fillText("p-value",240,90);
         
-        ctx.fillText("z",285,132);
-        ctx.fillText("z",228,145);
+        if (sigma == "known") {
+            ctx.fillText("z",285,132);
+            ctx.fillText("z = "+test.toFixed(2),228,145);
+        } else if (sigma == "unknown") {
+            ctx.fillText("t",285,132);
+            ctx.fillText("t = "+test.toFixed(2),228,145);  
+            ctx.fillText("df = "+sizem1,220,40);
+        }
 
         ctx.beginPath();
         ctx.moveTo(150, 135);
@@ -798,9 +805,21 @@ function hyptest(){
         ctx.lineTo(280, 130);
         ctx.stroke();
         
+        ctx.fillText("0",148,145);
+        
+        ctx.fillText("p-value",20,90);
         ctx.fillText("p-value",245,90);
-        ctx.fillText("+z",226,145);
-
+        
+        if (sigma == "known") {
+            ctx.fillText("z",285,132);
+            ctx.fillText("-z = "+(-Math.abs(test.toFixed(2))),66,145);
+            ctx.fillText("+z = "+Math.abs(test.toFixed(2)),226,145);
+        } else if (sigma == "unknown") {
+            ctx.fillText("t",285,132);
+            ctx.fillText("-t = "+(-Math.abs(test.toFixed(2))),66,145);
+            ctx.fillText("+t = "+Math.abs(test.toFixed(2)),226,145); 
+            ctx.fillText("df = "+sizem1,220,40);
+        }
 
         ctx.beginPath();
         ctx.moveTo(150, 135);
@@ -913,11 +932,6 @@ function hyptest(){
         ctx.lineTo(278, 130);
         ctx.stroke();
         
-        ctx.fillText("0",148,145);
-        ctx.fillText("p-value",20,90);
-        
-        ctx.fillText("z",285,132);
-        ctx.fillText("-z",66,145);
 
 
         ctx.beginPath();
@@ -1060,14 +1074,15 @@ function hyptest(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α",35,100);
+        ctx.fillText("α = "+alpha,20,100);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("-Zα",65,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-tα",65,145);  
+            ctx.fillText("-tα",65,145); 
+            ctx.fillText("df = "+sizem1,220,40);
         }
 
         ctx.beginPath();
@@ -1197,10 +1212,16 @@ function hyptest(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α",250,100);
+        ctx.fillText("α = "+alpha,250,100);
         
-        ctx.fillText("z",285,132);
-        ctx.fillText("Zα",225,145);
+        if (sigma == "known") {
+            ctx.fillText("z",285,132);
+            ctx.fillText("Zα",225,145);
+        } else if (sigma == "unknown") {
+            ctx.fillText("t",285,132);
+            ctx.fillText("tα",225,145);  
+            ctx.fillText("df = "+sizem1,220,40);
+        }
 
 
         ctx.beginPath();
@@ -1330,9 +1351,20 @@ function hyptest(){
         ctx.lineTo(280, 130);
         ctx.stroke();
         
-        ctx.fillText("α/2",230,90);
+        ctx.fillText("0",148,145);
+        ctx.fillText("α/2 = "+(alpha/2),20,90);
+        ctx.fillText("α/2 = "+(alpha/2),230,90);
         
-        ctx.fillText("Zα/2",225,145);
+        if (sigma == "known") {
+            ctx.fillText("z",285,132);
+            ctx.fillText("-Zα",65,145);
+            ctx.fillText("Zα/2",225,145);
+        } else if (sigma == "unknown") {
+            ctx.fillText("t",285,132);
+            ctx.fillText("-tα",65,145);
+            ctx.fillText("tα/2",225,145);
+            ctx.fillText("df = "+sizem1,220,40);
+        }
 
 
         ctx.beginPath();
@@ -1445,12 +1477,6 @@ function hyptest(){
         ctx.moveTo(278, 119);
         ctx.lineTo(278, 130);
         ctx.stroke();
-        
-        ctx.fillText("0",148,145);
-        ctx.fillText("α/2",20,90);
-        
-        ctx.fillText("z",285,132);
-        ctx.fillText("-Zα/2",65,145);
 
 
         ctx.beginPath();
