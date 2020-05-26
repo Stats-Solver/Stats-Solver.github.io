@@ -1,5 +1,4 @@
-$("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
-$(".explanations").hide();
+$("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $("#explanation").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -94,6 +93,7 @@ function avg(input){
 }
 
 function stat(){
+    $("#explanation").hide();
     $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
@@ -126,12 +126,14 @@ function stat(){
 }
 
 function frequency(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Table showing the number of items in each class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -146,12 +148,14 @@ function frequency(){
 }
 
 function relative(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Table showing the proportion of items in each class. Relative Frequency = Frequency / Total."
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "<td>" + "Relative<br>Frequency" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -170,12 +174,14 @@ function relative(){
 }
 
 function percent(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Table showing the percentage of items in each class. Percent Frequency = Relative Frequency x 100."
     $("#despercent").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" +"<td>" + "Frequency" + "</td>" + "<td>" + "Relative<br>Frequency" + "</td>"+ "<td>" + "Percent<br>Frequency" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" +"<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>"+ "<td>" + "<b>Percent<br>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -198,6 +204,8 @@ function percent(){
 }
 
 function bar(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for qualitative data."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -251,6 +259,8 @@ function bar(){
 }
 
 function pie(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Graphical representation of percent frequency distribution for qualitative data."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -314,6 +324,8 @@ function pie(){
 }
 
 function histogram(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for quantitative data."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -389,6 +401,8 @@ function histogram(){
 }
 
 function cumfrequency(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Table showing the number of items less than or equal to the upper limit of each class."
     $("#descumfrequency").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -414,6 +428,8 @@ function cumfrequency(){
 }
 
 function cumrelative(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = ""
     $("#descumrelative").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -441,6 +457,8 @@ function cumrelative(){
 }
 
 function cumpercent(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = ""
     $("#descumpercent").show();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -475,6 +493,8 @@ function crosstabulation(){
 }
 
 function calccross(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Table summarizing data for two variables."
     $("#input2").show(); $("#buttonscatt").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -499,6 +519,8 @@ function scatter(){
 }
 
 function calcscatt(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "Graphical representation of data for two quantitative variables."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
@@ -558,7 +580,7 @@ function relativeexp(){
 }
 
 function examplexvalues(){
-    document.getElementById('values').value="a, b, b, c, c, c"
+    document.getElementById('values').value="A, C, B, A, C, A"
 }
 
 function examplechoose(){

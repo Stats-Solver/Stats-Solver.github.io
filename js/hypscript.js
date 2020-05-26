@@ -1,4 +1,4 @@
-$("#greater").hide(); $("#notequal").hide();
+$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -316,6 +316,7 @@ function tinv(p, dof) {
 }
 
 function hyptest(){
+    $("#explanation").show();
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
@@ -329,22 +330,27 @@ function hyptest(){
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
     var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2));
+    if (sigma == "known") {
+            var degfree = ""
+        } else if (sigma == "unknown") {
+            var degfree = "$$ \\textbf{Degrees of Freedom: } \\text{df} = n - 1 = "+size+" - 1 = \\underline{"+(size-1)+"}  $$"
+    }
     if (sigma == "known" && tail == "lower"){
-        var testtype = "Lower-Tail Test"
+        var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "z";
         var tailsign = "\\leq";
         var stndsymb = "\\sigma"
         var cvalsymb = "-z_\\alpha";
         var pvalue = normalcdf(test);
     } else if (sigma == "known" && tail == "upper"){
-        var testtype = "Upper-Tail Test"
+        var testtype = "<b>Upper Tail Test</b>"
         var testsymb = "z";
         var tailsign = "\\geq";
         var stndsymb = "\\sigma"
         var cvalsymb = "z_\\alpha";
         var pvalue = 1 - normalcdf(test);
     } else if (sigma == "known" && tail == "two"){
-        var testtype = "Two-Tailed Test"
+        var testtype = "<b>Two-Tailed Test</b>"
         var testsymb = "z";
         var tailsign = "=";
         var stndsymb = "\\sigma"
@@ -353,21 +359,21 @@ function hyptest(){
         var pvalhalf = normalcdf(testtwo);
         var pvalue = 2 * pvalhalf;
     } else if (sigma == "unknown" && tail == "lower"){
-        var testtype = "Lower-Tail Test"
+        var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "t";
-        var tailsign = "\\geq";
+        var tailsign = "\\leq";
         var stndsymb = "s"
         var cvalsymb = "-t_\\alpha";
         var pvalue = compute(test,size-1);
     } else if (sigma == "unknown" && tail == "upper"){
-        var testtype = "Upper-Tail Test"
+        var testtype = "<b>Upper Tail Test</b>"
         var testsymb = "t";
-        var tailsign = "\\leq";
+        var tailsign = "\\geq";
         var stndsymb = "s"
         var cvalsymb = "t_\\alpha";
         var pvalue = 1 - compute(test,size-1);
     } else if (sigma == "unknown" && tail == "two"){
-        var testtype = "Two-Tailed Test"
+        var testtype = "<b>Two-Tailed Test</b>"
         var testsymb = "t";
         var tailsign = "=";
         var stndsymb = "s"
@@ -410,26 +416,76 @@ function hyptest(){
     }
     
     var zvalue = toFixing(test,1);
+    var zvaluer = test.toFixed(2); 
+    var zseconddec = (""+zvaluer)[4];
     var zcrit = toFixing(zcless,1);
+    var zcritr = zcless.toFixed(2); 
+    var zcritseconddec = (""+zcritr)[4];
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    if (zcritseconddec == 0 || zcritseconddec == 1 || zcritseconddec == 2) {
+         var critstart = 0; 
+         var critend = 4;
+    } else if (zcritseconddec == 3) {
+         var critstart = 1; 
+         var critend = 5;
+    } else if (zcritseconddec == 4) {
+         var critstart = 2; 
+         var critend = 6;
+    } else if ((zcritseconddec == 5)) {
+         var critstart = 3; 
+         var critend = 7;
+    } else if (zcritseconddec == 6) {
+         var critstart = 4; 
+         var critend = 8;
+    } else if (zcritseconddec == 7 || zcritseconddec == 8 || zcritseconddec == 9) {
+         var critstart = 5; 
+         var critend = 9;
+    }
+    
     
     table1 = []
-    for (var r = 0; r < 10; r++){
-        table1 += "<td>" + (.01*r).toFixed(2) + "</td>";
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td><b>" + (.01*r).toFixed(2) + "</b></td>";
     }
     
     table3 = []
-    for (var r = 0; r < 10; r++){
+    for (var r = valstart; r < valend + 1; r++){
         table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4) + "</td>";
     }
     
+    table12 = []
+    for (var r = critstart; r < critend + 1; r++){
+        table12 += "<td><b>" + (.01*r).toFixed(2) + "</b></td>";
+    }
+    
     table2 = []
-    for (var r = 0; r < 10; r++){
+    for (var r = critstart; r < critend + 1; r++){
         table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4) + "</td>";
     }
     
-    var tablez = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablezp = "<table border=1><tr><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    var tablezc = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zcrit+"</td>"+table2+"</tr></table>"
+    var tablezc = "<table border=1><tr><td><b>z</b></td>"+table12+"</tr><tr><td>"+zcrit+"</td>"+table2+"</tr></table>"
     
     table4 = "<td></td><td colspan='6'>Area in the Upper Tail</td>"
     
@@ -441,12 +497,1085 @@ function hyptest(){
     var tablet = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     if (tail == "lower") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach</u><br><br>"+tablez+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ <u>Critical Value Approach</u><br><br>"+tablezc+" $$ \\text{Critical Value: }"+cvalsymb+" = " + zcless.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
+        document.getElementById("explanationtext").innerHTML = "In a lower tail test, the p-value is the probability of getting a value for the test statistic that's less than or equal to the value from the sample. Reject the null if the p-value is less than or equal to alpha. The critical value is the value of the test statistic corresponding to an area of alpha in the lower tail. Reject the null if the test statistic is less than or equal to the critical value."
+        
+        document.getElementById("output1").innerHTML = testtype + " $$ \\textbf{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} =\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}}  = \\underline{"+test.toFixed(2)+"} $$"+degfree+" <b><u>p-Value Approach</u></b>"
     } else if (tail == "upper") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) =" + pvalue.toFixed(4)+ "$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }"+concl+" $$ Critical Value Approach $$ \\text{Critical Value: }"+cvalsymb+" = " + zcmore.toFixed(2) + "$$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\text{Conclusion: }" + concl + "$$"
+        document.getElementById("explanationtext").innerHTML = "In an upper tail test, the p-value is the probability of getting a value for the test statistic that's greater than or equal to the value from the sample. The critical value is the value of the test statistic corresponding to an area of alpha in the upper tail."
+        
+        document.getElementById("output1").innerHTML = testtype + " $$  \\textbf{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} =\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}}  = \\underline{"+test.toFixed(2)+"}  $$ <b><u>p-Value Approach<u></b>"
     } else if (tail == "two") {
-        document.getElementById("output").innerHTML = testtype + " $$\\text{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}}=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"$$ <u>p-Value Approach<u> $$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: }" + concl +" $$ Critical Value Approach $$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + zctwo1.toFixed(2) + "\\\\ \\text{ and } "+cvalsymb2+" &= "+zctwo2.toFixed(2) + "\\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: }" + concl + "$$"
+        document.getElementById("explanationtext").innerHTML = "In an two-tailed test, the p-value is the probability of getting a value for the test statistic that's at least as unlikely as the value from the sample. The critical valuse are the values of the test statistic corresponding to areas of alpha/2 in the lower and upper tails."
+        
+        document.getElementById("output1").innerHTML = testtype + " $$ \\textbf{Test Statistic: }"+testsymb+" =\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} =\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\underline{"+test.toFixed(2)+"} $$ <b><u>p-Value Approach<u></b>"
     }
+    
+    
+    if (tail == "lower") {
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",20,95);
+        
+        if (sigma == "known") {
+            ctx.fillText("z",285,132);
+            ctx.fillText("z",68,145);
+        } else if (sigma == "unknown") {
+            ctx.fillText("t",285,132);
+            ctx.fillText("t",68,145);  
+        }
+        
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(68, 95);
+        ctx.lineTo(68, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(66, 96);
+        ctx.lineTo(66, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(64, 98);
+        ctx.lineTo(64, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(62, 99);
+        ctx.lineTo(62, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(60, 100);
+        ctx.lineTo(60, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(58, 102);
+        ctx.lineTo(58, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(56, 103);
+        ctx.lineTo(56, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(54, 104);
+        ctx.lineTo(54, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(52, 105);
+        ctx.lineTo(52, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(50, 106);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(48, 107);
+        ctx.lineTo(48, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(46, 108);
+        ctx.lineTo(46, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(44, 109);
+        ctx.lineTo(44, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(42, 110);
+        ctx.lineTo(42, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(40, 111);
+        ctx.lineTo(40, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(38, 112);
+        ctx.lineTo(38, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(36, 113);
+        ctx.lineTo(36, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(34, 114);
+        ctx.lineTo(34, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(32, 115);
+        ctx.lineTo(32, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(30, 116);
+        ctx.lineTo(30, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(28, 117);
+        ctx.lineTo(28, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(26, 117);
+        ctx.lineTo(26, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(24, 118);
+        ctx.lineTo(24, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(22, 119);
+        ctx.lineTo(22, 130);
+        ctx.stroke();
+    } else if (tail == "upper") {
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",240,90);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",228,145);
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(232, 97);
+        ctx.lineTo(232, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(234, 98);
+        ctx.lineTo(234, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(236, 99);
+        ctx.lineTo(236, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(238, 100);
+        ctx.lineTo(238, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(240, 102);
+        ctx.lineTo(240, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(242, 103);
+        ctx.lineTo(242, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(244, 104);
+        ctx.lineTo(244, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(246, 105);
+        ctx.lineTo(246, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(248, 106);
+        ctx.lineTo(248, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(250, 107);
+        ctx.lineTo(250, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(252, 108);
+        ctx.lineTo(252, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(254, 109);
+        ctx.lineTo(254, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(256, 110);
+        ctx.lineTo(256, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(258, 111);
+        ctx.lineTo(258, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(260, 112);
+        ctx.lineTo(260, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(262, 113);
+        ctx.lineTo(262, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(264, 114);
+        ctx.lineTo(264, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(266, 115);
+        ctx.lineTo(266, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(268, 116);
+        ctx.lineTo(268, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(270, 116);
+        ctx.lineTo(270, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(272, 117);
+        ctx.lineTo(272, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(274, 117);
+        ctx.lineTo(274, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(276, 118);
+        ctx.lineTo(276, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(278, 119);
+        ctx.lineTo(278, 130);
+        ctx.stroke();
+    } else if (tail == "two") {
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("p-value",245,90);
+        ctx.fillText("+z",226,145);
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(232, 97);
+        ctx.lineTo(232, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(234, 98);
+        ctx.lineTo(234, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(236, 99);
+        ctx.lineTo(236, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(238, 100);
+        ctx.lineTo(238, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(240, 102);
+        ctx.lineTo(240, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(242, 103);
+        ctx.lineTo(242, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(244, 104);
+        ctx.lineTo(244, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(246, 105);
+        ctx.lineTo(246, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(248, 106);
+        ctx.lineTo(248, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(250, 107);
+        ctx.lineTo(250, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(252, 108);
+        ctx.lineTo(252, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(254, 109);
+        ctx.lineTo(254, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(256, 110);
+        ctx.lineTo(256, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(258, 111);
+        ctx.lineTo(258, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(260, 112);
+        ctx.lineTo(260, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(262, 113);
+        ctx.lineTo(262, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(264, 114);
+        ctx.lineTo(264, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(266, 115);
+        ctx.lineTo(266, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(268, 116);
+        ctx.lineTo(268, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(270, 116);
+        ctx.lineTo(270, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(272, 117);
+        ctx.lineTo(272, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(274, 117);
+        ctx.lineTo(274, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(276, 118);
+        ctx.lineTo(276, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(278, 119);
+        ctx.lineTo(278, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",20,90);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("-z",66,145);
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(68, 95);
+        ctx.lineTo(68, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(66, 96);
+        ctx.lineTo(66, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(64, 98);
+        ctx.lineTo(64, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(62, 99);
+        ctx.lineTo(62, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(60, 100);
+        ctx.lineTo(60, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(58, 102);
+        ctx.lineTo(58, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(56, 103);
+        ctx.lineTo(56, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(54, 104);
+        ctx.lineTo(54, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(52, 105);
+        ctx.lineTo(52, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(50, 106);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(48, 107);
+        ctx.lineTo(48, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(46, 108);
+        ctx.lineTo(46, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(44, 109);
+        ctx.lineTo(44, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(42, 110);
+        ctx.lineTo(42, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(40, 111);
+        ctx.lineTo(40, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(38, 112);
+        ctx.lineTo(38, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(36, 113);
+        ctx.lineTo(36, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(34, 114);
+        ctx.lineTo(34, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(32, 115);
+        ctx.lineTo(32, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(30, 116);
+        ctx.lineTo(30, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(28, 117);
+        ctx.lineTo(28, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(26, 117);
+        ctx.lineTo(26, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(24, 118);
+        ctx.lineTo(24, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(22, 119);
+        ctx.lineTo(22, 130);
+        ctx.stroke();
+    }
+
+    
+    if (tail == "lower") {
+        document.getElementById("output2").innerHTML = tablezp+ "$$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pvalue.toFixed(4)+ "}$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b>"
+    } else if (tail == "upper") {
+        document.getElementById("output2").innerHTML = " $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pvalue.toFixed(4)+ "} $$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
+    } else if (tail == "two") {
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = \\underline{"+zptwo2.toFixed(4)+"} \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
+    }
+    
+    
+    
+    if (tail == "lower") {
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("α",35,100);
+        
+        if (sigma == "known") {
+            ctx.fillText("z",285,132);
+            ctx.fillText("-Zα",65,145);
+        } else if (sigma == "unknown") {
+            ctx.fillText("t",285,132);
+            ctx.fillText("-tα",65,145);  
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(68, 95);
+        ctx.lineTo(68, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(66, 96);
+        ctx.lineTo(66, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(64, 98);
+        ctx.lineTo(64, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(62, 99);
+        ctx.lineTo(62, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(60, 100);
+        ctx.lineTo(60, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(58, 102);
+        ctx.lineTo(58, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(56, 103);
+        ctx.lineTo(56, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(54, 104);
+        ctx.lineTo(54, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(52, 105);
+        ctx.lineTo(52, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(50, 106);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(48, 107);
+        ctx.lineTo(48, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(46, 108);
+        ctx.lineTo(46, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(44, 109);
+        ctx.lineTo(44, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(42, 110);
+        ctx.lineTo(42, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(40, 111);
+        ctx.lineTo(40, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(38, 112);
+        ctx.lineTo(38, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(36, 113);
+        ctx.lineTo(36, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(34, 114);
+        ctx.lineTo(34, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(32, 115);
+        ctx.lineTo(32, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(30, 116);
+        ctx.lineTo(30, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(28, 117);
+        ctx.lineTo(28, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(26, 117);
+        ctx.lineTo(26, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(24, 118);
+        ctx.lineTo(24, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(22, 119);
+        ctx.lineTo(22, 130);
+        ctx.stroke();
+    } else if (tail == "upper") {
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("α",250,100);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("Zα",225,145);
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(232, 97);
+        ctx.lineTo(232, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(234, 98);
+        ctx.lineTo(234, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(236, 99);
+        ctx.lineTo(236, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(238, 100);
+        ctx.lineTo(238, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(240, 102);
+        ctx.lineTo(240, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(242, 103);
+        ctx.lineTo(242, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(244, 104);
+        ctx.lineTo(244, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(246, 105);
+        ctx.lineTo(246, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(248, 106);
+        ctx.lineTo(248, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(250, 107);
+        ctx.lineTo(250, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(252, 108);
+        ctx.lineTo(252, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(254, 109);
+        ctx.lineTo(254, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(256, 110);
+        ctx.lineTo(256, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(258, 111);
+        ctx.lineTo(258, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(260, 112);
+        ctx.lineTo(260, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(262, 113);
+        ctx.lineTo(262, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(264, 114);
+        ctx.lineTo(264, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(266, 115);
+        ctx.lineTo(266, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(268, 116);
+        ctx.lineTo(268, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(270, 116);
+        ctx.lineTo(270, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(272, 117);
+        ctx.lineTo(272, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(274, 117);
+        ctx.lineTo(274, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(276, 118);
+        ctx.lineTo(276, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(278, 119);
+        ctx.lineTo(278, 130);
+        ctx.stroke();
+    } else if (tail == "two") {
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("α/2",230,90);
+        
+        ctx.fillText("Zα/2",225,145);
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(232, 97);
+        ctx.lineTo(232, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(234, 98);
+        ctx.lineTo(234, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(236, 99);
+        ctx.lineTo(236, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(238, 100);
+        ctx.lineTo(238, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(240, 102);
+        ctx.lineTo(240, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(242, 103);
+        ctx.lineTo(242, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(244, 104);
+        ctx.lineTo(244, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(246, 105);
+        ctx.lineTo(246, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(248, 106);
+        ctx.lineTo(248, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(250, 107);
+        ctx.lineTo(250, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(252, 108);
+        ctx.lineTo(252, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(254, 109);
+        ctx.lineTo(254, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(256, 110);
+        ctx.lineTo(256, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(258, 111);
+        ctx.lineTo(258, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(260, 112);
+        ctx.lineTo(260, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(262, 113);
+        ctx.lineTo(262, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(264, 114);
+        ctx.lineTo(264, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(266, 115);
+        ctx.lineTo(266, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(268, 116);
+        ctx.lineTo(268, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(270, 116);
+        ctx.lineTo(270, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(272, 117);
+        ctx.lineTo(272, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(274, 117);
+        ctx.lineTo(274, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(276, 118);
+        ctx.lineTo(276, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(278, 119);
+        ctx.lineTo(278, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("α/2",20,90);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("-Zα/2",65,145);
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(68, 95);
+        ctx.lineTo(68, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(66, 96);
+        ctx.lineTo(66, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(64, 98);
+        ctx.lineTo(64, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(62, 99);
+        ctx.lineTo(62, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(60, 100);
+        ctx.lineTo(60, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(58, 102);
+        ctx.lineTo(58, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(56, 103);
+        ctx.lineTo(56, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(54, 104);
+        ctx.lineTo(54, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(52, 105);
+        ctx.lineTo(52, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(50, 106);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(48, 107);
+        ctx.lineTo(48, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(46, 108);
+        ctx.lineTo(46, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(44, 109);
+        ctx.lineTo(44, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(42, 110);
+        ctx.lineTo(42, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(40, 111);
+        ctx.lineTo(40, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(38, 112);
+        ctx.lineTo(38, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(36, 113);
+        ctx.lineTo(36, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(34, 114);
+        ctx.lineTo(34, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(32, 115);
+        ctx.lineTo(32, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(30, 116);
+        ctx.lineTo(30, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(28, 117);
+        ctx.lineTo(28, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(26, 117);
+        ctx.lineTo(26, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(24, 118);
+        ctx.lineTo(24, 130);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(22, 119);
+        ctx.lineTo(22, 130);
+        ctx.stroke();
+    }
+    
+    
+    
+    if (tail == "lower") {
+        document.getElementById("output3").innerHTML = tablezc+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "upper") {
+        document.getElementById("output3").innerHTML = "$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "two") {
+        document.getElementById("output3").innerHTML = "$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + zctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+zctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+    }
+    
+    
+    
     
     MathJax.typeset();
 }

@@ -1,4 +1,4 @@
-$("#values").hide(); $("#enterstats").hide();
+$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#expconf").hide();
 
 $(function () {
@@ -256,6 +256,7 @@ function tinv(p, dof) {
 }
 
 function conint(){
+    $("#explanation").show();
     $("#expconf").show();
     var sigma = document.getElementById("sigma").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
@@ -268,14 +269,16 @@ function conint(){
     var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror)
     
     if (sigma == "known") {
+        document.getElementById("explanationtext").innerHTML = "The first step is setting 1 - &alpha; equal to the confidence coefficient, the decimal form of the confidence level (i.e. 95% -> .95). Then solving for &alpha;/2 allows you to find z&alpha;/2, which is the z value providing an area of &alpha;/2 in the upper tail of the z distribution. Since the z table provides areas to the left of z values, first subtract &alpha;/2 from 1."
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
     } else if (sigma == "unknown") {
+        document.getElementById("explanationtext").innerHTML = "The first step is setting 1 - &alpha; equal to the confidence coefficient, the decimal form of the confidence level (i.e. 95% -> .95). Then solving for &alpha;/2 allows you to find t&alpha;/2, which is the t value providing an area of &alpha;/2 in the upper tail of the t distribution with n - 1 degrees of freedom."
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$"
     } 
     
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 400, 300);
+    ctx.clearRect(0, 0, 300, 150);
     ctx.beginPath();
     ctx.moveTo(20, 120);
     ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
@@ -290,9 +293,18 @@ function conint(){
     ctx.stroke();
     
     ctx.fillText("0",148,145);
-    ctx.fillText("z",285,132);
-    ctx.fillText("Zα/2 = "+zalphahalf.toFixed(2),220,145);
-    ctx.fillText("α/2 = "+alphahalf,250,100);
+    ctx.fillText("α/2 = "+alphahalf.toFixed(3),250,100);
+
+    if (sigma == "known") {
+        ctx.fillText("z",285,132);
+        ctx.fillText("Zα/2 = "+zalphahalf.toFixed(2),220,145);
+        ctx.fillText("1 - α/2",135,80);
+        ctx.fillText("= 1 - "+alphahalf.toFixed(3),127,90);
+        ctx.fillText("= "+(1-alphahalf).toFixed(3),127,100);
+    } else if (sigma == "unknown") {
+        ctx.fillText("t",285,132);
+        ctx.fillText("tα/2 = "+zalphahalf.toFixed(2),220,145);      
+    }
     
     ctx.beginPath();
     ctx.moveTo(150, 135);
@@ -406,31 +418,47 @@ function conint(){
     ctx.stroke();
     
     
-    var zvalue = toFixing(zalphahalf,1)
-    var zvaluemin1 = (zvalue - .1).toFixed(1)
-    var zvalueplus1 = (parseFloat(zvalue) + .1).toFixed(1)
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
     
     
     table1 = []
-    for (var r = 0; r < 10; r++){
-        table1 += "<td>" + (.1*r).toFixed(1) + "</td>";
-    }
-    
-    table2 = []
-    for (var r = 0; r < 10; r++){
-        table2 += "<td>" + normalcdf(parseFloat(zvaluemin1) + parseFloat(.01*r)).toFixed(4) + "</td>";
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td> <b>" + (0.01 * r).toFixed(2) + "</b></td>";
     }
     
     table3 = []
-    for (var r = 0; r < 10; r++){
+    for (var r = valstart; r < valend + 1; r++){
         table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4) + "</td>";
     }
     
-    var tablez = "<table border=1><tr><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablez = "<table border=1><tr><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    table4 = "<td></td><td colspan='6'>Area in the Upper Tail</td>"
+    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
     
-    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
     
     table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
     
@@ -439,9 +467,9 @@ function conint(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = tablez + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+        document.getElementById("output2").innerHTML = tablez + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + " $$"
+        document.getElementById("output2").innerHTML = tablet + " $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } 
     
     MathJax.typeset();

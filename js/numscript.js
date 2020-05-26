@@ -70,6 +70,7 @@ function avg(input){
 }
 
 function stat(){
+    $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
@@ -109,7 +110,7 @@ function stat(){
 
 function mean(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mean, or average, is the most important measure of central location. It is calculated by summing up the x values and dividing by the total number of values."
+    document.getElementById("explanationtext").innerHTML = "The mean, or average, is the most important measure of central location. It is calculated by summing up the values and dividing by the total number of values."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
@@ -118,7 +119,7 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "Sample Mean $$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + avgeach.toFixed(2) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "<b>Sample Mean</b> $$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + avgeach.toFixed(2) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -137,7 +138,7 @@ function meanpop(){
 
 function median(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The median is a measure of central location that is useful when there are extreme values in the data. If there are an odd number of values, the median is the middle value of the sorted data. If there are an even number of values, the median is the average of two middle values of the sorted data. "
+    document.getElementById("explanationtext").innerHTML = "The median is a measure of central location that is useful when there are extreme values in the data. If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values. "
     $("#desmedian").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
@@ -148,10 +149,10 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an odd number of values, take the middle value.$$\\text{Median} = \\boxed{" + valm + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an odd number of values, take the middle value.$$\\text{Median} = \\boxed{" + valm + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$ Step 2: Since there are an even number of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\frac{" + sumlr + "}{2}" + " = \\boxed{" + avelr + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an even number of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\frac{" + sumlr + "}{2}" + " = \\boxed{" + avelr + "} $$"
     }
     MathJax.typeset();
 }
@@ -164,7 +165,7 @@ function mode(){
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -222,7 +223,7 @@ function percentiles(){
 
 function calcper(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "About p% of the values are less than the p-th percentile. About (1-p)% of the values are greater than the p-th percentile. When calculating percentiles, if the index i is not an integer, round up to the next highest integer. If the index i is an integer, average the values in positions i and i+1."
+    document.getElementById("explanationtext").innerHTML = "About p% of the values are less than the p-th percentile. About (1-p)% of the values are greater than the p-th percentile."
     $("#despercentiles").show();
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
@@ -246,10 +247,10 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ <b>Step 3:</b> Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ <b>Step 3:</b> Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
@@ -260,7 +261,7 @@ function quartiles(){
 
 function calcquart(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The first quartiles is the 25th percentile. The second quartile is the 50th percentile. The third quartile is the 75th percentile."
+    document.getElementById("explanationtext").innerHTML = "The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile."
     $("#inputqu").show(); $("#desquartiles").show();
     var val = document.getElementById("valquart").value;
     var str = document.getElementById("values").value;
@@ -284,17 +285,17 @@ function calcquart(){
         var quartnum = ""
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ <b>Step 3:</b> Since the index is an integer, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\frac{" + valsum + "}{2}" + " = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "Step 1: Arrange the data in ascending order.$$"+eachsort+"$$Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ Step 3: Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + indxval.toFixed(2) + "$$ <b>Step 3:</b> Since the index is not an integer, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
 
 function range(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The range is simply the largest value minus the smallest value."
+    document.getElementById("explanationtext").innerHTML = "The range is the simplest measure of variability as it only uses two values: the largest and smallest."
     $("#desrange").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
@@ -306,7 +307,7 @@ function range(){
 
 function iqr(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The interquartile range is the third quartile minus the first quartile."
+    document.getElementById("explanationtext").innerHTML = "The interquartile range is a measure of variability that is useful when there are extreme values in the data. It is the third quartile minus the first quartile."
     $("#desiqr").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -334,7 +335,7 @@ function iqr(){
 
 function variance(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The variance is a measure of variability that uses all of the data. The sample variance is computed by summing the squared deviations about the mean and dividing the result by n-1."
+    document.getElementById("explanationtext").innerHTML = "The variance is a measure of variability that uses all of the data. The sample variance is computed by summing the squared deviations about the mean and dividing the result by sample size minus one."
     $("#output").empty();
     $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
     var str = document.getElementById("values").value;
@@ -361,7 +362,7 @@ function variance(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+sumeachminus2.toFixed(2)+"$$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "Sample Variance <br><br> <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}= \\boxed{"+ansvar.toFixed(2)+"} $$"
+    document.getElementById("output").innerHTML = "<b>Sample Variance</b> <br><br> <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+sumeachminus2.toFixed(2)+"}{"+len+"-1}= \\boxed{"+ansvar.toFixed(2)+"} $$"
     MathJax.typeset();
 }
 
@@ -415,7 +416,7 @@ function stdev(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= \\boxed{"+ansstd.toFixed(2)+"}\\end{align} $$"
+    document.getElementById("output").innerHTML = "<b>Sample Standard Deviation</b> $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+ansvar.toFixed(2)+"} \\\\ &= \\boxed{"+ansstd.toFixed(2)+"}\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -533,11 +534,11 @@ function calccov(){
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var anscov = sumeacheach2 / lenmin1;
     if (anscov > 0){
-        var interpret = "Interpretation: There is a positive linear relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is a positive linear relationship between x and y."
     } else if (anscov < 0){
-        var interpret = "Interpretation: There is a negative linear relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is a negative linear relationship between x and y."
     } else {
-        var interpret = "Interpretation: There is no relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is no relationship between x and y."
     }
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" + "</tr>";
     var rows = len;
@@ -552,7 +553,7 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeacheach2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "Sample Covariance <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}=\\boxed{"+anscov.toFixed(2)+"}$$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "<b>Sample Covariance</b> <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+sumeacheach2.toFixed(2)+"}{"+len+"-1}=\\boxed{"+anscov.toFixed(2)+"}$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
@@ -587,11 +588,11 @@ function calccovpop(){
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var anscov = sumeacheach2 / lenmin1;
     if (anscov > 0){
-        var interpret = "Interpretation: There is a positive linear relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is a positive linear relationship between x and y."
     } else if (anscov < 0){
-        var interpret = "Interpretation: There is a negative linear relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is a negative linear relationship between x and y."
     } else {
-        var interpret = "Interpretation: There is no relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is no relationship between x and y."
     }
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\mu_x$$" + "</td>" + "<td>" + "$$y - \\mu_y$$" + "</td>"+ "<td>" + "$$(x - \\mu_x)(y - \\mu_y)$$" + "</td>" + "</tr>";
     var rows = len;
@@ -669,7 +670,7 @@ function calccor(){
     } else {
         var intinside = "no"
     }
-    var interpret = "Interpretation: There is "+ intinside +" linear relationship between x and y."
+    var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship between x and y."
     var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 6;
@@ -684,7 +685,7 @@ function calccor(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "Sample Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = \\boxed{"+ (anscov / (ansstd * ansstd2)).toFixed(2) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "<b>Sample Correlation Coefficient</b> <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = \\boxed{"+ (anscov / (ansstd * ansstd2)).toFixed(2) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
