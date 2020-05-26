@@ -359,6 +359,7 @@ function hyptest(){
         var cvalsymb1 = "-z_{\\alpha / 2}";
         var cvalsymb2 = "z_{\\alpha / 2}";
         var pvalhalf = normalcdf(testtwo);
+        var pvalh = pvalhalf.toFixed(4);
         var pvalue = 2 * pvalhalf;
         var pval = pvalue.toFixed(4);
     } else if (sigma == "unknown" && tail == "lower"){
@@ -417,21 +418,38 @@ function hyptest(){
         var cvalsymb1 = "-t_{\\alpha / 2}";
         var cvalsymb2 = "t_{\\alpha / 2}";
         var pvalhalf = normalcdf(testtwo);
+        if (pvalhalf > .2) {
+            var pvalh = ".20 \\text{ to } 1"
+        } else if (pvalhalf <.2 && pvalhalf >.1) {
+            var pvalh = ".10 \\text{ to } .20"
+        } else if (pvalhalf <.1 && pvalhalf >.05) {
+            var pvalh = ".05 \\text{ to } .10"
+        } else if (pvalhalf <.05 && pvalhalf >.025) {
+            var pvalh = ".025 \\text{ to } .05"
+        } else if (pvalhalf <.025 && pvalhalf >.01) {
+            var pvalh = ".01 \\text{ to } .025"
+        } else if (pvalhalf <.01 && pvalhalf >.005) {
+            var pvalh = ".005 \\text{ to } .01"
+        } else if (pvalhalf <.005) {
+            var pvalh = "0 \\text{ to } .005"
+        } else {
+            var pvalh = pvalhalf.toFixed(4);
+        }     
         var pvalue = 2 * pvalhalf;
-        if (pvalue > .2) {
-            var pval = ".20 to 1"
-        } else if (pvalue <.2 && pvalue >.1) {
-            var pval = ".10 to .20"
-        } else if (pvalue <.1 && pvalue >.05) {
-            var pval = ".05 to .10"
-        } else if (pvalue <.05 && pvalue >.025) {
-            var pval = ".025 to .05"
-        } else if (pvalue <.025 && pvalue >.01) {
-            var pval = ".01 to .025"
-        } else if (pvalue <.01 && pvalue >.005) {
-            var pval = ".005 to .01"
-        } else if (pvalue <.005) {
-            var pval = "0 to .005"
+        if (pvalhalf > .2) {
+            var pval = ".40 \\text{ to } 1"
+        } else if (pvalhalf <.2 && pvalhalf >.1) {
+            var pval = ".20 \\text{ to } .40"
+        } else if (pvalhalf <.1 && pvalhalf >.05) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalhalf <.05 && pvalhalf >.025) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalhalf <.025 && pvalhalf >.01) {
+            var pval = ".02 \\text{ to } .05"
+        } else if (pvalhalf <.01 && pvalhalf >.005) {
+            var pval = ".01 \\text{ to } .02"
+        } else if (pvalhalf <.005) {
+            var pval = "0 \\text{ to } .01"
         } else {
             var pval = pvalue.toFixed(4);
         }     
@@ -1120,7 +1138,7 @@ function hyptest(){
     } else if (tail == "upper") {
         document.getElementById("output2").innerHTML = tablep+" $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = \\underline{"+zptwo2.toFixed(4)+"} \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = \\underline{"+pval+"} \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
     }
     
     
