@@ -342,6 +342,7 @@ function hyptest(){
         var stndsymb = "\\sigma"
         var cvalsymb = "-z_\\alpha";
         var pvalue = normalcdf(test);
+        var pval = pvalue.toFixed(4);
     } else if (sigma == "known" && tail == "upper"){
         var testtype = "<b>Upper Tail Test</b>"
         var testsymb = "z";
@@ -349,6 +350,7 @@ function hyptest(){
         var stndsymb = "\\sigma"
         var cvalsymb = "z_\\alpha";
         var pvalue = 1 - normalcdf(test);
+        var pval = pvalue.toFixed(4);
     } else if (sigma == "known" && tail == "two"){
         var testtype = "<b>Two-Tailed Test</b>"
         var testsymb = "z";
@@ -358,6 +360,7 @@ function hyptest(){
         var cvalsymb2 = "z_{\\alpha / 2}";
         var pvalhalf = normalcdf(testtwo);
         var pvalue = 2 * pvalhalf;
+        var pval = pvalue.toFixed(4);
     } else if (sigma == "unknown" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "t";
@@ -365,6 +368,23 @@ function hyptest(){
         var stndsymb = "s"
         var cvalsymb = "-t_\\alpha";
         var pvalue = compute(test,size-1);
+        if (pvalue > .2) {
+            var pval = ".20 \\text{ to } 1"
+        } else if (pvalue <.2 && pvalue >.1) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalue <.1 && pvalue >.05) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalue <.05 && pvalue >.025) {
+            var pval = ".025 \\text{ to } .05"
+        } else if (pvalue <.025 && pvalue >.01) {
+            var pval = ".01 \\text{ to } .025"
+        } else if (pvalue <.01 && pvalue >.005) {
+            var pval = ".005 \\text{ to } .01"
+        } else if (pvalue <.005) {
+            var pval = "0 \\text{ to } .005"
+        } else {
+            var pval = pvalue.toFixed(4);
+        }  
     } else if (sigma == "unknown" && tail == "upper"){
         var testtype = "<b>Upper Tail Test</b>"
         var testsymb = "t";
@@ -372,6 +392,23 @@ function hyptest(){
         var stndsymb = "s"
         var cvalsymb = "t_\\alpha";
         var pvalue = 1 - compute(test,size-1);
+        if (pvalue > .2) {
+            var pval = ".20 \\text{ to } 1"
+        } else if (pvalue <.2 && pvalue >.1) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalue <.1 && pvalue >.05) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalue <.05 && pvalue >.025) {
+            var pval = ".025 \\text{ to } .05"
+        } else if (pvalue <.025 && pvalue >.01) {
+            var pval = ".01 \\text{ to } .025"
+        } else if (pvalue <.01 && pvalue >.005) {
+            var pval = ".005 \\text{ to } .01"
+        } else if (pvalue <.005) {
+            var pval = "0 \\text{ to } .005"
+        } else {
+            var pval = pvalue.toFixed(4);
+        }  
     } else if (sigma == "unknown" && tail == "two"){
         var testtype = "<b>Two-Tailed Test</b>"
         var testsymb = "t";
@@ -381,6 +418,23 @@ function hyptest(){
         var cvalsymb2 = "t_{\\alpha / 2}";
         var pvalhalf = normalcdf(testtwo);
         var pvalue = 2 * pvalhalf;
+        if (pvalue > .2) {
+            var pval = ".20 to 1"
+        } else if (pvalue <.2 && pvalue >.1) {
+            var pval = ".10 to .20"
+        } else if (pvalue <.1 && pvalue >.05) {
+            var pval = ".05 to .10"
+        } else if (pvalue <.05 && pvalue >.025) {
+            var pval = ".025 to .05"
+        } else if (pvalue <.025 && pvalue >.01) {
+            var pval = ".01 to .025"
+        } else if (pvalue <.01 && pvalue >.005) {
+            var pval = ".005 to .01"
+        } else if (pvalue <.005) {
+            var pval = "0 to .005"
+        } else {
+            var pval = pvalue.toFixed(4);
+        }     
     }
     
     if (pvalue <= alpha) {
@@ -483,18 +537,33 @@ function hyptest(){
         table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4) + "</td>";
     }
     
-    var tablezp = "<table border=1><tr><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    var tablezc = "<table border=1><tr><td><b>z</b></td>"+table12+"</tr><tr><td>"+zcrit+"</td>"+table2+"</tr></table>"
     
-    table4 = "<td></td><td colspan='6'>Area in the Upper Tail</td>"
+    table4 = "<td></td><td colspan='6'><b>Area in the Upper Tail</b></td>"
     
-    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
     
     table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
     
     
-    var tablet = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    if (sigma == "known") {
+        var tablep = "<table border=1><tr><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+        var tablec = "<table border=1><tr><td><b>z</b></td>"+table12+"</tr><tr><td>"+zcrit+"</td>"+table2+"</tr></table>"
+        } else if (sigma == "unknown") {
+            var tablep = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+            var tablec = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     if (tail == "lower") {
         document.getElementById("explanationtext").innerHTML = "In a lower tail test, the p-value is the probability of getting a value for the test statistic that's less than or equal to the value from the sample. Reject the null if the p-value is less than or equal to alpha. The critical value is the value of the test statistic corresponding to an area of alpha in the lower tail. Reject the null if the test statistic is less than or equal to the critical value."
@@ -1047,11 +1116,11 @@ function hyptest(){
 
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablezp+ "$$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pvalue.toFixed(4)+ "}$$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "}$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b>"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = " $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pvalue.toFixed(4)+ "} $$ $$\\text{p-value}="+pvalue.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
+        document.getElementById("output2").innerHTML = tablep+" $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = \\underline{"+zptwo2.toFixed(4)+"} \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = \\underline{"+zptwo2.toFixed(4)+"} \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
     }
     
     
@@ -1593,11 +1662,11 @@ function hyptest(){
     
     
     if (tail == "lower") {
-        document.getElementById("output3").innerHTML = tablezc+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = "$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = "$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + zctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+zctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + zctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+zctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
     }
     
     
