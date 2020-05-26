@@ -333,7 +333,7 @@ function hyptest(){
     if (sigma == "known") {
             var degfree = ""
         } else if (sigma == "unknown") {
-            var degfree = "$$ \\textbf{Degrees of Freedom: } \\text{df} = n - 1 = "+size+" - 1 = \\underline{"+(size-1)+"}  $$"
+            var degfree = "$$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= \\underline{"+(size-1)+"} \\end{align} $$"
     }
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"

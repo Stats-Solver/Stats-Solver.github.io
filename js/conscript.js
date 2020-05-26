@@ -273,7 +273,7 @@ function conint(){
         document.getElementById("output1").innerHTML = "$$ \\textbf{"+conlev + "% Confidence Interval} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
     } else if (sigma == "unknown") {
         document.getElementById("explanationtext").innerHTML = "The first step is setting 1 - &alpha; equal to the confidence coefficient, the decimal form of the confidence level (i.e. 95% -> .95). Then solving for &alpha;/2 allows you to find t&alpha;/2, which is the t value providing an area of &alpha;/2 in the upper tail of the t distribution with n - 1 degrees of freedom."
-        document.getElementById("output1").innerHTML = "$$ \\textbf{"+conlev + "% Confidence Interval} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\textbf{Degrees of Freedom: } \\text{df} = n - 1 = "+size+ " - 1 = \\underline{"+sizem1+"}  $$"
+        document.getElementById("output1").innerHTML = "$$ \\textbf{"+conlev + "% Confidence Interval} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= \\underline{"+sizem1+"} \\end{align}  $$"
     } 
     
     var c = document.getElementById("myCanvas");
