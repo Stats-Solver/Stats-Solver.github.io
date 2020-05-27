@@ -7,7 +7,7 @@ $(function () {
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.5, 1.5);
+ctx.scale(1.25, 1.25);
 
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
