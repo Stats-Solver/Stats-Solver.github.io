@@ -5,6 +5,10 @@ $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
 
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.5, 1.5);
+
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
     return num.toString().match(re)[0];

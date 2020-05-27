@@ -4,6 +4,10 @@ $('.popover-dismiss').popover({
   trigger: 'focus'
 })
 
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(2, 2);
+
 function resizeCanvasToDisplaySize(canvas) {
    // look up the size the canvas is being displayed
    const width = canvas.clientWidth;
