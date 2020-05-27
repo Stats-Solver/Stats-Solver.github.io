@@ -72,7 +72,7 @@
                 <option value="bar">Bar Chart</option>
                 <option value="pie">Pie Chart</option>
                 <option value="histogram">Histogram</option>
-                <option value="cumfrequency">Cumulative Distributions</option>
+                <option value="cumulative">Cumulative Distributions</option>
                 <option value="crosstabulation">Crosstabulation</option>
                 <option value="scatter">Scatter Diagram</option>
             </select>
@@ -84,7 +84,7 @@
       
       <div id="input2" class="container">
           <div class="row">
-        <div class="col-12 col-md-8">
+        <div class="col-12 col-md-8 mt-2">
             <input type="text" id="values2" class="form-control" placeholder="Enter Y Values">
             <label>Example: <a href="">A, C, B, A, C, A</a></label>
         </div>
@@ -96,12 +96,23 @@
               </div>
     </div>
       
+      <div class="container"> 
+        <div id="cumulative">
+            <select id="cumtype" onchange="calccum()">
+                <option value="choose">Choose</option>
+                <option value="frequency">Frequency</option>
+                <option value="relative">Relative Frequency</option>
+                <option value="percent">Percent Frequency</option>
+            </select>
+        </div>
+             </div>
+      
       <div class="container">
       <hr>
           </div>
       
       <div class="container text-center">
-    <canvas width="600" height="300" id="myCanvas">
+    <canvas width="375" height="188" id="myCanvas">
           </canvas>
        </div>
         

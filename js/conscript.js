@@ -316,12 +316,12 @@ function conint(){
     ctx.moveTo(230, 135);
     ctx.lineTo(230, 125);
     ctx.stroke();
-     
+    
+    ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     ctx.moveTo(230, 96);
     ctx.lineTo(230, 130);
     ctx.stroke();
-    
     ctx.beginPath();
     ctx.moveTo(232, 97);
     ctx.lineTo(232, 130);
@@ -418,6 +418,7 @@ function conint(){
     ctx.moveTo(278, 119);
     ctx.lineTo(278, 130);
     ctx.stroke();
+    ctx.strokeStyle = 'black';
     
     
     var zvalue = toFixing(zalphahalf,1);

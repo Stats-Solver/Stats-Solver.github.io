@@ -1,4 +1,4 @@
-$("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $("#explanation").hide();
+$("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $("#explanation").hide(); $("#cumulative").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -6,7 +6,7 @@ $('.popover-dismiss').popover({
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
-ctx.scale(2, 2);
+ctx.scale(1.25, 1.25);
 
 function resizeCanvasToDisplaySize(canvas) {
    // look up the size the canvas is being displayed
@@ -97,7 +97,7 @@ function avg(input){
 }
 
 function stat(){
-    $("#explanation").hide();
+    $("#explanation").hide(); $("#cumulative").hide();
     $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
@@ -113,8 +113,8 @@ function stat(){
         pie()
     } else if (x == "histogram") {
         histogram()
-    } else if (x == "cumfrequency") {
-        cumfrequency()
+    } else if (x == "cumulative") {
+        cumulative()
     } else if (x == "cumrelative") {
         cumrelative()
     } else if (x == "cumpercent") {
@@ -137,7 +137,7 @@ function frequency(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -146,8 +146,8 @@ function frequency(){
         table += "<td>" + counts[r] + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "<b>Total</b>" + "</td>" + "<td><b>"+ tot +"</b></td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -159,7 +159,7 @@ function relative(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -172,8 +172,8 @@ function relative(){
         table += "<td>" + relfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "<b>Total</b>" + "</td>" + "<td><b>"+ tot +"</b></td>" + "<td><b>"+ "1" +"</b></td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -185,7 +185,7 @@ function percent(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" +"<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>"+ "<td>" + "<b>Percent<br>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" +"<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>"+ "<td>" + "<b>Percent<br>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -202,8 +202,8 @@ function percent(){
         table += "<td>" + perfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>" +tot +"</td>" + "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "<b>Total</b>" + "</td>"+ "<td><b>" +tot +"</b></td>" + "<td>"+ "<b>1</b>" +"</td>"+ "<td>"+ "<b>100</b>" +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -404,6 +404,21 @@ function histogram(){
     MathJax.typeset();
 }
 
+function cumulative(){
+    $("#cumulative").show();
+}
+
+function calccum(){
+    var val = document.getElementById("cumtype").value;
+    if (val=="frequency") {
+        cumfrequency()
+    } else if (val=="relative") {
+        cumrelative()
+    } else if (val=="percent") {
+        cumpercent()
+    }
+}
+
 function cumfrequency(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "Table showing the number of items less than or equal to the upper limit of each class."
@@ -416,7 +431,7 @@ function cumfrequency(){
     for (let i=1; i<counts.length; i++) {
         cumcounts[i] = cumcounts[i-1] + counts[i]
     }
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" +"<td>" + "Cum. Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" +"<td>" + "<b>Cum. Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -427,7 +442,7 @@ function cumfrequency(){
         table += "</tr>";
     }
 
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -439,7 +454,7 @@ function cumrelative(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" +"<td>" + "Relative<br>Frequency" + "</td>" + "<td>" + "Cum. Relative<br>Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" +"<td>" + "<b>Relative<br>Frequency</b>" + "</td>" + "<td>" + "<b>Cum. Relative<br>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -456,7 +471,7 @@ function cumrelative(){
         table += "<td>" + cumrelfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -468,7 +483,7 @@ function cumpercent(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "x" + "</td>" + "<td>" + "Percent<br>Frequency" + "</td>" +"<td>" + "Cum. Percent<br>Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Percent<br>Frequency</b>" + "</td>" +"<td>" + "<b>Cum. Percent<br>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -488,7 +503,7 @@ function cumpercent(){
         table += "<td>" + cumperfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 

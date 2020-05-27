@@ -165,7 +165,7 @@ function mode(){
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -197,12 +197,12 @@ function mode(){
     var maxcount = Math.max.apply(Math,count)
    
     if (maxcount == 1) {
-        document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br> There is no mode.<br><br>"
+        document.getElementById("output").innerHTML = " <table>" + table + "</table> <br> There is no mode.<br><br>"
     } else if (lenmode == 1) {
-        document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br> The mode is " + modes + ".<br><br>"
+        document.getElementById("output").innerHTML = " <table>" + table + "</table> <br> The mode is " + modes + ".<br><br>"
     }
     else {
-        document.getElementById("output").innerHTML = " <table border=1>" + table + "</table> <br> The modes are " + modes + ".<br><br>"
+        document.getElementById("output").innerHTML = " <table>" + table + "</table> <br> The modes are " + modes + ".<br><br>"
     }
 
 }

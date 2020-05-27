@@ -1,4 +1,4 @@
-$("#explanation").hide();
+$("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide();
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
 	var T=1/(1+.2316419*Math.abs(X));
@@ -37,34 +37,25 @@ function avg(input){
 }
 
 function stat(){
-    $("#output").empty(); $("#explanation").hide();
+    $("#output").empty(); $("#explanation").hide(); 
+    $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide();
     var x = document.getElementById("stat").value;
     if (x == "slope"){
         slope()
     } else if (x == "intercept"){
         intercept()
-    } else if (x == "sse") {
-        sse()
     } else if (x == "equation") {
         equation()
-    }else if (x == "sst") {
-        sst()
-    } else if (x == "ssr") {
-        ssr()
+    } else if (x == "sumsquares") {
+        sumsquares()
     } else if (x == "rsquared") {
         rsquared()
-    } else if (x == "correlation") {
-        correlation()
-    } else if (x == "mse") {
-        mse()
-    } else if (x == "see") {
-        see()
-    } else if (x == "ses") {
-        ses()
+    } else if (x == "meansquare") {
+        meansquare()
+    } else if (x == "standarderror") {
+        standarderror()
     } else if (x == "tstat") {
         tstat()
-    } else if (x == "msr") {
-        msr()
     } else if (x == "fstat") {
         fstat()
     } else{
@@ -197,6 +188,21 @@ function equation(){
     MathJax.typeset();
 }
 
+function sumsquares() {
+    $("#sumsquares").show();
+}
+
+function calcsumsquares() {
+    var val = document.getElementById("sumsquaresval").value;
+    if (val=="error") {
+        sse()
+    } else if (val=="total") {
+        sst()
+    } else if (val=="regression") {
+        ssr()
+    }
+}
+
 function sse(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The sum of squares error (SSE) measure the variability of the points around estimated regession line."
@@ -251,7 +257,7 @@ function sse(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+Math.round(sum_yminusyhat)+"$$</td>" +"<td>$$"+sum_yminusyhat2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$ \\text{SSE} = \\sum(y - \\hat{y})^2 = \\boxed{"+anssse.toFixed(2)+"}$$"
+    document.getElementById("output").innerHTML = "<b>Sum of Squares Error</b> <br><br> <table border=1>" + table + "</table><br>$$ \\text{SSE} = \\sum(y - \\hat{y})^2 = \\boxed{"+anssse.toFixed(2)+"}$$"
     MathJax.typeset();
 }
 
@@ -316,7 +322,7 @@ function sst(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sum_yminusy_bar)+"$$</td>" +"<td>$$"+sum_yminusy_bar2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table border=1>" + table + "</table><br>$$ \\text{SST} = \\sum(y - \\bar{y})^2 = \\boxed{"+anssst.toFixed(2)+"}$$"
+    document.getElementById("output").innerHTML = "<b>Sum of Squares Total</b> <br><br> <table border=1>" + table + "</table><br>$$ \\text{SST} = \\sum(y - \\bar{y})^2 = \\boxed{"+anssst.toFixed(2)+"}$$"
     MathJax.typeset();
 }
 
@@ -371,7 +377,7 @@ function ssr(){
     var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
     var anssst = sum_yminusy_bar2;
     var ansssr = anssst - anssse;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{SSR} &= \\text{SST} - \\text{SSE} \\\\ &= "+anssst.toFixed(2)+" - " +anssse.toFixed(2) +" \\\\ &= \\boxed{"+ansssr.toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<b>Sum of Squares Regression</b> $$ \\begin{align} \\text{SSR} &= \\text{SST} - \\text{SSE} \\\\ &= "+anssst.toFixed(2)+" - " +anssse.toFixed(2) +" \\\\ &= \\boxed{"+ansssr.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -501,6 +507,19 @@ function correlation(){
     MathJax.typeset();
 }
 
+function meansquare() {
+    $("#meansquare").show(); 
+}
+
+function calcmeansquare() {
+    var val = document.getElementById("meansquareval").value;
+    if (val=="error") {
+        mse()
+    } else if (val=="regression") {
+        msr()
+    }
+}
+
 function mse(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The mean square error (MSE) is related to the SSE."
@@ -553,8 +572,21 @@ function mse(){
     var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s^2 = \\text{MSE} &= \\frac{\\text{SSE}}{\\text{n-2}} \\\\ &= \\frac{"+anssse.toFixed(2)+"}{" + n_x +" - 2} \\\\ &= \\boxed{"+ansrsqu.toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<b>Mean Square Error</b> $$ \\begin{align} s^2 = \\text{MSE} &= \\frac{\\text{SSE}}{\\text{n-2}} \\\\ &= \\frac{"+anssse.toFixed(2)+"}{" + n_x +" - 2} \\\\ &= \\boxed{"+ansrsqu.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
+}
+
+function standarderror() {
+    $("#standarderror").show(); 
+}
+
+function calcstandarderror() {
+    var val = document.getElementById("standarderrorval").value;
+    if (val=="estimate") {
+        see()
+    } else if (val=="slope") {
+        ses()
+    }
 }
 
 function see(){
@@ -610,7 +642,7 @@ function see(){
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
     var anssee = Math.sqrt(ansmse);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s = \\sqrt{\\text{MSE}} &= \\sqrt{\\frac{\\text{SSE}}{\\text{n-2}}}\\\\ &= \\sqrt{"+ansmse.toFixed(2)+"} \\\\ &= \\boxed{" + anssee.toFixed(2) +"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<b>Standard Error of Estimate</b>$$ \\begin{align} s = \\sqrt{\\text{MSE}} &= \\sqrt{\\frac{\\text{SSE}}{\\text{n-2}}}\\\\ &= \\sqrt{"+ansmse.toFixed(2)+"} \\\\ &= \\boxed{" + anssee.toFixed(2) +"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -667,7 +699,7 @@ function ses(){
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s_{b_1} &= \\frac{s}{\\sqrt{\\sum(x - \\bar{x})^2}} \\\\ &= \\frac{"+anssee.toFixed(2)+"}{\\sqrt{"+sum_xminusx_bar2.toFixed(2)+"}} \\\\ &= \\boxed{" + anssee.toFixed(2) +"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<b>Standard Error of Slope</b> $$ \\begin{align} s_{b_1} &= \\frac{s}{\\sqrt{\\sum(x - \\bar{x})^2}} \\\\ &= \\frac{"+anssee.toFixed(2)+"}{\\sqrt{"+sum_xminusx_bar2.toFixed(2)+"}} \\\\ &= \\boxed{" + anssee.toFixed(2) +"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -785,7 +817,7 @@ function msr(){
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
     var anststat = ansslope / ansses;
     var ansmsr = ansssr;
-    document.getElementById("output").innerHTML = " $$ \\begin{align} \\text{MSR} &= \\frac{\\text{SSR}}{1} \\\\ &= \\boxed{"+ansmsr.toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<b>Mean Square Regression</b> $$ \\begin{align} \\text{MSR} &= \\frac{\\text{SSR}}{1} \\\\ &= \\boxed{"+ansmsr.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
