@@ -63,7 +63,7 @@
             <input id="values" type="text" class="form-control" placeholder="Enter X Values">
             <label>Example: <span class="examplelink" onclick="examplexvalues()">10, 20, 12, 17, 16</span></label>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col-12 col-md-4 mb-3">
             <select id="stat" class="form-control" onchange="stat()">
                 <option value="choose">Choose</option>
                 <option value="mean">Mean</option>
@@ -85,14 +85,14 @@
       
       <div class="container">
           <div class="slidecontainer">
-            <input class="col-12 col-md-6 mt-2" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
+            <input class="col-12 col-md-6" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
             <p>Percentile: <span id="demo"></span></p>
         </div>
         </div>
           
           
          <div class="container"> 
-        <div id="inputqu" class="mt-2">
+        <div id="inputqu">
             <input type="text" style="display:none;" id="valqu">
             <select id="valquart" onchange="calcquart()">
                 <option value="choose">Choose</option>
@@ -104,17 +104,13 @@
              </div>
       
         <div class="container"> 
-            <div id="inputzscore">
-                <input type="text" style="display:none;" id="inputz">
-                <select id="inputzs" onchange="calcz()">
-                    <option value="choose">Choose</option>
+                <select  id="inputzscore" onchange="calcz()">
                 </select>
-            </div>
         </div>
         
       
       <div id="input2" class="container center">
-          <div class="row mt-2">
+          <div class="row">
         <div class="col-12 col-md-8">
             <input type="text" id="values2" class="form-control" placeholder="Y Values">
             <label>Example: <span class="examplelink" onclick="exampleyvalues()">11, 27, 14, 21, 15</span></label>

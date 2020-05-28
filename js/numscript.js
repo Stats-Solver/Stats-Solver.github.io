@@ -466,10 +466,8 @@ function cv(){
 }
 
 function zscores(){
-    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
-    $("#deszscores").show();
-    //$("#inputzscore").show();
+    $("#inputzscore").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -485,12 +483,41 @@ function zscores(){
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
     var ansz = (ansstd / mn) * 100;
-
-    var zscrs = [];
+    
+    var zval = [' <option>Choose</option>'];
     for (let i=0; i<len; i++){
-        zscrs += "z_{"+each[i]+"} &= \\frac{"+each[i]+"-\\bar{x}}{s} = \\frac{"+ each[i] +" - "+mn.toFixed(2)+"}{"+ansstd.toFixed(2)+"} = \\frac{"+ (each[i]-mn).toFixed(2)+"}{"+ansstd.toFixed(2)+"} = \\boxed{"+((each[i]-mn)/ansstd).toFixed(2)+"} \\\\"
+        zval += ' <option value='+each[i]+'>'+each[i]+'</option>'
     }
+    
+    document.getElementById("inputzscore").innerHTML = zval
+    
+    MathJax.typeset()
+}
 
+function calcz(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
+    $("#inputzscore").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var sumeach = sum(each);
+    var mn = avg(each);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus);
+    var sumeachminus2 = sum(eachminus2);
+    var ansvar = sumeachminus2 / lenmin1;
+    var ansstd = Math.sqrt(ansvar);
+    var ansz = (ansstd / mn) * 100;
+    
+    var val = document.getElementById("inputzscore").value;
+    
+    var zscrs = "z_{"+val+"} &= \\frac{"+val+"-\\bar{x}}{s} \\\\ &= \\frac{"+ val +" - "+mn.toFixed(2)+"}{"+ansstd.toFixed(2)+"} \\\\ &= \\frac{"+ (val-mn).toFixed(2)+"}{"+ansstd.toFixed(2)+"} \\\\ &= \\boxed{"+((val-mn)/ansstd).toFixed(2)+"}"
+    
     document.getElementById("output").innerHTML = "$$ \\begin{align} " + zscrs + " \\end{align} $$"
     MathJax.typeset()
 }
@@ -671,7 +698,7 @@ function calccor(){
         var intinside = "no"
     }
     var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship between x and y."
-    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 6;
     for (var r = 0; r < rows; r++){
@@ -684,8 +711,8 @@ function calccor(){
         table += "<td>$$" + each2minus2[r].toFixed(2) + "$$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<b>Sample Correlation Coefficient</b> <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"-1}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"-1}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ s_{xy} &= "+anscov.toFixed(2)+"\\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = \\boxed{"+ (anscov / (ansstd * ansstd2)).toFixed(2) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = "<b>Sample Correlation Coefficient</b> $$ \\begin{align} r_{xy} &= \\frac{s_{xy}}{s_x s_y} \\\\ &= \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} \\\\ &= \\boxed{"+ (anscov / (ansstd * ansstd2)).toFixed(2) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
@@ -741,7 +768,7 @@ function calccorpop(){
         var intinside = "no"
     }
     var interpret = "Interpretation: There is "+ intinside +" linear relationship between x and y."
-    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\mu_x$$" + "</td>" + "<td>" + "$$y - \\mu_y$$" + "</td>"+ "<td>" + "$$(x - \\mu_x)^2$$" + "</td>"+ "<td>" + "$$(y - \\mu_y)^2$$" + "</td>" + "</tr>";
+    var table = "<table border=1>" +"<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\mu_x$$" + "</td>" + "<td>" + "$$y - \\mu_y$$" + "</td>"+ "<td>" + "$$(x - \\mu_x)^2$$" + "</td>"+ "<td>" + "$$(y - \\mu_y)^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 6;
     for (var r = 0; r < rows; r++){
@@ -754,8 +781,8 @@ function calccorpop(){
         table += "<td>$$" + each2minus2[r].toFixed(2) + "$$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "Population Correlation Coefficient <br><br> <table border=1>" + table + "</table><br>$$ \\begin{align} \\sigma_x &= \\sqrt{\\frac{\\sum{(x-\\mu_x)^2}}{N}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ \\sigma_y &= \\sqrt{\\frac{\\sum{(y-\\mu_y)^2}}{N}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ \\sigma_{xy} &= "+anscov.toFixed(2)+"\\\\ \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+ (anscov / (ansstd * ansstd2)).toFixed(2) +"  \\end{align} $$" + interpret + "<br><br>" + " "
+    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = "Population Correlation Coefficient $$ \\begin{align} \\sigma_x &= \\sqrt{\\frac{\\sum{(x-\\mu_x)^2}}{N}} = \\sqrt{\\frac{"+ sumeachminus2.toFixed(2) +"}{"+ len +"}} = \\sqrt{"+ ansvar.toFixed(2) +"} ="+ ansstd.toFixed(2) +"\\\\ \\sigma_y &= \\sqrt{\\frac{\\sum{(y-\\mu_y)^2}}{N}} = \\sqrt{\\frac{"+ sumeach2minus2.toFixed(2) +"}{"+ len2 +"}} = \\sqrt{"+ ansvar2.toFixed(2) +"}="+ ansstd2.toFixed(2)+"\\\\ \\sigma_{xy} &= "+anscov.toFixed(2)+"\\\\ \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} = \\frac{"+anscov.toFixed(2)+"}{"+ansstd.toFixed(2)+"*"+ansstd2.toFixed(2)+"} = "+ (anscov / (ansstd * ansstd2)).toFixed(2) +"  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
