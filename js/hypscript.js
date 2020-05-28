@@ -9,6 +9,14 @@ function toFixing(num, fixed) {
     return num.toString().match(re)[0];
 }
 
+var canvas = document.getElementById("myCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
 function tailsigns() {
     var x = document.getElementById("tail").value;
     if (x == "lower"){
