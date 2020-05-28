@@ -545,27 +545,27 @@ function hyptest(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td><b>" + (.01*r).toFixed(2) + "</b></td>";
+        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
     table3 = []
     for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4) + "</td>";
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td><b>" + (.01*r).toFixed(2) + "</b></td>";
+        table12 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
-        table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4) + "</td>";
+        table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
     
     
-    table4 = "<td></td><td colspan='6'><b>Area in the Upper Tail</b></td>"
+    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
     
     table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
     
@@ -574,11 +574,11 @@ function hyptest(){
     
     
     if (sigma == "known") {
-        var tablep = "<table border=1><tr><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablec = "<table border=1><tr><td><b>z</b></td>"+table12+"</tr><tr><td>"+zcrit+"</td>"+table2+"</tr></table>"
+        var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+        var tablec = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
         } else if (sigma == "unknown") {
-            var tablep = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-            var tablec = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+            var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+            var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     }
     
     

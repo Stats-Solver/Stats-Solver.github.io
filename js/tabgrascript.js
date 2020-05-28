@@ -146,7 +146,7 @@ function frequency(){
         table += "<td>" + counts[r] + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "<b>Total</b>" + "</td>" + "<td><b>"+ tot +"</b></td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -172,7 +172,7 @@ function relative(){
         table += "<td>" + relfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "<b>Total</b>" + "</td>" + "<td><b>"+ tot +"</b></td>" + "<td><b>"+ "1" +"</b></td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -202,7 +202,7 @@ function percent(){
         table += "<td>" + perfreq[r].toFixed(2) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "<b>Total</b>" + "</td>"+ "<td><b>" +tot +"</b></td>" + "<td>"+ "<b>1</b>" +"</td>"+ "<td>"+ "<b>100</b>" +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>"+ "<td>" +tot +"</td>" + "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }

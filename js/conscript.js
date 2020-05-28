@@ -449,15 +449,15 @@ function conint(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td> <b>" + (0.01 * r).toFixed(2) + "</b></td>";
+        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
     table3 = []
     for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4) + "</td>";
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
-    var tablez = "<table border=1><tr><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
     table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
     
@@ -466,7 +466,7 @@ function conint(){
     table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
     
     
-    var tablet = "<table border=1><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     
     if (sigma == "known") {
