@@ -592,7 +592,7 @@ function hyptest(){
     
     
     if (tail == "lower") {
-        document.getElementById("explanationtext").innerHTML = "In a lower tail test, the p-value is the probability of getting a value for the test statistic that's less than or equal to the value from the sample. Reject the null if the p-value is less than or equal to alpha. The critical value is the value of the test statistic corresponding to an area of alpha in the lower tail. Reject the null if the test statistic is less than or equal to the critical value."
+        document.getElementById("explanationtext").innerHTML = "In a lower tail test, the p-value is the probability of getting a value for the test statistic that's less than or equal to the value from the sample. The critical value is the value of the test statistic corresponding to an area of alpha in the lower tail."
         
         document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
     } else if (tail == "upper") {
