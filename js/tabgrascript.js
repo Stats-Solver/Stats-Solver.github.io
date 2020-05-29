@@ -137,17 +137,17 @@ function frequency(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
+        table += "<td>$" + counts[r] + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "<b>Frequency Distribution</b> <br><br> <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -159,7 +159,7 @@ function relative(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "<td>" + "Relative Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -168,12 +168,12 @@ function relative(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
-        table += "<td>" + relfreq[r].toFixed(2) + "</td>";
+        table += "<td>$" + counts[r] + "$</td>";
+        table += "<td>$" + counts[r] + "\\mathbin{/}" + tot + "=" + relfreq[r].toFixed(2) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "<td>"+ "$1$" +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "<b>Relative Frequency Distribution</b> <br><br>  <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -185,7 +185,7 @@ function percent(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" +"<td>" + "<b>Frequency</b>" + "</td>" + "<td>" + "<b>Relative<br>Frequency</b>" + "</td>"+ "<td>" + "<b>Percent<br>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Relative Frequency" + "</td>"+ "<td>" + "Percent Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -197,13 +197,12 @@ function percent(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
-        table += "<td>" + relfreq[r].toFixed(2) + "</td>";
-        table += "<td>" + perfreq[r].toFixed(2) + "</td>";
+        table += "<td>$" + relfreq[r].toFixed(2) + "$</td>";
+        table += "<td>$" + relfreq[r].toFixed(2) + "\\times" + 100 + " = " + perfreq[r].toFixed(2) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>"+ "<td>" +tot +"</td>" + "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>"+ "$1$" +"</td>"+ "<td>"+ "$100$" +"</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "<b>Percent Frequency Distribution</b> <br><br>  <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -216,6 +215,16 @@ function bar(){
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>$" + counts[r] + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "</tr>";
     
     var graphValues = counts;
     var maxval = Math.max.apply(Math, graphValues);
@@ -249,15 +258,17 @@ function bar(){
     for (var i=0; i<graphValues.length; i++) {
         var k = graphValuesScaled[i];
         var m = eachonesort[i];
-        ctx.fillRect(X+15,canvas.height-k-20,width,k);
-        ctx.fillText(m,X+15+9,canvas.height-10);
+        ctx.fillRect(X+15,canvas.height-k-58,width,k);
+        ctx.fillText(m,X+20,canvas.height-44);
         X += width+10;
     }
     
     for (var i=1; i<maxval+1; i++) {
-        ctx.fillText(i+"-",10,canvas.height-16-Y);
+        ctx.fillText(i+"-",10,canvas.height-54-Y);
         Y += intervals;
     }
+    
+    document.getElementById("output").innerHTML = "<b>Bar Chart</b> <br><br> <table>" + table + "</table> <br>"
     
     MathJax.typeset();
 }
@@ -271,6 +282,21 @@ function pie(){
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Percent Frequency" + "</td>" + "</tr>";
+    var rows = len; var cols = 2;
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>$" + perfreq[r].toFixed(2) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ "$100$" +"</td>" + "</tr>";
     
     var relfreq = counts.map( function(value) {
         return value / tot;
@@ -319,10 +345,12 @@ function pie(){
     var k = h / 2;
     for (var i=0; i<radvals.length; i++) {
         ctx.fillText(eachonesort[i],100+30*Math.sin(k),75-30*Math.cos(k));
-        ctx.fillText(perfreq[i].toFixed(2)+"%",100+55*Math.sin(k),75-55*Math.cos(k));
+        ctx.fillText(parseFloat(perfreq[i].toFixed(2))+"%",100+55*Math.sin(k),75-55*Math.cos(k));
         k = h + radvals[i+1]/2;
         h += radvals[i+1];
     }
+    
+    document.getElementById("output").innerHTML = "<b>Pie Chart</b> <br><br> <table>" + table + "</table> <br>"
 
     MathJax.typeset();
 }
@@ -391,15 +419,17 @@ function histogram(){
     for (var i=0; i<quants.length; i++) {
         var k = quantsscaled[i];
         var m = classlimits[i];
-        ctx.fillRect(X+20,canvas.height-k-20,width+9,k);
+        ctx.fillRect(X+20,canvas.height-k-58,width+9,k);
         ctx.fillText(m,X+2+20,canvas.height-10);
         X += width+10;
     }
     
     for (var i=1; i<maxval+1; i++) {
-        ctx.fillText(i+"-",10,canvas.height-16-Y);
+        ctx.fillText(i+"-",10,canvas.height-56-Y);
         Y += intervals;
     }
+    
+    document.getElementById("output").innerHTML = "<b>Histogram</b>"
     
     MathJax.typeset();
 }
@@ -431,7 +461,8 @@ function cumfrequency(){
     for (let i=1; i<counts.length; i++) {
         cumcounts[i] = cumcounts[i-1] + counts[i]
     }
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" +"<td>" + "<b>Cum. Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td></td>" + "<td></td>" +"<td>" + "Cumulative" + "</td>" + "</tr>";
+    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" +"<td>" + "Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -454,7 +485,8 @@ function cumrelative(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" +"<td>" + "<b>Relative<br>Frequency</b>" + "</td>" + "<td>" + "<b>Cum. Relative<br>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td></td>" +"<td></td>" + "<td>" + "Cumulative" + "</td>" + "</tr>";
+    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" +"<td>" + "Relative Frequency" + "</td>" + "<td>" + "Relative Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -483,7 +515,8 @@ function cumpercent(){
     var each = str.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Percent<br>Frequency</b>" + "</td>" +"<td>" + "<b>Cum. Percent<br>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr>" + "<td></td>" + "<td></td>" +"<td>" + "Cumulative" + "</td>" + "</tr>";
+    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Percent Frequency" + "</td>" +"<td>" + "Cumulative<br>Percent<br>Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {

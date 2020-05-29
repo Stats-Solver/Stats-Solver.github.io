@@ -165,7 +165,7 @@ function mode(){
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "<b>x</b>" + "</td>" + "<td>" + "<b>Frequency</b>" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
@@ -199,10 +199,10 @@ function mode(){
     if (maxcount == 1) {
         document.getElementById("output").innerHTML = "<b>Mode</b> <br><br>  <table>" + table + "</table> <br> There is no mode.<br><br>"
     } else if (lenmode == 1) {
-        document.getElementById("output").innerHTML = "<b>Mode</b> <br><br>  <table>" + table + "</table> <br> The mode is " + modes + ".<br><br>"
+        document.getElementById("output").innerHTML = "<b>Mode</b> <br><br>  <table>" + table + "</table> <br> The mode is " + modes + ".<br><br>" + count
     }
     else {
-        document.getElementById("output").innerHTML = "<b>Mode</b> <br><br>  <table>" + table + "</table> <br> The modes are " + modes + ".<br><br>"
+        document.getElementById("output").innerHTML = "<b>Mode</b> <br><br>  <table>" + table + "</table> <br> The modes are " + modes + ".<br><br>" + count
     }
 
 }
@@ -354,7 +354,7 @@ function variance(){
     var sumeachminus = sum(eachminus);
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
-    var table = "<tr>" + "<td>" + "$$x$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$(x - \\bar{x})^2$$" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$(x - \\bar{x})^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 3;
     for (var r = 0; r < rows; r++){
@@ -365,7 +365,7 @@ function variance(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+parseFloat(sumeachminus2.toFixed(2))+"$$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<b>Sample Variance</b> <br><br> <table border=1>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    document.getElementById("output").innerHTML = "<b>Sample Variance</b> <br><br> <table>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -570,7 +570,7 @@ function calccov(){
     } else {
         var interpret = "<b>Interpretation:</b> There is no relationship between x and y."
     }
-    var table = "<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 5;
     for (var r = 0; r < rows; r++){
@@ -583,7 +583,7 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+parseFloat(sumeacheach2.toFixed(2))+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<b>Sample Covariance</b> <br><br> <table border=1>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "<b>Sample Covariance</b> <br><br> <table>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
