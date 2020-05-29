@@ -147,7 +147,7 @@ function frequency(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<b>Frequency Distribution</b> <br><br> <table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -173,7 +173,7 @@ function relative(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "<td>"+ "$1$" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<b>Relative Frequency Distribution</b> <br><br>  <table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -202,7 +202,7 @@ function percent(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>"+ "$1$" +"</td>"+ "<td>"+ "$100$" +"</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<b>Percent Frequency Distribution</b> <br><br>  <table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
@@ -268,7 +268,7 @@ function bar(){
         Y += intervals;
     }
     
-    document.getElementById("output").innerHTML = "<b>Bar Chart</b> <br><br> <table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     
     MathJax.typeset();
 }
@@ -350,7 +350,7 @@ function pie(){
         h += radvals[i+1];
     }
     
-    document.getElementById("output").innerHTML = "<b>Pie Chart</b> <br><br> <table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 }
@@ -429,7 +429,7 @@ function histogram(){
         Y += intervals;
     }
     
-    document.getElementById("output").innerHTML = "<b>Histogram</b>"
+    document.getElementById("output").innerHTML = ""
     
     MathJax.typeset();
 }
@@ -516,7 +516,7 @@ function cumpercent(){
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var table = "<tr>" + "<td></td>" + "<td></td>" +"<td>" + "Cumulative" + "</td>" + "</tr>";
-    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Percent Frequency" + "</td>" +"<td>" + "Cumulative<br>Percent<br>Frequency" + "</td>" + "</tr>";
+    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Percent Frequency" + "</td>" +"<td>" + "Percent Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
