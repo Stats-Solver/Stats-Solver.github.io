@@ -134,7 +134,7 @@ function frequency(){
     document.getElementById("explanationtext").innerHTML = "Table showing the number of items in each class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
@@ -156,9 +156,10 @@ function relative(){
     document.getElementById("explanationtext").innerHTML = "Table showing the proportion of items in each class. Relative Frequency = Frequency / Total."
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
+    var table = "<tr>" + "<td></td>" + "<td></td>" + "<td>" + "Relative" + "</td>" + "</tr>";
     var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "<td>" + "Relative Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
@@ -182,7 +183,7 @@ function percent(){
     document.getElementById("explanationtext").innerHTML = "Table showing the percentage of items in each class. Percent Frequency = Relative Frequency x 100."
     $("#despercent").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Relative Frequency" + "</td>"+ "<td>" + "Percent Frequency" + "</td>" + "</tr>";
@@ -211,7 +212,7 @@ function bar(){
     document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for qualitative data."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
@@ -278,7 +279,7 @@ function pie(){
     document.getElementById("explanationtext").innerHTML = "Graphical representation of percent frequency distribution for qualitative data."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
@@ -454,7 +455,7 @@ function cumfrequency(){
     document.getElementById("explanationtext").innerHTML = "Table showing the number of items less than or equal to the upper limit of each class."
     $("#descumfrequency").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each);
     let cumcounts = [counts[0]]
@@ -482,7 +483,7 @@ function cumrelative(){
     document.getElementById("explanationtext").innerHTML = ""
     $("#descumrelative").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var table = "<tr>" + "<td></td>" +"<td></td>" + "<td>" + "Cumulative" + "</td>" + "</tr>";
@@ -512,7 +513,7 @@ function cumpercent(){
     document.getElementById("explanationtext").innerHTML = ""
     $("#descumpercent").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var table = "<tr>" + "<td></td>" + "<td></td>" +"<td>" + "Cumulative" + "</td>" + "</tr>";
