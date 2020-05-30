@@ -58,14 +58,14 @@
           </div>
       
       <div class="container">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input id="values" type="text" class="form-control" placeholder="Enter X Values">
-            <label>Example: <span class="examplelink" onclick="examplexvalues()">A, C, B, A, C, A</span></label>
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
+            <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
+            <label id = "label1"><span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span></label>
         </div>
-        <div class="col-12 col-md-4 mb-3">
-            <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">Choose</option>
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
                 <option value="frequency">Frequency Distribution</option>
                 <option value="relative">Relative Frequency Distribution</option>
                 <option value="percent">Percent Frequency Distribution</option>
@@ -77,39 +77,48 @@
                 <option value="scatter">Scatter Diagram</option>
             </select>
         </div> 
+              <div class="col-4 col-md-1 inputWrapper">
+            <button id = "buttoncross" class="button" onclick="stat()">Solve</button>
+        </div> 
               </div>
         </div>
       
         
       
       <div id="input2" class="container">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input type="text" id="values2" class="form-control" placeholder="Enter Y Values">
-            <label>Example: <a href="">A, C, B, A, C, A</a></label>
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
+            <input type="text" id="values2" class="form-control" placeholder="Enter Y Values (separated by commas)">
+            <label><span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span></label>
         </div>
-        
-        <div class="col-12 col-md-4 inputWrapper">
-            <button id = "buttoncross" class="button" onclick="calccross()">Calculate</button>
-            <button id = "buttonscatt" class="button" onclick="calcscatt()">Calculate</button>
+        <div class="col-8 col-md-3 mb-3">
         </div> 
+              <div class="col-4 col-md-1 inputWrapper">
+        </div> 
+        
               </div>
     </div>
       
       <div class="container"> 
-        <div id="cumulative">
-            <select id="cumtype" onchange="calccum()">
-                <option value="choose">Choose</option>
-                <option value="frequency">Frequency</option>
-                <option value="relative">Relative Frequency</option>
-                <option value="percent">Percent Frequency</option>
-            </select>
+          <div class="row justify-content-center">
+                <div class="col-12 col-md-5">
+                </div>
+                <div id="cumulative" class="col-8 col-md-3">
+                    <select id="cumtype" class="form-control">
+                        <option value="choose">Choose One</option>
+                        <option value="frequency">Frequency</option>
+                        <option value="relative">Relative Frequency</option>
+                        <option value="percent">Percent Frequency</option>
+                    </select>
+                </div>
+                <div class="col-4 col-md-1 inputWrapper">
+                </div> 
+            </div>
         </div>
-             </div>
       
-      <div class="container">
-      <hr>
-          </div>
+        <div class="container">
+            <hr>
+        </div>
       
       <div class="container">
         <div id="output">

@@ -73,3 +73,7 @@ footer {
 .examplelink:hover {
      text-decoration:underline;
 }
+
+.statistics{
+    padding: 0px 2px
+}

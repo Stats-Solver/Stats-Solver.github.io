@@ -96,8 +96,20 @@ function avg(input){
     return sum(input)/input.length
 }
 
+function showthings(){
+    $("#cumulative").hide(); $("#input2").hide(); 
+    var x = document.getElementById("stat").value;
+    if (x == "cumulative"){
+        cumulative()
+    } else if (x == "crosstabulation") {
+        crosstabulation()
+    } else if (x == "scatter") {
+        scatter()
+    }   
+}
+
 function stat(){
-    $("#explanation").hide(); $("#cumulative").hide();
+    $("#explanation").hide();
     $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
@@ -114,15 +126,15 @@ function stat(){
     } else if (x == "histogram") {
         histogram()
     } else if (x == "cumulative") {
-        cumulative()
+        calccum()
     } else if (x == "cumrelative") {
         cumrelative()
     } else if (x == "cumpercent") {
         cumpercent()
     } else if (x == "crosstabulation") {
-        crosstabulation()
+        calccross()
     } else if (x == "scatter") {
-        scatter()
+        calcscatt()
     } else{
         document.getElementById("output").innerHTML = ""
     }
@@ -542,7 +554,7 @@ function cumpercent(){
 }
 
 function crosstabulation(){
-    $("#input2").show(); $("#buttonscatt").hide(); $("#buttoncross").show();
+    $("#input2").show();$("#label1").hide()
 }
 
 function calccross(){
@@ -568,7 +580,7 @@ function calccross(){
 }
 
 function scatter(){
-    $("#input2").show(); $("#buttoncross").hide(); $("#buttonscatt").show();
+    $("#input2").show(); $("#label1").hide()
 }
 
 function calcscatt(){
@@ -633,10 +645,18 @@ function relativeexp(){
 }
 
 function examplexvalues(){
-    document.getElementById('values').value="A, C, B, A, C, A"
+    document.getElementById('values').value="Coke, Sprite, Pepsi, Coke, Coke, Pepsi"
 }
 
-function examplechoose(){
-    document.getElementById('stat').value="bar"
-    stat()
+function examplexvalues2(){
+    document.getElementById('values').value="12, 15, 20, 22, 14, 14, 15, 27, 21, 18"
+}
+
+function examplevalues3(){
+    document.getElementById('values').value="Good, VeryGood, Good, Excellent, VeryGood, Good, VeryGood, Good, VeryGood, VeryGood, VeryGood, Good"
+    document.getElementById('values').value="Coke, Sprite, Pepsi, Coke, Coke, Pepsi"
+}
+
+function examplevalues4(){
+    document.getElementById('values').value="12, 15, 20, 22, 14, 14, 15, 27, 21, 18"
 }

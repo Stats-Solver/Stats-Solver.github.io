@@ -624,11 +624,11 @@ function hyptest(){
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(20, 130);
@@ -673,11 +673,11 @@ function hyptest(){
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(20, 130);
@@ -731,11 +731,11 @@ function hyptest(){
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(20, 130);
@@ -810,11 +810,11 @@ function hyptest(){
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(20, 130);
@@ -826,7 +826,7 @@ function hyptest(){
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-Zα",65,145);
+            ctx.fillText("-zα",65,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
             ctx.fillText("-tα",65,145); 
@@ -860,11 +860,11 @@ function hyptest(){
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(20, 130);
@@ -876,7 +876,7 @@ function hyptest(){
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("Zα",225,145);
+            ctx.fillText("zα",225,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
             ctx.fillText("tα",225,145);  
@@ -919,11 +919,11 @@ function hyptest(){
         ctx.fillStyle = "black";
         ctx.beginPath();
         ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 30, 150, 20);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 30, 170, 80, 280, 120);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(20, 130);
@@ -936,8 +936,8 @@ function hyptest(){
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-Zα",65,145);
-            ctx.fillText("Zα/2",225,145);
+            ctx.fillText("-zα",65,145);
+            ctx.fillText("zα/2",225,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
             ctx.fillText("-tα",65,145);
@@ -994,7 +994,6 @@ function example1(){
     document.getElementById('stdev').value="2"
     document.getElementById('sigma').value="known"
     document.getElementById('alpha').value=".05"
-    hyptest()
 }
 
 function example2(){
@@ -1009,5 +1008,4 @@ function example2(){
     document.getElementById('stdev').value="4.32"
     document.getElementById('sigma').value="unknown"
     document.getElementById('alpha').value=".05"
-    hyptest()
 }

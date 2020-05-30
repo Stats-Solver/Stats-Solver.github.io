@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
       <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
 
     <title>Stats Solver</title>
   </head>
@@ -57,47 +58,61 @@
           </div>
       
       <div class="container">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values">
-            <label>Example: <span class="examplelink" onclick="examplexvalues()">1, 2, 3, 4, 5</span></label>
+          <div class="row  justify-content-center">
+        <div class="col-12 col-md-5">
+            <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values (separated by commas)">
+        </div>
+              <div class="col-12 col-md-3">
+            
+        </div> 
+              <div class="col-4 col-md-1 inputWrapper">
         </div>
               </div>
     </div>
       
       <div class="container">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values">
-            <label>Example: <span class="examplelink" onclick="exampleyvalues()">3, 7, 5, 11, 14</span></label>
+          <div class="row  mt-3  justify-content-center">
+        <div class="col-12 col-md-5">
+            <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values (separated by commas)">
+            <label><span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span></label>
         </div>
         
-        <div class="col-12 col-md-4 mb-3">
-            <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">Choose</option>
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
                 <option value="slope">Slope</option>
                 <option value="intercept">Intercept</option>
                 <option value="equation">Estimated Regression Equation</option>
                 <option value="sumsquares">Sum of Squares</option>
                 <option value="rsquared">Coefficient of Determination</option>
-                <option value="meansquare">Mean Square</option>
-                <option value="standarderror">Standard Error</option>
+                <option value="mse">Mean Square Error</option>
+                <option value="see">Standard Error of Estimate</option>
                 <option value="tstat">t-Statistic</option>
+                <option value="msr">Mean Square Regression</option>
                 <option value="fstat">F-Statistic</option>
             </select>
+        </div> 
+              <div class="col-4 col-md-1 inputWrapper">
+            <button id = "buttoncross" class="button" onclick="stat()">Solve</button>
         </div> 
               </div>
     </div>
       
       <div class="container"> 
-        <div id="sumsquares">
-            <select id="sumsquaresval" onchange="calcsumsquares()">
-                <option value="choose">Choose</option>
+          <div class="row  justify-content-center">
+              <div class="col-12 col-md-5">
+        </div>
+        <div class="col-8 col-md-3" id="sumsquares">
+            <select class="form-control" id="sumsquaresval">
+                <option value="choose">Choose One</option>
                 <option value="error">Error</option>
                 <option value="total">Total</option>
                 <option value="regression">Regression</option>
             </select>
         </div>
+              <div class="col-4 col-md-1 inputWrapper">
+        </div> 
+              </div>
              </div>
       
       <div class="container"> 

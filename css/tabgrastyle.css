@@ -45,3 +45,7 @@ footer {
   cursor: pointer;
   text-align: center;
 }
+
+#myRange {
+    width: 100%
+}

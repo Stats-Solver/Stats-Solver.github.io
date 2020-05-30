@@ -1,4 +1,4 @@
-$("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); 
+$("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide();
 
 $(document).ready(function(){
@@ -69,9 +69,25 @@ function avg(input){
     return sum(input)/input.length
 }
 
+function showthings(){
+    $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide();
+    var x = document.getElementById("stat").value;
+    if (x == "percentiles") {
+        percentiles()
+    } else if (x == "quartiles") {
+        quartiles()
+    } else if (x == "zscores") {
+        zscores()
+    } else if (x == "covariance") {
+        covariance()
+    } else if (x == "correlation") {
+        correlation()
+    } 
+}
+
 function stat(){
     $("#explanation").hide();
-    $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
+    $("#inputqu").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
@@ -82,9 +98,9 @@ function stat(){
     } else if (x == "mode") {
         mode()
     } else if (x == "percentiles") {
-        percentiles()
+        calcper()
     } else if (x == "quartiles") {
-        quartiles()
+        calcquart()
     } else if (x == "range") {
         range()
     } else if (x == "iqr") {
@@ -96,11 +112,11 @@ function stat(){
     } else if (x == "cv") {
         cv()
     } else if (x == "zscores") {
-        zscores()
+        calcz()
     } else if (x == "covariance") {
-        covariance()
+        calccov()
     } else if (x == "correlation") {
-        correlation()
+        calccor()
     } else{
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
@@ -119,7 +135,7 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "<b>Sample Mean</b> $$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -223,7 +239,7 @@ slider.oninput = function() {
 }
 
 function percentiles(){
-    $(".slidecontainer").show();
+    $("#slidecontainer").show();
     var val = document.getElementById("myRange").value;
 }
 
@@ -371,7 +387,7 @@ function variance(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+parseFloat(sumeachminus2.toFixed(2))+"$$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<b>Sample Variance</b> <br><br> <table>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -425,7 +441,7 @@ function stdev(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "<b>Sample Standard Deviation</b> $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -533,8 +549,7 @@ function calcz(){
 
 function covariance(){
     $("#input2").show();
-    $("#buttoncov").show();
-    $("#buttoncor").hide();
+    $("#label1").hide();
 }
 
 function calccov(){
@@ -589,7 +604,7 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+parseFloat(sumeacheach2.toFixed(2))+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<b>Sample Covariance</b> <br><br> <table>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "<table>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
@@ -649,8 +664,7 @@ function calccovpop(){
 
 function correlation(){
     $("#input2").show();
-    $("#buttoncor").show();
-    $("#buttoncov").hide();
+    $("#label1").hide();
 }
 
 function calccor(){
@@ -721,7 +735,7 @@ function calccor(){
         table += "</tr>";
     }
     table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = "<b>Sample Correlation Coefficient</b> $$ \\begin{align} r_{xy} &= \\frac{s_{xy}}{s_x s_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"*"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} r_{xy} &= \\frac{s_{xy}}{s_x s_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"*"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
@@ -803,11 +817,16 @@ function examplexvalues(){
     document.getElementById('values').value="10, 20, 12, 17, 16"
 }
 
-function exampleyvalues(){
-    document.getElementById('values2').value="11, 27, 14, 21, 15"
+function examplexvalues2(){
+    document.getElementById('values').value="27, 25, 20, 15, 30, 34, 28, 25"
 }
 
-function examplechoose(){
-    document.getElementById('stat').value="stdev"
-    stat()
+function examplevalues3(){
+    document.getElementById('values').value="4, 6, 11, 3, 16"
+    document.getElementById('values2').value="50, 50, 40, 60, 30"
+}
+
+function examplevalues4(){
+    document.getElementById('values').value="6, 11, 15, 21, 27"
+    document.getElementById('values2').value="6, 9, 6, 17, 12"
 }

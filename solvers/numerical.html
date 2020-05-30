@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
       <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       
     <title>Stats Solver</title>
   </head>
@@ -58,14 +59,14 @@
           </div>
       
       <div class="container center">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input id="values" type="text" class="form-control" placeholder="Enter X Values">
-            <label>Example: <span class="examplelink" onclick="examplexvalues()">10, 20, 12, 17, 16</span></label>
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
+            <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
+            <label id="label1"><span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span></label>
         </div>
-        <div class="col-12 col-md-4 mb-3">
-            <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">Choose</option>
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
                 <option value="mean">Mean</option>
                 <option value="median">Median</option>
                 <option value="mode">Mode</option>
@@ -80,46 +81,72 @@
                 <option value="correlation">Correlation Coefficient</option>
             </select>
         </div> 
+        <div class="col-4 col-md-1 inputWrapper">
+            <button id = "buttoncov" class="button" onclick="stat()">Solve</button>
+        </div> 
               </div>
         </div>
       
       <div class="container">
-          <div class="slidecontainer">
-            <input class="col-12 col-md-8" type="range" min="0" max="100" value="0" class="slider" id="myRange" onchange="calcper()">
-            <p>Percentile: <span id="demo"></span></p>
-        </div>
+          <div class="row justify-content-center">
+                <div id = "slidecontainer" class="col-12 col-md-5">
+                    <input type="range" min="0" max="100" value="0" class="slider" id="myRange">
+                    <p>Percentile: <span id="demo"></span></p>
+                </div>
+              <div class="col-8 col-md-3">
+                </div> 
+                <div class="col-4 col-md-1 inputWrapper">
+                </div> 
+                
+              </div> 
         </div>
           
           
          <div class="container"> 
-        <div id="inputqu">
-            <input type="text" style="display:none;" id="valqu">
-            <select id="valquart" onchange="calcquart()">
-                <option value="choose">Choose</option>
+             <div class="row justify-content-center">
+                 <div class="col-12 col-md-5">
+                </div>
+        <div id="inputqu" class="col-8 col-md-3">
+            <select class="form-control" id="valquart">
+                <option value="choose">Choose One</option>
                 <option value=25>First</option>
                 <option value=50>Second</option>
                 <option value=75>Third</option>
             </select>
         </div>
+                 <div class="col-4 col-md-1 inputWrapper">
+                </div> 
+             </div>
              </div>
       
         <div class="container"> 
-                <select  id="inputzscore" onchange="calcz()">
+                
+        </div>
+      
+      <div class="container"> 
+             <div class="row justify-content-center">
+                 <div class="col-12 col-md-5">
+                </div>
+        <div id="inputqu" class="col-8 col-md-3">
+            <select class="form-control"  id="inputzscore">
                 </select>
         </div>
+                 <div class="col-4 col-md-1 inputWrapper">
+                </div> 
+             </div>
+             </div>
         
       
       <div id="input2" class="container center">
-          <div class="row">
-        <div class="col-12 col-md-8">
-            <input type="text" id="values2" class="form-control" placeholder="Y Values">
-            <label>Example: <span class="examplelink" onclick="exampleyvalues()">11, 27, 14, 21, 15</span></label>
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5">
+            <input type="text" id="values2" class="form-control" placeholder="Enter Y Values (separated by commas)">
+            <label><span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span></label>
         </div>
-        
-        <div class="col-12 col-md-4 inputWrapper">
-            <button id = "buttoncov" class="button" onclick="calccov()">Calculate</button>
-            <button id = "buttoncor" class="button" onclick="calccor()">Calculate</button>
-        </div> 
+              <div class="col-8 col-md-3">
+        </div>
+                 <div class="col-4 col-md-1 inputWrapper">
+                </div> 
               </div>
     </div>
       
