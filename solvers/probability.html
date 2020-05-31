@@ -75,36 +75,39 @@
       <hr>
           </div>
       
-      <div id = "selectdiv" class="form-row justify-content-center">
-        <div class="col-12 col-md-4 form-row justify-content-center">
-            <select id="stat" class="form-control" onchange="stat()">
-                <option value="choose">Choose</option>
-                <option value="combinations">Combinations</option>
-                <option value="permutations">Permutations</option>
-                <option value="complement">Complement</option>
-                <option value="union">Union</option>
-                <option value="intersection">Intersection</option>
-                <option value="conditional">Conditional Probability</option>
-                <option value="bayes">Bayes Theorem</option>
-            </select>
-        </div> 
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-9 col-md-3">
+                <select id="stat" class="form-control" onchange="showstuff()">
+                    <option value="choose">Choose One</option>
+                    <option value="combinations">Combinations</option>
+                    <option value="permutations">Permutations</option>
+                    <option value="complement">Complement</option>
+                    <option value="union">Union</option>
+                    <option value="intersection">Intersection</option>
+                    <option value="conditional">Conditional Probability</option>
+                    <option value="bayes">Bayes Theorem</option>
+                </select>
+                </div>
+                <div class="col-3 col-md-1 inputWrapper">
+                    <button id = "buttoncov" class="button" onclick="stat()">Solve</button>
+                </div> 
+            </div>
         </div>
       
       
-      <div class="container" id="combperm">
+      <div class="container mt-3" id="combperm">
         <table>
           <tr>
             <td rowspan="2"><span id="comb"><font size="+3">C</font></span><span id="perm"><font size="+3">P</font></span></td>
-            <td><input class = "combperm" type="text" id="N" placeholder="N"></td>
+            <td><input class = "combperm" type="text" id="topn" placeholder="N"></td>
           </tr>
             <tr>
-            <td><input class = "combperm" type="text" id="N" placeholder="n"></td>
+            <td><input class = "combperm" type="text" id="bottomn" placeholder="n"></td>
           </tr>
         </table> 
-          
           <div class = "text-center mt-2">
-            <button id = "compcomb" class="button" onclick="compcomb()">Compute</button>
-              <button id = "compperm" class="button" onclick="compperm()">Compute</button>
+            <span class="examplelink" onclick="examplecombperm()">Example</span>
         </div>
           </div>
       
@@ -129,17 +132,12 @@
           </div>
       
      <div class="container">
-        <div id="output1">
+        <div id="output">
         </div>
       </div>
       
       <div class="container text-center">
       <canvas id="myCanvas" width="300" height="150" ></canvas>
-      </div>
-      
-      <div class="container">
-        <div id="output2">
-        </div>
       </div>
       
       <div class="container" id="explanation">

@@ -41,6 +41,20 @@ footer {
 }
 
 .combperm{
-    line-height: 14px;
     width: 40px;
+}
+
+.button {
+    border-radius: 6px;
+    padding: 6px 6px;
+    width: 100%
+}
+
+.examplelink {
+     cursor:pointer;
+     color:#0275d8;
+}
+
+.examplelink:hover {
+     text-decoration:underline;
 }

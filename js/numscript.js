@@ -135,13 +135,12 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$\\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
 function meanpop(){
     $("#output").empty();
-    $("#desmean").show(); $("#popmean").hide(); $("#sammean").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
@@ -155,7 +154,6 @@ function meanpop(){
 function median(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values. "
-    $("#desmedian").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -176,7 +174,6 @@ function median(){
 function mode(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The mode is the most frequently occuring value."
-    $("#desmode").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -246,7 +243,6 @@ function percentiles(){
 function calcper(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "If the index, i, is not an integer, round up to the next highest integer. If the index, i, is an integer, average the values in positions i and i + 1."
-    $("#despercentiles").show();
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -326,7 +322,7 @@ function range(){
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "<b>Range</b>$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ "\\\\ &= \\boxed{" + rng + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ "\\\\ &= \\boxed{" + rng + "} \\end{align} $$"
     MathJax.typeset();
 }
 
