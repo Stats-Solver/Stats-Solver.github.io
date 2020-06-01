@@ -60,10 +60,15 @@
       
       <div class="container center">
           <div class="row justify-content-center">
-        <div class="col-12 col-md-5">
+        <div class="col-12 col-md-5 mb-3">
             <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
-            <label id="label1"><span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span></label>
         </div>
+        </div>
+        </div>
+      
+      
+      <div class="container center">
+          <div class="row justify-content-center">
         <div class="col-8 col-md-3 mb-3">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
@@ -82,10 +87,13 @@
                 <option value="correlation">Correlation Coefficient</option>
             </select>
         </div> 
-        <div class="col-4 col-md-1 inputWrapper">
+        <div class="col-4 col-md-2 inputWrapper">
             <button id = "buttoncov" class="button" onclick="stat()">Solve</button>
         </div> 
               </div>
+          <div class = "text-center" id = "label1">
+            <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
+        </div>
         </div>
       
       <div class="container">

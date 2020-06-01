@@ -331,12 +331,12 @@ function pie(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 400, 300);
     ctx.beginPath();
-    ctx.arc(100, 75, 50, 0, 2 * Math.PI);
+    ctx.arc(150, 75, 70, 0, 2 * Math.PI);
     ctx.stroke();
     
     ctx.beginPath();
-    ctx.moveTo(100, 75);
-    ctx.lineTo(100, 25);
+    ctx.moveTo(150, 75);
+    ctx.lineTo(150, 5);
     ctx.stroke();
     
     //var h = radvals[0];
@@ -349,16 +349,16 @@ function pie(){
     var h = radvals[0];
     for (var i=0; i<radvals.length-1; i++) {
         ctx.beginPath();
-        ctx.moveTo(100, 75);
-        ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
+        ctx.moveTo(150, 75);
+        ctx.lineTo(150+70*Math.sin(h), 75-70*Math.cos(h));
         ctx.stroke();
         h += radvals[i+1];
     }
     var h = radvals[0];
     var k = h / 2;
     for (var i=0; i<radvals.length; i++) {
-        ctx.fillText(eachonesort[i],100+30*Math.sin(k),75-30*Math.cos(k));
-        ctx.fillText(parseFloat(perfreq[i].toFixed(2))+"%",100+55*Math.sin(k),75-55*Math.cos(k));
+        ctx.fillText(eachonesort[i],150+35*Math.sin(k)-20,75-35*Math.cos(k)-10);
+        ctx.fillText(parseFloat(perfreq[i].toFixed(2))+"%",150+35*Math.sin(k)-20,75-35*Math.cos(k));
         k = h + radvals[i+1]/2;
         h += radvals[i+1];
     }
