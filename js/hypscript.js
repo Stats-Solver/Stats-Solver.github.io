@@ -1009,3 +1009,17 @@ function example2(){
     document.getElementById('sigma').value="unknown"
     document.getElementById('alpha').value=".05"
 }
+
+function example3(){
+    $("#less").hide();
+    $("#greater").hide();
+    $("#notequal").show();
+    document.getElementById('tail').value="two"
+    document.getElementById('muknot').value="18"
+    document.getElementById('muknotvalue').innerHTML="18"
+    document.getElementById('size').value="48"
+    document.getElementById('xbar').value="17"
+    document.getElementById('stdev').value="4.5"
+    document.getElementById('sigma').value="unknown"
+    document.getElementById('alpha').value=".05"
+}

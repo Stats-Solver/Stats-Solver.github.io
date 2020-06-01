@@ -80,7 +80,7 @@ function stat(){
 
 function slope(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The slope of the estimated regression equation can be interpreted as the average predicted change in y from a one-unit increase in x."
+    document.getElementById("explanationtext").innerHTML = " $$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} $$"
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -110,26 +110,26 @@ function slope(){
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2;
     var interpret = ""
     if (ansslope > 0){
-        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to increase by "+ansslope.toFixed(2)+" units on average."
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to increase by "+parseFloat(ansslope.toFixed(2))+" units on average."
     } else if (ansslope < 0){
-        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to decrease by "+Math.abs(ansslope.toFixed(2))+" units on average."
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to decrease by "+parseFloat(Math.abs(ansslope.toFixed(2)))+" units on average."
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to increase nor decrease on average."
     }
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" +"<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$x - \\bar{x}$" + "</td>" + "<td>" + "$y - \\bar{y}$" + "</td>"+ "<td>" + "$(x - \\bar{x})(y - \\bar{y})$" + "</td>" +"<td>" + "$(x - \\bar{x})^2$" + "</td>"+ "</tr>";
     var rows = n_x; var cols = 6;
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>$$" + x[r] + "$$</td>";
-        table += "<td>$$" + y[r] + "$$</td>";
-        table += "<td>$$" + parseFloat(xminusx_bar[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(yminusy_bar[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(xxbminyyb[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(xminusx_bar2[r].toFixed(2)) + "$$</td>";
+        table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + y[r] + "$</td>";
+        table += "<td>$" + parseFloat(xminusx_bar[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(yminusy_bar[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(xxbminyyb[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(xminusx_bar2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sum_xminusx_bar)+"$$</td>"+ "<td>$$"+Math.round(sum_yminusy_bar)+"$$</td>" +"<td>$$"+parseFloat(sum_xxbminyyb.toFixed(2))+"$$</td>"+"<td>$$"+parseFloat(sum_xminusx_bar2.toFixed(2))+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table><br>$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{"+parseFloat(sum_xxbminyyb.toFixed(2))+"}{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}=\\boxed{"+parseFloat(ansslope.toFixed(2))+"}$$" + interpret + "<br><br>"
+    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_xminusx_bar)+"$</td>"+ "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$"+parseFloat(sum_xxbminyyb.toFixed(2))+"$</td>"+"<td>$"+parseFloat(sum_xminusx_bar2.toFixed(2))+"$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$b_{1}  = \\frac{"+parseFloat(sum_xxbminyyb.toFixed(2))+"}{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}=\\boxed{"+parseFloat(ansslope.toFixed(2))+"}$$" + interpret + "<br><br>"
     MathJax.typeset();
 }
 
@@ -219,7 +219,7 @@ function calcsumsquares() {
 
 function sse(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The sum of squares error (SSE) measure the variability of the points around estimated regession line."
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{SSE} = \\sum(y - \\hat{y})^2 $$"
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -259,25 +259,25 @@ function sse(){
     } );
     var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
     var anssse = sum_yminusyhat2;
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$\\hat{y}$$" + "</td>" + "<td>" + "$$y - \\hat{y}$$" + "</td>"+ "<td>" + "$$(y - \\hat{y})^2$$" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$y - \\hat{y}$" + "</td>"+ "<td>" + "$(y - \\hat{y})^2$" + "</td>" + "</tr>";
     var rows = n_x; var cols = 5;
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>$$" + x[r] + "$$</td>";
-        table += "<td>$$" + y[r] + "$$</td>";
-        table += "<td>$$" + parseFloat(yhat[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(yminusyhat[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(yminusyhat2[r].toFixed(2)) + "$$</td>";
+        table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + y[r] + "$</td>";
+        table += "<td>$" + parseFloat(yhat[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(yminusyhat[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(yminusyhat2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+Math.round(sum_yminusyhat)+"$$</td>" +"<td>$$"+parseFloat(sum_yminusyhat2.toFixed(2))+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table><br>$$ \\text{SSE} = \\sum(y - \\hat{y})^2 = \\boxed{"+parseFloat(anssse.toFixed(2))+"}$$"
+    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+Math.round(sum_yminusyhat)+"$</td>" +"<td>$"+parseFloat(sum_yminusyhat2.toFixed(2))+"$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$ \\text{SSE} = \\boxed{"+parseFloat(anssse.toFixed(2))+"}$$"
     MathJax.typeset();
 }
 
 function sst(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The sum of squares total (SST) measure the variability of the points around the mean of y."
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{SST} = \\sum(y - \\bar{y})^2 $$"
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -320,29 +320,29 @@ function sst(){
     var yminusy_bar = y.map( function(value) {
         return value - mean_y;
     } );
-    var yminusy_bar2 = y.map( function(value) {
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
         return value * value;
     } );
     var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
     var anssst = sum_yminusy_bar2;
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$y - \\bar{y}$" + "</td>"+ "<td>" + "$(y - \\bar{y})^2$" + "</td>" + "</tr>";
     var rows = n_x; var cols = 4;
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>$$" + x[r] + "$$</td>";
-        table += "<td>$$" + y[r] + "$$</td>";
-        table += "<td>$$" + parseFloat(yminusy_bar[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(yminusy_bar2[r].toFixed(2)) + "$$</td>";
+        table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + y[r] + "$</td>";
+        table += "<td>$" + parseFloat(yminusy_bar[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(yminusy_bar2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sum_yminusy_bar)+"$$</td>" +"<td>$$"+parseFloat(sum_yminusy_bar2.toFixed(2))+"$$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table><br>$$ \\text{SST} = \\sum(y - \\bar{y})^2 = \\boxed{"+parseFloat(anssst.toFixed(2))+"}$$"
+    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$"+parseFloat(sum_yminusy_bar2.toFixed(2))+"$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$ \\text{SST} = \\boxed{"+parseFloat(anssst.toFixed(2))+"}$$"
     MathJax.typeset();
 }
 
 function ssr(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The sum of squares regression (SSR) measures the distance between the estimated regression line and the mean of y."
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$"
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -385,7 +385,7 @@ function ssr(){
     var yminusy_bar = y.map( function(value) {
         return value - mean_y;
     } );
-    var yminusy_bar2 = y.map( function(value) {
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
         return value * value;
     } );
     var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
@@ -440,7 +440,7 @@ function rsquared(){
     var yminusy_bar = y.map( function(value) {
         return value - mean_y;
     } );
-    var yminusy_bar2 = y.map( function(value) {
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
         return value * value;
     } );
     var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
@@ -497,7 +497,7 @@ function correlation(){
     var yminusy_bar = y.map( function(value) {
         return value - mean_y;
     } );
-    var yminusy_bar2 = y.map( function(value) {
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
         return value * value;
     } );
     var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
@@ -515,8 +515,27 @@ function correlation(){
         var signslope = ""
         var signslopeval = 0
     }
-    var anscorcoef = signslopeval * Math.sqrt(ansrsqu)    
-    var interpret = "Interpretation: " + ansrsquper + "% of the variation in y is explained by the estimated regression equation."
+    var anscorcoef = signslopeval * Math.sqrt(ansrsqu)
+    if (anscorcoef == 1){
+        var intinside = "a perfect positive"
+    } else if (anscorcoef >= .75 && anscorcoef < 1){
+        var intinside = "a strong positive"
+    } else if (anscorcoef > .25 && anscorcoef < .75){
+        var intinside = "a moderate positive"
+    } else if (anscorcoef > 0 && anscorcoef < .25){
+        var intinside = "a weak positive"
+    } else if (anscorcoef < 0 && anscorcoef >= -.25){
+        var intinside = "a weak negative"
+    } else if (anscorcoef < -.25 && anscorcoef > -.75){
+        var intinside = "a moderate negative"
+    } else if (anscorcoef <= -.75 && anscorcoef > -1){
+        var intinside = "a strong negative"
+    } else if (anscorcoef == -1){
+        var intinside = "a perfect negative"
+    } else {
+        var intinside = "no"
+    }
+    var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship between x and y."
     document.getElementById("output").innerHTML = "$$ \\begin{align} r_{xy} &= (\\text{sign of } b_1) \\sqrt{r^2} \\\\ &= "+signslope+"\\sqrt{" +ansrsqu.toFixed(2) +"} \\\\ &= \\boxed{"+anscorcoef.toFixed(2)+"} \\end{align} $$" + interpret + "<br><br>"
     MathJax.typeset();
 }

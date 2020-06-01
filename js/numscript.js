@@ -1,5 +1,6 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
-$(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide();
+$(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
+
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -70,7 +71,7 @@ function avg(input){
 }
 
 function showthings(){
-    $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide();
+    $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     var x = document.getElementById("stat").value;
     if (x == "percentiles") {
         percentiles()
@@ -126,7 +127,7 @@ function stat(){
 
 function mean(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Sum the values (&Sigma;x) and divide by the total number of values (n)."
+    document.getElementById("explanationtext").innerHTML = "$$\\text{Sum the values }(\\Sigma x) \\text{ and divide by the total number of values } (n)$$"
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
@@ -140,7 +141,7 @@ function mean(){
 }
 
 function meanpop(){
-    $("#output").empty();
+    $("#output").empty(); $("#label1").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
@@ -152,8 +153,8 @@ function meanpop(){
 }
 
 function median(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values. "
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values.} $$"
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -172,8 +173,8 @@ function median(){
 }
 
 function mode(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mode is the most frequently occuring value."
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{The most frequently occuring value.} $$"
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -236,7 +237,7 @@ slider.oninput = function() {
 }
 
 function percentiles(){
-    $("#slidecontainer").show();
+    $("#slidecontainer").show(); $("#label1").show();
     var val = document.getElementById("myRange").value;
 }
 
@@ -274,7 +275,7 @@ function calcper(){
 }
 
 function quartiles(){
-    $("#inputqu").show();
+    $("#inputqu").show(); $("#label1").show();
 }
 
 function calcquart(){
@@ -315,9 +316,8 @@ function calcquart(){
 }
 
 function range(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The range is the largest value minus the smallest value."
-    $("#desrange").show();
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("explanationtext").innerHTML = "The largest value minus the smallest value."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
@@ -327,9 +327,8 @@ function range(){
 }
 
 function iqr(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The interquartile range is the third quartile minus the first quartile."
-    $("#desiqr").show();
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("explanationtext").innerHTML = "The third quartile minus the first quartile."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort();
@@ -355,8 +354,8 @@ function iqr(){
 }
 
 function variance(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The sample variance is computed by dividing the sum of squared deviations about the mean by the sample size minus one."
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("explanationtext").innerHTML = "Divide the sum of squared deviations about the mean by n - 1."
     $("#output").empty();
     $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
     var str = document.getElementById("values").value;
@@ -372,17 +371,17 @@ function variance(){
     var sumeachminus = sum(eachminus);
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$(x - \\bar{x})^2$$" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>" + "<td>" + "$x - \\bar{x}$" + "</td>" + "<td>" + "$(x - \\bar{x})^2$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 3;
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>$$" + each[r] + "$$</td>";
-        table += "<td>$$" + parseFloat(eachminus[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(eachminus2[r].toFixed(2)) + "$$</td>";
+        table += "<td>$" + each[r] + "$</td>";
+        table += "<td>$" + parseFloat(eachminus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(eachminus2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>" + "<td>$$"+parseFloat(sumeachminus2.toFixed(2))+"$$</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
     MathJax.typeset();
 }
@@ -419,8 +418,8 @@ function variancepop(){
 }
 
 function stdev(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("explanationtext").innerHTML = "Take the square root of the variance."
     $("#output").empty();
     $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
     var str = document.getElementById("values").value;
@@ -463,9 +462,8 @@ function stdevpop(){
 }
 
 function cv(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#label1").show();
     document.getElementById("explanationtext").innerHTML = "The coefficient of variation does something."
-    $("#descv").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -488,7 +486,7 @@ function cv(){
 
 function zscores(){
     document.getElementById("explanationtext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
-    $("#inputzscore").show(); $("#inputz").show(); 
+    $("#inputzscore").show(); $("#inputz").show(); $("#label1").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -517,7 +515,7 @@ function zscores(){
 
 function calcz(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "z-Scores are calculated by dividing the deviation about the mean by the standard deviation."
+    document.getElementById("explanationtext").innerHTML = "$$ z_x = \\frac{x-\\bar{x}}{s} $$"
     $("#inputzscore").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -544,12 +542,12 @@ function calcz(){
 }
 
 function covariance(){
-    $("#input2").show();
+    $("#input2").show(); $("#label2").show(); $("#label1").hide();
 }
 
 function calccov(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The sample covariance is calculated by dividing the product of the deviations about the mean of x and the deviations about the mean of y by the sample size minus 1."
+    document.getElementById("explanationtext").innerHTML = "Divide the product of the deviations about the mean by n - 1."
     $("#output").empty();
     $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
     var str = document.getElementById("values").value;
@@ -586,19 +584,19 @@ function calccov(){
     } else {
         var interpret = "<b>Interpretation:</b> There is no relationship between x and y."
     }
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})(y - \\bar{y})$$" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$x - \\bar{x}$" + "</td>" + "<td>" + "$y - \\bar{y}$" + "</td>"+ "<td>" + "$(x - \\bar{x})(y - \\bar{y})$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 5;
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>$$" + each[r] + "$$</td>";
-        table += "<td>$$" + each2[r] + "$$</td>";
-        table += "<td>$$" + parseFloat(eachminus[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(each2minus[r].toFixed(2)) + "$$</td>";
-        table += "<td>$$" + parseFloat(eacheach2[r].toFixed(2)) + "$$</td>";
+        table += "<td>$" + each[r] + "$</td>";
+        table += "<td>$" + each2[r] + "$</td>";
+        table += "<td>$" + parseFloat(eachminus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(each2minus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(eacheach2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+parseFloat(sumeacheach2.toFixed(2))+"$$</td>"+ "</tr>";
+    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
@@ -658,12 +656,12 @@ function calccovpop(){
 }
 
 function correlation(){
-    $("#input2").show();
+    $("#input2").show(); $("#label2").show(); $("#label1").hide();
 }
 
 function calccor(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Th correlation coefficient is calculated by dividing covariance by the product of the standard deviations of x and y."
+    document.getElementById("explanationtext").innerHTML = "Divide the sample covariance by the products of the sample standard deviations."
     $("#output").empty();
     $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
     var str = document.getElementById("values").value;
@@ -695,21 +693,21 @@ function calccor(){
     var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
     var anscov = sumeacheach2 / lenmin1;
     var anscor = anscov / (ansstd * ansstd2);
-    if (anscor = 1){
+    if (anscov / (ansstd * ansstd2) == 1){
         var intinside = "a perfect positive"
-    } else if (anscor2 >= .75 && anscor2 < 1){
+    } else if (anscov / (ansstd * ansstd2) >= .75 && anscov / (ansstd * ansstd2) < 1){
         var intinside = "a strong positive"
-    } else if (anscor2 > .25 && anscor2 < .75){
+    } else if (anscov / (ansstd * ansstd2) > .25 && anscov / (ansstd * ansstd2) < .75){
         var intinside = "a moderate positive"
-    } else if (anscor2 > 0 && anscor2 < .25){
+    } else if (anscov / (ansstd * ansstd2) > 0 && anscov / (ansstd * ansstd2) < .25){
         var intinside = "a weak positive"
-    } else if (anscor2 < 0 && anscor2 >= -.25){
+    } else if (anscov / (ansstd * ansstd2) < 0 && anscov / (ansstd * ansstd2) >= -.25){
         var intinside = "a weak negative"
-    } else if (anscor2 < -.25 && anscor >2 -.75){
+    } else if (anscov / (ansstd * ansstd2) < -.25 && anscov / (ansstd * ansstd2) > -.75){
         var intinside = "a moderate negative"
-    } else if (anscor2 <= -.75 && anscor2 > -1){
+    } else if (anscov / (ansstd * ansstd2) <= -.75 && anscov / (ansstd * ansstd2) > -1){
         var intinside = "a strong negative"
-    } else if (anscor2 = -1){
+    } else if (anscov / (ansstd * ansstd2) == -1){
         var intinside = "a perfect negative"
     } else {
         var intinside = "no"
@@ -815,7 +813,7 @@ function examplexvalues2(){
     document.getElementById('values').value="27, 25, 20, 15, 30, 34, 28, 25"
 }
 
-function examplevalues3(){
+function examplevalues2(){
     document.getElementById('values').value="4, 6, 11, 3, 16"
     document.getElementById('values2').value="50, 50, 40, 60, 30"
 }

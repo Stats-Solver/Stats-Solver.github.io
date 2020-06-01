@@ -143,7 +143,7 @@ function stat(){
 
 function frequency(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Table showing the number of items in each class."
+    document.getElementById("explanationtext").innerHTML = "Frequency is the number of items in a class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -155,17 +155,17 @@ function frequency(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>$" + counts[r] + "$</td>";
+        table += "<td>" + counts[r] + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
 function relative(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Table showing the proportion of items in each class. Relative Frequency = Frequency / Total."
+    document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{\\text{Total}}$$"
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -181,18 +181,18 @@ function relative(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>$" + counts[r] + "$</td>";
-        table += "<td>$" + counts[r] + "\\mathbin{/}" + tot + "=" + relfreq[r].toFixed(2) + "$</td>";
+        table += "<td>" + counts[r] + "</td>";
+        table += "<td>" + counts[r] + " / " + tot + " = " + parseFloat(relfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "<td>"+ "$1$" +"</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
 function percent(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Table showing the percentage of items in each class. Percent Frequency = Relative Frequency x 100."
+    document.getElementById("explanationtext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
     $("#despercent").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -210,11 +210,11 @@ function percent(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>$" + relfreq[r].toFixed(2) + "$</td>";
-        table += "<td>$" + relfreq[r].toFixed(2) + "\\times" + 100 + " = " + perfreq[r].toFixed(2) + "$</td>";
+        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + " x " + 100 + " = " + parseFloat(perfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>"+ "$1$" +"</td>"+ "<td>"+ "$100$" +"</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "Total" + "</td>"+ "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -645,7 +645,7 @@ function relativeexp(){
 }
 
 function examplexvalues(){
-    document.getElementById('values').value="Coke, Sprite, Pepsi, Coke, Coke, Pepsi"
+    document.getElementById('values').value="Coke, Sprite, Pepsi, Coke, Coke, Sprite"
 }
 
 function examplexvalues2(){
