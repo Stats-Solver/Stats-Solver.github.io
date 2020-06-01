@@ -135,3 +135,9 @@ function examplecombperm(){
     document.getElementById('topn').value="5"
     document.getElementById('bottomn').value="2"
 }
+
+function examplecombperm2(){
+    document.getElementById('topn').value="6"
+    document.getElementById('bottomn').value="3"
+}
+

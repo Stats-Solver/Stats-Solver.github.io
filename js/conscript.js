@@ -268,9 +268,10 @@ function conint(){
     var stdev = document.getElementById("stdev").value;
     var conlev = document.getElementById("conlev").value;
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
-    var zalphahalf = NormSInv(1 - alphahalf);
-    var marginerror = zalphahalf * (stdev / Math.sqrt(size));
-    var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror)
+    var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,sizem1);
+    var marginerror = zalphahalf * (stdev / Math.sqrt(size)); var marginerrort = talphahalf * (stdev / Math.sqrt(size));
+    var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror);
+    var anslowt = xbar - marginerrort; var anshight = (parseFloat(xbar)+marginerrort)
     
     if (sigma == "known") {
         document.getElementById("explanationtext").innerHTML = "z&alpha;/2 is the z value providing an area of &alpha;/2 in the upper tail of the z distribution."
@@ -380,7 +381,7 @@ function conint(){
     if (sigma == "known") {
         document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\underline{"+talphahalf.toFixed(3)+"} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
     } 
     
     MathJax.typeset();

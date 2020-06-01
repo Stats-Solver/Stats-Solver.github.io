@@ -337,7 +337,9 @@ function hyptest(){
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
     var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
-    var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2));
+    var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
+    var tcless = -tinv(alpha,sizem1); var tcmore = tinv(alpha,sizem1)
+    var tctwo1 = -tinv(alpha/2,sizem1); var tctwo2 = tinv(alpha/2,sizem1); 
     if (sigma == "known") {
             var degfree = ""
         } else if (sigma == "unknown") {
@@ -351,6 +353,7 @@ function hyptest(){
         var cvalsymb = "-z_\\alpha";
         var pvalue = normalcdf(test);
         var pval = pvalue.toFixed(4);
+        var cless = zcless;
     } else if (sigma == "known" && tail == "upper"){
         var testtype = "<b>Upper Tail Test</b>"
         var testsymb = "z";
@@ -359,6 +362,7 @@ function hyptest(){
         var cvalsymb = "z_\\alpha";
         var pvalue = 1 - normalcdf(test);
         var pval = pvalue.toFixed(4);
+        var cmore = zcmore;
     } else if (sigma == "known" && tail == "two"){
         var testtype = "<b>Two-Tailed Test</b>"
         var testsymb = "z";
@@ -370,6 +374,7 @@ function hyptest(){
         var pvalh = pvalhalf.toFixed(4);
         var pvalue = 2 * pvalhalf;
         var pval = pvalue.toFixed(4);
+        var ctwo1 = zctwo1; var ctwo2 = zctwo2; 
     } else if (sigma == "unknown" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "t";
@@ -393,7 +398,8 @@ function hyptest(){
             var pval = "0 \\text{ to } .005"
         } else {
             var pval = pvalue.toFixed(4);
-        }  
+        }
+        var cless = tcless;
     } else if (sigma == "unknown" && tail == "upper"){
         var testtype = "<b>Upper Tail Test</b>"
         var testsymb = "t";
@@ -417,7 +423,8 @@ function hyptest(){
             var pval = "0 \\text{ to } .005"
         } else {
             var pval = pvalue.toFixed(4);
-        }  
+        } 
+        var cmore = tcmore;
     } else if (sigma == "unknown" && tail == "two"){
         var testtype = "<b>Two-Tailed Test</b>"
         var testsymb = "t";
@@ -460,7 +467,8 @@ function hyptest(){
             var pval = "0 \\text{ to } .01"
         } else {
             var pval = pvalue.toFixed(4);
-        }     
+        }   
+        var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     }
     
     if (pvalue <= alpha) {
@@ -487,10 +495,10 @@ function hyptest(){
         var twosign2 = "<"
     }
     
-    if (test <= zctwo1) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+zctwo1.toFixed(2);
-    } else if (test >= zctwo2) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+zctwo2.toFixed(2);
+    if (test <= ctwo1) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
+    } else if (test >= ctwo2) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
     } else {
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }
@@ -585,23 +593,25 @@ function hyptest(){
     
     
     
-    
-    
-    
-    
-    
+    if (tail == "lower" && sigma == "known") {
+        document.getElementById("explanationtext").innerHTML = "The p-value is the probability of getting a z-value less than or equal to the test statistic. The critical value is the z-value corresponding to an area of &alpha; in the lower tail."
+    } else if (tail == "upper" && sigma == "known") {
+        document.getElementById("explanationtext").innerHTML = "The p-value is the probability of getting a z-value greater than or equal to the test statistic. The critical value is the z-value corresponding to an area of &alpha; in the upper tail."
+    } else if (tail == "two" && sigma == "known") {
+        document.getElementById("explanationtext").innerHTML = "The p-value is the probability of getting a z-value at least as unlikely as the test statistic. The critical values are z-values corresponding to areas of &alpha;/2 in the lower and upper tails."
+    } else if (tail == "lower" && sigma == "unknown") {
+        document.getElementById("explanationtext").innerHTML = "The p-value is the probability of getting a t-value less than or equal to the test statistic. The critical value is the t-value corresponding to an area of &alpha; in the lower tail."
+    } else if (tail == "upper" && sigma == "unknown") {
+        document.getElementById("explanationtext").innerHTML = "The p-value is the probability of getting a t-value greater than or equal to the test statistic. The critical value is the t-value corresponding to an area of &alpha; in the upper tail."
+    } else if (tail == "two" && sigma == "unknown") {
+        document.getElementById("explanationtext").innerHTML = "The p-value is the probability of getting a t-value at least as unlikely as the test statistic. The critical values are the t-values corresponding to areas of &alpha;/2 in the lower and upper tails."
+    } 
     
     if (tail == "lower") {
-        document.getElementById("explanationtext").innerHTML = "In a lower tail test, the p-value is the probability of getting a value for the test statistic that's less than or equal to the value from the sample. The critical value is the value of the test statistic corresponding to an area of alpha in the lower tail."
-        
         document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
     } else if (tail == "upper") {
-        document.getElementById("explanationtext").innerHTML = "In an upper tail test, the p-value is the probability of getting a value for the test statistic that's greater than or equal to the value from the sample. The critical value is the value of the test statistic corresponding to an area of alpha in the upper tail."
-        
         document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$"+degfree+" <b><u>p-Value Approach<u></b>"
     } else if (tail == "two") {
-        document.getElementById("explanationtext").innerHTML = "In an two-tailed test, the p-value is the probability of getting a value for the test statistic that's at least as unlikely as the value from the sample. The critical valuse are the values of the test statistic corresponding to areas of alpha/2 in the lower and upper tails."
-        
         document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach<u></b>"
     }
     
@@ -969,11 +979,11 @@ function hyptest(){
     
     
     if (tail == "lower") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+zcless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + zcmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+zcmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + zctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+zctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
     }
     
     

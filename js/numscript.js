@@ -154,7 +154,7 @@ function meanpop(){
 
 function median(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "$$If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values."
+    document.getElementById("explanationtext").innerHTML = "If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -244,7 +244,7 @@ function percentiles(){
 
 function calcper(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the index, i, is not an integer, round up to the next highest integer. If the index, i, is an integer, average the values in positions i and i + 1."
+    document.getElementById("explanationtext").innerHTML = "If the index i is not an integer, round up to the next integer. If the index i is an integer, average the values in positions i and i + 1."
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -318,7 +318,7 @@ function calcquart(){
 
 function range(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The largest value minus the smallest value."
+    document.getElementById("explanationtext").innerHTML = "The range is the largest value minus the smallest value."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
@@ -329,7 +329,7 @@ function range(){
 
 function iqr(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The third quartile minus the first quartile."
+    document.getElementById("explanationtext").innerHTML = "The interquartile range is the third quartile minus the first quartile."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort();
@@ -420,7 +420,7 @@ function variancepop(){
 
 function stdev(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "Take the square root of the variance."
+    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
     $("#output").empty();
     $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
     var str = document.getElementById("values").value;
@@ -662,7 +662,7 @@ function correlation(){
 
 function calccor(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Divide the sample covariance by the products of the sample standard deviations."
+    document.getElementById("explanationtext").innerHTML = "The correlation coefficient is the covariance divided by the products of the standard deviations."
     $("#output").empty();
     $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
     var str = document.getElementById("values").value;
@@ -699,13 +699,13 @@ function calccor(){
     } else if (anscov / (ansstd * ansstd2) >= .75 && anscov / (ansstd * ansstd2) < 1){
         var intinside = "a <u>strong positive"
     } else if (anscov / (ansstd * ansstd2) > .25 && anscov / (ansstd * ansstd2) < .75){
-        var intinside = "a <u>moderate positive"
+        var intinside = "a <u>positive"
     } else if (anscov / (ansstd * ansstd2) > 0 && anscov / (ansstd * ansstd2) < .25){
         var intinside = "a <u>weak positive"
     } else if (anscov / (ansstd * ansstd2) < 0 && anscov / (ansstd * ansstd2) >= -.25){
         var intinside = "a <u>weak negative"
     } else if (anscov / (ansstd * ansstd2) < -.25 && anscov / (ansstd * ansstd2) > -.75){
-        var intinside = "a <u>moderate negative"
+        var intinside = "a <u>negative"
     } else if (anscov / (ansstd * ansstd2) <= -.75 && anscov / (ansstd * ansstd2) > -1){
         var intinside = "a <u>strong negative"
     } else if (anscov / (ansstd * ansstd2) == -1){
@@ -769,13 +769,13 @@ function calccorpop(){
     } else if (anscor2 >= .75 && anscor2 < 1){
         var intinside = "a strong positive"
     } else if (anscor2 > .25 && anscor2 < .75){
-        var intinside = "a moderate positive"
+        var intinside = "a positive"
     } else if (anscor2 > 0 && anscor2 < .25){
         var intinside = "a weak positive"
     } else if (anscor2 < 0 && anscor2 >= -.25){
         var intinside = "a weak negative"
     } else if (anscor2 < -.25 && anscor >2 -.75){
-        var intinside = "a moderate negative"
+        var intinside = "a negative"
     } else if (anscor2 <= -.75 && anscor2 > -1){
         var intinside = "a strong negative"
     } else if (anscor2 = -1){
