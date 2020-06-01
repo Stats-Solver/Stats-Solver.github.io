@@ -127,7 +127,7 @@ function stat(){
 
 function mean(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$\\text{Sum the values }(\\Sigma x) \\text{ and divide by the total number of values } (n)$$"
+    document.getElementById("explanationtext").innerHTML = "Sum the values and divide by the total number of values"
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
@@ -154,7 +154,7 @@ function meanpop(){
 
 function median(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values.} $$"
+    document.getElementById("explanationtext").innerHTML = "$$If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -174,7 +174,7 @@ function median(){
 
 function mode(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{The most frequently occuring value.} $$"
+    document.getElementById("explanationtext").innerHTML = "The mode is the value that occurs with the highest frequency."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -217,13 +217,14 @@ function mode(){
     
    
     if (each.length == themodes.length) {
-        document.getElementById("output").innerHTML = "<table>" + table + "</table> <br> There is no mode.<br><br>"
+        document.getElementById("output").innerHTML = "<table>" + table + "</table> $$\\boxed{\\text{No Mode}}$$"
     } else if (themodes.length == 1) {
-        document.getElementById("output").innerHTML = "<table>" + table + "</table> <br> The mode is " + themodes + ".<br><br>"
+        document.getElementById("output").innerHTML = "<table>" + table + "</table> $$\\text{Mode} = \\boxed{" + themodes + "}$$"
     }
     else {
-        document.getElementById("output").innerHTML = "<table>" + table + "</table> <br> The modes are " + themodes + ".<br><br>"
+        document.getElementById("output").innerHTML = "<table>" + table + "</table> $$\\text{Modes} = \\boxed{" + themodes + "}$$"
     }
+    MathJax.typeset();
 
 }
 
@@ -355,7 +356,7 @@ function iqr(){
 
 function variance(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "Divide the sum of squared deviations about the mean by n - 1."
+    document.getElementById("explanationtext").innerHTML = "$$ s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} $$"
     $("#output").empty();
     $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
     var str = document.getElementById("values").value;
@@ -381,8 +382,8 @@ function variance(){
         table += "<td>$" + parseFloat(eachminus2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table><br>$$s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$s^2 = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -547,7 +548,7 @@ function covariance(){
 
 function calccov(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Divide the product of the deviations about the mean by n - 1."
+    document.getElementById("explanationtext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
     $("#output").empty();
     $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
     var str = document.getElementById("values").value;
@@ -578,11 +579,11 @@ function calccov(){
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var anscov = sumeacheach2 / lenmin1;
     if (anscov > 0){
-        var interpret = "<b>Interpretation:</b> There is a positive linear relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is a <u>positive linear relationship</u> between x and y."
     } else if (anscov < 0){
-        var interpret = "<b>Interpretation:</b> There is a negative linear relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is a <u>negative linear relationship</u> between x and y."
     } else {
-        var interpret = "<b>Interpretation:</b> There is no relationship between x and y."
+        var interpret = "<b>Interpretation:</b> There is <u>no relationship</u> between x and y."
     }
     var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$x - \\bar{x}$" + "</td>" + "<td>" + "$y - \\bar{y}$" + "</td>"+ "<td>" + "$(x - \\bar{x})(y - \\bar{y})$" + "</td>" + "</tr>";
     var rows = len;
@@ -596,8 +597,8 @@ function calccov(){
         table += "<td>$" + parseFloat(eacheach2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table><br> $$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> $$s_{xy} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
@@ -694,25 +695,25 @@ function calccor(){
     var anscov = sumeacheach2 / lenmin1;
     var anscor = anscov / (ansstd * ansstd2);
     if (anscov / (ansstd * ansstd2) == 1){
-        var intinside = "a perfect positive"
+        var intinside = "a <u>perfect positive"
     } else if (anscov / (ansstd * ansstd2) >= .75 && anscov / (ansstd * ansstd2) < 1){
-        var intinside = "a strong positive"
+        var intinside = "a <u>strong positive"
     } else if (anscov / (ansstd * ansstd2) > .25 && anscov / (ansstd * ansstd2) < .75){
-        var intinside = "a moderate positive"
+        var intinside = "a <u>moderate positive"
     } else if (anscov / (ansstd * ansstd2) > 0 && anscov / (ansstd * ansstd2) < .25){
-        var intinside = "a weak positive"
+        var intinside = "a <u>weak positive"
     } else if (anscov / (ansstd * ansstd2) < 0 && anscov / (ansstd * ansstd2) >= -.25){
-        var intinside = "a weak negative"
+        var intinside = "a <u>weak negative"
     } else if (anscov / (ansstd * ansstd2) < -.25 && anscov / (ansstd * ansstd2) > -.75){
-        var intinside = "a moderate negative"
+        var intinside = "a <u>moderate negative"
     } else if (anscov / (ansstd * ansstd2) <= -.75 && anscov / (ansstd * ansstd2) > -1){
-        var intinside = "a strong negative"
+        var intinside = "a <u>strong negative"
     } else if (anscov / (ansstd * ansstd2) == -1){
-        var intinside = "a perfect negative"
+        var intinside = "a <u>perfect negative"
     } else {
-        var intinside = "no"
+        var intinside = "<u>no"
     }
-    var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship between x and y."
+    var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship</u> between x and y."
     var table = "<table border=1>"+"<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\bar{x}$$" + "</td>" + "<td>" + "$$y - \\bar{y}$$" + "</td>"+ "<td>" + "$$(x - \\bar{x})^2$$" + "</td>"+ "<td>" + "$$(y - \\bar{y})^2$$" + "</td>" + "</tr>";
     var rows = len;
     var cols = 6;
@@ -726,7 +727,7 @@ function calccor(){
         table += "<td>$$" + each2minus2[r].toFixed(2) + "$$</td>";
         table += "</tr>";
     }
-    table = table + "<tr>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
     document.getElementById("output").innerHTML = "$$ \\begin{align} r_{xy} &= \\frac{s_{xy}}{s_x s_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"*"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
@@ -813,7 +814,7 @@ function examplexvalues2(){
     document.getElementById('values').value="27, 25, 20, 15, 30, 34, 28, 25"
 }
 
-function examplevalues2(){
+function examplevalues3(){
     document.getElementById('values').value="4, 6, 11, 3, 16"
     document.getElementById('values2').value="50, 50, 40, 60, 30"
 }

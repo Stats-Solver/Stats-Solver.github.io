@@ -273,10 +273,10 @@ function conint(){
     var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror)
     
     if (sigma == "known") {
-        document.getElementById("explanationtext").innerHTML = "$$ z_{\\alpha/2} \\text{ is the } z \\text{ value providing an area of } \\alpha/2 \\text{ in the upper tail of the } z \\text{ distribution} $$"
+        document.getElementById("explanationtext").innerHTML = "z&alpha;/2 is the z value providing an area of &alpha;/2 in the upper tail of the z distribution."
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
     } else if (sigma == "unknown") {
-        document.getElementById("explanationtext").innerHTML = "$$ t_{\\alpha/2} \\text{ is the } t \\text{ value providing an area of } \\alpha/2 \\text{ in the upper tail of the } t \\text{ distribution with } n-1 \\text{ degrees of freedom} $$"
+        document.getElementById("explanationtext").innerHTML = "t&alpha;/2 is the t value providing an area of &alpha;/2 in the upper tail of the t distribution with n-1 degrees of freedom."
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= \\underline{"+sizem1+"} \\end{align}  $$"
     } 
     
@@ -313,7 +313,7 @@ function conint(){
 
     if (sigma == "known") {
         ctx.fillText("z",285,132);
-        ctx.fillText("Zα/2",220,145);
+        ctx.fillText("zα/2",220,145);
     } else if (sigma == "unknown") {
         ctx.fillText("t",285,132);
         ctx.fillText("tα/2",220,145);   
