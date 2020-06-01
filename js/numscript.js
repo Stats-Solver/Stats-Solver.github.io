@@ -1,4 +1,4 @@
-$("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); 
+$("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide();
 
 $(document).ready(function(){
@@ -488,7 +488,7 @@ function cv(){
 
 function zscores(){
     document.getElementById("explanationtext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
-    $("#inputzscore").show();
+    $("#inputzscore").show(); $("#inputz").show(); 
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -505,7 +505,7 @@ function zscores(){
     var ansstd = Math.sqrt(ansvar);
     var ansz = (ansstd / mn) * 100;
     
-    var zval = [' <option>Choose</option>'];
+    var zval = [' <option>Choose One</option>'];
     for (let i=0; i<len; i++){
         zval += ' <option value='+each[i]+'>'+each[i]+'</option>'
     }
@@ -545,7 +545,6 @@ function calcz(){
 
 function covariance(){
     $("#input2").show();
-    $("#label1").hide();
 }
 
 function calccov(){
@@ -660,7 +659,6 @@ function calccovpop(){
 
 function correlation(){
     $("#input2").show();
-    $("#label1").hide();
 }
 
 function calccor(){

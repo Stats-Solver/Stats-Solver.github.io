@@ -554,7 +554,7 @@ function cumpercent(){
 }
 
 function crosstabulation(){
-    $("#input2").show();$("#label1").hide()
+    $("#input2").show();
 }
 
 function calccross(){
@@ -580,7 +580,7 @@ function calccross(){
 }
 
 function scatter(){
-    $("#input2").show(); $("#label1").hide()
+    $("#input2").show();
 }
 
 function calcscatt(){

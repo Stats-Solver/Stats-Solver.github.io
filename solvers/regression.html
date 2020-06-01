@@ -86,6 +86,7 @@
                 <option value="equation">Estimated Regression Equation</option>
                 <option value="sumsquares">Sum of Squares</option>
                 <option value="rsquared">Coefficient of Determination</option>
+                <option value="correlation">Correlation Coefficient</option>
                 <option value="mse">Mean Square Error</option>
                 <option value="see">Standard Error of Estimate</option>
                 <option value="tstat">t-Statistic</option>
@@ -97,16 +98,11 @@
             <button id = "buttoncross" class="button" onclick="stat()">Solve</button>
         </div> 
               </div>
-          <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
-        </div>
     </div>
       
       <div class="container"> 
           <div class="row  justify-content-center">
-              <div class="col-12 col-md-5">
-        </div>
-        <div class="col-8 col-md-3" id="sumsquares">
+        <div class="col-5 col-md-2 mb-3" id="sumsquares">
             <select class="form-control" id="sumsquaresval">
                 <option value="choose">Choose One</option>
                 <option value="error">Error</option>
@@ -114,12 +110,14 @@
                 <option value="regression">Regression</option>
             </select>
         </div>
-              <div class="col-4 col-md-1 inputWrapper">
-        </div> 
               </div>
              </div>
       
-      <div class="container"> 
+                <div class = "text-center" id = "label1">
+            <span class="examplelink" onclick="examplevalues()">Example</span>
+        </div>
+      
+      <!--<div class="container"> 
         <div id="meansquare">
             <select id="meansquareval" onchange="calcmeansquare()">
                 <option value="choose">Choose</option>
@@ -137,7 +135,7 @@
                 <option value="slope">Slope</option>
             </select>
         </div>
-             </div>
+             </div>-->
       
       
     <div class="container">

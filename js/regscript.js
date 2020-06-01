@@ -58,6 +58,8 @@ function stat(){
         calcsumsquares()
     } else if (x == "rsquared") {
         rsquared()
+    } else if (x == "correlation") {
+        correlation()
     } else if (x == "mse") {
         mse()
     } else if (x == "see") {
