@@ -478,14 +478,21 @@ function cumfrequency(){
     table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Frequency" + "</td>" +"<td>" + "Frequency" + "</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
-    for (var r = 0; r < rows; r++){
+    for (var r = 0; r < 1; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
         table += "<td>" + counts[r] + "</td>";
         table += "<td>" + cumcounts[r] + "</td>";
         table += "</tr>";
     }
-
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + counts[r] + "</td>";
+        table += "<td>" + cumcounts[r-1] + " + " + counts[r] +" = " + cumcounts[r] + "</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td> - </td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -509,13 +516,21 @@ function cumrelative(){
     for (let i=1; i<counts.length; i++) {
         cumrelfreq[i] = cumrelfreq[i-1] + relfreq[i]
     }
-    for (var r = 0; r < rows; r++){
+    for (var r = 0; r < 1; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + relfreq[r].toFixed(2) + "</td>";
-        table += "<td>" + cumrelfreq[r].toFixed(2) + "</td>";
+        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumrelfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumrelfreq[r-1].toFixed(2))+ " + " + parseFloat(relfreq[r].toFixed(2)) + " = " + parseFloat(cumrelfreq[r].toFixed(2)) + "</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td> - </td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -542,13 +557,21 @@ function cumpercent(){
     for (let i=1; i<counts.length; i++) {
         cumperfreq[i] = cumperfreq[i-1] + perfreq[i]
     }
-    for (var r = 0; r < rows; r++){
+    for (var r = 0; r < 1; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + perfreq[r].toFixed(2) + "</td>";
-        table += "<td>" + cumperfreq[r].toFixed(2) + "</td>";
+        table += "<td>" + parseFloat(perfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>" + eachonesort[r] + "</td>";
+        table += "<td>" + parseFloat(perfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumperfreq[r-1].toFixed(2)) + " + " + parseFloat(perfreq[r].toFixed(2)) + " = " + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td> - </td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }

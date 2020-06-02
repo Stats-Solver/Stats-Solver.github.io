@@ -605,7 +605,7 @@ function mse(){
     var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s^2 = \\text{MSE} &= \\frac{\\text{SSE}}{\\text{n-2}} \\\\ &= \\frac{"+parseFloat(anssse.toFixed(2))+"}{" + n_x +" - 2} \\\\ &= \\boxed{"+parseFloat(ansrsqu.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} s^2 = \\text{MSE} &= \\frac{\\text{SSE}}{n-2} \\\\ &= \\frac{"+parseFloat(anssse.toFixed(2))+"}{" + n_x +" - 2} \\\\ &= \\boxed{"+parseFloat(ansrsqu.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -675,7 +675,7 @@ function see(){
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
     var anssee = Math.sqrt(ansmse);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s = \\sqrt{\\text{MSE}} &= \\sqrt{\\frac{\\text{SSE}}{\\text{n-2}}}\\\\ &= \\sqrt{"+parseFloat(ansmse.toFixed(2))+"} \\\\ &= \\boxed{" + parseFloat(anssee.toFixed(2)) +"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} s = \\sqrt{\\text{MSE}} &= \\sqrt{\\frac{\\text{SSE}}{n-2}}\\\\ &= \\sqrt{"+parseFloat(ansmse.toFixed(2))+"} \\\\ &= \\boxed{" + parseFloat(anssee.toFixed(2)) +"} \\end{align} $$"
     MathJax.typeset();
 }
 
