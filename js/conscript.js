@@ -274,10 +274,10 @@ function conint(){
     var anslowt = xbar - marginerrort; var anshight = (parseFloat(xbar)+marginerrort)
     
     if (sigma == "known") {
-        document.getElementById("explanationtext").innerHTML = "z&alpha;/2 is the z value providing an area of &alpha;/2 in the upper tail of the z distribution."
+        document.getElementById("explanationtext").innerHTML = "$$ \\text{Point Estimate} \\pm \\text{Margin of Error} $$"
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
     } else if (sigma == "unknown") {
-        document.getElementById("explanationtext").innerHTML = "t&alpha;/2 is the t value providing an area of &alpha;/2 in the upper tail of the t distribution with n-1 degrees of freedom."
+        document.getElementById("explanationtext").innerHTML = "$$ \\text{Point Estimate} \\pm \\text{Margin of Error} $$"
         document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= \\underline{"+sizem1+"} \\end{align}  $$"
     } 
     

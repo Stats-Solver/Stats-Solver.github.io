@@ -97,7 +97,7 @@ function avg(input){
 }
 
 function showthings(){
-    $("#cumulative").hide(); $("#input2").hide(); 
+    $("#cumulative").hide(); $("#input2").hide();
     var x = document.getElementById("stat").value;
     if (x == "cumulative"){
         cumulative()
@@ -109,7 +109,7 @@ function showthings(){
 }
 
 function stat(){
-    $("#explanation").hide();
+    $("#explanation").hide(); $("#charts").hide();
     $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
@@ -182,7 +182,7 @@ function relative(){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
         table += "<td>" + counts[r] + "</td>";
-        table += "<td>" + counts[r] + " / " + tot + " = " + parseFloat(relfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + counts[r] + " / " + tot + " = " + parseFloat(relfreq[r].toFixed(3)) + "</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
@@ -210,8 +210,8 @@ function percent(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + "</td>";
-        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + " x " + 100 + " = " + parseFloat(perfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(relfreq[r].toFixed(3)) + "</td>";
+        table += "<td>" + parseFloat(relfreq[r].toFixed(3)) + " x " + 100 + " = " + parseFloat(perfreq[r].toFixed(1)) + "</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>"+ "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
@@ -220,8 +220,8 @@ function percent(){
 }
 
 function bar(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for qualitative data."
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "Draw a bar to the frequency for each class."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -234,61 +234,47 @@ function bar(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>$" + counts[r] + "$</td>";
+        table += "<td>" + counts[r] + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>$"+ tot +"$</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
     
-    var graphValues = counts;
-    var maxval = Math.max.apply(Math, graphValues);
-    var minval = Math.min.apply(Math, graphValues);
-    var intervals = 90/maxval;
-    
-    var graphValuesScaled = graphValues.map( function(value) {
-        return (value / maxval)*90
-    } );
-    
-    var X=20;
-    var Y=intervals;
-    var width=20;
-    var height=100;
-    
-    var xaxislen = 40 + 30*graphValues.length;
-    
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.beginPath();
-    ctx.moveTo(20, 20);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(xaxislen, 130);
-    ctx.stroke();
-    
-    ctx.fillText("Frequency",5,15);
-    ctx.fillText("x",xaxislen + 5,132);
-    
-    
-    for (var i=0; i<graphValues.length; i++) {
-        var k = graphValuesScaled[i];
-        var m = eachonesort[i];
-        ctx.fillRect(X+15,canvas.height-k-58,width,k);
-        ctx.fillText(m,X+20,canvas.height-44);
-        X += width+10;
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Motivation Level');
+      var x = ['Coke','Pepsi','Sprite']
+      var y = [3,1,2]
+
+      var data = google.visualization.arrayToDataTable([
+        ['Class', 'Frequency'],
+        [x[0], y[0]],
+        [x[1], y[1]],
+        [x[2], y[2]]
+      ]);
+
+      var options = {
+          legend: 'none'
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('charts'));
+
+      chart.draw(data, options);
     }
     
-    for (var i=1; i<maxval+1; i++) {
-        ctx.fillText(i+"-",10,canvas.height-54-Y);
-        Y += intervals;
-    }
-    
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
 
 function pie(){
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Graphical representation of percent frequency distribution for qualitative data."
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "Split the pie according to the percent frequencies."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -306,10 +292,10 @@ function pie(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>$" + parseFloat(perfreq[r].toFixed(2)) + "$</td>";
+        table += "<td>" + parseFloat(perfreq[r].toFixed(1)) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ "$100$" +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ "100" +"</td>" + "</tr>";
     
     var relfreq = counts.map( function(value) {
         return value / tot;
@@ -319,61 +305,33 @@ function pie(){
         return value * 100;
     } );
     
-    var degvals = relfreq.map( function(value) {
-        return value * 360;
-    } );
-    
-    var radvals = degvals.map( function(value) {
-        return value * (Math.PI / 180);
-    } );
-    
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 400, 300);
-    ctx.beginPath();
-    ctx.arc(150, 75, 70, 0, 2 * Math.PI);
-    ctx.stroke();
-    
-    ctx.beginPath();
-    ctx.moveTo(150, 75);
-    ctx.lineTo(150, 5);
-    ctx.stroke();
-    
-    //var h = radvals[0];
-    //ctx.beginPath();
-    //ctx.moveTo(100, 75);
-    //ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
-    //ctx.stroke();
-    //ctx.fillText(eachonesort[0],100+25*Math.sin(h/2),75-25*Math.cos(h/2));
-    
-    var h = radvals[0];
-    for (var i=0; i<radvals.length-1; i++) {
-        ctx.beginPath();
-        ctx.moveTo(150, 75);
-        ctx.lineTo(150+70*Math.sin(h), 75-70*Math.cos(h));
-        ctx.stroke();
-        h += radvals[i+1];
-    }
-    var h = radvals[0];
-    var k = h / 2;
-    for (var i=0; i<radvals.length; i++) {
-        ctx.fillText(eachonesort[i],150+35*Math.sin(k)-20,75-35*Math.cos(k)-10);
-        ctx.fillText(parseFloat(perfreq[i].toFixed(2))+"%",150+35*Math.sin(k)-20,75-35*Math.cos(k));
-        k = h + radvals[i+1]/2;
-        h += radvals[i+1];
-    }
-    
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      var myArray = [['Class', 'Frequency'], [eachonesort[0], counts[0]],[eachonesort[1], counts[1]], [eachonesort[2], counts[2]]]
 
-    MathJax.typeset();
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(myArray);
+
+        var chart = new google.visualization.PieChart(document.getElementById('charts'));
+
+        chart.draw(data);
+      }
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+
 }
 
 function histogram(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#charts").show();
     document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for quantitative data."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each = str.split(","); 
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
@@ -387,60 +345,31 @@ function histogram(){
     var minvalue = Math.min.apply(Math, each);
     var classwidth = Math.ceil((maxvalue - minvalue) / 5);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
-    var classlimits = [];
-    var limits1 = [];
-    var limits2 = [];
-    for (var i=0; i<5; i++) {
-        classlimits[i] = value1 + "-" + value2
-        limits1[i] = value1;
-        limits2[i] = value2;
-        value1 += classwidth;
-        value2 += classwidth;
-    }
-    
-    var quants = [];
-    for (var i=0; i<5; i++) {
-        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
-    }
-    
-    var quantsscaled = quants.map( function(value) {
-        return (value / maxval)*90
-    } );
-    
-    var X=10;
-    var Y=intervals;
-    var width=30;
-    var height=100;
-    
-    var xaxislen = 100 + 30*limits1.length;
-    
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.beginPath();
-    ctx.moveTo(20, 20);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(xaxislen, 130);
-    ctx.stroke();
-    
-    ctx.fillText("Frequency",5,15);
-    ctx.fillText("x",xaxislen + 5,132);
-    
-    
-    for (var i=0; i<quants.length; i++) {
-        var k = quantsscaled[i];
-        var m = classlimits[i];
-        ctx.fillRect(X+20,canvas.height-k-58,width+9,k);
-        ctx.fillText(m,X+2+20,canvas.height-10);
-        X += width+10;
-    }
-    
-    for (var i=1; i<maxval+1; i++) {
-        ctx.fillText(i+"-",10,canvas.height-56-Y);
-        Y += intervals;
-    }
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Value'],
+          [eachnums[0]],
+          [eachnums[1]],
+          [eachnums[2]],
+          [eachnums[3]],
+          [eachnums[4]],
+          [eachnums[5]],
+          [eachnums[6]],
+          [eachnums[7]],
+          [eachnums[8]],
+          [eachnums[9]]
+          ]);
+
+        var options = {
+          legend: { position: 'none' },
+          colors: ['blue']
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('charts'));
+        chart.draw(data, options);
+      }
     
     document.getElementById("output").innerHTML = ""
     

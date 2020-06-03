@@ -57,3 +57,11 @@ th, td {
 #predicty {
     width: 40px;
 }
+
+.container2 {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
