@@ -397,7 +397,7 @@ function ssr(){
 
 function rsquared(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The coefficient of determination measures the variability of y that can be explained by the estimated regression equation. It is a value between 0 and 1, with a higher value indicating more explained variability."
+    document.getElementById("explanationtext").innerHTML = "The coefficient of determination measures is the ratio of the SSR to the SST."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -454,7 +454,7 @@ function rsquared(){
 
 function correlation(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = ""
+    document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -555,7 +555,7 @@ function calcmeansquare() {
 
 function mse(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mean square error (MSE) is related to the SSE."
+    document.getElementById("explanationtext").innerHTML = "The mean square error is the SSE divided by n minus the number of estimated parameters."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -624,7 +624,7 @@ function calcstandarderror() {
 
 function see(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The standard error of estimate (SEE) measure the error in the estimated regression equation."
+    document.getElementById("explanationtext").innerHTML = "The standard error of estimate is the square root of the MSE."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -738,7 +738,7 @@ function ses(){
 
 function tstat(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The t-statistic is used a conduct a t test, which determines whether there is a significant linear relationship between x and y."
+    document.getElementById("explanationtext").innerHTML = "The t-statistic is the slope divided by the estimated standard deviation of the slope."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -797,7 +797,7 @@ function tstat(){
 
 function msr(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mean square regression (MSR) is related to the SSR."
+    document.getElementById("explanationtext").innerHTML = "The mean square regression is the SSR divided by the number of independent variables."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -850,13 +850,13 @@ function msr(){
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
     var anststat = ansslope / ansses;
     var ansmsr = ansssr;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\frac{\\text{SSR}}{1} \\\\ &= \\boxed{"+parseFloat(ansmsr.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\frac{\\text{SSR}}{1} \\\\ &= \\frac{\\text{"+parseFloat(ansssr.toFixed(2))+"}}{1} \\\\ &= \\boxed{"+parseFloat(ansmsr.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
 function fstat(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The F-statistic is used to conduct an F-test which, like the t-test, determines whether there is a significant relationshihp between x and y."
+    document.getElementById("explanationtext").innerHTML = "The F-statistic is the MSR divided by the MSE."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;

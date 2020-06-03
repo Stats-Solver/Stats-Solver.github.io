@@ -306,7 +306,7 @@ function pie(){
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>$" + perfreq[r].toFixed(2) + "$</td>";
+        table += "<td>$" + parseFloat(perfreq[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ "$100$" +"</td>" + "</tr>";
@@ -530,7 +530,7 @@ function cumrelative(){
         table += "<td>" + parseFloat(cumrelfreq[r-1].toFixed(2))+ " + " + parseFloat(relfreq[r].toFixed(2)) + " = " + parseFloat(cumrelfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td> - </td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td> 1 </td>" + "<td> - </td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -571,7 +571,7 @@ function cumpercent(){
         table += "<td>" + parseFloat(cumperfreq[r-1].toFixed(2)) + " + " + parseFloat(perfreq[r].toFixed(2)) + " = " + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td> - </td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td> 100 </td>" + "<td> - </td>" + "</tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }

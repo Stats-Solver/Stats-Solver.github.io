@@ -127,7 +127,7 @@ function stat(){
 
 function mean(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Sum the values and divide by the total number of values"
+    document.getElementById("explanationtext").innerHTML = "The mean is the sum the values divided by the total number of values."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
@@ -164,10 +164,10 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-        document.getElementById("output").innerHTML = " <b>Step 1:</b> Arrange the data in <u>ascending order</u>.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>odd number</u> of values, take the middle value.$$\\text{Median} = \\boxed{" + valm + "} $$"
+        document.getElementById("output").innerHTML = " <b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>odd number</u> of values, take the middle value.$$\\text{Median} = \\boxed{" + valm + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in <u>ascending order</u>.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>even number</u> of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>even number</u> of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
     }
     MathJax.typeset();
 }
@@ -267,10 +267,10 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in <u>ascending order</u>.$$"+eachsort+"$$<b>Step 2:</b> Calculate the <u>index</u>.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in <u>ascending order</u>.$$"+eachsort+"$$<b>Step 2:</b> Calculate the <u>index</u>.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
@@ -308,10 +308,10 @@ function calcquart(){
         var quartnum = ""
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in <u>ascending order</u>.$$"+eachsort+"$$<b>Step 2:</b> Calculate the <u>index</u>.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in <u>ascending order</u>.$$"+eachsort+"$$<b>Step 2:</b> Calculate the <u>index</u>.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
