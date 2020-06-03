@@ -1,4 +1,4 @@
-$("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $("#explanation").hide(); $("#cumulative").hide();
+$("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide();  $("#label3").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -97,7 +97,7 @@ function avg(input){
 }
 
 function showthings(){
-    $("#cumulative").hide(); $("#input2").hide();
+    $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label3").hide();
     var x = document.getElementById("stat").value;
     if (x == "cumulative"){
         cumulative()
@@ -110,7 +110,6 @@ function showthings(){
 
 function stat(){
     $("#explanation").hide(); $("#charts").hide();
-    $("#input2").hide(); $("#myCanvas").hide(); $(".description").hide(); $(".explanation").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
     if (x == "frequency"){
@@ -258,7 +257,9 @@ function bar(){
       ]);
 
       var options = {
-          legend: 'none'
+          legend: 'none',
+          vAxis: {title: 'Frequency'},
+          hAxis: {title: 'Class'}
       };
 
       var chart = new google.visualization.ColumnChart(
@@ -364,7 +365,9 @@ function histogram(){
 
         var options = {
           legend: { position: 'none' },
-          colors: ['blue']
+          colors: ['blue'],
+          vAxis: {title: 'Frequency'},
+          hAxis: {title: 'Class'}
         };
 
         var chart = new google.visualization.Histogram(document.getElementById('charts'));
@@ -532,61 +535,54 @@ function calccross(){
 }
 
 function scatter(){
-    $("#input2").show();
+    $("#input2").show();  $("#label1").hide(); $("#label3").show();
 }
 
 function calcscatt(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#charts").show();
     document.getElementById("explanationtext").innerHTML = "Graphical representation of data for two quantitative variables."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    var eachnums2 = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
     
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.beginPath();
-    ctx.moveTo(20, 20);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(130, 130);
-    ctx.stroke();
-    ctx.fillText("y",18,15);
-    ctx.fillText("x",135,132);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', 'y'],
+          [ eachnums[0], eachnums2[0]],
+          [ eachnums[1], eachnums2[1]],
+          [ eachnums[2], eachnums2[2]],
+          [ eachnums[3], eachnums2[3]],
+          [ eachnums[4], eachnums2[4]],
+          [ eachnums[5], eachnums2[5]],
+          [ eachnums[6], eachnums2[6]],
+          [ eachnums[7], eachnums2[7]],
+          [ eachnums[8], eachnums2[8]],
+          [ eachnums[9], eachnums2[9]]
+        ]);
+
+        var options = {
+          hAxis: {title: 'x'},
+          vAxis: {title: 'y'},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
     
-    var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2);
-    var intervals = Math.ceil(maxval / 4); var intervals2 = Math.ceil(parseFloat(maxval2) / 4); 
     
-    var valuesScaled = each.map( function(value) {
-        return (value / (intervals * 4)) * 100
-    } );
-    
-    var valuesScaled2 = each2.map( function(value) {
-        return (value / (intervals2 * 4)) * 100
-    } );
-    
-    for (var i=0; i<each.length; i++) {
-        ctx.fillRect(20 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
-    }
-    
-    for (var i=1; i<5; i++) {
-        ctx.moveTo(20+25*i, 125);
-        ctx.lineTo(20+25*i, 135);
-        ctx.stroke();
-    }
-    
-    for (var i=1; i<5; i++) {
-        ctx.moveTo(15, 150 - 25*i - 20);
-        ctx.lineTo(25, 150 - 25*i - 20);
-        ctx.stroke();
-    }
-    
-    for (var i=1; i<5; i++) {
-        ctx.fillText(intervals * i,18+25*i,145);
-        ctx.fillText(intervals2 * i,5,150 - 25*i - 18);
-    }
-    
-    document.getElementById("output").innerHTML = intervals + " asdfd" + intervals2 + " asdfd" 
+    document.getElementById("output").innerHTML = ""
 
     
     MathJax.typeset();
@@ -611,4 +607,14 @@ function examplevalues3(){
 
 function examplevalues4(){
     document.getElementById('values').value="12, 15, 20, 22, 14, 14, 15, 27, 21, 18"
+}
+
+function examplevalues5(){
+    document.getElementById('values').value="2, 5, 1, 3, 4, 1, 5, 3, 4, 2"
+    document.getElementById('values2').value="50, 57, 41, 54, 54, 38, 63, 48, 59, 46"
+}
+
+function examplevalues6(){
+    document.getElementById('values').value="-22, -33, 2, 29, -13, 21, -13, -23, 14, 2"
+    document.getElementById('values2').value="22, 49, 8, -16, 10, -28, 27, 35, -5, -3"
 }
