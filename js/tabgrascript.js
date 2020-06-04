@@ -148,30 +148,30 @@ function frequency(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
 function relative(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{\\text{Total}}$$"
+    document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var table = "<tr>" + "<td></td>" + "<td></td>" + "<td>" + "Relative" + "</td>" + "</tr>";
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Frequency" + "</td>" + "<td>" + "Relative Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Relative Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -179,12 +179,12 @@ function relative(){
     } );
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
-        table += "<td>" + counts[r] + " / " + tot + " = " + parseFloat(relfreq[r].toFixed(3)) + "</td>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
+        table += "<td>$" + counts[r]+ "\\mathbin{/}" + tot + "=" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td>"+ "1" +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td>$1$</td></tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -197,7 +197,7 @@ function percent(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Relative Frequency" + "</td>"+ "<td>" + "Percent Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Relative Frequency}$</td><td>$\\text{Percent Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -208,35 +208,46 @@ function percent(){
     } );
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(relfreq[r].toFixed(3)) + "</td>";
-        table += "<td>" + parseFloat(relfreq[r].toFixed(3)) + " x " + 100 + " = " + parseFloat(perfreq[r].toFixed(1)) + "</td>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "\\times 100 = "+ parseFloat(perfreq[r].toFixed(1)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>"+ "<td>"+ "1" +"</td>"+ "<td>"+ "100" +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     MathJax.typeset();
 }
 
 function bar(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        document.getElementById("output").innerHTML = "Bar charts require qualitative data.<br>Try a histogram instead."
+    } else {
+        calcbar()
+    }
+}
+
+function calcbar(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "Draw a bar to the frequency for each class."
+    document.getElementById("explanationtext").innerHTML = "In a bar chart, a bar is drawn to the frequency for each class."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
     
     google.charts.load('current', {packages: ['corechart', 'bar']});
     google.charts.setOnLoadCallback(drawBasic);
@@ -274,15 +285,26 @@ function bar(){
 }
 
 function pie(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        document.getElementById("output").innerHTML = "Pie charts require qualitative data.<br>Try a histogram instead."
+    } else {
+        calcpie()
+    }
+}
+
+function calcpie(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "Split the pie according to the percent frequencies."
+    document.getElementById("explanationtext").innerHTML = "In a pie chart, the pie is split according to the percent frequencies for each class."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Percent Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Percent Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var relfreq = counts.map( function(value) {
         return value / tot;
@@ -292,11 +314,11 @@ function pie(){
     } );
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(perfreq[r].toFixed(1)) + "</td>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + parseFloat(perfreq[r].toFixed(1)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ "100" +"</td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td></tr>";
     
     var relfreq = counts.map( function(value) {
         return value / tot;
@@ -321,10 +343,23 @@ function pie(){
       }
     
     document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    
+    MathJax.typeset();
 
 }
 
 function histogram(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Histograms require quantitative data.<br>Try a bar chart or pie chart instead."
+    } else {
+        calchistogram()
+    }
+}
+
+function calchistogram(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for quantitative data."
     $("#myCanvas").show();
@@ -395,6 +430,17 @@ function calccum(){
 }
 
 function cumfrequency(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Cumulative frequency distributions require quantitative data.<br> Try a frequency distribution instead."
+    } else {
+        cumfrequency2()()
+    }
+}
+
+function cumfrequency2(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "Table showing the number of items less than or equal to the upper limit of each class."
     $("#descumfrequency").show();
@@ -430,6 +476,17 @@ function cumfrequency(){
 }
 
 function cumrelative(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Cumulative relative frequency distributions require quantitative data.<br> Try a relative frequency distribution instead."
+    } else {
+        cumrelative2()()
+    }
+}
+
+function cumrelative2(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = ""
     $("#descumrelative").show();
@@ -468,6 +525,17 @@ function cumrelative(){
 }
 
 function cumpercent(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Cumulative percent frequency distributions require quantitative data.<br> Try a percent frequency distribution instead."
+    } else {
+        cumpercent2()()
+    }
+}
+
+function cumpercent2(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = ""
     $("#descumpercent").show();
