@@ -464,7 +464,7 @@ function stdevpop(){
 
 function cv(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The coefficient of variation does something."
+    document.getElementById("explanationtext").innerHTML = "The coefficient of variation is the ratio of the standard deviation to the mean as a percentage."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);

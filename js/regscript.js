@@ -397,7 +397,7 @@ function ssr(){
 
 function rsquared(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The coefficient of determination measures is the ratio of the SSR to the SST."
+    document.getElementById("explanationtext").innerHTML = "The coefficient of determination is the ratio of the SSR to the SST."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -555,7 +555,7 @@ function calcmeansquare() {
 
 function mse(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the SSE divided by n minus the number of estimated parameters."
+    document.getElementById("explanationtext").innerHTML = "The mean square error is the SSE divided by difference between the sample size and the number of estimated parameters."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -791,7 +791,8 @@ function tstat(){
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
     var anststat = ansslope / ansses; var anststatneg = -Math.abs(anststat)
     var zptwo = normalcdf(anststatneg); var zptwo2 = 2 * zptwo;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= \\boxed{" + anststat.toFixed(2) +"} \\end{align} $$ $$ \\begin{align} \\text{p-value}&=2*P(t \\leq "+anststatneg.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+"\\leq \\alpha = .05 $$ $$ \\textbf{Conclusion:} \\text{ There is a significant linear relationship between x and y} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= \\boxed{" + anststat.toFixed(2) +"} \\end{align} $$"
+    //document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= \\boxed{" + anststat.toFixed(2) +"} \\end{align} $$ $$ \\begin{align} \\text{p-value}&=2*P(t \\leq "+anststatneg.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+"\\leq \\alpha = .05 $$ $$ \\textbf{Conclusion:} \\text{ There is a significant linear relationship between x and y} $$"
     MathJax.typeset();
 }
 

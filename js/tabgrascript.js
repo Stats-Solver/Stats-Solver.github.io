@@ -142,7 +142,7 @@ function stat(){
 
 function frequency(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Frequency is the number of items in a class."
+    document.getElementById("explanationtext").innerHTML = "The frequency of a class is the number of items in that class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -223,7 +223,7 @@ function bar(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        document.getElementById("output").innerHTML = "Bar charts require qualitative data.<br>Try a histogram instead."
+        document.getElementById("output").innerHTML = "Bar charts require qualitative data."
     } else {
         calcbar()
     }
@@ -289,7 +289,7 @@ function pie(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        document.getElementById("output").innerHTML = "Pie charts require qualitative data.<br>Try a histogram instead."
+        document.getElementById("output").innerHTML = "Pie charts require qualitative data."
     } else {
         calcpie()
     }
@@ -353,7 +353,7 @@ function histogram(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Histograms require quantitative data.<br>Try a bar chart or pie chart instead."
+        document.getElementById("output").innerHTML = "Histograms require quantitative data."
     } else {
         calchistogram()
     }
@@ -361,7 +361,7 @@ function histogram(){
 
 function calchistogram(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "Graphical representation of frequency distribution for quantitative data."
+    document.getElementById("explanationtext").innerHTML = "In a histogram, a bar is drawn to the frequency for eachh class."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each = str.split(","); 
@@ -434,7 +434,7 @@ function cumfrequency(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Cumulative frequency distributions require quantitative data.<br> Try a frequency distribution instead."
+        document.getElementById("output").innerHTML = "Cumulative frequency distributions require quantitative data."
     } else {
         cumfrequency2()()
     }
@@ -442,7 +442,7 @@ function cumfrequency(){
 
 function cumfrequency2(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Table showing the number of items less than or equal to the upper limit of each class."
+    document.getElementById("explanationtext").innerHTML = "A cumulative frequency distribution gives the number of items less than or equal to the upper limit of each class."
     $("#descumfrequency").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -480,7 +480,7 @@ function cumrelative(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Cumulative relative frequency distributions require quantitative data.<br> Try a relative frequency distribution instead."
+        document.getElementById("output").innerHTML = "Cumulative relative frequency distributions require quantitative data."
     } else {
         cumrelative2()()
     }
@@ -488,7 +488,7 @@ function cumrelative(){
 
 function cumrelative2(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = ""
+    document.getElementById("explanationtext").innerHTML = "A cumulative frequency distribution gives the proportion of items less than or equal to the upper limit of each class."
     $("#descumrelative").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -529,7 +529,7 @@ function cumpercent(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Cumulative percent frequency distributions require quantitative data.<br> Try a percent frequency distribution instead."
+        document.getElementById("output").innerHTML = "Cumulative percent frequency distributions require quantitative data."
     } else {
         cumpercent2()()
     }
@@ -537,7 +537,7 @@ function cumpercent(){
 
 function cumpercent2(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = ""
+    document.getElementById("explanationtext").innerHTML = "A cumulative percent frequency distribution gives the percentage of items less than or equal to the upper limit of each class."
     $("#descumpercent").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -608,7 +608,7 @@ function scatter(){
 
 function calcscatt(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "Graphical representation of data for two quantitative variables."
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
