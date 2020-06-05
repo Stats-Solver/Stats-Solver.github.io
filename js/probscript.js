@@ -8,7 +8,7 @@ function factorial(n) {
 
 function showstuff(){
     $("#combperm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
-    $("#intersection2").hide(); $("#conditional2").hide(); $("#unionn2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
+    $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
     $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();

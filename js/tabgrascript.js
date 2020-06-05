@@ -473,8 +473,6 @@ function calcbar(){
       chart.draw(data, options);
     }
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
-    
     MathJax.typeset();
 }
 
@@ -535,8 +533,6 @@ function calcpie(){
 
         chart.draw(data);
       }
-    
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 
@@ -749,7 +745,8 @@ function cumrelative2(){
     }
     
     var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Relative Frequency}$</td><td>$\\text{Relative Frequency}$</td></tr>";
+    table = table + "<tr><td></td><td>$\\text{Relative}$</td><td style='padding: 0px 0px'>$\\text{Relative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     
 
