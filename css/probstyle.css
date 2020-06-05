@@ -58,3 +58,8 @@ footer {
 .examplelink:hover {
      text-decoration:underline;
 }
+
+.prob{
+    width: 40px;
+    background-color: white;
+}

@@ -1,12 +1,14 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#combperm").hide(); $("#complement").hide();
+$("#combperm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
+$("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
 
 function factorial(n) {
   return (n != 1) ? n * factorial(n - 1) : 1;
 }
 
 function showstuff(){
-    $("#combperm").hide(); $("#complement").hide();
+    $("#combperm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
+    $("#intersection2").hide(); $("#conditional2").hide(); $("#unionn2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
     $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
@@ -41,13 +43,13 @@ function stat(){
     } else if (x == "permutations"){
         compperm()
     } else if (x == "complement") {
-        complement()
+        compcomp()
     } else if (x == "union") {
-        union()
+        compunion()
     } else if (x == "intersection") {
-        intersection()
+        compintersection()
     } else if (x == "conditional") {
-        conditional()
+        compconditional()
     } else if (x == "bayes") {
         bayes()
     } else{
@@ -126,18 +128,131 @@ function compperm() {
 
 function complement() {
     $("#complement").show();
-    
 }
 
+function compcomp() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ P(A) + P(A^c) = 1 $$"
+    var probac = document.getElementById("probcomp").value;
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
+    MathJax.typeset();
+}
 
+function union() {
+    $("#union").show();
+}
+
+function compunion() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "If the events are mutually exclusive, the probably of the intersection of A and B is zero."
+    var proba = document.getElementById("proba").value;
+    var probb = document.getElementById("probb").value;
+    var probaib = document.getElementById("probaib").value;
+    var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\ &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
+    MathJax.typeset();
+}
+
+function intersection() {
+    $("#intersection").show();
+}
+
+function compintersection() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "If the events are independent, the probably of A given B is A and the probability of B given A is B."
+    var probb = document.getElementById("probb2").value;
+    var probagivb = document.getElementById("probagivb").value;
+    var ans = parseFloat(probb) * parseFloat(probagivb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(B \\mid A) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    MathJax.typeset();
+}
+
+function conditional() {
+    $("#conditional").show();
+}
+
+function compconditional() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "The probability of A given B is the probability of the intersection of A and B divided by the probability of B."
+    var probb = document.getElementById("probb3").value;
+    var probaib = document.getElementById("probaib2").value;
+    var ans = parseFloat(probb) / parseFloat(probaib);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
+    MathJax.typeset();
+}
 
 function examplecombperm(){
     document.getElementById('topn').value="5"
     document.getElementById('bottomn').value="2"
 }
 
-function examplecombperm2(){
-    document.getElementById('topn').value="6"
-    document.getElementById('bottomn').value="3"
+function examplecomplement(){
+    document.getElementById('probcomp').value=".80"
 }
 
+function exampleunion(){
+    document.getElementById('proba').value=".10"
+    document.getElementById('probb').value=".12"
+    document.getElementById("probaib").value=".04"
+    document.getElementById('probaa').value=".10"
+    document.getElementById('probbb').value=".12"
+}
+
+function exampleintersection(){
+    document.getElementById('probb2').value=".84"
+    document.getElementById("probagivb").value=".75"
+    document.getElementById('probb22').value=".84"
+    document.getElementById("probagivbb").value=".75"
+}
+
+function exampleconditional(){
+    document.getElementById('probb3').value=".80"
+    document.getElementById("probaib2").value=".24"
+    document.getElementById('probb33').value=".80"
+    document.getElementById("probaib22").value=".24"
+}
+
+function switchint(){
+    $("#intersection").hide();
+    $("#intersection2").show();
+}
+
+function switchint2(){
+    $("#intersection").show();
+    $("#intersection2").hide();
+}
+
+function switchconditional(){
+    $("#conditional").hide();
+    $("#conditional2").show();
+}
+
+function switchconditional2(){
+    $("#conditional").show();
+    $("#conditional2").hide();
+}
+
+function switchint(){
+    $("#intersection").hide();
+    $("#intersection2").show();
+}
+
+function switchunion(){
+    $("#union").hide();
+    $("#union2").show();
+}
+
+function switchunion2(){
+    $("#union").show();
+    $("#union2").hide();
+}
+
+function switchint3(){
+    $("#intersection3").hide();
+    $("#intersection4").show();
+}
+
+function switchint4(){
+    $("#intersection3").show();
+    $("#intersection4").hide();
+}
