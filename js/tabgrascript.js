@@ -417,7 +417,7 @@ function bar(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        document.getElementById("output").innerHTML = "Bar charts require qualitative data."
+        document.getElementById("output").innerHTML = "Bar charts require <span class='examplelink' onclick='examplexvalues()'>qualitative data</span>."
     } else {
         calcbar()
     }
@@ -458,7 +458,7 @@ function calcbar(){
         ['Class', 'Frequency'],
         [x[0], y[0]],
         [x[1], y[1]],
-        [x[2], y[2]]
+        [x[2], y[2]],
       ]);
 
       var options = {
@@ -483,7 +483,7 @@ function pie(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        document.getElementById("output").innerHTML = "Pie charts require qualitative data."
+        document.getElementById("output").innerHTML = "Pie charts require <span class='examplelink' onclick='examplexvalues()'>qualitative data</span>."
     } else {
         calcpie()
     }
@@ -547,7 +547,7 @@ function histogram(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Histograms require quantitative data."
+        document.getElementById("output").innerHTML = "Histograms require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
     } else {
         calchistogram()
     }
@@ -628,7 +628,7 @@ function cumfrequency(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Cumulative frequency distributions require quantitative data."
+        document.getElementById("output").innerHTML = "Cumulative frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
     } else {
         cumfrequency2()()
     }
@@ -646,25 +646,53 @@ function cumfrequency2(){
     for (let i=1; i<counts.length; i++) {
         cumcounts[i] = cumcounts[i-1] + counts[i]
     }
-    var table = "<tr>" + "<td></td>" + "<td></td>" +"<td style='padding: 0px 0px'>" + "Cumulative" + "</td>" + "</tr>";
-    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Frequency" + "</td>" +"<td>" + "Frequency" + "</td>" + "</tr>";
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    for (var i=0; i<4; i++) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var quants = [];
+    for (var i=0; i<4; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    let cumquants = [quants[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumquants[i] = cumquants[i-1] + quants[i]
+    }
+    
+    
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < 1; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
-        table += "<td>" + cumcounts[r] + "</td>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + cumquants[r] + "$</td>";
         table += "</tr>";
     }
-    for (var r = 1; r < rows; r++){
+    for (var r = 1; r < 4; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
-        table += "<td>" + cumcounts[r-1] + " + " + counts[r] +" = " + cumcounts[r] + "</td>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + cumquants[r-1] + " + " + quants[r] +" = " + cumquants[r] + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td>"+ tot +"</td>" + "<td> - </td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td> $-$ </td></tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -674,7 +702,7 @@ function cumrelative(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Cumulative relative frequency distributions require quantitative data."
+        document.getElementById("output").innerHTML = "Cumulative relative frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
     } else {
         cumrelative2()()
     }
@@ -688,32 +716,63 @@ function cumrelative2(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td></td>" +"<td></td>" + "<td style='padding: 0px 0px'>" + "Cumulative" + "</td>" + "</tr>";
-    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" +"<td>" + "Relative Frequency" + "</td>" + "<td>" + "Relative Frequency" + "</td>" + "</tr>";
-    var rows = len; var cols = 2;
     var tot = sum(counts);
-    var relfreq = counts.map( function(value) {
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    for (var i=0; i<4; i++) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var quants = [];
+    for (var i=0; i<4; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
         return value / tot;
     } );
-    let cumrelfreq = [relfreq[0]]
-    for (let i=1; i<counts.length; i++) {
-        cumrelfreq[i] = cumrelfreq[i-1] + relfreq[i]
+    
+    let cumquants = [quants[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumquants[i] = cumquants[i-1] + quants[i]
     }
+    
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Relative Frequency}$</td><td>$\\text{Relative Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    
+
+    let cumrel = [rel[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumrel[i] = cumrel[i-1] + rel[i]
+    }
+    
     for (var r = 0; r < 1; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + "</td>";
-        table += "<td>" + parseFloat(cumrelfreq[r].toFixed(2)) + "</td>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    for (var r = 1; r < rows; r++){
+    for (var r = 1; r < 4; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(relfreq[r].toFixed(2)) + "</td>";
-        table += "<td>" + parseFloat(cumrelfreq[r-1].toFixed(2))+ " + " + parseFloat(relfreq[r].toFixed(2)) + " = " + parseFloat(cumrelfreq[r].toFixed(2)) + "</td>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(cumrel[r-1].toFixed(2))+ " + " + parseFloat(rel[r].toFixed(2)) + " = " + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td> 1 </td>" + "<td> - </td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$-$</td></tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -723,7 +782,7 @@ function cumpercent(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == false) {
-        document.getElementById("output").innerHTML = "Cumulative percent frequency distributions require quantitative data."
+        document.getElementById("output").innerHTML = "Cumulative percent frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
     } else {
         cumpercent2()()
     }
@@ -737,35 +796,58 @@ function cumpercent2(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td></td>" + "<td></td>" +"<td style='padding: 0px 0px'>" + "Cumulative" + "</td>" + "</tr>";
-    table = table + "<tr style='border-bottom: thin solid'>" + "<td>" + "Class" + "</td>" + "<td>" + "Percent Frequency" + "</td>" +"<td>" + "Percent Frequency" + "</td>" + "</tr>";
-    var rows = len; var cols = 2;
     var tot = sum(counts);
-    var relfreq = counts.map( function(value) {
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    for (var i=0; i<4; i++) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var quants = [];
+    for (var i=0; i<4; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
         return value / tot;
     } );
-    var perfreq = relfreq.map( function(value) {
+    
+    var per = rel.map( function(value) {
         return value * 100;
     } );
-    let cumperfreq = [perfreq[0]]
-    for (let i=1; i<counts.length; i++) {
-        cumperfreq[i] = cumperfreq[i-1] + perfreq[i]
+    
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Percent Frequency}$</td><td>$\\text{Percent Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    
+    let cumper = [per[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumper[i] = cumper[i-1] + per[i]
     }
+    
     for (var r = 0; r < 1; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(perfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + classlimits[r] + "</td>";
+        table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
         table += "<td>" + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    for (var r = 1; r < rows; r++){
+    for (var r = 1; r < 4; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + parseFloat(perfreq[r].toFixed(2)) + "</td>";
-        table += "<td>" + parseFloat(cumperfreq[r-1].toFixed(2)) + " + " + parseFloat(perfreq[r].toFixed(2)) + " = " + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
+        table += "<td>" + classlimits[r] + "</td>";
+        table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumper[r-1].toFixed(2)) + " + " + parseFloat(per[r].toFixed(2)) + " = " + parseFloat(cumper[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "Total" + "</td>" + "<td> 100 </td>" + "<td> - </td>" + "</tr>";
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td><td>$-$</td></tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
