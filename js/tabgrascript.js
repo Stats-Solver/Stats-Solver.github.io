@@ -141,6 +141,17 @@ function stat(){
 }
 
 function frequency(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        frequencyquant()
+    } else {
+        frequencyqual()
+    }
+}
+
+function frequencyqual(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The frequency of a class is the number of items in that class."
     $("#desfrequency").show(); $("#expfrequency").show();
@@ -162,7 +173,63 @@ function frequency(){
     MathJax.typeset();
 }
 
+function frequencyquant(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "The frequency of a class is the number of items in that class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    for (var i=0; i<4; i++) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var quants = [];
+    for (var i=0; i<4; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < 4; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + classlimits[r] + "}$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
 function relative(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        relativequant()
+    } else {
+        relativequal()
+    }
+}
+
+function relativequal(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
     $("#desrelative").show(); $("#exprelative").show();
@@ -170,8 +237,8 @@ function relative(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr>" + "<td></td>" + "<td></td>" + "<td>" + "Relative" + "</td>" + "</tr>";
-    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Relative Frequency}$</td></tr>";
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -189,7 +256,72 @@ function relative(){
     MathJax.typeset();
 }
 
+function relativequant(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    $("#desrelative").show(); $("#exprelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    for (var i=0; i<4; i++) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var quants = [];
+    for (var i=0; i<4; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    for (var r = 0; r < 4; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + classlimits[r] + "}$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + quants[r]+ "\\mathbin{/}" + tot + "=" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td>$1$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
 function percent(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        percentquant()
+    } else {
+        percentqual()
+    }
+}
+
+function percentqual(){
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
     $("#despercent").show();
@@ -197,7 +329,8 @@ function percent(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Relative Frequency}$</td><td>$\\text{Percent Frequency}$</td></tr>";
+    var table = "<tr><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -211,6 +344,67 @@ function percent(){
         table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
         table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
         table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "\\times 100 = "+ parseFloat(perfreq[r].toFixed(1)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function percentquant(){
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    $("#despercent").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
+    
+    var value1 = minvalue;
+    var value2 = minvalue + classwidth - 1;
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    for (var i=0; i<4; i++) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+    }
+    
+    var quants = [];
+    for (var i=0; i<4; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    var per = rel.map( function(value) {
+        return value * 100;
+    } );
+    
+    for (var r = 0; r < 4; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + classlimits[r] + "}$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "\\times 100 = "+ parseFloat(per[r].toFixed(1)) + "$</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
