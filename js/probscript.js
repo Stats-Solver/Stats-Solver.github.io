@@ -169,17 +169,37 @@ function compintersection() {
 
 function conditional() {
     $("#conditional").show();
+    var conditionaltype = "a";
 }
 
 function compconditional() {
+    if (conditionaltype = "a"){
+        compconditional1()
+    } else {
+        compconditional2()
+    }
+}
+
+function compconditional1() {
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The probability of A given B is the probability of the intersection of A and B divided by the probability of B."
     var probb = document.getElementById("probb3").value;
     var probaib = document.getElementById("probaib2").value;
-    var ans = parseFloat(probb) / parseFloat(probaib);
+    var ans = parseFloat(probaib) / parseFloat(probb);
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
     MathJax.typeset();
 }
+
+function compconditional2() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "The probability of A given B is the probability of the intersection of A and B divided by the probability of B."
+    var probb = document.getElementById("probb33").value;
+    var probaib = document.getElementById("probaib22").value;
+    var ans = parseFloat(probaib) / parseFloat(probb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(B \\mid A) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
+    MathJax.typeset();
+}
+
 
 function examplecombperm(){
     document.getElementById('topn').value="5"
@@ -208,6 +228,9 @@ function exampleintersection(){
 function exampleconditional(){
     document.getElementById('probb3').value=".80"
     document.getElementById("probaib2").value=".24"
+}
+
+function exampleconditional2(){
     document.getElementById('probb33').value=".80"
     document.getElementById("probaib22").value=".24"
 }
@@ -225,11 +248,13 @@ function switchint2(){
 function switchconditional(){
     $("#conditional").hide();
     $("#conditional2").show();
+    var conditionaltype = "b";
 }
 
 function switchconditional2(){
     $("#conditional").show();
     $("#conditional2").hide();
+    var conditionaltype = "a";
 }
 
 function switchint(){

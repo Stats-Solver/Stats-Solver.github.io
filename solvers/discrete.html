@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="/css/probstyle.css">
+
+                         <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>  
+      
+    <title>Stats Solver</title>
+  </head>
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/index.html">Stats Solver <sup class="text-primary">beta</sup></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+          </li>
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Solvers
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
+              <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="probability.html">Probability Basics</a>
+                <a class="dropdown-item" href="discrete.html">Discrete Distributions</a>
+              <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="regression.html">Simple Regression</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+          </div>
+    
+      
+    <div class = "container">
+        <h2 class="page-header text-center mt-2"><a href="probability.html">Discrete Distributions</a></h2>
+    </div>
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-md-3">
+                <select id="stat" class="form-control" onchange="showstuff()">
+                    <option value="choose">Choose One</option>
+                    <option value="combinations">Expected Value</option>
+                    <option value="permutations">Variance</option>
+                    <option value="complement">Standard Deviation</option>
+                    <option value="union">Discrete Uniform Distribution</option>
+                    <option value="intersection">Binomial Distribution</option>
+                    <option value="conditional">Poisson Distribution</option>
+                    <option value="bayes">Hypergeometric Distribution</option>
+                </select>
+                </div>
+                <div class="col-4 col-md-2">
+                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+                </div> 
+            </div>
+        </div>
+      
+      
+      <div class="container mt-3" id="combperm">
+        <table>
+          <tr>
+            <td rowspan="2"><span id="comb"><font size="+3">C</font></span><span id="perm"><font size="+3">P</font></span></td>
+            <td><input class = "combperm" type="text" id="topn" placeholder="N"></td>
+          </tr>
+            <tr>
+            <td><input class = "combperm" type="text" id="bottomn" placeholder="n"></td>
+          </tr>
+        </table> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplecombperm()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="complement">
+        <table>
+          <tr>
+            <td>$P(A^c)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probcomp"></td>
+        </table> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplecomplement()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="union">
+        <table>
+          <tr>
+            <td>$P(A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="proba"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb"></td>
+            </tr>
+        </table> 
+          
+          <table class = "mt-2">
+          <tr>
+            <tr>
+              <td>$P(A \cap B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probaib"></td>
+                </tr>
+        </table> 
+          <div class="text-center mt-2">
+          <button id = "switch" class="btn btn-outline-primary" onclick="switchunion()">Mutually Exclusive</button>
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleunion()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="union2">
+        <table>
+          <tr>
+            <td>$P(A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probaa"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probbb"></td>
+        </table> 
+          <div class="text-center mt-2">
+          <button id = "switch" class="btn btn-outline-primary" onclick="switchunion2()">Not Mutually Exclusive</button>
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleunion()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="intersection">
+        <table>
+          <tr>
+            <td>$P(B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb2"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(A \mid B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probagivb"></td>
+              <td>&nbsp; &nbsp;</td>
+             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg> </button> </td>
+        </table> 
+          <div class="text-center mt-2">
+          <button id = "switch" class="btn btn-outline-primary" onclick="">Independent</button>
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleintersection()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="intersection2">
+        <table>
+          <tr>
+            <td>$P(A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb22"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(B \mid A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probagivbb"></td>
+              <td>&nbsp; &nbsp;</td>
+             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg> </button> </td>
+        </table> 
+          <div class="text-center mt-2">
+          <button id = "switch" class="btn btn-outline-primary" onclick="">Independent</button>
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleintersection()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="intersection3">
+        <table>
+          <tr>
+            <td>$P(B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb2"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(A \mid B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probagivb"></td>
+              <td>&nbsp; &nbsp;</td>
+             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg> </button> </td>
+        </table> 
+          <div class="text-center mt-2">
+          <button id = "switch" class="btn btn-outline-primary" onclick="">Not Independent</button>
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleintersection()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="intersection4">
+        <table>
+          <tr>
+            <td>$P(A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb22"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(B \mid A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probagivbb"></td>
+              <td>&nbsp; &nbsp;</td>
+             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg> </button> </td>
+        </table> 
+          <div class="text-center mt-2">
+          <button id = "switch" class="btn btn-outline-primary" onclick="">Not Independent</button>
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleintersection()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="conditional">
+        <table>
+          <tr>
+            <td>$P(B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb3"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(A \cap B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probaib2"></td>
+            <td>&nbsp; &nbsp;</td>
+             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchconditional()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg> </button> </td>
+        </table> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleconditional()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="conditional2">
+        <table>
+          <tr>
+            <td>$P(A)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb33"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(A \cap B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probaib22"></td>
+            <td>&nbsp; &nbsp;</td>
+             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchconditional2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
+  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+</svg> </button> </td>
+        </table> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleconditional()">Example</span>
+        </div>
+          </div>
+      
+      
+      
+      
+    <div class="container">
+      <hr>
+          </div>
+      
+     <div class="container">
+        <div id="output">
+        </div>
+      </div>
+      
+      <div class="container text-center">
+      <canvas id="myCanvas" width="300" height="150" ></canvas>
+      </div>
+      
+      <div class="container" id="explanation">
+      <p  class="text-center">
+      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Explanation
+      </a>
+    </p>
+    <div class="collapse" id="collapseExample">
+      <div class="card card-body" id="explanationtext">
+
+      </div>
+    </div>
+          </div>
+      
+      <!--<div class="container text-center">
+        <div id="expconf" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
+        </div>
+      </div>-->
+      
+          <footer id="footer">
+              <div class="container">
+                <hr>
+            </div>
+          <p> <svg class="bi bi-envelope" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M14 3H2a1 1 0 00-1 1v8a1 1 0 001 1h12a1 1 0 001-1V4a1 1 0 00-1-1zM2 2a2 2 0 00-2 2v8a2 2 0 002 2h12a2 2 0 002-2V4a2 2 0 00-2-2H2z" clip-rule="evenodd"/>
+              <path fill-rule="evenodd" d="M.071 4.243a.5.5 0 01.686-.172L8 8.417l7.243-4.346a.5.5 0 01.514.858L8 9.583.243 4.93a.5.5 0 01-.172-.686z" clip-rule="evenodd"/>
+              <path d="M6.752 8.932l.432-.252-.504-.864-.432.252.504.864zm-6 3.5l6-3.5-.504-.864-6 3.5.504.864zm8.496-3.5l-.432-.252.504-.864.432.252-.504.864zm6 3.5l-6-3.5.504-.864 6 3.5-.504.864z"/>
+                </svg>
+          <a href="mailto:contact@statssolver.com">contact@statssolver.com</a></p>
+          </footer>
+      
+      
+    <!--  style="border:1px solid #d3d3d3;"-->
+    <!-- <div style = "height: 400px"></div>-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script src="/js/discscript.js"></script>
+  </body>
+</html>
