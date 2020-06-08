@@ -53,6 +53,7 @@
               <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
               <a class="dropdown-item" href="probability.html">Probability Basics</a>
+              <a class="dropdown-item" href="discrete.html">Discrete Distributions</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="regression.html">Simple Regression</a>
@@ -80,13 +81,14 @@
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()">
                     <option value="choose">Choose One</option>
+                    <option value="experiments">Experiments</option>
                     <option value="combinations">Combinations</option>
                     <option value="permutations">Permutations</option>
                     <option value="complement">Complement</option>
                     <option value="union">Union</option>
                     <option value="intersection">Intersection</option>
                     <option value="conditional">Conditional Probability</option>
-                    <!--<option value="bayes">Bayes Theorem</option>-->
+                    <option value="bayes">Bayes Theorem</option>
                 </select>
                 </div>
                 <div class="col-4 col-md-2">
@@ -95,11 +97,30 @@
             </div>
         </div>
       
+      <div class="container mt-3" id="experiments">
+        <div class="row justify-content-center">
+            <div class="col-6 col-md-2">
+                <select id="exptype" class="form-control" onchange="">
+                    <option value="choose">Experiment Type</option>
+                    <option value="coin">Tossing Coin</option>
+                    <option value="dice">Rolling Dice</option>
+                </select>
+                </div>
+            <div class="col-4 col-md-2">
+                <select id="exptimes" class="form-control" onchange="">
+                    <option value="choose">Number of Times</option>
+                    <option value="one">One</option>
+                    <option value="two">Two</option>
+                </select>
+                </div>
+            </div>
+        </div>
       
-      <div class="container mt-3" id="combperm">
+      
+      <div class="container mt-3" id="comb">
         <table>
           <tr>
-            <td rowspan="2"><span id="comb"><font size="+3">C</font></span><span id="perm"><font size="+3">P</font></span></td>
+            <td rowspan="2"><font size="+3">C</font></td>
             <td><input class = "combperm" type="text" id="topn" placeholder="N"></td>
           </tr>
             <tr>
@@ -107,7 +128,22 @@
           </tr>
         </table> 
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplecombperm()">Example</span>
+            <span class="examplelink" onclick="examplecomb()">Example</span>
+        </div>
+          </div>
+      
+      <div class="container mt-3" id="perm">
+        <table>
+          <tr>
+            <td rowspan="2"><font size="+3">P</font></td>
+            <td><input class = "combperm" type="text" id="topnp" placeholder="N"></td>
+          </tr>
+            <tr>
+            <td><input class = "combperm" type="text" id="bottomnp" placeholder="n"></td>
+          </tr>
+        </table> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleperm()">Example</span>
         </div>
           </div>
       
@@ -176,11 +212,11 @@
           <tr>
             <td>$P(B)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb2"></td>
+            <td><input class = "prob" type="text" id="iprobb"></td>
               <td>&nbsp; &nbsp;</td>
               <td>$P(A \mid B)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probagivb"></td>
+            <td><input class = "prob" type="text" id="iprobagivb"></td>
               <td>&nbsp; &nbsp;</td>
              <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
@@ -189,7 +225,7 @@
 </svg> </button> </td>
         </table> 
           <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="">Independent</button>
+          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep()">Independent</button>
               </div>
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="exampleintersection()">Example</span>
@@ -201,11 +237,11 @@
           <tr>
             <td>$P(A)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb22"></td>
+            <td><input class = "prob" type="text" id="iproba"></td>
               <td>&nbsp; &nbsp;</td>
               <td>$P(B \mid A)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probagivbb"></td>
+            <td><input class = "prob" type="text" id="iprobbgiva"></td>
               <td>&nbsp; &nbsp;</td>
              <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
   <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
@@ -214,7 +250,7 @@
 </svg> </button> </td>
         </table> 
           <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="">Independent</button>
+          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep2()">Independent</button>
               </div>
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="exampleintersection()">Example</span>
@@ -226,20 +262,16 @@
           <tr>
             <td>$P(B)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb2"></td>
+            <td><input class = "prob" type="text" id="iprobb2"></td>
               <td>&nbsp; &nbsp;</td>
-              <td>$P(A \mid B)$</td>
+              <td>$P(A)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probagivb"></td>
+            <td><input class = "prob" type="text" id="iproba2"></td>
               <td>&nbsp; &nbsp;</td>
-             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button> </td>
+             <td> </td>
         </table> 
           <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="">Not Independent</button>
+          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep3()">Not Independent</button>
               </div>
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="exampleintersection()">Example</span>
@@ -251,20 +283,16 @@
           <tr>
             <td>$P(A)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb22"></td>
+            <td><input class = "prob" type="text" id="iprobaa3"></td>
               <td>&nbsp; &nbsp;</td>
-              <td>$P(B \mid A)$</td>
+              <td>$P(B)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probagivbb"></td>
+            <td><input class = "prob" type="text" id="iprobab3"></td>
               <td>&nbsp; &nbsp;</td>
-             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button> </td>
+             <td> </td>
         </table> 
           <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="">Not Independent</button>
+          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep4()">Not Independent</button>
               </div>
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="exampleintersection()">Example</span>
@@ -315,7 +343,35 @@
         </div>
           </div>
       
-      
+      <div class="container mt-3" id="bayes">
+        <table>
+          <tr>
+            <td>$P(A_1)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="proba1"></td>
+              <td>&nbsp; &nbsp;</td>
+              <td>$P(B \mid A_1)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probbgiva1"></td>
+            </tr>
+        </table> 
+          
+          <table class = "mt-2">
+          <tr>
+            <tr>
+              <td>$P(A_2)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="proba2"></td>
+                <td>&nbsp; &nbsp;</td>
+                <td>$P(B \mid A_2)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probbgiva2"></td>
+                </tr>
+        </table> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplebayes()">Example</span>
+        </div>
+          </div>
       
       
     <div class="container">

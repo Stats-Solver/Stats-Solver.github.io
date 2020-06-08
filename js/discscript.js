@@ -1,5 +1,5 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#combperm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
+$("#expected").hide(); $("#variance").hide(); $("#standard").hide(); $("#intersection").hide(); $("#conditional").hide();
 $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
 
 function factorial(n) {
@@ -7,19 +7,19 @@ function factorial(n) {
 }
 
 function showstuff(){
-    $("#combperm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
+    $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); $("#intersection").hide(); $("#conditional").hide();
     $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
     $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
-    if (x == "combinations"){
-        combinations()
-    } else if (x == "permutations"){
-        permutations()
-    } else if (x == "complement") {
-        complement()
+    if (x == "expected"){
+        expected()
+    } else if (x == "variance"){
+        variance()
+    } else if (x == "standard") {
+        standard()
     } else if (x == "union") {
         union()
     } else if (x == "intersection") {
@@ -38,12 +38,12 @@ function showstuff(){
 function stat(){
     $("#output").empty(); $("#myCanvas").hide();
     var x = document.getElementById("stat").value;
-    if (x == "combinations"){
-        compcomb()
-    } else if (x == "permutations"){
-        compperm()
-    } else if (x == "complement") {
-        compcomp()
+    if (x == "expected"){
+        compexpected()
+    } else if (x == "variance"){
+        compvariance()
+    } else if (x == "standard") {
+        compstandard()
     } else if (x == "union") {
         compunion()
     } else if (x == "intersection") {
@@ -59,200 +59,92 @@ function stat(){
    
 }
 
-function combinations() {
-    $("#combperm").show(); $("#perm").hide(); $("#comb").show();
+function expected() {
+    $("#expected").show();
 
-    
 }
 
-function compcomb() {
+function compexpected() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ C^N_n = \\frac{N!}{n!(N-n)!} $$"
-    var topn = document.getElementById("topn").value;
-    var bottomn = document.getElementById("bottomn").value;
-    var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
-    var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
-    var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
-    if (bottomn >= topn - bottomn) {
-        denominator2 = denominator2 + bottomn + "!"
-        for (var r = 0; r < topn - bottomn; r++){
-            numerator2 += (topn - r)+"\\cdot"
-            denominator2 += "\\cdot" + (topn - bottomn - r)
-            numerator3 = numerator3 * (topn - r)
-        }
-        numerator2 = numerator2 + bottomn + "!"
-        var denominator3 = topbotfact
-        var ansval = numerator3 / denominator3;
-    } else {
-        for (var r = 0; r < bottomn; r++){
-            numerator2 += (topn - r)+"\\cdot"
-            denominator2 += (bottomn - r) + "\\cdot"
-            numerator3 = numerator3 * (topn - r)
-        }
-        numerator2 = numerator2 + (topn - bottomn) + "!"
-        denominator2 = denominator2 + (topn - bottomn) + "!"
-        var denominator3 = bottomnfact
-        var ansval = numerator3 / denominator3;
-    }
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} C^{"+topn+"}_{"+bottomn+"}&=\\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!} \\\\ &=\\frac{"+topn+"!}{"+denominator+"} \\\\ &=\\frac{"+numerator2+"}{"+denominator2+"} \\\\ &=\\frac{"+numerator3+"}{"+denominator3+"} \\\\ &= \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var ans = x1*f1 + x2*f2 + x3*f3;
+
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
+    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
+    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
+    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
+    table = table + "<tr><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+ 
+    document.getElementById("output").innerHTML = table + "$$ E(x) = " + parseFloat(ans.toFixed(2)) + "$$"
     MathJax.typeset();
 }
 
-function permutations() {
-    $("#combperm").show(); $("#comb").hide(); $("#perm").show();
+function variance() {
+    $("#variance").show();
 
-    
 }
 
-function compperm() {
+function compvariance() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ P^N_n = \\frac{N!}{(N-n)!} $$"
-    var topn = document.getElementById("topn").value;
-    var bottomn = document.getElementById("bottomn").value;
-    var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
-    var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
-    var denominator = (topn - bottomn) + "!";
-    for (var r = 0; r < bottomn; r++){
-        numerator2 += (topn - r)+"\\cdot"
-        numerator3 = numerator3 * (topn - r)
-    }
-    numerator2 = numerator2 + (topn - bottomn) + "!"
-    var denominator2 = (topn - bottomn) + "!"
-    var denominator3 = bottomnfact
-    var ansval = numerator3;
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P^{"+topn+"}_{"+bottomn+"}&=\\frac{"+topn+"!}{("+topn+"-"+bottomn+")!} \\\\ &=\\frac{"+topn+"!}{"+denominator+"} \\\\ &=\\frac{"+numerator2+"}{"+denominator2+"} \\\\ &= \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
+    var x1 = document.getElementById('x1v').value
+    var x2 = document.getElementById('x2v').value
+    var x3 = document.getElementById('x3v').value
+    var f1 = document.getElementById('f1v').value
+    var f2 = document.getElementById('f2v').value
+    var f3 = document.getElementById('f3v').value
+    var mu = x1*f1 + x2*f2 + x3*f3;
+    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
+
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
+    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
+    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
+    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
+    table = table + "<tr><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+ 
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = " + parseFloat(ans.toFixed(2)) + "$$"
     MathJax.typeset();
 }
 
-function complement() {
-    $("#complement").show();
+function standard() {
+    $("#standard").show();
+
 }
 
-function compcomp() {
+function compstandard() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ P(A) + P(A^c) = 1 $$"
-    var probac = document.getElementById("probcomp").value;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
+    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
+    var vr = document.getElementById('vr').value
+    var ans = Math.sqrt(vr);
+
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{" + vr + "} \\\\ &=" + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
     MathJax.typeset();
 }
 
-function union() {
-    $("#union").show();
+function exampleexpected(){
+    document.getElementById('x1').value="3"
+    document.getElementById('x2').value="6"
+    document.getElementById('x3').value="9"
+    document.getElementById('f1').value=".25"
+    document.getElementById('f2').value=".50"
+    document.getElementById('f3').value=".25"
 }
 
-function compunion() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are mutually exclusive, the probably of the intersection of A and B is zero."
-    var proba = document.getElementById("proba").value;
-    var probb = document.getElementById("probb").value;
-    var probaib = document.getElementById("probaib").value;
-    var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\ &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
-    MathJax.typeset();
+function examplevariance(){
+    document.getElementById('x1v').value="3"
+    document.getElementById('x2v').value="6"
+    document.getElementById('x3v').value="9"
+    document.getElementById('f1v').value=".25"
+    document.getElementById('f2v').value=".50"
+    document.getElementById('f3v').value=".25"
 }
 
-function intersection() {
-    $("#intersection").show();
-}
-
-function compintersection() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are independent, the probably of A given B is A and the probability of B given A is B."
-    var probb = document.getElementById("probb2").value;
-    var probagivb = document.getElementById("probagivb").value;
-    var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(B \\mid A) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
-    MathJax.typeset();
-}
-
-function conditional() {
-    $("#conditional").show();
-}
-
-function compconditional() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The probability of A given B is the probability of the intersection of A and B divided by the probability of B."
-    var probb = document.getElementById("probb3").value;
-    var probaib = document.getElementById("probaib2").value;
-    var ans = parseFloat(probb) / parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
-    MathJax.typeset();
-}
-
-function examplecombperm(){
-    document.getElementById('topn').value="5"
-    document.getElementById('bottomn').value="2"
-}
-
-function examplecomplement(){
-    document.getElementById('probcomp').value=".80"
-}
-
-function exampleunion(){
-    document.getElementById('proba').value=".10"
-    document.getElementById('probb').value=".12"
-    document.getElementById("probaib").value=".04"
-    document.getElementById('probaa').value=".10"
-    document.getElementById('probbb').value=".12"
-}
-
-function exampleintersection(){
-    document.getElementById('probb2').value=".84"
-    document.getElementById("probagivb").value=".75"
-    document.getElementById('probb22').value=".84"
-    document.getElementById("probagivbb").value=".75"
-}
-
-function exampleconditional(){
-    document.getElementById('probb3').value=".80"
-    document.getElementById("probaib2").value=".24"
-    document.getElementById('probb33').value=".80"
-    document.getElementById("probaib22").value=".24"
-}
-
-function switchint(){
-    $("#intersection").hide();
-    $("#intersection2").show();
-}
-
-function switchint2(){
-    $("#intersection").show();
-    $("#intersection2").hide();
-}
-
-function switchconditional(){
-    $("#conditional").hide();
-    $("#conditional2").show();
-}
-
-function switchconditional2(){
-    $("#conditional").show();
-    $("#conditional2").hide();
-}
-
-function switchint(){
-    $("#intersection").hide();
-    $("#intersection2").show();
-}
-
-function switchunion(){
-    $("#union").hide();
-    $("#union2").show();
-}
-
-function switchunion2(){
-    $("#union").show();
-    $("#union2").hide();
-}
-
-function switchint3(){
-    $("#intersection3").hide();
-    $("#intersection4").show();
-}
-
-function switchint4(){
-    $("#intersection3").show();
-    $("#intersection4").hide();
+function examplestandard(){
+    document.getElementById('vr').value="9"
 }
