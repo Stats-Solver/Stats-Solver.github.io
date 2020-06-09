@@ -1,14 +1,21 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#expected").hide(); $("#variance").hide(); $("#standard").hide(); $("#intersection").hide(); $("#conditional").hide();
-$("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
+$("#expected").hide(); $("#variance").hide(); $("#standard").hide();
+$("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
+$("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
+$("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
+$("#variance7").hide(); $("#variance8").hide(); $("#variance9").hide(); $("#variance10").hide();
+
 
 function factorial(n) {
   return (n != 1) ? n * factorial(n - 1) : 1;
 }
 
 function showstuff(){
-    $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); $("#intersection").hide(); $("#conditional").hide();
-    $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
+    $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); 
+    $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
+    $("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
+    $("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
+    $("#variance7").hide(); $("#variance8").hide(); $("#variance9").hide(); $("#variance10").hide();
     $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
@@ -148,3 +155,225 @@ function examplevariance(){
 function examplestandard(){
     document.getElementById('vr').value="9"
 }
+
+function make2(){
+    $("#expected2").show();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make3(){
+    $("#expected2").hide();
+    $("#expected").show();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make4(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").show();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make5(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").show();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make6(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").show();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make7(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").show();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make8(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").show();
+    $("#expected9").hide();
+    $("#expected10").hide();
+}
+
+function make9(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").show();
+    $("#expected10").hide();
+}
+
+function make10(){
+    $("#expected2").hide();
+    $("#expected").hide();
+    $("#expected4").hide();
+    $("#expected5").hide();
+    $("#expected6").hide();
+    $("#expected7").hide();
+    $("#expected8").hide();
+    $("#expected9").hide();
+    $("#expected10").show();
+}
+
+
+
+
+
+
+function make2v(){
+    $("#variance2").show();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make3v(){
+    $("#variance2").hide();
+    $("#variance").show();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make4v(){
+    $("#variance2").hide();
+    $("#variance").hide();
+    $("#variance4").show();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make5v(){
+    $("#variance2").hide();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").show();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make6v(){
+    $("#variance2").hide();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").show();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make7v(){
+    $("#variance2").hide();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").show();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make8v(){
+    $("#variance2").hide();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").show();
+    $("#variance9").hide();
+    $("#variance10").hide();
+}
+
+function make9v(){
+    $("#variance2").show();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").show();
+    $("#variance10").hide();
+}
+
+function make10v(){
+    $("#variance2").show();
+    $("#variance").hide();
+    $("#variance4").hide();
+    $("#variance5").hide();
+    $("#variance6").hide();
+    $("#variance7").hide();
+    $("#variance8").hide();
+    $("#variance9").hide();
+    $("#variance10").show();
+}
+
