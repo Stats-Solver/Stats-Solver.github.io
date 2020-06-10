@@ -4,10 +4,16 @@ $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expe
 $("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
 $("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
 $("#variance7").hide(); $("#variance8").hide(); $("#variance9").hide(); $("#variance10").hide();
+$("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
 
 
 function factorial(n) {
-  return (n != 1) ? n * factorial(n - 1) : 1;
+    if (n > 0) {
+        return (n != 1) ? n * factorial(n - 1) : 1;
+    } else if (n == 0) {
+        return 1
+    }
+  
 }
 
 function showstuff(){
@@ -16,6 +22,7 @@ function showstuff(){
     $("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
     $("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
     $("#variance7").hide(); $("#variance8").hide(); $("#variance9").hide(); $("#variance10").hide();
+    $("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
     $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
@@ -27,14 +34,14 @@ function showstuff(){
         variance()
     } else if (x == "standard") {
         standard()
-    } else if (x == "union") {
-        union()
-    } else if (x == "intersection") {
-        intersection()
-    } else if (x == "conditional") {
-        conditional()
-    } else if (x == "bayes") {
-        bayes()
+    } else if (x == "uniform") {
+        uniform()
+    } else if (x == "binomial") {
+        binomial()
+    } else if (x == "poisson") {
+        poisson()
+    } else if (x == "hypergeometric") {
+        hypergeometric()
     } else{
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
@@ -51,14 +58,14 @@ function stat(){
         compvariance()
     } else if (x == "standard") {
         compstandard()
-    } else if (x == "union") {
-        compunion()
-    } else if (x == "intersection") {
-        compintersection()
-    } else if (x == "conditional") {
-        compconditional()
-    } else if (x == "bayes") {
-        bayes()
+    } else if (x == "uniform") {
+        compuniform()
+    } else if (x == "binomial") {
+        compbinomial()
+    } else if (x == "poisson") {
+        comppoisson()
+    } else if (x == "hypergeometric") {
+        comphypergeometric()
     } else{
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
@@ -86,7 +93,7 @@ function compexpected() {
     table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
     table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
     table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
     document.getElementById("output").innerHTML = table + "$$ E(x) = " + parseFloat(ans.toFixed(2)) + "$$"
     MathJax.typeset();
@@ -113,7 +120,7 @@ function compvariance() {
     table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
     table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
     table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
-    table = table + "<tr><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
     document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = " + parseFloat(ans.toFixed(2)) + "$$"
     MathJax.typeset();
@@ -131,6 +138,169 @@ function compstandard() {
     var ans = Math.sqrt(vr);
 
     document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{" + vr + "} \\\\ &=" + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
+    MathJax.typeset();
+}
+
+function binomial() {
+    $("#binomial").show();
+
+}
+
+function compbinomial() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    var num = document.getElementById('numsuc').value
+    
+    var topn = trials;
+    var bottomn = num;
+    var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
+    var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
+    var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
+    if (bottomn >= topn - bottomn) {
+        denominator2 = denominator2 + bottomn + "!"
+        for (var r = 0; r < topn - bottomn; r++){
+            numerator2 += (topn - r)+"\\cdot"
+            denominator2 += "\\cdot" + (topn - bottomn - r)
+            numerator3 = numerator3 * (topn - r)
+        }
+        numerator2 = numerator2 + bottomn + "!"
+        var denominator3 = topbotfact
+        var ansval = numerator3 / denominator3;
+    } else {
+        for (var r = 0; r < bottomn; r++){
+            numerator2 += (topn - r)+"\\cdot"
+            denominator2 += (bottomn - r) + "\\cdot"
+            numerator3 = numerator3 * (topn - r)
+        }
+        numerator2 = numerator2 + (topn - bottomn) + "!"
+        denominator2 = denominator2 + (topn - bottomn) + "!"
+        var denominator3 = bottomnfact
+        var ansval = numerator3 / denominator3;
+    }
+    
+    var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(" + num + ") &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + (1-prob) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat((1-prob)**(trials-num).toFixed(2))+" \\\\ &= " + parseFloat(ans.toFixed(2))  + "   \\end{align} $$"
+    MathJax.typeset();
+}
+
+function poisson() {
+    $("#poisson").show();
+
+}
+
+function comppoisson() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ \\begin{align} f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
+    var ave = document.getElementById('meanocc').value;
+    var num = document.getElementById('numocc').value;
+    var exp = 2.71828;
+    
+    var ans = ((ave**num)*(exp**(-ave)))/factorial(num)
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(" + num + ") &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + (ave**num) + "\\times " + parseFloat((exp**(-ave)).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
+}
+
+function hypergeometric() {
+    $("#hypergeometric").show();
+
+}
+
+function comphypergeometric() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
+    var ntrials = document.getElementById('ntrials').value
+    var popsize = document.getElementById('popsize').value
+    var popsucc = document.getElementById('popsucc').value
+    var numsucc = document.getElementById('numsucc').value
+    
+    var topna = popsucc;
+    var bottomna = numsucc;
+    var bottomnfacta = factorial(bottomna); var topbotfacta = factorial(topna - bottomna);
+    var numerator2a = ""; var numerator3a = 1; var denominator3a = ""; 
+    var denominatora = bottomna + "!" + (topna - bottomna) + "!"; var denominator2a = ""
+    if (bottomna >= topna - bottomna) {
+        denominator2a = denominator2a + bottomna + "!"
+        for (var r = 0; r < topna - bottomna; r++){
+            numerator2a += (topna - r)+"\\cdot"
+            denominator2a += "\\cdot" + (topna - bottomna - r)
+            numerator3a = numerator3a * (topna - r)
+        }
+        numerator2a = numerator2a + bottomna + "!"
+        var denominator3a = topbotfacta
+        var ansvala = numerator3a / denominator3a;
+    } else {
+        for (var r = 0; r < bottomna; r++){
+            numerator2a += (topna - r)+"\\cdot"
+            denominator2a += (bottomna - r) + "\\cdot"
+            numerator3a = numerator3a * (topna - r)
+        }
+        numerator2a = numerator2a + (topna - bottomna) + "!"
+        denominator2a = denominator2a + (topna - bottomna) + "!"
+        var denominator3a = bottomnfacta
+        var ansvala = numerator3a / denominator3a;
+    }
+    
+    var topnb = popsize-popsucc;
+    var bottomnb = ntrials-numsucc;
+    var bottomnfactb = factorial(bottomnb); var topbotfactb = factorial(topnb - bottomnb);
+    var numerator2b = ""; var numerator3b = 1; var denominator3b = ""; 
+    var denominatorb = bottomnb + "!" + (topnb - bottomnb) + "!"; var denominator2b = ""
+    if (bottomnb >= topnb - bottomnb) {
+        denominator2b = denominator2b + bottomnb + "!"
+        for (var r = 0; r < topnb - bottomnb; r++){
+            numerator2b += (topnb - r)+"\\cdot"
+            denominator2b += "\\cdot" + (topnb - bottomnb - r)
+            numerator3b = numerator3b * (topnb - r)
+        }
+        numerator2b = numerator2b + bottomnb + "!"
+        var denominator3b = topbotfactb
+        var ansvalb = numerator3b / denominator3b;
+    } else {
+        for (var r = 0; r < bottomnb; r++){
+            numerator2b += (topnb - r)+"\\cdot"
+            denominator2b += (bottomnb - r) + "\\cdot"
+            numerator3b = numerator3b * (topnb - r)
+        }
+        numerator2b = numerator2b + (topnb - bottomnb) + "!"
+        denominator2b = denominator2b + (topnb - bottomnb) + "!"
+        var denominator3b = bottomnfactb
+        var ansvalb = numerator3b / denominator3b;
+    }
+    
+    var topnc = popsize;
+    var bottomnc = ntrials;
+    var bottomnfactc = factorial(bottomnc); var topbotfactc = factorial(topnc - bottomnc);
+    var numerator2c = ""; var numerator3c = 1; var denominator3c = ""; 
+    var denominatorc = bottomnc + "!" + (topnc - bottomnc) + "!"; var denominator2c = ""
+    if (bottomnc >= topnc - bottomnc) {
+        denominator2c = denominator2c + bottomnc + "!"
+        for (var r = 0; r < topnc - bottomnc; r++){
+            numerator2c += (topnc - r)+"\\cdot"
+            denominator2c += "\\cdot" + (topnc - bottomnc - r)
+            numerator3c = numerator3c * (topnc - r)
+        }
+        numerator2c = numerator2c + bottomnc + "!"
+        var denominator3c = topbotfactc
+        var ansvalc = numerator3c / denominator3c;
+    } else {
+        for (var r = 0; r < bottomnc; r++){
+            numerator2c += (topnc - r)+"\\cdot"
+            denominator2c += (bottomnc - r) + "\\cdot"
+            numerator3c = numerator3c * (topnc - r)
+        }
+        numerator2c = numerator2c + (topnc - bottomnc) + "!"
+        denominator2c = denominator2c + (topnc - bottomnc) + "!"
+        var denominator3c = bottomnfactc
+        var ansvalc = numerator3c / denominator3c;
+    }
+    
+    var ans = (ansvala*ansvalb)/ansvalc;
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f("+numsucc+") &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle\\left(\\frac{"+topna+"!}{"+bottomna+"!"+(topna-bottomna)+"!}\\right)\\left(\\frac{"+topnb+"!}{"+bottomnb+"!"+(topnb-bottomnb)+"!}\\right)}{\\displaystyle\\left(\\frac{"+topnc+"!}{"+bottomnc+"!"+(topnc-bottomnc)+"!}\\right)} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &=" + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -155,6 +325,25 @@ function examplevariance(){
 function examplestandard(){
     document.getElementById('vr').value="9"
 }
+
+function examplebinomial(){
+    document.getElementById('trials').value = 2
+    document.getElementById('psuccess').value = .4
+    document.getElementById('numsuc').value = 1
+}
+
+function examplepoisson(){
+    document.getElementById('meanocc').value = 3
+    document.getElementById('numocc').value = 2
+}
+
+function examplehypergeometric(){
+    document.getElementById('ntrials').value = 4
+    document.getElementById('popsize').value = 10
+    document.getElementById('popsucc').value = 3
+    document.getElementById('numsucc').value = 1
+}
+
 
 function make2(){
     $("#expected2").show();

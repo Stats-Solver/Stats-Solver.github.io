@@ -1,0 +1,70 @@
+select {
+    display: block;
+    margin: 0 auto;
+    text-align: center
+}
+
+.output{
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+th, td {
+  padding: 2px 2px;
+  text-align: center;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; //height of the footer
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+#selectdiv {
+    display: block;
+    margin: 0 auto;
+    text-align: center
+}
+
+.combperm{
+    width: 40px;
+}
+
+.button {
+    border-radius: 6px;
+    padding: 6px 6px;
+    width: 100%
+}
+
+.examplelink {
+     cursor:pointer;
+     color:#0275d8;
+}
+
+.examplelink:hover {
+     text-decoration:underline;
+}
+
+.prob{
+    width: 50px;
+    background-color: white;
+}
+
+.hypinput1{
+    width: 25px;
+    background-color: white;
+}
