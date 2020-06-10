@@ -4,6 +4,7 @@ $("#lessthan").hide(); $("#greaterthan").hide(); $("#betweentwo").hide();
 $("#lessthan2").hide(); $("#greaterthan2").hide(); $("#betweentwo2").hide();
 $("#lessthan3").hide(); $("#greaterthan3").hide(); $("#betweentwo3").hide();
 $("#lessthan4").hide(); $("#greaterthan4").hide(); $("#betweentwo4").hide();
+$("#myCanvas").hide();
 
 function factorial(n) {
     if (n > 0) {
@@ -14,13 +15,17 @@ function factorial(n) {
   
 }
 
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
 function showstuff(){
     $("#uniform").hide(); $("#normal").hide(); $("#snormal").hide(); $("#exponential").hide();
     $("#lessthan").hide(); $("#greaterthan").hide(); $("#betweentwo").hide();
     $("#lessthan2").hide(); $("#greaterthan2").hide(); $("#betweentwo2").hide();
     $("#lessthan3").hide(); $("#greaterthan3").hide(); $("#betweentwo3").hide();
     $("#lessthan4").hide(); $("#greaterthan4").hide(); $("#betweentwo4").hide();
-    $("#explanation").hide();
+    $("#explanation").hide(); $("#myCanvas").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
@@ -41,7 +46,7 @@ function showstuff(){
 }
 
 function stat(){
-    $("#output").empty(); $("#myCanvas").hide();
+    $("#output").empty(); 
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         compuniform()
@@ -61,6 +66,7 @@ function stat(){
 function uniform() {
     $("#uniform").show();
     $("#lessthan").show();
+    probtype = "less"
 
 }
 
@@ -68,38 +74,64 @@ function togreater() {
         $("#lessthan").hide();
         $("#greaterthan").show();
         $("#betweentwo").hide();
+        probtype = "greater"
 }
 
 function toboth() {
         $("#lessthan").hide();
         $("#greaterthan").hide();
         $("#betweentwo").show();
+        probtype = "between"
 }
 
 function toless() {
         $("#lessthan").show();
         $("#greaterthan").hide();
         $("#betweentwo").hide();
+        probtype = "less"
+}
+
+function compuniform() {
+    if (probtype == "less") {
+        compuniform1() 
+    } else if (probtype == "greater") {
+        compuniform2() 
+    } else if (probtype == "between") {
+        compuniform3()
+    }
 }
 
 function compuniform1() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var ans = x1*f1 + x2*f2 + x3*f3;
-
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
-    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    var lessval = document.getElementById('lessval').value
+    var greaterval = document.getElementById('greaterval').value
+    var twoval1 = document.getElementById('twoval1').value
+    var twoval2 = document.getElementById('twoval2').value
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = " + parseFloat(ans.toFixed(2)) + "$$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    ctx.stroke();
+    
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,50);
+    ctx.fillText("x",265,132);
+    ctx.fillText("f(x)",15,15);
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= "+((1/(maxval-minval))*(lessval - minval))+" \\end{align}$$"
+    
     MathJax.typeset();
 }
 
@@ -432,13 +464,13 @@ function comphypergeometric() {
     MathJax.typeset();
 }
 
-function exampleexpected(){
-    document.getElementById('x1').value="3"
-    document.getElementById('x2').value="6"
-    document.getElementById('x3').value="9"
-    document.getElementById('f1').value=".25"
-    document.getElementById('f2').value=".50"
-    document.getElementById('f3').value=".25"
+function exampleuniform(){
+    document.getElementById('minval').value="120"
+    document.getElementById('maxval').value="140"
+    document.getElementById('lessval').value="130"
+    document.getElementById('greaterval').value="135"
+    document.getElementById('twoval1').value="128"
+    document.getElementById('twoval2').value="136"
 }
 
 function examplevariance(){
