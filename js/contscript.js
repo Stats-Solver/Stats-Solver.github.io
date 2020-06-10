@@ -15,9 +15,61 @@ function factorial(n) {
   
 }
 
+function toFixing(num, fixed) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+    return num.toString().match(re)[0];
+}
+
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
+	var T=1/(1+.2316419*Math.abs(X));
+	var D=.3989423*Math.exp(-X*X/2);
+	var Prob=D*T*(.3193815+T*(-.3565638+T*(1.781478+T*(-1.821256+T*1.330274))));
+	if (X>0) {
+		Prob=1-Prob
+	}
+	return Prob
+} 
+
+function NormSInv(p) {
+    var a1 = -39.6968302866538, a2 = 220.946098424521, a3 = -275.928510446969;
+    var a4 = 138.357751867269, a5 = -30.6647980661472, a6 = 2.50662827745924;
+    var b1 = -54.4760987982241, b2 = 161.585836858041, b3 = -155.698979859887;
+    var b4 = 66.8013118877197, b5 = -13.2806815528857, c1 = -7.78489400243029E-03;
+    var c2 = -0.322396458041136, c3 = -2.40075827716184, c4 = -2.54973253934373;
+    var c5 = 4.37466414146497, c6 = 2.93816398269878, d1 = 7.78469570904146E-03;
+    var d2 = 0.32246712907004, d3 = 2.445134137143, d4 = 3.75440866190742;
+    var p_low = 0.02425, p_high = 1 - p_low;
+    var q, r;
+    var retVal;
+
+    if ((p < 0) || (p > 1))
+    {
+        alert("NormSInv: Argument out of range.");
+        retVal = 0;
+    }
+    else if (p < p_low)
+    {
+        q = Math.sqrt(-2 * Math.log(p));
+        retVal = (((((c1 * q + c2) * q + c3) * q + c4) * q + c5) * q + c6) / ((((d1 * q + d2) * q + d3) * q + d4) * q + 1);
+    }
+    else if (p <= p_high)
+    {
+        q = p - 0.5;
+        r = q * q;
+        retVal = (((((a1 * r + a2) * r + a3) * r + a4) * r + a5) * r + a6) * q / (((((b1 * r + b2) * r + b3) * r + b4) * r + b5) * r + 1);
+    }
+    else
+    {
+        q = Math.sqrt(-2 * Math.log(1 - p));
+        retVal = -(((((c1 * q + c2) * q + c3) * q + c4) * q + c5) * q + c6) / ((((d1 * q + d2) * q + d3) * q + d4) * q + 1);
+    }
+
+    return retVal;
+}
 
 function showstuff(){
     $("#uniform").hide(); $("#normal").hide(); $("#snormal").hide(); $("#exponential").hide();
@@ -28,7 +80,7 @@ function showstuff(){
     $("#explanation").hide(); $("#myCanvas").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
-    $("#output").empty();
+    $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         uniform()
@@ -112,119 +164,919 @@ function compuniform1() {
     var twoval1 = document.getElementById('twoval1').value
     var twoval2 = document.getElementById('twoval2').value
  
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
     
     
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
     ctx.beginPath();
     ctx.moveTo(40, 20);
     ctx.lineTo(40, 130);
     ctx.lineTo(260, 130);
-    ctx.stroke();
+    
     
     ctx.fillText("f(x)",35,15);
     ctx.fillText("x",265,132);
-    ctx.fillText("1/"+(maxval-minval),10,50);
-    ctx.fillText("x",265,132);
-    ctx.fillText("f(x)",15,15);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= "+((1/(maxval-minval))*(lessval - minval))+" \\end{align}$$"
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    ctx.moveTo(75+((lessval-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(lessval,75+((lessval-minval)/(maxval-minval))*150 - 5,145);
+    
+    ctx.fillText("1/"+(maxval-minval),50,90);
+    ctx.fillText(lessval - minval,75+(((lessval-minval)/(maxval-minval))*150)/2 - 8,40);
+    
+    
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(lessval - minval))+"} \\end{align}$$"
     
     MathJax.typeset();
 }
 
 function compuniform2() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var ans = x1*f1 + x2*f2 + x3*f3;
-
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
-    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    var lessval = document.getElementById('lessval').value
+    var greaterval = document.getElementById('greaterval').value
+    var twoval1 = document.getElementById('twoval1').value
+    var twoval2 = document.getElementById('twoval2').value
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = " + parseFloat(ans.toFixed(2)) + "$$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(225, 130);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    
+    
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    ctx.moveTo(75+((greaterval-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(greaterval,75+((greaterval-minval)/(maxval-minval))*150 - 5,145);
+    
+    ctx.fillText("1/"+(maxval-minval),230,90);
+    ctx.fillText(greaterval - minval,225-(((maxval-greaterval)/(maxval-minval))*150)/2 - 8,40);
+    
+    
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(maxval - greaterval))+"} \\end{align}$$"
+ 
+    
+    
+    
     MathJax.typeset();
 }
 
 function compuniform3() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var ans = x1*f1 + x2*f2 + x3*f3;
-
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
-    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    var lessval = document.getElementById('lessval').value
+    var greaterval = document.getElementById('greaterval').value
+    var twoval1 = document.getElementById('twoval1').value
+    var twoval2 = document.getElementById('twoval2').value
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = " + parseFloat(ans.toFixed(2)) + "$$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(75+((twoval1-minval)/(maxval-minval))*150, 130);
+    ctx.lineTo(75+((twoval1-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    
+    
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    ctx.moveTo(75+((twoval1-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((twoval1-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(twoval1,75+((twoval1-minval)/(maxval-minval))*150 - 5,145);
+    ctx.moveTo(75+((twoval2-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(twoval2,75+((twoval2-minval)/(maxval-minval))*150 - 5,145);
+    
+    ctx.fillText("1/"+(maxval-minval),75+((twoval1-minval)/(maxval-minval))*150 - 25,90);
+    ctx.fillText(twoval2 - twoval1,(75+((twoval1-minval)/(maxval-minval))*150 + 75+((twoval2-minval)/(maxval-minval))*150)/2 - 8,40);
+    
+    
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(twoval2 - twoval1))+"} \\end{align}$$"
+
+    
     MathJax.typeset();
 }
 
 function normal() {
     $("#normal").show();
     $("#lessthan2").show();
-
+    probtype2 = "less"
 }
 
 function togreater2() {
         $("#lessthan2").hide();
         $("#greaterthan2").show();
         $("#betweentwo2").hide();
+        probtype2 = "greater"
 }
 
 function toboth2() {
         $("#lessthan2").hide();
         $("#greaterthan2").hide();
         $("#betweentwo2").show();
+        probtype2 = "both"
 }
 
 function toless2() {
         $("#lessthan2").show();
         $("#greaterthan2").hide();
         $("#betweentwo2").hide();
+        probtype2 = "less"
 }
+
+
+function compnormal() {
+    if (probtype2 == "less") {
+        compnormal1() 
+    } else if (probtype2 == "greater") {
+        compnormal2() 
+    } else if (probtype2 == "both") {
+        compnormal3()
+    }
+}
+
+
+
+function compnormal1() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ z = \\frac{x - \\mu}{\\sigma} $$"
+    
+    var expval = document.getElementById('expval').value
+    var stdev = document.getElementById('stdev').value
+    var lessval = document.getElementById('lessval2').value
+    var greaterval = document.getElementById('greaterval2').value
+    var twoval1 = document.getElementById('twoval12').value
+    var twoval2 = document.getElementById('twoval22').value
+    var zval = ((lessval-expval)/stdev);
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} z_{" + lessval + "} &= \\frac{" + lessval + " - " + expval + "}{" + stdev + "} \\\\ &= " + ((lessval-expval)/stdev) + " \\end{align} $$"
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(70, 94);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(20, 120);
+    ctx.quadraticCurveTo(40, 115, 70, 94);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.stroke();        
+    ctx.fillText("0",148,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("z = "+zval,68,145);
+    
+    
+    
+    var zvalue = toFixing(parseFloat(zval),1);
+    var zvaluer = parseFloat(zval).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    
+    var table = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "<br> " + table + "$$ P(z \\leq "+ zval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(zval)).toFixed(4)) + "} $$"
+    
+    MathJax.typeset();
+}
+
+function compsnormal2() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var expval = document.getElementById('expval').value
+    var stdev = document.getElementById('stdev').value
+    var lessval = document.getElementById('lessval2').value
+    var greaterval = document.getElementById('greaterval2').value
+    var twoval1 = document.getElementById('twoval12').value
+    var twoval2 = document.getElementById('twoval22').value
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(70, 94);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(20, 120);
+    ctx.quadraticCurveTo(40, 115, 70, 94);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.stroke();        
+    ctx.fillText("0",148,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("z = "+lessval,68,145);
+    
+    var zvalue = toFixing(parseFloat(greaterval),1);
+    var zvaluer = parseFloat(greaterval).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    
+    var table = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = table + "$$ \\begin{align} P(z \\geq "+ greaterval + ") &= 1 - P(z \\leq "+ greaterval + ") \\\\ &= 1 - "+ normalcdf(parseFloat(greaterval)).toFixed(4) + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(greaterval))).toFixed(4)) + "} \\end{align}  $$"
+    
+    MathJax.typeset();
+}
+
+function compnormal3() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var expval = document.getElementById('expval').value
+    var stdev = document.getElementById('stdev').value
+    var lessval = document.getElementById('lessval2').value
+    var greaterval = document.getElementById('greaterval2').value
+    var twoval1 = document.getElementById('twoval12').value
+    var twoval2 = document.getElementById('twoval22').value
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(70, 94);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(20, 120);
+    ctx.quadraticCurveTo(40, 115, 70, 94);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.stroke();        
+    ctx.fillText("0",148,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("z = "+lessval,68,145);
+    
+    
+    
+    var zvalue1 = toFixing(parseFloat(twoval1),1);
+    var zvaluer1 = parseFloat(twoval1).toFixed(2); 
+    var zseconddec1 = +zvaluer1.toString().split('').pop();
+    
+    if (zseconddec1 == 0 || zseconddec1 == 1 || zseconddec1 == 2) {
+         var valstart1 = 0; 
+         var valend1 = 4;
+    } else if (zseconddec1 == 3) {
+         var valstart1 = 1; 
+         var valend1 = 5;
+    } else if (zseconddec1 == 4) {
+         var valstart1 = 2; 
+         var valend1 = 6;
+    } else if ((zseconddec1 == 5)) {
+         var valstart1 = 3; 
+         var valend1 = 7;
+    } else if (zseconddec1 == 6) {
+         var valstart1 = 4; 
+         var valend1 = 8;
+    } else if (zseconddec1 == 7 || zseconddec1 == 8 || zseconddec1 == 9) {
+         var valstart1 = 5; 
+         var valend1 = 9;
+    }
+    
+    var table11 = []
+    for (var r = valstart1; r < valend1 + 1; r++){
+        table11 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    var table31 = []
+    for (var r = valstart1; r < valend1 + 1; r++){
+        table31 += "<td>" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var table1 = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table11+"</tr><tr style='border-top: thin solid'><td>"+zvalue1+"</td>"+table31+"</tr></table>"
+    
+
+    var zvalue2 = toFixing(parseFloat(twoval2),1);
+    var zvaluer2 = parseFloat(twoval2).toFixed(2); 
+    var zseconddec2 = +zvaluer2.toString().split('').pop();
+    
+    if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
+         var valstart2 = 0; 
+         var valend2 = 4;
+    } else if (zseconddec2 == 3) {
+         var valstart2 = 1; 
+         var valend2 = 5;
+    } else if (zseconddec2 == 4) {
+         var valstart2 = 2; 
+         var valend2 = 6;
+    } else if ((zseconddec2 == 5)) {
+         var valstart2 = 3; 
+         var valend2 = 7;
+    } else if (zseconddec2 == 6) {
+         var valstart2 = 4; 
+         var valend2 = 8;
+    } else if (zseconddec2 == 7 || zseconddec2 == 8 || zseconddec2 == 9) {
+         var valstart2 = 5; 
+         var valend2 = 9;
+    }
+    
+    var table12 = []
+    for (var r = valstart2; r < valend2 + 1; r++){
+        table12 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    var table32 = []
+    for (var r = valstart2; r < valend2 + 1; r++){
+        table32 += "<td>" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    
+    var table2 = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zvalue2+"</td>"+table32+"</tr></table>"
+    
+    
+    
+    document.getElementById("output2").innerHTML = "<br>" + table1 + "<br>" + table2 + "$$ \\begin{align} P("+ twoval1 + "\\leq z \\leq"+ twoval2 + ") &= P(z \\leq "+ twoval2 + ") - P(z \\leq "+ twoval1 + ") \\\\ &= "+ normalcdf(parseFloat(twoval2)).toFixed(4) + " - " + normalcdf(parseFloat(twoval1)).toFixed(4) + " \\\\ &= \\boxed{"+ parseFloat((normalcdf(parseFloat(twoval2)).toFixed(4) - normalcdf(parseFloat(twoval1))) .toFixed(4)) + "} \\end{align}  $$"
+    
+    MathJax.typeset();
+}
+
 
 
 function snormal() {
     $("#snormal").show();
     $("#lessthan3").show();
-
+    probtype3 = "less"
 }
 
 function togreater3() {
         $("#lessthan3").hide();
         $("#greaterthan3").show();
         $("#betweentwo3").hide();
+        probtype3 = "greater"
 }
 
 function toboth3() {
         $("#lessthan3").hide();
         $("#greaterthan3").hide();
         $("#betweentwo3").show();
+        probtype3 = "both"
 }
 
 function toless3() {
         $("#lessthan3").show();
         $("#greaterthan3").hide();
         $("#betweentwo3").hide();
+        probtype3 = "less"
 }
+
+
+function compsnormal() {
+    if (probtype3 == "less") {
+        compsnormal1() 
+    } else if (probtype3 == "greater") {
+        compsnormal2() 
+    } else if (probtype3 == "both") {
+        compsnormal3()
+    }
+}
+
+function compsnormal1() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var lessval = document.getElementById('lessval3').value
+    var greaterval = document.getElementById('greaterval3').value
+    var twoval1 = document.getElementById('twoval13').value
+    var twoval2 = document.getElementById('twoval23').value
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(70, 94);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(20, 120);
+    ctx.quadraticCurveTo(40, 115, 70, 94);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.stroke();        
+    ctx.fillText("0",148,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("z = "+lessval,68,145);
+    
+    var zvalue = toFixing(parseFloat(lessval),1);
+    var zvaluer = parseFloat(lessval).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    
+    var table = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z \\leq "+ lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + "} $$"
+    
+    MathJax.typeset();
+}
+
+function compsnormal2() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var lessval = document.getElementById('lessval3').value
+    var greaterval = document.getElementById('greaterval3').value
+    var twoval1 = document.getElementById('twoval13').value
+    var twoval2 = document.getElementById('twoval23').value
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(70, 94);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(20, 120);
+    ctx.quadraticCurveTo(40, 115, 70, 94);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.stroke();        
+    ctx.fillText("0",148,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("z = "+lessval,68,145);
+    
+    var zvalue = toFixing(parseFloat(greaterval),1);
+    var zvaluer = parseFloat(greaterval).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    
+    var table = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = table + "$$ \\begin{align} P(z \\geq "+ greaterval + ") &= 1 - P(z \\leq "+ greaterval + ") \\\\ &= 1 - "+ normalcdf(parseFloat(greaterval)).toFixed(4) + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(greaterval))).toFixed(4)) + "} \\end{align}  $$"
+    
+    MathJax.typeset();
+}
+
+function compsnormal3() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var lessval = document.getElementById('lessval3').value
+    var greaterval = document.getElementById('greaterval3').value
+    var twoval1 = document.getElementById('twoval13').value
+    var twoval2 = document.getElementById('twoval23').value
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(70, 94);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(20, 120);
+    ctx.quadraticCurveTo(40, 115, 70, 94);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.stroke();        
+    ctx.fillText("0",148,145);
+    ctx.fillText("z",285,132);
+    ctx.fillText("z = "+lessval,68,145);
+    
+    
+    
+    var zvalue1 = toFixing(parseFloat(twoval1),1);
+    var zvaluer1 = parseFloat(twoval1).toFixed(2); 
+    var zseconddec1 = +zvaluer1.toString().split('').pop();
+    
+    if (zseconddec1 == 0 || zseconddec1 == 1 || zseconddec1 == 2) {
+         var valstart1 = 0; 
+         var valend1 = 4;
+    } else if (zseconddec1 == 3) {
+         var valstart1 = 1; 
+         var valend1 = 5;
+    } else if (zseconddec1 == 4) {
+         var valstart1 = 2; 
+         var valend1 = 6;
+    } else if ((zseconddec1 == 5)) {
+         var valstart1 = 3; 
+         var valend1 = 7;
+    } else if (zseconddec1 == 6) {
+         var valstart1 = 4; 
+         var valend1 = 8;
+    } else if (zseconddec1 == 7 || zseconddec1 == 8 || zseconddec1 == 9) {
+         var valstart1 = 5; 
+         var valend1 = 9;
+    }
+    
+    var table11 = []
+    for (var r = valstart1; r < valend1 + 1; r++){
+        table11 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    var table31 = []
+    for (var r = valstart1; r < valend1 + 1; r++){
+        table31 += "<td>" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var table1 = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table11+"</tr><tr style='border-top: thin solid'><td>"+zvalue1+"</td>"+table31+"</tr></table>"
+    
+
+    var zvalue2 = toFixing(parseFloat(twoval2),1);
+    var zvaluer2 = parseFloat(twoval2).toFixed(2); 
+    var zseconddec2 = +zvaluer2.toString().split('').pop();
+    
+    if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
+         var valstart2 = 0; 
+         var valend2 = 4;
+    } else if (zseconddec2 == 3) {
+         var valstart2 = 1; 
+         var valend2 = 5;
+    } else if (zseconddec2 == 4) {
+         var valstart2 = 2; 
+         var valend2 = 6;
+    } else if ((zseconddec2 == 5)) {
+         var valstart2 = 3; 
+         var valend2 = 7;
+    } else if (zseconddec2 == 6) {
+         var valstart2 = 4; 
+         var valend2 = 8;
+    } else if (zseconddec2 == 7 || zseconddec2 == 8 || zseconddec2 == 9) {
+         var valstart2 = 5; 
+         var valend2 = 9;
+    }
+    
+    var table12 = []
+    for (var r = valstart2; r < valend2 + 1; r++){
+        table12 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    var table32 = []
+    for (var r = valstart2; r < valend2 + 1; r++){
+        table32 += "<td>" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    
+    var table2 = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zvalue2+"</td>"+table32+"</tr></table>"
+    
+    
+    
+    document.getElementById("output2").innerHTML = "<br>" + table1 + "<br>" + table2 + "$$ \\begin{align} P("+ twoval1 + "\\leq z \\leq"+ twoval2 + ") &= P(z \\leq "+ twoval2 + ") - P(z \\leq "+ twoval1 + ") \\\\ &= "+ normalcdf(parseFloat(twoval2)).toFixed(4) + " - " + normalcdf(parseFloat(twoval1)).toFixed(4) + " \\\\ &= \\boxed{"+ parseFloat((normalcdf(parseFloat(twoval2)).toFixed(4) - normalcdf(parseFloat(twoval1))) .toFixed(4)) + "} \\end{align}  $$"
+    
+    MathJax.typeset();
+}
+
+
+
+
 
 function exponential() {
     $("#exponential").show();
@@ -252,218 +1104,6 @@ function toless4() {
 
 
 
-
-
-
-
-
-
-
-function variance() {
-    $("#variance").show();
-
-}
-
-function compvariance() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
-    var x1 = document.getElementById('x1v').value
-    var x2 = document.getElementById('x2v').value
-    var x3 = document.getElementById('x3v').value
-    var f1 = document.getElementById('f1v').value
-    var f2 = document.getElementById('f2v').value
-    var f3 = document.getElementById('f3v').value
-    var mu = x1*f1 + x2*f2 + x3*f3;
-    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
-
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
-    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
-    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
-    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
- 
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = " + parseFloat(ans.toFixed(2)) + "$$"
-    MathJax.typeset();
-}
-
-function standard() {
-    $("#standard").show();
-
-}
-
-function compstandard() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
-    var vr = document.getElementById('vr').value
-    var ans = Math.sqrt(vr);
-
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{" + vr + "} \\\\ &=" + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
-    MathJax.typeset();
-}
-
-function binomial() {
-    $("#binomial").show();
-
-}
-
-function compbinomial() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
-    var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
-    var num = document.getElementById('numsuc').value
-    
-    var topn = trials;
-    var bottomn = num;
-    var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
-    var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
-    var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
-    if (bottomn >= topn - bottomn) {
-        denominator2 = denominator2 + bottomn + "!"
-        for (var r = 0; r < topn - bottomn; r++){
-            numerator2 += (topn - r)+"\\cdot"
-            denominator2 += "\\cdot" + (topn - bottomn - r)
-            numerator3 = numerator3 * (topn - r)
-        }
-        numerator2 = numerator2 + bottomn + "!"
-        var denominator3 = topbotfact
-        var ansval = numerator3 / denominator3;
-    } else {
-        for (var r = 0; r < bottomn; r++){
-            numerator2 += (topn - r)+"\\cdot"
-            denominator2 += (bottomn - r) + "\\cdot"
-            numerator3 = numerator3 * (topn - r)
-        }
-        numerator2 = numerator2 + (topn - bottomn) + "!"
-        denominator2 = denominator2 + (topn - bottomn) + "!"
-        var denominator3 = bottomnfact
-        var ansval = numerator3 / denominator3;
-    }
-    
-    var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f(" + num + ") &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + (1-prob) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat((1-prob)**(trials-num).toFixed(2))+" \\\\ &= " + parseFloat(ans.toFixed(2))  + "   \\end{align} $$"
-    MathJax.typeset();
-}
-
-function poisson() {
-    $("#poisson").show();
-
-}
-
-function comppoisson() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\begin{align} f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
-    var ave = document.getElementById('meanocc').value;
-    var num = document.getElementById('numocc').value;
-    var exp = 2.71828;
-    
-    var ans = ((ave**num)*(exp**(-ave)))/factorial(num)
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f(" + num + ") &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + (ave**num) + "\\times " + parseFloat((exp**(-ave)).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align} $$"
-    MathJax.typeset();
-}
-
-function hypergeometric() {
-    $("#hypergeometric").show();
-
-}
-
-function comphypergeometric() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
-    var ntrials = document.getElementById('ntrials').value
-    var popsize = document.getElementById('popsize').value
-    var popsucc = document.getElementById('popsucc').value
-    var numsucc = document.getElementById('numsucc').value
-    
-    var topna = popsucc;
-    var bottomna = numsucc;
-    var bottomnfacta = factorial(bottomna); var topbotfacta = factorial(topna - bottomna);
-    var numerator2a = ""; var numerator3a = 1; var denominator3a = ""; 
-    var denominatora = bottomna + "!" + (topna - bottomna) + "!"; var denominator2a = ""
-    if (bottomna >= topna - bottomna) {
-        denominator2a = denominator2a + bottomna + "!"
-        for (var r = 0; r < topna - bottomna; r++){
-            numerator2a += (topna - r)+"\\cdot"
-            denominator2a += "\\cdot" + (topna - bottomna - r)
-            numerator3a = numerator3a * (topna - r)
-        }
-        numerator2a = numerator2a + bottomna + "!"
-        var denominator3a = topbotfacta
-        var ansvala = numerator3a / denominator3a;
-    } else {
-        for (var r = 0; r < bottomna; r++){
-            numerator2a += (topna - r)+"\\cdot"
-            denominator2a += (bottomna - r) + "\\cdot"
-            numerator3a = numerator3a * (topna - r)
-        }
-        numerator2a = numerator2a + (topna - bottomna) + "!"
-        denominator2a = denominator2a + (topna - bottomna) + "!"
-        var denominator3a = bottomnfacta
-        var ansvala = numerator3a / denominator3a;
-    }
-    
-    var topnb = popsize-popsucc;
-    var bottomnb = ntrials-numsucc;
-    var bottomnfactb = factorial(bottomnb); var topbotfactb = factorial(topnb - bottomnb);
-    var numerator2b = ""; var numerator3b = 1; var denominator3b = ""; 
-    var denominatorb = bottomnb + "!" + (topnb - bottomnb) + "!"; var denominator2b = ""
-    if (bottomnb >= topnb - bottomnb) {
-        denominator2b = denominator2b + bottomnb + "!"
-        for (var r = 0; r < topnb - bottomnb; r++){
-            numerator2b += (topnb - r)+"\\cdot"
-            denominator2b += "\\cdot" + (topnb - bottomnb - r)
-            numerator3b = numerator3b * (topnb - r)
-        }
-        numerator2b = numerator2b + bottomnb + "!"
-        var denominator3b = topbotfactb
-        var ansvalb = numerator3b / denominator3b;
-    } else {
-        for (var r = 0; r < bottomnb; r++){
-            numerator2b += (topnb - r)+"\\cdot"
-            denominator2b += (bottomnb - r) + "\\cdot"
-            numerator3b = numerator3b * (topnb - r)
-        }
-        numerator2b = numerator2b + (topnb - bottomnb) + "!"
-        denominator2b = denominator2b + (topnb - bottomnb) + "!"
-        var denominator3b = bottomnfactb
-        var ansvalb = numerator3b / denominator3b;
-    }
-    
-    var topnc = popsize;
-    var bottomnc = ntrials;
-    var bottomnfactc = factorial(bottomnc); var topbotfactc = factorial(topnc - bottomnc);
-    var numerator2c = ""; var numerator3c = 1; var denominator3c = ""; 
-    var denominatorc = bottomnc + "!" + (topnc - bottomnc) + "!"; var denominator2c = ""
-    if (bottomnc >= topnc - bottomnc) {
-        denominator2c = denominator2c + bottomnc + "!"
-        for (var r = 0; r < topnc - bottomnc; r++){
-            numerator2c += (topnc - r)+"\\cdot"
-            denominator2c += "\\cdot" + (topnc - bottomnc - r)
-            numerator3c = numerator3c * (topnc - r)
-        }
-        numerator2c = numerator2c + bottomnc + "!"
-        var denominator3c = topbotfactc
-        var ansvalc = numerator3c / denominator3c;
-    } else {
-        for (var r = 0; r < bottomnc; r++){
-            numerator2c += (topnc - r)+"\\cdot"
-            denominator2c += (bottomnc - r) + "\\cdot"
-            numerator3c = numerator3c * (topnc - r)
-        }
-        numerator2c = numerator2c + (topnc - bottomnc) + "!"
-        denominator2c = denominator2c + (topnc - bottomnc) + "!"
-        var denominator3c = bottomnfactc
-        var ansvalc = numerator3c / denominator3c;
-    }
-    
-    var ans = (ansvala*ansvalb)/ansvalc;
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f("+numsucc+") &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle\\left(\\frac{"+topna+"!}{"+bottomna+"!"+(topna-bottomna)+"!}\\right)\\left(\\frac{"+topnb+"!}{"+bottomnb+"!"+(topnb-bottomnb)+"!}\\right)}{\\displaystyle\\left(\\frac{"+topnc+"!}{"+bottomnc+"!"+(topnc-bottomnc)+"!}\\right)} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &=" + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
-    MathJax.typeset();
-}
-
 function exampleuniform(){
     document.getElementById('minval').value="120"
     document.getElementById('maxval').value="140"
@@ -473,256 +1113,21 @@ function exampleuniform(){
     document.getElementById('twoval2').value="136"
 }
 
-function examplevariance(){
-    document.getElementById('x1v').value="3"
-    document.getElementById('x2v').value="6"
-    document.getElementById('x3v').value="9"
-    document.getElementById('f1v').value=".25"
-    document.getElementById('f2v').value=".50"
-    document.getElementById('f3v').value=".25"
+function examplesnormal(){
+    document.getElementById('lessval3').value="-.71"
+    document.getElementById('greaterval3').value=".44"
+    document.getElementById('twoval13').value="-1.98"
+    document.getElementById('twoval23').value=".49"
 }
 
-function examplestandard(){
-    document.getElementById('vr').value="9"
-}
-
-function examplebinomial(){
-    document.getElementById('trials').value = 2
-    document.getElementById('psuccess').value = .4
-    document.getElementById('numsuc').value = 1
-}
-
-function examplepoisson(){
-    document.getElementById('meanocc').value = 3
-    document.getElementById('numocc').value = 2
-}
-
-function examplehypergeometric(){
-    document.getElementById('ntrials').value = 4
-    document.getElementById('popsize').value = 10
-    document.getElementById('popsucc').value = 3
-    document.getElementById('numsucc').value = 1
+function examplenormal(){
+    document.getElementById('expval').value="10"
+    document.getElementById('stdev').value="2"
+    document.getElementById('lessval2').value="8"
+    document.getElementById('greaterval2').value="11"
+    document.getElementById('twoval12').value="10"
+    document.getElementById('twoval22').value="14"
 }
 
 
-function make2(){
-    $("#expected2").show();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make3(){
-    $("#expected2").hide();
-    $("#expected").show();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make4(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").show();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make5(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").show();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make6(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").show();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make7(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").show();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make8(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").show();
-    $("#expected9").hide();
-    $("#expected10").hide();
-}
-
-function make9(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").show();
-    $("#expected10").hide();
-}
-
-function make10(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").show();
-}
-
-
-
-
-
-
-function make2v(){
-    $("#variance2").show();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make3v(){
-    $("#variance2").hide();
-    $("#variance").show();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make4v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").show();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make5v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").show();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make6v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").show();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make7v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").show();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make8v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").show();
-    $("#variance9").hide();
-    $("#variance10").hide();
-}
-
-function make9v(){
-    $("#variance2").show();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").show();
-    $("#variance10").hide();
-}
-
-function make10v(){
-    $("#variance2").show();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").show();
-}
 
