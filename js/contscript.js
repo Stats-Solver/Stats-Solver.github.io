@@ -1117,7 +1117,7 @@ function compexponential() {
 
 function compexponential1() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
     var expval = document.getElementById('expval2').value
     var lessval = document.getElementById('lessval4').value;
@@ -1125,6 +1125,7 @@ function compexponential1() {
     var twoval1 = document.getElementById('twoval14').value
     var twoval2 = document.getElementById('twoval24').value
     var exp = 2.71828;
+    var ans = 1 - exp**(-lessval/expval)
     
     var f = [];
     var i;
@@ -1205,11 +1206,17 @@ function compexponential1() {
     
     
     ctx.stroke();
+    
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+ lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    
+    MathJax.typeset();
+    
 }
 
 function compexponential2() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
     var expval = document.getElementById('expval2').value
     var lessval = document.getElementById('lessval4').value;
@@ -1218,6 +1225,8 @@ function compexponential2() {
     var twoval1 = document.getElementById('twoval14').value
     var twoval2 = document.getElementById('twoval24').value
     var exp = 2.71828;
+    var ans = 1 - exp**(-lessval/expval)
+    var ans = exp**(-lessval/expval)
     
     var f = [];
     var i;
@@ -1296,13 +1305,33 @@ function compexponential2() {
     
     
     ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+ greaterval + ") &= 1 - P(x \\leq "+ greaterval + ") \\\\ &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    
+    MathJax.typeset();
 
 }
 
 function compexponential3() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
+    var expval = document.getElementById('expval2').value
+    var lessval = document.getElementById('lessval4').value;
+    var greaterval = document.getElementById('greaterval4').value;
+    var gval = parseFloat(greaterval); var gvalp1 = parseFloat(gval+1);
+    var twoval1 = document.getElementById('twoval14').value
+    var twoval2 = document.getElementById('twoval24').value
+    var two1 = parseFloat(twoval1); var two1p1 = parseFloat(two1 + 1);
+    var two2 = parseFloat(twoval2); var two2p1 = parseFloat(two2 + 1);
+    var exp = 2.71828;
+    var ans = (1 - exp**(-two2/expval)) - (1 - exp**(-two1/expval))
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 30; i++) {
+      f[i] = parseFloat(((1/expval)*exp**(-i/expval)))
+    }
     
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
@@ -1310,10 +1339,31 @@ function compexponential3() {
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(75, 130);
-    ctx.lineTo(75, 45);
-    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 45);
-    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 130);
+    
+    var points0 = []
+    
+    for (i = two1; i < two2; i++) {
+      points0[i] = {x:70 + 5*i, y:120 - 1300*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[two1].x, points0[two1].y);
+
+
+   for (i = two1p1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, 70 + 5*two2,120 - 1300*f[two2]);
+    
+    ctx.lineTo(70 + 5*two2, 130);
+    ctx.lineTo(70 + 5*two1, 130);
+    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
@@ -1321,45 +1371,48 @@ function compexponential3() {
     ctx.fillStyle = "black";
     
     ctx.beginPath();
-    ctx.moveTo(40, 20);
-    ctx.lineTo(40, 130);
-    ctx.lineTo(260, 130);
+    ctx.moveTo(70, 20);
+    ctx.lineTo(70, 130);
+    ctx.lineTo(215, 130);
     
     
-    ctx.fillText("f(x)",35,15);
-    ctx.fillText("x",265,132);
-    ctx.fillText("1/"+(maxval-minval),10,48);
-    ctx.fillText(minval,70,145);
-    ctx.fillText(maxval,220,145);
+    ctx.fillText("f(x)",65,15);
+    ctx.fillText("x",220,132);
+    ctx.fillText(two1,68 + 5*two1,145);
+    ctx.fillText(two2,68 + 5*two2,145);
     
-    ctx.moveTo(35, 45);
-    ctx.lineTo(45, 45);
-    ctx.moveTo(75, 135);
-    ctx.lineTo(75, 125);
-    ctx.moveTo(225, 135);
-    ctx.lineTo(225, 125);
+    ctx.moveTo(70 + 5*two1, 135);
+    ctx.lineTo(70 + 5*two1, 125);
+    ctx.moveTo(70 + 5*two2, 135);
+    ctx.lineTo(70 + 5*two2, 125);
     
-    ctx.moveTo(75, 130);
-    ctx.lineTo(75, 45);
-    ctx.lineTo(225, 45);
-    ctx.lineTo(225, 130);
+    var points = []
     
-    ctx.moveTo(75+((lessval-minval)/(maxval-minval))*150, 135);
-    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 125);
-    ctx.fillText(lessval,75+((lessval-minval)/(maxval-minval))*150 - 5,145);
+    for (i = 0; i < 30; i++) {
+      points[i] = {x:70 + 5*i, y:120 - 1300*f[i]}
+		}
     
-    ctx.fillText("1/"+(maxval-minval),50,90);
-    ctx.fillText(lessval - minval,75+(((lessval-minval)/(maxval-minval))*150)/2 - 8,40);
+    // move to the first point
+   ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+   for (i = 1; i < points.length - 2; i ++)
+   {
+      var xc = (points[i].x + points[i + 1].x) / 2;
+      var yc = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+   }
+ // curve through the last two points
+ ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     
     
     ctx.stroke();
     
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ twoval1 + " \\leq x \\leq "+ twoval2 + ") &= P(x \\leq "+ twoval2 + ") - P(x \\leq "+ twoval1 + ") \\\\ &= (1 - e^{-"+ twoval2 + "/"+ expval + "}) - (1 - e^{-"+ twoval1 + "/"+ expval + "}) \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     
-    
-    var lessval = document.getElementById('lessval4').value
-    var greaterval = document.getElementById('greaterval4').value
-    var twoval1 = document.getElementById('twoval14').value
-    var twoval2 = document.getElementById('twoval24').value
+    MathJax.typeset();
 }
 
 
