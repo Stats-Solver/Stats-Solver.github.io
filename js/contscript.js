@@ -774,44 +774,85 @@ function compsnormal1() {
     var greaterval = document.getElementById('greaterval3').value
     var twoval1 = document.getElementById('twoval13').value
     var twoval2 = document.getElementById('twoval23').value
+    var lessvalz = 30+10*lessval
+    var exp = 2.71828;
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
     
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(70, 94);
-    ctx.lineTo(70, 130);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(20, 120);
-    ctx.quadraticCurveTo(40, 115, 70, 94);
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(50 + 3.36*lessvalz, 130);
+    ctx.lineTo(50 + 3.36*0, 130);
+    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 120);
-    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(150, 20);
-    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
     
     ctx.beginPath();
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.moveTo(70, 135);
-    ctx.lineTo(70, 125);
-    ctx.stroke();        
-    ctx.fillText("0",148,145);
-    ctx.fillText("z",285,132);
-    ctx.fillText("z = "+lessval,68,145);
+    ctx.moveTo(50, 130);
+    ctx.lineTo(250, 130);
+    
+    ctx.fillText("z",255,132);
+    ctx.fillText(lessval,40 + 3.36*(30+10*lessval),145);
+    
+    ctx.moveTo(50 + 3.36*(30+10*lessval), 135);
+    ctx.lineTo(50 + 3.36*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+   for (i = 1; i < points.length - 2; i ++)
+   {
+      var xc = (points[i].x + points[i + 1].x) / 2;
+      var yc = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+   }
+ // curve through the last two points
+ ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -863,44 +904,88 @@ function compsnormal2() {
     var greaterval = document.getElementById('greaterval3').value
     var twoval1 = document.getElementById('twoval13').value
     var twoval2 = document.getElementById('twoval23').value
+    var exp = 2.71828; 
+    var gval = parseFloat(greaterval)
+    var greatervalz = 30+10*gval
+    var gvalz = parseFloat(greatervalz)
+    var gvalzp1 = parseFloat(gvalz + 1)
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
     
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(70, 94);
-    ctx.lineTo(70, 130);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(20, 120);
-    ctx.quadraticCurveTo(40, 115, 70, 94);
+    
+    var points0 = []
+    
+    for (i = gvalz; i < 60; i++) {
+      points0[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[gvalz].x, points0[gvalz].y);
+
+
+   for (i = gvalzp1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[60],points0[60]);
+    
+    ctx.lineTo(249, 130);
+    ctx.lineTo(50 + 3.36*gvalz, 130);
+    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 120);
-    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(150, 20);
-    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
     
     ctx.beginPath();
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.moveTo(70, 135);
-    ctx.lineTo(70, 125);
-    ctx.stroke();        
-    ctx.fillText("0",148,145);
-    ctx.fillText("z",285,132);
-    ctx.fillText("z = "+lessval,68,145);
+    ctx.moveTo(50, 130);
+    ctx.lineTo(249, 130);
+    
+    ctx.fillText("z",255,132);
+    ctx.fillText(greaterval,48 + 3.36*(30+10*gval),145);
+    
+    ctx.moveTo(50 + 3.36*(30+10*greaterval), 135);
+    ctx.lineTo(50 + 3.36*(30+10*greaterval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+   for (i = 1; i < points.length - 2; i ++)
+   {
+      var xc = (points[i].x + points[i + 1].x) / 2;
+      var yc = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+   }
+ // curve through the last two points
+ ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var zvalue = toFixing(parseFloat(greaterval),1);
     var zvaluer = parseFloat(greaterval).toFixed(2); 
@@ -953,43 +1038,90 @@ function compsnormal3() {
     var twoval1 = document.getElementById('twoval13').value
     var twoval2 = document.getElementById('twoval23').value
     
+    var twoval1z = 30+10*parseFloat(twoval1)
+    var twoval2z = 30+10*parseFloat(twoval2)
+    var twoval1zp1 = parseFloat(twoval1z + 1)
+    var twoval2zp1 = parseFloat(twoval2z + 1)
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(70, 94);
-    ctx.lineTo(70, 130);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(20, 120);
-    ctx.quadraticCurveTo(40, 115, 70, 94);
+    
+    var points0 = []
+    
+    for (i = twoval1z; i < twoval2z; i++) {
+      points0[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[twoval1z].x, points0[twoval1z].y);
+
+
+   for (i = twoval1zp1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[twoval2z],points0[twoval2z]);
+    
+    ctx.lineTo(50 + 3.36*twoval2z, 130);
+    ctx.lineTo(50 + 3.36*twoval1z, 130);
+    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 120);
-    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(150, 20);
-    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
     
     ctx.beginPath();
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.moveTo(70, 135);
-    ctx.lineTo(70, 125);
-    ctx.stroke();        
-    ctx.fillText("0",148,145);
-    ctx.fillText("z",285,132);
-    ctx.fillText("z = "+lessval,68,145);
+    ctx.moveTo(50, 130);
+    ctx.lineTo(249, 130);
+    
+    ctx.fillText("z",255,132);
+    ctx.fillText(twoval1,48 + 3.36*(30+10*twoval1),145);
+    ctx.fillText(twoval2,48 + 3.36*(30+10*twoval2),145);
+    
+    ctx.moveTo(50 + 3.36*(30+10*twoval1), 135);
+    ctx.lineTo(50 + 3.36*(30+10*twoval1), 125);
+    ctx.moveTo(50 + 3.36*(30+10*twoval2), 135);
+    ctx.lineTo(50 + 3.36*(30+10*twoval2), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+   for (i = 1; i < points.length - 2; i ++)
+   {
+      var xc = (points[i].x + points[i + 1].x) / 2;
+      var yc = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+   }
+ // curve through the last two points
+ ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     
     
