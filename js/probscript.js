@@ -159,11 +159,11 @@ function complement() {
 function compcomp() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The probability of an event can be calculated if the probability of the event's complement is known."
-    document.getElementById("formulatext").innerHTML = "$$ P(A) = 1 - P(A^c) $$"
+    document.getElementById("formulatext").innerHTML = "$$ P(A) + P(A^c) = 1 $$"
     document.getElementById("explanationtext").innerHTML = ""
     
     var probac = document.getElementById("probcomp").value;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -189,7 +189,7 @@ function compunion1() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\  &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -202,7 +202,7 @@ function compunion2() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= " + proba + "+" + probb + "\\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) \\\\ &= " + proba + "+" + probb + "\\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -232,7 +232,7 @@ function compintersection1() {
     var probb = document.getElementById("iprobb").value;
     var probagivb = document.getElementById("iprobagivb").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -244,7 +244,7 @@ function compintersection2() {
     var probb = document.getElementById("iproba").value;
     var probagivb = document.getElementById("iprobbgiva").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B)  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -256,7 +256,7 @@ function compintersection3() {
     var probb = document.getElementById("iprobb2").value;
     var probagivb = document.getElementById("iproba2").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B)  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -268,7 +268,7 @@ function compintersection4() {
     var probb = document.getElementById("iproba3").value;
     var probagivb = document.getElementById("iprobb3").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -293,7 +293,7 @@ function compconditional1() {
     var probb = document.getElementById("probb3").value;
     var probaib = document.getElementById("probaib2").value;
     var ans = parseFloat(probaib) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
     MathJax.typeset();
 }
 
