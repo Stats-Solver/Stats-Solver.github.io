@@ -960,6 +960,27 @@
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
         </table> 
+          <div class = " text-center mt-2">
+            $P(x$ <select id="probtype" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="binval">)
+        </div> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplebinomial()">Example</span>
+        </div>
+          </div> 
+      
+       <!--<div class="container mt-3" id="binomial">
+        <table>
+          <tr>
+            <td style="text-align:right">$\text{Number of Trials:}$</td>
+            <td>$n = $</td>
+            <td><input class = "combperm" type="text" id="trials"></td>
+            </tr>
+            <tr>
+            <td style="text-align:right">$\text{Probability of Success:}$</td>
+            <td>$p = $</td>
+            <td><input class = "combperm" type="text" id="psuccess"></td>
+            </tr>
+        </table> 
           <table class = "mt-2">
             <tr>
             <td id = "equal">$P(x =  $ <input class = "combperm" type="text" id="equalval">) <button id = "switch1" class="btn btn-outline-primary" onclick="toless()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -982,9 +1003,25 @@
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="examplebinomial()">Example</span>
         </div>
-          </div>
+          </div>-->
       
       <div class="container mt-3" id="poisson">
+        <table>
+          <tr>
+            <td style="text-align:right">$\text{Mean Occurences:}$</td>
+            <td>$\mu = $</td>
+            <td><input class = "combperm" type="text" id="meanocc"></td>
+            </tr>
+        </table> 
+        <div class = " text-center mt-2">
+            $P(x$ <select id="probtype2" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="poissval">)
+        </div> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplepoisson()">Example</span>
+        </div>
+          </div>
+      
+      <!--<div class="container mt-3" id="poisson">
         <table>
           <tr>
             <td style="text-align:right">$\text{Mean Occurences:}$</td>
@@ -1014,9 +1051,40 @@
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="examplepoisson()">Example</span>
         </div>
-          </div>
+          </div> -->
       
       <div class="container mt-3" id="hypergeometric">
+        <table>
+          <tr>
+            <td style="text-align:right">$\text{Number of Trials:}$</td>
+            <td>$n = $</td>
+            <td><input class = "combperm" type="text" id="ntrials"></td>
+            </tr>
+            <tr>
+            <td style="text-align:right">$\text{Population Size:}$</td>
+            <td>$N = $</td>
+            <td><input class = "combperm" type="text" id="popsize"></td>
+            </tr>
+            <tr>
+            <td style="text-align:right">$\text{Population Successes:}$</td>
+            <td>$r = $</td>
+            <td><input class = "combperm" type="text" id="popsucc"></td>
+            </tr>
+        </table> 
+          
+
+            <div class = " text-center mt-2">
+            $P(x$ <select id="probtype3" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="hypval">)
+        </div> 
+          
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplehypergeometric()">Example</span>
+        </div>
+          </div>
+      
+      
+      
+      <!--<div class="container mt-3" id="hypergeometric">
         <table>
           <tr>
             <td style="text-align:right">$\text{Number of Trials:}$</td>
@@ -1058,7 +1126,7 @@
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="examplehypergeometric()">Example</span>
         </div>
-          </div>
+          </div>-->
       
       
       
