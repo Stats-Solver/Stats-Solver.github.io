@@ -89,7 +89,9 @@ function combinations() {
 
 function compcomb() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ C^N_n = \\frac{N!}{n!(N-n)!} $$"
+    document.getElementById("descriptiontext").innerHTML = "The counting rule for combinations is used to count the number of possible outcomes when the experiment involves choosing n objects from a larger set of N objects. For combinations, the order in which the objects are chosen doesn't matter."
+    document.getElementById("formulatext").innerHTML = "$$ C^N_n = \\frac{N!}{n!(N-n)!} $$ "
+    document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$ $$ n! = n(n-1)(n-2) \\cdots (2)(1) $$"
     var topn = document.getElementById("topn").value;
     var bottomn = document.getElementById("bottomn").value;
     var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
@@ -129,7 +131,9 @@ function permutations() {
 
 function compperm() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ P^N_n = \\frac{N!}{(N-n)!} $$"
+    document.getElementById("descriptiontext").innerHTML = "The counting rule for permutations is used to count the number of possible outcomes when the experiment involves choosing n objects from a larger set of N objects. For permutations, the order in which the objects are chosen matters."
+    document.getElementById("formulatext").innerHTML = "$$ P^N_n = \\frac{N!}{(N-n)!} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$"
     var topn = document.getElementById("topnp").value;
     var bottomn = document.getElementById("bottomnp").value;
     var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
@@ -154,9 +158,12 @@ function complement() {
 
 function compcomp() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ P(A) + P(A^c) = 1 $$"
+    document.getElementById("descriptiontext").innerHTML = "The probability of an event can be calculated if the probability of the event's complement is known."
+    document.getElementById("formulatext").innerHTML = "$$ P(A) = 1 - P(A^c) $$"
+    document.getElementById("explanationtext").innerHTML = ""
+    
     var probac = document.getElementById("probcomp").value;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -175,23 +182,27 @@ function compunion() {
 
 function compunion1() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are mutually exclusive, the probably of the intersection of A and B is zero."
+    document.getElementById("descriptiontext").innerHTML = "The probability of the union of events A and B is the probability of event A, event B or both events A and B occuring."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\cup B) = P(A) + P(B) - P(A \\cap B) $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var proba = document.getElementById("proba").value;
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\ &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
 function compunion2() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are mutually exclusive, the probably of the intersection of A and B is zero."
+    document.getElementById("descriptiontext").innerHTML = "The probability of the union of events A and B is the probability of event A or event B occuring."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\cup B) = P(A) + P(B) $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var proba = document.getElementById("proba").value;
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) \\\\ &= " + proba + "+" + probb + "\\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= " + proba + "+" + probb + "\\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -215,41 +226,49 @@ function compintersection() {
 
 function compintersection1() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are independent, the probably of A given B is A and the probability of B given A is B."
+    document.getElementById("descriptiontext").innerHTML = "The probability of the intersection of events A and B is the probability of both event A and event B occuring."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("iprobb").value;
     var probagivb = document.getElementById("iprobagivb").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
 function compintersection2() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are independent, the probably of A given B is A and the probability of B given A is B."
+    document.getElementById("descriptiontext").innerHTML = "The probability of the intersection of events A and B is the probability of both event A and event B occuring."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("iproba").value;
     var probagivb = document.getElementById("iprobbgiva").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B \\mid A) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B)  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
 function compintersection3() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are independent, the probably of A given B is A and the probability of B given A is B."
+    document.getElementById("descriptiontext").innerHTML = "The probability of the intersection of events A and B is the probability of both event A and event B occuring."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("iprobb2").value;
     var probagivb = document.getElementById("iproba2").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B)  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
 function compintersection4() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the events are independent, the probably of A given B is A and the probability of B given A is B."
+    document.getElementById("descriptiontext").innerHTML = "The probability of the intersection of events A and B is the probability of both event A and event B occuring."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A)  $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("iproba3").value;
     var probagivb = document.getElementById("iprobb3").value;
     var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &=  P(B)  \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -268,17 +287,21 @@ function compconditional() {
 
 function compconditional1() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The probability of A given B is the probability of the intersection of A and B divided by the probability of B."
+    document.getElementById("descriptiontext").innerHTML = "The probability A given B is the probability of event A occuring given that event B has already occured."
+    document.getElementById("formulatext").innerHTML = "$$ P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)}  $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("probb3").value;
     var probaib = document.getElementById("probaib2").value;
     var ans = parseFloat(probaib) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= " + ans.toFixed(2) + "\\end{align} $$"
     MathJax.typeset();
 }
 
 function compconditional2() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The probability of A given B is the probability of the intersection of A and B divided by the probability of B."
+    document.getElementById("descriptiontext").innerHTML = "The probability B given A is the probability of event B occuring given that event A has already occured."
+    document.getElementById("formulatext").innerHTML = "$$ P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)}  $$"
+    document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("probb33").value;
     var probaib = document.getElementById("probaib22").value;
     var ans = parseFloat(probaib) / parseFloat(probb);

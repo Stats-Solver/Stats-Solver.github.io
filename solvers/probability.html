@@ -102,16 +102,16 @@
       
       <div class="container mt-3" id="experiments">
         <div class="row justify-content-center">
-            <div class="col-6 col-md-2">
+            <div class="col-8 col-md-3">
                 <select id="exptype" class="form-control" onchange="">
                     <option value="choose">Experiment Type</option>
                     <option value="coin">Tossing a Coin</option>
                     <option value="dice">Rolling a Die</option>
                 </select>
                 </div>
-            <div class="col-6 col-md-2">
+            <div class="col-4 col-md-2">
                 <select id="exptimes" class="form-control" onchange="">
-                    <option value="choose">Number of Times</option>
+                    <option value="choose">Times</option>
                     <option value="one">One</option>
                     <option value="two">Two</option>
                 </select>
@@ -392,13 +392,29 @@
       
       <div class="container" id="explanation">
       <p  class="text-center">
-      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+          <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Description
+      </a> &bull;
+          <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Formula
+      </a> &bull;
+      <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
         Explanation
       </a>
     </p>
     <div class="collapse" id="collapseExample">
-      <div class="card card-body" id="explanationtext">
+      <div class="card card-body" id="descriptiontext">
 
+      </div>
+    </div>
+          <div class="collapse" id="collapseExample2">
+      <div class="card card-body" id="formulatext">
+
+      </div>
+    </div>
+          <div class="collapse" id="collapseExample3">
+      <div class="card card-body" id="explanationtext">
+            
       </div>
     </div>
           </div>
