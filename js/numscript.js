@@ -127,7 +127,9 @@ function stat(){
 
 function mean(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mean is the sum the values divided by the total number of values."
+    document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
+    document.getElementById("explanationtext").innerHTML = "The mean is computed by adding up the values and dividing by the total number of values."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
@@ -136,7 +138,7 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -154,7 +156,9 @@ function meanpop(){
 
 function median(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "If there are an odd number of values, the median is the middle value. If there are an even number of values, the median is the average of two middle values."
+    document.getElementById("descriptiontext").innerHTML = "The median is a measure of central location that is useful when there are extreme values in the data."
+    document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order.<br>Step 2: a. If there are an odd number of values, take the middle value. <br> b. If there are an even number of values, average the two middle values."
+    document.getElementById("explanationtext").innerHTML = "The median is the middle value when the data is sorted from smallest to largest."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -164,7 +168,7 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-        document.getElementById("output").innerHTML = " <b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>odd number</u> of values, take the middle value.$$\\text{Median} = \\boxed{" + valm + "} $$"
+        document.getElementById("output").innerHTML = " $$ \\text{Ordered Data: }"+eachsort+"$$ $$\\text{Median} = \\boxed{" + valm + "} $$"
    
     }else{
         document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>even number</u> of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
@@ -174,7 +178,9 @@ function median(){
 
 function mode(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The mode is the value that occurs with the highest frequency."
+    document.getElementById("descriptiontext").innerHTML = "The mode is a measure of central location."
+    document.getElementById("formulatext").innerHTML = "The mode is the value that occurs with the highest frequency."
+    document.getElementById("explanationtext").innerHTML = "If there are two modes, the data is said to be bi-modal. If there are more than two modes, the data is said to be multi-modal."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -244,7 +250,7 @@ function percentiles(){
 
 function calcper(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "If the index i is not an integer, round up to the next integer. If the index i is an integer, average the values in positions i and i + 1."
+    document.getElementById("explanationtext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: Since the index is an integer, average values in positions i =  and i + 1."
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -267,7 +273,7 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data: }"+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "= " + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
    
     }else{
         document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"

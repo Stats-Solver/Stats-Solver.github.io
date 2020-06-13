@@ -144,27 +144,29 @@ function toless() {
 }
 
 function compuniform() {
-    if (probtype == "less") {
+    var probtype = document.getElementById("probtype").value
+    if (probtype == "lessequal") {
         compuniform1() 
-    } else if (probtype == "greater") {
+    } else if (probtype == "greaterequal") {
         compuniform2() 
     } else if (probtype == "between") {
         compuniform3()
+    } else if (probtype == "less") {
+        compuniform4() 
+    } else if (probtype == "greater") {
+        compuniform5()
     }
 }
 
 function compuniform1() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
-    var lessval = document.getElementById('lessval').value
-    var greaterval = document.getElementById('greaterval').value
-    var twoval1 = document.getElementById('twoval1').value
-    var twoval2 = document.getElementById('twoval2').value
+    var lessval = document.getElementById('unival').value
  
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
     
     
     var c = document.getElementById("myCanvas");
@@ -222,18 +224,81 @@ function compuniform1() {
     MathJax.typeset();
 }
 
-function compuniform2() {
+function compuniform4() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
-    var lessval = document.getElementById('lessval').value
-    var greaterval = document.getElementById('greaterval').value
-    var twoval1 = document.getElementById('twoval1').value
-    var twoval2 = document.getElementById('twoval2').value
+    var lessval = document.getElementById('unival').value
  
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    
+    
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    ctx.moveTo(75+((lessval-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(lessval,75+((lessval-minval)/(maxval-minval))*150 - 5,145);
+    
+    ctx.fillText("1/"+(maxval-minval),50,90);
+    ctx.fillText(lessval - minval,75+(((lessval-minval)/(maxval-minval))*150)/2 - 8,40);
+    
+    
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x < "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(lessval - minval))+"} \\end{align}$$"
+    
+    MathJax.typeset();
+}
+
+function compuniform2() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    var greaterval = document.getElementById('unival').value
+ 
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
     
     
     var c = document.getElementById("myCanvas");
@@ -280,13 +345,82 @@ function compuniform2() {
     ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 125);
     ctx.fillText(greaterval,75+((greaterval-minval)/(maxval-minval))*150 - 5,145);
     
-    ctx.fillText("1/"+(maxval-minval),230,90);
-    ctx.fillText(greaterval - minval,225-(((maxval-greaterval)/(maxval-minval))*150)/2 - 8,40);
+    ctx.fillText("1/"+(maxval-minval),75+((greaterval-minval)/(maxval-minval))*150 - 25,90);
+    ctx.fillText(maxval - greaterval,225-(((maxval-greaterval)/(maxval-minval))*150)/2 - 8,40);
     
     
     ctx.stroke();
     
     document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(maxval - greaterval))+"} \\end{align}$$"
+ 
+    
+    
+    
+    MathJax.typeset();
+}
+
+function compuniform5() {
+    $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    var greaterval = document.getElementById('unival').value
+ 
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(225, 130);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    
+    
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    ctx.moveTo(75+((greaterval-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(greaterval,75+((greaterval-minval)/(maxval-minval))*150 - 5,145);
+    
+    ctx.fillText("1/"+(maxval-minval),75+((greaterval-minval)/(maxval-minval))*150 - 25,90);
+    ctx.fillText(maxval - greaterval,225-(((maxval-greaterval)/(maxval-minval))*150)/2 - 8,40);
+    
+    
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x > "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(maxval - greaterval))+"} \\end{align}$$"
  
     
     
@@ -1554,8 +1688,7 @@ function compexponential3() {
 function exampleuniform(){
     document.getElementById('minval').value="120"
     document.getElementById('maxval').value="140"
-    document.getElementById('lessval').value="130"
-    document.getElementById('greaterval').value="135"
+    document.getElementById('unival').value="135"
     document.getElementById('twoval1').value="128"
     document.getElementById('twoval2').value="136"
 }
