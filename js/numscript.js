@@ -129,7 +129,7 @@ function mean(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
-    document.getElementById("explanationtext").innerHTML = "The mean is computed by adding up the values and dividing by the total number of values."
+    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
