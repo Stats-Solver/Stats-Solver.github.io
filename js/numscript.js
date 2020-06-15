@@ -250,7 +250,9 @@ function percentiles(){
 
 function calcper(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: Since the index is an integer, average values in positions i =  and i + 1."
+    document.getElementById("descriptiontext").innerHTML = "Approximately p% of the data is less than the p-th percentile. Approximately (1-p)% of the data is greater than the p-th percentile."
+    document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: a. If the index is not an integer, round up and take the value in that position. <br> b. If the index is an integer, average the values in positions i and i + 1."
+    document.getElementById("explanationtext").innerHTML = "The 50th percentile is the median."
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -287,7 +289,9 @@ function quartiles(){
 
 function calcquart(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile."
+    document.getElementById("descriptiontext").innerHTML = "The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile."
+    document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: a. If the index is not an integer, round up and take the value in that position. <br> b. If the index is an integer, average the values in positions i and i + 1."
+    document.getElementById("explanationtext").innerHTML = "The second quartile is the median."
     $("#inputqu").show(); $("#desquartiles").show();
     var val = document.getElementById("valquart").value;
     var str = document.getElementById("values").value;
@@ -324,7 +328,9 @@ function calcquart(){
 
 function range(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The range is the difference between the largest value and the smallest value."
+    document.getElementById("descriptiontext").innerHTML = "The range is the simplest measure of variability as it only uses two values: largest and smallest."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Range} = \\text{Largest Value} - \\text{Smallest Value} $$"
+    document.getElementById("explanationtext").innerHTML = "The range is susceptible to being affected by extreme values."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
     var largest = Math.max(...each); var smallest = Math.min(...each)
@@ -335,7 +341,9 @@ function range(){
 
 function iqr(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The interquartile range is the difference between the third quartile and the first quartile."
+    document.getElementById("descriptiontext").innerHTML = "The interquartile range is a measure of variability that isn't affected by extreme values."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $$"
+    document.getElementById("explanationtext").innerHTML = "The interquartile range only uses two values from the entire data set: the third quartile and the first quartile."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort();
@@ -362,7 +370,9 @@ function iqr(){
 
 function variance(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "$$ s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} $$"
+    document.getElementById("descriptiontext").innerHTML = "The variances is a measure of variability that uses all of the data."
+    document.getElementById("formulatext").innerHTML = "$$ s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} $$"
+    document.getElementById("explanationtext").innerHTML = "Since calculation of the variance involves squaring the deviations about the mean, it isn't in the same units as the original data."
     $("#output").empty();
     $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
     var str = document.getElementById("values").value;
@@ -426,6 +436,8 @@ function variancepop(){
 
 function stdev(){
     $("#explanation").show(); $("#label1").show();
+    document.getElementById("descriptiontext").innerHTML = "The standard deviation is a measure of variability that uses all of the data and is in the same units as the original data."
+    document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
     $("#output").empty();
     $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
@@ -470,7 +482,9 @@ function stdevpop(){
 
 function cv(){
     $("#explanation").show(); $("#label1").show();
-    document.getElementById("explanationtext").innerHTML = "The coefficient of variation is the ratio of the standard deviation to the mean as a percentage."
+    document.getElementById("descriptiontext").innerHTML = "The coefficient of variation measures how large the standard deviation is relative to the mean."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{CV} = \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% $$"
+    document.getElementById("explanationtext").innerHTML = "The coefficient of variation can be used to compare variability across variables."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -492,7 +506,6 @@ function cv(){
 }
 
 function zscores(){
-    document.getElementById("explanationtext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
     $("#inputzscore").show(); $("#inputz").show(); $("#label1").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -522,7 +535,9 @@ function zscores(){
 
 function calcz(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ z_x = \\frac{x-\\bar{x}}{s} $$"
+    document.getElementById("descriptiontext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
+    document.getElementById("formulatext").innerHTML = "$$ z_x = \\frac{x-\\bar{x}}{s} $$"
+    document.getElementById("explanationtext").innerHTML = "A positive z-score indicates a value is greater than the mean. A negative z-score indicates a value is less than the mean."
     $("#inputzscore").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -554,7 +569,9 @@ function covariance(){
 
 function calccov(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
+    document.getElementById("descriptiontext").innerHTML = "The covariance is a measure of the linear relationship between two variables."
+    document.getElementById("formulatext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
+    document.getElementById("explanationtext").innerHTML = "Only the sign of the covariance can be interpreted. A positive value indicates a positive linear relationship, a negative value indicates a negative linear relationship and a value of zero indicates no linear relationship."
     $("#output").empty();
     $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
     var str = document.getElementById("values").value;
@@ -668,7 +685,9 @@ function correlation(){
 
 function calccor(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The correlation coefficient is the covariance divided by the products of the standard deviations."
+    document.getElementById("descriptiontext").innerHTML = "The correlation coefficient is a measure of the linear relationship between two variables."
+    document.getElementById("formulatext").innerHTML = "$$r_{xy} = \\frac{s_{xy}}{s_x s_y}$$"
+    document.getElementById("explanationtext").innerHTML = "Both the sign and the size of the correlation coefficient can be interpreted. The sign determines the direction of the linear relationship (positive, negative or none) while a value closer to one indicates a stronger linear relationship."
     $("#output").empty();
     $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
     var str = document.getElementById("values").value;

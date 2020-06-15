@@ -80,7 +80,9 @@ function stat(){
 
 function slope(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = " $$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} $$"
+    document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
+    document.getElementById("formulatext").innerHTML = "$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} $$"
+    document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -135,7 +137,9 @@ function slope(){
 
 function intercept(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The intercept of the estimated regression equation is the predicted value of y when x = 0."
+    document.getElementById("descriptiontext").innerHTML = "The intercept of the estimated regression equation is the predicted value of dependent variable (y) when the independent variable (x) is equal to 0."
+    document.getElementById("formulatext").innerHTML = "$$b_{0} = \\bar{y} - b_{1} \\bar{x}$$"
+    document.getElementById("explanationtext").innerHTML = "The formula for the intercept is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -170,7 +174,9 @@ function intercept(){
 
 function equation(){
     $("#explanation").show(); $("#predict").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\hat{y} = b_{0} + b_{1} x $$"
+    document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
+    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
