@@ -81,7 +81,11 @@ function stat(){
 
 function expected() {
     $("#expected").show();
-
+    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    rows = 3
 }
 
 function compexpected() {
@@ -90,24 +94,49 @@ function compexpected() {
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
     var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
     var f1 = document.getElementById('f1').value
     var f2 = document.getElementById('f2').value
     var f3 = document.getElementById('f3').value
-    var ans = x1*f1 + x2*f2 + x3*f3;
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
 
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
-    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var ans = 0
+    for (i = 0; i < rows; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]*f[i]).toFixed(2))+"$</td></tr>"
+        ans += x[i]*f[i]
+    }
+    
+    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
+    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
+    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = " + parseFloat(ans.toFixed(2)) + "$$"
+    document.getElementById("output").innerHTML = table + "$$ E(x) = \\mu = " + parseFloat(ans.toFixed(2)) + "$$"
     MathJax.typeset();
 }
 
 function variance() {
     $("#variance").show();
-
+    $("#make2v").hide(); $("#make3v").show(); $("#make4v").hide(); $("#make5v").hide();
+    $("#make6v").hide(); $("#make7v").hide(); $("#make8v").hide(); $("#make9v").hide(); $("#make10v").hide();
+    $("#row4v").hide(); $("#row5v").hide(); $("#row6v").hide(); $("#row7v").hide();
+    $("#row8v").hide(); $("#row9v").hide(); $("#row10v").hide();
+    rows = 3
 }
 
 function compvariance() {
@@ -116,19 +145,51 @@ function compvariance() {
     var x1 = document.getElementById('x1v').value
     var x2 = document.getElementById('x2v').value
     var x3 = document.getElementById('x3v').value
+    var x4 = document.getElementById('x4v').value
+    var x5 = document.getElementById('x5v').value
+    var x6 = document.getElementById('x6v').value
+    var x7 = document.getElementById('x7v').value
+    var x8 = document.getElementById('x8v').value
+    var x9 = document.getElementById('x9v').value
+    var x10 = document.getElementById('x10v').value
     var f1 = document.getElementById('f1v').value
     var f2 = document.getElementById('f2v').value
     var f3 = document.getElementById('f3v').value
-    var mu = x1*f1 + x2*f2 + x3*f3;
+    var f4 = document.getElementById('f4v').value
+    var f5 = document.getElementById('f5v').value
+    var f6 = document.getElementById('f6v').value
+    var f7 = document.getElementById('f7v').value
+    var f8 = document.getElementById('f8v').value
+    var f9 = document.getElementById('f9v').value
+    var f10 = document.getElementById('f10v').value
     var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
 
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
-    table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
-    table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
-    table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
+    
+    
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var mu = 0
+    for (i = 0; i < rows; i++) {
+        mu += x[i]*f[i]
+    }
+    var ans = 0
+    for (i = 0; i < rows; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+(x[i]-mu)+"$</td><td>$"+((x[i]-mu)**2)+"$</td><td>$"+(((x[i]-mu)**2)*f[i])+"$</td></tr>"
+        ans += ((x[i]-mu)**2)*f[i]
+    }
+    
+    
+    
+    
+    
+    
+    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
+    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
+    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = " + parseFloat(ans.toFixed(2)) + "$$"
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sigma^2 = " + parseFloat(ans.toFixed(2)) + "$$"
     MathJax.typeset();
 }
 
@@ -1716,223 +1777,161 @@ function examplehypergeometric(){
 
 
 function make2(){
-    $("#expected2").show();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row3").hide();
+    $("#make2").show();
+    $("#make3").hide();
+    rows=2
 }
 
 function make3(){
-    $("#expected2").hide();
-    $("#expected").show();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row3").show();
+    $("#row4").hide();
+    $("#make2").hide();
+    $("#make3").show();
+    $("#make4").hide();
+    rows=3
 }
 
 function make4(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").show();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row4").show();
+    $("#row5").hide();
+    $("#make3").hide();
+    $("#make4").show();
+    $("#make5").hide();
+    rows=4
 }
 
 function make5(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").show();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row5").show();
+    $("#row6").hide();
+    $("#make4").hide();
+    $("#make5").show();
+    $("#make6").hide();
+    rows=5
 }
 
 function make6(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").show();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row6").show();
+    $("#row7").hide();
+    $("#make5").hide();
+    $("#make6").show();
+    $("#make7").hide();
+    rows=6
 }
 
 function make7(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").show();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row7").show();
+    $("#row8").hide();
+    $("#make6").hide();
+    $("#make7").show();
+    $("#make8").hide();
+    rows=7
 }
 
 function make8(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").show();
-    $("#expected9").hide();
-    $("#expected10").hide();
+    $("#row8").show();
+    $("#row9").hide();
+    $("#make7").hide();
+    $("#make8").show();
+    $("#make9").hide();
+    rows=8
 }
 
 function make9(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").show();
-    $("#expected10").hide();
+    $("#row9").show();
+    $("#row10").hide();
+    $("#make8").hide();
+    $("#make9").show();
+    $("#make10").hide();
+    rows=9
 }
 
 function make10(){
-    $("#expected2").hide();
-    $("#expected").hide();
-    $("#expected4").hide();
-    $("#expected5").hide();
-    $("#expected6").hide();
-    $("#expected7").hide();
-    $("#expected8").hide();
-    $("#expected9").hide();
-    $("#expected10").show();
+    $("#row10").show();
+    $("#make9").hide();
+    $("#make10").show();
+    rows=10
 }
-
-
-
 
 
 
 function make2v(){
-    $("#variance2").show();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row3v").hide();
+    $("#make2v").show();
+    $("#make3v").hide();
+    rows=2
 }
 
 function make3v(){
-    $("#variance2").hide();
-    $("#variance").show();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row3v").show();
+    $("#row4v").hide();
+    $("#make2v").hide();
+    $("#make3v").show();
+    $("#make4v").hide();
+    rows=3
 }
 
 function make4v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").show();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row4v").show();
+    $("#row5v").hide();
+    $("#make3v").hide();
+    $("#make4v").show();
+    $("#make5v").hide();
+    rows=4
 }
 
 function make5v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").show();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row5v").show();
+    $("#row6v").hide();
+    $("#make4v").hide();
+    $("#make5v").show();
+    $("#make6v").hide();
+    rows=5
 }
 
 function make6v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").show();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row6v").show();
+    $("#row7v").hide();
+    $("#make5v").hide();
+    $("#make6v").show();
+    $("#make7v").hide();
+    rows=6
 }
 
 function make7v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").show();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row7v").show();
+    $("#row8v").hide();
+    $("#make6v").hide();
+    $("#make7v").show();
+    $("#make8v").hide();
+    rows=7
 }
 
 function make8v(){
-    $("#variance2").hide();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").show();
-    $("#variance9").hide();
-    $("#variance10").hide();
+    $("#row8v").show();
+    $("#row9v").hide();
+    $("#make7v").hide();
+    $("#make8v").show();
+    $("#make9v").hide();
+    rows=8
 }
 
 function make9v(){
-    $("#variance2").show();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").show();
-    $("#variance10").hide();
+    $("#row9v").show();
+    $("#row10v").hide();
+    $("#make8v").hide();
+    $("#make9v").show();
+    $("#make10v").hide();
+    rows=9
 }
 
 function make10v(){
-    $("#variance2").show();
-    $("#variance").hide();
-    $("#variance4").hide();
-    $("#variance5").hide();
-    $("#variance6").hide();
-    $("#variance7").hide();
-    $("#variance8").hide();
-    $("#variance9").hide();
-    $("#variance10").show();
+    $("#row10v").show();
+    $("#make9v").hide();
+    $("#make10v").show();
+    rows=10
 }
+
+
+
 

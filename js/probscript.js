@@ -83,6 +83,8 @@ function compexperiments() {
         document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6$$ $$\\text{Sample Space = {1, 2, 3, 4, 5, 6}}$$"
     } else if (type == "dice" && times == "two") {
         document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6 \\times 6 = 36$$ $$\\text{Sample Space} = $$ $$ \\{11, 12, 13, 14, 15, 16,$$  $$21, 22, 23, 24, 25, 26,$$ $$31, 32, 33, 34, 35, 36,$$ $$41, 42, 43, 44, 45, 46,$$ $$51, 52, 53, 54, 55, 56,$$ $$61, 62, 63, 64, 65, 66 \\} $$"
+    } else if (type == "deck") {
+        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 52$$ $$\\text{Sample Space} = $$ $$ \\{ \\text{2H, 2D, 2S, 2C} $$ $$ \\text{3H, 3D, 3S, 3C} $$ $$ \\text{4H, 4D, 4S, 4C} $$ $$ \\text{5H, 5D, 5S, 5C} $$ $$ \\text{6H, 6D, 6S, 6C} $$ $$ \\text{7H, 7D, 7S, 7C} $$ $$ \\text{8H, 8D, 8S, 8C} $$ $$ \\text{9H, 9D, 9S, 9C} $$ $$ \\text{10H, 10D, 10S, 10C} $$ $$ \\text{JH, JD, JS, JC} $$ $$ \\text{QH, QD, QS, QC} $$ $$ \\text{KH, KD, KS, KC} $$ $$ \\text{AH, AD, AS, AC} \\} $$"
     }
     MathJax.typeset();
 }
