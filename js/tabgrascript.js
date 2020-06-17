@@ -153,7 +153,9 @@ function frequency(){
 
 function frequencyqual(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("descriptiontext").innerHTML = "A frequency distribution is a table showing the number of items in each class."
+    document.getElementById("formulatext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("explanationtext").innerHTML = "The sum of the frequencies is always equal to the sample size (n)."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -175,7 +177,9 @@ function frequencyqual(){
 
 function frequencyquant(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("descriptiontext").innerHTML = "A frequency distribution is a table showing the number of items in each class."
+    document.getElementById("formulatext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("explanationtext").innerHTML = "The sum of the frequencies is always equal to the sample size (n)."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -231,7 +235,9 @@ function relative(){
 
 function relativequal(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -258,7 +264,9 @@ function relativequal(){
 
 function relativequant(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -323,7 +331,9 @@ function percent(){
 
 function percentqual(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
     $("#despercent").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -353,7 +363,9 @@ function percentqual(){
 
 function percentquant(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
     $("#despercent").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -425,7 +437,9 @@ function bar(){
 
 function calcbar(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "In a bar chart, a bar is drawn to the frequency for each class."
+    document.getElementById("descriptiontext").innerHTML = "A bar chart is a graphical representation of a frequency distribution."
+    document.getElementById("formulatext").innerHTML = "In a bar chart, a bar is drawn to the frequency for each class."
+    document.getElementById("explanationtext").innerHTML = "There is distance between bars in a bar chart to signify the separation of the classes."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -489,7 +503,9 @@ function pie(){
 
 function calcpie(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "In a pie chart, the pie is split according to the percent frequencies for each class."
+    document.getElementById("descriptiontext").innerHTML = "A pie chart is a graphical representation of a percent frequency distribution."
+    document.getElementById("formulatext").innerHTML = "In a pie chart, the pie is divided according to the percent frequencies for each class."
+    document.getElementById("explanationtext").innerHTML = "Pie is tasty."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -551,7 +567,9 @@ function histogram(){
 
 function calchistogram(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "In a histogram, a bar is drawn to the frequency for eachh class."
+    document.getElementById("descriptiontext").innerHTML = "A histogram is a graphical representation of a frequency distribution for quantitative data."
+    document.getElementById("formulatext").innerHTML = "In a histogram, a bar is drawn to the frequency of each class."
+    document.getElementById("explanationtext").innerHTML = "In a histogram, the bars are connected to signify the continuity from one class to the next."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each = str.split(","); 
@@ -632,7 +650,9 @@ function cumfrequency(){
 
 function cumfrequency2(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "A cumulative frequency distribution gives the number of items less than or equal to the upper limit of each class."
+    document.getElementById("descriptiontext").innerHTML = "A cumulative frequency distribution is a table showing the number of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the frequency of the class to the cumulative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
     $("#descumfrequency").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -706,7 +726,9 @@ function cumrelative(){
 
 function cumrelative2(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "A cumulative frequency distribution gives the proportion of items less than or equal to the upper limit of each class."
+    document.getElementById("descriptiontext").innerHTML = "A cumulative relative frequency distribution is a table showing the proportion of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
     $("#descumrelative").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -787,7 +809,9 @@ function cumpercent(){
 
 function cumpercent2(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "A cumulative percent frequency distribution gives the percentage of items less than or equal to the upper limit of each class."
+    document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
     $("#descumpercent").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -855,7 +879,9 @@ function crosstabulation(){
 
 function calccross(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "Table summarizing data for two variables."
+    document.getElementById("descriptiontext").innerHTML = "A crosstabulation is a table summarizing data for two variables at the same time."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
     $("#input2").show(); $("#buttonscatt").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",");
@@ -881,7 +907,10 @@ function scatter(){
 
 function calcscatt(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    document.getElementById("descriptiontext").innerHTML = "A scatter diagram is a graphical summary of two quantitative variables at the same time."
+    document.getElementById("formulatext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    document.getElementById("explanationtext").innerHTML = ""
+    document.getElementById("explanationtext").innerHTML = ""
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
