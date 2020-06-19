@@ -120,6 +120,9 @@
                 </select>
                 </div>
             </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="exampleexperiments()">Example</span>
+        </div>
         </div>
       
       
@@ -388,6 +391,28 @@
         <div id="output">
         </div>
       </div>
+      
+      
+      
+      <div class="container">
+        <div id="output2">
+            <div id = "coin1" class = "text-center mt-2">
+                <p>$P($<select id="coin1val" class="hypinput1 probtype" onchange="coin1()"> <option value="head">Head</option> <option value="tail"> Tail </option></select>$)=$<span id="coin1ans"></span></p>
+            </div>
+            <div id = "coin2" class = "text-center mt-2">
+                <p>$P($<select id="coin2val" class="hypinput2 probtype" onchange="coin2()"> <option value="atleast1head">At Least One Head</option> <option value="atleast1tail"> At Least One Tail </option></select>$)=$<span id="coin2ans"></span></p>
+            </div>
+            <div id = "dice1" class = "text-center mt-2">
+                <p>$P($<select id="dice1val" class="hypinput3 probtype" onchange="dice1()"> <option value="evennum">Even Number</option> <option value="oddnum"> Odd Number </option><option value="higher3"> 3 or Higher </option><option value="higher4"> 4 or Higher </option><option value="lower3"> 3 or Lower </option><option value="lower4"> 4 or Lower </option></select>$)=$<span id="dice1ans"></span></p>
+            </div>
+            <div id = "dice2" class = "text-center mt-2">
+                <p>$P($<select id="dice2val" class="hypinput4 probtype" onchange="dice2()"> <option value="sum3">Sum is 3</option> <option value="sum4"> Sum is 4 </option><option value="sum5"> Sum is 5 </option><option value="sum6"> Sum is 6 </option><option value="sum7"> Sum is 7 </option><option value="sum8"> Sum is 8 </option></select>$)=$<span id="dice2ans"></span></p>
+            </div>
+        </div>
+      </div>
+      
+      
+      
       
       <div class="container text-center">
       <canvas id="myCanvas" width="300" height="150" ></canvas>

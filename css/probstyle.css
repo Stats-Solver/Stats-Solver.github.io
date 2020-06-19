@@ -63,3 +63,47 @@ footer {
     width: 50px;
     background-color: white;
 }
+
+.hypinput1{
+    width: 50px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}
+
+.hypinput2{
+    width: 150px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}
+
+.hypinput3{
+    width: 110px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}
+
+.hypinput4{
+    width: 80px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}

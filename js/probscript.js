@@ -1,7 +1,7 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#comb").hide(); $("#perm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
 $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
-$("#experiments").hide(); $("#bayes").hide();
+$("#experiments").hide(); $("#bayes").hide(); $("#output2").hide();
 
 function factorial(n) {
   return (n != 1) ? n * factorial(n - 1) : 1;
@@ -69,22 +69,35 @@ function experiments() {
 }
 
 function compexperiments() {
-    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
     document.getElementById("formulatext").innerHTML = "$$ \\text{Number of Outcomes} = (n_1)(n_2)\\cdots(n_k) $$ "
     document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$ $$ n! = n(n-1)(n-2) \\cdots (2)(1) $$ $$ 0! = 1 $$"
     var type = document.getElementById("exptype").value;
     var times = document.getElementById("exptimes").value;
+    var coin1val = document.getElementById("coin1val").value;
+    var coin2val = document.getElementById("coin2val").value;
+    var dice1val = document.getElementById("dice1val").value;
+    var dice2val = document.getElementById("dice2val").value;
     if (type == "coin" && times == "one") {
+        $("#explanation").show(); $("#output2").hide(); $("#coin1").show(); $("#coin2").hide(); $("#dice1").hide(); $("#dice2").hide();
         document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2$$ $$\\text{Sample Space = {Head, Tail}}$$"
+        if (coin1val == "head") {
+            document.getElementById("coin1ans").innerHTML = " $1/2$"
+        } else {
+            document.getElementById("coin1ans").innerHTML = " $1/2$"
+        }
     } else if (type == "coin" && times == "two") {
+        $("#explanation").show(); $("#output2").hide(); $("#coin2").show(); $("#coin1").hide(); $("#dice1").hide(); $("#dice2").hide();
         document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2 \\times 2 = 4$$ $$\\text{Sample Space = {HH, HT, TH, TT}}$$"
     } else if (type == "dice" && times == "one") {
+        $("#explanation").show(); $("#output2").hide(); $("#dice1").show(); $("#coin1").hide(); $("#coin2").hide(); $("#dice2").hide();
         document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6$$ $$\\text{Sample Space = {1, 2, 3, 4, 5, 6}}$$"
     } else if (type == "dice" && times == "two") {
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6 \\times 6 = 36$$ $$\\text{Sample Space} = $$ $$ \\{11, 12, 13, 14, 15, 16,$$  $$21, 22, 23, 24, 25, 26,$$ $$31, 32, 33, 34, 35, 36,$$ $$41, 42, 43, 44, 45, 46,$$ $$51, 52, 53, 54, 55, 56,$$ $$61, 62, 63, 64, 65, 66 \\} $$"
+        $("#explanation").show(); $("#output2").hide(); $("#dice2").show(); $("#coin1").hide(); $("#coin2").hide(); $("#dice1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6 \\times 6 = 36$$ $$\\text{Sample Space} = $$ $$ \\{(1,1), (1,2), (1,3), (1,4), (1,5), (1,6),$$  $$(2,1), (2,2), (2,3), (2,4), (2,5), (2,6),$$ $$(3,1), (3,2), (3,3), (3,4), (3,5), (3,6),$$ $$(4,1), (4,2), (4,3), (4,4), (4,5), (4,6),$$ $$(5,1), (5,2), (5,3), (5,4), (5,5), (5,6),$$ $$(6,1), (6,2), (6,3), (6,4), (6,5), (6,6) \\} $$"
     } else if (type == "deck") {
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 52$$ $$\\text{Sample Space} = $$ $$ \\{ \\text{2H, 2D, 2S, 2C} $$ $$ \\text{3H, 3D, 3S, 3C} $$ $$ \\text{4H, 4D, 4S, 4C} $$ $$ \\text{5H, 5D, 5S, 5C} $$ $$ \\text{6H, 6D, 6S, 6C} $$ $$ \\text{7H, 7D, 7S, 7C} $$ $$ \\text{8H, 8D, 8S, 8C} $$ $$ \\text{9H, 9D, 9S, 9C} $$ $$ \\text{10H, 10D, 10S, 10C} $$ $$ \\text{JH, JD, JS, JC} $$ $$ \\text{QH, QD, QS, QC} $$ $$ \\text{KH, KD, KS, KC} $$ $$ \\text{AH, AD, AS, AC} \\} $$"
+        $("#explanation").show(); 
+        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 52$$ $$\\text{Sample Space} = $$ $$ \\{ \\text{2H, 3H, 4H, 5H, 6H, 7H, 8H, 9H, 10H, JH, QH, KH, AH,} $$ $$ \\text{2D, 3D, 4D, 5D, 6D, 7D, 8D, 9D, 10D, JD, QD, KD, AD,} $$ $$ \\text{2S, 3S, 4S, 5S, 6S, 7S, 8S, 9S, 10S, JS, QS, KS, AS,} $$ $$ \\text{2C, 3C, 4C, 5C, 6C, 7C, 8C, 9C, 10C, JC, QC, KC, AC} \\} $$"
     }
     MathJax.typeset();
 }
@@ -320,16 +333,24 @@ function bayes() {
 }
 
 function compbayes() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
+    document.getElementById("formulatext").innerHTML = "$$ P(A_1 \\mid B) = \\frac{P(A_1)P(B \\mid A_1)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} $$ $$ P(A_2 \\mid B) = \\frac{P(A_2)P(B \\mid A_2)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} $$ "
+    document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$ $$ n! = n(n-1)(n-2) \\cdots (2)(1) $$ $$ 0! = 1 $$"
     var proba1 = document.getElementById("proba1").value;
     var proba2 = document.getElementById("proba2").value;
     var probbgiva1 = document.getElementById("probbgiva1").value;
     var probbgiva2 = document.getElementById("probbgiva2").value;
     var ans1 = (proba1 * probbgiva1) / (proba1 * probbgiva1 + proba2 * probbgiva2);
     var ans2 = (proba2 * probbgiva2) / (proba1 * probbgiva1 + proba2 * probbgiva2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A_1 \\mid B) &= \\frac{P(A_1)P(B \\mid A_1)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} \\\\ &= \\frac{" + proba1 + "(" + probbgiva1 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= " + ans1.toFixed(2) + "\\end{align} $$ $$ \\begin{align} P(A_2 \\mid B) &= \\frac{P(A_2)P(B \\mid A_2)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} \\\\ &= \\frac{" + proba2 + "(" + probbgiva2 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= " + ans2.toFixed(2) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A_1 \\mid B) &= \\frac{" + proba1 + "(" + probbgiva1 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= " + ans1.toFixed(2) + "\\end{align} $$ $$ \\begin{align} P(A_2 \\mid B) &= \\frac{" + proba2 + "(" + probbgiva2 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= " + ans2.toFixed(2) + "\\end{align} $$"
     MathJax.typeset();
 }
 
+function exampleexperiments(){
+    document.getElementById('exptype').value="coin"
+    document.getElementById('exptimes').value="one"
+}
 
 function examplecomb(){
     document.getElementById('topn').value="5"
