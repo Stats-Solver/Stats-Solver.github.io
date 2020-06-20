@@ -1,4 +1,5 @@
-$("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide();  $("#label3").hide(); $("#myCanvas").hide();
+$("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide();  $("#label3").hide();
+$("#myCanvas").hide(); $("#myCanvas2").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -109,7 +110,7 @@ function showthings(){
 }
 
 function stat(){
-    $("#explanation").hide(); $("#charts").hide(); $("#myCanvas").hide();
+    $("#explanation").hide(); $("#charts").hide(); $("#myCanvas").hide(); $("#myCanvas2").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
     if (x == "frequency"){
@@ -589,8 +590,8 @@ function calcpie(){
     var h = radvals[0];
     var k = h / 2;
     for (var i=0; i<radvals.length; i++) {
-        ctx.fillText(eachonesort[i],150+40*Math.sin(k)-20,75-40*Math.cos(k)-10);
-        ctx.fillText(parseFloat(perfreq[i].toFixed(1))+"%",150+40*Math.sin(k)-20,75-40*Math.cos(k));
+        ctx.fillText(eachonesort[i],150+40*Math.sin(k)-.5*ctx.measureText(eachonesort[i]).width,75-40*Math.cos(k));
+        ctx.fillText(parseFloat(perfreq[i].toFixed(1))+"%",150+40*Math.sin(k)-.5*ctx.measureText(parseFloat(perfreq[i].toFixed(1))+"%").width,75-40*Math.cos(k)+12);
         k = h + radvals[i+1]/2;
         h += radvals[i+1];
     }
@@ -977,7 +978,7 @@ function scatter(){
 }
 
 function calcscatt(){
-    $("#explanation").show(); $("#charts").show();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "A scatter diagram is a graphical summary of two quantitative variables at the same time."
     document.getElementById("formulatext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
     document.getElementById("explanationtext").innerHTML = ""
@@ -991,15 +992,17 @@ function calcscatt(){
     var ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     ctx.beginPath();
-    ctx.moveTo(20, 20);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(130, 130);
+    ctx.moveTo(80, 20);
+    ctx.lineTo(80, 130);
+    ctx.lineTo(190, 130);
     ctx.stroke();
-    ctx.fillText("y",18,15);
-    ctx.fillText("x",135,132);
+    ctx.fillText("y",78,15);
+    ctx.fillText("x",195,132);
     
     var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2);
-    var intervals = Math.ceil(maxval / 4); var intervals2 = Math.ceil(parseFloat(maxval2) / 4); 
+    //var intervals = Math.ceil(maxval / 4); var intervals2 = Math.ceil(parseFloat(maxval2) / 4); 
+    var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
+    var intervals = Math.ceil(intervals0/5)*5; var intervals2 = Math.ceil(intervals20/5)*5
     
     var valuesScaled = each.map( function(value) {
         return (value / (intervals * 4)) * 100
@@ -1010,24 +1013,24 @@ function calcscatt(){
     } );
     
     for (var i=0; i<each.length; i++) {
-        ctx.fillRect(20 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
+        ctx.fillRect(80 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
     }
     
     for (var i=1; i<5; i++) {
-        ctx.moveTo(20+25*i, 125);
-        ctx.lineTo(20+25*i, 135);
+        ctx.moveTo(80+25*i, 125);
+        ctx.lineTo(80+25*i, 135);
         ctx.stroke();
     }
     
     for (var i=1; i<5; i++) {
-        ctx.moveTo(15, 150 - 25*i - 20);
-        ctx.lineTo(25, 150 - 25*i - 20);
+        ctx.moveTo(75, 150 - 25*i - 20);
+        ctx.lineTo(85, 150 - 25*i - 20);
         ctx.stroke();
     }
     
     for (var i=1; i<5; i++) {
-        ctx.fillText(intervals * i,18+25*i,145);
-        ctx.fillText(intervals2 * i,5,150 - 25*i - 18);
+        ctx.fillText(intervals * i,78+25*i,145);
+        ctx.fillText(intervals2 * i,60,150 - 25*i - 18);
     }
     
     document.getElementById("output").innerHTML = intervals + " asdfd" + intervals2 + " asdfd" 
