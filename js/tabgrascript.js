@@ -9,6 +9,10 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
+var canvas = document.getElementById("myCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
 function resizeCanvasToDisplaySize(canvas) {
    // look up the size the canvas is being displayed
    const width = canvas.clientWidth;
@@ -987,53 +991,132 @@ function calcscatt(){
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
+    var minval = Math.min.apply(Math, each); var minval2 = Math.min.apply(Math, each2);
     
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.beginPath();
-    ctx.moveTo(80, 20);
-    ctx.lineTo(80, 130);
-    ctx.lineTo(190, 130);
-    ctx.stroke();
-    ctx.fillText("y",78,15);
-    ctx.fillText("x",195,132);
-    
-    var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2);
-    //var intervals = Math.ceil(maxval / 4); var intervals2 = Math.ceil(parseFloat(maxval2) / 4); 
-    var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
-    var intervals = Math.ceil(intervals0/5)*5; var intervals2 = Math.ceil(intervals20/5)*5
-    
-    var valuesScaled = each.map( function(value) {
-        return (value / (intervals * 4)) * 100
-    } );
-    
-    var valuesScaled2 = each2.map( function(value) {
-        return (value / (intervals2 * 4)) * 100
-    } );
-    
-    for (var i=0; i<each.length; i++) {
-        ctx.fillRect(80 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
-    }
-    
-    for (var i=1; i<5; i++) {
-        ctx.moveTo(80+25*i, 125);
-        ctx.lineTo(80+25*i, 135);
+    if (minval >= 0 && minval2 >= 0) {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(80, 20);
+        ctx.lineTo(80, 130);
+        ctx.lineTo(190, 130);
         ctx.stroke();
-    }
-    
-    for (var i=1; i<5; i++) {
-        ctx.moveTo(75, 150 - 25*i - 20);
-        ctx.lineTo(85, 150 - 25*i - 20);
+        ctx.fillText("y",78,15);
+        ctx.fillText("x",195,132);
+
+        var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2); 
+        
+        if (maxval <=10) {
+            var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
+            var intervals = Math.ceil(intervals0/2)*2; var intervals2 = Math.ceil(intervals20/5)*5
+        } else {
+            var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
+            var intervals = Math.ceil(intervals0/5)*5; var intervals2 = Math.ceil(intervals20/5)*5
+        }
+        
+
+        var valuesScaled = each.map( function(value) {
+            return (value / (intervals * 4)) * 100
+        } );
+
+        var valuesScaled2 = each2.map( function(value) {
+            return (value / (intervals2 * 4)) * 100
+        } );
+
+        ctx.strokeStyle = "blue";
+        ctx.fillStyle = "blue";
+        for (var i=0; i<each.length; i++) {
+            ctx.beginPath();
+            ctx.arc(80 + valuesScaled[i], 150 - valuesScaled2[i] - 20, 1, 0, 2 * Math.PI);
+            ctx.stroke(); 
+            ctx.fill()
+            //ctx.fillRect(80 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
+        }
+        
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "black";
+
+        for (var i=1; i<5; i++) {
+            ctx.moveTo(80+25*i, 125);
+            ctx.lineTo(80+25*i, 135);
+            ctx.stroke();
+        }
+
+        for (var i=1; i<5; i++) {
+            ctx.moveTo(75, 150 - 25*i - 20);
+            ctx.lineTo(85, 150 - 25*i - 20);
+            ctx.stroke();
+        }
+
+        for (var i=1; i<5; i++) {
+            ctx.fillText(intervals * i,80+25*i-.5*ctx.measureText(intervals * i).width,145);
+            ctx.fillText(intervals2 * i,60,150 - 25*i - 18);
+        }
+        
+    } else if (minval < 0 && minval2 >= 0) {
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.beginPath();
+        ctx.moveTo(40, 130);
+        ctx.lineTo(260, 130);
+        ctx.moveTo(150, 130);
+        ctx.lineTo(150, 20);
         ctx.stroke();
+        ctx.fillText("y",148,15);
+        ctx.fillText("x",265,132);
+
+        var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2);
+        var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
+        var intervals = Math.ceil(intervals0/5)*5; var intervals2 = Math.ceil(intervals20/5)*5
+
+        var valuesScaled = each.map( function(value) {
+            return (value / (intervals * 4)) * 100
+        } );
+
+        var valuesScaled2 = each2.map( function(value) {
+            return (value / (intervals2 * 4)) * 100
+        } );
+        
+        ctx.strokeStyle = "blue";
+        ctx.fillStyle = "blue";
+
+        for (var i=0; i<each.length; i++) {
+            ctx.beginPath();
+            ctx.arc(150 + valuesScaled[i], 150 - valuesScaled2[i] - 20, 1, 0, 2 * Math.PI);
+            ctx.stroke(); 
+            ctx.fill()
+            //ctx.fillRect(150 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
+        }
+        
+        ctx.strokeStyle = "black";
+        ctx.fillStyle = "black";
+
+        for (var i=1; i<5; i++) {
+            ctx.moveTo(150+25*i, 125);
+            ctx.lineTo(150+25*i, 135);
+            ctx.stroke();
+        }
+        
+        for (var i=1; i<5; i++) {
+            ctx.moveTo(150-25*i, 125);
+            ctx.lineTo(150-25*i, 135);
+            ctx.stroke();
+        }
+
+        for (var i=1; i<5; i++) {
+            ctx.moveTo(145, 150 - 25*i - 20);
+            ctx.lineTo(155, 150 - 25*i - 20);
+            ctx.stroke();
+        }
+
+        for (var i=1; i<5; i++) {
+            ctx.fillText(intervals * i,150+25*i-.5*ctx.measureText(intervals * i).width,145);
+            ctx.fillText(-1*(intervals * i),150-25*i-.5*ctx.measureText(-1*(intervals * i)).width,145);
+            ctx.fillText(intervals2 * i,130,150 - 25*i - 18);
+        }
     }
-    
-    for (var i=1; i<5; i++) {
-        ctx.fillText(intervals * i,78+25*i,145);
-        ctx.fillText(intervals2 * i,60,150 - 25*i - 18);
-    }
-    
-    document.getElementById("output").innerHTML = intervals + " asdfd" + intervals2 + " asdfd" 
 
     
     MathJax.typeset();
