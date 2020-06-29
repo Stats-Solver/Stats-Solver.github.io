@@ -65,3 +65,13 @@ th, td {
   align-items: center;
   text-align: center;
 }
+
+.hypinput1{
+    width: 25px;
+    background-color: white;
+}
+
+.hypinput3{
+    width: 60px;
+    background-color: white;
+}

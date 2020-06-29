@@ -51,14 +51,15 @@
               <a class="dropdown-item" href="probability.html">Probability Basics</a>
               <a class="dropdown-item" href="discrete.html">Discrete Distributions</a>
               <a class="dropdown-item" href="continuous.html">Continuous Distributions</a>
+              <a class="dropdown-item" href="sampling.html">Sampling Distributions</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="regression.html">Simple Regression</a>
             </div>
           </li>
-            <li class="nav-item">
+            <!--<li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
-          </li>
+          </li>-->
         </ul>
       </div>
       
@@ -107,6 +108,8 @@
                 <option value="stdev">Standard Deviation</option>
                 <option value="cv">Coefficient of Variation</option>
                 <option value="zscores">z-Scores</option>
+                <option value="chebyshev">Chebyshev's Theorem</option>
+                <option value="empirical">Empirical Rule</option>
                 <option value="covariance">Covariance</option>
                 <option value="correlation">Correlation Coefficient</option>
             </select>
@@ -149,6 +152,23 @@
         </div>
              </div>
              </div>
+      
+      <div class="container" id="chebyshev">
+        <table>
+          <tr>
+            <td style="text-align:right">$\text{Mean:}$</td>
+            <td><input class = "hypinput3" type="text" id="expval"></td>
+            <td style="text-align:right">$\text{Stnd Dev:}$</td>
+            <td><input class = "hypinput3" type="text" id="stdev"></td>
+            </tr>
+          <tr>
+            <td style="text-align:right">$\text{Minimum:}$</td>
+            <td><input class = "hypinput3" type="text" id="minval"></td>
+            <td style="text-align:right">$\text{Maximum:}$</td>
+            <td><input class = "hypinput3" type="text" id="maxval"></td>
+            </tr>
+        </table> 
+          </div>
 
       <div class = "text-center" id = "label1">
             <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
@@ -156,6 +176,10 @@
       
       <div class = "text-center" id = "label2">
             <span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>
+        </div>
+      
+      <div class = "text-center" id = "label3">
+            <span class="examplelink" onclick="examplevalues5()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>
         </div>
       
       <div class="container">

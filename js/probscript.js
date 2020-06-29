@@ -4,7 +4,11 @@ $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#
 $("#experiments").hide(); $("#bayes").hide(); $("#output2").hide();
 
 function factorial(n) {
-  return (n != 1) ? n * factorial(n - 1) : 1;
+    if (n > 0) {
+        return (n != 1) ? n * factorial(n - 1) : 1;
+    } else if (n == 0) {
+        return 1
+    } 
 }
 
 function showstuff(){
@@ -273,9 +277,9 @@ function compintersection3() {
     document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
     document.getElementById("explanationtext").innerHTML = "If the events are independent, the probability of A given B is equal to the probability of A and the probability of B given A is equal to the probability of B."
     var probb = document.getElementById("iprobb2").value;
-    var probagivb = document.getElementById("iproba2").value;
-    var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    var proba = document.getElementById("iproba2").value;
+    var ans = parseFloat(probb) * parseFloat(proba);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\  &= " + probb + "(" + proba + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -284,10 +288,10 @@ function compintersection4() {
     document.getElementById("descriptiontext").innerHTML = "The intersection of events A and B is the event containing all sample points in both A and B."
     document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A)  $$"
     document.getElementById("explanationtext").innerHTML = "If the events are independent, the probability of A given B is equal to the probability of A and the probability of B given A is equal to the probability of B."
-    var probb = document.getElementById("iproba3").value;
-    var probagivb = document.getElementById("iprobb3").value;
-    var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\ &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    var proba = document.getElementById("iprobaa3").value;
+    var probb = document.getElementById("iprobab3").value;
+    var ans = parseFloat(proba) * parseFloat(probb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\ &= " + proba + "(" + probb + ") \\\\ &= " + ans + "\\end{align} $$"
     MathJax.typeset();
 }
 

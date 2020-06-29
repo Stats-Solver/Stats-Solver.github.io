@@ -34,7 +34,9 @@ function showstuff(){
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
-    if (x == "expected"){
+    if (x == "probabilities"){
+        probabilities()
+    } else if (x == "expected"){
         expected()
     } else if (x == "variance"){
         variance()
@@ -58,7 +60,9 @@ function showstuff(){
 function stat(){
     $("#output").empty(); $("#myCanvas").hide();
     var x = document.getElementById("stat").value;
-    if (x == "expected"){
+    if (x == "probabilities"){
+        compprobabilities()
+    } else if (x == "expected"){
         compexpected()
     } else if (x == "variance"){
         compvariance()
@@ -77,6 +81,15 @@ function stat(){
         $("#explanation").hide();
     }
    
+}
+
+function probabilities() {
+    $("#expected").show();
+    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    rows = 3
 }
 
 function expected() {
@@ -131,37 +144,37 @@ function compexpected() {
 }
 
 function variance() {
-    $("#variance").show();
-    $("#make2v").hide(); $("#make3v").show(); $("#make4v").hide(); $("#make5v").hide();
-    $("#make6v").hide(); $("#make7v").hide(); $("#make8v").hide(); $("#make9v").hide(); $("#make10v").hide();
-    $("#row4v").hide(); $("#row5v").hide(); $("#row6v").hide(); $("#row7v").hide();
-    $("#row8v").hide(); $("#row9v").hide(); $("#row10v").hide();
+    $("#expected").show();
+    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
     rows = 3
 }
 
 function compvariance() {
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
-    var x1 = document.getElementById('x1v').value
-    var x2 = document.getElementById('x2v').value
-    var x3 = document.getElementById('x3v').value
-    var x4 = document.getElementById('x4v').value
-    var x5 = document.getElementById('x5v').value
-    var x6 = document.getElementById('x6v').value
-    var x7 = document.getElementById('x7v').value
-    var x8 = document.getElementById('x8v').value
-    var x9 = document.getElementById('x9v').value
-    var x10 = document.getElementById('x10v').value
-    var f1 = document.getElementById('f1v').value
-    var f2 = document.getElementById('f2v').value
-    var f3 = document.getElementById('f3v').value
-    var f4 = document.getElementById('f4v').value
-    var f5 = document.getElementById('f5v').value
-    var f6 = document.getElementById('f6v').value
-    var f7 = document.getElementById('f7v').value
-    var f8 = document.getElementById('f8v').value
-    var f9 = document.getElementById('f9v').value
-    var f10 = document.getElementById('f10v').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
     var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
 
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
@@ -175,7 +188,7 @@ function compvariance() {
     }
     var ans = 0
     for (i = 0; i < rows; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+(x[i]-mu)+"$</td><td>$"+((x[i]-mu)**2)+"$</td><td>$"+(((x[i]-mu)**2)*f[i])+"$</td></tr>"
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]-mu)**2).toFixed(2))+"$</td><td>$"+parseFloat((((x[i]-mu)**2)*f[i]).toFixed(2))+"$</td></tr>"
         ans += ((x[i]-mu)**2)*f[i]
     }
     
@@ -371,7 +384,7 @@ function compbinomial2() {
     finalans = finalans + parseFloat(ans.toFixed(2))
         
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+finalans + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -543,7 +556,7 @@ function compbinomial3() {
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     finalans = finalans + parseFloat(ans.toFixed(2))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+finalans + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -630,7 +643,7 @@ function compbinomial5() {
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     finalans = finalans + parseFloat(ans.toFixed(2))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+finalans + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$"
     
     MathJax.typeset();
 }

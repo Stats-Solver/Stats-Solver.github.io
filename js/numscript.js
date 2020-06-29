@@ -1,6 +1,6 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
-
+$("#chebyshev").hide(); $("#label3").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -72,6 +72,7 @@ function avg(input){
 
 function showthings(){
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
+    $("#chebyshev").hide(); $("#label3").hide();
     var x = document.getElementById("stat").value;
     if (x == "percentiles") {
         percentiles()
@@ -79,6 +80,10 @@ function showthings(){
         quartiles()
     } else if (x == "zscores") {
         zscores()
+    } else if (x == "chebyshev") {
+        chebyshev()
+    } else if (x == "empirical") {
+        empirical()
     } else if (x == "covariance") {
         covariance()
     } else if (x == "correlation") {
@@ -88,7 +93,7 @@ function showthings(){
 
 function stat(){
     $("#explanation").hide();
-    $("#inputqu").hide(); $("#inputzscore").hide(); 
+    $("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("stat").value;
@@ -114,6 +119,10 @@ function stat(){
         cv()
     } else if (x == "zscores") {
         calcz()
+    } else if (x == "chebyshev") {
+        calcchebyshev()
+    } else if (x == "empirical") {
+        calcempirical()
     } else if (x == "covariance") {
         calccov()
     } else if (x == "correlation") {
@@ -563,6 +572,72 @@ function calcz(){
     MathJax.typeset()
 }
 
+function chebyshev(){
+    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show();
+}
+
+function calcchebyshev(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Chebyshev's theorem is used to get the percentage of values within z standard deviations of the mean."
+    document.getElementById("formulatext").innerHTML = "At least (1-1/z^2) of the data values must be within z standard deviations of the mean, where z is any value greater than 1."
+    document.getElementById("explanationtext").innerHTML = "Chevbyshev's theorem works for any data regardless of its distribution."
+    var mn = document.getElementById("expval").value;
+    var std = document.getElementById("stdev").value;
+    var min = document.getElementById("minval").value;
+    var max = document.getElementById("maxval").value;
+    
+    var zminans = parseFloat(((min-mn)/std).toFixed(2))
+    var zmaxans = parseFloat(((max-mn)/std).toFixed(2))
+    
+    var zmin = "z_{"+min+"} = \\frac{"+min+"-\\bar{x}}{s} = \\frac{"+min+" - "+mn+"}{"+std+"} = "+zminans
+    var zmax = "z_{"+max+"} = \\frac{"+max+"-\\bar{x}}{s} = \\frac{"+max+" - "+mn+"}{"+std+"} = "+zmaxans
+    
+    
+    if (Math.abs(zminans) == zmaxans) {
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$\\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 \\\\ &= 1-1/"+Math.pow(zmaxans,2)+" \\\\ &="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+"\\\\ &=\\boxed{"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%} \\end{align}$$ At least $"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\% $ of the data values must be between $"+min+"$ and $"+max+"$.<br><br>"
+    } else {
+        document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
+    }
+    
+    
+    MathJax.typeset()
+}
+
+function empirical(){
+    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show();
+}
+
+function calcempirical(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The empirical rule is used to get the percentage of values within 1, 2 or 3 standard deviations of the mean when the data follows a normal distribution."
+    document.getElementById("formulatext").innerHTML = "For data having a bell-shaped distribution:<br> - Approximately 68% of the data values will be within one standard deviation of the mean.<br> - Approximately 95% of the data values will be within two standard deviations of the mean.<br> - Almost all of the data values will be within three standard deviations of the mean."
+    document.getElementById("explanationtext").innerHTML = "The empirical rule only works for data follows a normal distribution."
+    var mn = document.getElementById("expval").value;
+    var std = document.getElementById("stdev").value;
+    var min = document.getElementById("minval").value;
+    var max = document.getElementById("maxval").value;
+    
+    var zminans = parseFloat(((min-mn)/std).toFixed(2))
+    var zmaxans = parseFloat(((max-mn)/std).toFixed(2))
+    
+    var zmin = "z_{"+min+"} = \\frac{"+min+"-\\bar{x}}{s} = \\frac{"+min+" - "+mn+"}{"+std+"} = "+zminans
+    var zmax = "z_{"+max+"} = \\frac{"+max+"-\\bar{x}}{s} = \\frac{"+max+" - "+mn+"}{"+std+"} = "+zmaxans
+    
+    
+    if (Math.abs(zminans) == zmaxans && zmaxans==1) {
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ Approximately $ 68 \\% $ of the data values will be between $"+min+"$ and $"+max+"$.<br><br>"
+    } else if (Math.abs(zminans) == zmaxans && zmaxans==2) {
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ Approximately $ 95 \\% $ of the data values will be between $"+min+"$ and $"+max+"$.<br><br>"
+    } else if (Math.abs(zminans) == zmaxans && zmaxans==3) {
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ Almost all of the data values will be between $"+min+"$ and $"+max+"$.<br><br>"
+    } else {
+        document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
+    }
+    
+    
+    MathJax.typeset()
+}
+
 function covariance(){
     $("#input2").show(); $("#label2").show(); $("#label1").hide();
 }
@@ -848,3 +923,18 @@ function examplevalues4(){
     document.getElementById('values').value="6, 11, 15, 21, 27"
     document.getElementById('values2').value="6, 9, 6, 17, 12"
 }
+
+function examplevalues5(){
+    document.getElementById('expval').value="30"
+    document.getElementById('stdev').value="5"
+    document.getElementById('minval').value="20"
+    document.getElementById('maxval').value="40"
+}
+
+function examplevalues6(){
+    document.getElementById('expval').value="30"
+    document.getElementById('stdev').value="5"
+    document.getElementById('minval').value="15"
+    document.getElementById('maxval').value="45"
+}
+
