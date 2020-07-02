@@ -58,3 +58,16 @@ footer {
  border-style:solid;
  border-color:black;
 }
+
+/* Style all font awesome icons */
+.fa {
+  padding: 0px;
+  font-size: 0px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa:hover {
+  text-decoration: none;
+}
