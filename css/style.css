@@ -61,9 +61,9 @@ footer {
 
 /* Style all font awesome icons */
 .fa {
-  padding: 0px;
+  padding: 20px;
   font-size: 0px;
-  width: 25px;
+  width: 100px;
   text-align: center;
   text-decoration: none;
 }
