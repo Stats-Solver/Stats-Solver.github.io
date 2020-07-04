@@ -36,14 +36,6 @@ function avg(input){
     return sum(input)/input.length
 }
 
-function showthings(){ 
-    $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();
-    var x = document.getElementById("stat").value;
-    if (x == "sumsquares") {
-        sumsquares()
-    }
-}
-
 function stat(){
     $("#output").empty(); $("#explanation").hide(); 
     $("#meansquare").hide(); $("#standarderror").hide();
@@ -54,8 +46,12 @@ function stat(){
         intercept()
     } else if (x == "equation") {
         equation()
-    } else if (x == "sumsquares") {
-        calcsumsquares()
+    } else if (x == "sse") {
+        sse()
+    } else if (x == "sst") {
+        sst()
+    } else if (x == "ssr") {
+        ssr()
     } else if (x == "rsquared") {
         rsquared()
     } else if (x == "correlation") {
@@ -64,6 +60,8 @@ function stat(){
         mse()
     } else if (x == "see") {
         see()
+    } else if (x == "ses") {
+        ses()
     } else if (x == "standarderror") {
         standarderror()
     } else if (x == "tstat") {
@@ -206,21 +204,6 @@ function equation(){
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
     document.getElementById("output").innerHTML = "$$ \\begin{align} b_{0} &= "+parseFloat(ansint.toFixed(2))+"\\\\ b_{1} &= "+parseFloat(ansslope.toFixed(2))+"\\end{align}$$ $$\\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) +" + "+parseFloat(ansslope.toFixed(2))+"x} $$"
     MathJax.typeset();
-}
-
-function sumsquares() {
-    $("#sumsquares").show();
-}
-
-function calcsumsquares() {
-    var val = document.getElementById("sumsquaresval").value;
-    if (val=="error") {
-        sse()
-    } else if (val=="total") {
-        sst()
-    } else if (val=="regression") {
-        ssr()
-    }
 }
 
 function sse(){

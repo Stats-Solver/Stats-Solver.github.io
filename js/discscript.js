@@ -298,7 +298,7 @@ function compbinomial1() {
     
     var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + (1-prob) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat((1-prob)**(trials-num).toFixed(2))+" \\\\ &= " + parseFloat(ans.toFixed(2))  + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + parseFloat((1-prob).toFixed(2)) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat(((1-prob)**(trials-num)).toFixed(2))+" \\\\ &= " + parseFloat(ans.toFixed(2))  + "   \\end{align} $$"
     MathJax.typeset();
 }
 

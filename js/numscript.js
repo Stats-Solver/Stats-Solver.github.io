@@ -72,7 +72,7 @@ function avg(input){
 
 function showthings(){
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
-    $("#chebyshev").hide(); $("#label3").hide();
+    $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show();
     var x = document.getElementById("stat").value;
     if (x == "percentiles") {
         percentiles()
@@ -573,7 +573,7 @@ function calcz(){
 }
 
 function chebyshev(){
-    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show();
+    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show(); $("#values").hide();
 }
 
 function calcchebyshev(){
@@ -604,14 +604,14 @@ function calcchebyshev(){
 }
 
 function empirical(){
-    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show();
+    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show(); $("#values").hide();
 }
 
 function calcempirical(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The empirical rule is used to get the percentage of values within 1, 2 or 3 standard deviations of the mean when the data follows a normal distribution."
     document.getElementById("formulatext").innerHTML = "For data having a bell-shaped distribution:<br> - Approximately 68% of the data values will be within one standard deviation of the mean.<br> - Approximately 95% of the data values will be within two standard deviations of the mean.<br> - Almost all of the data values will be within three standard deviations of the mean."
-    document.getElementById("explanationtext").innerHTML = "The empirical rule only works for data follows a normal distribution."
+    document.getElementById("explanationtext").innerHTML = "The empirical rule only works for data that follows a normal distribution."
     var mn = document.getElementById("expval").value;
     var std = document.getElementById("stdev").value;
     var min = document.getElementById("minval").value;
