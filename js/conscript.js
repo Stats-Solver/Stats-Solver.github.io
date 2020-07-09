@@ -260,6 +260,16 @@ function tinv(p, dof) {
 }
 
 function conint(){
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        conint1()
+    } else if (x == "proportion"){
+        conint2()
+    } 
+}
+
+
+function conint1(){
     $("#explanation").show();
     $("#expconf").show();
     var sigma = document.getElementById("sigma").value;
@@ -393,7 +403,123 @@ function conint(){
     MathJax.typeset();
 }
 
+function conint2(){
+    $("#explanation").show();
+    $("#expconf").show();
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var pbar = document.getElementById("xbar").value;
+    var conlev = document.getElementById("conlev").value;
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,sizem1);
+    var marginerror0 = parseFloat(pbar)*parseFloat((1-parseFloat(pbar)))/parseFloat(size)
+    var marginerror = zalphahalf * Math.sqrt((pbar*(1-pbar))/size);
+    var anslow = pbar - marginerror; var anshigh = (parseFloat(pbar)+marginerror);
+    
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+    document.getElementById("output1").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 96);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(280, 130);
+    ctx.lineTo(279, 120);
+    ctx.quadraticCurveTo(260, 115, 230, 96);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("0",148,145);
+    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+
+    ctx.fillText("z",285,132);
+    ctx.fillText("zα/2",220,145);
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.stroke();
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    
+    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    
+    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    
+    
+    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$ $$"+pbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+    
+    MathJax.typeset();
+}
+
 function example1(){
+    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    document.getElementById("samplestat").value = "mean"
     document.getElementById('size').value="40"
     document.getElementById('xbar').value="25"
     document.getElementById('stdev').value="5"
@@ -402,9 +528,28 @@ function example1(){
 }
 
 function example2(){
+    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    document.getElementById("samplestat").value = "mean"
     document.getElementById('size').value="54"
     document.getElementById('xbar').value="22.5"
     document.getElementById('stdev').value="4.4"
     document.getElementById('sigma').value="unknown"
     document.getElementById('conlev').value=99
+}
+
+function example3(){
+    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    document.getElementById("samplestat").value = "proportion"
+    document.getElementById('size').value="100"
+    document.getElementById('xbar').value=".25"
+    document.getElementById('conlev').value=95
+}
+
+function samplestat() {
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    } else if (x == "proportion"){
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    } 
 }

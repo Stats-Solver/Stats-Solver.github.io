@@ -17,6 +17,22 @@ var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
+function parameter() {
+    var x = document.getElementById("parameter1").value;
+    if (x == "mean"){
+        document.getElementById("parameter2").innerHTML = "&mu;";
+        document.getElementById("muknotvalue").innerHTML = "$\\mu_0$";
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
+    } else if (x == "proportion"){
+        document.getElementById("parameter2").innerHTML = "p";
+        document.getElementById("muknotvalue").innerHTML = "$p_0$";
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
+    } 
+    MathJax.typeset();
+}
+
 function tailsigns() {
     var x = document.getElementById("tail").value;
     if (x == "lower"){
@@ -324,6 +340,15 @@ function tinv(p, dof) {
 }
 
 function hyptest(){
+    var x = document.getElementById("parameter1").value;
+    if (x == "mean"){
+        hyptest1()
+    } else if (x == "proportion"){
+        hyptest2()
+    } 
+}
+
+function hyptest1(){
     $("#explanation").show();
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
@@ -1004,7 +1029,521 @@ function hyptest(){
     MathJax.typeset();
 }
 
+function hyptest2(){
+    $("#explanation").show();
+    var tail = document.getElementById("tail").value;
+    var pknot = document.getElementById("muknot").value;
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var pbar = document.getElementById("xbar").value;
+    var alpha = document.getElementById("alpha").value;
+    var test = (pbar-pknot)/Math.sqrt(pbar*(1-pbar)/size);
+    var testtwo = -Math.abs(test);
+    var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
+    var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
+    var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
+    var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
+
+    if (tail == "lower"){
+        var testtype = "<b>Lower Tail Test</b>"
+        var testsymb = "z";
+        var tailsign = "\\leq";
+        var stndsymb = "\\sigma"
+        var cvalsymb = "-z_\\alpha";
+        var pvalue = normalcdf(test);
+        var pval = pvalue.toFixed(4);
+        var cless = zcless;
+    } else if (tail == "upper"){
+        var testtype = "<b>Upper Tail Test</b>"
+        var testsymb = "z";
+        var tailsign = "\\geq";
+        var stndsymb = "\\sigma"
+        var cvalsymb = "z_\\alpha";
+        var pvalue = 1 - normalcdf(test);
+        var pval = pvalue.toFixed(4);
+        var cmore = zcmore;
+    } else if (tail == "two"){
+        var testtype = "<b>Two-Tailed Test</b>"
+        var testsymb = "z";
+        var tailsign = "=";
+        var stndsymb = "\\sigma"
+        var cvalsymb1 = "-z_{\\alpha / 2}";
+        var cvalsymb2 = "z_{\\alpha / 2}";
+        var pvalhalf = normalcdf(testtwo);
+        var pvalh = pvalhalf.toFixed(4);
+        var pvalue = 2 * pvalhalf;
+        var pval = pvalue.toFixed(4);
+        var ctwo1 = zctwo1; var ctwo2 = zctwo2; 
+    } 
+    
+    if (pvalue <= alpha) {
+        var pinequ = "\\leq"
+        var concl = "\\text{Reject } H_o"
+        var critsignlower = "\\leq"
+        var critsignupper = "\\geq"
+    } else if (pvalue > alpha) {
+        var pinequ = ">"
+        var concl = "\\text{Do Not Reject } H_o"
+        var critsignlower = ">"
+        var critsignupper = "<"
+    }
+     
+    if (testtwo <= zctwo1) {
+        var twosign1 = "\\leq"
+    } else if (testtwo > zctwo1) {
+        var twosign1 = ">"
+    }
+    
+    if (testtwo >= zctwo1) {
+        var twosign2 = "\\geq"
+    } else if (testtwo < zctwo1) {
+        var twosign2 = "<"
+    }
+    
+    if (test <= ctwo1) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
+    } else if (test >= ctwo2) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
+    } else {
+        var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
+    }
+    
+    var zvalue = toFixing(test,1);
+    var zvaluer = test.toFixed(2); 
+    var zseconddec = (""+zvaluer)[4];
+    var zcrit = toFixing(zcless,1);
+    var zcritr = zcless.toFixed(2); 
+    var zcritseconddec = (""+zcritr)[4];
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    if (zcritseconddec == 0 || zcritseconddec == 1 || zcritseconddec == 2) {
+         var critstart = 0; 
+         var critend = 4;
+    } else if (zcritseconddec == 3) {
+         var critstart = 1; 
+         var critend = 5;
+    } else if (zcritseconddec == 4) {
+         var critstart = 2; 
+         var critend = 6;
+    } else if ((zcritseconddec == 5)) {
+         var critstart = 3; 
+         var critend = 7;
+    } else if (zcritseconddec == 6) {
+         var critstart = 4; 
+         var critend = 8;
+    } else if (zcritseconddec == 7 || zcritseconddec == 8 || zcritseconddec == 9) {
+         var critstart = 5; 
+         var critend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    table12 = []
+    for (var r = critstart; r < critend + 1; r++){
+        table12 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table2 = []
+    for (var r = critstart; r < critend + 1; r++){
+        table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+ 
+
+    var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablec = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
+
+    
+    if (tail == "lower") {
+        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
+        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's less than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the lower tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
+        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
+    } else if (tail == "upper") {
+        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
+        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's greater than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the upper tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
+        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
+    } else if (tail == "two") {
+        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
+        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's at least as unlikely as the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Values = values of the test statistic corresponding to areas of &alpha;/2 in the lower and upper tails of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the negative critical value or if it's greater than or equal to the positive critical value"
+        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
+    } 
+    
+    if (tail == "lower") {
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach</u></b>"
+    } else if (tail == "upper") {
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$ <b><u>p-Value Approach<u></b>"
+    } else if (tail == "two") {
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\ &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach<u></b>"
+    }
+    
+    
+    if (tail == "lower") {
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(20, 120);
+        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",20,95);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("z = "+test.toFixed(2),68,145);
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+    } else if (tail == "upper") {
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(280, 130);
+        ctx.lineTo(280, 120);
+        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",240,90);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("z = "+test.toFixed(2),228,145);
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+    } else if (tail == "two") {
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(20, 120);
+        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(280, 130);
+        ctx.lineTo(280, 120);
+        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.stroke();
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        
+        ctx.fillText("p-value",20,90);
+        ctx.fillText("p-value",245,90);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("-z = "+(-Math.abs(test.toFixed(2))),66,145);
+        ctx.fillText("+z = "+Math.abs(test.toFixed(2)),226,145);
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+        
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+
+    }
+
+    
+    if (tail == "lower") {
+        document.getElementById("output2").innerHTML = tablep+ "$$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "}$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b>"
+    } else if (tail == "upper") {
+        document.getElementById("output2").innerHTML = tablep+" $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
+    } else if (tail == "two") {
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = \\underline{"+pval+"} \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
+    }
+    
+    
+    
+    if (tail == "lower") {
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(20, 120);
+        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("α = "+alpha,20,100);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("-zα",65,145);
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+
+    } else if (tail == "upper") {
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(280, 130);
+        ctx.lineTo(280, 120);
+        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("α = "+alpha,250,100);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("zα",225,145);
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+        
+    } else if (tail == "two") {
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 94);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(20, 120);
+        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(230, 96);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(280, 130);
+        ctx.lineTo(280, 120);
+        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.stroke();
+        ctx.fill();
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+        ctx.beginPath();
+        ctx.moveTo(20, 120);
+        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(150, 20);
+        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",148,145);
+        ctx.fillText("α/2 = "+(alpha/2),20,90);
+        ctx.fillText("α/2 = "+(alpha/2),230,90);
+        
+        ctx.fillText("z",285,132);
+        ctx.fillText("-zα",65,145);
+        ctx.fillText("zα/2",225,145);
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+        ctx.stroke();
+
+
+        ctx.beginPath();
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.stroke();
+    }
+    
+    
+    
+    if (tail == "lower") {
+        document.getElementById("output3").innerHTML = tablec+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "upper") {
+        document.getElementById("output3").innerHTML = tablec+"$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "two") {
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+    }
+    
+    
+    
+    
+    MathJax.typeset();
+}
+
 function example1(){
+    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    document.getElementById("parameter1").value = "mean"
+    document.getElementById("parameter2").innerHTML = "&mu;"
     $("#less").show();
     $("#greater").hide();
     $("#notequal").hide();
@@ -1016,9 +1555,13 @@ function example1(){
     document.getElementById('stdev').value="2"
     document.getElementById('sigma').value="known"
     document.getElementById('alpha').value=".05"
+    MathJax.typeset();
 }
 
 function example2(){
+    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    document.getElementById("parameter1").value = "mean"
+    document.getElementById("parameter2").innerHTML = "&mu;"
     $("#less").hide();
     $("#greater").show();
     $("#notequal").hide();
@@ -1030,18 +1573,21 @@ function example2(){
     document.getElementById('stdev').value="4.32"
     document.getElementById('sigma').value="unknown"
     document.getElementById('alpha').value=".05"
+    MathJax.typeset();
 }
 
 function example3(){
+    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    document.getElementById("parameter1").value = "proportion"
+    document.getElementById("parameter2").innerHTML = "p"
     $("#less").hide();
     $("#greater").hide();
     $("#notequal").show();
     document.getElementById('tail').value="two"
-    document.getElementById('muknot').value="18"
-    document.getElementById('muknotvalue').innerHTML="18"
-    document.getElementById('size').value="48"
-    document.getElementById('xbar').value="17"
-    document.getElementById('stdev').value="4.5"
-    document.getElementById('sigma').value="unknown"
+    document.getElementById('muknot').value=".20"
+    document.getElementById('muknotvalue').innerHTML=".20"
+    document.getElementById('size').value="400"
+    document.getElementById('xbar').value=".175"
     document.getElementById('alpha').value=".05"
+    MathJax.typeset();
 }
