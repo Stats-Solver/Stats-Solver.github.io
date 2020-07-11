@@ -130,44 +130,44 @@
             <td>$f(x)$</td>
           </tr>
             <tr>
-            <td><input class = "combperm" type="text" id="x1"></td>
-            <td><input class = "combperm" type="text" id="f1"></td>
+            <td><input class = "combperm" type="text" id="x1" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f1" style = "text-align: center;"></td>
           </tr>
             <tr>
-            <td><input class = "combperm" type="text" id="x2"></td>
-            <td><input class = "combperm" type="text" id="f2"></td>
+            <td><input class = "combperm" type="text" id="x2" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f2" style = "text-align: center;"></td>
           </tr>
             <tr id="row3">
-            <td><input class = "combperm" type="text" id="x3"></td>
-            <td><input class = "combperm" type="text" id="f3"></td>
+            <td><input class = "combperm" type="text" id="x3" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f3" style = "text-align: center;"></td>
           </tr>
             <tr id="row4">
-            <td><input class = "combperm" type="text" id="x4"></td>
-            <td><input class = "combperm" type="text" id="f4"></td>
+            <td><input class = "combperm" type="text" id="x4" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f4" style = "text-align: center;"></td>
           </tr>
             <tr id="row5">
-            <td><input class = "combperm" type="text" id="x5"></td>
-            <td><input class = "combperm" type="text" id="f5"></td>
+            <td><input class = "combperm" type="text" id="x5" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f5" style = "text-align: center;"></td>
           </tr>
             <tr id="row6">
-            <td><input class = "combperm" type="text" id="x6"></td>
-            <td><input class = "combperm" type="text" id="f6"></td>
+            <td><input class = "combperm" type="text" id="x6" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f6" style = "text-align: center;"></td>
           </tr>
             <tr id="row7">
-            <td><input class = "combperm" type="text" id="x7"></td>
-            <td><input class = "combperm" type="text" id="f7"></td>
+            <td><input class = "combperm" type="text" id="x7" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f7" style = "text-align: center;"></td>
           </tr>
             <tr id="row8">
-            <td><input class = "combperm" type="text" id="x8"></td>
-            <td><input class = "combperm" type="text" id="f8"></td>
+            <td><input class = "combperm" type="text" id="x8" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f8" style = "text-align: center;"></td>
           </tr>
             <tr id="row9">
-            <td><input class = "combperm" type="text" id="x9"></td>
-            <td><input class = "combperm" type="text" id="f9"></td>
+            <td><input class = "combperm" type="text" id="x9" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f9" style = "text-align: center;"></td>
           </tr>
             <tr id="row10">
-            <td><input class = "combperm" type="text" id="x10"></td>
-            <td><input class = "combperm" type="text" id="f10"></td>
+            <td><input class = "combperm" type="text" id="x10" style = "text-align: center;"></td>
+            <td><input class = "combperm" type="text" id="f10" style = "text-align: center;"></td>
           </tr>
             <tr id="make2">
             <td></td>
@@ -254,8 +254,11 @@
             <td></td>
           </tr>
         </table> 
+          <div class = " text-center mt-2" id="expectedprobs">
+            $P(x$ <select id="probtype1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probval">)
+        </div> 
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleexpected()">Example</span>
+            <span class="examplelink" onclick="exampleexpected()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexpected2()">Example 2</span>
         </div>
           </div>
       
@@ -265,7 +268,7 @@
      
       
       
-      <div class="container mt-3" id="variance">
+      <!--<div class="container mt-3" id="variance">
         <table>
           <tr style='border-bottom: thin solid'>
             <td>$x$</td>
@@ -399,7 +402,7 @@
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="examplevariance()">Example</span>
         </div>
-          </div>
+          </div> -->
       
       
       

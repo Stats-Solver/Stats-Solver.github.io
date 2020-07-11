@@ -84,7 +84,7 @@ function stat(){
 }
 
 function probabilities() {
-    $("#expected").show();
+    $("#expected").show(); $("#expectedprobs").show();
     $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
     $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
     $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
@@ -92,8 +92,327 @@ function probabilities() {
     rows = 3
 }
 
+function compprobabilities() {
+    var x = document.getElementById('probtype1').value
+    if (x == "equal") {
+        compprob1()
+    } else if (x == "lessequal") {
+        compprob2()
+    } else if (x == "less") {
+        compprob3()
+    } else if (x == "greaterequal") {
+        compprob4()
+    } else if (x == "greater") {
+        compprob5()
+    }
+}
+
+function compprob1() {
+    var x = document.getElementById('probval').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    
+    var ans = ""
+    if (x == x1) {
+        ans = f1
+    } else if (x == x2) {
+        ans = f2
+    } else if (x == x3) {
+        ans = f3
+    } else if (x == x4) {
+        ans = f4
+    } else if (x == x5) {
+        ans = f5
+    } else if (x == x6) {
+        ans = f6
+    } else if (x == x7) {
+        ans = f7
+    } else if (x == x8) {
+        ans = f8
+    } else if (x == x9) {
+        ans = f9
+    } else if (x == x10) {
+        ans = f10
+    } else {
+        ans = "Not Defined"
+    }
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= " + ans + "   \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob2() {
+    var x = document.getElementById('probval').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf = xa.filter(y => y <= x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var ans = ""
+    if (x == x1) {
+        ans = f1
+    } else if (x == x2) {
+        ans = f2
+    } else if (x == x3) {
+        ans = f3
+    } else if (x == x4) {
+        ans = f4
+    } else if (x == x5) {
+        ans = f5
+    } else if (x == x6) {
+        ans = f6
+    } else if (x == x7) {
+        ans = f7
+    } else if (x == x8) {
+        ans = f8
+    } else if (x == x9) {
+        ans = f9
+    } else if (x == x10) {
+        ans = f10
+    } else {
+        ans = "Not Defined"
+    }
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob3() {
+    var x = document.getElementById('probval').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf = xa.filter(y => y < x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var ans = ""
+    if (x == x1) {
+        ans = f1
+    } else if (x == x2) {
+        ans = f2
+    } else if (x == x3) {
+        ans = f3
+    } else if (x == x4) {
+        ans = f4
+    } else if (x == x5) {
+        ans = f5
+    } else if (x == x6) {
+        ans = f6
+    } else if (x == x7) {
+        ans = f7
+    } else if (x == x8) {
+        ans = f8
+    } else if (x == x9) {
+        ans = f9
+    } else if (x == x10) {
+        ans = f10
+    } else {
+        ans = "Not Defined"
+    }
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob4() {
+    var x = document.getElementById('probval').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf = xa.filter(y => y >= x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var ans = ""
+    if (x == x1) {
+        ans = f1
+    } else if (x == x2) {
+        ans = f2
+    } else if (x == x3) {
+        ans = f3
+    } else if (x == x4) {
+        ans = f4
+    } else if (x == x5) {
+        ans = f5
+    } else if (x == x6) {
+        ans = f6
+    } else if (x == x7) {
+        ans = f7
+    } else if (x == x8) {
+        ans = f8
+    } else if (x == x9) {
+        ans = f9
+    } else if (x == x10) {
+        ans = f10
+    } else {
+        ans = "Not Defined"
+    }
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob5() {
+    var x = document.getElementById('probval').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf = xa.filter(y => y > x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var ans = ""
+    if (x == x1) {
+        ans = f1
+    } else if (x == x2) {
+        ans = f2
+    } else if (x == x3) {
+        ans = f3
+    } else if (x == x4) {
+        ans = f4
+    } else if (x == x5) {
+        ans = f5
+    } else if (x == x6) {
+        ans = f6
+    } else if (x == x7) {
+        ans = f7
+    } else if (x == x8) {
+        ans = f8
+    } else if (x == x9) {
+        ans = f9
+    } else if (x == x10) {
+        ans = f10
+    } else {
+        ans = "Not Defined"
+    }
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    MathJax.typeset();
+}
+
 function expected() {
-    $("#expected").show();
+    $("#expected").show(); $("#expectedprobs").hide();
     $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
     $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
     $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
@@ -144,7 +463,7 @@ function compexpected() {
 }
 
 function variance() {
-    $("#expected").show();
+    $("#expected").show(); $("#expectedprobs").hide();
     $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
     $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
     $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
@@ -1749,12 +2068,59 @@ function comphypergeometric5() {
 }
 
 function exampleexpected(){
+    $("#row3").show(); $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); 
+    $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide(); 
     document.getElementById('x1').value="3"
     document.getElementById('x2').value="6"
     document.getElementById('x3').value="9"
+    document.getElementById('x4').value=""
+    document.getElementById('x5').value=""
+    document.getElementById('x6').value=""
+    document.getElementById('x7').value=""
+    document.getElementById('x8').value=""
+    document.getElementById('x9').value=""
+    document.getElementById('x10').value=""
     document.getElementById('f1').value=".25"
     document.getElementById('f2').value=".50"
     document.getElementById('f3').value=".25"
+    document.getElementById('f4').value=""
+    document.getElementById('f5').value=""
+    document.getElementById('f6').value=""
+    document.getElementById('f7').value=""
+    document.getElementById('f8').value=""
+    document.getElementById('f9').value=""
+    document.getElementById('f10').value=""
+    document.getElementById('probval').value="6"
+}
+
+function exampleexpected2(){
+    $("#row3").show(); $("#row4").show(); $("#row5").hide(); $("#row6").hide(); 
+    $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    $("#make2").hide(); $("#make3").hide(); $("#make4").show(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+    document.getElementById('x1').value="2"
+    document.getElementById('x2').value="4"
+    document.getElementById('x3').value="7"
+    document.getElementById('x4').value="8"
+    document.getElementById('x5').value=""
+    document.getElementById('x6').value=""
+    document.getElementById('x7').value=""
+    document.getElementById('x8').value=""
+    document.getElementById('x9').value=""
+    document.getElementById('x10').value=""
+    document.getElementById('f1').value=".20"
+    document.getElementById('f2').value=".30"
+    document.getElementById('f3').value=".40"
+    document.getElementById('f4').value=".10"
+    document.getElementById('f5').value=""
+    document.getElementById('f6').value=""
+    document.getElementById('f7').value=""
+    document.getElementById('f8').value=""
+    document.getElementById('f9').value=""
+    document.getElementById('f10').value=""
+    document.getElementById('probval').value="4"
 }
 
 function examplevariance(){

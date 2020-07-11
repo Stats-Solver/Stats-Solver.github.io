@@ -17,7 +17,7 @@ function showstuff(){
     $("#explanation").hide(); $("#experiments").hide(); $("#bayes").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
-    $("#output").empty();
+    
     var x = document.getElementById("stat").value;
     if (x == "experiments"){
         experiments()
@@ -43,7 +43,7 @@ function showstuff(){
 }
 
 function stat(){
-    $("#output").empty(); $("#myCanvas").hide();
+    $("#output").empty();  $("#myCanvas").hide(); $("#output2").hide();
     var x = document.getElementById("stat").value;
     if (x == "experiments"){
         compexperiments()
