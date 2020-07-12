@@ -152,7 +152,7 @@ function compprob1() {
     } else if (x == x10) {
         ans = f10
     } else {
-        ans = "Not Defined"
+        ans = "\\text{Not Defined}"
     }
     
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= " + ans + "   \\end{align} $$"
@@ -193,32 +193,14 @@ function compprob2() {
         adds += "+ f("+xaf[i]+")"
     }
     
-    var ans = ""
-    if (x == x1) {
-        ans = f1
-    } else if (x == x2) {
-        ans = f2
-    } else if (x == x3) {
-        ans = f3
-    } else if (x == x4) {
-        ans = f4
-    } else if (x == x5) {
-        ans = f5
-    } else if (x == x6) {
-        ans = f6
-    } else if (x == x7) {
-        ans = f7
-    } else if (x == x8) {
-        ans = f8
-    } else if (x == x9) {
-        ans = f9
-    } else if (x == x10) {
-        ans = f10
-    } else {
-        ans = "Not Defined"
+    var adds2 = fa[0]
+    var ans = parseFloat(fa[0])
+    for (let i=1; i<xaf2.length; i++){
+        adds2 += "+"+fa[i]+""
+        ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= " + ans + "  \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -256,32 +238,14 @@ function compprob3() {
         adds += "+ f("+xaf[i]+")"
     }
     
-    var ans = ""
-    if (x == x1) {
-        ans = f1
-    } else if (x == x2) {
-        ans = f2
-    } else if (x == x3) {
-        ans = f3
-    } else if (x == x4) {
-        ans = f4
-    } else if (x == x5) {
-        ans = f5
-    } else if (x == x6) {
-        ans = f6
-    } else if (x == x7) {
-        ans = f7
-    } else if (x == x8) {
-        ans = f8
-    } else if (x == x9) {
-        ans = f9
-    } else if (x == x10) {
-        ans = f10
-    } else {
-        ans = "Not Defined"
+    var adds2 = fa[0]
+    var ans = parseFloat(fa[0])
+    for (let i=1; i<xaf2.length; i++){
+        adds2 += "+"+fa[i]+""
+        ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= " + ans + "  \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -319,32 +283,14 @@ function compprob4() {
         adds += "+ f("+xaf[i]+")"
     }
     
-    var ans = ""
-    if (x == x1) {
-        ans = f1
-    } else if (x == x2) {
-        ans = f2
-    } else if (x == x3) {
-        ans = f3
-    } else if (x == x4) {
-        ans = f4
-    } else if (x == x5) {
-        ans = f5
-    } else if (x == x6) {
-        ans = f6
-    } else if (x == x7) {
-        ans = f7
-    } else if (x == x8) {
-        ans = f8
-    } else if (x == x9) {
-        ans = f9
-    } else if (x == x10) {
-        ans = f10
-    } else {
-        ans = "Not Defined"
+    var adds2 = fa[0]
+    var ans = parseFloat(fa[0])
+    for (let i=1; i<xaf2.length; i++){
+        adds2 += "+"+fa[i]+""
+        ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= " + ans + "  \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -382,32 +328,14 @@ function compprob5() {
         adds += "+ f("+xaf[i]+")"
     }
     
-    var ans = ""
-    if (x == x1) {
-        ans = f1
-    } else if (x == x2) {
-        ans = f2
-    } else if (x == x3) {
-        ans = f3
-    } else if (x == x4) {
-        ans = f4
-    } else if (x == x5) {
-        ans = f5
-    } else if (x == x6) {
-        ans = f6
-    } else if (x == x7) {
-        ans = f7
-    } else if (x == x8) {
-        ans = f8
-    } else if (x == x9) {
-        ans = f9
-    } else if (x == x10) {
-        ans = f10
-    } else {
-        ans = "Not Defined"
+    var adds2 = fa[0]
+    var ans = parseFloat(fa[0])
+    for (let i=1; i<xaf2.length; i++){
+        adds2 += "+"+fa[i]+""
+        ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= " + ans + "  \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2093,6 +2021,7 @@ function exampleexpected(){
     document.getElementById('f9').value=""
     document.getElementById('f10').value=""
     document.getElementById('probval').value="6"
+    rows=3
 }
 
 function exampleexpected2(){
@@ -2121,6 +2050,7 @@ function exampleexpected2(){
     document.getElementById('f9').value=""
     document.getElementById('f10').value=""
     document.getElementById('probval').value="4"
+    rows=4
 }
 
 function examplevariance(){
@@ -2133,7 +2063,11 @@ function examplevariance(){
 }
 
 function examplestandard(){
-    document.getElementById('vr').value="9"
+    document.getElementById('vr').value="4.5"
+}
+
+function examplestandard2(){
+    document.getElementById('vr').value="4.56"
 }
 
 function examplebinomial(){
@@ -2142,8 +2076,19 @@ function examplebinomial(){
     document.getElementById('binval').value = 1
 }
 
+function examplebinomial2(){
+    document.getElementById('trials').value = 10
+    document.getElementById('psuccess').value = .10
+    document.getElementById('binval').value = 2
+}
+
 function examplepoisson(){
     document.getElementById('meanocc').value = 3
+    document.getElementById('poissval').value = 2
+}
+
+function examplepoisson2(){
+    document.getElementById('meanocc').value = 2
     document.getElementById('poissval').value = 2
 }
 

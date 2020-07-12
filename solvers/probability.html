@@ -101,7 +101,9 @@
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()">
                     <option value="choose">Choose One</option>
-                    <option value="experiments">Experiments</option>
+                    <option value="outcomes">Number of Outcomes</option>
+                    <option value="samplespace">Sample Space</option>
+                    <option value="probability">Probability of Event</option>
                     <option value="combinations">Combinations</option>
                     <option value="permutations">Permutations</option>
                     <option value="complement">Complement</option>
@@ -151,7 +153,7 @@
                 </div>
             </div>
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleexperiments()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexperiments()">Example 2</span>
+            <span class="examplelink" onclick="exampleexperiments()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexperiments2()">Example 2</span>
         </div>
         </div>
       
@@ -167,7 +169,7 @@
           </tr>
         </table> 
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplecomb()">Example 1</span> &bull; <span class="examplelink" onclick="examplecomb()">Example 2</span>
+            <span class="examplelink" onclick="examplecomb()">Example 1</span> &bull; <span class="examplelink" onclick="examplecomb2()">Example 2</span>
         </div>
           </div>
       
@@ -182,7 +184,7 @@
           </tr>
         </table> 
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleperm()">Example 1</span> &bull; <span class="examplelink" onclick="exampleperm()">Example 2</span>
+            <span class="examplelink" onclick="exampleperm()">Example 1</span> &bull; <span class="examplelink" onclick="exampleperm2()">Example 2</span>
         </div>
           </div>
       
@@ -429,6 +431,15 @@
             <div id = "coin2" class = "text-center mt-2">
                 <p>$P($<select id="coin2val" class="hypinput2 probtype" onchange="stat()"> <option value="atleast1head">At Least One Head</option> <option value="atleast1tail"> At Least One Tail </option><option value="exactly1head"> Exactly One Head </option><option value="exactly1tail"> Exactly One Tail </option></select>$)$<span id="coin2ans"></span></p>
             </div>
+            <div id = "coin3" class = "text-center mt-2">
+                <p>$P($<select id="coin3val" class="hypinput2 probtype" onchange="stat()"> <option value="atleast2heads">At Least Two Heads</option> <option value="atleast2tails"> At Least Two Tails </option><option value="exactly1head"> Exactly One Head </option><option value="exactly1tail"> Exactly One Tail </option><option value="exactly2heads"> Exactly Two Heads </option><option value="exactly2tails"> Exactly Two Tails </option></select>$)$<span id="coin3ans"></span></p>
+            </div>
+            <div id = "coin4" class = "text-center mt-2">
+                <p>$P($<select id="coin4val" class="hypinput2 probtype" onchange="stat()"> <option value="atleast1head">At Least One Head</option> <option value="atleast1tail"> At Least One Tail </option><option value="exactly1head"> Exactly One Head </option><option value="exactly1tail"> Exactly One Tail </option></select>$)$<span id="coin4ans"></span></p>
+            </div>
+            <div id = "coin5" class = "text-center mt-2">
+                <p>$P($<select id="coin5val" class="hypinput2 probtype" onchange="stat()"> <option value="atleast1head">At Least One Head</option> <option value="atleast1tail"> At Least One Tail </option><option value="exactly1head"> Exactly One Head </option><option value="exactly1tail"> Exactly One Tail </option></select>$)$<span id="coin5ans"></span></p>
+            </div>
             <div id = "dice1" class = "text-center mt-2">
                 <p>$P($<select id="dice1val" class="hypinput3 probtype" onchange="stat()"> <option value="evennum">Even Number</option> <option value="oddnum"> Odd Number </option><option value="higher3"> 3 or Higher </option><option value="higher4"> 4 or Higher </option><option value="lower3"> 3 or Lower </option><option value="lower4"> 4 or Lower </option></select>$)$<span id="dice1ans"></span></p>
             </div>
@@ -436,7 +447,7 @@
                 <p>$P($<select id="dice2val" class="hypinput4 probtype" onchange="stat()"> <option value="sum5"> Sum is equal to 5 </option><option value="sum6"> Sum is equal to 6 </option><option value="sum7"> Sum is equal to 7 </option><option value="sum8"> Sum is equal to 8 </option><option value="sum9"> Sum is equal to 9 </option></select>$)$<span id="dice2ans"></span></p>
             </div>
             <div id = "deck1" class = "text-center mt-2">
-                <p>$P($<select id="dice2val" class="hypinput4 probtype" onchange="stat()"> <option value="sum5"> Sum is equal to 5 </option><option value="sum6"> Sum is equal to 6 </option><option value="sum7"> Sum is equal to 7 </option><option value="sum8"> Sum is equal to 8 </option><option value="sum9"> Sum is equal to 9 </option></select>$)$<span id="dice2ans"></span></p>
+                <p>$P($<select id="deck1val" class="hypinput5 probtype" onchange="stat()"> <option value="heart"> Heart </option><option value="diamond"> Diamond </option><option value="spade"> Spade </option><option value="club"> Club </option><option value="black"> Black </option> <option value="red"> Red </option></select>$)$<span id="deck1ans"></span></p>
             </div>
         </div>
       </div>

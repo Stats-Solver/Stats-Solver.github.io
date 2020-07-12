@@ -108,6 +108,17 @@ footer {
     display: inline;
 }
 
+.hypinput5{
+    width: 100px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}
+
 /* Style all font awesome icons */
 .fa {
   padding: 0px;

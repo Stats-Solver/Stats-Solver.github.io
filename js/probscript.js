@@ -19,9 +19,13 @@ function showstuff(){
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     
     var x = document.getElementById("stat").value;
-    if (x == "experiments"){
-        experiments()
-    } if (x == "combinations"){
+    if (x == "outcomes"){
+        outcomes()
+    } else if (x == "samplespace"){
+        samplespace()
+    } else if (x == "probability"){
+        probability()
+    } else if (x == "combinations"){
         combinations()
     } else if (x == "permutations"){
         permutations()
@@ -45,8 +49,12 @@ function showstuff(){
 function stat(){
     $("#output").empty();  $("#myCanvas").hide(); $("#output2").hide();
     var x = document.getElementById("stat").value;
-    if (x == "experiments"){
-        compexperiments()
+    if (x == "outcomes"){
+        compoutcomes()
+    } else if (x == "samplespace"){
+        compsamplespace()
+    } else if (x == "probability"){
+        compprobability()
     } else if (x == "combinations"){
         compcomb()
     } else if (x == "permutations"){
@@ -68,8 +76,8 @@ function stat(){
    
 }
 
-function experiments() {
-    $("#experiments").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+function outcomes() {
+    $("#experiments").show(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
     $("#coinoneprob").hide();
 }
 
@@ -87,7 +95,7 @@ function experiments2() {
     }
 }
 
-function compexperiments() {
+function compoutcomes() {
     document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
     document.getElementById("formulatext").innerHTML = "$$ \\text{Number of Outcomes} = (n_1)(n_2)\\cdots(n_k) $$ "
     document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$ $$ n! = n(n-1)(n-2) \\cdots (2)(1) $$ $$ 0! = 1 $$"
@@ -98,22 +106,182 @@ function compexperiments() {
     var times3 = document.getElementById("exptimes3").value;
     var coin1val = document.getElementById("coin1val").value;
     var coin2val = document.getElementById("coin2val").value;
+    var coin3val = document.getElementById("coin3val").value;
     var dice1val = document.getElementById("dice1val").value;
     var dice2val = document.getElementById("dice2val").value;
+    var deck1val = document.getElementById("deck1val").value;
     
     if (type == "coin" && times1 == "one") {
-        $("#explanation").show(); $("#output2").show(); $("#coin1").show(); $("#coin2").hide(); $("#dice1").hide(); $("#dice2").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2$$ $$\\text{Sample Space = {Head, Tail}}$$"
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes} = 2$$"
+    } else if (type == "coin" && times1 == "two") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= 4 \\end{align} $$"
+    } else if (type == "coin" && times1 == "three") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= 8 \\end{align} $$ "
+    } else if (type == "coin" && times1 == "four") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2)(n_3)(n_4) \\\\ &= (2)(2)(2)(2) \\\\ &= 16 \\end{align} $$"
+    } else if (type == "coin" && times1 == "five") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2)(n_3)(n_4)(n_5) \\\\ &= (2)(2)(2)(2)(2) \\\\ &= 32 \\end{align} $$"
+    } else if (type == "dice" && times2 == "one") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6$$"
+    } else if (type == "dice" && times2 == "two") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= 36 \\end{align} $$"
+    } else if (type == "deck" && times3 == "one") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 52$$"
+    }
+    MathJax.typeset();
+}
+
+function samplespace() {
+    $("#experiments").show(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    $("#coinoneprob").hide();
+}
+
+function experiments2() {
+    $("#experiments").show();
+    var type = document.getElementById("exptype").value;
+    if (type == "coin"){
+        $("#exptimes").hide(); $("#exptimes1").show(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    } else if (type == "dice"){
+        $("#exptimes").hide(); $("#exptimes1").hide(); $("#exptimes2").show(); $("#exptimes3").hide();
+    } else if (type == "deck"){
+        $("#exptimes").hide(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").show();
+    } else if (type == "choose"){
+        $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    }
+}
+
+function compsamplespace() {
+    document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Number of Outcomes} = (n_1)(n_2)\\cdots(n_k) $$ "
+    document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$ $$ n! = n(n-1)(n-2) \\cdots (2)(1) $$ $$ 0! = 1 $$"
+    var type = document.getElementById("exptype").value;
+    var times = document.getElementById("exptimes").value;
+    var times1 = document.getElementById("exptimes1").value;
+    var times2 = document.getElementById("exptimes2").value;
+    var times3 = document.getElementById("exptimes3").value;
+    var coin1val = document.getElementById("coin1val").value;
+    var coin2val = document.getElementById("coin2val").value;
+    var coin3val = document.getElementById("coin3val").value;
+    var dice1val = document.getElementById("dice1val").value;
+    var dice2val = document.getElementById("dice2val").value;
+    var deck1val = document.getElementById("deck1val").value;
+    
+    if (type == "coin" && times1 == "one") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space = {Head, Tail}}$$"
+    } else if (type == "coin" && times1 == "two") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space = {(H,H), (H,T), (T,H), (T,T)}}$$"
+    } else if (type == "coin" && times1 == "three") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space} = $$ $$\\{ \\text{(H,H,H), (H,H,T), (H,T,H), (H,T,T),}$$ $$\\text{(T,H,H), (T,H,T), (T,T,H), (T,T,T)} \\}$$"
+    } else if (type == "coin" && times1 == "four") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space} = $$ $$\\{ \\text{(H,H,H,H), (H,H,H,T), (H,H,T,H), (H,T,H,H),}$$ $$\\text{(T,H,H,H), (H,H,T,T), (H,T,H,T), (H,T,T,H),} $$ $$\\text{(T,T,H,H), (T,H,H,T), (T,H,T,H), (T,H,T,T),} $$ $$\\text{(T,T,H,T), (T,T,T,H), (H,T,T,T), (T,T,T,T)} \\}$$"
+    } else if (type == "coin" && times1 == "five") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space} = $$ $$\\{ \\text{(H,H,H,H,H), (H,H,H,T,H), (H,H,T,H,H), (H,T,H,H,H),}$$ $$\\text{(T,H,H,H,H), (H,H,T,T,H), (H,T,H,T,H), (H,T,T,H,H),} $$ $$\\text{(T,T,H,H,H), (T,H,H,T,H), (T,H,T,H,H), (T,H,T,T,H),} $$ $$\\text{(T,T,H,T,H), (T,T,T,H,H), (H,T,T,T,H), (T,T,T,T,H),} $$ $$ \\text{(H,H,H,H,T), (H,H,H,T,T), (H,H,T,H,T), (H,T,H,H,T),}$$ $$\\text{(T,H,H,H,T), (H,H,T,T,T), (H,T,H,T,T), (H,T,T,H,T),} $$ $$\\text{(T,T,H,H,T), (T,H,H,T,T), (T,H,T,H,T), (T,H,T,T,T),} $$ $$\\text{(T,T,H,T,T), (T,T,T,H,T), (H,T,T,T,T), (T,T,T,T,T)} \\}$$"
+    } else if (type == "dice" && times2 == "one") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space = {1, 2, 3, 4, 5, 6}}$$"
+    } else if (type == "dice" && times2 == "two") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space} = $$ $$ \\{(1,1), (1,2), (1,3), (1,4), (1,5), (1,6),$$  $$(2,1), (2,2), (2,3), (2,4), (2,5), (2,6),$$ $$(3,1), (3,2), (3,3), (3,4), (3,5), (3,6),$$ $$(4,1), (4,2), (4,3), (4,4), (4,5), (4,6),$$ $$(5,1), (5,2), (5,3), (5,4), (5,5), (5,6),$$ $$(6,1), (6,2), (6,3), (6,4), (6,5), (6,6) \\} $$"
+    } else if (type == "deck" && times3 == "one") {
+        $("#explanation").show(); $("#output2").hide(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        document.getElementById("output").innerHTML = "$$\\text{Sample Space} = $$ $$ \\{ \\text{2H, 3H, 4H, 5H, 6H, 7H, 8H,} $$ $$ \\text{9H, 10H, JH, QH, KH, AH,} $$ $$ \\text{2D, 3D, 4D, 5D, 6D, 7D, 8D,} $$ $$ \\text{9D, 10D, JD, QD, KD, AD,} $$ $$ \\text{2S, 3S, 4S, 5S, 6S, 7S, 8S,} $$ $$ \\text{9S, 10S, JS, QS, KS, AS,} $$ $$ \\text{2C, 3C, 4C, 5C, 6C, 7C, 8C,} $$ $$ \\text{9C, 10C, JC, QC, KC, AC} \\} $$"
+    }
+    MathJax.typeset();
+}
+
+function probability() {
+    $("#experiments").show(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    $("#coinoneprob").hide();
+}
+
+function experiments2() {
+    $("#experiments").show();
+    var type = document.getElementById("exptype").value;
+    if (type == "coin"){
+        $("#exptimes").hide(); $("#exptimes1").show(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    } else if (type == "dice"){
+        $("#exptimes").hide(); $("#exptimes1").hide(); $("#exptimes2").show(); $("#exptimes3").hide();
+    } else if (type == "deck"){
+        $("#exptimes").hide(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").show();
+    } else if (type == "choose"){
+        $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    }
+}
+
+function compprobability() {
+    document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Number of Outcomes} = (n_1)(n_2)\\cdots(n_k) $$ "
+    document.getElementById("explanationtext").innerHTML = "$$ N! = N(N-1)(N-2) \\cdots (2)(1) $$ $$ n! = n(n-1)(n-2) \\cdots (2)(1) $$ $$ 0! = 1 $$"
+    var type = document.getElementById("exptype").value;
+    var times = document.getElementById("exptimes").value;
+    var times1 = document.getElementById("exptimes1").value;
+    var times2 = document.getElementById("exptimes2").value;
+    var times3 = document.getElementById("exptimes3").value;
+    var coin1val = document.getElementById("coin1val").value;
+    var coin2val = document.getElementById("coin2val").value;
+    var coin3val = document.getElementById("coin3val").value;
+    var dice1val = document.getElementById("dice1val").value;
+    var dice2val = document.getElementById("dice2val").value;
+    var deck1val = document.getElementById("deck1val").value;
+    
+    if (type == "coin" && times1 == "one") {
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").show(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         if (coin1val == "head") {
             document.getElementById("coin1ans").innerHTML = " $1/2$"
         } else {
             document.getElementById("coin1ans").innerHTML = " $1/2$"
         }
     } else if (type == "coin" && times1 == "two") {
-        $("#explanation").show(); $("#output2").show(); $("#coin2").show(); $("#coin1").hide(); $("#dice1").hide(); $("#dice2").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2 \\times 2 = 4$$ $$\\text{Sample Space = {(H,H), (H,T), (T,H), (T,T)}}$$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").show(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         if (coin2val == "atleast1head") {
             document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,H)+P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 + 1/4 \\\\ &= 3/4 \\end{align} $$"
         } else if (coin2val == "atleast1tail") {
@@ -124,21 +292,36 @@ function compexperiments() {
             document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
         } 
     } else if (type == "coin" && times1 == "three") {
-        $("#explanation").show(); $("#output2").hide(); $("#coin2").show(); $("#coin1").hide(); $("#dice1").hide(); $("#dice2").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2 \\times 2 \\times 2 = 8$$ $$\\text{Sample Space} = $$ $$\\{ \\text{(H,H,H), (H,H,T), (H,T,H), (H,T,T),}$$ $$\\text{(T,H,H), (T,H,T), (T,T,H), (T,T,T)} \\}$$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").show(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+        if (coin3val == "atleast2heads") {
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,H,H)+P(H,H,T)+P(H,T,H)+P(T,H,H) \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= 1/2 \\end{align} $$"
+        } else if (coin3val == "atleast2tails") {
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(T,T,T)+P(T,T,H)+P(T,H,T)+P(H,T,T) \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= 1/2 \\end{align} $$"
+        } else if (coin3val == "exactly2heads") {
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+        } else if (coin3val == "exactly2tails") {
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+        } else if (coin3val == "exactly1head") {
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+        } else if (coin3val == "exactly1tail") {
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+        } 
     } else if (type == "coin" && times1 == "four") {
-        $("#explanation").show(); $("#output2").hide(); $("#coin2").show(); $("#coin1").hide(); $("#dice1").hide(); $("#dice2").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2 \\times 2 \\times 2 \\times 2 = 16$$ $$\\text{Sample Space} = $$ $$\\{ \\text{(H,H,H,H), (H,H,H,T), (H,H,T,H), (H,T,H,H),}$$ $$\\text{(T,H,H,H), (H,H,T,T), (H,T,H,T), (H,T,T,H),} $$ $$\\text{(T,T,H,H), (T,H,H,T), (T,H,T,H), (T,H,T,T),} $$ $$\\text{(T,T,H,T), (T,T,T,H), (H,T,T,T), (T,T,T,T)} \\}$$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").show(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+
     } else if (type == "coin" && times1 == "five") {
-        $("#explanation").show(); $("#output2").hide(); $("#coin2").show(); $("#coin1").hide(); $("#dice1").hide(); $("#dice2").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 2 \\times 2 \\times 2 \\times 2 \\times 2 = 32$$ $$\\text{Sample Space} = $$ $$\\{ \\text{(H,H,H,H,H), (H,H,H,T,H), (H,H,T,H,H), (H,T,H,H,H),}$$ $$\\text{(T,H,H,H,H), (H,H,T,T,H), (H,T,H,T,H), (H,T,T,H,H),} $$ $$\\text{(T,T,H,H,H), (T,H,H,T,H), (T,H,T,H,H), (T,H,T,T,H),} $$ $$\\text{(T,T,H,T,H), (T,T,T,H,H), (H,T,T,T,H), (T,T,T,T,H),} $$ $$ \\text{(H,H,H,H,T), (H,H,H,T,T), (H,H,T,H,T), (H,T,H,H,T),}$$ $$\\text{(T,H,H,H,T), (H,H,T,T,T), (H,T,H,T,T), (H,T,T,H,T),} $$ $$\\text{(T,T,H,H,T), (T,H,H,T,T), (T,H,T,H,T), (T,H,T,T,T),} $$ $$\\text{(T,T,H,T,T), (T,T,T,H,T), (H,T,T,T,T), (T,T,T,T,T)} \\}$$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").show(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
+
     } else if (type == "dice" && times2 == "one") {
-        $("#explanation").show(); $("#output2").show(); $("#dice1").show(); $("#coin1").hide(); $("#coin2").hide(); $("#dice2").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6$$ $$\\text{Sample Space = {1, 2, 3, 4, 5, 6}}$$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").show(); $("#dice2").hide(); $("#deck1").hide();
         if (dice1val == "evennum") {
             document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(2)+P(4)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= 1/2 \\end{align} $$"
         } else if (dice1val == "oddnum") {
@@ -153,9 +336,9 @@ function compexperiments() {
             document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3)+P(4) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= 2/3 \\end{align} $$"
         }
     } else if (type == "dice" && times2 == "two") {
-        $("#explanation").show(); $("#output2").show(); $("#dice2").show(); $("#coin1").hide(); $("#coin2").hide(); $("#dice1").hide();
-        $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 6 \\times 6 = 36$$ $$\\text{Sample Space} = $$ $$ \\{(1,1), (1,2), (1,3), (1,4), (1,5), (1,6),$$  $$(2,1), (2,2), (2,3), (2,4), (2,5), (2,6),$$ $$(3,1), (3,2), (3,3), (3,4), (3,5), (3,6),$$ $$(4,1), (4,2), (4,3), (4,4), (4,5), (4,6),$$ $$(5,1), (5,2), (5,3), (5,4), (5,5), (5,6),$$ $$(6,1), (6,2), (6,3), (6,4), (6,5), (6,6) \\} $$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").show(); $("#deck1").hide();
         if (dice2val == "sum5") {
             document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(4,1)+P(3,2)+P(2,3)+P(1,4) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 4/36 \\\\ &= 1/9 \\end{align} $$"
         } else if (dice2val == "sum6") {
@@ -163,16 +346,27 @@ function compexperiments() {
         } else if (dice2val == "sum7") {
             document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,1)+P(5,2)+P(4,3)+P(3,4)+P(2,5)+P(1,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 6/36 \\\\ &= 1/6 \\end{align} $$"
         } else if (dice2val == "sum8") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,2)+P(5,3)+P(4,4)+P(3,5)+P(2,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36\\\\ &= 5/6 \\end{align} $$"
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,2)+P(5,3)+P(4,4)+P(3,5)+P(2,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36\\\\ &= 5/36 \\end{align} $$"
         } else if (dice2val == "sum9") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= 1/2 \\end{align} $$"
-        } else if (dice2val == "sum7") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3)+P(4) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= 2/3 \\end{align} $$"
-        }
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,3)+P(5,4)+P(4,5)+P(3,6) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/36 \\\\ &= 1/9 \\end{align} $$"
+        } 
     } else if (type == "deck" && times3 == "one") {
-        $("#explanation").show(); $("#output2").show(); $("#dice2").hide(); $("#coin1").hide(); $("#coin2").hide(); $("#dice1").hide();
-        $("#deck1").show();
-        document.getElementById("output").innerHTML = "$$\\text{Number of Outcomes = } 52$$ $$\\text{Sample Space} = $$ $$ \\{ \\text{2H, 3H, 4H, 5H, 6H, 7H, 8H,} $$ $$ \\text{9H, 10H, JH, QH, KH, AH,} $$ $$ \\text{2D, 3D, 4D, 5D, 6D, 7D, 8D,} $$ $$ \\text{9D, 10D, JD, QD, KD, AD,} $$ $$ \\text{2S, 3S, 4S, 5S, 6S, 7S, 8S,} $$ $$ \\text{9S, 10S, JS, QS, KS, AS,} $$ $$ \\text{2C, 3C, 4C, 5C, 6C, 7C, 8C,} $$ $$ \\text{9C, 10C, JC, QC, KC, AC} \\} $$"
+        $("#explanation").show(); $("#output2").show(); 
+        $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
+        $("#dice1").hide(); $("#dice2").hide(); $("#deck1").show();
+        if (deck1val == "heart") {
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + P(\\text{3H}) + \\cdots + P(\\text{AH}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+        } else if (deck1val == "diamond") {
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2D}) + P(\\text{3D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+        } else if (deck1val == "spade") {
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + P(\\text{3S}) + \\cdots + P(\\text{AS}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+        } else if (deck1val == "club") {
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2C}) + P(\\text{3C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+        } else if (deck1val == "red") {
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + \\cdots + P(\\text{AH}) + P(\\text{2D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= 1/2 \\end{align} $$"
+        } else if (deck1val == "black") {
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + \\cdots + P(\\text{AS}) + P(\\text{2C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= 1/2 \\end{align} $$"
+        }
 
     }
     MathJax.typeset();
@@ -424,8 +618,15 @@ function compbayes() {
 }
 
 function exampleexperiments(){
+    $("#exptimes").hide(); $("#exptimes1").show(); $("#exptimes2").hide(); $("#exptimes3").hide();
     document.getElementById('exptype').value="coin"
-    document.getElementById('exptimes1').value="two"
+    document.getElementById('exptimes1').value="three"
+}
+
+function exampleexperiments2(){
+    $("#exptimes").hide(); $("#exptimes1").hide(); $("#exptimes2").show(); $("#exptimes3").hide();
+    document.getElementById('exptype').value="dice"
+    document.getElementById('exptimes2').value="two"
 }
 
 function examplecomb(){
@@ -433,9 +634,19 @@ function examplecomb(){
     document.getElementById('bottomn').value="2"
 }
 
+function examplecomb2(){
+    document.getElementById('topn').value="6"
+    document.getElementById('bottomn').value="3"
+}
+
 function exampleperm(){
     document.getElementById('topnp').value="5"
     document.getElementById('bottomnp').value="2"
+}
+
+function exampleperm2(){
+    document.getElementById('topnp').value="6"
+    document.getElementById('bottomnp').value="3"
 }
 
 function examplecomplement(){

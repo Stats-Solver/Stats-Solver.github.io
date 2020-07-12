@@ -129,8 +129,8 @@ function stat(){
         pie()
     } else if (x == "histogram") {
         histogram()
-    } else if (x == "cumulative") {
-        calccum()
+    } else if (x == "cumfrequency") {
+        cumfrequency()
     } else if (x == "cumrelative") {
         cumrelative()
     } else if (x == "cumpercent") {
