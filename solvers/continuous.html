@@ -132,32 +132,44 @@
             </tr>
         </table> 
           
-          <div class = " text-center mt-2">
-            $P(x$ <select id="probtype" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="greaterequal"> &#8805; </option> <option value="between"> &#8804;&#8804; </option> <option value="less"> < </option>  <option value="greater"> > </option>  <option value="between2"> <&#8804; </option> <option value="between3"> &#8804;< </option> <option value="between4"> << </option> <option value="equal">=</option>   </select>   <input class = "combperm" type="text" id="unival">)
+          <div class = "text-center mt-2" id="uniformprob">
+            $P(x$ <select id="probtype" class="hypinput1 probtype" onchange="uniformprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option> </select>   <input class = "combperm" type="text" id="unival">$)$   
         </div> 
           
-         <!-- <table class = "mt-2">
-            <tr>
-            <td id = "lessthan">$P(x \leq  $ <input class = "combperm" type="text" id="lessval">) <button id = "switch1" class="btn btn-outline-primary" onclick="togreater()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "greaterthan">$P(x \geq  $ <input class = "combperm" type="text" id="greaterval">) <button id = "switch2" class="btn btn-outline-primary" onclick="toboth()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "betweentwo">$P($ <input class = "combperm" type="text" id="twoval1"> $ \leq x \leq$ <input class = "combperm" type="text" id="twoval2">) <button id = "switch32" class="btn btn-outline-primary" onclick="toless()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            </tr>
-        </table> -->
+          <div class = "text-center mt-2" id="uniformbetween">
+            $P($ <input class = "combperm" type="text" id="twoval1"> <select id="probtypeb1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtypeb2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="twoval2">$)$
+              <button class="btn btn-outline-primary" onclick="uniformback()" id="uniformback">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+          <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+              </button>    
+        </div> 
           
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleuniform()">Example</span>
+            <span class="examplelink" onclick="exampleuniform()">Example 1</span> &bull; <span class="examplelink" onclick="exampleuniform2()">Example 2</span>
+        </div>
+          </div>
+      
+      
+      
+      <div class="container mt-3" id="snormal"> 
+          <table class = "mt-2" id="snormalprob">
+            <tr>
+            <td>$P(z$ <select id="probtype2" class="hypinput1 probtype" onchange="snormalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="snormval">$)$ </td>
+            </tr>
+        </table>  
+          <div class = "text-center mt-2"  id="snormalbetween">
+            $P($ <input class = "combperm" type="text" id="unival"> <select id="probtype2b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype2b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="unival">$)$
+              <button id = "switch1" class="btn btn-outline-primary" onclick="snormalback()" id="snormalback">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+          <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+              </button>    
+        </div> 
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="examplesnormal()">Example 1</span> &bull; <span class="examplelink" onclick="examplesnormal2()">Example 2</span>
         </div>
           </div>
       
@@ -177,59 +189,26 @@
             </tr>
         </table> 
           
-          <table class = "mt-2">
+          <table class = "mt-2" id="normalprob">
             <tr>
-            <td id = "lessthan2">$P(x \leq  $ <input class = "combperm" type="text" id="lessval2">) <button id = "switch1" class="btn btn-outline-primary" onclick="togreater2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "greaterthan2">$P(x \geq  $ <input class = "combperm" type="text" id="greaterval2">) <button id = "switch2" class="btn btn-outline-primary" onclick="toboth2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "betweentwo2">$P($ <input class = "combperm" type="text" id="twoval12"> $ \leq x \leq$ <input class = "combperm" type="text" id="twoval22">) <button id = "switch3" class="btn btn-outline-primary" onclick="toless2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
+            <td id = "lessthan2">$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="lessval2">$)$ </td>
             </tr>
         </table>  
+          
+          <div class = "text-center mt-2" id="normalbetween">
+            $P($ <input class = "combperm" type="text" id="unival"> <select id="probtype3b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype3b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="unival">$)$
+              <button id = "switch1" class="btn btn-outline-primary" onclick="normalback()" id="normalback">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+          <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+              </button>    
+        </div> 
           
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="examplenormal()">Example</span>
         </div>
           </div>
-      
-      
-      
-      
-      <div class="container mt-3" id="snormal"> 
-          <table class = "mt-2">
-            <tr>
-            <td id = "lessthan3">$P(z \leq  $ <input class = "combperm" type="text" id="lessval3">) <button id = "switch1" class="btn btn-outline-primary" onclick="togreater3()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "greaterthan3">$P(z \geq  $ <input class = "combperm" type="text" id="greaterval3">) <button id = "switch2" class="btn btn-outline-primary" onclick="toboth3()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "betweentwo3">$P($ <input class = "combperm" type="text" id="twoval13"> $ \leq z \leq$ <input class = "combperm" type="text" id="twoval23">) <button id = "switch3" class="btn btn-outline-primary" onclick="toless3()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            </tr>
-        </table>  
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplesnormal()">Example</span>
-        </div>
-          </div>
-      
       
       
       
@@ -242,25 +221,21 @@
             </tr>
         </table> 
           
-          <table class = "mt-2">
+          <table class = "mt-2" id="exponentialprob">
             <tr>
-            <td id = "lessthan4">$P(x \leq  $ <input class = "combperm" type="text" id="lessval4">) <button id = "switch1" class="btn btn-outline-primary" onclick="togreater4()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "greaterthan4">$P(x \geq  $ <input class = "combperm" type="text" id="greaterval4">) <button id = "switch2" class="btn btn-outline-primary" onclick="toboth4()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
-            <td id = "betweentwo4">$P($ <input class = "combperm" type="text" id="twoval14"> $ \leq x \leq$ <input class = "combperm" type="text" id="twoval24">) <button id = "switch3" class="btn btn-outline-primary" onclick="toless4()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button></td>
+            <td id = "lessthan4">$P(x$ <select id="probtype4" class="hypinput1 probtype" onchange="exponentialprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="lessval4">$)$</td>
             </tr>
         </table>  
+          
+          <div class = "text-center mt-2" id="exponentialbetween">
+            $P($ <input class = "combperm" type="text" id="unival"> <select id="probtype4b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype4b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="unival">$)$
+              <button id = "switch1" class="btn btn-outline-primary" onclick="exponentialback()" id="exponentialback">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+          <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+              </button>    
+        </div> 
           
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="exampleexponential()">Example</span>
