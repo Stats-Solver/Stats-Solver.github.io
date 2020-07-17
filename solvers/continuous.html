@@ -137,7 +137,7 @@
         </div> 
           
           <div class = "text-center mt-2" id="uniformbetween">
-            $P($ <input class = "combperm" type="text" id="twoval1"> <select id="probtypeb1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtypeb2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="twoval2">$)$
+            $P($ <input class = "combperm" type="text" id="twoval1"> <select id="probtypeb1" class="hypinput1 probtype" onchange="probtypeb1()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtypeb2" class="hypinput1 probtype" onchange="probtypeb2()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="twoval2">$)$
               <button class="btn btn-outline-primary" onclick="uniformback()" id="uniformback">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
@@ -160,7 +160,7 @@
             </tr>
         </table>  
           <div class = "text-center mt-2"  id="snormalbetween">
-            $P($ <input class = "combperm" type="text" id="unival"> <select id="probtype2b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype2b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="unival">$)$
+            $P($ <input class = "combperm" type="text" id="snormval1"> <select id="probtype2b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype2b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="snormval2">$)$
               <button id = "switch1" class="btn btn-outline-primary" onclick="snormalback()" id="snormalback">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
@@ -191,12 +191,12 @@
           
           <table class = "mt-2" id="normalprob">
             <tr>
-            <td id = "lessthan2">$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="lessval2">$)$ </td>
+            <td>$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="normalval">$)$ </td>
             </tr>
         </table>  
           
           <div class = "text-center mt-2" id="normalbetween">
-            $P($ <input class = "combperm" type="text" id="unival"> <select id="probtype3b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype3b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="unival">$)$
+            $P($ <input class = "combperm" type="text" id="normalval1"> <select id="probtype3b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype3b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="normalval2">$)$
               <button id = "switch1" class="btn btn-outline-primary" onclick="normalback()" id="normalback">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
@@ -206,7 +206,7 @@
         </div> 
           
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplenormal()">Example</span>
+            <span class="examplelink" onclick="examplenormal()">Example 1</span> &bull; <span class="examplelink" onclick="examplenormal2()">Example 2</span>
         </div>
           </div>
       
@@ -223,12 +223,12 @@
           
           <table class = "mt-2" id="exponentialprob">
             <tr>
-            <td id = "lessthan4">$P(x$ <select id="probtype4" class="hypinput1 probtype" onchange="exponentialprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="lessval4">$)$</td>
+            <td id = "">$P(x$ <select id="probtype4" class="hypinput1 probtype" onchange="exponentialprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option>  </select> <input class = "combperm" type="text" id="exponentialval">$)$</td>
             </tr>
         </table>  
           
           <div class = "text-center mt-2" id="exponentialbetween">
-            $P($ <input class = "combperm" type="text" id="unival"> <select id="probtype4b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype4b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="unival">$)$
+            $P($ <input class = "combperm" type="text" id="exponentialval1"> <select id="probtype4b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype4b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>   <input class = "combperm" type="text" id="exponentialval2">$)$
               <button id = "switch1" class="btn btn-outline-primary" onclick="exponentialback()" id="exponentialback">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
@@ -238,7 +238,7 @@
         </div> 
           
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleexponential()">Example</span>
+            <span class="examplelink" onclick="exampleexponential()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexponential2()">Example 2</span>
         </div>
           </div>
       
@@ -264,10 +264,26 @@
       <div class="container" id="explanation">
       <p  class="text-center">
       <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Definition
+      </a> &bull;
+    <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
         Formula
+      </a> &bull;
+    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Explanation
       </a>
     </p>
-    <div class="collapse" id="collapseExample">
+    <div class="collapse" id="collapseExample" data-parent="#explanation">
+      <div class="card card-body" id="descriptiontext">
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseExample2" data-parent="#explanation">
+      <div class="card card-body" id="formulatext">
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseExample3" data-parent="#explanation">
       <div class="card card-body" id="explanationtext">
 
       </div>
