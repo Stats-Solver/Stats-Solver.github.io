@@ -64,6 +64,17 @@ footer {
     background-color: white;
 }
 
+.hypinput0{
+    width: 50px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}
+
 .hypinput1{
     width: 60px;
     background-color: white;

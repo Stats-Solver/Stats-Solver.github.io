@@ -150,7 +150,10 @@ function compuniform() {
 
 function compuniform1() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -216,7 +219,9 @@ function compuniform1() {
 
 function compuniform2() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -282,7 +287,9 @@ function compuniform2() {
 
 function compuniform3() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -351,7 +358,9 @@ function compuniform3() {
 
 function compuniform4() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -420,7 +429,9 @@ function compuniform4() {
 
 function compuniform5() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -485,7 +496,9 @@ function compuniform5() {
 
 function compuniform6() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -556,7 +569,9 @@ function compuniform6() {
 
 function compuniform7() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -627,7 +642,9 @@ function compuniform7() {
 
 function compuniform8() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -698,7 +715,9 @@ function compuniform8() {
 
 function compuniform9() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -788,7 +807,10 @@ function compsnormal() {
 
 function compsnormal1() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
     var lessval = document.getElementById('snormval').value
@@ -914,10 +936,19 @@ function compsnormal1() {
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    
+    if (lessval < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (lessval >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
+    
     
     
     var table = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
@@ -929,7 +960,9 @@ function compsnormal1() {
 
 function compsnormal2() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
     var lessval = document.getElementById('snormval').value
@@ -1058,9 +1091,16 @@ function compsnormal2() {
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (lessval < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (lessval >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     
@@ -1073,7 +1113,9 @@ function compsnormal2() {
 
 function compsnormal3() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
     var lessval = document.getElementById('snormval').value
@@ -1206,7 +1248,9 @@ function compsnormal3() {
 
 function compsnormal4() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
     var probtype1 = document.getElementById('probtype2b1').value
@@ -1343,9 +1387,16 @@ function compsnormal4() {
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (lessval < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (lessval >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     var tablea = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
@@ -1379,9 +1430,18 @@ function compsnormal4() {
         table4 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table5 = []
-    for (var r = valstart2; r < valend2 + 1; r++){
-        table5 += "<td>" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    
+    
+    if (greaterval < 0) {
+        table5 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            table5 += "<td>" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (greaterval >= 0) {
+        table5 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            table5 += "<td>" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     
@@ -1413,7 +1473,10 @@ function compnormal() {
 
 function compnormal1() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    
+    document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
+    document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
+    document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
     
     var probtype = document.getElementById('probtype3').value
     var expval = document.getElementById('expval').value
@@ -1540,9 +1603,16 @@ function compnormal1() {
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (lessval < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (lessval >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     document.getElementById("output").innerHTML = "$$\\begin{align} z &=\\frac{"+lessval0+"-"+expval+"}{"+sd+"}\\\\ &=" +lessval.toFixed(2)+ "\\end{align}$$"
@@ -1556,7 +1626,9 @@ function compnormal1() {
 
 function compnormal2() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
+    document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
+    document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
     
     var probtype = document.getElementById('probtype3').value
     var expval = document.getElementById('expval').value
@@ -1688,9 +1760,16 @@ function compnormal2() {
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (lessval < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (lessval >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     document.getElementById("output").innerHTML = "$$\\begin{align} z &=\\frac{"+lessval0+"-"+expval+"}{"+sd+"}\\\\ &=" +lessval.toFixed(2)+ "\\end{align}$$"
@@ -1704,7 +1783,9 @@ function compnormal2() {
 
 function compnormal3() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
+    document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
+    document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
     
     var probtype = document.getElementById('probtype3').value
     var expval = document.getElementById('expval').value
@@ -1841,7 +1922,9 @@ function compnormal3() {
 
 function compnormal4() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & 0 \\leq x \\leq 1 \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
+    document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
+    document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
+    document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
     
     var probtype = document.getElementById('probtype3').value
     var probtype1 = document.getElementById('probtype3b1').value
@@ -1982,9 +2065,16 @@ function compnormal4() {
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (lessval < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (lessval >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     var tablea = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
@@ -2018,9 +2108,16 @@ function compnormal4() {
         table4 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table5 = []
-    for (var r = valstart2; r < valend2 + 1; r++){
-        table5 += "<td>" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (greaterval < 0) {
+        table5 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            table5 += "<td>" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (greaterval >= 0) {
+        table5 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            table5 += "<td>" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     
@@ -2055,7 +2152,10 @@ function compexponential() {
 
 function compexponential1() {
     $("#explanation").show(); $("#myCanvas").show();
-    document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
+    
+    document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
+    document.getElementById("formulatext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
+    document.getElementById("explanationtext").innerHTML = "The probability that the random variable will be less than or equal to a value is found by using the formula."
     
     var probtype = document.getElementById('probtype4').value
     var expval = document.getElementById('expval2').value

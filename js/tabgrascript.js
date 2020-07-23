@@ -441,11 +441,11 @@ function bar(){
 }
 
 function calcbar(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "A bar chart is a graphical representation of a frequency distribution."
     document.getElementById("formulatext").innerHTML = "In a bar chart, a bar is drawn to the frequency for each class."
     document.getElementById("explanationtext").innerHTML = "There is distance between bars in a bar chart to signify the separation of the classes."
-    $("#myCanvas").show();
+    $("#myCanvas").hide();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -462,49 +462,37 @@ function calcbar(){
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
     
-    var graphValues = counts;
-    var maxval = Math.max.apply(Math, graphValues);
-    var minval = Math.min.apply(Math, graphValues);
-    var intervals = 90/maxval;
-    
-    var graphValuesScaled = graphValues.map( function(value) {
-        return (value / maxval)*90
-    } );
-    
-    var X=75;
-    var Y=intervals;
-    var width=20;
-    var height=100;
-    
-    var xaxislen = 95 + 30*graphValues.length;
-    
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.beginPath();
-    ctx.moveTo(75, 20);
-    ctx.lineTo(75, 130);
-    ctx.lineTo(xaxislen, 130);
-    ctx.stroke();
-    
-    ctx.fillText("Frequency",50,15);
-    ctx.fillText("Class",xaxislen + 5,132);
-    
-    
-    for (var i=0; i<graphValues.length; i++) {
-        var k = graphValuesScaled[i];
-        var m = eachonesort[i];
-        ctx.fillRect(X+15,canvas.height-k-58,width,k);
-        ctx.fillText(m,X+15+10-.5*ctx.measureText(m).width,canvas.height-44);
-        X += width+10;
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+      var data = new google.visualization.DataTable();
+      data.addColumn('timeofday', 'Time of Day');
+      data.addColumn('number', 'Motivation Level');
+      var x = ['Coke','Pepsi','Sprite']
+      var y = [3,1,2]
+
+      var data = google.visualization.arrayToDataTable([
+        ['Class', 'Frequency'],
+        [x[0], y[0]],
+        [x[1], y[1]],
+        [x[2], y[2]],
+      ]);
+
+      var options = {
+          legend: 'none',
+          vAxis: {title: 'Frequency'},
+          hAxis: {title: 'Class'}
+      };
+
+      var chart = new google.visualization.ColumnChart(
+        document.getElementById('charts'));
+
+      chart.draw(data, options);
     }
     
-    for (var i=1; i<maxval+1; i++) {
-        ctx.fillText(i+"-",65,canvas.height-54-Y);
-        Y += intervals;
-    }
-    
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    //document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
     
     MathJax.typeset();
 }
@@ -521,11 +509,11 @@ function pie(){
 }
 
 function calcpie(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "A pie chart is a graphical representation of a percent frequency distribution."
     document.getElementById("formulatext").innerHTML = "In a pie chart, the pie is divided according to the percent frequencies for each class."
     document.getElementById("explanationtext").innerHTML = "Pie is tasty."
-    $("#myCanvas").show();
+    $("#myCanvas").hide();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -548,59 +536,21 @@ function calcpie(){
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td></tr>";
     
-    var relfreq = counts.map( function(value) {
-        return value / tot;
-    } );
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      var myArray = [['Class', 'Frequency'], [eachonesort[0], counts[0]],[eachonesort[1], counts[1]], [eachonesort[2], counts[2]]]
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(myArray);
+
+        var chart = new google.visualization.PieChart(document.getElementById('charts'));
+
+        chart.draw(data);
+      }
     
-    var perfreq = relfreq.map( function(value) {
-        return value * 100;
-    } );
-    
-    var degvals = relfreq.map( function(value) {
-        return value * 360;
-    } );
-    
-    var radvals = degvals.map( function(value) {
-        return value * (Math.PI / 180);
-    } );
-    
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 400, 300);
-    ctx.beginPath();
-    ctx.arc(150, 75, 70, 0, 2 * Math.PI);
-    ctx.stroke();
-    
-    ctx.beginPath();
-    ctx.moveTo(150, 75);
-    ctx.lineTo(150, 5);
-    ctx.stroke();
-    
-    //var h = radvals[0];
-    //ctx.beginPath();
-    //ctx.moveTo(100, 75);
-    //ctx.lineTo(100+50*Math.sin(h), 75-50*Math.cos(h));
-    //ctx.stroke();
-    //ctx.fillText(eachonesort[0],100+25*Math.sin(h/2),75-25*Math.cos(h/2));
-    
-    var h = radvals[0];
-    for (var i=0; i<radvals.length-1; i++) {
-        ctx.beginPath();
-        ctx.moveTo(150, 75);
-        ctx.lineTo(150+70*Math.sin(h), 75-70*Math.cos(h));
-        ctx.stroke();
-        h += radvals[i+1];
-    }
-    var h = radvals[0];
-    var k = h / 2;
-    for (var i=0; i<radvals.length; i++) {
-        ctx.fillText(eachonesort[i],150+40*Math.sin(k)-.5*ctx.measureText(eachonesort[i]).width,75-40*Math.cos(k));
-        ctx.fillText(parseFloat(perfreq[i].toFixed(1))+"%",150+40*Math.sin(k)-.5*ctx.measureText(parseFloat(perfreq[i].toFixed(1))+"%").width,75-40*Math.cos(k)+12);
-        k = h + radvals[i+1]/2;
-        h += radvals[i+1];
-    }
-    
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    //document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -619,12 +569,13 @@ function histogram(){
 
 function calchistogram(){
     $("#explanation").show(); $("#charts").show();
-    document.getElementById("descriptiontext").innerHTML = "A histogram is a graphical representation of a frequency distribution for quantitative data."
-    document.getElementById("formulatext").innerHTML = "In a histogram, a bar is drawn to the frequency of each class."
-    document.getElementById("explanationtext").innerHTML = "In a histogram, the bars are connected to signify the continuity from one class to the next."
+    document.getElementById("explanationtext").innerHTML = "In a histogram, a bar is drawn to the frequency for eachh class."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
-    var each = str.split(",");
+    var each = str.split(","); 
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
@@ -638,62 +589,35 @@ function calchistogram(){
     var minvalue = Math.min.apply(Math, each);
     var classwidth = Math.ceil((maxvalue - minvalue) / 5);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
-    var classlimits = [];
-    var limits1 = [];
-    var limits2 = [];
-    for (var i=0; i<5; i++) {
-        classlimits[i] = value1 + "-" + value2
-        limits1[i] = value1;
-        limits2[i] = value2;
-        value1 += classwidth;
-        value2 += classwidth;
-    }
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Value'],
+          [eachnums[0]],
+          [eachnums[1]],
+          [eachnums[2]],
+          [eachnums[3]],
+          [eachnums[4]],
+          [eachnums[5]],
+          [eachnums[6]],
+          [eachnums[7]],
+          [eachnums[8]],
+          [eachnums[9]]
+          ]);
+
+        var options = {
+          legend: { position: 'none' },
+          colors: ['blue'],
+          vAxis: {title: 'Frequency'},
+          hAxis: {title: 'Class'}
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('charts'));
+        chart.draw(data, options);
+      }
     
-    var quants = [];
-    for (var i=0; i<5; i++) {
-        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
-    }
-    
-    var quantsscaled = quants.map( function(value) {
-        return (value / maxval)*90
-    } );
-    
-    var X=10;
-    var Y=intervals;
-    var width=30;
-    var height=100;
-    
-    var xaxislen = 100 + 30*limits1.length;
-    
-    var canvas = document.getElementById("myCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.beginPath();
-    ctx.moveTo(20, 20);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(xaxislen, 130);
-    ctx.stroke();
-    
-    ctx.fillText("Frequency",5,15);
-    ctx.fillText("x",xaxislen + 5,132);
-    
-    
-    for (var i=0; i<quants.length; i++) {
-        var k = quantsscaled[i];
-        var m = classlimits[i];
-        ctx.fillRect(X+20,canvas.height-k-58,width+9,k);
-        ctx.fillText(m,X+2+20,canvas.height-10);
-        X += width+10;
-    }
-    
-    for (var i=1; i<maxval+1; i++) {
-        ctx.fillText(i+"-",10,canvas.height-56-Y);
-        Y += intervals;
-    }
-    
-    document.getElementById("output").innerHTML = ""
+    //document.getElementById("output").innerHTML = ""
     
     MathJax.typeset();
 }
@@ -982,141 +906,47 @@ function scatter(){
 }
 
 function calcscatt(){
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A scatter diagram is a graphical summary of two quantitative variables at the same time."
-    document.getElementById("formulatext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
-    document.getElementById("explanationtext").innerHTML = ""
-    document.getElementById("explanationtext").innerHTML = ""
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
     $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
-    var minval = Math.min.apply(Math, each); var minval2 = Math.min.apply(Math, each2);
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    var eachnums2 = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
     
-    if (minval >= 0 && minval2 >= 0) {
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, 300, 150);
-        ctx.beginPath();
-        ctx.moveTo(80, 20);
-        ctx.lineTo(80, 130);
-        ctx.lineTo(190, 130);
-        ctx.stroke();
-        ctx.fillText("y",78,15);
-        ctx.fillText("x",195,132);
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
 
-        var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2); 
-        
-        if (maxval <=10) {
-            var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
-            var intervals = Math.ceil(intervals0/2)*2; var intervals2 = Math.ceil(intervals20/5)*5
-        } else {
-            var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
-            var intervals = Math.ceil(intervals0/5)*5; var intervals2 = Math.ceil(intervals20/5)*5
-        }
-        
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', 'y'],
+          [ eachnums[0], eachnums2[0]],
+          [ eachnums[1], eachnums2[1]],
+          [ eachnums[2], eachnums2[2]],
+          [ eachnums[3], eachnums2[3]],
+          [ eachnums[4], eachnums2[4]],
+          [ eachnums[5], eachnums2[5]],
+          [ eachnums[6], eachnums2[6]],
+          [ eachnums[7], eachnums2[7]],
+          [ eachnums[8], eachnums2[8]],
+          [ eachnums[9], eachnums2[9]]
+        ]);
 
-        var valuesScaled = each.map( function(value) {
-            return (value / (intervals * 4)) * 100
-        } );
+        var options = {
+          hAxis: {title: 'x'},
+          vAxis: {title: 'y'},
+          legend: 'none'
+        };
 
-        var valuesScaled2 = each2.map( function(value) {
-            return (value / (intervals2 * 4)) * 100
-        } );
+        var chart = new google.visualization.ScatterChart(document.getElementById('charts'));
 
-        ctx.strokeStyle = "blue";
-        ctx.fillStyle = "blue";
-        for (var i=0; i<each.length; i++) {
-            ctx.beginPath();
-            ctx.arc(80 + valuesScaled[i], 150 - valuesScaled2[i] - 20, 1, 0, 2 * Math.PI);
-            ctx.stroke(); 
-            ctx.fill()
-            //ctx.fillRect(80 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
-        }
-        
-        ctx.strokeStyle = "black";
-        ctx.fillStyle = "black";
-
-        for (var i=1; i<5; i++) {
-            ctx.moveTo(80+25*i, 125);
-            ctx.lineTo(80+25*i, 135);
-            ctx.stroke();
-        }
-
-        for (var i=1; i<5; i++) {
-            ctx.moveTo(75, 150 - 25*i - 20);
-            ctx.lineTo(85, 150 - 25*i - 20);
-            ctx.stroke();
-        }
-
-        for (var i=1; i<5; i++) {
-            ctx.fillText(intervals * i,80+25*i-.5*ctx.measureText(intervals * i).width,145);
-            ctx.fillText(intervals2 * i,60,150 - 25*i - 18);
-        }
-        
-    } else if (minval < 0 && minval2 >= 0) {
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-        ctx.clearRect(0, 0, 300, 150);
-        ctx.beginPath();
-        ctx.moveTo(40, 130);
-        ctx.lineTo(260, 130);
-        ctx.moveTo(150, 130);
-        ctx.lineTo(150, 20);
-        ctx.stroke();
-        ctx.fillText("y",148,15);
-        ctx.fillText("x",265,132);
-
-        var maxval = Math.max.apply(Math, each); var maxval2 = Math.max.apply(Math, each2);
-        var intervals0 = Math.ceil(maxval / 4); var intervals20 = Math.ceil(parseFloat(maxval2) / 4); 
-        var intervals = Math.ceil(intervals0/5)*5; var intervals2 = Math.ceil(intervals20/5)*5
-
-        var valuesScaled = each.map( function(value) {
-            return (value / (intervals * 4)) * 100
-        } );
-
-        var valuesScaled2 = each2.map( function(value) {
-            return (value / (intervals2 * 4)) * 100
-        } );
-        
-        ctx.strokeStyle = "blue";
-        ctx.fillStyle = "blue";
-
-        for (var i=0; i<each.length; i++) {
-            ctx.beginPath();
-            ctx.arc(150 + valuesScaled[i], 150 - valuesScaled2[i] - 20, 1, 0, 2 * Math.PI);
-            ctx.stroke(); 
-            ctx.fill()
-            //ctx.fillRect(150 + valuesScaled[i],150 - valuesScaled2[i] - 20,2,2);
-        }
-        
-        ctx.strokeStyle = "black";
-        ctx.fillStyle = "black";
-
-        for (var i=1; i<5; i++) {
-            ctx.moveTo(150+25*i, 125);
-            ctx.lineTo(150+25*i, 135);
-            ctx.stroke();
-        }
-        
-        for (var i=1; i<5; i++) {
-            ctx.moveTo(150-25*i, 125);
-            ctx.lineTo(150-25*i, 135);
-            ctx.stroke();
-        }
-
-        for (var i=1; i<5; i++) {
-            ctx.moveTo(145, 150 - 25*i - 20);
-            ctx.lineTo(155, 150 - 25*i - 20);
-            ctx.stroke();
-        }
-
-        for (var i=1; i<5; i++) {
-            ctx.fillText(intervals * i,150+25*i-.5*ctx.measureText(intervals * i).width,145);
-            ctx.fillText(-1*(intervals * i),150-25*i-.5*ctx.measureText(-1*(intervals * i)).width,145);
-            ctx.fillText(intervals2 * i,130,150 - 25*i - 18);
-        }
-    }
+        chart.draw(data, options);
+      }
 
     
     MathJax.typeset();

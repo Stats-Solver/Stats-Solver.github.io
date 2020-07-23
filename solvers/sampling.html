@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="/css/probstyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
 
                          <!-- MathJax -->
         <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -44,6 +44,7 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
+      
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
   <body>
@@ -70,6 +71,7 @@
               <a class="dropdown-item" href="probability.html">Probability Basics</a>
               <a class="dropdown-item" href="discrete.html">Discrete Distributions</a>
               <a class="dropdown-item" href="continuous.html">Continuous Distributions</a>
+              <a class="dropdown-item" href="sampling.html">Sampling Distributions</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="regression.html">Simple Regression</a>
@@ -78,9 +80,9 @@
             <li class="nav-item">
             <a class="nav-link" href="/about.html">About <span class="sr-only">(current)</span></a>
           </li>
-            <!-- <li class="nav-item">
+            <!--<li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
-          </li>-->
+          </li> -->
         </ul>
       </div>
     </nav>
@@ -96,302 +98,41 @@
           </div>
       
       <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-3">
-                <select id="stat" class="form-control" onchange="showstuff()">
-                    <option value="choose">Choose One</option>
-                    <option value="random">Random Sampling</option>
-                    <option value="estimation">Point Estimation</option>
-                    <option value="expected">Expected Value</option>
-                    <option value="standard">Standard Deviation</option>
-                    <option value="shape">Distribution Shape</option>
-                </select>
-                </div>
-                <div class="col-4 col-md-2">
-                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
-                </div> 
-            </div>
-        </div>
-      
-      <div class="container mt-3" id="experiments">
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-3">
-                <select id="exptype" class="form-control" onchange="">
-                    <option value="choose">Experiment Type</option>
-                    <option value="coin">Tossing a Coin</option>
-                    <option value="dice">Rolling a Die</option>
-                    <option value="deck">Deck of Cards</option>
-                </select>
-                </div>
-            <div class="col-4 col-md-2">
-                <select id="exptimes" class="form-control" onchange="">
-                    <option value="choose">Times</option>
-                    <option value="one">1</option>
-                    <option value="two">2</option>
-                </select>
-                </div>
-            </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleexperiments()">Example</span>
-        </div>
-        </div>
-      
-      
-      <div class="container mt-3" id="comb">
-        <table>
+
+        <table id="statistics">
           <tr>
-            <td rowspan="2"><font size="+3">C</font></td>
-            <td><input class = "combperm" type="text" id="topn" placeholder="N"></td>
-          </tr>
-            <tr>
-            <td><input class = "combperm" type="text" id="bottomn" placeholder="n"></td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat" class="hypinput1" onchange="samplestat()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1">$\sigma$</td>
+            <td class="statistics" id="sd2"> = </td>
+            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
           </tr>
         </table> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplecomb()">Example</span>
+
+          <div class="container center">
+          <div class="row justify-content-center">
+        <div class = "col-4 col-md-2 text-center mt-2">
+            <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
+            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
+            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
         </div>
-          </div>
-      
-      <div class="container mt-3" id="perm">
-        <table>
-          <tr>
-            <td rowspan="2"><font size="+3">P</font></td>
-            <td><input class = "combperm" type="text" id="topnp" placeholder="N"></td>
-          </tr>
-            <tr>
-            <td><input class = "combperm" type="text" id="bottomnp" placeholder="n"></td>
-          </tr>
-        </table> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleperm()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="complement">
-        <table>
-          <tr>
-            <td>$P(A^c)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probcomp"></td>
-        </table> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplecomplement()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="union">
-        <table>
-          <tr>
-            <td>$P(A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="proba"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb"></td>
-            </tr>
-        </table> 
+              </div>
+              </div>
           
-          <table class = "mt-2">
-          <tr>
-            <tr>
-              <td>$P(A \cap B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaib"></td>
-                </tr>
-        </table> 
-          <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="switchunion()">Mutually Exclusive</button>
-              </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleunion()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="union2">
-        <table>
-          <tr>
-            <td>$P(A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaa"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probbb"></td>
-        </table> 
-          <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="switchunion2()">Not Mutually Exclusive</button>
-              </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleunion()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="intersection">
-        <table>
-          <tr>
-            <td>$P(B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iprobb"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(A \mid B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iprobagivb"></td>
-              <td>&nbsp; &nbsp;</td>
-             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button> </td>
-        </table> 
-          <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep()">Independent</button>
-              </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleintersection()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="intersection2">
-        <table>
-          <tr>
-            <td>$P(A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iproba"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(B \mid A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iprobbgiva"></td>
-              <td>&nbsp; &nbsp;</td>
-             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchint2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button> </td>
-        </table> 
-          <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep2()">Independent</button>
-              </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleintersection()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="intersection3">
-        <table>
-          <tr>
-            <td>$P(B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iprobb2"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iproba2"></td>
-              <td>&nbsp; &nbsp;</td>
-             <td> </td>
-        </table> 
-          <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep3()">Not Independent</button>
-              </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleintersection()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="intersection4">
-        <table>
-          <tr>
-            <td>$P(A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iprobaa3"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="iprobab3"></td>
-              <td>&nbsp; &nbsp;</td>
-             <td> </td>
-        </table> 
-          <div class="text-center mt-2">
-          <button id = "switch" class="btn btn-outline-primary" onclick="switchindep4()">Not Independent</button>
-              </div>
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleintersection()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="conditional">
-        <table>
-          <tr>
-            <td>$P(A \cap B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaib2"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td>$P(B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb3"></td>
-              <td>&nbsp; &nbsp;</td>
-             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchconditional()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button> </td>
-        </table> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleconditional()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="conditional2">
-        <table>
-          <tr>
-            <td>$P(A \cap B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaib22"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td>$P(A)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb33"></td>
-              <td>&nbsp; &nbsp;</td>
-             <td> <button id = "switch" class="btn btn-outline-primary" onclick="switchconditional2()"> <svg class="bi bi-arrow-left-right" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-  <path fill-rule="evenodd" d="M10.146 7.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L12.793 11l-2.647-2.646a.5.5 0 0 1 0-.708z"/>
-  <path fill-rule="evenodd" d="M2 11a.5.5 0 0 1 .5-.5H13a.5.5 0 0 1 0 1H2.5A.5.5 0 0 1 2 11zm3.854-9.354a.5.5 0 0 1 0 .708L3.207 5l2.647 2.646a.5.5 0 1 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
-  <path fill-rule="evenodd" d="M2.5 5a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
-</svg> </button> </td>
-        </table> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleconditional2()">Example</span>
-        </div>
-          </div>
-      
-      <div class="container mt-3" id="bayes">
-        <table>
-          <tr>
-            <td>$P(A_1)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="proba1"></td>
-              <td>&nbsp; &nbsp;</td>
-              <td>$P(B \mid A_1)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probbgiva1"></td>
-            </tr>
-        </table> 
           
-          <table class = "mt-2">
-          <tr>
-            <tr>
-              <td>$P(A_2)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="proba2"></td>
-                <td>&nbsp; &nbsp;</td>
-                <td>$P(B \mid A_2)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probbgiva2"></td>
-                </tr>
-        </table> 
+          
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplebayes()">Example</span>
+            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
         </div>
+          
           </div>
+      
       
       
     <div class="container">
@@ -399,45 +140,24 @@
           </div>
       
      <div class="container">
-        <div id="output">
+        <div id="output1">
         </div>
       </div>
-      
-      
       
       <div class="container">
         <div id="output2">
-            <div id = "coin1" class = "text-center mt-2">
-                <p>$P($<select id="coin1val" class="hypinput1 probtype" onchange="coin1()"> <option value="head">Head</option> <option value="tail"> Tail </option></select>$)=$<span id="coin1ans"></span></p>
-            </div>
-            <div id = "coin2" class = "text-center mt-2">
-                <p>$P($<select id="coin2val" class="hypinput2 probtype" onchange="coin2()"> <option value="atleast1head">At Least One Head</option> <option value="atleast1tail"> At Least One Tail </option></select>$)=$<span id="coin2ans"></span></p>
-            </div>
-            <div id = "dice1" class = "text-center mt-2">
-                <p>$P($<select id="dice1val" class="hypinput3 probtype" onchange="dice1()"> <option value="evennum">Even Number</option> <option value="oddnum"> Odd Number </option><option value="higher3"> 3 or Higher </option><option value="higher4"> 4 or Higher </option><option value="lower3"> 3 or Lower </option><option value="lower4"> 4 or Lower </option></select>$)=$<span id="dice1ans"></span></p>
-            </div>
-            <div id = "dice2" class = "text-center mt-2">
-                <p>$P($<select id="dice2val" class="hypinput4 probtype" onchange="dice2()"> <option value="sum3">Sum is 3</option> <option value="sum4"> Sum is 4 </option><option value="sum5"> Sum is 5 </option><option value="sum6"> Sum is 6 </option><option value="sum7"> Sum is 7 </option><option value="sum8"> Sum is 8 </option></select>$)=$<span id="dice2ans"></span></p>
-            </div>
         </div>
-      </div>
-      
-      
-      
-      
-      <div class="container text-center">
-      <canvas id="myCanvas" width="300" height="150" ></canvas>
       </div>
       
       <div class="container" id="explanation">
       <p  class="text-center">
-          <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Definition
       </a> &bull;
-          <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
         Formula
       </a> &bull;
-      <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
         Explanation
       </a>
     </p>
@@ -446,17 +166,20 @@
 
       </div>
     </div>
-          <div class="collapse" id="collapseExample2" data-parent="#explanation">
+    <div class="collapse" id="collapseExample2" data-parent="#explanation">
       <div class="card card-body" id="formulatext">
 
       </div>
     </div>
-          <div class="collapse" id="collapseExample3" data-parent="#explanation">
+    <div class="collapse" id="collapseExample3" data-parent="#explanation">
       <div class="card card-body" id="explanationtext">
-            
+
       </div>
     </div>
           </div>
+      
+      
+      
       
       <!--<div class="container text-center">
         <div id="expconf" class="explanation">
@@ -482,6 +205,6 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script src="/js/probscript.js"></script>
+      <script src="/js/samscript.js"></script>
   </body>
 </html>

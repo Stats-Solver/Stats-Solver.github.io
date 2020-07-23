@@ -274,35 +274,35 @@ function compprobability() {
         $("#coin1").show(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         if (coin1val == "head") {
-            document.getElementById("coin1ans").innerHTML = " $1/2$"
+            document.getElementById("coin1ans").innerHTML = " $\\boxed{1/2}$"
         } else {
-            document.getElementById("coin1ans").innerHTML = " $1/2$"
+            document.getElementById("coin1ans").innerHTML = " $\\boxed{1/2}$"
         }
     } else if (type == "coin" && times1 == "two") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").show(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         if (coin2val == "atleast1head") {
-            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,H)+P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 + 1/4 \\\\ &= 3/4 \\end{align} $$"
+            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,H)+P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 + 1/4 \\\\ &= \\boxed{3/4} \\end{align} $$"
         } else if (coin2val == "atleast1tail") {
-            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(T,T)+P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 + 1/4 \\\\ &= 3/4 \\end{align} $$"
+            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(T,T)+P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 + 1/4 \\\\ &= \\boxed{3/4} \\end{align} $$"
         } else if (coin2val == "exactly1head") {
-            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (coin2val == "exactly1tail") {
-            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } 
     } else if (type == "coin" && times1 == "three") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").show(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         if (coin3val == "atleast2heads") {
-            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,H,H)+P(H,H,T)+P(H,T,H)+P(T,H,H) \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,H,H)+P(H,H,T)+P(H,T,H)+P(T,H,H) \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (coin3val == "atleast2tails") {
-            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(T,T,T)+P(T,T,H)+P(T,H,T)+P(H,T,T) \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(T,T,T)+P(T,T,H)+P(T,H,T)+P(H,T,T) \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (coin3val == "exactly2heads") {
-            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,H,T)+P(H,T,H)+P(T,H,H) \\\\ &= 1/8 + 1/8 + 1/8 \\\\ &= \\boxed{3/8}  \\end{align} $$"
         } else if (coin3val == "exactly2tails") {
-            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(T,T,H)+P(T,H,T)+P(H,T,T) \\\\ &= 1/8 + 1/8 + 1/8 \\\\ &= \\boxed{3/8} \\end{align} $$"
         } else if (coin3val == "exactly1head") {
             document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
         } else if (coin3val == "exactly1tail") {
@@ -323,49 +323,49 @@ function compprobability() {
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").show(); $("#dice2").hide(); $("#deck1").hide();
         if (dice1val == "evennum") {
-            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(2)+P(4)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(2)+P(4)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (dice1val == "oddnum") {
-            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(3)+P(5) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(3)+P(5) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (dice1val == "higher3") {
-            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(3)+P(4)+P(5)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= 2/3 \\end{align} $$"
+            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(3)+P(4)+P(5)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= \\boxed{2/3} \\end{align} $$"
         } else if (dice1val == "higher4") {
-            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(4)+P(5)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(4)+P(5)+P(6) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (dice1val == "lower3") {
-            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3) \\\\ &= 1/6 + 1/6 + 1/6 \\\\ &= 3/6 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (dice1val == "lower4") {
-            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3)+P(4) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= 2/3 \\end{align} $$"
+            document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3)+P(4) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= \\boxed{2/3} \\end{align} $$"
         }
     } else if (type == "dice" && times2 == "two") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").show(); $("#deck1").hide();
         if (dice2val == "sum5") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(4,1)+P(3,2)+P(2,3)+P(1,4) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 4/36 \\\\ &= 1/9 \\end{align} $$"
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(4,1)+P(3,2)+P(2,3)+P(1,4) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 4/36 \\\\ &= \\boxed{1/9} \\end{align} $$"
         } else if (dice2val == "sum6") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(5,1)+P(4,2)+P(3,3)+P(2,4)+P(1,5) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36  \\\\ &= 5/36 \\end{align} $$"
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(5,1)+P(4,2)+P(3,3)+P(2,4)+P(1,5) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36  \\\\ &= \\boxed{5/36} \\end{align} $$"
         } else if (dice2val == "sum7") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,1)+P(5,2)+P(4,3)+P(3,4)+P(2,5)+P(1,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 6/36 \\\\ &= 1/6 \\end{align} $$"
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,1)+P(5,2)+P(4,3)+P(3,4)+P(2,5)+P(1,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 6/36 \\\\ &= \\boxed{1/6} \\end{align} $$"
         } else if (dice2val == "sum8") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,2)+P(5,3)+P(4,4)+P(3,5)+P(2,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36\\\\ &= 5/36 \\end{align} $$"
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,2)+P(5,3)+P(4,4)+P(3,5)+P(2,6) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 + 1/36\\\\ &= \\boxed{5/36} \\end{align} $$"
         } else if (dice2val == "sum9") {
-            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,3)+P(5,4)+P(4,5)+P(3,6) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/36 \\\\ &= 1/9 \\end{align} $$"
+            document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,3)+P(5,4)+P(4,5)+P(3,6) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/36 \\\\ &= \\boxed{1/9} \\end{align} $$"
         } 
     } else if (type == "deck" && times3 == "one") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").show();
         if (deck1val == "heart") {
-            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + P(\\text{3H}) + \\cdots + P(\\text{AH}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + P(\\text{3H}) + \\cdots + P(\\text{AH}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
         } else if (deck1val == "diamond") {
-            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2D}) + P(\\text{3D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2D}) + P(\\text{3D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
         } else if (deck1val == "spade") {
-            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + P(\\text{3S}) + \\cdots + P(\\text{AS}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + P(\\text{3S}) + \\cdots + P(\\text{AS}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
         } else if (deck1val == "club") {
-            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2C}) + P(\\text{3C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= 1/4 \\end{align} $$"
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2C}) + P(\\text{3C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
         } else if (deck1val == "red") {
-            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + \\cdots + P(\\text{AH}) + P(\\text{2D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + \\cdots + P(\\text{AH}) + P(\\text{2D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (deck1val == "black") {
-            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + \\cdots + P(\\text{AS}) + P(\\text{2C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= 1/2 \\end{align} $$"
+            document.getElementById("deck1ans").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + \\cdots + P(\\text{AS}) + P(\\text{2C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= \\boxed{1/2} \\end{align} $$"
         }
 
     }
@@ -451,25 +451,23 @@ function compcomp() {
     document.getElementById("formulatext").innerHTML = "$$ P(A) + P(A^c) = 1 $$"
     document.getElementById("explanationtext").innerHTML = ""
     
+    var probtype = document.getElementById('probtypec').value;
     var probac = document.getElementById("probcomp").value;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= " + (1-probac).toFixed(2) + "\\end{align} $$"
+    
+    if (probtype == "Ac") {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= \\boxed{" + (1-probac).toFixed(2) + "} \\end{align} $$"
+    } else if (probtype == "A") {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(A^c) &= 1 - P(A) \\\\ &= 1 - " + probac + "\\\\ &= \\boxed{" + (1-probac).toFixed(2) + "} \\end{align} $$"
+    }
+    
     MathJax.typeset();
 }
 
 function union() {
     $("#union").show();
-    mutual = false
 }
 
 function compunion() {
-    if (mutual == false) {
-        compunion1()
-    } else {
-        compunion2()
-    }
-}
-
-function compunion1() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The union of events A and B is the event containing all sample points in A, B and both A and B."
     document.getElementById("formulatext").innerHTML = "$$ \\text{Addition Law:} $$ $$ P(A \\cup B) = P(A) + P(B) - P(A \\cap B) $$ $$ \\text{Addition Law (Mutually Exclusive):} $$ $$ P(A \\cup B) = P(A) + P(B) $$"
@@ -478,39 +476,26 @@ function compunion1() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\  &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= " + ans + "\\end{align} $$"
-    MathJax.typeset();
-}
-
-function compunion2() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The union of events A and B is the event containing all sample points in A, B and both A and B."
-    document.getElementById("formulatext").innerHTML = "$$ P(A \\cup B) = P(A) + P(B) $$"
-    document.getElementById("explanationtext").innerHTML = "If the events are mutually exclusive, the intersection of A and B is empty."
-    var proba = document.getElementById("proba").value;
-    var probb = document.getElementById("probb").value;
-    var probaib = document.getElementById("probaib").value;
-    var ans = parseFloat(proba) + parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) \\\\ &= " + proba + "+" + probb + "\\\\ &= " + ans + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\  &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= \\boxed{" + ans + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function intersection() {
     $("#intersection").show();
-    indtype = 1;
-    indep = false;
 }
 
 function compintersection() {
-    if (indtype == 1 && indep == false) {
+    var probtype1 = document.getElementById("probtype1").value;
+    var probtype2 = document.getElementById("probtype2").value;
+    if (probtype1 == "AgivB" && probtype2 == "B") {
         compintersection1()
-    } else if (indtype == 2 && indep == false) {
+    } else if (probtype1 == "A" && probtype2 == "BgivA") {
         compintersection2()
-    } else if (indtype == 1 && indep == true) {
+    } else if (probtype1 == "A" && probtype2 == "B") {
         compintersection3() 
-    } else {
+    } else if (probtype1 == "AgivB" && probtype2 == "BgivA") {
         compintersection4() 
-    }
+    } 
 }
 
 function compintersection1() {
@@ -518,10 +503,10 @@ function compintersection1() {
     document.getElementById("descriptiontext").innerHTML = "The intersection of events A and B is the event containing all sample points in both A and B."
     document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
     document.getElementById("explanationtext").innerHTML = "If the events are independent, the probability of A given B is equal to the probability of A."
-    var probb = document.getElementById("iprobb").value;
-    var probagivb = document.getElementById("iprobagivb").value;
-    var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    var iproba = document.getElementById("iproba").value;
+    var iprobb = document.getElementById("iprobb").value;
+    var ans = parseFloat(iproba) * parseFloat(iprobb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\  &= " + iprobb + "(" + iproba + ") \\\\ &= " + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -530,10 +515,10 @@ function compintersection2() {
     document.getElementById("descriptiontext").innerHTML = "The intersection of events A and B is the event containing all sample points in both A and B."
     document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
     document.getElementById("explanationtext").innerHTML = "If the events are independent, the probability of A given B is equal to the probability of A and the probability of B given A is equal to the probability of B."
-    var probb = document.getElementById("iproba").value;
-    var probagivb = document.getElementById("iprobbgiva").value;
-    var ans = parseFloat(probb) * parseFloat(probagivb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B \\mid A) \\\\  &= " + probb + "(" + probagivb + ") \\\\ &= " + ans + "\\end{align} $$"
+    var iproba = document.getElementById("iproba").value;
+    var iprobb = document.getElementById("iprobb").value;
+    var ans = parseFloat(iproba) * parseFloat(iprobb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B \\mid A) \\\\  &= " + iproba + "(" + iprobb + ") \\\\ &= " + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -542,10 +527,10 @@ function compintersection3() {
     document.getElementById("descriptiontext").innerHTML = "The intersection of events A and B is the event containing all sample points in both A and B."
     document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B)  $$"
     document.getElementById("explanationtext").innerHTML = "If the events are independent, the probability of A given B is equal to the probability of A and the probability of B given A is equal to the probability of B."
-    var probb = document.getElementById("iprobb2").value;
-    var proba = document.getElementById("iproba2").value;
-    var ans = parseFloat(probb) * parseFloat(proba);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\  &= " + probb + "(" + proba + ") \\\\ &= " + ans + "\\end{align} $$"
+    var iproba = document.getElementById("iproba").value;
+    var iprobb = document.getElementById("iprobb").value;
+    var ans = parseFloat(iproba) * parseFloat(iprobb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\  &= " + iproba + "(" + iprobb + ") \\\\ &= " + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
     MathJax.typeset();
 }
 
@@ -554,10 +539,10 @@ function compintersection4() {
     document.getElementById("descriptiontext").innerHTML = "The intersection of events A and B is the event containing all sample points in both A and B."
     document.getElementById("formulatext").innerHTML = "$$ P(A \\cap B) = P(B) P(A)  $$"
     document.getElementById("explanationtext").innerHTML = "If the events are independent, the probability of A given B is equal to the probability of A and the probability of B given A is equal to the probability of B."
-    var proba = document.getElementById("iprobaa3").value;
-    var probb = document.getElementById("iprobab3").value;
-    var ans = parseFloat(proba) * parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\ &= " + proba + "(" + probb + ") \\\\ &= " + ans + "\\end{align} $$"
+    var iproba = document.getElementById("iproba").value;
+    var iprobb = document.getElementById("iprobb").value;
+    var ans = parseFloat(iproba) * parseFloat(iprobb);
+    document.getElementById("output").innerHTML = "$$ \\text{Cannot compute.}$$"
     MathJax.typeset();
 }
 
@@ -567,11 +552,12 @@ function conditional() {
 }
 
 function compconditional() {
-    if (conditionaltype == 1){
+    var probtype = document.getElementById("probtype3").value;
+    if (probtype == "B") {
         compconditional1()
-    } else {
+    } else if (probtype == "A") {
         compconditional2()
-    }
+    } 
 }
 
 function compconditional1() {
@@ -650,39 +636,62 @@ function exampleperm2(){
 }
 
 function examplecomplement(){
+    document.getElementById('probtypec').value="Ac"
     document.getElementById('probcomp').value=".80"
+}
+
+function examplecomplement2(){
+    document.getElementById('probtypec').value="A"
+    document.getElementById('probcomp').value=".40"
 }
 
 function exampleunion(){
     document.getElementById('proba').value=".10"
     document.getElementById('probb').value=".12"
     document.getElementById("probaib").value=".04"
-    document.getElementById('probaa').value=".10"
-    document.getElementById('probbb').value=".12"
+}
+
+function exampleunion2(){
+    document.getElementById('proba').value=".30"
+    document.getElementById('probb').value=".20"
+    document.getElementById("probaib").value=".12"
 }
 
 function exampleintersection(){
+    document.getElementById('probtype1').value = "AgivB"
+    document.getElementById('probtype2').value = "B"
     document.getElementById('iprobb').value=".84"
-    document.getElementById("iprobagivb").value=".75"
-    document.getElementById('iproba').value=".84"
-    document.getElementById("iprobbgiva").value=".75"
-    document.getElementById('iprobb2').value=".84"
-    document.getElementById("iproba2").value=".75"
-    document.getElementById('iprobaa3').value=".84"
-    document.getElementById("iprobab3").value=".75"
+    document.getElementById("iproba").value=".75"
+}
+
+function exampleintersection2(){
+    document.getElementById('probtype1').value = "A"
+    document.getElementById('probtype2').value = "B"
+    document.getElementById('iprobb').value=".80"
+    document.getElementById("iproba").value=".80"
 }
 
 function exampleconditional(){
     document.getElementById('probb3').value=".80"
     document.getElementById("probaib2").value=".24"
-    document.getElementById('probb33').value=".80"
-    document.getElementById("probaib22").value=".24"
+}
+
+function exampleconditional2(){
+    document.getElementById('probb3').value=".20"
+    document.getElementById("probaib2").value=".03"
 }
 
 function examplebayes(){
     document.getElementById('proba1').value=".65"
     document.getElementById("proba2").value=".35"
     document.getElementById('probbgiva1').value=".02"
+    document.getElementById("probbgiva2").value=".05"
+}
+
+function examplebayes2(){
+    document.getElementById('proba1').value=".40"
+    document.getElementById("proba2").value=".60"
+    document.getElementById('probbgiva1').value=".20"
     document.getElementById("probbgiva2").value=".05"
 }
 

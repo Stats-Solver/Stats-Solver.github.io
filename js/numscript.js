@@ -1,6 +1,6 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
-$("#chebyshev").hide(); $("#label3").hide();
+$("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -72,9 +72,11 @@ function avg(input){
 
 function showthings(){
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
-    $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show();
+    $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide();
     var x = document.getElementById("stat").value;
-    if (x == "percentiles") {
+    if (x == "weighted") {
+        weighted()
+    } else if (x == "percentiles") {
         percentiles()
     } else if (x == "quartiles") {
         quartiles()
@@ -99,6 +101,10 @@ function stat(){
     var x = document.getElementById("stat").value;
     if (x == "mean"){
         mean()
+    } else if (x == "weighted"){
+        calcweighted()
+    } else if (x == "geometric"){
+        geometric()
     } else if (x == "median"){
         median()
     } else if (x == "mode") {
@@ -123,6 +129,8 @@ function stat(){
         calcchebyshev()
     } else if (x == "empirical") {
         calcempirical()
+    } else if (x == "fivenumber") {
+        fivenumber()
     } else if (x == "covariance") {
         calccov()
     } else if (x == "correlation") {
@@ -148,6 +156,52 @@ function mean(){
         adds += "+" + each[i]
     }
     document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    MathJax.typeset();
+}
+
+function weighted(){
+    $("#weights").show();
+}
+
+function calcweighted(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
+    $("#output").empty();
+    $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var adds = each[0];  var avgeach = avg(each);
+    var str2 = document.getElementById("weights").value;
+    var each2 = str2.split(",").map(Number); var len2 = each2.length;
+    var adds2 = each2[0];  var avgeach2 = avg(each2);
+    var adds3 = adds2 + "(" + adds + ")"
+    for (let i=1; i<len; i++){
+        adds3 += "+" + each2[i] + "(" + each[i] + ")"
+        adds2 += "+" + each2[i]
+    }
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    MathJax.typeset();
+}
+
+function geometric(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
+    $("#output").empty();
+    $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var adds = "(" + each[0] + ")";  var avgeach = avg(each);  
+    var prod = each[0]
+    for (let i=1; i<len; i++){
+        adds += "(" + each[i] + ")"
+        prod = prod * each[i]
+    }
+    var ans = Math.pow(prod, 1/len);
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &= \\sqrt[" + len + "]{" + adds + "} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -594,7 +648,7 @@ function calcchebyshev(){
     
     
     if (Math.abs(zminans) == zmaxans) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$\\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 \\\\ &= 1-1/"+Math.pow(zmaxans,2)+" \\\\ &="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+"\\\\ &=\\boxed{"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%} \\end{align}$$ At least $"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\% $ of the data values must be between $"+min+"$ and $"+max+"$.<br><br>"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$\\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 \\\\ &= 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+"\\\\ &=\\boxed{"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%} \\end{align}$$ At least $"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\% $ of the data values must be between $"+min+"$ and $"+max+"$.<br><br>"
     } else {
         document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
     }
@@ -636,6 +690,49 @@ function calcempirical(){
     
     
     MathJax.typeset()
+}
+
+function fivenumber(){
+    $("#explanation").show(); $("#label1").show();
+    document.getElementById("descriptiontext").innerHTML = "The interquartile range is a measure of variability that isn't affected by extreme values."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $$"
+    document.getElementById("explanationtext").innerHTML = "The interquartile range only uses two values from the entire data set: the third quartile and the first quartile."
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number);var len = each.length;
+    var largest = Math.max(...each); var smallest = Math.min(...each)
+    var eachsort = each.sort();
+    
+    var eachsort2 = each.sort(function(a,b) {
+        return a - b;
+    });
+    var mid = (len-1)/2; var midr = len/2;  var midl = (len-2)/2;
+    var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
+    var sumlr = vall + valr; var avelr = (vall + valr)/2;
+    if (len % 2 != 0){
+         var medianans = valm
+    }else{
+        var medianans = avelr
+    }
+    
+    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25);
+    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75);
+    var val25indx = eachsort[indxval25-1]; var val25indxplus1 = eachsort[indxval25]; var val25avg = (val25indx + val25indxplus1) / 2;
+    var val75indx = eachsort[indxval75-1]; var val75indxplus1 = eachsort[indxval75]; var val75avg = (val75indx + val75indxplus1) / 2;
+    var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
+    var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
+    var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
+    if (indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Smallest Value} &= "+smallest+" \\\\ \\text{First Quartile, } Q_1 &= "+val25avg+" \\\\ \\text{Median, } Q_2 &= "+medianans+" \\\\ \\text{Third Quartile, } Q_3 &= "+val75avg+" \\\\ \\text{Largest Value} &= "+largest+" \\end{align} $$"
+    } else if (indxint25 && !indxint75){
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Smallest Value} &= "+smallest+" \\\\ \\text{First Quartile, } Q_1 &= "+val25avg+" \\\\ \\text{Median, } Q_2 &= "+medianans+" \\\\ \\text{Third Quartile, } Q_3 &= "+answr75+" \\\\ \\text{Largest Value} &= "+largest+" \\end{align} $$"
+    } else if (!indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Smallest Value} &= "+smallest+" \\\\ \\text{First Quartile, } Q_1 &= "+answr25+" \\\\ \\text{Median, } Q_2 &= "+medianans+" \\\\ \\text{Third Quartile, } Q_3 &= "+val75avg+" \\\\ \\text{Largest Value} &= "+largest+" \\end{align} $$"
+    }
+    else{
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Smallest Value} &= "+smallest+" \\\\ \\text{First Quartile, } Q_1 &= "+answr25+" \\\\ \\text{Median, } Q_2 &= "+medianans+" \\\\ \\text{Third Quartile, } Q_3 &= "+answr75+" \\\\ \\text{Largest Value} &= "+largest+" \\end{align} $$"
+    }
+
+    MathJax.typeset();
 }
 
 function covariance(){
