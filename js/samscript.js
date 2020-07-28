@@ -283,11 +283,11 @@ function conint1(){
         var form = "Not Normal"
     }
 
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
+    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
+    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
         
-    document.getElementById("output1").innerHTML = " $$ \\text{Sampling Distribution of } \\bar{x} \\text{:} $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{ Form: "+ form + "} $$ "
+    document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{ Form: "+ form + "} $$ "
 
     MathJax.typeset();
 }
@@ -308,11 +308,11 @@ function conint2(){
         var form = "Not Normal"
     }
 
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample proportion is the probability distribution of the sample proportion."
+    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{p}) = p $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{p(1-p)}{n}} $$ The sampling distribution of the sample proportioncan be approximated by a normal distribution whenever np > 5 and n(1-p) > 5."
+    document.getElementById("explanationtext").innerHTML = "The sampling distribution of the sample proportion depends on both the sample size and the population proportion."
         
-    document.getElementById("output1").innerHTML = "$$ \\text{Sampling Distribution of } \\bar{p} \\text{:} $$$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{ Form: "+ form + "} $$ "
+    document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{ Form: "+ form + "} $$ "
 
     MathJax.typeset();
 }

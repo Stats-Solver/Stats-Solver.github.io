@@ -528,9 +528,10 @@ function hyptest1(){
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }
     
-    var zvalue = toFixing(test,1);
-    var zvaluer = test.toFixed(2); 
-    var zseconddec = (""+zvaluer)[4];
+    var zvalue = toFixing(parseFloat(test),1);
+    var zvaluer = parseFloat(test).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    
     var zcrit = toFixing(zcless,1);
     var zcritr = zcless.toFixed(2); 
     var zcritseconddec = (""+zcritr)[4];
@@ -581,9 +582,16 @@ function hyptest1(){
         table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    if (test < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
+    } else if (test >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        }
     }
     
     table12 = []
@@ -607,6 +615,7 @@ function hyptest1(){
     
     
     if (sigma == "known") {
+        //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
         var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
         var tablec = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
         } else if (sigma == "unknown") {

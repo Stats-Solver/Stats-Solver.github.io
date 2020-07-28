@@ -1,5 +1,5 @@
 $("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide();  $("#label3").hide();
-$("#myCanvas").hide(); $("#myCanvas2").hide();
+$("#myCanvas").hide(); $("#myCanvas2").hide(); $("#firstclass").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -102,10 +102,14 @@ function avg(input){
 }
 
 function showthings(){
-    $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label3").hide();
+    $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label3").hide();  $("#firstclass").hide();
     var x = document.getElementById("stat").value;
-    if (x == "cumulative"){
-        cumulative()
+    if (x == "cumfrequency") {
+        $("#firstclass").show(); $("#go").hide();
+    } else if (x == "cumrelative") {
+        $("#firstclass").show(); $("#go").hide();
+    } else if (x == "cumpercent") {
+        $("#firstclass").show(); $("#go").hide();
     } else if (x == "crosstabulation") {
         crosstabulation()
     } else if (x == "scatter") {
@@ -145,12 +149,38 @@ function stat(){
    
 }
 
+function go(){
+    var x = document.getElementById("stat").value;
+    if (x == "frequency"){
+        frequencyquant()
+    } else if (x == "relative"){
+        relativequant()
+    } else if (x == "percent") {
+        percentquant()
+    } else if (x == "histogram") {
+        histogram()
+    } else if (x == "cumfrequency") {
+        cumfrequency()
+    } else if (x == "cumrelative") {
+        cumrelative()
+    } else if (x == "cumpercent") {
+        cumpercent()
+    } else if (x == "crosstabulation") {
+        calccross()
+    } else if (x == "scatter") {
+        calcscatt()
+    } else{
+        document.getElementById("output").innerHTML = ""
+    }
+   
+}
+
 function frequency(){
     var str = document.getElementById("values").value;
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        frequencyquant()
+         $("#firstclass").show(); $("#go").show();
     } else {
         frequencyqual()
     }
@@ -181,7 +211,7 @@ function frequencyqual(){
 }
 
 function frequencyquant(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#firstclass").show();
     document.getElementById("descriptiontext").innerHTML = "A frequency distribution is a table showing the number of items in each class."
     document.getElementById("formulatext").innerHTML = "The frequency of a class is the number of items in that class."
     document.getElementById("explanationtext").innerHTML = "The sum of the frequencies is always equal to the sample size (n)."
@@ -191,34 +221,43 @@ function frequencyquant(){
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
     var maxvalue = Math.max.apply(Math, each);
     var minvalue = Math.min.apply(Math, each);
-    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
     var classlimits = [];
     var limits1 = [];
     var limits2 = [];
-    for (var i=0; i<4; i++) {
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
         classlimits[i] = value1 + "-" + value2
         limits1[i] = value1;
         limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
+        i += 1
     }
     
+    var end = i;
+    
     var quants = [];
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<end; i++) {
         quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
     }
     
     var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
-    for (var r = 0; r < 4; r++){
+    for (var r = 0; r < end; r++){
         table += "<tr>";
-        table += "<td>$\\text{" + classlimits[r] + "}$</td>";
+        table += "<td>$" + classlimits[r] + "$</td>";
         table += "<td>$" + quants[r] + "$</td>";
         table += "</tr>";
     }
@@ -232,7 +271,7 @@ function relative(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        relativequant()
+        $("#firstclass").show(); $("#go").show();
     } else {
         relativequal()
     }
@@ -285,25 +324,34 @@ function relativequant(){
         return value / tot;
     } );
     
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
     var maxvalue = Math.max.apply(Math, each);
     var minvalue = Math.min.apply(Math, each);
-    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
     var classlimits = [];
     var limits1 = [];
     var limits2 = [];
-    for (var i=0; i<4; i++) {
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
         classlimits[i] = value1 + "-" + value2
         limits1[i] = value1;
         limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
+        i += 1
     }
     
+    var end = i;
+    
     var quants = [];
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<end; i++) {
         quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
     }
     
@@ -311,9 +359,9 @@ function relativequant(){
         return value / tot;
     } );
     
-    for (var r = 0; r < 4; r++){
+    for (var r = 0; r < end; r++){
         table += "<tr>";
-        table += "<td>$\\text{" + classlimits[r] + "}$</td>";
+        table += "<td>$" + classlimits[r] + "$</td>";
         table += "<td>$" + quants[r] + "$</td>";
         table += "<td>$" + quants[r]+ "\\mathbin{/}" + tot + "=" + parseFloat(rel[r].toFixed(3)) + "$</td>";
         table += "</tr>";
@@ -328,7 +376,7 @@ function percent(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        percentquant()
+        $("#firstclass").show(); $("#go").show();
     } else {
         percentqual()
     }
@@ -387,25 +435,34 @@ function percentquant(){
         return value * 100;
     } );
     
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
     var maxvalue = Math.max.apply(Math, each);
     var minvalue = Math.min.apply(Math, each);
-    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
     var classlimits = [];
     var limits1 = [];
     var limits2 = [];
-    for (var i=0; i<4; i++) {
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
         classlimits[i] = value1 + "-" + value2
         limits1[i] = value1;
         limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
+        i += 1
     }
     
+    var end = i;
+    
     var quants = [];
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<end; i++) {
         quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
     }
     
@@ -417,7 +474,7 @@ function percentquant(){
         return value * 100;
     } );
     
-    for (var r = 0; r < 4; r++){
+    for (var r = 0; r < end; r++){
         table += "<tr>";
         table += "<td>$\\text{" + classlimits[r] + "}$</td>";
         table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
@@ -663,25 +720,34 @@ function cumfrequency2(){
         cumcounts[i] = cumcounts[i-1] + counts[i]
     }
     
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
     var maxvalue = Math.max.apply(Math, each);
     var minvalue = Math.min.apply(Math, each);
-    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
     var classlimits = [];
     var limits1 = [];
     var limits2 = [];
-    for (var i=0; i<4; i++) {
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
         classlimits[i] = value1 + "-" + value2
         limits1[i] = value1;
         limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
+        i += 1
     }
     
+    var end = i;
+    
     var quants = [];
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<end; i++) {
         quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
     }
     let cumquants = [quants[0]]
@@ -701,7 +767,7 @@ function cumfrequency2(){
         table += "<td>$" + cumquants[r] + "$</td>";
         table += "</tr>";
     }
-    for (var r = 1; r < 4; r++){
+    for (var r = 1; r < end; r++){
         table += "<tr>";
         table += "<td>$" + classlimits[r] + "$</td>";
         table += "<td>$" + quants[r] + "$</td>";
@@ -735,25 +801,35 @@ function cumrelative2(){
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
+    
     var maxvalue = Math.max.apply(Math, each);
     var minvalue = Math.min.apply(Math, each);
-    var classwidth = Math.ceil((maxvalue - minvalue) / 4);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
     var classlimits = [];
     var limits1 = [];
     var limits2 = [];
-    for (var i=0; i<4; i++) {
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
         classlimits[i] = value1 + "-" + value2
         limits1[i] = value1;
         limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
+        i += 1
     }
     
+    var end = i;
+    
     var quants = [];
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<end; i++) {
         quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
     }
     
@@ -784,7 +860,7 @@ function cumrelative2(){
         table += "<td>$" + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    for (var r = 1; r < 4; r++){
+    for (var r = 1; r < end; r++){
         table += "<tr>";
         table += "<td>$" + classlimits[r] + "$</td>";
         table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
@@ -812,6 +888,88 @@ function cumpercent2(){
     document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
     document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
     document.getElementById("explanationtext").innerHTML = ""
+    $("#descumrelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    let cumquants = [quants[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumquants[i] = cumquants[i-1] + quants[i]
+    }
+    
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
+    table = table + "<tr><td></td><td>$\\text{Percent}$</td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    
+
+    let cumrel = [rel[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumrel[i] = cumrel[i-1] + rel[i]
+    }
+    
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(100*rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(100*rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(100*cumrel[r-1].toFixed(2))+ " + " + parseFloat(100*rel[r].toFixed(2)) + " = " + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td><td>$-$</td></tr>";
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function cumpercent3(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
     $("#descumpercent").show();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
@@ -819,21 +977,31 @@ function cumpercent2(){
     var counts = countem(each)
     var tot = sum(counts);
     
-    var value1 = minvalue;
-    var value2 = minvalue + classwidth - 1;
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
     var classlimits = [];
     var limits1 = [];
     var limits2 = [];
-    for (var i=0; i<4; i++) {
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
         classlimits[i] = value1 + "-" + value2
         limits1[i] = value1;
         limits2[i] = value2;
         value1 += classwidth;
         value2 += classwidth;
+        i += 1
     }
     
+    var end = i;
+    
     var quants = [];
-    for (var i=0; i<4; i++) {
+    for (var i=0; i<end; i++) {
         quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
     }
     
@@ -861,7 +1029,7 @@ function cumpercent2(){
         table += "<td>" + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
         table += "</tr>";
     }
-    for (var r = 1; r < 4; r++){
+    for (var r = 1; r < end; r++){
         table += "<tr>";
         table += "<td>" + classlimits[r] + "</td>";
         table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
@@ -962,6 +1130,8 @@ function examplexvalues(){
 
 function examplexvalues2(){
     document.getElementById('values').value="12, 15, 20, 22, 14, 14, 15, 27, 21, 18"
+    document.getElementById('lower').value="10"
+    document.getElementById('upper').value="14"
 }
 
 function examplevalues3(){
