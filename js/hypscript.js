@@ -1553,6 +1553,7 @@ function example1(){
     $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
     document.getElementById("parameter1").value = "mean"
     document.getElementById("parameter2").innerHTML = "&mu;"
+    document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
     $("#less").show();
     $("#greater").hide();
     $("#notequal").hide();
@@ -1571,6 +1572,7 @@ function example2(){
     $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
     document.getElementById("parameter1").value = "mean"
     document.getElementById("parameter2").innerHTML = "&mu;"
+    document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
     $("#less").hide();
     $("#greater").show();
     $("#notequal").hide();
@@ -1589,6 +1591,7 @@ function example3(){
     $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
     document.getElementById("parameter1").value = "proportion"
     document.getElementById("parameter2").innerHTML = "p"
+    document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
     $("#less").hide();
     $("#greater").hide();
     $("#notequal").show();
