@@ -4,20 +4,39 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Free step-by-step sampling distributions calculator. Solve the expected value, standard error and form.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="/css/style.css">
-      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
+
+                         <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>  
       
-    <title>Tables and Graphs - Stats Solver</title>
+    <title>Sampling Distributions Calculator - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
       <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       
-          <!-- Global site tag (gtag.js) - Google Analytics -->
+                <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -26,9 +45,10 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
+      
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
-        <!-- Global site tag (gtag.js) - Google Ads: 606424473 -->
+          <!-- Global site tag (gtag.js) - Google Ads: 606424473 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-606424473"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -57,7 +77,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Solvers
+              Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
@@ -74,17 +94,17 @@
             <li class="nav-item">
             <a class="nav-link" href="/about.html">About <span class="sr-only">(current)</span></a>
           </li>
-            <!-- <li class="nav-item">
+            <!--<li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
-          </li>-->
+          </li> -->
         </ul>
       </div>
     </nav>
           </div>
     
-    
+      
     <div class = "container">
-        <h3 class="page-header text-center mt-2 text-primary">Tables and Graphs</h3>
+        <h4 class="page-header text-center mt-2 text-primary">Sampling Distributions Calculator</h4>
     </div>
       
       <div class="container">
@@ -92,99 +112,56 @@
           </div>
       
       <div class="container">
-          <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
-        </div>
-        </div>
-        </div>
-      
-      <div id="input2" class="container">
-          <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input type="text" id="values2" class="form-control" placeholder="Enter Y Values (separated by commas)">
-        </div>
-              </div>
-        </div>
-      
-      <div class="container">
-          <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <select id="stat" class="form-control" onchange="showthings()">
-                <option value="choose">Choose One</option>
-                <option value="frequency">Frequency Distribution</option>
-                <option value="relative">Relative Frequency Distribution</option>
-                <option value="percent">Percent Frequency Distribution</option>
-                <option value="bar">Bar Chart</option>
-                <option value="pie">Pie Chart</option>
-                <option value="histogram">Histogram</option>
-                <option value="cumfrequency">Cumulative Frequency</option>
-                <option value="cumrelative">Cumulative Relative Frequency</option>
-                <option value="cumpercent">Cumulative Percent Frequency</option>
-                <!--<option value="crosstabulation">Crosstabulation</option>-->
-                <option value="scatter">Scatter Diagram</option>
-            </select>
-        </div> 
-              <div class="col-4 col-md-2 inputWrapper">
-            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat()">Solve</button>
-        </div> 
-              </div>
-        </div>
-      
-      <table id="firstclass">
+
+        <table id="statistics">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">First Class:</td>
-            <td class="statistics"><input type="text" style="width:70px;" id="lower" class="hypinput2" placeholder="Lower"></td>
-            <td class="statistics" id="sd2"> - </td>
-            <td class="statistics" id="sd3"><input type="text" style="width:70px;" id="upper" class="hypinput2" placeholder="Upper"></td>
-            <td class="statistics" id="go"><button id = "buttoncross" class="button btn-outline-primary" onclick="go()">Go</button></td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat" class="hypinput1" onchange="samplestat()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1">$\sigma$</td>
+            <td class="statistics" id="sd2"> = </td>
+            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
           </tr>
         </table> 
 
-      
-      <div class="container"> 
+          <div class="container center">
           <div class="row justify-content-center">
-                <div id="cumulative" class="col-6 col-md-2  mb-3">
-                    <select id="cumtype" class="form-control">
-                        <option value="choose">Choose One</option>
-                        <option value="frequency">Frequency</option>
-                        <option value="relative">Relative Frequency</option>
-                        <option value="percent">Percent Frequency</option>
-                    </select>
-                </div>
-            </div>
+        <div class = "col-4 col-md-2 text-center mt-2">
+            <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
+            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
+            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
         </div>
-      
-      <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
+              </div>
+              </div>
+          
+          
+          
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
         </div>
+          
+          </div>
       
-      <div class = "text-center" id = "label3">
-            <span class="examplelink" onclick="examplevalues5()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>
-        </div>
       
-        <div class="container">
-            <hr>
-        </div>
       
-      <div class="container">
-        <div id="output">
+    <div class="container">
+      <hr>
+          </div>
+      
+     <div class="container">
+        <div id="output1">
         </div>
       </div>
       
-      <!--<div class="container text-center">
-    <canvas width="375" height="188" id="myCanvas" style="">
-          </canvas>
-       </div>
-      
-      <div class="container text-center">
-    <canvas width="375" height="375" id="myCanvas2" style="border:1px solid black;">
-          </canvas>
-       </div>-->
-      
-      <div class="container container2 text-center">
-      <div id="charts" style="width: 500px; height: 300px;"></div>
-          </div>
+      <div class="container">
+        <div id="output2">
+        </div>
+      </div>
       
       <div class="container" id="explanation">
       <p  class="text-center">
@@ -194,7 +171,7 @@
     <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
         Formula
       </a> &bull;
-    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample" data-parent="#explanation">
+    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
         Explanation
       </a>
     </p>
@@ -215,7 +192,15 @@
     </div>
           </div>
       
-     
+      
+      
+      
+      <!--<div class="container text-center">
+        <div id="expconf" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
+        </div>
+      </div>-->
+      
           <footer id="footer">
               <div class="container">
                 <hr>
@@ -226,41 +211,14 @@
               </p>
           </footer>
       
-    <!--<div style = "height: 400px"></div>--> 
       
-    <!-- Optional JavaScript --> 
-      
-      
+    <!--  style="border:1px solid #d3d3d3;"-->
+    <!-- <div style = "height: 400px"></div>-->
+    <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      
-      
-      
-                    <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script> 
-      
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      
-      <script src="https://d3js.org/d3.v5.min.js"></script>
- 
-      <script src="/js/tabgrascript.js"></script>
+      <script src="/js/samscript.js"></script>
   </body>
 </html>

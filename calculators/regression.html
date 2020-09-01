@@ -4,33 +4,15 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Free step-by-step sampling distributions calculator. Solve the expected value, standard error and form.">
+    <meta name="description" content="Free step-by-step simple regression calculator. Solve the slope, intercept, estimated regression equation, sum of squares, coefficient of determination and more.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
 
-                         <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script>  
-      
-    <title>Sampling Distributions - Stats Solver</title>
+    <title>Simple Regression Calculator - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -45,7 +27,6 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
-      
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
           <!-- Global site tag (gtag.js) - Google Ads: 606424473 -->
@@ -77,7 +58,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Solvers
+              Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
@@ -94,7 +75,7 @@
             <li class="nav-item">
             <a class="nav-link" href="/about.html">About <span class="sr-only">(current)</span></a>
           </li>
-            <!--<li class="nav-item">
+           <!-- <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li> -->
         </ul>
@@ -104,7 +85,7 @@
     
       
     <div class = "container">
-        <h3 class="page-header text-center mt-2 text-primary">Sampling Distributions</h3>
+        <h4 class="page-header text-center mt-2 text-primary">Simple Regression Calculator</h4>
     </div>
       
       <div class="container">
@@ -112,56 +93,101 @@
           </div>
       
       <div class="container">
-
-        <table id="statistics">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat" class="hypinput1" onchange="samplestat()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
-            <td class="statistics">&nbsp; &nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1">$\sigma$</td>
-            <td class="statistics" id="sd2"> = </td>
-            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
-            <td class="statistics">&nbsp; &nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
-          </tr>
-        </table> 
-
-          <div class="container center">
+          <div class="row  justify-content-center">
+        <div class="col-12 col-md-5 mb-3">
+            <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values (separated by commas)">
+        </div>
+         </div>     
+    </div>
+      
+      <div class="container">
           <div class="row justify-content-center">
-        <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
-            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
-            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
+        <div class="col-12 col-md-5 mb-3">
+            <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values (separated by commas)">
         </div>
-              </div>
-              </div>
-          
-          
-          
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
-        </div>
-          
+        
+        
+    </div>
           </div>
       
+      <div class="container">
+          <div class="row justify-content-center">
+        
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
+                <option value="slope">Slope</option>
+                <option value="intercept">Intercept</option>
+                <option value="equation">Estimated Regression Equation</option>
+                <option value="sse">Sum of Squares Error</option>
+                <option value="sst">Sum of Squares Total</option>
+                <option value="ssr">Sum of Squares Regression</option>
+                <option value="rsquared">Coefficient of Determination</option>
+                <option value="correlation">Correlation Coefficient</option>
+                <option value="mse">Mean Square Error</option>
+                <option value="see">Standard Error of Estimate</option>
+                <option value="ses">Standard Error of Slope</option>
+                <option value="tstat">t-Statistic</option>
+                <option value="msr">Mean Square Regression</option>
+                <option value="fstat">F-Statistic</option>
+            </select>
+        </div> 
+              <div class="col-4 col-md-2 inputWrapper">
+            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat()">Solve</button>
+        </div> 
+              </div>
+    </div>
+      
+      <div class="container"> 
+          <div class="row  justify-content-center">
+        <div class="col-5 col-md-2 mb-3" id="sumsquares">
+            <select class="form-control" id="sumsquaresval">
+                <option value="choose">Choose One</option>
+                <option value="error">Error</option>
+                <option value="total">Total</option>
+                <option value="regression">Regression</option>
+            </select>
+        </div>
+              </div>
+             </div>
+      
+                <div class = "text-center" id = "label1">
+            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
+        </div>
+      
+      <!--<div class="container"> 
+        <div id="meansquare">
+            <select id="meansquareval" onchange="calcmeansquare()">
+                <option value="choose">Choose</option>
+                <option value="error">Error</option>
+                <option value="regression">Regression</option>
+            </select>
+        </div>
+             </div>
+      
+      <div class="container"> 
+        <div id="standarderror">
+            <select id="standarderrorval" onchange="calcstandarderror()">
+                <option value="choose">Choose</option>
+                <option value="estimate">Estimate</option>
+                <option value="slope">Slope</option>
+            </select>
+        </div>
+             </div>-->
       
       
     <div class="container">
       <hr>
           </div>
       
-     <div class="container">
-        <div id="output1">
+      <div class="container">
+        <div id="output">
         </div>
       </div>
       
-      <div class="container">
-        <div id="output2">
-        </div>
-      </div>
+      <!--<div class="container text-center form-inline" id="predict"> 
+          <p>$\text{Predict } y \text{ when } x = $ <span><input type="text" id="predicty" class="form-control" ></span></p>
+          </div>-->
       
       <div class="container" id="explanation">
       <p  class="text-center">
@@ -192,15 +218,6 @@
     </div>
           </div>
       
-      
-      
-      
-      <!--<div class="container text-center">
-        <div id="expconf" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
-        </div>
-      </div>-->
-      
           <footer id="footer">
               <div class="container">
                 <hr>
@@ -211,14 +228,34 @@
               </p>
           </footer>
       
-      
-    <!--  style="border:1px solid #d3d3d3;"-->
-    <!-- <div style = "height: 400px"></div>-->
+    <!--<div style = "height: 400px"></div>-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script src="/js/samscript.js"></script>
+      
+                          <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+      
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script> 
+      
+      <script src="/js/regscript.js"></script>
+      
   </body>
 </html>
