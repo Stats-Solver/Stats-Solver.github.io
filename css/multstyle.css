@@ -1,0 +1,81 @@
+.output{
+    text-align: center;
+}
+
+table {
+    border-collapse: collapse;
+    margin-left:auto; 
+    margin-right:auto;
+}
+
+th, td {
+  padding: 2px 6px;
+  text-align: center;
+}
+
+button {
+
+    background-color: white;
+}
+
+.hypinput1{
+    width: 25px;
+    background-color: white;
+}
+
+.hypinput3{
+    width: 40px;
+    background-color: white;
+}
+
+.hypinputalpha{
+    width: 40px;
+    background-color: white;
+}
+
+.button {
+    border-radius: 6px;
+    padding: 6px 6px;
+    width: 100%;
+}
+
+body {
+  min-height: 100vh;
+  position: relative;
+  margin: 0;
+  padding-bottom: 100px; //height of the footer
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.examplelink {
+     cursor:pointer;
+     color:#0275d8;
+}
+
+.examplelink:hover {
+     text-decoration:underline;
+}
+
+.statistics{
+    padding: 0px 2px
+}
+
+/* Style all font awesome icons */
+.fa {
+  padding: 0px;
+  font-size: 0px;
+  width: 30px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.fa:hover {
+  text-decoration: none;
+}
