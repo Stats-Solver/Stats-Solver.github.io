@@ -157,11 +157,11 @@ function interpretation(){
     }
     
     if (ind == 3) {
-        document.getElementById("output").innerHTML = "For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$ and $x_3$ constant.<br> For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$ and $x_3$ constant. <br> For every one-unit increase in $x_3$, $y$ is predicted to <u>"+ b3sign +" by " + Math.abs(b3) + " units</u>, holding $x_1$ and $x_2$ constant."
+        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$ and $x_3$ constant.<br><br> $b_2$: For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$ and $x_3$ constant. <br><br> $b_3$:  For every one-unit increase in $x_3$, $y$ is predicted to <u>"+ b3sign +" by " + Math.abs(b3) + " units</u>, holding $x_1$ and $x_2$ constant."
     } else if (ind == 4) {
-        document.getElementById("output").innerHTML = "For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$, $x_3$ and $x_4$ constant.<br> For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$, $x_3$ and $x_4$ constant. <br> For every one-unit increase in $x_3$, $y$ is predicted to <u>"+ b3sign +" by " + Math.abs(b3) + " units</u>, holding $x_1$, $x_2$ and $x_4$ constant. <br> For every one-unit increase in $x_4$, $y$ is predicted to <u>"+ b4sign +" by " + Math.abs(b4) + " units</u>, holding $x_1$, $x_2$ and $x_3$ constant."
+        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$, $x_3$ and $x_4$ constant.<br><br> $b_2$:  For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$, $x_3$ and $x_4$ constant. <br><br> $b_3$:  For every one-unit increase in $x_3$, $y$ is predicted to <u>"+ b3sign +" by " + Math.abs(b3) + " units</u>, holding $x_1$, $x_2$ and $x_4$ constant. <br><br> $b_4$:  For every one-unit increase in $x_4$, $y$ is predicted to <u>"+ b4sign +" by " + Math.abs(b4) + " units</u>, holding $x_1$, $x_2$ and $x_3$ constant."
     } else {
-        document.getElementById("output").innerHTML = "For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$ constant.<br> For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$ constant. "
+        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$ constant.<br><br> $b_2$: For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$ constant. "
     }
     
     MathJax.typeset();
@@ -200,7 +200,7 @@ function prediction(){
 }
 
 function calcprediction(){
-    var b0 = document.getElementById("b1").value;
+    var b0 = document.getElementById("b0").value;
     var b1 = document.getElementById("b1").value;
     var b2 = document.getElementById("b2").value;
     var b3 = document.getElementById("b3").value;
