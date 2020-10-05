@@ -12,7 +12,7 @@
       <link rel="stylesheet" type="text/css" href="/css/style.css">
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       
-    <title>Time-Series Analysis Calculator - Stats Solver</title>
+    <title>Time Series Analysis Calculator - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -77,7 +77,7 @@
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple.html">Multiple Regression</a>
-              <a class="dropdown-item" href="forecasting.html">Time-Series Analysis</a>
+              <a class="dropdown-item" href="forecasting.html">Time Series Analysis</a>
             </div>
           </li>
             <li class="nav-item">
@@ -94,14 +94,14 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="forecasting.html">Time-Series Analysis Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="timeseries.html">Time Series Analysis Calculator</a></h4>
     </div>
       
       <div class="container">
       <hr>
           </div>
       
-      <div class="container mb-3">
+      <!--<div class="container mb-3">
         <table>
           <tr>
             <td class="statistics">Time:</td>
@@ -136,21 +136,43 @@
                 </svg></td>
           </tr>
         </table>  
-          </div>
+          </div>-->
       
+      <div id="input" class="container center">
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5 mb-3">
+            <input type="text" id="values" class="form-control" placeholder="Enter Y Values (separated by commas)">
+        </div>
+              </div>
+    </div>
       
       <div class="container center">
           <div class="row justify-content-center">
         <div class="col-8 col-md-3 mb-3">
-            <select id="stat" class="form-control" onchange="showthings()">
-                <option value="choose">Choose One</option>
+            <select id="method" class="form-control" onchange="showthings()">
+                <option value="choose">Method</option>
                 <option value="naive">Naive Method</option>
-                <option value="ave">Average Method</option>
+                <option value="average">Average Method</option>
                 <option value="ma">Moving Average</option>
                 <option value="wma">Weighted Moving Average</option>
                 <option value="exp">Exponential Smoothing</option>
                 <option value="trend">Linear Trend Regression</option>
                 <option value="holt">Holt's Method</option>
+            </select>
+        </div> 
+              </div>
+        </div>
+      
+      <div class="container center">
+          <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control">
+                <option value="choose">Choose One</option>
+                <option value="forecast">Forecast</option>
+                <option value="error">Forecast Error</option>
+                <option value="mae">Mean Absolute Error</option>
+                <option value="mse">Mean Square Error</option>
+                <option value="mape">Mean Absolute Percent Error</option>
             </select>
         </div> 
         <div class="col-4 col-md-2 inputWrapper">
@@ -263,6 +285,6 @@
  
       
       
-      <script src="/js/forescript.js"></script>
+      <script src="/js/timescript.js"></script>
   </body>
 </html>

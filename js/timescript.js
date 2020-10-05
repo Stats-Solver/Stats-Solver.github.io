@@ -1,28 +1,5 @@
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide(); $("#label3").hide();
 
-numvals = 6;
-$("#time7").hide(); $("#value7").hide(); $("#make5to6").hide(); $("#make7to6").hide();
-$("#methods").hide();
-
-
-function make5() {
-    numvals = 5;
-    $("#time6").hide(); $("#value6").hide(); $("#time7").hide(); $("#value7").hide();
-    $("#make5to6").show(); $("#make7to6").hide(); $("#make6to5").hide(); $("#make6to7").hide();
-}
-
-function make6() {
-    numvals = 6;
-    $("#time6").show(); $("#value6").show(); $("#time7").hide(); $("#value7").hide();
-    $("#make5to6").hide(); $("#make7to6").hide(); $("#make6to5").show(); $("#make6to7").show();
-}
-
-function make7() {
-    numvals = 7;
-    $("#time6").show(); $("#value6").show(); $("#time7").show(); $("#value7").show();
-    $("#make5to6").hide(); $("#make7to6").show(); $("#make6to5").hide(); $("#make6to7").hide();
-}
-
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
 });
@@ -108,28 +85,252 @@ function stat(){
     $("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
-    var x = document.getElementById("stat").value;
-    if (x == "naive") {
-        naive()
-    } else if (x == "ave") {
-        ave()
-    } else if (x == "mape") {
-        mape()
-    } else if (x == "ma") {
-        calcma()
-    } else if (x == "exp") {
-        calcexp()
-    } else if (x == "trend") {
-        calctrend()
-    } else if (x == "fore") {
-        fore()
-    } else if (x == "err") {
-        err()
+    var x = document.getElementById("method").value;
+    var y = document.getElementById("stat").value;
+    if (x == "naive" && y == "forecast") {
+        naiveforecast()
+    } else if (x == "naive" && y == "error") {
+        naiveerror()
+    } else if (x == "naive" && y == "mae") {
+        naivemae()
+    } else if (x == "naive" && y == "mse") {
+        naivemse()
+    } else if (x == "naive" && y == "mape") {
+        naivemape()
+    } else if (x == "average" && y == "forecast") {
+        averageforecast()
+    } else if (x == "average" && y == "error") {
+        averageerror()
+    } else if (x == "average" && y == "mae") {
+        averagemae()
+    } else if (x == "average" && y == "mse") {
+        averagemse()
+    } else if (x == "average" && y == "mape") {
+        averagemape()
     } 
    
 }
 
-function naive() {
+function naiveforecast() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+ "<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$\\text{Forecast}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$ Y_" + r + " = " +values[r-1] + "$$</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = \\boxed{" + values[rows-1]+ "} $$"
+    MathJax.typeset();
+}
+
+function naiveerror() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$\\text{Error}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + values[r-1] + "$$</td>";
+        table += "<td>$$" + values[r] +" - "+ values[r-1] +" = " + (values[r]-values[r-1]) + "$$</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = table
+    MathJax.typeset();
+} 
+
+function naivemae() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$\\text{|Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var total = 0
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + values[r-1] + "$$</td>";
+        table += "<td>$$" + (values[r]-values[r-1]) + "$$</td>";
+        table += "<td>$$|" + (values[r]-values[r-1]) +"| = " + Math.abs((values[r]-values[r-1])) + "$$</td>";
+        table += "</tr>";
+        total += Math.abs((values[r]-values[r-1]))
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+total+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + total + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function naivemse() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$\\text{Error}^2$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var total = 0
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + values[r-1] + "$$</td>";
+        table += "<td>$$" + (values[r]-values[r-1]) + "$$</td>";
+        table += "<td>$$(" + (values[r]-values[r-1]) +")^2 = " + Math.pow((values[r]-values[r-1]),2) + "$$</td>";
+        table += "</tr>";
+        total += Math.pow((values[r]-values[r-1]),2)
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+total+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + total + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function naivemape() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$\\text{|%Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var total = 0
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + values[r-1] + "$$</td>";
+        table += "<td>$$" + (values[r]-values[r-1]) + "$$</td>";
+        table += "<td>$$ 100 \\times \\frac{|" + (values[r]-values[r-1]) +"|}{" + values[r] + "} = " + parseFloat((100*Math.abs((values[r]-values[r-1]))/values[r]).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += 100*Math.abs((values[r]-values[r-1]))/values[r]
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function averageforecast() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$\\text{Forecast}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "</tr>"
+    var sums = values[0]
+    var sumsvalue = values[0]
+    for (var r = 2; r < rows; r++){
+        sums += "+" + values[r-1]
+        sumsvalue += values[r-1]
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$ \\frac{" + sums + "}{" + r + "} = " + parseFloat((sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+    }
+    sums = sums + "+" + values[r-1]
+    sumsvalue = sumsvalue + values[r-1]
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + rows + "} = \\boxed{" + parseFloat((sumsvalue/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+}
+
+function averageerror() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$\\text{Error}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var sumsvalue = values[0]
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat((sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$" + values[r] +" - "+ parseFloat((sumsvalue/r).toFixed(2)) +" = " + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        sumsvalue += values[r]
+    }
+    document.getElementById("output").innerHTML = table
+    MathJax.typeset();
+} 
+
+function averagemae() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$\\text{|Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var sumsvalue = values[0]
+    var total = 0
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat((sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$|" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +"| = " + Math.abs(parseFloat((values[r]-sumsvalue/r).toFixed(2))) + "$$</td>";
+        table += "</tr>";
+        total += Math.abs(values[r]-sumsvalue/r)
+        sumsvalue += values[r]
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function averagemse() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$\\text{Error}^2$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var sumsvalue = values[0]
+    var total = 0
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat((sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$(" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +")^2 = " + parseFloat(Math.pow((values[r]-sumsvalue/r),2).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += Math.pow(values[r]-sumsvalue/r,2)
+        sumsvalue += values[r]
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function averagemape() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$\\text{|%Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var sumsvalue = values[0]
+    var total = 0
+    for (var r = 1; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat((sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$$</td>";
+        table += "<td>$$ 100 \\times \\frac{|" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +"|}{" + values[r] + "} = " + parseFloat((100*Math.abs(values[r]-sumsvalue/r)/values[r]).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += 100*Math.abs(values[r]-sumsvalue/r)/values[r]
+        sumsvalue += values[r]
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function naive2() {
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
     var v1 = parseFloat(document.getElementById("v1").value);
     var v2 = parseFloat(document.getElementById("v2").value);
     var v3 = parseFloat(document.getElementById("v3").value);
@@ -162,7 +363,9 @@ function naive() {
     MathJax.typeset();
 } 
 
-function ave() {
+function ave2() {
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
     var v1 = parseFloat(document.getElementById("v1").value);
     var v2 = parseFloat(document.getElementById("v2").value);
     var v3 = parseFloat(document.getElementById("v3").value);
@@ -322,6 +525,7 @@ function mape() {
 }
 
 function examplevalues(){
+    document.getElementById("values").value = "18, 13, 16, 11, 17, 14"
     make6()
     document.getElementById('v1').value="18"
     document.getElementById('v2').value="13"
@@ -333,6 +537,7 @@ function examplevalues(){
 }
 
 function examplevalues2(){
+    document.getElementById("values").value = "24, 13, 20, 12, 19, 23, 15"
     make7()
     document.getElementById('v1').value="24"
     document.getElementById('v2').value="13"
