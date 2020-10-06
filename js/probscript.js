@@ -1,7 +1,10 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#comb").hide(); $("#perm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
 $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
-$("#experiments").hide(); $("#bayes").hide(); $("#output2").hide();
+$("#bayes").hide(); $("#output2").hide(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+
+$("#combinationexamples").hide(); $("#permutationexamples").hide();  $("#complementexamples").hide(); $("#unionexamples").hide();
+$("#intersectionexamples").hide(); $("#conditionalexamples").hide();  $("#bayesexamples").hide(); $("#experiments").show();
 
 function factorial(n) {
     if (n > 0) {
@@ -18,28 +21,43 @@ function showstuff(){
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     
+    $("#combinationexamples").hide(); $("#permutationexamples").hide();  $("#complementexamples").hide(); $("#unionexamples").hide();
+    $("#intersectionexamples").hide(); $("#conditionalexamples").hide();  $("#bayesexamples").hide(); $("#experimentexamples").hide(); 
+    
     var x = document.getElementById("stat").value;
     if (x == "outcomes"){
         outcomes()
+        $("#experimentexamples").show(); 
     } else if (x == "samplespace"){
         samplespace()
+        $("#experimentexamples").show(); 
     } else if (x == "probability"){
         probability()
+        $("#experimentexamples").show(); 
     } else if (x == "combinations"){
         combinations()
+        $("#combinationexamples").show(); 
     } else if (x == "permutations"){
         permutations()
+        $("#permutationexamples").show();
     } else if (x == "complement") {
         complement()
+        $("#complementexamples").show();
     } else if (x == "union") {
         union()
+        $("#unionexamples").show();
     } else if (x == "intersection") {
         intersection()
+        $("#intersectionexamples").show();
     } else if (x == "conditional") {
         conditional()
+        $("#conditionalexamples").show();
     } else if (x == "bayes") {
         bayes()
-    } else{
+        $("#bayesexamples").show();
+    } else if (x == "choose") {
+        $("#experiments").show();
+        $("#experimentexamples").show(); 
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
     }

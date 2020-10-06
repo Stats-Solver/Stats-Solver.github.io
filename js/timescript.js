@@ -138,16 +138,6 @@ function stat(){
         movingmse4()
     } else if (x == "moving" && y == "mape" && z == "4") {
         movingmape4()
-    } else if (x == "moving" && y == "forecast" && z == "5") {
-        movingforecast5()
-    } else if (x == "moving" && y == "error" && z == "5") {
-        movingerror5()
-    } else if (x == "moving" && y == "mae" && z == "5") {
-        movingmae5()
-    } else if (x == "moving" && y == "mse" && z == "5") {
-        movingmse5()
-    } else if (x == "moving" && y == "mape" && z == "5") {
-        movingmape5()
     } 
    
 }
@@ -744,75 +734,6 @@ function movingmape4() {
     MathJax.typeset();
 } 
 
-function naive2() {
-    var str = document.getElementById("values").value;
-    var each = str.split(",").map(Number); var len = each.length;
-    var v1 = parseFloat(document.getElementById("v1").value);
-    var v2 = parseFloat(document.getElementById("v2").value);
-    var v3 = parseFloat(document.getElementById("v3").value);
-    var v4 = parseFloat(document.getElementById("v4").value);
-    var v5 = parseFloat(document.getElementById("v5").value);
-    var v6 = parseFloat(document.getElementById("v6").value);
-    var v7 = parseFloat(document.getElementById("v7").value);
-    var values = [v1,v2,v3,v4,v5,v6,v7]
-    var forecast = ["-",v1,v2,v3,v4,v5,v6]
-    var error = ["-",v2-v1,v3-v2,v4-v3,v5-v4,v6-v5,v7-v6]
-    var abserr = ["-",Math.abs(v2-v1),Math.abs(v3-v2),Math.abs(v4-v3),Math.abs(v5-v4),Math.abs(v6-v5),Math.abs(v7-v6)]
-    var sqrerr = ["-",Math.pow(v2-v1,2),Math.pow(v3-v2,2),Math.pow(v4-v3,2),Math.pow(v5-v4,2),Math.pow(v6-v5,2),Math.pow(v7-v6,2)]
-    var aperr = ["-",parseFloat((100*Math.abs(v2-v1)/v2).toFixed(2)),parseFloat((100*Math.abs(v3-v2)/v3).toFixed(2)),parseFloat((100*Math.abs(v4-v3)/v4).toFixed(2)),parseFloat((100*Math.abs(v5-v4)/v5).toFixed(2)),parseFloat((100*Math.abs(v6-v5)/v6).toFixed(2)),parseFloat((100*Math.abs(v7-v6)/v7).toFixed(2))]
-    var toterr = sum(error); var totabs = sum(abserr); var totsqr = sum(sqrerr); var totap = sum(aperr)
-    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$|e|$$" + "</td>"+ "<td>" + "$$e^2$$" + "</td>"+ "<td>" + "$$|e\\%|$$" + "</td>"+ "</tr>";
-    var rows = numvals; var ans = values[rows-1];
-    for (var r = 0; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$$" + (r+1) + "$$</td>";
-        table += "<td>$$" + values[r] + "$$</td>";
-        table += "<td>$$" + forecast[r] + "$$</td>";
-        table += "<td>$$" + error[r] + "$$</td>";
-        table += "<td>$$" + abserr[r] + "$$</td>";
-        table += "<td>$$" + sqrerr[r] + "$$</td>";
-        table += "<td>$$" + aperr[r] + "$$</td>";
-        table += "</tr>";
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+toterr+"$$</td>" +"<td>$$"+totabs+"$$</td>"+ "<td>$$"+totsqr+"$$</td>"+ "<td>$$"+parseFloat(totap.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + "$$\\text{MAE} = \\frac{"+totabs+"}{"+(rows-1)+"} = \\boxed{"+parseFloat((totabs/(rows-1)).toFixed(2))+"} $$ $$\\text{MSE} = \\frac{"+totsqr+"}{"+(rows-1)+"} = \\boxed{"+parseFloat((totsqr/(rows-1)).toFixed(2))+"} $$ $$\\text{MAPE} = \\frac{"+parseFloat(totap.toFixed(2))+"}{"+(rows-1)+"} = \\boxed{"+parseFloat((totap/(rows-1)).toFixed(2))+"} $$ $$ F_"+(rows+1)+"=Y_"+rows+"=\\boxed{"+ans+"} $$"
-    MathJax.typeset();
-} 
-
-function ave2() {
-    var str = document.getElementById("values").value;
-    var each = str.split(",").map(Number); var len = each.length;
-    var v1 = parseFloat(document.getElementById("v1").value);
-    var v2 = parseFloat(document.getElementById("v2").value);
-    var v3 = parseFloat(document.getElementById("v3").value);
-    var v4 = parseFloat(document.getElementById("v4").value);
-    var v5 = parseFloat(document.getElementById("v5").value);
-    var v6 = parseFloat(document.getElementById("v6").value);
-    var v7 = parseFloat(document.getElementById("v7").value);
-    var values = [v1,v2,v3,v4,v5,v6,v7]
-    var forecast = ["-",v1,parseFloat(((v1+v2)/2).toFixed(2)),parseFloat(((v1+v2+v3)/3).toFixed(2)),parseFloat(((v1+v2+v3+v4)/4).toFixed(2)),parseFloat(((v1+v2+v3+v4+v5)/5).toFixed(2)),parseFloat(((v1+v2+v3+v4+v5+v6)/6).toFixed(2))]
-    var error = ["-",parseFloat((v2-v1).toFixed(2)),parseFloat((v3-(v1+v2)/2).toFixed(2)),parseFloat((v4-(v1+v2+v3)/3).toFixed(2)),parseFloat((v5-(v1+v2+v3+v4)/4).toFixed(2)),parseFloat((v6-(v1+v2+v3+v4+v5)/5).toFixed(2)),parseFloat((v7-(v1+v2+v3+v4+v5+v6)/6).toFixed(2))]
-    var abserr = ["-",parseFloat(Math.abs((v2-v1)).toFixed(2)),parseFloat(Math.abs((v3-(v1+v2)/2)).toFixed(2)),parseFloat(Math.abs((v4-(v1+v2+v3)/3)).toFixed(2)),parseFloat(Math.abs((v5-(v1+v2+v3+v4)/4)).toFixed(2)),parseFloat(Math.abs((v6-(v1+v2+v3+v4+v5)/5)).toFixed(2)),parseFloat(Math.abs((v7-(v1+v2+v3+v4+v5+v6)/6)).toFixed(2))]
-    var sqrerr = ["-",parseFloat(Math.pow((v2-v1),2).toFixed(2)),parseFloat(Math.pow((v3-(v1+v2)/2),2).toFixed(2)),parseFloat(Math.pow((v4-(v1+v2+v3)/3),2).toFixed(2)),parseFloat(Math.pow((v5-(v1+v2+v3+v4)/4),2).toFixed(2)),parseFloat(Math.pow((v6-(v1+v2+v3+v4+v5)/5),2).toFixed(2)),parseFloat(Math.pow((v7-(v1+v2+v3+v4+v5+v6)/6),2).toFixed(2))]
-    var aperr = ["-",parseFloat(Math.abs(100*(v2-v1)/v2).toFixed(2)),parseFloat(Math.abs(100*(v3-(v1+v2)/2)/v3).toFixed(2)),parseFloat(Math.abs(100*(v4-(v1+v2+v3)/3)/v4).toFixed(2)),parseFloat(Math.abs(100*(v5-(v1+v2+v3+v4)/4)/v5).toFixed(2)),parseFloat(Math.abs(100*(v6-(v1+v2+v3+v4+v5)/5)/v6).toFixed(2)),parseFloat(Math.abs(100*(v7-(v1+v2+v3+v4+v5+v6)/6)/v7).toFixed(2))]
-    var toterr = sum(error); var totabs = sum(abserr); var totsqr = sum(sqrerr); var totap = sum(aperr)
-    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y$$" + "</td>" + "<td>" + "$$F$$" + "</td>" + "<td>" + "$$e$$" + "</td>"+ "<td>" + "$$|e|$$" + "</td>"+ "<td>" + "$$e^2$$" + "</td>"+ "<td>" + "$$|e\\%|$$" + "</td>"+ "</tr>";
-    var rows = numvals;
-    for (var r = 0; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$$" + (r+1) + "$$</td>";
-        table += "<td>$$" + values[r] + "$$</td>";
-        table += "<td>$$" + forecast[r] + "$$</td>";
-        table += "<td>$$" + error[r] + "$$</td>";
-        table += "<td>$$" + abserr[r] + "$$</td>";
-        table += "<td>$$" + sqrerr[r] + "$$</td>";
-        table += "<td>$$" + aperr[r] + "$$</td>";
-        table += "</tr>";
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$"+sum(values)+"$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+toterr+"$$</td>" +"<td>$$"+totabs+"$$</td>"+ "<td>$$"+totsqr+"$$</td>"+ "<td>$$"+parseFloat(totap.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + "$$\\text{MAE} = \\frac{"+totabs+"}{"+(rows-1)+"} = \\boxed{"+parseFloat((totabs/(rows-1)).toFixed(2))+"} $$ $$\\text{MSE} = \\frac{"+totsqr+"}{"+(rows-1)+"} = \\boxed{"+parseFloat((totsqr/(rows-1)).toFixed(2))+"} $$ $$\\text{MAPE} = \\frac{"+parseFloat(totap.toFixed(2))+"}{"+(rows-1)+"} = \\boxed{"+parseFloat((totap/(rows-1)).toFixed(2))+"} $$ $$ F_"+(rows+1)+"= \\frac{"+sum(values) +"}{"+rows+"} = \\boxed{"+parseFloat(((sum(values))/rows).toFixed(2))+"} $$"
-    MathJax.typeset();
-} 
 
 function mae() {
     var method = document.getElementById("method").value;

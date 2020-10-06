@@ -142,8 +142,38 @@ function stat(){
    
 }
 
+function switchpopulation() {
+    var x = document.getElementById("stat").value;
+    if (x == "mean"){
+        meanpop()
+    } else if (x == "variance") {
+        variancepop()
+    } else if (x == "stdev") {
+        stdevpop()
+    } else if (x == "covariance") {
+        calccovpop()
+    } else if (x == "correlation") {
+        calccorpop()
+    } 
+}
+
+function switchsample() {
+    var x = document.getElementById("stat").value;
+    if (x == "mean"){
+        mean()
+    } else if (x == "variance") {
+        variance()
+    } else if (x == "stdev") {
+        stdev()
+    } else if (x == "covariance") {
+        calccov()
+    } else if (x == "correlation") {
+        calccor()
+    } 
+}
+
 function mean(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
     document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
@@ -155,7 +185,24 @@ function mean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$\\text{Sample Mean}$$ $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    MathJax.typeset();
+}
+
+function meanpop(){
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
+    document.getElementById("formulatext").innerHTML = "$$ \\mu = \\frac{\\sum{x}}{N} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_N $$"
+    $("#output").empty();
+    $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var adds = each[0];  var avgeach = avg(each);  
+    for (let i=1; i<len; i++){
+        adds += "+" + each[i]
+    }
+    document.getElementById("output").innerHTML+= "$$\\text{Population Mean}$$ $$ \\begin{align} \\mu &= \\frac{\\sum{x}}{N} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -186,7 +233,7 @@ function calcweighted(){
 }
 
 function geometric(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
     document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
@@ -205,20 +252,8 @@ function geometric(){
     MathJax.typeset();
 }
 
-function meanpop(){
-    $("#output").empty(); $("#label1").show();
-    var str = document.getElementById("values").value;
-    var each = str.split(",").map(Number); var len = each.length;
-    var adds = each[0];  var avgeach = avg(each);  
-    for (let i=1; i<len; i++){
-        adds += "+" + each[i]
-    }
-    document.getElementById("output").innerHTML+= "Population Mean $$\\begin{align} \\mu &= \\frac{\\sum{x}}{N} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= " + avgeach.toFixed(2) + " \\end{align}$$"
-    MathJax.typeset();
-}
-
 function median(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The median is a measure of central location that is useful when there are extreme values in the data."
     document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order.<br>Step 2: a. If there are an odd number of values, take the middle value. <br> b. If there are an even number of values, average the two middle values."
     document.getElementById("explanationtext").innerHTML = "The median is the middle value when the data is sorted from smallest to largest."
@@ -240,7 +275,7 @@ function median(){
 }
 
 function mode(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The mode is a measure of central location."
     document.getElementById("formulatext").innerHTML = "The mode is the value that occurs with the highest frequency."
     document.getElementById("explanationtext").innerHTML = "If there are two modes, the data is said to be bi-modal. If there are more than two modes, the data is said to be multi-modal."
@@ -312,7 +347,7 @@ function percentiles(){
 }
 
 function calcper(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "Approximately p% of the data is less than the p-th percentile. Approximately (1-p)% of the data is greater than the p-th percentile."
     document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: a. If the index is not an integer, round up and take the value in that position. <br> b. If the index is an integer, average the values in positions i and i + 1."
     document.getElementById("explanationtext").innerHTML = "The 50th percentile is the median."
@@ -351,7 +386,7 @@ function quartiles(){
 }
 
 function calcquart(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The first quartile is the 25th percentile, the second quartile is the 50th percentile and the third quartile is the 75th percentile."
     document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: a. If the index is not an integer, round up and take the value in that position. <br> b. If the index is an integer, average the values in positions i and i + 1."
     document.getElementById("explanationtext").innerHTML = "The second quartile is the median."
@@ -390,7 +425,7 @@ function calcquart(){
 }
 
 function range(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The range is the simplest measure of variability as it only uses two values: largest and smallest."
     document.getElementById("formulatext").innerHTML = "$$ \\text{Range} = \\text{Largest Value} - \\text{Smallest Value} $$"
     document.getElementById("explanationtext").innerHTML = "The range is susceptible to being affected by extreme values."
@@ -403,7 +438,7 @@ function range(){
 }
 
 function iqr(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The interquartile range is a measure of variability that isn't affected by extreme values."
     document.getElementById("formulatext").innerHTML = "$$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $$"
     document.getElementById("explanationtext").innerHTML = "The interquartile range only uses two values from the entire data set: the third quartile and the first quartile."
@@ -432,7 +467,7 @@ function iqr(){
 }
 
 function variance(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The variances is a measure of variability that uses all of the data."
     document.getElementById("formulatext").innerHTML = "$$ s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} $$"
     document.getElementById("explanationtext").innerHTML = "Since calculation of the variance involves squaring the deviations about the mean, it isn't in the same units as the original data."
@@ -462,12 +497,47 @@ function variance(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$s^2 = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    document.getElementById("output").innerHTML = "$$\\text{Sample Variance}$$ <table>" + table + "</table>$$s^2 = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
 function variancepop(){
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").show();
+    document.getElementById("descriptiontext").innerHTML = "The variances is a measure of variability that uses all of the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} $$"
+    document.getElementById("explanationtext").innerHTML = "Since calculation of the variance involves squaring the deviations about the mean, it isn't in the same units as the original data."
     $("#output").empty();
+    $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var sumeach = sum(each);
+    var mn = avg(each);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus);
+    var sumeachminus2 = sum(eachminus2);
+    var ansvar = sumeachminus2 / len;
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>" + "<td>" + "$x - \\mu$" + "</td>" + "<td>" + "$(x - \\mu)^2$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 3;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$" + each[r] + "$</td>";
+        table += "<td>$" + parseFloat(eachminus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(eachminus2[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "$$\\text{Population Variance}$$ <table>" + table + "</table>$$\\sigma^2 = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}= \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    MathJax.typeset();
+}
+
+function variancepop2(){
+    $("#output").empty(); $("#switchpopulation").hide(); $("#switchsample").show();
     $("#desvariance").show(); $("#popvariance").hide(); $("#samvariance").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -498,7 +568,7 @@ function variancepop(){
 }
 
 function stdev(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The standard deviation is a measure of variability that uses all of the data and is in the same units as the original data."
     document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
@@ -518,12 +588,37 @@ function stdev(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$\\text{Sample Standard Deviation}$$ $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
     MathJax.typeset();
 }
 
 function stdevpop(){
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").show();
+    document.getElementById("descriptiontext").innerHTML = "The standard deviation is a measure of variability that uses all of the data and is in the same units as the original data."
+    document.getElementById("formulatext").innerHTML = "$$ \\sigma = \\sqrt{\\sigma^2} $$"
+    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
     $("#output").empty();
+    $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var sumeach = sum(each);
+    var mn = avg(each);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus);
+    var sumeachminus2 = sum(eachminus2);
+    var ansvar = sumeachminus2 / len;
+    var ansstd = Math.sqrt(ansvar);
+    document.getElementById("output").innerHTML = "$$\\text{Population Standard Deviation}$$ $$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
+    MathJax.typeset();
+}
+
+function stdevpop2(){
+    $("#output").empty(); $("#switchpopulation").hide(); $("#switchsample").show();
     $("#desstdev").show(); $("#popstdev").hide(); $("#samstdev").show();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -544,7 +639,7 @@ function stdevpop(){
 }
 
 function cv(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The coefficient of variation measures how large the standard deviation is relative to the mean."
     document.getElementById("formulatext").innerHTML = "$$ \\text{CV} = \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% $$"
     document.getElementById("explanationtext").innerHTML = "The coefficient of variation can be used to compare variability across variables."
@@ -597,7 +692,7 @@ function zscores(){
 }
 
 function calcz(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
     document.getElementById("formulatext").innerHTML = "$$ z_x = \\frac{x-\\bar{x}}{s} $$"
     document.getElementById("explanationtext").innerHTML = "A positive z-score indicates a value is greater than the mean. A negative z-score indicates a value is less than the mean."
@@ -631,7 +726,7 @@ function chebyshev(){
 }
 
 function calcchebyshev(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "Chebyshev's theorem is used to get the percentage of values within z standard deviations of the mean."
     document.getElementById("formulatext").innerHTML = "At least (1-1/z^2) of the data values must be within z standard deviations of the mean, where z is any value greater than 1."
     document.getElementById("explanationtext").innerHTML = "Chevbyshev's theorem works for any data regardless of its distribution."
@@ -662,7 +757,7 @@ function empirical(){
 }
 
 function calcempirical(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The empirical rule is used to get the percentage of values within 1, 2 or 3 standard deviations of the mean when the data follows a normal distribution."
     document.getElementById("formulatext").innerHTML = "For data having a bell-shaped distribution:<br> - Approximately 68% of the data values will be within one standard deviation of the mean.<br> - Approximately 95% of the data values will be within two standard deviations of the mean.<br> - Almost all of the data values will be within three standard deviations of the mean."
     document.getElementById("explanationtext").innerHTML = "The empirical rule only works for data that follows a normal distribution."
@@ -693,7 +788,7 @@ function calcempirical(){
 }
 
 function fivenumber(){
-    $("#explanation").show(); $("#label1").show();
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The interquartile range is a measure of variability that isn't affected by extreme values."
     document.getElementById("formulatext").innerHTML = "$$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $$"
     document.getElementById("explanationtext").innerHTML = "The interquartile range only uses two values from the entire data set: the third quartile and the first quartile."
@@ -740,7 +835,7 @@ function covariance(){
 }
 
 function calccov(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The covariance is a measure of the linear relationship between two variables."
     document.getElementById("formulatext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
     document.getElementById("explanationtext").innerHTML = "Only the sign of the covariance can be interpreted. A positive value indicates a positive linear relationship, a negative value indicates a negative linear relationship and a value of zero indicates no linear relationship."
@@ -793,12 +888,70 @@ function calccov(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> $$s_{xy} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "$$\\text{Sample Covariance}$$ <table>" + table + "</table> $$s_{xy} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
 function calccovpop(){
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").show();
+    document.getElementById("descriptiontext").innerHTML = "The covariance is a measure of the linear relationship between two variables."
+    document.getElementById("formulatext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
+    document.getElementById("explanationtext").innerHTML = "Only the sign of the covariance can be interpreted. A positive value indicates a positive linear relationship, a negative value indicates a negative linear relationship and a value of zero indicates no linear relationship."
     $("#output").empty();
+    $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
+    var sumeach = sum(each); var sumeach2 = sum(each2);
+    var mn = avg(each); var mn2 = avg(each2);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var each2minus = each2.map( function(value) {
+        return value - mn2;
+    } );
+    var eacheach2 = [];
+    for(var i = 0; i < len; i++){
+        eacheach2[i] = eachminus[i] * each2minus[i]
+    }
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var each2minus2 = each2minus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+    var sumeacheach2 = sum(eacheach2);
+    var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
+    var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
+    var anscov = sumeacheach2 / len;
+    if (anscov > 0){
+        var interpret = "<b>Interpretation:</b> There is a <u>positive linear relationship</u> between x and y."
+    } else if (anscov < 0){
+        var interpret = "<b>Interpretation:</b> There is a <u>negative linear relationship</u> between x and y."
+    } else {
+        var interpret = "<b>Interpretation:</b> There is <u>no relationship</u> between x and y."
+    }
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$x - \\mu_x$" + "</td>" + "<td>" + "$y - \\mu_y$" + "</td>"+ "<td>" + "$(x - \\mu_x)(y - \\mu_y)$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 5;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$" + each[r] + "$</td>";
+        table += "<td>$" + each2[r] + "$</td>";
+        table += "<td>$" + parseFloat(eachminus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(each2minus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(eacheach2[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "$$\\text{Population Covariance}$$ <table>" + table + "</table> $$\\sigma_{xy} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"}=\\boxed{"+parseFloat(anscov.toFixed(2))+"}$$" + interpret + "<br><br>" + " "
+    MathJax.typeset();
+}
+
+function calccovpop2(){
+    $("#output").empty(); $("#switchpopulation").hide(); $("#switchsample").show();
     $("#descovariance").show(); $("#popcovariance").hide(); $("#samcovariance").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;
@@ -856,7 +1009,7 @@ function correlation(){
 }
 
 function calccor(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient is a measure of the linear relationship between two variables."
     document.getElementById("formulatext").innerHTML = "$$r_{xy} = \\frac{s_{xy}}{s_x s_y}$$"
     document.getElementById("explanationtext").innerHTML = "Both the sign and the size of the correlation coefficient can be interpreted. The sign determines the direction of the linear relationship (positive, negative or none) while a value closer to one indicates a stronger linear relationship."
@@ -925,12 +1078,86 @@ function calccor(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = "$$ \\begin{align} r_{xy} &= \\frac{s_{xy}}{s_x s_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
+    document.getElementById("output").innerHTML = "$$\\text{Sample Correlation Coefficient}$$ $$ \\begin{align} r_{xy} &= \\frac{s_{xy}}{s_x s_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
     MathJax.typeset();
 }
 
 function calccorpop(){
+    $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").show();
+    document.getElementById("descriptiontext").innerHTML = "The correlation coefficient is a measure of the linear relationship between two variables."
+    document.getElementById("formulatext").innerHTML = "$$r_{xy} = \\frac{s_{xy}}{s_x s_y}$$"
+    document.getElementById("explanationtext").innerHTML = "Both the sign and the size of the correlation coefficient can be interpreted. The sign determines the direction of the linear relationship (positive, negative or none) while a value closer to one indicates a stronger linear relationship."
     $("#output").empty();
+    $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
+    var sumeach = sum(each); var sumeach2 = sum(each2);
+    var mn = avg(each); var mn2 = avg(each2);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var each2minus = each2.map( function(value) {
+        return value - mn2;
+    } );
+    var eacheach2 = [];
+    for(var i = 0; i < len; i++){
+        eacheach2[i] = eachminus[i] * each2minus[i]
+    }
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var each2minus2 = each2minus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+    var sumeacheach2 = sum(eacheach2);
+    var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2)
+    var ansvar = sumeachminus2 / len; var ansvar2 = sumeach2minus2 / len2;
+    var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2)
+    var anscov = sumeacheach2 / len;
+    var anscor = anscov / (ansstd * ansstd2);
+    if (anscov / (ansstd * ansstd2) == 1){
+        var intinside = "a <u>perfect positive"
+    } else if (anscov / (ansstd * ansstd2) >= .75 && anscov / (ansstd * ansstd2) < 1){
+        var intinside = "a <u>strong positive"
+    } else if (anscov / (ansstd * ansstd2) > .25 && anscov / (ansstd * ansstd2) < .75){
+        var intinside = "a <u>positive"
+    } else if (anscov / (ansstd * ansstd2) > 0 && anscov / (ansstd * ansstd2) < .25){
+        var intinside = "a <u>weak positive"
+    } else if (anscov / (ansstd * ansstd2) < 0 && anscov / (ansstd * ansstd2) >= -.25){
+        var intinside = "a <u>weak negative"
+    } else if (anscov / (ansstd * ansstd2) < -.25 && anscov / (ansstd * ansstd2) > -.75){
+        var intinside = "a <u>negative"
+    } else if (anscov / (ansstd * ansstd2) <= -.75 && anscov / (ansstd * ansstd2) > -1){
+        var intinside = "a <u>strong negative"
+    } else if (anscov / (ansstd * ansstd2) == -1){
+        var intinside = "a <u>perfect negative"
+    } else {
+        var intinside = "<u>no"
+    }
+    var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship</u> between x and y."
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$x$$" + "</td>"+ "<td>" + "$$y$$" + "</td>" + "<td>" + "$$x - \\mu_x$$" + "</td>" + "<td>" + "$$y - \\mu_y$$" + "</td>"+ "<td>" + "$$(x - \\mu_x)^2$$" + "</td>"+ "<td>" + "$$(y - \\mu_y)^2$$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 6;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + each[r] + "$$</td>";
+        table += "<td>$$" + each2[r] + "$$</td>";
+        table += "<td>$$" + eachminus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + each2minus[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + eachminus2[r].toFixed(2) + "$$</td>";
+        table += "<td>$$" + each2minus2[r].toFixed(2) + "$$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = "$$\\text{Population Correlation Coefficient}$$ $$ \\begin{align} \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret + "<br><br>" + " "
+    MathJax.typeset();
+}
+
+function calccorpop2(){
+    $("#output").empty(); $("#switchpopulation").hide(); $("#switchsample").show();
     $("#descorrelation").show(); $("#popcorrelation").hide(); $("#samcorrelation").show();
     var str = document.getElementById("values").value;
     var str2 = document.getElementById("values2").value;

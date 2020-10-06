@@ -1,5 +1,5 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#expected").hide(); $("#variance").hide(); $("#standard").hide();
+$("#variance").hide(); $("#standard").hide();
 $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
 $("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
 $("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
@@ -8,6 +8,15 @@ $("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
 $("#equal").hide(); $("#less").hide(); $("#greater").hide();
 $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
 $("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
+
+$("#expected").show(); $("#expectedprobs").hide();
+$("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+$("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+$("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+$("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+
+$("#expectedexamples").show(); $("#standardexamples").hide(); 
+$("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
 
 
 function factorial(n) {
@@ -33,24 +42,53 @@ function showstuff(){
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
+    
+    
+    $("#expectedexamples").hide(); $("#standardexamples").hide(); 
+    $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
+    
+    
     var x = document.getElementById("stat").value;
     if (x == "probabilities"){
         probabilities()
+        $("#expectedexamples").show(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "expected"){
         expected()
+        $("#expectedexamples").show(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "variance"){
         variance()
+        $("#expectedexamples").show(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "standard") {
         standard()
+        $("#expectedexamples").hide(); $("#standardexamples").show(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "uniform") {
         uniform()
+        $("#expectedexamples").hide(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "binomial") {
         binomial()
+        $("#expectedexamples").hide(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").show(); $("#hypergeometricexamples").hide();
     } else if (x == "poisson") {
         poisson()
+        $("#expectedexamples").hide(); $("#standardexamples").hide(); 
+        $("#poissonexamples").show(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "hypergeometric") {
         hypergeometric()
-    } else{
+        $("#expectedexamples").hide(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").show();
+    } else if (x == "choose") {
+        $("#expected").show(); $("#expectedprobs").hide();
+        $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+        $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+        $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+        $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+        $("#expectedexamples").show(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
     }

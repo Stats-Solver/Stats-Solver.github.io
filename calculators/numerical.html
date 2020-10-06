@@ -75,7 +75,7 @@
               <a class="dropdown-item" href="sampling.html">Sampling Distributions</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="simple.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple.html">Multiple Regression</a>
               <a class="dropdown-item" href="timeseries.html">Time Series Analysis</a>
             </div>
@@ -125,38 +125,6 @@
               </div>
     </div>
       
-      
-      <div class="container center">
-          <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <select id="stat" class="form-control" onchange="showthings()">
-                <option value="choose">Choose One</option>
-                <option value="mean">Mean</option>
-                <!--<option value="weighted">Weighted Mean</option>
-                <option value="geometric">Geometric Mean</option>-->
-                <option value="median">Median</option>
-                <option value="mode">Mode</option>
-                <option value="percentiles">Percentiles</option>
-                <option value="quartiles">Quartiles</option>
-                <option value="range">Range</option>
-                <option value="iqr">Interquartile Range</option>
-                <option value="variance">Variance</option>
-                <option value="stdev">Standard Deviation</option>
-                <option value="cv">Coefficient of Variation</option>
-                <option value="zscores">z-Scores</option>
-                <option value="chebyshev">Chebyshev's Theorem</option>
-                <option value="empirical">Empirical Rule</option>
-                <!--<option value="fivenumber">Five-Number Summary</option>-->
-                <option value="covariance">Covariance</option>
-                <option value="correlation">Correlation Coefficient</option>
-            </select>
-        </div> 
-        <div class="col-4 col-md-2 inputWrapper">
-            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
-        </div> 
-              </div>
-        </div>
-      
       <div class="container">
           <div class="row justify-content-center">
                 <div id = "slidecontainer" class="col-12 col-md-5">
@@ -190,7 +158,7 @@
              </div>
              </div>
       
-      <div class="container" id="chebyshev">
+      <div class="container mb-3" id="chebyshev">
         <table>
           <tr>
             <td style="text-align:right">$\text{Mean:}$</td>
@@ -207,6 +175,37 @@
         </table> 
           </div>
 
+      <div class="container center">
+          <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
+                <option value="mean">Mean</option>
+                <!--<option value="weighted">Weighted Mean</option>-->
+                <option value="geometric">Geometric Mean</option>
+                <option value="median">Median</option>
+                <option value="mode">Mode</option>
+                <option value="percentiles">Percentiles</option>
+                <option value="quartiles">Quartiles</option>
+                <option value="range">Range</option>
+                <option value="iqr">Interquartile Range</option>
+                <option value="variance">Variance</option>
+                <option value="stdev">Standard Deviation</option>
+                <option value="cv">Coefficient of Variation</option>
+                <option value="zscores">z-Scores</option>
+                <option value="chebyshev">Chebyshev's Theorem</option>
+                <option value="empirical">Empirical Rule</option>
+                <!--<option value="fivenumber">Five-Number Summary</option>-->
+                <option value="covariance">Covariance</option>
+                <option value="correlation">Correlation Coefficient</option>
+            </select>
+        </div> 
+        <div class="col-4 col-md-2 inputWrapper">
+            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+        </div> 
+              </div>
+        </div>
+      
       <div class = "text-center" id = "label1">
             <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
         </div>
@@ -232,6 +231,12 @@
       
                 <div class="container" id="explanation">
       <p  class="text-center">
+          
+        <span class="examplelink" id = 'switchpopulation' onclick="switchpopulation()"> Switch to Population </span> 
+        <span class="examplelink" id = 'switchsample' onclick="switchsample()"> Switch to Sample </span>  
+          <br>
+        
+          
       <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Definition
       </a> &bull;
@@ -240,7 +245,8 @@
       </a> &bull;
     <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
         Explanation
-      </a>
+      </a> 
+        
     </p>
     <div class="collapse" id="collapseExample" data-parent="#explanation">
       <div class="card card-body" id="descriptiontext">
@@ -257,8 +263,9 @@
 
       </div>
     </div>
+                    
           </div>
-      
+
       
      
     
@@ -269,7 +276,7 @@
       
           <footer id="footer">
               <div class="container">
-                 <!-- <p>Related: <a href="tablesgraphs.html">Tables and Graphs Calculator</a> </p>-->
+                 <p>Related: <a href="tablesgraphs.html">Tables and Graphs Calculator</a> </p>
                 <hr>
             </div>
           <p> 

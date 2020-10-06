@@ -88,7 +88,7 @@
               <a class="dropdown-item" href="sampling.html">Sampling Distributions</a>
               <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="simple.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple.html">Multiple Regression</a>
               <a class="dropdown-item" href="timeseries.html">Time Series Analysis</a>
             </div>
@@ -112,34 +112,9 @@
       <div class="container">
       <hr>
           </div>
+  
       
-      <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-3">
-                <select id="stat" class="form-control" onchange="showstuff()">
-                    <option value="choose">Choose One</option>
-                    <option value="probabilities">Probabilities</option>
-                    <option value="expected">Expected Value</option>
-                    <option value="variance">Variance</option>
-                    <option value="standard">Standard Deviation</option>
-                    <!-- <option value="uniform">Discrete Uniform Distribution</option> -->
-                    <option value="binomial">Binomial Distribution</option>
-                    <option value="poisson">Poisson Distribution</option>
-                    <option value="hypergeometric">Hypergeometric Distribution</option>
-                </select>
-                </div>
-                <div class="col-4 col-md-2">
-                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
-                </div> 
-            </div>
-        </div>
-      
-      
-      
-      
-      
-      
-      <div class="container mt-3" id="expected">
+      <div class="container mb-3" id="expected">
         <table>
           <tr style='border-bottom: thin solid'>
             <td>$x$</td>
@@ -273,9 +248,6 @@
           <div class = " text-center mt-2" id="expectedprobs">
             $P(x$ <select id="probtype1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probval">)
         </div> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="exampleexpected()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexpected2()">Example 2</span>
-        </div>
           </div>
       
 
@@ -421,20 +393,18 @@
           </div> -->
       
       
-      <div class="container mt-3" id="standard">
+      <div class="container mb-3" id="standard">
         <table>
           <tr>
             <td>$\text{Var}(x)=$</td>
             <td><input class = "combperm" type="text" id="vr"></td>
             </tr>
         </table> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplestandard()">Example 1</span> &bull; <span class="examplelink" onclick="examplestandard2()">Example 2</span>
-        </div>
+          
           </div>
       
       
-      <div class="container mt-3" id="binomial">
+      <div class="container mb-3" id="binomial">
         <table>
           <tr>
             <td style="text-align:right">$\text{Number of Trials:}$</td>
@@ -450,9 +420,7 @@
           <div class = " text-center mt-2">
             $P(x$ <select id="probtype" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="binval">)
         </div> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplebinomial()">Example 1</span> &bull; <span class="examplelink" onclick="examplebinomial2()">Example 2</span>
-        </div>
+          
           </div> 
       
        <!--<div class="container mt-3" id="binomial">
@@ -492,7 +460,7 @@
         </div>
           </div>-->
       
-      <div class="container mt-3" id="poisson">
+      <div class="container mb-3" id="poisson">
         <table>
           <tr>
             <td style="text-align:right">$\text{Mean Occurences:}$</td>
@@ -503,9 +471,7 @@
         <div class = " text-center mt-2">
             $P(x$ <select id="probtype2" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="poissval">)
         </div> 
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplepoisson()">Example 1</span> &bull; <span class="examplelink" onclick="examplepoisson2()">Example 2</span>
-        </div>
+          
           </div>
       
       <!--<div class="container mt-3" id="poisson">
@@ -540,7 +506,7 @@
         </div>
           </div> -->
       
-      <div class="container mt-3" id="hypergeometric">
+      <div class="container mb-3" id="hypergeometric">
         <table>
           <tr>
             <td style="text-align:right">$\text{Number of Trials:}$</td>
@@ -564,11 +530,50 @@
             $P(x$ <select id="probtype3" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="hypval">)
         </div> 
           
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="examplehypergeometric()">Example</span>
-        </div>
+          
           </div>
       
+      
+            <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-md-3">
+                <select id="stat" class="form-control" onchange="showstuff()">
+                    <option value="choose">Choose One</option>
+                    <option value="probabilities">Probabilities</option>
+                    <option value="expected">Expected Value</option>
+                    <option value="variance">Variance</option>
+                    <option value="standard">Standard Deviation</option>
+                    <!-- <option value="uniform">Discrete Uniform Distribution</option> -->
+                    <option value="binomial">Binomial Distribution</option>
+                    <option value="poisson">Poisson Distribution</option>
+                    <option value="hypergeometric">Hypergeometric Distribution</option>
+                </select>
+                </div>
+                <div class="col-4 col-md-2">
+                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+                </div> 
+            </div>
+                
+                <div class = "text-center mt-2" id = "expectedexamples">
+            <span class="examplelink" onclick="exampleexpected()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexpected2()">Example 2</span>
+        </div>
+                
+                <div class = "text-center mt-2" id = "standardexamples">
+            <span class="examplelink" onclick="examplestandard()">Example 1</span> &bull; <span class="examplelink" onclick="examplestandard2()">Example 2</span>
+        </div>
+                
+                <div class = "text-center mt-2" id = "binomialexamples">
+            <span class="examplelink" onclick="examplebinomial()">Example 1</span> &bull; <span class="examplelink" onclick="examplebinomial2()">Example 2</span>
+        </div>
+                
+                <div class = "text-center mt-2" id = "poissonexamples">
+            <span class="examplelink" onclick="examplepoisson()">Example 1</span> &bull; <span class="examplelink" onclick="examplepoisson2()">Example 2</span>
+        </div>
+                
+                <div class = "text-center mt-2" id = "hypergeometricexamples">
+            <span class="examplelink" onclick="examplehypergeometric()">Example</span>
+        </div>
+        </div>
       
       
       <!--<div class="container mt-3" id="hypergeometric">
@@ -658,9 +663,8 @@
             
       </div>
     </div>
-          <div class = "text-center">
-            Related: <a href="continuous.html">Continuous Distributions Calculator</a>
-        </div>
+          
+          
           </div>
       
       <!--<div class="container text-center">
@@ -671,6 +675,7 @@
       
           <footer id="footer">
               <div class="container">
+                  <p>Related: <a href="continuous.html">Continuous Distributions Calculator</a> </p>
                 <hr>
             </div>
           <p> 
