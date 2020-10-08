@@ -1,7 +1,7 @@
-$("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();
+$("#explanation").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();
 $("#plus3").hide(); $("#b3").hide(); $("#x3").hide(); $("#plus4").hide(); $("#b4").hide(); $("#x4").hide();
 $("#three2two").hide(); $("#three2four").hide(); $("#four2three").hide();
-$("#xvalues").hide(); $("#sunsquares").hide(); $("#msrmse").hide(); $("#sb1sb4").hide()
+$("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide()
 
 function make2(){
     $("#plus3").hide(); $("#b3").hide(); $("#x3").hide(); $("#plus4").hide(); $("#b4").hide(); $("#x4").hide();
@@ -76,7 +76,7 @@ function avg(input){
 }
 
 function showthings(){
-    $("#xvalues").hide(); $("#sumsquares").hide(); $("#msrmse").hide(); $("#sb1sb4").hide()
+    $("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide(); $("#sumsquares").show();
     var x = document.getElementById("stat").value;
     if (x == "prediction"){
         prediction()
@@ -168,6 +168,7 @@ function interpretation(){
 }
 
 function prediction(){
+    $("#sumsquares").hide(); 
     $("#xvalues").show();
     $("#x3s").hide();
     $("#equal3").hide();  
@@ -223,7 +224,7 @@ function calcprediction(){
 }
 
 function sse(){
-    $("#sumsquares").show(); $("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
+    $("#sumsquares").show();
     $("#sst").show(); $("#equal1s").show(); $("#sstvalue").show();
 }
 
@@ -235,7 +236,7 @@ function calcsse(){
 }
 
 function rsquared(){
-    $("#sumsquares").show(); $("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
+    $("#sumsquares").show();
     $("#sst").show(); $("#equal1s").show(); $("#sstvalue").show();
 }
 
@@ -265,8 +266,7 @@ function calcadjusted(){
 }
 
 function msr(){
-    $("#sumsquares").show(); $("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
-    $("#sst").hide(); $("#equal1s").hide(); $("#sstvalue").hide();
+    $("#sumsquares").show();
 }
 
 function calcmsr(){
@@ -293,7 +293,7 @@ function calcmse(){
 }
 
 function fstat(){
-    $("#msrmse").show();
+    $("#msrmse").show(); $("#sumsquares").hide();
 }
 
 function calcfstat(){
@@ -304,6 +304,7 @@ function calcfstat(){
 }
 
 function tstat(){
+    $("#sumsquares").hide();
     $("#sb1sb4").show()
     $("#sb3").hide();
     $("#equal3b").hide();  

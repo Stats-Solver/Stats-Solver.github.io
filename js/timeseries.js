@@ -150,11 +150,25 @@ function stat(){
         exponentialmse()
     } else if (x == "exponential" && y == "mape") {
         exponentialmape()
+    } else if (x == "linear" && y == "forecast") {
+        linearforecast()
+    } else if (x == "linear" && y == "error") {
+        linearerror()
+    } else if (x == "linear" && y == "mae") {
+        linearmae()
+    } else if (x == "linear" && y == "mse") {
+        linearmse()
+    } else if (x == "linear" && y == "mape") {
+        linearmape()
     } 
    
 }
 
 function naiveforecast() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In the naive method, the forecast of any period is equal to the actual value in the previous period."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = Y_t$$"
+    document.getElementById("explanationtext").innerHTML = "The naive method is the best method for forecasting financial data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -172,6 +186,10 @@ function naiveforecast() {
 }
 
 function naiveerror() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -190,6 +208,10 @@ function naiveerror() {
 } 
 
 function naivemae() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -256,6 +278,10 @@ function naivemape() {
 } 
 
 function averageforecast() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In the average method, the forecast of any period is equal to the average of the actual values in all previous periods."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{\\sum{Y_t}}{t}$$"
+    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -280,6 +306,10 @@ function averageforecast() {
 }
 
 function averageerror() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -300,6 +330,10 @@ function averageerror() {
 } 
 
 function averagemae() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -372,6 +406,10 @@ function averagemape() {
 } 
 
 function movingforecast2() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In a moving average of order two, the forecast is equal to the average of the previous two actual values."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-1}+Y_t}{2}$$"
+    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -396,6 +434,10 @@ function movingforecast2() {
 }
 
 function movingerror2() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -417,6 +459,10 @@ function movingerror2() {
 } 
 
 function movingmae2() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -492,6 +538,10 @@ function movingmape2() {
 } 
 
 function movingforecast3() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In a moving average of order three, the forecast is equal to the average of the previous three actual values."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-2}+Y_{t-1}+Y_t}{3}$$"
+    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -517,6 +567,10 @@ function movingforecast3() {
 }
 
 function movingerror3() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -539,6 +593,10 @@ function movingerror3() {
 } 
 
 function movingmae3() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -617,6 +675,10 @@ function movingmape3() {
 } 
 
 function movingforecast4() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In a moving average of order four, the forecast is equal to the average of the previous four actual values."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$$"
+    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -643,6 +705,10 @@ function movingforecast4() {
 }
 
 function movingerror4() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -666,6 +732,10 @@ function movingerror4() {
 } 
 
 function movingmae4() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -748,6 +818,10 @@ function movingmape4() {
 
 
 function exponentialforecast() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
+    document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
     var alpha = document.getElementById("alpha").value;
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
@@ -771,6 +845,10 @@ function exponentialforecast() {
 }
 
 function exponentialerror() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
     var alpha = document.getElementById("alpha").value;
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
@@ -796,6 +874,10 @@ function exponentialerror() {
 } 
 
 function exponentialmae() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
     var alpha = document.getElementById("alpha").value;
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
@@ -886,7 +968,147 @@ function exponentialmape() {
     MathJax.typeset();
 } 
 
+function linearforecast() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+ "<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$\\text{Forecast } (F_t)$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$ Y_1 = " + values[0] + "$$</td>" + "</tr>"
+    var forecast = values[0]
+    var ans = alpha*values[1] + (1-alpha)*forecast
+    for (var r = 2; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$ " + alpha + "(" + values[r-1] + ") + " + (1-alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = " + parseFloat(ans.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        forecast = alpha*values[r-1] + (1-alpha)*forecast
+        ans = alpha*values[r] + (1-alpha)*forecast
+    }
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + alpha + "(" + values[r-1] + ") + " + (1-alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    MathJax.typeset();
+}
 
+function linearerror() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$\\text{Error } (e_t) $$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$ "+values[1]+"-"+values[0]+" = " + (values[1]-values[0]) + "$$</td>" + "</tr>"
+    var forecast = values[0]
+    var ans = alpha*values[1] + (1-alpha)*forecast
+    var error = values[1] - forecast
+    for (var r = 2; r < rows; r++){
+        forecast = alpha*values[r-1] + (1-alpha)*forecast
+        error = values[r]-forecast
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$ " + parseFloat(ans.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + values[r] +" - "+ parseFloat(forecast.toFixed(2)) +" = " + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = table
+    MathJax.typeset();
+} 
+
+function linearmae() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{|Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + (values[1]-values[0]) + "$$</td>"+ "<td>$$|" + (values[1]-values[0]) + "| = " + Math.abs((values[1]-values[0]))  + "$$</td>" + "</tr>"
+    var total = Math.abs(values[1]-values[0])
+    var forecast = values[0]
+    var ans = alpha*values[1] + (1-alpha)*forecast
+    var error = values[1] - forecast
+    var abserror = Math.abs(error)
+    for (var r = 2; r < rows; r++){
+        forecast = alpha*values[r-1] + (1-alpha)*forecast
+        error = values[r]-forecast
+        abserror = Math.abs(error)
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "<td>$$|" + parseFloat(error.toFixed(2)) +"| = " + parseFloat(abserror.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += abserror
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function linearmse() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{Error}^2$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + (values[1]-values[0]) + "$$</td>"+ "<td>$$("+ (values[1]-values[0]) + ")^2 = " + Math.pow((values[1]-values[0]),2) + "$$</td>" + "</tr>"
+    var total = Math.pow((values[1]-values[0]),2)
+    var forecast = values[0]
+    var ans = alpha*values[1] + (1-alpha)*forecast
+    var error = values[1] - forecast
+    for (var r = 2; r < rows; r++){
+        forecast = alpha*values[r-1] + (1-alpha)*forecast
+        error = values[r]-forecast
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "<td>$$(" + parseFloat(error.toFixed(2)) +")^2 = " + parseFloat(Math.pow(error,2).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += Math.pow(error,2)
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function linearmape() {
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{|%Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + (values[1]-values[0]) + "$$</td>"+ "<td> $$ \\biggl| \\frac{" + (values[1]-values[0]) + "}{" + values[1] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs((values[1]-values[0])/values[1])).toFixed(2)) + "$$ </td>" + "</tr>"
+    var total = 0
+    var forecast = values[0]
+    var ans = alpha*values[1] + (1-alpha)*forecast
+    var error = values[1] - forecast
+    var aperror = 100*Math.abs(error/values[1])
+    for (var r = 2; r < rows; r++){
+        forecast = alpha*values[r-1] + (1-alpha)*forecast
+        error = values[r]-forecast
+        aperror = 100*Math.abs(error/values[r])
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "<td>$$ \\biggl| \\frac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat(aperror.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += aperror
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    MathJax.typeset();
+} 
 
 function examplevalues(){
     $("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); 
