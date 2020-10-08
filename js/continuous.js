@@ -7,6 +7,10 @@ $("#lessthan4").hide(); $("#greaterthan4").hide(); $("#betweentwo4").hide();
 $("#myCanvas").hide();
 $("#uniformbetween").hide(); $("#snormalbetween").hide(); $("#normalbetween").hide(); $("#exponentialbetween").hide(); 
 
+$("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
+
+$("#uniform").show(); $("#uniformab").hide(); 
+
 
 function factorial(n) {
     if (n > 0) {
@@ -74,6 +78,7 @@ function NormSInv(p) {
 }
 
 function showstuff(){
+    $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
     $("#uniform").hide(); $("#normal").hide(); $("#snormal").hide(); $("#exponential").hide();
     $("#lessthan").hide(); $("#greaterthan").hide(); $("#betweentwo").hide();
     $("#lessthan2").hide(); $("#greaterthan2").hide(); $("#betweentwo2").hide();
@@ -86,13 +91,19 @@ function showstuff(){
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         uniform()
+        $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
     } else if (x == "normal"){
         normal()
+        $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").show(); $("#exponentialexamples").hide(); 
     } else if (x == "snormal") {
         snormal()
+        $("#uniformexamples").hide(); $("#standardexamples").show(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
     } else if (x == "exponential") {
         exponential()
+        $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").show(); 
     } else{
+        $("#uniform").show(); $("#uniformab").hide();
+        $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
     }
@@ -121,6 +132,7 @@ function uniform() {
     $("#uniform").show();
     $("#uniformprob").show();
     $("#uniformbetween").hide();
+    $("#uniformab").show(); 
 }
 
 function compuniform() {
@@ -149,7 +161,7 @@ function compuniform() {
 }
 
 function compuniform1() {
-    $("#explanation").show(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show(); 
     
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
