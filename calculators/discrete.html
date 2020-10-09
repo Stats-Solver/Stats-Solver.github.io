@@ -115,7 +115,7 @@
   
       
       <div class="container mb-3" id="expected">
-        <table>
+        <table id = "expectedtable">
           <tr style='border-bottom: thin solid'>
             <td>$x$</td>
             <td>$f(x)$</td>
@@ -405,7 +405,8 @@
       
       
       <div class="container mb-3" id="binomial">
-        <table>
+          
+        <!--<table>
           <tr>
             <td style="text-align:right">$\text{Number of Trials:}$</td>
             <td>$n = $</td>
@@ -413,6 +414,16 @@
             </tr>
             <tr>
             <td style="text-align:right">$\text{Probability of Success:}$</td>
+            <td>$p = $</td>
+            <td><input class = "combperm" type="text" id="psuccess"></td>
+            </tr>
+        </table> -->
+          
+          <table>
+          <tr>
+            <td>$n = $</td>
+            <td><input class = "combperm" type="text" id="trials"></td>
+            <td>&nbsp; &nbsp;</td>
             <td>$p = $</td>
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
@@ -504,8 +515,8 @@
       <div class="container mb-3" id="poisson">
         <table>
           <tr>
-            <td style="text-align:right">$\text{Mean Occurences:}$</td>
-            <td>$\mu = $</td>
+            <td>$ \mu $</td>
+            <td>$ = $</td>
             <td><input class = "combperm" type="text" id="meanocc"></td>
             </tr>
         </table> 
@@ -550,18 +561,16 @@
       <div class="container mb-3" id="hypergeometric">
         <table>
           <tr>
-            <td style="text-align:right">$\text{Number of Trials:}$</td>
-            <td>$n = $</td>
+            <td>$ n $</td>
+            <td>$ = $</td>
             <td><input class = "combperm" type="text" id="ntrials"></td>
-            </tr>
-            <tr>
-            <td style="text-align:right">$\text{Population Size:}$</td>
-            <td>$N = $</td>
+            <td>&nbsp; &nbsp;</td>
+            <td>$ N $</td>
+            <td>$ = $</td>
             <td><input class = "combperm" type="text" id="popsize"></td>
-            </tr>
-            <tr>
-            <td style="text-align:right">$\text{Population Successes:}$</td>
-            <td>$r = $</td>
+            <td>&nbsp; &nbsp;</td>
+            <td>$ r $</td>
+            <td>$ = $</td>
             <td><input class = "combperm" type="text" id="popsucc"></td>
             </tr>
         </table> 

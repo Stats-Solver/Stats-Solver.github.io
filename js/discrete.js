@@ -9,7 +9,7 @@ $("#equal").hide(); $("#less").hide(); $("#greater").hide();
 $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
 $("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
 
-$("#expected").show(); $("#expectedprobs").hide();
+$("#expected").show(); $("#expectedprobs").show(); $("#expectedtable").hide(); 
 $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
 $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
 $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
@@ -50,14 +50,17 @@ function showstuff(){
     var x = document.getElementById("stat").value;
     if (x == "probabilities"){
         probabilities()
+        $("#expectedtable").show();
         $("#expectedexamples").show(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "expected"){
         expected()
+        $("#expectedtable").show();
         $("#expectedexamples").show(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "variance"){
         variance()
+        $("#expectedtable").show();
         $("#expectedexamples").show(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "standard") {
