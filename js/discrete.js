@@ -18,7 +18,6 @@ $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
 $("#expectedexamples").show(); $("#standardexamples").hide(); 
 $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
 
-
 function factorial(n) {
     if (n > 0) {
         return (n != 1) ? n * factorial(n - 1) : 1;
@@ -534,6 +533,7 @@ function compstandard() {
 function binomial() {
     $("#binomial").show();
     $("#equal").show();
+    $("#binomialprobability").show(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").hide();
 }
 
 function toless() {
@@ -569,7 +569,53 @@ function compbinomial() {
         compbinomial4()
     } else if (probtype == "greater") {
         compbinomial5()
-    }
+    } 
+}
+
+function switchexpected() {
+    $("#binomialprobability").hide(); $("#binomialexpected").show(); $("#binomialvariance").hide(); $("#binomialstandard").hide();
+}
+ 
+function switchvariance() {
+    $("#binomialprobability").hide(); $("#binomialexpected").hide(); $("#binomialvariance").show(); $("#binomialstandard").hide();
+}
+
+function switchstandard() {
+    $("#binomialprobability").hide(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").show();
+}
+ 
+function switchprobability() {
+    $("#binomialprobability").show(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").hide();
+}
+
+function compbinomialexpected() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= " + parseFloat((trials*prob).toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compbinomialvariance() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) = \\sigma &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= " + parseFloat((trials*prob*(1-prob)).toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compbinomialstandard() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= " + parseFloat((trials*prob).toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
 }
 
 function compbinomial1() {
@@ -2479,7 +2525,3 @@ function make10v(){
     $("#make10v").show();
     rows=10
 }
-
-
-
-

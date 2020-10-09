@@ -70,13 +70,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-          </li>
+          </li>-->
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Calculators
+              Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
@@ -112,7 +112,7 @@
       <hr>
           </div>
       
-      <div class="container">
+      <div class="container" id = "confidence">
 
         <table id="statistics">
           <tr>
@@ -147,6 +147,41 @@
           
           <div class = "text-center mt-2">
             <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span> &bull; <span class="examplelink" onclick="example3()">Example 3</span>
+        </div>
+          
+          </div>
+      
+      <div class="container" id = "samplesize">
+
+        <table id="statistics">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> p* </option> </select></td>
+            <td class="statistics" id="sd2"> = </td>
+            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td> 
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Margin of Error">$E$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
+          </tr>
+        </table> 
+          
+          <div class = "text-center mt-2">
+          Confidence Level:
+            <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
+        </div>
+
+          <div class="container center">
+          <div class="row justify-content-center">
+        <div class = "col-4 col-md-2 text-center mt-2">
+            <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
+            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
+            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
+        </div>
+              </div>
+              </div>
+          
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="example4()">Example 1</span> &bull; <span class="examplelink" onclick="example5()">Example 2</span>
         </div>
           
           </div>
@@ -211,6 +246,8 @@
       
           <footer id="footer">
               <div class="container">
+                  <span class="examplelink" onclick="switchsize()" id="switchsize">Switch to Sample Size</span>
+                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Switch to Confidence Intervals</span>
                   <p>Related: <a href="hypothesis.html">Hypothesis Testing Calculator</a> </p>
                 <hr>
             </div>

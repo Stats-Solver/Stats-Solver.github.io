@@ -1,5 +1,6 @@
-$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#expconf").hide();
+$("#enterstats").hide(); $("#explanation").hide();
+$("#expconf").hide(); $("#pointestimation").hide(); $("#samplingdistributions").show(); 
+$("#switchsampling").hide(); $("#switchpoint").show();
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -340,3 +341,120 @@ function samplestat() {
         $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
     } 
 }
+
+function addnum(num){
+    var str = document.getElementById("values").value;
+    str = str+num
+    document.getElementById("values").value = str;
+}
+
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+     
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
+
+function avg(input){
+    return sum(input)/input.length
+}
+
+
+
+function showthings(){
+    var x = document.getElementById("stat").value;
+    if (x == "mean"){
+        mean()
+    } else if (x == "standard"){
+        standard()
+    } else if (x == "proportion"){
+        proportion()
+    } 
+}
+
+function stat(){
+    $("#output").empty();
+    var x = document.getElementById("stat").value;
+    if (x == "mean"){
+        calcmean()
+    } else if (x == "standard"){
+        calcstandard()
+    } else if (x == "proportion"){
+        calcproportion()
+    } 
+   
+}
+
+function calcmean(){
+    $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
+    document.getElementById("descriptiontext").innerHTML = "The point estimate of the population mean is the sample mean."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
+    document.getElementById("explanationtext").innerHTML = "$$\\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length;
+    var adds = each[0];  var avgeach = avg(each);  
+    for (let i=1; i<len; i++){
+        adds += "+" + each[i]
+    }
+    document.getElementById("output").innerHTML+= "$$\\text{Sample Mean}$$ $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    MathJax.typeset();
+}
+
+function calcstandard(){
+    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
+    document.getElementById("descriptiontext").innerHTML = "The point estimate of the population standard deviation is the sample standard deviation."
+    document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
+    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
+    $("#output").empty();
+    $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+    var sumeach = sum(each);
+    var mn = avg(each);
+    var eachminus = each.map( function(value) {
+        return value - mn;
+    } );
+    var eachminus2 = eachminus.map( function(value) {
+        return value * value;
+    } );
+    var sumeachminus = sum(eachminus);
+    var sumeachminus2 = sum(eachminus2);
+    var ansvar = sumeachminus2 / lenmin1;
+    var ansstd = Math.sqrt(ansvar);
+    document.getElementById("output").innerHTML = "$$\\text{Sample Standard Deviation}$$ $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
+    MathJax.typeset();
+}
+
+function example3(){
+    $("#valuescontainer").show();
+    document.getElementById("values").value = "5, 8, 10, 7, 10, 14"
+    document.getElementById('stat').value="mean"
+}
+
+function example4(){
+    document.getElementById("stat").value = "proportion"
+}
+
+
+function switchpoint() {
+    $("#pointestimation").show(); $("#samplingdistributions").hide();
+    $("#switchsampling").show(); $("#switchpoint").hide();
+    $("#output1").empty(); $("#explanation").hide();
+}
+ 
+function switchsampling() {
+    $("#pointestimation").hide(); $("#samplingdistributions").show();
+    $("#switchsampling").hide(); $("#switchpoint").show();
+    $("#output").empty(); $("#explanation").hide();
+}
+
+

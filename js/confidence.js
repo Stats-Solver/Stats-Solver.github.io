@@ -1,5 +1,7 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#expconf").hide();
+$("#switchconfidence").hide(); $("#switchsize").show();
+$("#samplesize").hide(); $("#confidence").show();
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -552,4 +554,33 @@ function samplestat() {
     } else if (x == "proportion"){
         $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
     } 
+}
+
+
+
+
+
+
+
+
+function example4(){
+    $("#valuescontainer").show();
+    document.getElementById("values").value = "5, 8, 10, 7, 10, 14"
+    document.getElementById('stat').value="mean"
+}
+
+function example5(){
+    document.getElementById("stat").value = "proportion"
+}
+
+function switchsize() {
+    $("#samplesize").show(); $("#confidence").hide();
+    $("#switchsize").hide(); $("#switchconfidence").show();
+    $("#output1").empty(); $("#explanation").hide();
+}
+ 
+function switchconfidence() {
+    $("#samplesize").hide(); $("#confidence").show();
+    $("#switchsize").show(); $("#switchconfidence").hide();
+    $("#output").empty(); $("#explanation").hide();
 }

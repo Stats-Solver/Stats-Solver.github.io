@@ -1110,14 +1110,14 @@ function linearmape() {
     MathJax.typeset();
 } 
 
-function examplevalues(){
+function examplevalues2(){
     $("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); 
     document.getElementById("values").value = "18, 13, 16, 11, 17, 14"
     document.getElementById("method").value = "naive"
     document.getElementById("stat").value = "error"
 }
 
-function examplevalues2(){
+function examplevalues3(){
     $("#orders").show(); $("#exponential").hide(); $("#blankspace").hide();  
     document.getElementById("values").value = "24, 13, 20, 12, 19, 23, 15"
     document.getElementById("method").value = "moving"
@@ -1125,7 +1125,7 @@ function examplevalues2(){
     document.getElementById("stat").value = "mae"
 }
 
-function examplevalues3(){
+function examplevalues(){
     $("#orders").hide(); $("#exponential").show(); $("#blankspace").hide();  
     document.getElementById("values").value = "18, 13, 16, 11, 17, 14"
     document.getElementById("method").value = "exponential"

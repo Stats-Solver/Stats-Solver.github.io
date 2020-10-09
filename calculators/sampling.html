@@ -71,13 +71,13 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <li class="nav-item">
+          <!--<li class="nav-item">
             <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-          </li>
+          </li>-->
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Calculators
+              Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
@@ -113,7 +113,7 @@
       <hr>
           </div>
       
-      <div class="container">
+      <div class="container" id="samplingdistributions">
 
         <table id="statistics">
           <tr>
@@ -151,6 +151,36 @@
       
       
       
+      
+      <div class="container center" id="pointestimation">
+          <div class="container center" id="valuescontainer">
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5 mb-3">
+            <input type="text" class="form-control" placeholder="Enter X Values (separated by commas)" id="values">
+        </div>
+        </div>
+        </div>
+          <div class="row justify-content-center">
+        <div class="col-10 col-md-4">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
+                <option value="mean">Point Estimate of Population Mean</option>
+                <option value="standard">Point Estimate of Population Standard Deviation</option>
+                <option value="proportion">Point Estimate of Population Proportion</option>
+            </select>
+        </div> 
+        <div class="col-2 col-md-1 inputWrapper">
+            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Go</button>
+        </div> 
+              </div>
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="example3()">Example 1</span> &bull; <span class="examplelink" onclick="example4()">Example 2</span>
+        </div>
+        </div>
+      
+      
+      
+      
     <div class="container">
       <hr>
           </div>
@@ -162,6 +192,11 @@
       
       <div class="container">
         <div id="output2">
+        </div>
+      </div>
+      
+      <div class="container">
+        <div id="output">
         </div>
       </div>
       
@@ -205,7 +240,9 @@
       
           <footer id="footer">
               <div class="container">
-                  <p>Related: <a href="continuous.html">Continuous Distributions Calculator</a> </p>
+                  <span class="examplelink" onclick="switchpoint()" id="switchpoint">Switch to Point Estimation</span>
+                  <span class="examplelink" onclick="switchsampling()" id="switchsampling">Switch to Sampling Distributions</span>
+                  <p>Related: <a href="confidence.html">Confidence Intervals Calculator</a> </p>
                 <hr>
             </div>
           <p> 
