@@ -18,6 +18,10 @@ $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
 $("#expectedexamples").show(); $("#standardexamples").hide(); 
 $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
 
+$(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+
 function factorial(n) {
     if (n > 0) {
         return (n != 1) ? n * factorial(n - 1) : 1;

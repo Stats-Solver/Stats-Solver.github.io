@@ -421,10 +421,12 @@
           
           <table>
           <tr>
-            <td>$n = $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
+            <td>$ = $</td>
             <td><input class = "combperm" type="text" id="trials"></td>
             <td>&nbsp; &nbsp;</td>
-            <td>$p = $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Probability of Success">$ p $</td>
+            <td>$ = $</td>
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
         </table> 
@@ -515,7 +517,7 @@
       <div class="container mb-3" id="poisson">
         <table>
           <tr>
-            <td>$ \mu $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="meanocc"></td>
             </tr>
@@ -561,15 +563,15 @@
       <div class="container mb-3" id="hypergeometric">
         <table>
           <tr>
-            <td>$ n $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="ntrials"></td>
             <td>&nbsp; &nbsp;</td>
-            <td>$ N $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Size of Population">$ N $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="popsize"></td>
             <td>&nbsp; &nbsp;</td>
-            <td>$ r $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Successes in Population">$ r $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="popsucc"></td>
             </tr>

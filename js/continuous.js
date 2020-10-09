@@ -10,7 +10,11 @@ $("#uniformbetween").hide(); $("#snormalbetween").hide(); $("#normalbetween").hi
 $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
 
 $("#uniform").show(); $("#uniformab").hide(); 
+$("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
 
+$(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
 
 function factorial(n) {
     if (n > 0) {
@@ -91,7 +95,8 @@ function showstuff(){
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         uniform()
-        $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
+        $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide();
+        $("#uniformprobability").show();
     } else if (x == "normal"){
         normal()
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").show(); $("#exponentialexamples").hide(); 
@@ -141,7 +146,7 @@ function compuniform() {
     var probtypeb2 = document.getElementById("probtypeb2").value
     if (probtype == "lessequal") {
         compuniform1() 
-    } else if (probtype == "less") {
+    } else if (uniformtype = "probability" && probtype == "less") {
         compuniform2() 
     } else if (probtype == "greaterequal") {
         compuniform3() 
@@ -158,6 +163,56 @@ function compuniform() {
     } else if (probtypeb1 == "less" && probtypeb2 == "less") {
         compuniform9()
     } 
+}
+
+function switchexpected() {
+    $("#uniformprob").hide(); 
+    $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
+}
+ 
+function switchvariance() {
+    $("#uniformprob").hide(); 
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); $("#uniformstandard").hide();
+}
+
+function switchstandard() {
+    $("#uniformprob").hide(); 
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").show();
+}
+ 
+function switchprobability() {
+    $("#uniformprob").show(); 
+    $("#uniformprobability").show(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
+}
+
+function compuniformexpected() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= \\frac{a+b}{2} \\\\ &= \\frac{" + (minval+maxval) + "}{" + 2 + "} \\\\ &= " + parseFloat(((minval+maxval)/2).toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compuniformvariance() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) = \\sigma &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= " + parseFloat((trials*prob*(1-prob)).toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compuniformstandard() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= " + parseFloat((trials*prob).toFixed(2)) + " \\end{align} $$"
+    MathJax.typeset();
 }
 
 function compuniform1() {
