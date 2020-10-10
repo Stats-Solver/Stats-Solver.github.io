@@ -153,6 +153,9 @@
       
       
       <div class="container center" id="pointestimation">
+          <div class = "container">
+            <h5 class="text-center text-primary mb-3">Point Estimation</h5>
+        </div>
           <div class="container center" id="valuescontainer">
           <div class="row justify-content-center">
         <div class="col-12 col-md-5 mb-3">
@@ -161,16 +164,16 @@
         </div>
         </div>
           <div class="row justify-content-center">
-        <div class="col-10 col-md-4">
+        <div class="col-8 col-md-3">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
-                <option value="mean">Point Estimate of Population Mean</option>
-                <option value="standard">Point Estimate of Population Standard Deviation</option>
-                <option value="proportion">Point Estimate of Population Proportion</option>
+                <option value="mean">Population Mean</option>
+                <option value="standard">Population Standard Deviation</option>
+                <option value="proportion">Population Proportion</option>
             </select>
         </div> 
-        <div class="col-2 col-md-1 inputWrapper">
-            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Go</button>
+        <div class="col-4 col-md-2 inputWrapper">
+            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
         </div> 
               </div>
           <div class = "text-center mt-2">

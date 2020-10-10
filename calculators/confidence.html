@@ -152,16 +152,18 @@
           </div>
       
       <div class="container" id = "samplesize">
-
+        <div class = "container">
+            <h5 class="text-center text-primary mb-3">Sample Size</h5>
+        </div>
         <table id="statistics">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> p* </option> </select></td>
-            <td class="statistics" id="sd2"> = </td>
-            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Planning Value"><select id="planning" class="hypinput1"> <option value="sigma"> &#963; </option> <option value="pstar"> p* </option> </select></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="planningvalue" class="hypinput2"></td>
             <td class="statistics">&nbsp; &nbsp;</td> 
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Margin of Error">$E$</td>
             <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
+            <td class="statistics"><input type="text" style="width:50px;" id="margin" class="hypinput2"></td>
           </tr>
         </table> 
           
@@ -173,7 +175,7 @@
           <div class="container center">
           <div class="row justify-content-center">
         <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
+            <button id = "conint" class="button btn-outline-primary" onclick="samplesize()">Solve</button>
             <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
             <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
         </div>
@@ -192,12 +194,17 @@
       <hr>
           </div>
       
+      <div class="container">
+        <div id="output">
+        </div>
+      </div>
+      
      <div class="container">
         <div id="output1">
         </div>
       </div>
       
-      <div class="container text-center">
+      <div class="container text-center" id="canvascontainer">
         <canvas id="myCanvas" width="375" height="188" ></canvas>
       </div>
       

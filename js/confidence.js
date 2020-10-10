@@ -557,30 +557,71 @@ function samplestat() {
 }
 
 
+function samplesize() {
+    var planning = document.getElementById("planning").value
+    if (planning == "sigma") {
+        calcsize1()
+    } else if (planning == "pstar") {
+        calcsize2()
+    }
+}
 
+function calcsize1() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+    var planval = document.getElementById("planningvalue").value
+    var margerr = document.getElementById('margin').value
+    var conlev = document.getElementById('conlev').value
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf);
+    var ans = (zalphahalf*zalphahalf*planval*planval)/(margerr*margerr)
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    
+    MathJax.typeset();
+}
 
-
-
-
+function calcsize2() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+    var planval = document.getElementById("planningvalue").value
+    var margerr = document.getElementById('margin').value
+    var conlev = document.getElementById('conlev').value
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf);
+    var ans = (zalphahalf*zalphahalf*planval*(1-planval))/(margerr*margerr)
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    
+    MathJax.typeset();
+}
 
 function example4(){
-    $("#valuescontainer").show();
-    document.getElementById("values").value = "5, 8, 10, 7, 10, 14"
-    document.getElementById('stat').value="mean"
+    document.getElementById("planning").value = "sigma"
+    document.getElementById("planningvalue").value = "9.65"
+    document.getElementById('margin').value="2"
+    document.getElementById('conlev').value=95
 }
 
 function example5(){
-    document.getElementById("stat").value = "proportion"
+    document.getElementById("planning").value = "pstar"
+    document.getElementById("planningvalue").value = ".44"
+    document.getElementById('margin').value=".025"
+    document.getElementById('conlev').value=95
 }
 
 function switchsize() {
     $("#samplesize").show(); $("#confidence").hide();
     $("#switchsize").hide(); $("#switchconfidence").show();
-    $("#output1").empty(); $("#explanation").hide();
+    $("#output1").empty(); $("#output2").empty(); $("#explanation").hide(); $("#canvascontainer").hide();
 }
  
 function switchconfidence() {
     $("#samplesize").hide(); $("#confidence").show();
     $("#switchsize").show(); $("#switchconfidence").hide();
-    $("#output").empty(); $("#explanation").hide();
+    $("#output").empty(); $("#explanation").hide(); $("#canvascontainer").show();
 }
