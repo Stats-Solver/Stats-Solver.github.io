@@ -234,9 +234,9 @@ function calcweighted(){
 
 function geometric(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
-    document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
-    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
+    document.getElementById("descriptiontext").innerHTML = "The geometric mean is a measure of central location that involves multiplying the values instead of adding them as in the (arithmetic) mean."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_g = \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} $$"
+    document.getElementById("explanationtext").innerHTML = "The geometric mean can be interpreted as the growth rate of an investment."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
@@ -248,7 +248,7 @@ function geometric(){
         prod = prod * each[i]
     }
     var ans = Math.pow(prod, 1/len);
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &= \\sqrt[" + len + "]{" + adds + "} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_g &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &= \\sqrt[" + len + "]{" + adds + "} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
