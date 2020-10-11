@@ -1476,21 +1476,48 @@ function linearforecast() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table border=1>"+ "<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$\\text{Forecast } (F_t)$$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$ Y_1 = " + values[0] + "$$</td>" + "</tr>"
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    for (var r = 2; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$$" + (r+1) + "$$</td>";
-        table += "<td>$$" + values[r] + "$$</td>";
-        table += "<td>$$ " + alpha + "(" + values[r-1] + ") + " + (1-alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = " + parseFloat(ans.toFixed(2)) + "$$</td>";
-        table += "</tr>";
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
-        ans = alpha*values[r] + (1-alpha)*forecast
+    var ybar = avg(values)
+    var t = 0
+    var tbar = 0
+    for (var s = 0; s < rows+1; s++){
+        t += s
+        tbar = t/s
     }
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + alpha + "(" + values[r-1] + ") + " + (1-alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    
+    var table1 = "<table>" + "<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$t - \\bar{t}$" + "</td>" + "<td>" + "$Y_t - \\bar{Y}$" + "</td>"+ "<td>" + "$(t - \\bar{t})(Y_t - \\bar{Y})$" + "</td>" +"<td>" + "$(t - \\bar{t})^2$" + "</td>"+ "</tr>";
+
+    var total1 = 0
+    var total2 = 0
+    for (var r = 0; r < rows; r++){
+        table1 += "<tr>";
+        table1 += "<td>$" + (r+1) + "$</td>";
+        table1 += "<td>$" + values[r] + "$</td>";
+        table1 += "<td>$" + (r+1-tbar) + "$</td>";
+        table1 += "<td>$" + (values[r]-ybar) + "$</td>";
+        table1 += "<td>$" + (r-tbar)*(values[r]-ybar) + "$</td>";
+        table1 += "<td>$" + (r-tbar)*(r-tbar) + "$</td>";
+        table1 += "</tr>";
+        total1 += (r-tbar)*(values[r]-ybar)
+        total2 += (r-tbar)*(r-tbar)
+    }
+    
+    var b1 = total1/total2
+    var b0 = ybar - b1*tbar
+    
+    table1 = table1 + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$0$</td>"+ "<td>$0$</td>" +"<td>$"+parseFloat(total1.toFixed(2))+"$</td>"+"<td>$"+parseFloat(total2.toFixed(2))+"$</td>"+ "</tr>" + "</table>"
+    
+    var table2 = "<table border=1>"+ "<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$\\text{Forecast } (F_t)$$" + "</td>" + "</tr>";
+    var forecast = 0
+    for (var r = 0; r < rows; r++){
+        forecast = b0 + b1*(r+1)
+        table2 += "<tr>";
+        table2 += "<td>$$" + (r+1) + "$$</td>";
+        table2 += "<td>$$" + values[r] + "$$</td>";
+        table2 += "<td>$$ " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (r+1) + ") = " + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table2 += "</tr>";
+    }
+    var ans = b0 + b1*(rows+1)
+    document.getElementById("output").innerHTML = table1 + "$$ b_1 = \\frac{" + parseFloat(total1.toFixed(2)) + "}{" + parseFloat(total2.toFixed(2)) + "} = " + parseFloat(b1.toFixed(2)) + "$$ $$ b_0 = " + ybar + " - " + parseFloat(b1.toFixed(2)) + "(" + tbar + ") = " + parseFloat(b0.toFixed(2)) + " $$ $$ F_t = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + "t $$" + table2 + "</table> $$ F_"+(rows+1)+" = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (rows+1) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1502,19 +1529,31 @@ function linearerror() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
+    var ybar = avg(values)
+    var t = 0
+    var tbar = 0
+    for (var s = 0; s < rows+1; s++){
+        t += s
+        tbar = t/s
+    }
+    var total1 = 0
+    var total2 = 0
+    for (var r = 0; r < rows; r++){
+        total1 += (r-tbar)*(values[r]-ybar)
+        total2 += (r-tbar)*(r-tbar)
+    }
+    var b1 = total1/total2
+    var b0 = ybar - b1*tbar
     var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$\\text{Error } (e_t) $$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$ "+values[1]+"-"+values[0]+" = " + (values[1]-values[0]) + "$$</td>" + "</tr>"
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
+    var forecast = 0
+    var error = 0
+    for (var r = 0; r < rows; r++){
+        forecast = b0 + b1*(r+1)
         error = values[r]-forecast
         table += "<tr>";
         table += "<td>$$" + (r+1) + "$$</td>";
         table += "<td>$$" + values[r] + "$$</td>";
-        table += "<td>$$ " + parseFloat(ans.toFixed(2)) + "$$</td>";
+        table += "<td>$$ " + parseFloat(forecast.toFixed(2)) + "$$</td>";
         table += "<td>$$" + values[r] +" - "+ parseFloat(forecast.toFixed(2)) +" = " + parseFloat(error.toFixed(2)) + "$$</td>";
         table += "</tr>";
     }
@@ -1530,16 +1569,28 @@ function linearmae() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
+    var ybar = avg(values)
+    var t = 0
+    var tbar = 0
+    for (var s = 0; s < rows+1; s++){
+        t += s
+        tbar = t/s
+    }
+    var total1 = 0
+    var total2 = 0
+    for (var r = 0; r < rows; r++){
+        total1 += (r-tbar)*(values[r]-ybar)
+        total2 += (r-tbar)*(r-tbar)
+    }
+    var b1 = total1/total2
+    var b0 = ybar - b1*tbar
     var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{|Error|}$$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + (values[1]-values[0]) + "$$</td>"+ "<td>$$|" + (values[1]-values[0]) + "| = " + Math.abs((values[1]-values[0]))  + "$$</td>" + "</tr>"
-    var total = Math.abs(values[1]-values[0])
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
+    var total = 0
+    var forecast = 0
+    var error = 0
     var abserror = Math.abs(error)
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
+    for (var r = 0; r < rows; r++){
+        forecast = b0 + b1*(r+1)
         error = values[r]-forecast
         abserror = Math.abs(error)
         table += "<tr>";
@@ -1552,7 +1603,7 @@ function linearmae() {
         total += abserror
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1560,15 +1611,28 @@ function linearmse() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
+    var ybar = avg(values)
+    var t = 0
+    var tbar = 0
+    for (var s = 0; s < rows+1; s++){
+        t += s
+        tbar = t/s
+    }
+    var total1 = 0
+    var total2 = 0
+    for (var r = 0; r < rows; r++){
+        total1 += (r-tbar)*(values[r]-ybar)
+        total2 += (r-tbar)*(r-tbar)
+    }
+    var b1 = total1/total2
+    var b0 = ybar - b1*tbar
     var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{Error}^2$$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + (values[1]-values[0]) + "$$</td>"+ "<td>$$("+ (values[1]-values[0]) + ")^2 = " + Math.pow((values[1]-values[0]),2) + "$$</td>" + "</tr>"
-    var total = Math.pow((values[1]-values[0]),2)
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
+    var total = 0
+    var forecast = 0
+    var ans = 0
+    var error = 0
+    for (var r = 0; r < rows; r++){
+        forecast = b0 + b1*(r+1)
         error = values[r]-forecast
         table += "<tr>";
         table += "<td>$$" + (r+1) + "$$</td>";
@@ -1580,7 +1644,7 @@ function linearmse() {
         total += Math.pow(error,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1588,16 +1652,29 @@ function linearmape() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
+    var ybar = avg(values)
+    var t = 0
+    var tbar = 0
+    for (var s = 0; s < rows+1; s++){
+        t += s
+        tbar = t/s
+    }
+    var total1 = 0
+    var total2 = 0
+    for (var r = 0; r < rows; r++){
+        total1 += (r-tbar)*(values[r]-ybar)
+        total2 += (r-tbar)*(r-tbar)
+    }
+    var b1 = total1/total2
+    var b0 = ybar - b1*tbar
     var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{|%Error|}$$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$$2$$" + "</td>"+ "<td>$$" + values[1] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + (values[1]-values[0]) + "$$</td>"+ "<td> $$ \\biggl| \\frac{" + (values[1]-values[0]) + "}{" + values[1] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs((values[1]-values[0])/values[1])).toFixed(2)) + "$$ </td>" + "</tr>"
     var total = 0
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    var aperror = 100*Math.abs(error/values[1])
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
+    var forecast = 0
+    var ans = 0
+    var error = 0
+    var aperror = 0
+    for (var r = 0; r < rows; r++){
+        forecast = b0 + b1*(r+1)
         error = values[r]-forecast
         aperror = 100*Math.abs(error/values[r])
         table += "<tr>";
@@ -1610,7 +1687,7 @@ function linearmape() {
         total += aperror
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "\\%} $$"
     MathJax.typeset();
 } 
 
@@ -1631,14 +1708,7 @@ function examplevalues2(){
 }
 
 function examplevalues3(){
-    $("#orders").show(); $("#exponential").hide(); $("#blankspace").hide(); 
-    $("#weights").show();
-    document.getElementById("values").value = "18, 13, 16, 11, 17, 14"
-    document.getElementById("method").value = "weighted"
-    document.getElementById("order").value = "4"
-    document.getElementById("weight1").value = ".2"
-    document.getElementById("weight2").value = ".3"
-    document.getElementById("weight3").value = ".4"
-    document.getElementById("weight4").value = ".1"
-    document.getElementById("stat").value = "error"
+    document.getElementById("values").value = "24, 13, 20, 12, 19, 23, 15"
+    document.getElementById("method").value = "linear"
+    document.getElementById("stat").value = "forecast"
 }
