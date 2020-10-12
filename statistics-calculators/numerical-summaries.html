@@ -12,7 +12,7 @@
       <link rel="stylesheet" type="text/css" href="/css/style.css">
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       
-    <title>Time Series Analysis Calculator - Stats Solver</title>
+    <title>Numerical Summaries Calculator - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -67,18 +67,18 @@
               Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="probability.html">Probability Basics</a>
-              <a class="dropdown-item" href="discrete.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
+              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="probability-basics.html">Probability Basics</a>
+              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
+              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
+              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
+              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <!--<a class="dropdown-item" href="twopops.html">Two Populations</a>-->
-              <a class="dropdown-item" href="simple.html">Simple Regression</a>
-              <a class="dropdown-item" href="multiple.html">Multiple Regression</a>
-              <a class="dropdown-item" href="forecasting.html">Time Series Analysis</a>
+              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
             <!--<li class="nav-item">
@@ -95,136 +95,110 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="timeseries.html">Time Series Analysis Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="numerical-summaries.html">Numerical Summaries Calculator</a></h4>
     </div>
       
       <div class="container">
       <hr>
           </div>
       
-      <!--<div class="container mb-3">
-        <table>
-          <tr>
-            <td class="statistics">Time:</td>
-            <td class="statistics" style="text-align: center">1</td> 
-            <td class="statistics" style="text-align: center">2</td>
-            <td class="statistics" style="text-align: center">3</td>
-            <td class="statistics" style="text-align: center">4</td>
-            <td class="statistics" style="text-align: center">5</td>
-            <td class="statistics" style="text-align: center" id="time6">6</td>
-            <td class="statistics" style="text-align: center" id="time7">7</td>
-            <td class="statistics" style="text-align: center" id="make5to6"><svg onclick="make6()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                </svg></td>
-            <td class="statistics" style="text-align: center" id="make6to7"><svg onclick="make7()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                </svg></td>
-          </tr>
-          <tr>
-            <td class="statistics">Value:</td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v1" class="hypinput2"></td> 
-            <td class="statistics"><input type="text" style="width:50px;" id="v2" class="hypinput2"></td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v3" class="hypinput2"></td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v4" class="hypinput2"></td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v5" class="hypinput2"></td>
-            <td class="statistics" id="value6"><input type="text" style="width:50px;" id="v6" class="hypinput2"></td>
-            <td class="statistics" id="value7"><input type="text" style="width:50px;" id="v7" class="hypinput2"></td>
-            <td class="statistics" style="text-align: center" id="make6to5"><svg onclick="make5()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg></td>
-            <td class="statistics" style="text-align: center" id="make7to6"><svg onclick="make6()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg></td>
-          </tr>
-        </table>  
-          </div>-->
-      
-      <div id="input" class="container center">
+      <div class="container center">
           <div class="row justify-content-center">
         <div class="col-12 col-md-5 mb-3">
-            <input type="text" id="values" class="form-control" placeholder="Enter Y Values (separated by commas)">
+            <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
+        </div>
+        </div>
+        </div>
+      
+      <div id="weights" class="container center">
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5 mb-3">
+            <input id="values" type="text" class="form-control" placeholder="Enter Weights (separated by commas)">
+        </div>
+        </div>
+        </div>
+      
+      <div id="input2" class="container center">
+          <div class="row justify-content-center">
+        <div class="col-12 col-md-5 mb-3">
+            <input type="text" id="values2" class="form-control" placeholder="Enter Y Values (separated by commas)">
         </div>
               </div>
     </div>
       
-      <div class="container center">
+      <div class="container">
           <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <select id="method" class="form-control" onchange="showthings()">
-                <option value="choose">Method</option>
-                <option value="naive">Naive Method</option>
-                <option value="average">Average Method</option>
-                <option value="moving">Moving Average</option>
-                <option value="weighted">Weighted Moving Average</option>
-                <option value="exponential">Simple Exponential Smoothing</option>
-                <option value="linear">Linear Trend Regression</option>
-                <option value="holts">Holt's Method</option>
-            </select>
-        </div> 
-             
-              <div class="col-4 col-md-2 mb-3" id = "blankspace">
+                <div id = "slidecontainer" class="col-12 col-md-5">
+                    <input type="range" min="1" max="99" value="50" class="slider" id="myRange">
+                    <p>Percentile: <span id="demo"></span></p>
+                </div>   
+              </div> 
         </div>
-              
-            <div class="col-4 col-md-2 mb-3" id = "orders">
-            <select id="order" class="form-control" onchange="showweights()">
-                <option value="choose">Order</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
-              
-        <div class="col-4 col-md-2 mb-3" id = "exponential">
-              <table id="statistics">
-          <tr>
-            <td class="statistics">$\alpha = $ <input type="text" style="width:50px;" id="alpha" class="hypinput2"></td>
-          </tr>
-        </table>
-              </div>
-              
-              </div>
-        </div>
-      
-      <div class="container center mb-2" id = "weights">
-          <div class="row justify-content-center">
-            <table id="statistics">
-              <tr>
-                <td class="statistics" id="w1">$ w_1 = $ <input type="text" style="width:50px;" id="weight1" class="hypinput2"> &nbsp;</td>
-                <td class="statistics" id="w2">$ w_2 = $ <input type="text" style="width:50px;" id="weight2" class="hypinput2"> &nbsp;</td> 
-                <td class="statistics" id="w3">$ w_3 = $ <input type="text" style="width:50px;" id="weight3" class="hypinput2"> &nbsp;</td>
-                <td class="statistics" id="w4">$ w_4 = $ <input type="text" style="width:50px;" id="weight4" class="hypinput2"> &nbsp;</td>
-              </tr>
-            </table>
-          </div>
-          </div>
-      
-      <div class="container center" id="holt">
-          <div class="row justify-content-center">
-             
-              <div class="col-8 col-md-3 mb-3" id = "blankspace2">
-        </div>
-              
-        <div class="col-4 col-md-2 mb-3" id = "">
-              <table id="statistics">
-          <tr>
-            <td class="statistics">$\beta = $ <input type="text" style="width:50px;" id="beta" class="hypinput2"></td>
-          </tr>
-        </table>
-              </div>
-              
-              </div>
-        </div>
-      
-      <div class="container center">
-          <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <select id="stat" class="form-control">
+          
+          
+         <div class="container"> 
+             <div class="row justify-content-center">
+        <div id="inputqu" class="col-5 col-md-2 mb-3">
+            <select class="form-control" id="valquart">
                 <option value="choose">Choose One</option>
-                <option value="forecast">Forecast</option>
-                <option value="error">Forecast Error</option>
-                <option value="mae">Mean Absolute Error</option>
-                <option value="mse">Mean Square Error</option>
-                <option value="mape">Mean Absolute Percent Error</option>
+                <option value=25>First</option>
+                <option value=50>Second</option>
+                <option value=75>Third</option>
+            </select>
+        </div>
+             </div>
+             </div>
+      
+      
+      <div class="container"> 
+             <div class="row justify-content-center">
+        <div id="inputz" class="col-5 col-md-2 mb-3">
+            <select class="form-control"  id="inputzscore">
+                </select>
+        </div>
+             </div>
+             </div>
+      
+      <div class="container mb-3" id="chebyshev">
+        <table>
+          <tr>
+            <td style="text-align:right">$\text{Mean:}$</td>
+            <td><input class = "hypinput3" type="text" id="expval"></td>
+            <td style="text-align:right">$\text{Stnd Dev:}$</td>
+            <td><input class = "hypinput3" type="text" id="stdev"></td>
+            </tr>
+          <tr>
+            <td style="text-align:right">$\text{Minimum:}$</td>
+            <td><input class = "hypinput3" type="text" id="minval"></td>
+            <td style="text-align:right">$\text{Maximum:}$</td>
+            <td><input class = "hypinput3" type="text" id="maxval"></td>
+            </tr>
+        </table> 
+          </div>
+
+      <div class="container center">
+          <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="choose">Choose One</option>
+                <option value="mean">Mean</option>
+                <option value="geometric">Geometric Mean</option>
+                <!--<option value="weighted">Weighted Mean</option>-->
+                <option value="median">Median</option>
+                <option value="mode">Mode</option>
+                <option value="percentiles">Percentiles</option>
+                <option value="quartiles">Quartiles</option>
+                <option value="range">Range</option>
+                <option value="iqr">Interquartile Range</option>
+                <option value="variance">Variance</option>
+                <option value="stdev">Standard Deviation</option>
+                <option value="cv">Coefficient of Variation</option>
+                <option value="zscores">z-Scores</option>
+                <option value="chebyshev">Chebyshev's Theorem</option>
+                <option value="empirical">Empirical Rule</option>
+                <!--<option value="fivenumber">Five-Number Summary</option>-->
+                <option value="covariance">Covariance</option>
+                <option value="correlation">Correlation Coefficient</option>
             </select>
         </div> 
         <div class="col-4 col-md-2 inputWrapper">
@@ -233,10 +207,8 @@
               </div>
         </div>
       
-
-
       <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
+            <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
         </div>
       
       <div class = "text-center" id = "label2">
@@ -260,6 +232,12 @@
       
                 <div class="container mb-5" id="explanation">
       <p  class="text-center">
+          
+        <span class="examplelink" id = 'switchpopulation' onclick="switchpopulation()"> Switch to Population </span> 
+        <span class="examplelink" id = 'switchsample' onclick="switchsample()"> Switch to Sample </span>  
+          <br>
+        
+          
       <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Definition
       </a> &bull;
@@ -268,7 +246,8 @@
       </a> &bull;
     <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
         Explanation
-      </a>
+      </a> 
+        
     </p>
     <div class="collapse" id="collapseExample" data-parent="#explanation">
       <div class="card card-body" id="descriptiontext">
@@ -285,8 +264,9 @@
 
       </div>
     </div>
+                    
           </div>
-      
+
       
      
     
@@ -297,8 +277,8 @@
       
           <footer id="footer">
               <div class="container">
-                 <!--<p>Related: <a href="simple.html">Simple Regression Calculator</a> </p>-->
-                  <hr>
+                 <!--<p>Related: <a href="tablesgraphs.html">Tables and Graphs Calculator</a> </p>-->
+                <hr>
             </div>
           <p> 
               &copy; 2020 <a href="/about.html">Solver, Inc.</a> 
@@ -337,6 +317,6 @@
  
       
       
-      <script src="/js/timeseries.js"></script>
+      <script src="/js/numerical.js"></script>
   </body>
 </html>

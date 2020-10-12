@@ -4,7 +4,6 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Free step-by-step numerical summaries calculator. Solve the mean, median, mode, variance, standard deviation, covariance, correlation coefficient and more.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -12,13 +11,13 @@
       <link rel="stylesheet" type="text/css" href="/css/style.css">
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       
-    <title>Numerical Summaries Calculator - Stats Solver</title>
+    <title>Tables and Graphs Calculator - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
       <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       
-                <!-- Global site tag (gtag.js) - Google Analytics -->
+          <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -27,11 +26,9 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
-      
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
-      
-          <!-- Global site tag (gtag.js) - Google Ads: 606424473 -->
+        <!-- Global site tag (gtag.js) - Google Ads: 606424473 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=AW-606424473"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -41,11 +38,7 @@
       gtag('config', 'AW-606424473');
     </script>
 
-          <!-- Event snippet for Page view conversion page -->
-    <script>
-      gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
-    </script>
-
+      
       
   </head>
   <body>
@@ -67,18 +60,18 @@
               Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tablesgraphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="probability.html">Probability Basics</a>
-              <a class="dropdown-item" href="discrete.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
+              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="probability-basics.html">Probability Basics</a>
+              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
+              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
+              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
+              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <!--<a class="dropdown-item" href="twopops.html">Two Populations</a>-->
-              <a class="dropdown-item" href="simple.html">Simple Regression</a>
-              <a class="dropdown-item" href="multiple.html">Multiple Regression</a>
-              <a class="dropdown-item" href="timeseries.html">Time Series Analysis</a>
+              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
             <!--<li class="nav-item">
@@ -89,20 +82,19 @@
           </li>
         </ul>
       </div>
-      
     </nav>
           </div>
     
-      
+    
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="numerical.html">Numerical Summaries Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="tables-and-graphs.html">Tables and Graphs Calculator</a></h4>
     </div>
       
       <div class="container">
       <hr>
           </div>
       
-      <div class="container center">
+      <div class="container">
           <div class="row justify-content-center">
         <div class="col-12 col-md-5 mb-3">
             <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
@@ -110,144 +102,104 @@
         </div>
         </div>
       
-      <div id="weights" class="container center">
-          <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input id="values" type="text" class="form-control" placeholder="Enter Weights (separated by commas)">
-        </div>
-        </div>
-        </div>
-      
-      <div id="input2" class="container center">
+      <div id="input2" class="container">
           <div class="row justify-content-center">
         <div class="col-12 col-md-5 mb-3">
             <input type="text" id="values2" class="form-control" placeholder="Enter Y Values (separated by commas)">
         </div>
               </div>
-    </div>
+        </div>
       
       <div class="container">
-          <div class="row justify-content-center">
-                <div id = "slidecontainer" class="col-12 col-md-5">
-                    <input type="range" min="1" max="99" value="50" class="slider" id="myRange">
-                    <p>Percentile: <span id="demo"></span></p>
-                </div>   
-              </div> 
-        </div>
-          
-          
-         <div class="container"> 
-             <div class="row justify-content-center">
-        <div id="inputqu" class="col-5 col-md-2 mb-3">
-            <select class="form-control" id="valquart">
-                <option value="choose">Choose One</option>
-                <option value=25>First</option>
-                <option value=50>Second</option>
-                <option value=75>Third</option>
-            </select>
-        </div>
-             </div>
-             </div>
-      
-      
-      <div class="container"> 
-             <div class="row justify-content-center">
-        <div id="inputz" class="col-5 col-md-2 mb-3">
-            <select class="form-control"  id="inputzscore">
-                </select>
-        </div>
-             </div>
-             </div>
-      
-      <div class="container mb-3" id="chebyshev">
-        <table>
-          <tr>
-            <td style="text-align:right">$\text{Mean:}$</td>
-            <td><input class = "hypinput3" type="text" id="expval"></td>
-            <td style="text-align:right">$\text{Stnd Dev:}$</td>
-            <td><input class = "hypinput3" type="text" id="stdev"></td>
-            </tr>
-          <tr>
-            <td style="text-align:right">$\text{Minimum:}$</td>
-            <td><input class = "hypinput3" type="text" id="minval"></td>
-            <td style="text-align:right">$\text{Maximum:}$</td>
-            <td><input class = "hypinput3" type="text" id="maxval"></td>
-            </tr>
-        </table> 
-          </div>
-
-      <div class="container center">
           <div class="row justify-content-center">
         <div class="col-8 col-md-3 mb-3">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
-                <option value="mean">Mean</option>
-                <option value="geometric">Geometric Mean</option>
-                <!--<option value="weighted">Weighted Mean</option>-->
-                <option value="median">Median</option>
-                <option value="mode">Mode</option>
-                <option value="percentiles">Percentiles</option>
-                <option value="quartiles">Quartiles</option>
-                <option value="range">Range</option>
-                <option value="iqr">Interquartile Range</option>
-                <option value="variance">Variance</option>
-                <option value="stdev">Standard Deviation</option>
-                <option value="cv">Coefficient of Variation</option>
-                <option value="zscores">z-Scores</option>
-                <option value="chebyshev">Chebyshev's Theorem</option>
-                <option value="empirical">Empirical Rule</option>
-                <!--<option value="fivenumber">Five-Number Summary</option>-->
-                <option value="covariance">Covariance</option>
-                <option value="correlation">Correlation Coefficient</option>
+                <option value="frequency">Frequency Distribution</option>
+                <option value="relative">Relative Frequency Distribution</option>
+                <option value="percent">Percent Frequency Distribution</option>
+                <option value="bar">Bar Chart</option>
+                <option value="pie">Pie Chart</option>
+                <option value="histogram">Histogram</option>
+                <option value="cumfrequency">Cumulative Frequency</option>
+                <option value="cumrelative">Cumulative Relative Frequency</option>
+                <option value="cumpercent">Cumulative Percent Frequency</option>
+                <!--<option value="crosstabulation">Crosstabulation</option>-->
+                <option value="scatter">Scatter Diagram</option>
             </select>
         </div> 
-        <div class="col-4 col-md-2 inputWrapper">
-            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+              <div class="col-4 col-md-2 inputWrapper">
+            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat()">Solve</button>
         </div> 
               </div>
+        </div>
+      
+      <table id="firstclass">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">First Class:</td>
+            <td class="statistics"><input type="text" style="width:70px;" id="lower" class="hypinput2" placeholder="Lower"></td>
+            <td class="statistics" id="sd2"> - </td>
+            <td class="statistics" id="sd3"><input type="text" style="width:70px;" id="upper" class="hypinput2" placeholder="Upper"></td>
+            <td class="statistics" id="go"><button id = "buttoncross" class="button btn-outline-primary" onclick="go()">Go</button></td>
+          </tr>
+        </table> 
+
+      
+      <div class="container"> 
+          <div class="row justify-content-center">
+                <div id="cumulative" class="col-6 col-md-2  mb-3">
+                    <select id="cumtype" class="form-control">
+                        <option value="choose">Choose One</option>
+                        <option value="frequency">Frequency</option>
+                        <option value="relative">Relative Frequency</option>
+                        <option value="percent">Percent Frequency</option>
+                    </select>
+                </div>
+            </div>
         </div>
       
       <div class = "text-center" id = "label1">
             <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
         </div>
       
-      <div class = "text-center" id = "label2">
-            <span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>
-        </div>
-      
       <div class = "text-center" id = "label3">
             <span class="examplelink" onclick="examplevalues5()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>
         </div>
       
-      <div class="container">
-      <hr>
-          </div>
-    
-    
+        <div class="container">
+            <hr>
+        </div>
+      
       <div class="container">
         <div id="output">
         </div>
       </div>
       
+      <!--<div class="container text-center">
+    <canvas width="375" height="188" id="myCanvas" style="">
+          </canvas>
+       </div>
       
-                <div class="container mb-5" id="explanation">
+      <div class="container text-center">
+    <canvas width="375" height="375" id="myCanvas2" style="border:1px solid black;">
+          </canvas>
+       </div>-->
+      
+      <div class="container container2 text-center">
+      <div id="charts" style="width: 500px; height: 300px;"></div>
+          </div>
+      
+      <div class="container mb-5" id="explanation">
       <p  class="text-center">
-          
-        <span class="examplelink" id = 'switchpopulation' onclick="switchpopulation()"> Switch to Population </span> 
-        <span class="examplelink" id = 'switchsample' onclick="switchsample()"> Switch to Sample </span>  
-          <br>
-        
-          
       <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Definition
       </a> &bull;
     <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
         Formula
       </a> &bull;
-    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample" data-parent="#explanation">
         Explanation
-      </a> 
-        
+      </a>
     </p>
     <div class="collapse" id="collapseExample" data-parent="#explanation">
       <div class="card card-body" id="descriptiontext">
@@ -264,20 +216,12 @@
 
       </div>
     </div>
-                    
           </div>
-
       
      
-    
-    <div class="container">
-        <div id="output2">
-        </div>
-      </div>  
-      
           <footer id="footer">
               <div class="container">
-                 <!--<p>Related: <a href="tablesgraphs.html">Tables and Graphs Calculator</a> </p>-->
+                  <!--<p>Related: <a href="numerical.html">Numerical Summaries Calculator</a> </p>-->
                 <hr>
             </div>
           <p> 
@@ -286,8 +230,10 @@
               </p>
           </footer>
       
-    <!--<div style = "height: 400px"></div>-->  
-    <!-- Optional JavaScript -->  
+    <!--<div style = "height: 400px"></div>--> 
+      
+    <!-- Optional JavaScript --> 
+      
       
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
@@ -314,9 +260,11 @@
                 }
             };
         </script> 
+      
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
+      <script src="https://d3js.org/d3.v5.min.js"></script>
  
-      
-      
-      <script src="/js/numerical.js"></script>
+      <script src="/js/tablesgraphs.js"></script>
   </body>
 </html>
