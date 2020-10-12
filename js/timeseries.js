@@ -1,6 +1,6 @@
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide(); $("#label3").hide();
 
-$("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); $("#weights").hide();
+$("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); $("#weights").hide(); $("#holt").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -73,7 +73,7 @@ function avg(input){
 function showthings(){
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide();
-    $("#orders").hide(); $("#exponential").hide();  $("#blankspace").show(); $("#weights").hide();
+    $("#orders").hide(); $("#exponential").hide();  $("#blankspace").show(); $("#weights").hide(); $("#holt").hide();
     var x = document.getElementById("method").value;
     if (x == "moving") {
         $("#orders").show(); $("#blankspace").hide();
@@ -81,6 +81,8 @@ function showthings(){
         $("#orders").show(); $("#blankspace").hide();
     } else if (x == "exponential") {
         $("#exponential").show(); $("#blankspace").hide();
+    } else if (x == "holts") {
+        $("#exponential").show(); $("#blankspace").hide(); $("#holt").show();
     } 
 }
 
@@ -209,6 +211,16 @@ function stat(){
         linearmse()
     } else if (x == "linear" && y == "mape") {
         linearmape()
+    } else if (x == "holts" && y == "forecast") {
+        holtforecast()
+    } else if (x == "holts" && y == "error") {
+        holterror()
+    } else if (x == "holts" && y == "mae") {
+        holtmae()
+    } else if (x == "holts" && y == "mse") {
+        holtmse()
+    } else if (x == "holts" && y == "mape") {
+        holtmape()
     } 
    
 }
@@ -1339,12 +1351,12 @@ function exponentialforecast() {
         table += "<tr>";
         table += "<td>$$" + (r+1) + "$$</td>";
         table += "<td>$$" + values[r] + "$$</td>";
-        table += "<td>$$ " + alpha + "(" + values[r-1] + ") + " + (1-alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = " + parseFloat(ans.toFixed(2)) + "$$</td>";
+        table += "<td>$$ " + alpha + "(" + values[r-1] + ") + (1 - " + alpha + ")(" + parseFloat(forecast.toFixed(2)) + ") = " + parseFloat(ans.toFixed(2)) + "$$</td>";
         table += "</tr>";
         forecast = alpha*values[r-1] + (1-alpha)*forecast
         ans = alpha*values[r] + (1-alpha)*forecast
     }
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + alpha + "(" + values[r-1] + ") + " + (1-alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + alpha + "(" + values[r-1] + ") + (1 - " + alpha + ")(" + parseFloat(forecast.toFixed(2)) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1493,16 +1505,16 @@ function linearforecast() {
         table1 += "<td>$" + (r+1) + "$</td>";
         table1 += "<td>$" + values[r] + "$</td>";
         table1 += "<td>$" + (r+1-tbar) + "$</td>";
-        table1 += "<td>$" + (values[r]-ybar) + "$</td>";
-        table1 += "<td>$" + (r-tbar)*(values[r]-ybar) + "$</td>";
-        table1 += "<td>$" + (r-tbar)*(r-tbar) + "$</td>";
+        table1 += "<td>$" + parseFloat((values[r]-ybar).toFixed(2)) + "$</td>";
+        table1 += "<td>$" + parseFloat(((r-tbar)*(values[r]-ybar)).toFixed(2)) + "$</td>";
+        table1 += "<td>$" + parseFloat(((r-tbar)*(r-tbar)).toFixed(2)) + "$</td>";
         table1 += "</tr>";
         total1 += (r-tbar)*(values[r]-ybar)
         total2 += (r-tbar)*(r-tbar)
     }
     
-    var b1 = total1/total2
-    var b0 = ybar - b1*tbar
+    var b1 = parseFloat((total1/total2).toFixed(2))
+    var b0 = parseFloat((ybar - b1*tbar).toFixed(2))
     
     table1 = table1 + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$0$</td>"+ "<td>$0$</td>" +"<td>$"+parseFloat(total1.toFixed(2))+"$</td>"+"<td>$"+parseFloat(total2.toFixed(2))+"$</td>"+ "</tr>" + "</table>"
     
@@ -1517,7 +1529,7 @@ function linearforecast() {
         table2 += "</tr>";
     }
     var ans = b0 + b1*(rows+1)
-    document.getElementById("output").innerHTML = table1 + "$$ b_1 = \\frac{" + parseFloat(total1.toFixed(2)) + "}{" + parseFloat(total2.toFixed(2)) + "} = " + parseFloat(b1.toFixed(2)) + "$$ $$ b_0 = " + ybar + " - " + parseFloat(b1.toFixed(2)) + "(" + tbar + ") = " + parseFloat(b0.toFixed(2)) + " $$ $$ F_t = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + "t $$" + table2 + "</table> $$ F_"+(rows+1)+" = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (rows+1) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table1 + "$$ b_1 = \\frac{" + parseFloat(total1.toFixed(2)) + "}{" + parseFloat(total2.toFixed(2)) + "} = " + parseFloat(b1.toFixed(2)) + "$$ $$ b_0 = " + parseFloat(ybar.toFixed(2)) + " - " + parseFloat(b1.toFixed(2)) + "(" + tbar + ") = " + parseFloat(b0.toFixed(2)) + " $$ $$ F_t = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + "t $$" + table2 + "</table> $$ F_"+(rows+1)+" = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (rows+1) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1691,16 +1703,211 @@ function linearmape() {
     MathJax.typeset();
 } 
 
+function holtforecast() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
+    document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
+    var alpha = document.getElementById("alpha").value;
+    var beta = document.getElementById("beta").value;
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+ "<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$L_t$$" + "</td>" + "<td>" + "$$T_t$$" + "</td>" + "<td>" + "$$\\text{Forecast } (F_t)$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + values[0] + "$$</td>" + "<td>$$" + parseFloat((values[1]-values[0]).toFixed(2)) + "$$</td>" + "<td>$$ - $$</td>" + "</tr>"
+    var level = 0
+    var trend = 0
+    var level1 = values[0]
+    var trend1 = values[1]-values[0]
+    var forecast = 0
+    for (var r = 1; r < rows; r++){
+        level = alpha * values[r] + (1 - alpha) * (level1 + trend1)
+        trend = beta * (level - level1) + (1 - beta) * trend1 
+        forecast = level1 + trend1
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$ " + parseFloat(level.toFixed(2)) + "$$</td>";
+        table += "<td>$$ " + parseFloat(trend.toFixed(2)) + "$$</td>";
+        table += "<td>$$ " + parseFloat(level1.toFixed(2)) + "+" + parseFloat(trend1.toFixed(2)) + " = " + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        level1 = level
+        trend1 = trend
+    }
+    document.getElementById("output").innerHTML = table
+    MathJax.typeset();
+}
+
+function holterror() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
+    document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
+    document.getElementById("explanationtext").innerHTML = "Forecast error measures how much error there was in using the method for a period of time."
+    var alpha = document.getElementById("alpha").value;
+    var beta = document.getElementById("beta").value;
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$\\text{Error } (e_t) $$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var level = 0
+    var trend = 0
+    var level1 = values[0]
+    var trend1 = values[1]-values[0]
+    var forecast = 0
+    var error = values[1] - forecast
+    for (var r = 1; r < rows; r++){
+        level = alpha * values[r] + (1 - alpha) * (level1 + trend1)
+        trend = beta * (level - level1) + (1 - beta) * trend1 
+        forecast = level1 + trend1
+        error = values[r]-forecast
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$ " + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + values[r] +" - "+ parseFloat(forecast.toFixed(2)) +" = " + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        level1 = level
+        trend1 = trend
+    }
+    document.getElementById("output").innerHTML = table
+    MathJax.typeset();
+} 
+
+function holtmae() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The mean absolute error (MAE) is a measure of how much overall error there is in using your method to forecast the data."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
+    document.getElementById("explanationtext").innerHTML = "In calculating the MAE, the absolute value of the errors are used so that negative and positive errors don't cancel each other out, giving the appearance of little to no error."
+    var alpha = document.getElementById("alpha").value;
+    var beta = document.getElementById("beta").value;
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{|Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var total = 0
+    var level = 0
+    var trend = 0
+    var level1 = values[0]
+    var trend1 = values[1]-values[0]
+    var forecast = 0
+    var error = values[1] - forecast
+    var abserror = Math.abs(error)
+    for (var r = 1; r < rows; r++){
+        level = alpha * values[r] + (1 - alpha) * (level1 + trend1)
+        trend = beta * (level - level1) + (1 - beta) * trend1 
+        forecast = level1 + trend1
+        error = values[r]-forecast
+        abserror = Math.abs(error)
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "<td>$$|" + parseFloat(error.toFixed(2)) +"| = " + parseFloat(abserror.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += abserror
+        level1 = level
+        trend1 = trend
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function holtmse() {
+    var alpha = document.getElementById("alpha").value;
+    var beta = document.getElementById("beta").value;
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{Error}^2$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var total = 0
+    var level = 0
+    var trend = 0
+    var level1 = values[0]
+    var trend1 = values[1]-values[0]
+    var forecast = 0
+    var error = values[1] - forecast
+    for (var r = 1; r < rows; r++){
+        level = alpha * values[r] + (1 - alpha) * (level1 + trend1)
+        trend = beta * (level - level1) + (1 - beta) * trend1 
+        forecast = level1 + trend1
+        error = values[r]-forecast
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "<td>$$(" + parseFloat(error.toFixed(2)) +")^2 = " + parseFloat(Math.pow(error,2).toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += Math.pow(error,2)
+        level1 = level
+        trend1 = trend
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    MathJax.typeset();
+} 
+
+function holtmape() {
+    var alpha = document.getElementById("alpha").value;
+    var beta = document.getElementById("beta").value;
+    var str = document.getElementById("values").value;
+    var values = str.split(",").map(Number);
+    var rows = values.length;
+    var table = "<table border=1>"+"<tr>" + "<td>" + "$$t$$" + "</td>"+ "<td>" + "$$Y_t$$" + "</td>" + "<td>" + "$$F_t$$" + "</td>" + "<td>" + "$$e_t$$" + "</td>"+ "<td>" + "$$\\text{|%Error|}$$" + "</td>" + "</tr>";
+    table = table + "<tr>" + "<td>" + "$$1$$" + "</td>"+ "<td>$$" + values[0] + "$$</td>" + "<td>" + "$$-$$" + "</td>" + "<td>" + "$$-$$" + "</td>"+ "<td>" + "$$-$$" + "</td>" + "</tr>"
+    var total = 0
+    var level = 0
+    var trend = 0
+    var level1 = values[0]
+    var trend1 = values[1]-values[0]
+    var forecast = 0
+    var error = values[1] - forecast
+    var aperror = 100*Math.abs(error/values[1])
+    for (var r = 1; r < rows; r++){
+        level = alpha * values[r] + (1 - alpha) * (level1 + trend1)
+        trend = beta * (level - level1) + (1 - beta) * trend1 
+        forecast = level1 + trend1
+        error = values[r]-forecast
+        aperror = 100*Math.abs(error/values[r])
+        table += "<tr>";
+        table += "<td>$$" + (r+1) + "$$</td>";
+        table += "<td>$$" + values[r] + "$$</td>";
+        table += "<td>$$" + parseFloat(forecast.toFixed(2)) + "$$</td>";
+        table += "<td>$$" + parseFloat(error.toFixed(2)) + "$$</td>";
+        table += "<td>$$ \\biggl| \\frac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat(aperror.toFixed(2)) + "$$</td>";
+        table += "</tr>";
+        total += aperror
+        level1 = level
+        trend1 = trend
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>"+"$$-$$"+"</td>"+ "<td>$$"+"-"+"$$</td>" +"<td>$$"+parseFloat(total.toFixed(2))+"$$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    MathJax.typeset();
+} 
+
 function examplevalues(){
-    $("#orders").hide(); $("#exponential").show(); $("#blankspace").hide();  
+    document.getElementById("values").value = "18, 13, 16, 11, 17, 14"
+}
+
+function examplevalues2(){
+    document.getElementById("values").value = "24, 13, 20, 12, 19, 23, 15"
+}
+
+function examplevalues11(){
+    $("#orders").hide(); $("#exponential").show(); $("#blankspace").hide(); $("#holt").hide();  
     document.getElementById("values").value = "18, 13, 16, 11, 17, 14"
     document.getElementById("method").value = "exponential"
     document.getElementById("alpha").value = ".2"
     document.getElementById("stat").value = "forecast"
 }
 
-function examplevalues2(){
-    $("#orders").show(); $("#exponential").hide(); $("#blankspace").hide();  
+function examplevalues22(){
+    $("#orders").show(); $("#exponential").hide(); $("#blankspace").hide(); $("#holt").hide();
     document.getElementById("values").value = "24, 13, 20, 12, 19, 23, 15"
     document.getElementById("method").value = "moving"
     document.getElementById("order").value = "3"
@@ -1708,7 +1915,10 @@ function examplevalues2(){
 }
 
 function examplevalues3(){
-    document.getElementById("values").value = "24, 13, 20, 12, 19, 23, 15"
-    document.getElementById("method").value = "linear"
-    document.getElementById("stat").value = "forecast"
+    $("#orders").hide(); $("#exponential").show(); $("#blankspace").hide(); $("#holt").show(); 
+    document.getElementById("values").value = "21.6, 22.9, 25.5, 21.9, 23.9, 27.5, 31.5, 29.7, 28.6, 31.4"
+    document.getElementById("method").value = "holts"
+    document.getElementById("alpha").value = ".1"
+    document.getElementById("beta").value = ".2"
+    document.getElementById("stat").value = "mape"
 }
