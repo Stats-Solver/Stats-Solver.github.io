@@ -384,6 +384,7 @@ function tinv(p, dof) {
 
 
 function conint(){
+    $("#myCanvas2").hide();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
         conint1()
