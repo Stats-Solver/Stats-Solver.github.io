@@ -1,5 +1,6 @@
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide(); $("#nullalternative").hide();
-$("#switchconfidence").hide(); $("#hypothesistitle").hide();
+$("#switchconfidence").hide(); $("#hypothesistitle").hide(); $("#levelsignificance").hide();
+$("#hypsolve").hide(); $("#confsolve").show();
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -17,6 +18,28 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+function samplestat() {
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+        document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+    } else if (x == "proportion"){
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        $("#sd11").hide(); $("#sd22").hide(); $("#sd33").hide();
+        document.getElementById("samplestat2").innerHTML = "p₂";
+    } 
+}
+
+function stdev() {
+    var x = document.getElementById("sigma").value;
+    if (x == "known"){
+        document.getElementById("standdev2").innerHTML = "&sigma;₂";
+    } else if (x == "unknown"){
+        document.getElementById("standdev2").innerHTML = "s₂";
+    }
+}
 
 function parameter() {
     var x = document.getElementById("parameter1").value;
@@ -339,6 +362,316 @@ function tinv(p, dof) {
 		return (p > 0) ? x : -x;
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function conint(){
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        conint1()
+    } else if (x == "proportion"){
+        conint2()
+    } 
+}
+
+
+function conint1(){
+    $("#explanation").show();
+    $("#expconf").show();
+    var sigma = document.getElementById("sigma").value;
+    var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
+    var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
+    var xbar1 = document.getElementById("xbar1").value;
+    var xbar2 = document.getElementById("xbar2").value;
+    var stdev1 = document.getElementById("stdev1").value;
+    var stdev2 = document.getElementById("stdev2").value;
+    var conlev = document.getElementById("conlev").value;
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,size1m1);
+    var marginerror = zalphahalf * Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2)); 
+    var marginerrort = talphahalf * Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2));
+    var anslow = (xbar1-xbar2) - marginerror; var anshigh = (parseFloat(xbar1-xbar2)+marginerror);
+    var anslowt = (xbar1-xbar2) - marginerrort; var anshight = (parseFloat(xbar1-xbar2)+marginerrort)
+    
+    if (sigma == "known") {
+        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+        document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
+        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+        document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\sigma_1^2}{n_1}+\\frac{\\sigma_2^2}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+    } else if (sigma == "unknown") {
+        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+        document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$"
+        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+        document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n_1 + n_2 - 2 \\\\ &= "+size1+ " + "+size2+ " - 2 \\\\ &= \\underline{"+(size1m1+size2m1) +"} \\end{align}  $$"
+    } 
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 96);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(280, 130);
+    ctx.lineTo(279, 120);
+    ctx.quadraticCurveTo(260, 115, 230, 96);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("0",148,145);
+    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+
+    if (sigma == "known") {
+        ctx.fillText("z",285,132);
+        ctx.fillText("zα/2",220,145);
+    } else if (sigma == "unknown") {
+        ctx.fillText("t",285,132);
+        ctx.fillText("tα/2",220,145);   
+        //ctx.fillText("df = "+sizem1,220,40); 
+    }
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.stroke();
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    
+    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    
+    table6 = "<td>"+ size1m1 +"</td><td>"+tinv(.20,size1m1).toFixed(3)+"</td><td>"+tinv(.10,size1m1).toFixed(3)+"</td><td>"+tinv(.05,size1m1).toFixed(3)+"</td><td>"+tinv(.025,size1m1).toFixed(3)+"</td><td>"+tinv(.01,size1m1).toFixed(3)+"</td><td>"+tinv(.005,size1m1).toFixed(3)+"</td>"
+    
+    
+    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    
+    if (sigma == "known") {
+        document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+    } else if (sigma == "unknown") {
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\underline{"+talphahalf.toFixed(3)+"} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+(xbar1-xbar2) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
+    } 
+    
+    MathJax.typeset();
+}
+
+function conint2(){
+    $("#explanation").show();
+    $("#expconf").show();
+    var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
+    var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
+    var pbar1 = document.getElementById("xbar1").value;
+    var pbar2 = document.getElementById("xbar2").value;
+    var conlev = document.getElementById("conlev").value;
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,size1m1);
+    var marginerror0 = parseFloat(pbar1)*parseFloat((1-parseFloat(pbar1)))/parseFloat(size1)
+    var marginerror = zalphahalf * Math.sqrt((pbar2*(1-pbar2))/size2+(pbar2*(1-pbar2))/size2);
+    var anslow = (pbar1-pbar2) - marginerror; var anshigh = (parseFloat(pbar1-pbar2)+marginerror);
+    
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+    document.getElementById("output1").innerHTML = "$$ \\bar{p}_1 - \\bar{p}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}_1(1-\\bar{p}_1)}{n_1}+\\frac{\\bar{p}_2(1-\\bar{p}_2)}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 96);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(280, 130);
+    ctx.lineTo(279, 120);
+    ctx.quadraticCurveTo(260, 115, 230, 96);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("0",148,145);
+    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+
+    ctx.fillText("z",285,132);
+    ctx.fillText("zα/2",220,145);
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.stroke();
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    
+    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    
+    table6 = "<td>"+ size1m1 +"</td><td>"+tinv(.20,size1m1).toFixed(3)+"</td><td>"+tinv(.10,size1m1).toFixed(3)+"</td><td>"+tinv(.05,size1m1).toFixed(3)+"</td><td>"+tinv(.025,size1m1).toFixed(3)+"</td><td>"+tinv(.01,size1m1).toFixed(3)+"</td><td>"+tinv(.005,size1m1).toFixed(3)+"</td>"
+    
+    
+    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + pbar1 + " - "+ pbar2 +"\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar1+"(1-"+pbar1+")}{"+size1+"}+\\frac{"+pbar2+"(1-"+pbar2+")}{"+size2+"}}$$ $$"+parseFloat((pbar1-pbar2).toFixed(2)) + "\\pm" +marginerror.toFixed(3) + "$$ $$ \\boxed{" + anslow.toFixed(3) + "\\text{ to }" + anshigh.toFixed(3) + "} $$"
+    
+    MathJax.typeset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function hyptest(){
     var x = document.getElementById("parameter1").value;
@@ -1551,66 +1884,63 @@ function hyptest2(){
 }
 
 function example1(){
+    document.getElementById("samplestat").value = "mean"
     $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-    document.getElementById("parameter1").value = "mean"
-    document.getElementById("parameter2").innerHTML = "&mu;"
-    document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
-    $("#less").show();
-    $("#greater").hide();
-    $("#notequal").hide();
-    document.getElementById('tail').value="lower"
-    document.getElementById('muknot').value="20"
-    document.getElementById('muknotvalue').innerHTML="20"
-    document.getElementById('size').value="50"
-    document.getElementById('xbar').value="19.4"
-    document.getElementById('stdev').value="2"
+    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+    document.getElementById("standdev2").innerHTML = "&sigma;₂";
+    document.getElementById('size1').value="36"
+    document.getElementById('size2').value="49"
+    document.getElementById('xbar1').value="40"
+    document.getElementById('xbar2').value="35"
+    document.getElementById('stdev1').value="9"
+    document.getElementById('stdev2').value="10"
     document.getElementById('sigma').value="known"
-    document.getElementById('alpha').value=".05"
     MathJax.typeset();
 }
 
 function example2(){
+    document.getElementById("samplestat").value = "mean"
     $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-    document.getElementById("parameter1").value = "mean"
-    document.getElementById("parameter2").innerHTML = "&mu;"
-    document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
-    $("#less").hide();
-    $("#greater").show();
-    $("#notequal").hide();
-    document.getElementById('tail').value="upper"
-    document.getElementById('muknot').value="12"
-    document.getElementById('muknotvalue').innerHTML="12"
-    document.getElementById('size').value="25"
-    document.getElementById('xbar').value="14"
-    document.getElementById('stdev').value="4.32"
+    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+    document.getElementById("standdev2").innerHTML = "s₂";
+    document.getElementById('size1').value="28"
+    document.getElementById('size2').value="22"
+    document.getElementById('xbar1').value="1025"
+    document.getElementById('xbar2').value="910"
+    document.getElementById('stdev1').value="150"
+    document.getElementById('stdev2').value="125"
     document.getElementById('sigma').value="unknown"
-    document.getElementById('alpha').value=".05"
     MathJax.typeset();
 }
 
 function example3(){
+    document.getElementById("samplestat").value = "proportion"
     $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
-    document.getElementById("parameter1").value = "proportion"
-    document.getElementById("parameter2").innerHTML = "p"
-    document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
-    $("#less").hide();
-    $("#greater").hide();
-    $("#notequal").show();
-    document.getElementById('tail').value="two"
-    document.getElementById('muknot').value=".20"
-    document.getElementById('muknotvalue').innerHTML=".20"
-    document.getElementById('size').value="400"
-    document.getElementById('xbar').value=".175"
-    document.getElementById('alpha').value=".05"
+    $("#sd11").hide(); $("#sd22").hide(); $("#sd33").hide();
+    document.getElementById("samplestat2").innerHTML = "p&#772;₂";
+    document.getElementById('size1').value="250"
+    document.getElementById('size2').value="300"
+    document.getElementById('xbar1').value=".14"
+    document.getElementById('xbar2').value=".09"
     MathJax.typeset();
 }
 
 function switchhypothesis() {
     $("#samplesize").show(); $("#confidence").hide();
     $("#switchhypothesis").hide(); $("#switchconfidence").show();
+    $("#nullalternative").show();
+    $("#hypothesistitle").show(); $("#confidencetitle").hide();
+    $("#levelsignificance").show(); $("#confidencelevel").hide();
+    $("#hypsolve").show(); $("#confsolve").hide();
 }
  
 function switchconfidence() {
     $("#samplesize").hide(); $("#confidence").show();
     $("#switchhypothesis").show(); $("#switchconfidence").hide();
+    $("#nullalternative").hide();
+    $("#hypothesistitle").hide(); $("#confidencetitle").show();
+    $("#levelsignificance").hide(); $("#confidencelevel").show();
+    $("#hypsolve").hide(); $("#confsolve").show();
 }
