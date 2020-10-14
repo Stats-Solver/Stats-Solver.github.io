@@ -1,6 +1,6 @@
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide(); $("#nullalternative").hide();
 $("#switchconfidence").hide(); $("#hypothesistitle").hide(); $("#levelsignificance").hide();
-$("#hypsolve").hide(); $("#confsolve").show();
+$("#hypsolve").hide(); $("#confsolve").show(); $("#confidenceexamples").show(); $("#hypothesisexamples").hide();
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -688,22 +688,26 @@ function hyptest1(){
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var xbar = document.getElementById("xbar").value;
-    var stdev = document.getElementById("stdev").value;
+    var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
+    var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
+    var dfree = parseFloat(size1)+parseFloat(size2)-2
+    var xbar1 = document.getElementById("xbar1").value;
+    var xbar2 = document.getElementById("xbar2").value;
+    var stdev1 = document.getElementById("stdev1").value;
+    var stdev2 = document.getElementById("stdev2").value;
     var alpha = document.getElementById("alpha").value;
-    var test = (xbar-muknot)/(stdev/Math.sqrt(size));
+    var test = ((xbar1-xbar2)-muknot)/Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2));
     var testtwo = -Math.abs(test);
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
     var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
-    var tcless = -tinv(alpha,sizem1); var tcmore = tinv(alpha,sizem1)
-    var tctwo1 = -tinv(alpha/2,sizem1); var tctwo2 = tinv(alpha/2,sizem1); 
+    var tcless = -tinv(alpha,size1m1); var tcmore = tinv(alpha,size1m1)
+    var tctwo1 = -tinv(alpha/2,size1m1); var tctwo2 = tinv(alpha/2,size1m1); 
     if (sigma == "known") {
             var degfree = ""
         } else if (sigma == "unknown") {
-            var degfree = "$$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= \\underline{"+(size-1)+"} \\end{align} $$"
+            var degfree = "$$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n_1 + n_2 - 2 \\\\ &= "+size1+"+"+size2+" - 2 \\\\ &= \\underline{"+dfree+"} \\end{align} $$"
     }
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
@@ -741,7 +745,7 @@ function hyptest1(){
         var tailsign = "\\leq";
         var stndsymb = "s"
         var cvalsymb = "-t_\\alpha";
-        var pvalue = compute(test,size-1);
+        var pvalue = compute(test,size1-1);
         if (pvalue > .2) {
             var pval = ".20 \\text{ to } 1"
         } else if (pvalue <.2 && pvalue >.1) {
@@ -766,7 +770,7 @@ function hyptest1(){
         var tailsign = "\\geq";
         var stndsymb = "s"
         var cvalsymb = "t_\\alpha";
-        var pvalue = 1 - compute(test,size-1);
+        var pvalue = 1 - compute(test,size1-1);
         if (pvalue > .2) {
             var pval = ".20 \\text{ to } 1"
         } else if (pvalue <.2 && pvalue >.1) {
@@ -945,7 +949,7 @@ function hyptest1(){
     
     table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
     
-    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    table6 = "<td>"+ dfree +"</td><td>"+tinv(.20,dfree).toFixed(3)+"</td><td>"+tinv(.10,dfree).toFixed(3)+"</td><td>"+tinv(.05,dfree).toFixed(3)+"</td><td>"+tinv(.025,dfree).toFixed(3)+"</td><td>"+tinv(.01,dfree).toFixed(3)+"</td><td>"+tinv(.005,dfree).toFixed(3)+"</td>"
     
     
     
@@ -989,16 +993,16 @@ function hyptest1(){
     } 
     
     if (tail == "lower") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\frac{"+stndsymb+"_1^2}{n_1}+\\frac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\frac{"+stdev1+"^2}{ "+size1+"}+\\frac{"+stdev2+"^2}{ "+size2+"}}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
     } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$"+degfree+" <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\frac{"+stndsymb+"_1^2}{n_1}+\\frac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\frac{"+stdev1+"^2}{ "+size1+"}+\\frac{"+stdev2+"^2}{ "+size2+"}}} \\\\    &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$"+degfree+" <b><u>p-Value Approach<u></b>"
     } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\frac{"+stndsymb+"_1^2}{n_1}+\\frac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\frac{"+stdev1+"^2}{ "+size1+"}+\\frac{"+stdev2+"^2}{ "+size2+"}}} \\\\   &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach<u></b>"
     }
     
     
     if (tail == "lower") {
-        var c = document.getElementById("myCanvas1");
+        var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
         ctx.strokeStyle = 'lightgray';
@@ -1047,7 +1051,7 @@ function hyptest1(){
         ctx.lineTo(70, 125);
         ctx.stroke();
     } else if (tail == "upper") {
-        var c = document.getElementById("myCanvas1");
+        var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
         ctx.strokeStyle = 'lightgray';
@@ -1097,7 +1101,7 @@ function hyptest1(){
         ctx.stroke();
 
     } else if (tail == "two") {
-        var c = document.getElementById("myCanvas1");
+        var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
         ctx.strokeStyle = 'lightgray';
@@ -1377,10 +1381,13 @@ function hyptest2(){
     $("#explanation").show();
     var tail = document.getElementById("tail").value;
     var pknot = document.getElementById("muknot").value;
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var pbar = document.getElementById("xbar").value;
+    var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
+    var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
+    var pbar1 = document.getElementById("xbar1").value;
+    var pbar2 = document.getElementById("xbar2").value;
+    var ppool = (size1*pbar1+size2*pbar2)/(parseFloat(size1)+parseFloat(size2))
     var alpha = document.getElementById("alpha").value;
-    var test = (pbar-pknot)/Math.sqrt(pbar*(1-pbar)/size);
+    var test = (pbar1-pbar2)/Math.sqrt(ppool*(1-ppool)*(1/size1+1/size2));
     var testtwo = -Math.abs(test);
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
@@ -1539,16 +1546,16 @@ function hyptest2(){
     } 
     
     if (tail == "lower") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach</u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{(\\bar{p}_1-\\bar{p}_2)}{\\sqrt{\\bar{p}(1-\\bar{p})\\left(\\dfrac{1}{n_1}+\\dfrac{1}{n_2}\\right)}} \\\\ &=\\frac{("+pbar1+"-"+pbar2+")}{\\sqrt{"+parseFloat(ppool.toFixed(2))+"(1-"+parseFloat(ppool.toFixed(2))+")\\left(\\dfrac{1}{ "+size1+"}+\\dfrac{1}{ "+size2+"}\\right)}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach</u></b>"
     } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$ <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{(\\bar{p}_1-\\bar{p}_2)}{\\sqrt{\\bar{p}(1-\\bar{p})\\left(\\dfrac{1}{n_1}+\\dfrac{1}{n_2}\\right)}} \\\\ &=\\frac{("+pbar1+"-"+pbar2+")}{\\sqrt{"+parseFloat(ppool.toFixed(2))+"(1-"+parseFloat(ppool.toFixed(2))+")\\left(\\dfrac{1}{ "+size1+"}+\\dfrac{1}{ "+size2+"}\\right)}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach</u></b>"
     } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\ &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }z &=\\dfrac{(\\bar{p}_1-\\bar{p}_2)}{\\sqrt{\\bar{p}(1-\\bar{p})\\left(\\dfrac{1}{n_1}+\\dfrac{1}{n_2}\\right)}} \\\\ &=\\frac{("+pbar1+"-"+pbar2+")}{\\sqrt{"+parseFloat(ppool.toFixed(2))+"(1-"+parseFloat(ppool.toFixed(2))+")\\left(\\dfrac{1}{ "+size1+"}+\\dfrac{1}{ "+size2+"}\\right)}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach</u></b>"
     }
     
     
     if (tail == "lower") {
-        var c = document.getElementById("myCanvas1");
+        var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
         ctx.strokeStyle = 'lightgray';
@@ -1591,7 +1598,7 @@ function hyptest2(){
         ctx.lineTo(70, 125);
         ctx.stroke();
     } else if (tail == "upper") {
-        var c = document.getElementById("myCanvas1");
+        var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
         ctx.strokeStyle = 'lightgray';
@@ -1635,7 +1642,7 @@ function hyptest2(){
         ctx.stroke();
 
     } else if (tail == "two") {
-        var c = document.getElementById("myCanvas1");
+        var c = document.getElementById("myCanvas");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
         ctx.strokeStyle = 'lightgray';
@@ -1935,6 +1942,7 @@ function switchhypothesis() {
     $("#hypothesistitle").show(); $("#confidencetitle").hide();
     $("#levelsignificance").show(); $("#confidencelevel").hide();
     $("#hypsolve").show(); $("#confsolve").hide();
+    $("#confidenceexamples").hide(); $("#hypothesisexamples").show();
 }
  
 function switchconfidence() {
@@ -1944,4 +1952,76 @@ function switchconfidence() {
     $("#hypothesistitle").hide(); $("#confidencetitle").show();
     $("#levelsignificance").hide(); $("#confidencelevel").show();
     $("#hypsolve").hide(); $("#confsolve").show();
+    $("#confidenceexamples").show(); $("#hypothesisexamples").hide();
+}
+
+function example4(){
+    $("#less").hide();
+    $("#greater").hide();
+    $("#notequal").show();
+    document.getElementById('muknot').value="0"
+    document.getElementById('muknotvalue').innerHTML="0"
+    document.getElementById("samplestat").value = "mean"
+    document.getElementById("parameter1").value = "mean"
+    document.getElementById("parameter2").innerHTML = "&mu;₁ - &mu;₂"
+    document.getElementById("tail").value = "two"
+    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+    document.getElementById("standdev2").innerHTML = "&sigma;₂";
+    document.getElementById('size1').value="30"
+    document.getElementById('size2').value="40"
+    document.getElementById('xbar1').value="82"
+    document.getElementById('xbar2').value="78"
+    document.getElementById('stdev1').value="10"
+    document.getElementById('stdev2').value="10"
+    document.getElementById('alpha').value=".05"
+    document.getElementById('sigma').value="known"
+    MathJax.typeset();
+}
+
+function example5(){
+    $("#less").hide();
+    $("#greater").hide();
+    $("#notequal").show();
+    document.getElementById('muknot').value="0"
+    document.getElementById('muknotvalue').innerHTML="0"
+    document.getElementById("samplestat").value = "mean"
+    document.getElementById("parameter1").value = "mean"
+    document.getElementById("parameter2").innerHTML = "&mu;₁ - &mu;₂"
+    document.getElementById("tail").value = "two"
+    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+    document.getElementById("standdev2").innerHTML = "s₂";
+    document.getElementById('size1').value="12"
+    document.getElementById('size2').value="12"
+    document.getElementById('xbar1').value="325"
+    document.getElementById('xbar2').value="286"
+    document.getElementById('stdev1').value="40"
+    document.getElementById('stdev2').value="44"
+    document.getElementById('alpha').value=".05"
+    document.getElementById('sigma').value="unknown"
+    MathJax.typeset();
+}
+
+function example6(){
+    $("#less").hide();
+    $("#greater").hide();
+    $("#notequal").show();
+    document.getElementById('muknot').value="0"
+    document.getElementById('muknotvalue').innerHTML="0"
+    document.getElementById("samplestat").value = "proportion"
+    document.getElementById("parameter1").value = "proportion"
+    document.getElementById("parameter2").innerHTML = "p₁ - p₂"
+    document.getElementById("tail").value = "two"
+    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    $("#sd11").hide(); $("#sd22").hide(); $("#sd33").hide();
+    document.getElementById("samplestat2").innerHTML = "p&#772;₂";
+    document.getElementById('size1').value="250"
+    document.getElementById('size2').value="300"
+    document.getElementById('xbar1').value=".14"
+    document.getElementById('xbar2').value=".09"
+    document.getElementById('alpha').value=".05"
+    MathJax.typeset();
 }
