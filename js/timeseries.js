@@ -365,12 +365,12 @@ function averageforecast() {
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\frac{" + sums + "}{" + r + "} = " + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
+        table += "<td>$ \\dfrac{" + sums + "}{" + r + "} = " + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
         table += "</tr>";
     }
     sums = sums + "+" + values[r-1]
     sumsvalue = sumsvalue + values[r-1]
-    document.getElementById("output").innerHTML = table + "</table> $ F_" + (rows+1) + " = \\frac{" + sums + "}{" + rows + "} = \\boxed{" + parseFloat((sumsvalue/rows).toFixed(2)) + "} $"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + rows + "} = \\boxed{" + parseFloat((sumsvalue/rows).toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -473,7 +473,7 @@ function averagemape() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue/r)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/r)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue/r)/values[r]
         sumsvalue += values[r]
@@ -486,7 +486,7 @@ function averagemape() {
 function movingforecast2() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order two, the forecast is equal to the average of the previous two actual values."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\frac{Y_{t-1}+Y_t}{2}$"
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-1}+Y_t}{2}$$"
     document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
@@ -502,7 +502,7 @@ function movingforecast2() {
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\frac{" + sums + "}{" + 2 + "} = " + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
+        table += "<td>$ \\dfrac{" + sums + "}{" + 2 + "} = " + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
         table += "</tr>";
     }
     sums = values[r-2] + "+" + values[r-1]
@@ -614,7 +614,7 @@ function movingmape2() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue/2)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) +"}{" + values[r] + "}  \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/2)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue/2)/values[r]
     }
@@ -626,7 +626,7 @@ function movingmape2() {
 function movingforecast3() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order three, the forecast is equal to the average of the previous three actual values."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\frac{Y_{t-2}+Y_{t-1}+Y_t}{3}$"
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-2}+Y_{t-1}+Y_t}{3}$$"
     document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
@@ -643,7 +643,7 @@ function movingforecast3() {
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\frac{" + sums + "}{" + 3 + "} = " + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
+        table += "<td>$ \\dfrac{" + sums + "}{" + 3 + "} = " + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
         table += "</tr>";
     }
     sums = values[r-3] + "+" + values[r-2] + "+" + values[r-1]
@@ -759,7 +759,7 @@ function movingmape3() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue/3)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/3)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue/3)/values[r]
     }
@@ -771,7 +771,7 @@ function movingmape3() {
 function movingforecast4() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order four, the forecast is equal to the average of the previous four actual values."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\frac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$"
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$$"
     document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
@@ -789,7 +789,7 @@ function movingforecast4() {
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\frac{" + sums + "}{" + 4 + "} = " + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
+        table += "<td>$ \\dfrac{" + sums + "}{" + 4 + "} = " + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
         table += "</tr>";
     }
     sums = values[r-4] + "+" + values[r-3] + "+" + values[r-2] + "+" + values[r-1]
@@ -909,7 +909,7 @@ function movingmape4() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue/4)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/4)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue/4)/values[r]
     }
@@ -1059,7 +1059,7 @@ function weightedmape2() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat(sumsvalue.toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue)/values[r]
     }
@@ -1219,7 +1219,7 @@ function weightedmape3() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat(sumsvalue.toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue)/values[r]
     }
@@ -1389,7 +1389,7 @@ function weightedmape4() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat(sumsvalue.toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((values[r]-sumsvalue).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue).toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs(values[r]-sumsvalue)/values[r]).toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         total += 100*Math.abs(values[r]-sumsvalue)/values[r]
     }
@@ -1548,7 +1548,7 @@ function exponentialmape() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat(aperror.toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat(aperror.toFixed(2)) + "$</td>";
         table += "</tr>";
         total += aperror
     }
@@ -1775,7 +1775,7 @@ function linearmape() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat(aperror.toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat(aperror.toFixed(2)) + "$</td>";
         table += "</tr>";
         total += aperror
     }
@@ -1968,7 +1968,7 @@ function holtmape() {
         table += "<td>$" + values[r] + "$</td>";
         table += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\biggr| \\times 100 = " + parseFloat(aperror.toFixed(2)) + "$</td>";
+        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat(aperror.toFixed(2)) + "$</td>";
         table += "</tr>";
         total += aperror
         level1 = level
