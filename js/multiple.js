@@ -128,8 +128,8 @@ function stat(){
 
 function interpretation(){
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "Each slope coefficient can be interpreted as the change in the dependent variable corresponding to a one-unit increase in the independent variable, holding the other independent variables constant."
-    document.getElementById("formulatext").innerHTML = "The formulas for computing the least squares estimates of the coefficients in multiple regression involves the use of matrix algebra. "
+    document.getElementById("descriptiontext").innerHTML = "Each slope coefficient can be interpreted as the change in the dependent variable (y) corresponding to a one-unit increase in the independent variable (xᵢ), holding the other independent variables constant."
+    document.getElementById("formulatext").innerHTML = "The formulas for estimating the coefficients in multiple regression involves the use of more advanced math. "
     document.getElementById("explanationtext").innerHTML = "The interpretation of the coefficients in a multiple regression is identical to that in a simple regression except for the addition of holding other independent variables constant."
     var b0 = document.getElementById("b1").value;
     var b1 = document.getElementById("b1").value;
@@ -208,7 +208,13 @@ function prediction(){
 function calcprediction(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Predictions can be made by plugging in values of the independent variable into the estimated regression equation."
-    document.getElementById("formulatext").innerHTML = "$$ \\hat{y} = b_0 + b_1 x_1 + \\cdots + b_p x_p $$ "
+    if (ind == 3) {
+        document.getElementById("formulatext").innerHTML = "$$ \\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 $$ "
+    } else if (ind == 4) {
+        document.getElementById("formulatext").innerHTML = "$$ \\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 + b_4 x_4 $$ "
+    } else {
+        document.getElementById("formulatext").innerHTML = "$$ \\hat{y} = b_0 + b_1 x_1 + b_2 x_2 $$ "
+    }
     document.getElementById("explanationtext").innerHTML = "The interpretation of the coefficients in a multiple regression is identical to that in a simple regression except for the addition of holding other independent variables constant."
     var b0 = document.getElementById("b0").value;
     var b1 = document.getElementById("b1").value;
@@ -300,9 +306,9 @@ function msr(){
 
 function calcmsr(){
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ R_a^2 = 1 - (1 - R^2) \\frac{n-1}{n-p-1} $$ "
-    document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
+    document.getElementById("descriptiontext").innerHTML = "Like the mean square error, the mean square regression is an estimate of the error term."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{p} $$ "
+    document.getElementById("explanationtext").innerHTML = "The MSR is divided by p because the SSR has p degrees of freedom."
     var ssr = document.getElementById('ssrvalue').value
     var p = ind
     document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\frac{\\text{SSR}}{p} \\\\ &= \\frac{"+ssr+"}{" +p +"} \\\\ &= \\boxed{"+parseFloat((ssr/p).toFixed(2))+"} \\end{align} $$"
@@ -318,9 +324,9 @@ function mse(){
 
 function calcmse(){
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ R_a^2 = 1 - (1 - R^2) \\frac{n-1}{n-p-1} $$ "
-    document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
+    document.getElementById("descriptiontext").innerHTML = "Like the mean square regression, the mean square error is an estimate of the error term."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-p-1} $$ "
+    document.getElementById("explanationtext").innerHTML = "The MSE is divided by n-p-1 because the SSE has n-p-1 degrees of freedom."
     var sst = document.getElementById('sstvalue').value;
     var ssr = document.getElementById('ssrvalue').value;
     var sse = sst - ssr;

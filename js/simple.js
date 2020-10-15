@@ -1,4 +1,5 @@
-$("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();
+$("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();xval
+$("#xval").hide();
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
 	var T=1/(1+.2316419*Math.abs(X));
@@ -36,6 +37,14 @@ function avg(input){
     return sum(input)/input.length
 }
 
+function showthings(){
+    $("#xval").hide();
+    var x = document.getElementById("stat").value;
+    if (x == "prediction"){
+        $("#xval").show();
+    } 
+}
+
 function stat(){
     $("#output").empty(); $("#explanation").hide(); 
     $("#meansquare").hide(); $("#standarderror").hide();
@@ -46,6 +55,8 @@ function stat(){
         intercept()
     } else if (x == "equation") {
         equation()
+    } else if (x == "prediction") {
+        prediction()
     } else if (x == "sse") {
         sse()
     } else if (x == "sst") {
@@ -70,6 +81,12 @@ function stat(){
         msr()
     } else if (x == "fstat") {
         fstat()
+    } else if (x == "predicted") {
+        predicted()
+    } else if (x == "residuals") {
+        residuals()
+    } else if (x == "standardized") {
+        standardized()
     } else{
         document.getElementById("output").innerHTML = ""
     }
@@ -211,6 +228,52 @@ function equation(){
     
     
     document.getElementById("output").innerHTML = "$$ \\begin{align} b_{0} &= "+parseFloat(ansint.toFixed(2))+"\\\\ b_{1} &= "+parseFloat(ansslope.toFixed(2))+"\\end{align}$$ $$\\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope +parseFloat(Math.abs(ansslope).toFixed(2))+"x} $$"
+    MathJax.typeset();
+}
+
+function prediction(){
+    $("#explanation").show(); $("#predict").show();
+    document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
+    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
+    var xvalue = document.getElementById("xvalue").value;
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var ans = ansint + ansslope * xvalue
+    
+    if (ansslope >= 0) {
+        var signslope = "+"
+    } else if (ansslope < 0) {
+        var signslope = "-"
+    } 
+    
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -908,6 +971,113 @@ function fstat(){
     var anststat = ansslope / ansses; var ansmsr = ansssr;
     var ansfstat = ansmsr / ansmse;
     document.getElementById("output").innerHTML = "$$ \\begin{align} F &= \\frac{\\text{MSR}}{\\text{MSE}} \\\\ &= \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} \\\\ &= \\boxed{"+ ansfstat.toFixed(2) + "} \\end{align} $$"
+    MathJax.typeset();
+}
+
+function predicted(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
+    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var interpret = ""
+    if (ansslope > 0){
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>increase by "+parseFloat(ansslope.toFixed(2))+" units </u>on average."
+    } else if (ansslope < 0){
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>decrease by "+parseFloat(Math.abs(ansslope.toFixed(2)))+" units</u> on average."
+    } else {
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
+    }
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\text{Predicted } (\\hat{y})$" + "</td>" + "</tr>";
+    var rows = n_x; var cols = 6;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + y[r] + "$</td>";
+        table += "<td>$" + parseFloat(ansint.toFixed(2)) + " + " + parseFloat(ansslope.toFixed(2)) + " (" + x[r] + ") = " + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2))  + " $</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = table + "</table>"
+    MathJax.typeset();
+}
+
+function residuals(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
+    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var interpret = ""
+    if (ansslope > 0){
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>increase by "+parseFloat(ansslope.toFixed(2))+" units </u>on average."
+    } else if (ansslope < 0){
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>decrease by "+parseFloat(Math.abs(ansslope.toFixed(2)))+" units</u> on average."
+    } else {
+        var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
+    }
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$\\text{Residuals } (e)$" + "</td>" + "</tr>";
+    var rows = n_x; var cols = 6;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + y[r] + "$</td>";
+        table += "<td>$" + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2))  + " $</td>";
+        table += "<td>$" + y[r] + " - " + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2)) + " = " + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = table + "</table>"
     MathJax.typeset();
 }
 

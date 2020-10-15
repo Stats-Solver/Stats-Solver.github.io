@@ -11,6 +11,7 @@
       
       <link rel="stylesheet" type="text/css" href="/css/style.css">
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
 
     <title>Simple Regression Calculator - Stats Solver</title>
       
@@ -113,6 +114,23 @@
     </div>
           </div>
       
+      
+      
+      
+      <div class="container mb-3" id = "xval">
+          <div class="row justify-content-center">
+              
+              <table id="statistics">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="x1s">$x=$ <input type="text" style="width:70px;" id="xvalue" class="hypinput2"></td>  
+          </tr>
+        </table> 
+              </div>
+              </div>
+      
+      
+      
+      
       <div class="container">
           <div class="row justify-content-center">
         
@@ -122,6 +140,7 @@
                 <option value="slope">Slope</option>
                 <option value="intercept">Intercept</option>
                 <option value="equation">Estimated Regression Equation</option>
+                <option value="prediction">Prediction</option>
                 <option value="sse">Sum of Squares Error</option>
                 <option value="sst">Sum of Squares Total</option>
                 <option value="ssr">Sum of Squares Regression</option>
@@ -130,9 +149,14 @@
                 <option value="mse">Mean Square Error</option>
                 <option value="see">Standard Error of Estimate</option>
                 <option value="ses">Standard Error of Slope</option>
-                <option value="tstat">t-Statistic</option>
+                <option value="tstat">t-Test</option>
                 <option value="msr">Mean Square Regression</option>
-                <option value="fstat">F-Statistic</option>
+                <option value="fstat">F-Test</option>
+                <!--<option value="confinterval">Confidence Interval</option>
+                <option value="predinterval">Prediction Interval</option>-->
+                <option value="predicted">Predicted Values</option>
+                <option value="residuals">Residuals</option>
+                <!--<option value="standardized">Standardized Residuals</option>-->
             </select>
         </div> 
               <div class="col-4 col-md-2 inputWrapper">

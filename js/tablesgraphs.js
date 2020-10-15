@@ -1125,7 +1125,7 @@ function relativeexp(){
 }
 
 function examplexvalues(){
-    document.getElementById('values').value="Coke, Sprite, Pepsi, Coke, Coke, Sprite"
+    document.getElementById('values').value="B, A, B, B, C, A, C, B, A, B"
 }
 
 function examplexvalues2(){
