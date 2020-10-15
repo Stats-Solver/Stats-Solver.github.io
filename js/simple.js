@@ -95,7 +95,7 @@ function stat(){
 
 function slope(){
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
+    document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) corresponding to a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} $$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
@@ -279,7 +279,9 @@ function prediction(){
 
 function sse(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{SSE} = \\sum(y - \\hat{y})^2 $$"
+    document.getElementById("descriptiontext").innerHTML = "The sum of squares error meausure the variability of the observations around the estimation regression equation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{SSE} = \\sum(y - \\hat{y})^2 $$"
+    document.getElementById("explanationtext").innerHTML = "The closer the observations are to the estimate regression line, the smaller the SSE will be."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -337,7 +339,9 @@ function sse(){
 
 function sst(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{SST} = \\sum(y - \\bar{y})^2 $$"
+    document.getElementById("descriptiontext").innerHTML = "The sum of squares total meausures the overall variability of the value of the dependent variable (y)."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\sum(y - \\bar{y})^2 $$"
+    document.getElementById("explanationtext").innerHTML = "The closer the values of the dependent variable are to their mean, the smaller the SST will be."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -402,7 +406,9 @@ function sst(){
 
 function ssr(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$"
+    document.getElementById("descriptiontext").innerHTML = "The sum of squares regression meausures the distance between the estimated regression line and the mean of the dependent variable (y)."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$"
+    document.getElementById("explanationtext").innerHTML = "The closer the estimated regression line is to the mean of the dependent variable, the smaller the SSR will be."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -457,7 +463,9 @@ function ssr(){
 
 function rsquared(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The coefficient of determination is the ratio of the SSR to the SST."
+    document.getElementById("descriptiontext").innerHTML = "The coefficient of determination is a measure of the goodness of fit for the estimated regression equation."
+    document.getElementById("formulatext").innerHTML = "$$ R^2 = \\frac{\\text{SSR}}{\\text{SST}} $$"
+    document.getElementById("explanationtext").innerHTML = "The coefficient of determination takes a value between 0 and 1, with a higher value indicating a better fit."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
@@ -514,6 +522,8 @@ function rsquared(){
 
 function correlation(){
     $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationship between the dependent and independent variables."
+    document.getElementById("formulatext").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} $$"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -615,7 +625,9 @@ function calcmeansquare() {
 
 function mse(){
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the SSE divided by difference between the sample size and the number of estimated parameters."
+    document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = (\\text{sign of } b_1) \\sqrt{r^2} $$"
+    document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;

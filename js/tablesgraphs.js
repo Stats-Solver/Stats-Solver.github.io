@@ -287,8 +287,7 @@ function relativequal(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Relative}$ <br> $\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -316,8 +315,7 @@ function relativequant(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -392,8 +390,7 @@ function percentqual(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -424,8 +421,7 @@ function percentquant(){
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr><td></td><td style='padding: 0px 0px'>$\\text{Relative}$</td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     var relfreq = counts.map( function(value) {
@@ -482,7 +478,7 @@ function percentquant(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     MathJax.typeset();
 }
 
@@ -519,39 +515,300 @@ function calcbar(){
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
     
-    google.charts.load('current', {packages: ['corechart', 'bar']});
-    google.charts.setOnLoadCallback(drawBasic);
+    if (len == 2) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
 
-    function drawBasic() {
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
 
-      var data = new google.visualization.DataTable();
-      data.addColumn('timeofday', 'Time of Day');
-      data.addColumn('number', 'Motivation Level');
-      var x = ['Coke','Pepsi','Sprite']
-      var y = [3,1,2]
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+          ]);
 
-      var data = google.visualization.arrayToDataTable([
-        ['Class', 'Frequency'],
-        [x[0], y[0]],
-        [x[1], y[1]],
-        [x[2], y[2]],
-      ]);
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
 
-      var options = {
-          legend: 'none',
-          vAxis: {title: 'Frequency'},
-          hAxis: {title: 'Class'}
-      };
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
 
-      var chart = new google.visualization.ColumnChart(
-        document.getElementById('charts'));
+          chart.draw(data, options);
+        }
+    } else if (len == 3) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
 
-      chart.draw(data, options);
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 4) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 5) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 6) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 7) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 8) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+            [eachonesort[7], counts[7]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 9) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+            [eachonesort[7], counts[7]],
+            [eachonesort[8], counts[8]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 10) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+            [eachonesort[7], counts[7]],
+            [eachonesort[8], counts[8]],
+            [eachonesort[9], counts[9]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
     }
     
-    //document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
-    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+
     MathJax.typeset();
+
 }
 
 function pie(){
@@ -568,16 +825,15 @@ function pie(){
 function calcpie(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "A pie chart is a graphical representation of a percent frequency distribution."
-    document.getElementById("formulatext").innerHTML = "In a pie chart, the pie is divided according to the percent frequencies for each class."
-    document.getElementById("explanationtext").innerHTML = "Pie is tasty."
+    document.getElementById("formulatext").innerHTML = "In a pie chart, the circle is divided according to the percent frequencies of each class."
+    document.getElementById("explanationtext").innerHTML = "Pie charts can also be made using relative frequency distributions."
     $("#myCanvas").hide();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
     var tot = sum(counts);
-    var table = "<tr><td></td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var relfreq = counts.map( function(value) {
         return value / tot;
@@ -596,7 +852,7 @@ function calcpie(){
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
       
-      var myArray = [['Class', 'Frequency'], [eachonesort[0], counts[0]],[eachonesort[1], counts[1]], [eachonesort[2], counts[2]]]
+      var myArray = [['Class', 'Frequency'], [eachonesort[0], counts[0]],[eachonesort[1], counts[1]], [eachonesort[2], counts[2]], [eachonesort[3], counts[3]], [eachonesort[4], counts[4]], [eachonesort[5], counts[5]], [eachonesort[6], counts[6]], [eachonesort[7], counts[7]], [eachonesort[8], counts[8]], [eachonesort[9], counts[9]]]
 
       function drawChart() {
 
@@ -607,7 +863,7 @@ function calcpie(){
         chart.draw(data);
       }
     
-    //document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
 
     MathJax.typeset();
 
@@ -755,9 +1011,7 @@ function cumfrequency2(){
         cumquants[i] = cumquants[i-1] + quants[i]
     }
     
-    
-    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < 1; r++){
@@ -774,7 +1028,6 @@ function cumfrequency2(){
         table += "<td>$" + cumquants[r-1] + " + " + quants[r] +" = " + cumquants[r] + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td> $-$ </td></tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -842,9 +1095,7 @@ function cumrelative2(){
         cumquants[i] = cumquants[i-1] + quants[i]
     }
     
-    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
-    table = table + "<tr><td></td><td>$\\text{Relative}$</td><td style='padding: 0px 0px'>$\\text{Relative}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     
 
@@ -867,7 +1118,6 @@ function cumrelative2(){
         table += "<td>$" + parseFloat(cumrel[r-1].toFixed(2))+ " + " + parseFloat(rel[r].toFixed(2)) + " = " + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$-$</td></tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -1129,7 +1379,7 @@ function examplexvalues(){
 }
 
 function examplexvalues2(){
-    document.getElementById('values').value="12, 15, 20, 22, 14, 14, 15, 27, 21, 18"
+    document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
     document.getElementById('lower').value="10"
     document.getElementById('upper').value="14"
 }

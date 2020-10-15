@@ -177,7 +177,7 @@ function mean(){
     $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
-    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
+    document.getElementById("explanationtext").innerHTML = "The mean is affected by extreme values (outliers) because its calculation involves to use of all values."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;

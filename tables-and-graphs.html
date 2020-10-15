@@ -10,6 +10,7 @@
       
       <link rel="stylesheet" type="text/css" href="/css/style.css">
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
       
     <title>Tables and Graphs Calculator - Stats Solver</title>
       
@@ -110,6 +111,15 @@
               </div>
         </div>
       
+      <div class = "mb-3" id="firstclass">
+        <table>
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">$\text{First Class: }$ <input type="text" style="width:70px;" id="lower" class="hypinput2" placeholder="Lower"> $ - $ <input type="text" style="width:70px;" id="upper" class="hypinput2" placeholder="Upper"></td>
+            <td class="statistics" id="go"><button id = "buttoncross" class="button btn-outline-primary" onclick="go()">Go</button></td>
+          </tr>
+        </table> 
+        </div>
+      
       <div class="container">
           <div class="row justify-content-center">
         <div class="col-8 col-md-3 mb-3">
@@ -133,16 +143,6 @@
         </div> 
               </div>
         </div>
-      
-      <table id="firstclass">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">First Class:</td>
-            <td class="statistics"><input type="text" style="width:70px;" id="lower" class="hypinput2" placeholder="Lower"></td>
-            <td class="statistics" id="sd2"> - </td>
-            <td class="statistics" id="sd3"><input type="text" style="width:70px;" id="upper" class="hypinput2" placeholder="Upper"></td>
-            <td class="statistics" id="go"><button id = "buttoncross" class="button btn-outline-primary" onclick="go()">Go</button></td>
-          </tr>
-        </table> 
 
       
       <div class="container"> 
