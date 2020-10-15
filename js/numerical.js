@@ -1,6 +1,7 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
 $("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide();
+$("#switchpopulation").hide(); $("#switchsample").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();

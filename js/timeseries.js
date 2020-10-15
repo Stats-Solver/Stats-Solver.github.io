@@ -254,7 +254,7 @@ function naiveerror() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     for (var r = 1; r < rows; r++){
         table += "<tr>";
@@ -382,7 +382,7 @@ function averageerror() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var sumsvalue = values[0]
     for (var r = 1; r < rows; r++){
@@ -487,7 +487,7 @@ function movingforecast2() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order two, the forecast is equal to the average of the previous two actual values."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-1}+Y_t}{2}$$"
-    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
+    document.getElementById("explanationtext").innerHTML = "The higher order the moving average, the more the random fluctuations in the data are smoothed out."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -519,7 +519,7 @@ function movingerror2() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var sumsvalue = values[0]
@@ -627,7 +627,7 @@ function movingforecast3() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order three, the forecast is equal to the average of the previous three actual values."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-2}+Y_{t-1}+Y_t}{3}$$"
-    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
+    document.getElementById("explanationtext").innerHTML = "The higher order the moving average, the more the random fluctuations in the data are smoothed out."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -660,7 +660,7 @@ function movingerror3() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
@@ -772,7 +772,7 @@ function movingforecast4() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order four, the forecast is equal to the average of the previous four actual values."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$$"
-    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
+    document.getElementById("explanationtext").innerHTML = "The higher order the moving average, the more the random fluctuations in the data are smoothed out."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -806,7 +806,7 @@ function movingerror4() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
@@ -920,9 +920,9 @@ function movingmape4() {
 
 function weightedforecast2() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "In a moving average of order two, the forecast is equal to the average of the previous two actual values."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\frac{Y_{t-1}+Y_t}{2}$"
-    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
+    document.getElementById("descriptiontext").innerHTML = "In a weighted moving average, each observation in the moving average is given a different weight."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = w_1 Y_{t-1}+w_2 Y_t$$"
+    document.getElementById("explanationtext").innerHTML = "In a weighted moving average, recent observations typically get more weight."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -958,7 +958,7 @@ function weightederror2() {
     var rows = values.length;
     var weight1 = document.getElementById("weight1").value;
     var weight2 = document.getElementById("weight2").value;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var sumsvalue = values[0]
@@ -1070,9 +1070,9 @@ function weightedmape2() {
 
 function weightedforecast3() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "In a moving average of order three, the forecast is equal to the average of the previous three actual values."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\frac{Y_{t-2}+Y_{t-1}+Y_t}{3}$"
-    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
+    document.getElementById("descriptiontext").innerHTML = "In a weighted moving average, each observation in the moving average is given a different weight."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = w_1 Y_{t-2}+ w_2 Y_{t-1}+ w_3 Y_t$$"
+    document.getElementById("explanationtext").innerHTML = "In a weighted moving average, recent observations typically get more weight."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -1096,7 +1096,7 @@ function weightedforecast3() {
     }
     sums = weight1 + " (" + values[r-3] + ")+" + weight2 + " (" + values[r-2] + ")+" + weight3 + " (" + values[r-1] + ")"
     sumsvalue = weight1*values[r-3] + weight2*values[r-2] + weight3*values[r-1]
-    document.getElementById("output").innerHTML = table + "</table> $ F_" + (rows+1) + " = " + sums + " = \\boxed{" + parseFloat(sumsvalue.toFixed(2)) + "} $"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + sums + " = \\boxed{" + parseFloat(sumsvalue.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1111,7 +1111,7 @@ function weightederror3() {
     var weight1 = document.getElementById("weight1").value;
     var weight2 = document.getElementById("weight2").value;
     var weight3 = document.getElementById("weight3").value;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
@@ -1230,9 +1230,9 @@ function weightedmape3() {
 
 function weightedforecast4() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "In a moving average of order four, the forecast is equal to the average of the previous four actual values."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\frac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$"
-    document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless, random data."
+    document.getElementById("descriptiontext").innerHTML = "In a weighted moving average, each observation in the moving average is given a different weight."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = w_1 Y_{t-3}+ w_2 Y_{t-2}+ w_3 Y_{t-1}+ w_4 Y_t$$"
+    document.getElementById("explanationtext").innerHTML = "In a weighted moving average, recent observations typically get more weight."
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
@@ -1274,7 +1274,7 @@ function weightederror4() {
     var weight2 = document.getElementById("weight2").value;
     var weight3 = document.getElementById("weight3").value;
     var weight4 = document.getElementById("weight4").value;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
@@ -1401,7 +1401,7 @@ function weightedmape4() {
 function exponentialforecast() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $"
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
     document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
     var alpha = document.getElementById("alpha").value;
     var str = document.getElementById("values").value;
@@ -1434,7 +1434,7 @@ function exponentialerror() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "<td>$ "+values[1]+"-"+values[0]+" = " + (values[1]-values[0]) + "$</td>" + "</tr>"
     var forecast = values[0]
@@ -1629,7 +1629,7 @@ function linearerror() {
     }
     var b1 = total1/total2
     var b0 = ybar - b1*tbar
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
     var forecast = 0
     var error = 0
     for (var r = 0; r < rows; r++){
@@ -1787,7 +1787,7 @@ function linearmape() {
 function holtforecast() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
-    document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $"
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
     document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
     var alpha = document.getElementById("alpha").value;
     var beta = document.getElementById("beta").value;
@@ -1829,7 +1829,7 @@ function holterror() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
+    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
     table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var level = 0
     var trend = 0
