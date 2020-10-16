@@ -103,8 +103,29 @@ function avg(input){
 
 function showthings(){
     $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label3").hide();  $("#firstclass").hide();
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
     var x = document.getElementById("stat").value;
-    if (x == "cumfrequency") {
+    if (x == "frequency") {
+        if (isnum == true) {
+            $("#firstclass").show();
+        } else {
+            $("#firstclass").hide();
+        }
+    } else if (x == "relative") {
+        if (isnum == true) {
+            $("#firstclass").show();
+        } else {
+            $("#firstclass").hide();
+        }
+    } else if (x == "percent") {
+        if (isnum == true) {
+            $("#firstclass").show();
+        } else {
+            $("#firstclass").hide();
+        }
+    } else if (x == "cumfrequency") {
         $("#firstclass").show(); $("#go").hide();
     } else if (x == "cumrelative") {
         $("#firstclass").show(); $("#go").hide();
@@ -180,7 +201,7 @@ function frequency(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-         $("#firstclass").show(); $("#go").show();
+        frequencyquant()
     } else {
         frequencyqual()
     }
@@ -271,7 +292,7 @@ function relative(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        $("#firstclass").show(); $("#go").show();
+        relativequant()
     } else {
         relativequal()
     }
@@ -374,7 +395,7 @@ function percent(){
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
     if (isnum == true) {
-        $("#firstclass").show(); $("#go").show();
+        percentquant()
     } else {
         percentqual()
     }
@@ -1185,9 +1206,7 @@ function cumpercent2(){
         cumquants[i] = cumquants[i-1] + quants[i]
     }
     
-    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
-    table = table + "<tr><td></td><td>$\\text{Percent}$</td><td style='padding: 0px 0px'>$\\text{Percent}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td><td>$\\text{Frequency}$</td></tr>";
+    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Percent}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
     var rows = len; var cols = 2;
     
 
@@ -1210,7 +1229,6 @@ function cumpercent2(){
         table += "<td>$" + parseFloat(100*cumrel[r-1].toFixed(2))+ " + " + parseFloat(100*rel[r].toFixed(2)) + " = " + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td><td>$-$</td></tr>";
     document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
     MathJax.typeset();
 }
@@ -1352,7 +1370,47 @@ function calcscatt(){
           [ eachnums[6], eachnums2[6]],
           [ eachnums[7], eachnums2[7]],
           [ eachnums[8], eachnums2[8]],
-          [ eachnums[9], eachnums2[9]]
+          [ eachnums[9], eachnums2[9]],
+          [ eachnums[10], eachnums2[10]],
+          [ eachnums[11], eachnums2[11]],
+          [ eachnums[12], eachnums2[12]],
+          [ eachnums[13], eachnums2[13]],
+          [ eachnums[14], eachnums2[14]],
+          [ eachnums[15], eachnums2[15]],
+          [ eachnums[16], eachnums2[16]],
+          [ eachnums[17], eachnums2[17]],
+          [ eachnums[18], eachnums2[18]],
+          [ eachnums[19], eachnums2[19]],
+          [ eachnums[20], eachnums2[20]],
+          [ eachnums[21], eachnums2[21]],
+          [ eachnums[22], eachnums2[22]],
+          [ eachnums[23], eachnums2[23]],
+          [ eachnums[24], eachnums2[24]],
+          [ eachnums[25], eachnums2[25]],
+          [ eachnums[26], eachnums2[26]],
+          [ eachnums[27], eachnums2[27]],
+          [ eachnums[28], eachnums2[28]],
+          [ eachnums[29], eachnums2[29]],
+          [ eachnums[30], eachnums2[30]],
+          [ eachnums[31], eachnums2[31]],
+          [ eachnums[32], eachnums2[32]],
+          [ eachnums[33], eachnums2[33]],
+          [ eachnums[34], eachnums2[34]],
+          [ eachnums[35], eachnums2[35]],
+          [ eachnums[36], eachnums2[36]],
+          [ eachnums[37], eachnums2[37]],
+          [ eachnums[38], eachnums2[38]],
+          [ eachnums[39], eachnums2[39]],
+          [ eachnums[40], eachnums2[40]],
+          [ eachnums[41], eachnums2[41]],
+          [ eachnums[42], eachnums2[42]],
+          [ eachnums[43], eachnums2[43]],
+          [ eachnums[44], eachnums2[44]],
+          [ eachnums[45], eachnums2[45]],
+          [ eachnums[46], eachnums2[46]],
+          [ eachnums[47], eachnums2[47]],
+          [ eachnums[48], eachnums2[48]],
+          [ eachnums[49], eachnums2[49]]
         ]);
 
         var options = {
@@ -1376,10 +1434,12 @@ function relativeexp(){
 
 function examplexvalues(){
     document.getElementById('values').value="B, A, B, B, C, A, C, B, A, B"
+    $("#firstclass").hide();
 }
 
 function examplexvalues2(){
     document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    $("#firstclass").show();
     document.getElementById('lower').value="10"
     document.getElementById('upper').value="14"
 }

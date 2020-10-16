@@ -682,7 +682,7 @@ function zscores(){
     var ansstd = Math.sqrt(ansvar);
     var ansz = (ansstd / mn) * 100;
     
-    var zval = [' <option>Choose One</option>'];
+    var zval = [' <option>Choose</option>'];
     for (let i=0; i<len; i++){
         zval += ' <option value='+each[i]+'>'+each[i]+'</option>'
     }
@@ -1232,34 +1232,34 @@ function meanexp() {
 }
 
 function examplexvalues(){
-    document.getElementById('values').value="10, 20, 12, 17, 16"
+    document.getElementById('values').value="12, 18, 15, 13, 17"
 }
 
 function examplexvalues2(){
-    document.getElementById('values').value="27, 25, 20, 15, 30, 34, 28, 25"
+    document.getElementById('values').value="25, 22, 18, 17, 31, 33, 26, 20"
 }
 
 function examplevalues3(){
-    document.getElementById('values').value="4, 6, 11, 3, 16"
-    document.getElementById('values2').value="50, 50, 40, 60, 30"
+    document.getElementById('values').value="6, 7, 10, 4, 12"
+    document.getElementById('values2').value="46, 55, 33, 61, 30"
 }
 
 function examplevalues4(){
-    document.getElementById('values').value="6, 11, 15, 21, 27"
-    document.getElementById('values2').value="6, 9, 6, 17, 12"
+    document.getElementById('values').value="4, 12, 11, 18, 25"
+    document.getElementById('values2').value="5, 8, 7, 15, 14"
 }
 
 function examplevalues5(){
-    document.getElementById('expval').value="30"
-    document.getElementById('stdev').value="5"
-    document.getElementById('minval').value="20"
-    document.getElementById('maxval').value="40"
+    document.getElementById('expval').value="20"
+    document.getElementById('stdev').value="3"
+    document.getElementById('minval').value="14"
+    document.getElementById('maxval').value="26"
 }
 
 function examplevalues6(){
-    document.getElementById('expval').value="30"
-    document.getElementById('stdev').value="5"
-    document.getElementById('minval').value="15"
-    document.getElementById('maxval').value="45"
+    document.getElementById('expval').value="20"
+    document.getElementById('stdev').value="3"
+    document.getElementById('minval').value="11"
+    document.getElementById('maxval').value="29"
 }
 

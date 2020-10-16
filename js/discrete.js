@@ -18,6 +18,8 @@ $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
 $("#expectedexamples").show(); $("#standardexamples").hide(); 
 $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
 
+binomialtype = "probability"
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
@@ -565,6 +567,16 @@ function toequal() {
 }
 
 function compbinomial() {
+    if (binomialtype == "expected") {
+        compbinomialexpected()
+    } else if (binomialtype == "variance") {
+        compbinomialvariance()
+    } else {
+        compbinomialprob()
+    }
+}
+
+function compbinomialprob() {
     var probtype = document.getElementById("probtype").value
     if (probtype == "equal") {
         compbinomial1()
@@ -581,18 +593,17 @@ function compbinomial() {
 
 function switchexpected() {
     $("#binomialprobability").hide(); $("#binomialexpected").show(); $("#binomialvariance").hide(); $("#binomialstandard").hide();
+    binomialtype = "expected"
 }
  
 function switchvariance() {
     $("#binomialprobability").hide(); $("#binomialexpected").hide(); $("#binomialvariance").show(); $("#binomialstandard").hide();
-}
-
-function switchstandard() {
-    $("#binomialprobability").hide(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").show();
+    binomialtype = "variance"
 }
  
 function switchprobability() {
     $("#binomialprobability").show(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").hide();
+    binomialtype = "probability"
 }
 
 function compbinomialexpected() {
@@ -601,7 +612,7 @@ function compbinomialexpected() {
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= " + parseFloat((trials*prob).toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -611,17 +622,7 @@ function compbinomialvariance() {
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) = \\sigma &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= " + parseFloat((trials*prob*(1-prob)).toFixed(2)) + " \\end{align} $$"
-    MathJax.typeset();
-}
-
-function compbinomialstandard() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
-    var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= " + parseFloat((trials*prob).toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) = \\sigma^2 &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ $$ \\begin{align} \\sigma &= \\sqrt{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(trials*prob*(1-prob))).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -661,7 +662,7 @@ function compbinomial1() {
     
     var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + parseFloat((1-prob).toFixed(2)) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat(((1-prob)**(trials-num)).toFixed(2))+" \\\\ &= " + parseFloat(ans.toFixed(2))  + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + parseFloat((1-prob).toFixed(2)) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat(((1-prob)**(trials-num)).toFixed(2))+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2))  + "}   \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -747,7 +748,7 @@ function compbinomial2() {
     finalans = finalans + parseFloat(ans.toFixed(2))
         
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2)) + "}   \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -834,7 +835,7 @@ function compbinomial4() {
     finalans = finalans + parseFloat(ans.toFixed(2))
         
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2)) + "}   \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1000,7 +1001,7 @@ function compbinomial3() {
         finalans = finalans + parseFloat(ans.toFixed(2))
 
 
-        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ")\\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - "+parseFloat(finalans.toFixed(2)) + " \\\\ &= "+parseFloat((1-finalans).toFixed(2)) + "   \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ")\\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - "+parseFloat(finalans.toFixed(2)) + " \\\\ &= \\boxed{"+parseFloat((1-finalans).toFixed(2)) + "}   \\end{align} $$"
     }
     
     MathJax.typeset();
@@ -1166,7 +1167,7 @@ function compbinomial5() {
         finalans = finalans + parseFloat(ans.toFixed(2))
 
 
-        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - "+parseFloat(finalans.toFixed(2)) + " \\\\ &= "+parseFloat((1-finalans).toFixed(2)) + "   \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - "+parseFloat(finalans.toFixed(2)) + " \\\\ &= \\boxed{"+parseFloat((1-finalans).toFixed(2)) + "}   \\end{align} $$"
     }
         
     MathJax.typeset();
@@ -1222,7 +1223,7 @@ function comppoisson1() {
     
     var ans = ((ave**num)*(exp**(-ave)))/factorial(num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + (ave**num) + "\\times " + parseFloat((exp**(-ave)).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + (ave**num) + "\\times " + parseFloat((exp**(-ave)).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1253,7 +1254,7 @@ function comppoisson2() {
     
     finalans = finalans + parseFloat(ans.toFixed(2))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= " + parseFloat(finalans.toFixed(2)) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1285,7 +1286,7 @@ function comppoisson4() {
     
     finalans = finalans + parseFloat(ans.toFixed(2))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= " + parseFloat(finalans.toFixed(2)) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1317,7 +1318,7 @@ function comppoisson3() {
     
     finalans = finalans + parseFloat(ans.toFixed(2))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - " + parseFloat(finalans.toFixed(2)) + " \\\\ &= " + parseFloat((1 - finalans).toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - " + parseFloat(finalans.toFixed(2)) + " \\\\ &= \\boxed{" + parseFloat((1 - finalans).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1350,7 +1351,7 @@ function comppoisson5() {
     
     finalans = finalans + parseFloat(ans.toFixed(2))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - " + parseFloat(finalans.toFixed(2)) + " \\\\ &= " + parseFloat((1 - finalans).toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - " + parseFloat(finalans.toFixed(2)) + " \\\\ &= \\boxed{" + parseFloat((1 - finalans).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1486,7 +1487,7 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle\\left(\\frac{"+topna+"!}{"+bottomna+"!"+(topna-bottomna)+"!}\\right)\\left(\\frac{"+topnb+"!}{"+bottomnb+"!"+(topnb-bottomnb)+"!}\\right)}{\\displaystyle\\left(\\frac{"+topnc+"!}{"+bottomnc+"!"+(topnc-bottomnc)+"!}\\right)} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &=" + parseFloat(ans.toFixed(2)) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle\\left(\\frac{"+topna+"!}{"+bottomna+"!"+(topna-bottomna)+"!}\\right)\\left(\\frac{"+topnb+"!}{"+bottomnb+"!"+(topnb-bottomnb)+"!}\\right)}{\\displaystyle\\left(\\frac{"+topnc+"!}{"+bottomnc+"!"+(topnc-bottomnc)+"!}\\right)} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1681,7 +1682,7 @@ function comphypergeometric2() {
     finalans = finalans + ans
     
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= "+parseFloat(finalans.toFixed(2))+"\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1877,7 +1878,7 @@ function comphypergeometric4() {
     finalans = finalans + ans
     
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= "+parseFloat(finalans.toFixed(2))+"\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2072,7 +2073,7 @@ function comphypergeometric3() {
     finalans = finalans + ans
     
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= "+parseFloat(finalans.toFixed(2))+"\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2268,7 +2269,7 @@ function comphypergeometric5() {
     finalans = finalans + ans
     
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= "+parseFloat(finalans.toFixed(2))+"\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2277,9 +2278,9 @@ function exampleexpected(){
     $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
     $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
     $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide(); 
-    document.getElementById('x1').value="3"
+    document.getElementById('x1').value="2"
     document.getElementById('x2').value="6"
-    document.getElementById('x3').value="9"
+    document.getElementById('x3').value="8"
     document.getElementById('x4').value=""
     document.getElementById('x5').value=""
     document.getElementById('x6').value=""
@@ -2287,9 +2288,9 @@ function exampleexpected(){
     document.getElementById('x8').value=""
     document.getElementById('x9').value=""
     document.getElementById('x10').value=""
-    document.getElementById('f1').value=".25"
-    document.getElementById('f2').value=".50"
-    document.getElementById('f3').value=".25"
+    document.getElementById('f1').value=".30"
+    document.getElementById('f2').value=".60"
+    document.getElementById('f3').value=".10"
     document.getElementById('f4').value=""
     document.getElementById('f5').value=""
     document.getElementById('f6').value=""
@@ -2306,27 +2307,27 @@ function exampleexpected2(){
     $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
     $("#make2").hide(); $("#make3").hide(); $("#make4").show(); $("#make5").hide();
     $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-    document.getElementById('x1').value="2"
-    document.getElementById('x2').value="4"
-    document.getElementById('x3').value="7"
-    document.getElementById('x4').value="8"
+    document.getElementById('x1').value="3"
+    document.getElementById('x2').value="5"
+    document.getElementById('x3').value="6"
+    document.getElementById('x4').value="9"
     document.getElementById('x5').value=""
     document.getElementById('x6').value=""
     document.getElementById('x7').value=""
     document.getElementById('x8').value=""
     document.getElementById('x9').value=""
     document.getElementById('x10').value=""
-    document.getElementById('f1').value=".20"
-    document.getElementById('f2').value=".30"
-    document.getElementById('f3').value=".40"
-    document.getElementById('f4').value=".10"
+    document.getElementById('f1').value=".25"
+    document.getElementById('f2').value=".25"
+    document.getElementById('f3').value=".35"
+    document.getElementById('f4').value=".15"
     document.getElementById('f5').value=""
     document.getElementById('f6').value=""
     document.getElementById('f7').value=""
     document.getElementById('f8').value=""
     document.getElementById('f9').value=""
     document.getElementById('f10').value=""
-    document.getElementById('probval').value="4"
+    document.getElementById('probval').value="5"
     rows=4
 }
 
@@ -2340,39 +2341,39 @@ function examplevariance(){
 }
 
 function examplestandard(){
-    document.getElementById('vr').value="4.5"
+    document.getElementById('vr').value="4.2"
 }
 
 function examplestandard2(){
-    document.getElementById('vr').value="4.56"
+    document.getElementById('vr').value="3.55"
 }
 
 function examplebinomial(){
-    document.getElementById('trials').value = 2
-    document.getElementById('psuccess').value = .4
+    document.getElementById('trials').value = 3
+    document.getElementById('psuccess').value = .2
     document.getElementById('binval').value = 1
 }
 
 function examplebinomial2(){
-    document.getElementById('trials').value = 10
-    document.getElementById('psuccess').value = .10
+    document.getElementById('trials').value = 8
+    document.getElementById('psuccess').value = .15
     document.getElementById('binval').value = 2
 }
 
 function examplepoisson(){
-    document.getElementById('meanocc').value = 3
+    document.getElementById('meanocc').value = 5
     document.getElementById('poissval').value = 2
 }
 
 function examplepoisson2(){
-    document.getElementById('meanocc').value = 2
+    document.getElementById('meanocc').value = 3
     document.getElementById('poissval').value = 2
 }
 
 function examplehypergeometric(){
-    document.getElementById('ntrials').value = 4
-    document.getElementById('popsize').value = 10
-    document.getElementById('popsucc').value = 3
+    document.getElementById('ntrials').value = 5
+    document.getElementById('popsize').value = 12
+    document.getElementById('popsucc').value = 4
     document.getElementById('hypval').value = 2
 }
 

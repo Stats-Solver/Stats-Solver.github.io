@@ -634,83 +634,83 @@ function exampleexperiments2(){
 }
 
 function examplecomb(){
-    document.getElementById('topn').value="5"
+    document.getElementById('topn').value="6"
     document.getElementById('bottomn').value="2"
 }
 
 function examplecomb2(){
-    document.getElementById('topn').value="6"
+    document.getElementById('topn').value="5"
     document.getElementById('bottomn').value="3"
 }
 
 function exampleperm(){
-    document.getElementById('topnp').value="5"
+    document.getElementById('topnp').value="6"
     document.getElementById('bottomnp').value="2"
 }
 
 function exampleperm2(){
-    document.getElementById('topnp').value="6"
+    document.getElementById('topnp').value="5"
     document.getElementById('bottomnp').value="3"
 }
 
 function examplecomplement(){
     document.getElementById('probtypec').value="Ac"
-    document.getElementById('probcomp').value=".80"
+    document.getElementById('probcomp').value=".70"
 }
 
 function examplecomplement2(){
     document.getElementById('probtypec').value="A"
-    document.getElementById('probcomp').value=".40"
+    document.getElementById('probcomp').value=".20"
 }
 
 function exampleunion(){
-    document.getElementById('proba').value=".10"
-    document.getElementById('probb').value=".12"
+    document.getElementById('proba').value=".11"
+    document.getElementById('probb').value=".10"
     document.getElementById("probaib").value=".04"
 }
 
 function exampleunion2(){
-    document.getElementById('proba').value=".30"
-    document.getElementById('probb').value=".20"
-    document.getElementById("probaib").value=".12"
+    document.getElementById('proba').value=".32"
+    document.getElementById('probb').value=".24"
+    document.getElementById("probaib").value=".10"
 }
 
 function exampleintersection(){
     document.getElementById('probtype1').value = "AgivB"
     document.getElementById('probtype2').value = "B"
-    document.getElementById('iprobb').value=".84"
-    document.getElementById("iproba").value=".75"
+    document.getElementById('iprobb').value=".85"
+    document.getElementById("iproba").value=".73"
 }
 
 function exampleintersection2(){
     document.getElementById('probtype1').value = "A"
     document.getElementById('probtype2').value = "B"
-    document.getElementById('iprobb').value=".80"
-    document.getElementById("iproba").value=".80"
+    document.getElementById('iprobb').value=".81"
+    document.getElementById("iproba").value=".84"
 }
 
 function exampleconditional(){
-    document.getElementById('probb3').value=".80"
-    document.getElementById("probaib2").value=".24"
+    document.getElementById('probb3').value=".82"
+    document.getElementById("probaib2").value=".25"
 }
 
 function exampleconditional2(){
-    document.getElementById('probb3').value=".20"
-    document.getElementById("probaib2").value=".03"
+    document.getElementById('probb3').value=".25"
+    document.getElementById("probaib2").value=".04"
 }
 
 function examplebayes(){
-    document.getElementById('proba1').value=".65"
-    document.getElementById("proba2").value=".35"
-    document.getElementById('probbgiva1').value=".02"
-    document.getElementById("probbgiva2").value=".05"
+    document.getElementById('proba1').value=".75"
+    document.getElementById("proba2").value=".33"
+    document.getElementById('probbgiva1').value=".03"
+    document.getElementById("probbgiva2").value=".04"
 }
 
 function examplebayes2(){
-    document.getElementById('proba1').value=".40"
-    document.getElementById("proba2").value=".60"
-    document.getElementById('probbgiva1').value=".20"
-    document.getElementById("probbgiva2").value=".05"
+    document.getElementById('proba1').value=".41"
+    document.getElementById("proba2").value=".65"
+    document.getElementById('probbgiva1').value=".23"
+    document.getElementById("probbgiva2").value=".04"
 }
 
 

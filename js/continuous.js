@@ -12,6 +12,8 @@ $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples"
 $("#uniform").show(); $("#uniformab").hide(); 
 $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
 
+uniformtype = "probability"
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
@@ -140,7 +142,20 @@ function uniform() {
     $("#uniformab").show(); 
 }
 
-function compuniform() {
+function compuniform(){
+    if (uniformtype == "expected"){
+        compuniformexpected()
+        $("#myCanvas").hide(); $("#output2").hide();
+    } else if (uniformtype == "variance"){
+        compuniformvariance()
+        $("#myCanvas").hide(); $("#output2").hide();
+    } else {
+        compuniformprob()
+        $("#myCanvas").show(); $("#output2").show();
+    }
+}
+
+function compuniformprob() {
     var probtype = document.getElementById("probtype").value
     var probtypeb1 = document.getElementById("probtypeb1").value
     var probtypeb2 = document.getElementById("probtypeb2").value
@@ -168,21 +183,19 @@ function compuniform() {
 function switchexpected() {
     $("#uniformprob").hide(); 
     $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
+    uniformtype = "expected"
 }
  
 function switchvariance() {
     $("#uniformprob").hide(); 
     $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); $("#uniformstandard").hide();
-}
-
-function switchstandard() {
-    $("#uniformprob").hide(); 
-    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").show();
+    uniformtype = "variance"
 }
  
 function switchprobability() {
     $("#uniformprob").show(); 
     $("#uniformprobability").show(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
+    uniformtype = "probability"
 }
 
 function compuniformexpected() {
@@ -191,27 +204,17 @@ function compuniformexpected() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= \\frac{a+b}{2} \\\\ &= \\frac{" + (minval+maxval) + "}{" + 2 + "} \\\\ &= " + parseFloat(((minval+maxval)/2).toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= \\frac{a+b}{2} \\\\ &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function compuniformvariance() {
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
-    var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) = \\sigma &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= " + parseFloat((trials*prob*(1-prob)).toFixed(2)) + " \\end{align} $$"
-    MathJax.typeset();
-}
-
-function compuniformstandard() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
-    var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= " + parseFloat((trials*prob).toFixed(2)) + " \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\frac{(b-a)^2}{12} \\\\ &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ $$ \\begin{align} \\sigma &= \\sqrt{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt((maxval-minval)*(maxval-minval)/12)).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
