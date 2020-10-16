@@ -608,21 +608,21 @@ function switchprobability() {
 
 function compbinomialexpected() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = np $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function compbinomialvariance() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 &= np(1-p) $$ $$ \\sigma = \\sqrt{\\text{Var}(x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) = \\sigma^2 &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ $$ \\begin{align} \\sigma &= \\sqrt{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(trials*prob*(1-prob))).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ $$ \\begin{align} \\sigma &= \\sqrt{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(trials*prob*(1-prob))).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2375,6 +2375,13 @@ function examplehypergeometric(){
     document.getElementById('popsize').value = 12
     document.getElementById('popsucc').value = 4
     document.getElementById('hypval').value = 2
+}
+
+function examplehypergeometric2(){
+    document.getElementById('ntrials').value = 6
+    document.getElementById('popsize').value = 10
+    document.getElementById('popsucc').value = 3
+    document.getElementById('hypval').value = 1
 }
 
 

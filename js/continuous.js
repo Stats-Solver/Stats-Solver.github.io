@@ -200,17 +200,17 @@ function switchprobability() {
 
 function compuniformexpected() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\frac{a+b}{2} $$"
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) = \\mu &= \\frac{a+b}{2} \\\\ &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= \\frac{a+b}{2} \\\\ &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function compuniformvariance() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\frac{(b-a)^2}{12} $$"
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
@@ -2658,19 +2658,19 @@ function compexponential4() {
 }
 
 function exampleuniform(){
-    document.getElementById('minval').value="120"
-    document.getElementById('maxval').value="140"
-    document.getElementById('unival').value="135"
-    document.getElementById('twoval1').value="128"
-    document.getElementById('twoval2').value="136"
+    document.getElementById('minval').value="30"
+    document.getElementById('maxval').value="60"
+    document.getElementById('unival').value="40"
+    document.getElementById('twoval1').value="38"
+    document.getElementById('twoval2').value="52"
 }
 
 function exampleuniform2(){
-    document.getElementById('minval').value="10"
-    document.getElementById('maxval').value="20"
-    document.getElementById('unival').value="15"
-    document.getElementById('twoval1').value="12"
-    document.getElementById('twoval2').value="18"
+    document.getElementById('minval').value="100"
+    document.getElementById('maxval').value="200"
+    document.getElementById('unival').value="150"
+    document.getElementById('twoval1').value="125"
+    document.getElementById('twoval2').value="175"
 }
 
 function examplesnormal(){
