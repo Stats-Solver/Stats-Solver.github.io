@@ -522,9 +522,9 @@ function conint2(){
 function example1(){
     $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
     document.getElementById("samplestat").value = "mean"
-    document.getElementById('size').value="40"
-    document.getElementById('xbar').value="25"
-    document.getElementById('stdev').value="5"
+    document.getElementById('size').value="30"
+    document.getElementById('xbar').value="24"
+    document.getElementById('stdev').value="6"
     document.getElementById('sigma').value="known"
     document.getElementById('conlev').value=95
 }
@@ -532,9 +532,9 @@ function example1(){
 function example2(){
     $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
     document.getElementById("samplestat").value = "mean"
-    document.getElementById('size').value="54"
-    document.getElementById('xbar').value="22.5"
-    document.getElementById('stdev').value="4.4"
+    document.getElementById('size').value="50"
+    document.getElementById('xbar').value="16"
+    document.getElementById('stdev').value="4"
     document.getElementById('sigma').value="unknown"
     document.getElementById('conlev').value=99
 }

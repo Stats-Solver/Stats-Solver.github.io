@@ -1558,11 +1558,11 @@ function example1(){
     $("#greater").hide();
     $("#notequal").hide();
     document.getElementById('tail').value="lower"
-    document.getElementById('muknot').value="20"
-    document.getElementById('muknotvalue').innerHTML="20"
-    document.getElementById('size').value="50"
-    document.getElementById('xbar').value="19.4"
-    document.getElementById('stdev').value="2"
+    document.getElementById('muknot').value="30"
+    document.getElementById('muknotvalue').innerHTML="30"
+    document.getElementById('size').value="60"
+    document.getElementById('xbar').value="29.3"
+    document.getElementById('stdev').value="3"
     document.getElementById('sigma').value="known"
     document.getElementById('alpha').value=".05"
     MathJax.typeset();
@@ -1577,11 +1577,11 @@ function example2(){
     $("#greater").show();
     $("#notequal").hide();
     document.getElementById('tail').value="upper"
-    document.getElementById('muknot').value="12"
-    document.getElementById('muknotvalue').innerHTML="12"
-    document.getElementById('size').value="25"
-    document.getElementById('xbar').value="14"
-    document.getElementById('stdev').value="4.32"
+    document.getElementById('muknot').value="14"
+    document.getElementById('muknotvalue').innerHTML="14"
+    document.getElementById('size').value="23"
+    document.getElementById('xbar').value="15.5"
+    document.getElementById('stdev').value="3.61"
     document.getElementById('sigma').value="unknown"
     document.getElementById('alpha').value=".05"
     MathJax.typeset();

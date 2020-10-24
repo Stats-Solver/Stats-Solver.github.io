@@ -12,7 +12,7 @@
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
       
-    <title>Tables and Graphs Calculator - Stats Solver</title>
+    <title>Tables and Graphs - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -52,9 +52,6 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <!--<li class="nav-item">
-            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-          </li>-->
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -69,15 +66,15 @@
               <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
               <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-populations.html">Two Populations</a>
+              <a class="dropdown-item" href="two-populations.html">Two Populations</a>  
+              <!--<a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item">
-            <a class="nav-link" href="/about.html">About <span class="sr-only">(current)</span></a>
-          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -114,7 +111,18 @@
       <div class = "mb-3" id="firstclass">
         <table>
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">$\text{First Class: }$ <input type="text" style="width:70px;" id="lower" class="hypinput2" placeholder="Lower"> $ - $ <input type="text" style="width:70px;" id="upper" class="hypinput2" placeholder="Upper"></td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">$\text{First Class: }$ <input type="text" style="width:60px;" id="lower" class="hypinput2" placeholder="Lower"> $ - $ <input type="text" style="width:60px;" id="upper" class="hypinput2" placeholder="Upper"></td>
+          </tr>
+        </table> 
+        </div>
+      
+      <div class = "mb-3" id="firstclasscross">
+        <table>
+          <tr id = "firstclassx">
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">$\text{First Class (x): }$ <input type="text" style="width:60px;" id="lowerx" class="hypinput2" placeholder="Lower"> $ - $ <input type="text" style="width:60px;" id="upperx" class="hypinput2" placeholder="Upper"></td>
+            </tr>
+            <tr id = "firstclassy">
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic">$\text{First Class (y): }$ <input type="text" style="width:60px;" id="lowery" class="hypinput2" placeholder="Lower"> $ - $ <input type="text" style="width:60px;" id="uppery" class="hypinput2" placeholder="Upper"></td>
           </tr>
         </table> 
         </div>
@@ -127,14 +135,17 @@
                 <option value="frequency">Frequency Distribution</option>
                 <option value="relative">Relative Frequency Distribution</option>
                 <option value="percent">Percent Frequency Distribution</option>
-                <span id="barpie"><option value="bar">Bar Chart</option>
-                <option value="pie">Pie Chart</option></span>
-                <span id="histcumul"><option value="histogram">Histogram</option>
+                <option value="bar">Bar Chart</option>
+                <option value="pie">Pie Chart</option>
+                <option value="histogram">Histogram</option>
                 <option value="cumfrequency">Cumulative Frequency</option>
                 <option value="cumrelative">Cumulative Relative Frequency</option>
-                <option value="cumpercent">Cumulative Percent Frequency</option></span>
-                <!--<option value="crosstabulation">Crosstabulation</option>-->
+                <option value="cumpercent">Cumulative Percent Frequency</option>
+                <option value="crosstabulation">Crosstabulation</option>
+                <option value="rowpercent">Row Percentages</option>
+                <option value="colpercent">Column Percentages</option>
                 <option value="scatter">Scatter Diagram</option>
+                <option value="trendline">Trendline</option>
             </select>
         </div> 
               <div class="col-4 col-md-2 inputWrapper">
@@ -161,6 +172,10 @@
             <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>
         </div>
       
+      <div class = "text-center" id = "label2">
+            <span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>
+        </div>
+      
       <div class = "text-center" id = "label3">
             <span class="examplelink" onclick="examplevalues5()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>
         </div>
@@ -174,15 +189,6 @@
         </div>
       </div>
       
-      <!--<div class="container text-center">
-    <canvas width="375" height="188" id="myCanvas" style="">
-          </canvas>
-       </div>
-      
-      <div class="container text-center">
-    <canvas width="375" height="375" id="myCanvas2" style="border:1px solid black;">
-          </canvas>
-       </div>-->
       
       <div class="container container2 text-center">
       <div id="charts" style="width: 500px; height: 300px;"></div>
@@ -220,7 +226,6 @@
      
           <footer id="footer">
               <div class="container">
-                  <!--<p>Related: <a href="numerical.html">Numerical Summaries Calculator</a> </p>-->
                 <hr>
             </div>
           <p> 

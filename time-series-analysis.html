@@ -59,9 +59,6 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <!--<li class="nav-item">
-            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-          </li>-->
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -77,14 +74,14 @@
               <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
+              <!--<a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item">
-            <a class="nav-link" href="/about.html">About <span class="sr-only">(current)</span></a>
-          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -102,43 +99,6 @@
       <div class="container">
       <hr>
           </div>
-      
-      <!--<div class="container mb-3">
-        <table>
-          <tr>
-            <td class="statistics">Time:</td>
-            <td class="statistics" style="text-align: center">1</td> 
-            <td class="statistics" style="text-align: center">2</td>
-            <td class="statistics" style="text-align: center">3</td>
-            <td class="statistics" style="text-align: center">4</td>
-            <td class="statistics" style="text-align: center">5</td>
-            <td class="statistics" style="text-align: center" id="time6">6</td>
-            <td class="statistics" style="text-align: center" id="time7">7</td>
-            <td class="statistics" style="text-align: center" id="make5to6"><svg onclick="make6()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                </svg></td>
-            <td class="statistics" style="text-align: center" id="make6to7"><svg onclick="make7()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-                </svg></td>
-          </tr>
-          <tr>
-            <td class="statistics">Value:</td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v1" class="hypinput2"></td> 
-            <td class="statistics"><input type="text" style="width:50px;" id="v2" class="hypinput2"></td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v3" class="hypinput2"></td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v4" class="hypinput2"></td>
-            <td class="statistics"><input type="text" style="width:50px;" id="v5" class="hypinput2"></td>
-            <td class="statistics" id="value6"><input type="text" style="width:50px;" id="v6" class="hypinput2"></td>
-            <td class="statistics" id="value7"><input type="text" style="width:50px;" id="v7" class="hypinput2"></td>
-            <td class="statistics" style="text-align: center" id="make6to5"><svg onclick="make5()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg></td>
-            <td class="statistics" style="text-align: center" id="make7to6"><svg onclick="make6()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
-                </svg></td>
-          </tr>
-        </table>  
-          </div>-->
       
       <div id="input" class="container center">
           <div class="row justify-content-center">
@@ -178,7 +138,7 @@
         <div class="col-4 col-md-2 mb-3" id = "exponential">
               <table id="statistics">
           <tr>
-            <td class="statistics">$\alpha = $ <input type="text" style="width:50px;" id="alpha" class="hypinput2"></td>
+            <td class="statistics">$\alpha = $ <input type="text" style="width:30px;" id="alpha" class="hypinput2"></td>
           </tr>
         </table>
               </div>
@@ -208,7 +168,7 @@
         <div class="col-4 col-md-2 mb-3" id = "">
               <table id="statistics">
           <tr>
-            <td class="statistics">$\beta = $ <input type="text" style="width:50px;" id="beta" class="hypinput2"></td>
+            <td class="statistics">$\beta = $ <input type="text" style="width:30px;" id="beta" class="hypinput2"></td>
           </tr>
         </table>
               </div>

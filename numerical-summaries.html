@@ -58,9 +58,6 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <!--<li class="nav-item">
-            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-          </li>-->
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -76,14 +73,14 @@
               <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
+              <!--<a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item">
-            <a class="nav-link" href="/about.html">About <span class="sr-only">(current)</span></a>
-          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -113,7 +110,7 @@
       <div id="weights" class="container center">
           <div class="row justify-content-center">
         <div class="col-12 col-md-5 mb-3">
-            <input id="values" type="text" class="form-control" placeholder="Enter Weights (separated by commas)">
+            <input type="text" class="form-control" id="weightsvalues" placeholder="Enter Weights (separated by commas)">
         </div>
         </div>
         </div>
@@ -183,7 +180,7 @@
                 <option value="choose">Choose One</option>
                 <option value="mean">Mean</option>
                 <option value="geometric">Geometric Mean</option>
-                <!--<option value="weighted">Weighted Mean</option>-->
+                <option value="weighted">Weighted Mean</option>
                 <option value="median">Median</option>
                 <option value="mode">Mode</option>
                 <option value="percentiles">Percentiles</option>
@@ -217,6 +214,10 @@
       
       <div class = "text-center" id = "label3">
             <span class="examplelink" onclick="examplevalues5()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>
+        </div>
+      
+      <div class = "text-center" id = "label4">
+            <span class="examplelink" onclick="examplevalues7()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues8()">Example 2</span>
         </div>
       
       <div class="container">

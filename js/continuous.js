@@ -149,6 +149,9 @@ function compuniform(){
     } else if (uniformtype == "variance"){
         compuniformvariance()
         $("#myCanvas").hide(); $("#output2").hide();
+    } else if (uniformtype == "standard"){
+        compuniformstandard()
+        $("#myCanvas").hide(); $("#output2").hide();
     } else {
         compuniformprob()
         $("#myCanvas").show(); $("#output2").show();
@@ -191,6 +194,12 @@ function switchvariance() {
     $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); $("#uniformstandard").hide();
     uniformtype = "variance"
 }
+
+function switchstandard() {
+    $("#uniformprob").hide(); 
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").show();
+    uniformtype = "standard"
+}
  
 function switchprobability() {
     $("#uniformprob").show(); 
@@ -214,7 +223,17 @@ function compuniformvariance() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\frac{(b-a)^2}{12} \\\\ &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ $$ \\begin{align} \\sigma &= \\sqrt{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt((maxval-minval)*(maxval-minval)/12)).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\frac{(b-a)^2}{12} \\\\ &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ "
+    MathJax.typeset();
+}
+
+function compuniformstandard() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\frac{(b-a)^2}{12} $$"
+    var minval = document.getElementById('minval').value
+    var maxval = document.getElementById('maxval').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt((maxval-minval)*(maxval-minval)/12)).toFixed(2)) + "} \\end{align} $$ "
     MathJax.typeset();
 }
 
@@ -282,7 +301,7 @@ function compuniform1() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(lessval - minval))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align}$$"
     
     MathJax.typeset();
 }
@@ -350,7 +369,7 @@ function compuniform2() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x < "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(lessval - minval))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x < "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align}$$"
     
     MathJax.typeset();
 }
@@ -418,7 +437,7 @@ function compuniform3() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(maxval - greaterval))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval)).toFixed(2))+"} \\end{align}$$"
  
     
     
@@ -489,7 +508,7 @@ function compuniform4() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x > "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+((1/(maxval-minval))*(maxval - greaterval))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x > "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval)).toFixed(2))+"} \\end{align}$$"
  
     
     

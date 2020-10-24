@@ -1,6 +1,6 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
-$("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide();
+$("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide(); $("#label4").hide();
 $("#switchpopulation").hide(); $("#switchsample").hide();
 
 $(document).ready(function(){
@@ -73,7 +73,7 @@ function avg(input){
 
 function showthings(){
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
-    $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide();
+    $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide(); $("#label4").hide();
     var x = document.getElementById("stat").value;
     if (x == "weighted") {
         weighted()
@@ -102,10 +102,10 @@ function stat(){
     var x = document.getElementById("stat").value;
     if (x == "mean"){
         mean()
-    } else if (x == "weighted"){
-        calcweighted()
     } else if (x == "geometric"){
         geometric()
+    } else if (x == "weighted"){
+        calcweighted()
     } else if (x == "median"){
         median()
     } else if (x == "mode") {
@@ -208,28 +208,31 @@ function meanpop(){
 }
 
 function weighted(){
-    $("#weights").show();
+    $("#weights").show(); $("#label4").show(); $("#label1").hide();
 }
 
 function calcweighted(){
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
-    document.getElementById("explanationtext").innerHTML = "$$ \\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{wx}}{w} $$"
+    document.getElementById("explanationtext").innerHTML = ""
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
     var str = document.getElementById("values").value;
+    var str2 = document.getElementById('weightsvalues').value
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);
-    var str2 = document.getElementById("weights").value;
     var each2 = str2.split(",").map(Number); var len2 = each2.length;
     var adds2 = each2[0];  var avgeach2 = avg(each2);
     var adds3 = adds2 + "(" + adds + ")"
+    var adds3value = 0; var adds2value = 0;
     for (let i=1; i<len; i++){
         adds3 += "+" + each2[i] + "(" + each[i] + ")"
         adds2 += "+" + each2[i]
+        adds3value += each2[i] * each[i]
+        adds2value += each2[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + adds2 + "} \\\\ &=  \\frac{" + adds3value + "}{" + adds2value + "} \\\\ &= \\boxed{" + parseFloat((adds3value/adds2value).toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -267,10 +270,10 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-         document.getElementById("output").innerHTML = " <b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>odd number</u> of values, take the middle value.$$\\text{Median} = \\boxed{" + valm + "} $$"
+         document.getElementById("output").innerHTML = " $$ \\text{Arranged Data: }"+eachsort+"$$ $$\\text{Median} = \\boxed{" + valm + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$ <b>Step 2:</b> Since there are an <u>even number</u> of values, average the two middle values.$$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: }"+eachsort+"$$ $$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
     }
     MathJax.typeset();
 }
@@ -284,13 +287,13 @@ function mode(){
     var each = str.split(",").map(Number); var len = each.length;
     var eachonesort = sortrem(each); var len = eachonesort.length;
     var counts = countem(each)
-    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "x" + "</td>" + "<td>" + "Frequency" + "</td>" + "</tr>";
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>$" + "x" + "$</td>" + "<td>$\\text{" + "Frequency" + "}$</td>" + "</tr>";
     var rows = len; var cols = 2;
     var tot = sum(counts);
     for (var r = 0; r < rows; r++){
         table += "<tr>";
-        table += "<td>" + eachonesort[r] + "</td>";
-        table += "<td>" + counts[r] + "</td>";
+        table += "<td>$" + eachonesort[r] + "$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
         table += "</tr>";
     }
 
@@ -374,10 +377,10 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
@@ -417,10 +420,10 @@ function calcquart(){
         var quartnum = ""
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is an <u>integer</u>, average values in positions i = "+indxval + " and i + 1 = " + indxvalplus1 + ".$$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ $$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "<b>Step 1:</b> Arrange the data in ascending order.$$"+eachsort+"$$<b>Step 2:</b> Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n=" + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ <b>Step 3:</b> Since the index is <u>not an integer</u>, round up to " + indxrnd + " and take the value in that position.$$ "+quartnum+" = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=\\underline{" + parseFloat(indxval.toFixed(2)) + "}$$ $$ "+quartnum+" = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
@@ -1263,3 +1266,12 @@ function examplevalues6(){
     document.getElementById('maxval').value="29"
 }
 
+function examplevalues7(){
+    document.getElementById('values').value="12, 18, 15, 13, 17"
+    document.getElementById('weightsvalues').value="4, 2, 3, 4, 2"
+}
+
+function examplevalues8(){
+    document.getElementById('values').value="25, 22, 18, 17, 31, 33, 26, 20"
+    document.getElementById('weightsvalues').value="7, 9, 4, 6, 5, 11, 8, 6"
+}

@@ -1,6 +1,10 @@
 $("#enterstats").hide(); $("#explanation").hide();
 $("#expconf").hide(); $("#pointestimation").hide(); $("#samplingdistributions").show(); 
 $("#switchsampling").hide(); $("#switchpoint").show();
+$("#samplingdistributionxbar").show(); $("#samplingdistributionpbar").hide();
+$("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
+$("#finitepopsize1").hide(); $("#finitepopsize2").hide(); $("#finitepopsize3").hide(); $("#finitepopsize4").hide();
+solvetype = "distribution"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -263,10 +267,27 @@ function tinv(p, dof) {
 function conint(){
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
-        conint1()
+        if (solvetype == "distribution"){
+            conint1()
+        } else if (solvetype == "probability"){
+            conint3()
+        }
     } else if (x == "proportion"){
-        conint2()
+        if (solvetype == "distribution"){
+            conint2()
+        } else if (solvetype == "probability"){
+            conint4()
+        }
     } 
+}
+
+function popsizekind(){
+    var popsize = document.getElementById("popsize").value;
+    if (popsize == "infinite"  || popsize == "unknown") {
+        $("#finitepopsize1").hide(); $("#finitepopsize2").hide(); $("#finitepopsize3").hide(); $("#finitepopsize4").hide();
+    } else if (popsize == "finite") {
+        $("#finitepopsize1").show(); $("#finitepopsize2").show(); $("#finitepopsize3").show(); $("#finitepopsize4").show();
+    }
 }
 
 
@@ -276,19 +297,32 @@ function conint1(){
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
+    var popsize = document.getElementById("popsize").value;
+    var popsizevalue = document.getElementById("popsizevalue").value;
+    var samptopopratio = size / popsizevalue
     var stderr = stdev / Math.sqrt(size)
+    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
     
     if (size >= 30) {
-        var form = "Normal"
+        var form = "Normal Distribution"
     } else if (size < 30) {
-        var form = "Not Normal"
+        var form = "Not a Normal Distribution"
     }
 
     document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
     document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
     document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
+    
+    if (popsize == "infinite"  || popsize == "unknown") {
+        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{x}: $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean}: $$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+    } else if (popsize == "finite") {
+        if (samptopopratio <= .05) {
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{x}: $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean}: $$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+        } else if (samptopopratio > .05) {
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{x}: $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean}: $$ $$ \\begin{align} \\sigma_\\bar{x} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+        }
         
-    document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{ Form: "+ form + "} $$ "
+    }
 
     MathJax.typeset();
 }
@@ -299,46 +333,145 @@ function conint2(){
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var prptn = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
+    var popsize = document.getElementById("popsize").value;
+    var popsizevalue = document.getElementById("popsizevalue").value;
+    var samptopopratio = size / popsizevalue
     var stderr = Math.sqrt(prptn*(1-prptn)/size)
+    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * Math.sqrt(prptn*(1-prptn)/size)
     var cond1 = size * prptn
     var cond2 = size * (1 - prptn)
     
     if (cond1 >= 5 && cond2 >= 5) {
-        var form = "Normal"
+        var form = "Normal Distribution"
     } else {
-        var form = "Not Normal"
+        var form = "Not a Normal Distribution"
     }
 
     document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample proportion is the probability distribution of the sample proportion."
     document.getElementById("formulatext").innerHTML = "$$ E(\\bar{p}) = p $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{p(1-p)}{n}} $$ The sampling distribution of the sample proportioncan be approximated by a normal distribution whenever np > 5 and n(1-p) > 5."
     document.getElementById("explanationtext").innerHTML = "The sampling distribution of the sample proportion depends on both the sample size and the population proportion."
+    
+    if (popsize == "infinite"  || popsize == "unknown") {
+        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{p}: $$ $$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\text{Standard Error of the Proportion}: $$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+    } else if (popsize == "finite") {
+        if (samptopopratio <= .05) {
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{p}: $$ $$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\text{Standard Error of the Proportion}: $$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+        } else if (samptopopratio > .05) {
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{p}: $$ $$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\text{Standard Error of the Proportion}: $$ $$ \\begin{align} \\sigma_\\bar{p} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+        }
         
-    document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{ Form: "+ form + "} $$ "
+    }
+    
+    MathJax.typeset();
+}
+
+function conint3(){
+    $("#explanation").show();
+    $("#expconf").show();
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var mu = document.getElementById("xbar").value;
+    var stdev = document.getElementById("stdev").value;
+    var popsize = document.getElementById("popsize").value;
+    var popsizevalue = document.getElementById("popsizevalue").value;
+    var pmvalue = document.getElementById("pmvalue1").value;
+    var lowval = mu - pmvalue; var highval = parseFloat(mu) + parseFloat(pmvalue)
+    var stderr = stdev / Math.sqrt(size)
+    var lowvalz = (lowval - mu)/stderr; var highvalz = (highval - mu)/stderr;
+    var samptopopratio = size / popsizevalue
+    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
+    
+    if (size >= 30) {
+        var form = "Normal Distribution"
+    } else if (size < 30) {
+        var form = "Not a Normal Distribution"
+    }
+
+    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
+    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
+    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
+    
+    if (popsize == "infinite"  || popsize == "unknown") {
+        document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\  &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ")  \\end{align}$$ "
+    } else if (popsize == "finite") {
+        if (samptopopratio <= .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\  &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ")  \\end{align}$$ "
+        } else if (samptopopratio > .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\  &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ")  \\end{align}$$ "
+        }
+        
+    }
+
+    MathJax.typeset();
+}
+
+function conint4(){
+    $("#explanation").show();
+    $("#expconf").show();
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var prptn = document.getElementById("xbar").value;
+    var stdev = document.getElementById("stdev").value;
+    var popsize = document.getElementById("popsize").value;
+    var popsizevalue = document.getElementById("popsizevalue").value;
+    var pmvalue = document.getElementById("pmvalue2").value;
+    var lowval = prptn - pmvalue; var highval = parseFloat(prptn) + parseFloat(pmvalue)
+    var stderr = Math.sqrt(prptn*(1-prptn)/size)
+    var lowvalz = (lowval - prptn)/stderr; var highvalz = (highval - prptn)/stderr;
+    var samptopopratio = size / popsizevalue
+    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
+    
+    if (size >= 30) {
+        var form = "Normal Distribution"
+    } else if (size < 30) {
+        var form = "Not a Normal Distribution"
+    }
+
+    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
+    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
+    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
+    
+    if (popsize == "infinite"  || popsize == "unknown") {
+        document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{p} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + prptn + ") &= P(" + parseFloat(lowval.toFixed(2)) + " \\leq \\bar{p} \\leq " + parseFloat(highval.toFixed(2)) + ") \\\\ &= P(" + parseFloat(lowvalz.toFixed(2)) + " \\leq z \\leq " + parseFloat(highvalz.toFixed(2)) + ") \\\\  &= P(z \\leq " + parseFloat(highvalz.toFixed(2)) + ") -  P(z \\leq " + parseFloat(lowvalz.toFixed(2)) + ")  \\end{align}$$ "
+    } else if (popsize == "finite") {
+        if (samptopopratio <= .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{p} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + prptn + ") &= P(" + parseFloat(lowval.toFixed(2)) + " \\leq \\bar{p} \\leq " + parseFloat(highval.toFixed(2)) + ") \\\\ &= P(" + parseFloat(lowvalz.toFixed(2)) + " \\leq z \\leq " + parseFloat(highvalz.toFixed(2)) + ") \\\\  &= P(z \\leq " + parseFloat(highvalz.toFixed(2)) + ") -  P(z \\leq " + parseFloat(lowvalz.toFixed(2)) + ")  \\end{align}$$ "
+        } else if (samptopopratio > .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{p} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + prptn + ") &= P(" + parseFloat(lowval.toFixed(2)) + " \\leq \\bar{p} \\leq " + parseFloat(highval.toFixed(2)) + ") \\\\ &= P(" + parseFloat(lowvalz.toFixed(2)) + " \\leq z \\leq " + parseFloat(highvalz.toFixed(2)) + ") \\\\  &= P(z \\leq " + parseFloat(highvalz.toFixed(2)) + ") -  P(z \\leq " + parseFloat(lowvalz.toFixed(2)) + ")  \\end{align}$$ "
+        }
+        
+    }
 
     MathJax.typeset();
 }
 
 function example1(){
-    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    $("#samplingdistributionxbar").show(); $("#samplingdistributionpbar").hide();
+    $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
+    $("#sd0").show(); $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
     document.getElementById("samplestat").value = "mean"
-    document.getElementById('size').value="100"
-    document.getElementById('xbar').value="200"
-    document.getElementById('stdev').value="50"
+    document.getElementById('xbar').value="100"
+    document.getElementById('stdev').value="18"
+    document.getElementById('size').value="81"
+    document.getElementById('psize').value="inf"
 }
 
 function example2(){
-    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    $("#samplingdistributionxbar").hide(); $("#samplingdistributionpbar").show();
+    $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
+    $("#sd0").hide(); $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
     document.getElementById("samplestat").value = "proportion"
-    document.getElementById('size').value="100"
-    document.getElementById('xbar').value=".40"
+    document.getElementById('xbar').value=".30"
+    document.getElementById('size').value="60"
+    document.getElementById('psize').value="inf"
 }
 
 function samplestat() {
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        $("#samplingdistributionxbar").show(); $("#samplingdistributionpbar").hide();
+        $("#sd0").show(); $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
     } else if (x == "proportion"){
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        $("#samplingdistributionxbar").hide(); $("#samplingdistributionpbar").show();
+        $("#sd0").hide(); $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
     } 
 }
 
@@ -441,7 +574,9 @@ function example3(){
 }
 
 function example4(){
-    document.getElementById("stat").value = "proportion"
+    $("#valuescontainer").show();
+    document.getElementById("values").value = "5, 8, 10, 7, 10, 14"
+    document.getElementById('stat').value="standard"
 }
 
 
@@ -457,4 +592,26 @@ function switchsampling() {
     $("#output").empty(); $("#explanation").hide();
 }
 
+function switchprobabilitiesxbar() {
+    $("#samplingdistributionxbar").hide(); $("#samplingdistributionpbar").hide();
+    $("#probabilitiesxbar").show(); $("#probabilitiespbar").hide();
+    solvetype = "probability"
+}
+ 
+function switchdistributionsxbar() {
+    $("#samplingdistributionxbar").show(); $("#samplingdistributionpbar").hide();
+    $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
+    solvetype = "distribution"
+}
 
+function switchprobabilitiespbar() {
+    $("#samplingdistributionxbar").hide(); $("#samplingdistributionpbar").hide();
+    $("#probabilitiesxbar").hide(); $("#probabilitiespbar").show();
+    solvetype = "probability"
+}
+ 
+function switchdistributionspbar() {
+    $("#samplingdistributionxbar").hide(); $("#samplingdistributionpbar").show();
+    $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
+    solvetype = "distribution"
+}

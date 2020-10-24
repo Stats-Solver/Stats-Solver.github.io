@@ -18,7 +18,11 @@ $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
 $("#expectedexamples").show(); $("#standardexamples").hide(); 
 $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
 
+$("#discreteprobs").show(); $("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").hide();
+$("#probswitch").hide();
+
 binomialtype = "probability"
+discretekind = "probability"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -73,6 +77,11 @@ function showstuff(){
         standard()
         $("#expectedexamples").hide(); $("#standardexamples").show(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
+    } else if (x == "discrete") {
+        discrete()
+        $("#expectedtable").show();
+        $("#expectedexamples").show(); $("#standardexamples").hide(); 
+        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
     } else if (x == "uniform") {
         uniform()
         $("#expectedexamples").hide(); $("#standardexamples").hide(); 
@@ -114,6 +123,8 @@ function stat(){
         compvariance()
     } else if (x == "standard") {
         compstandard()
+    } else if (x == "discrete") {
+        compdiscrete()
     } else if (x == "uniform") {
         compuniform()
     } else if (x == "binomial") {
@@ -453,7 +464,7 @@ function compexpected() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = \\mu = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ E(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -518,7 +529,7 @@ function compvariance() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sigma^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -532,11 +543,97 @@ function compstandard() {
     document.getElementById("descriptiontext").innerHTML = "The standard deviation of a random variable measures the variability in the values of the random variable. "
     document.getElementById("formulatext").innerHTML = "$$ \\sigma = \\sqrt{Var(x)} $$"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the random variable."
-    var vr = document.getElementById('vr').value
-    var ans = Math.sqrt(vr);
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
 
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{" + vr + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
+    
+    
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var mu = 0
+    for (i = 0; i < rows; i++) {
+        mu += x[i]*f[i]
+    }
+    var ans = 0
+    for (i = 0; i < rows; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]-mu)**2).toFixed(2))+"$</td><td>$"+parseFloat((((x[i]-mu)**2)*f[i]).toFixed(2))+"$</td></tr>"
+        ans += ((x[i]-mu)**2)*f[i]
+    }
+    
+    
+    
+    
+    
+    
+    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
+    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
+    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(ans.toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
+}
+
+function discrete() {
+    $("#probswitch").show();
+    $("#expected").show(); $("#discreteprobs").show(); 
+    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    rows = 3
+}
+
+function dswitchexpected() {
+    $("#discreteprobs").hide(); $("#discreteexpected").show(); $("#discretevariance").hide(); $("#discretestandard").hide();
+    discretekind = "expected"
+}
+
+function dswitchvariance() {
+    $("#discreteprobs").hide(); $("#discreteexpected").hide(); $("#discretevariance").show(); $("#discretestandard").hide();
+    discretekind = "variance"
+}
+
+function dswitchstandard() {
+    $("#discreteprobs").hide(); $("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").show();
+    discretekind = "standard"
+}
+
+function dswitchprobability() {
+    $("#discreteprobs").show(); $("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").hide();
+    discretekind = "probability"
+}
+
+function compdiscrete() {
+    if (discretekind == "probability") {
+        compprobabilities()
+    } else if (discretekind == "expected") {
+        compexpected()
+    } else if (discretekind == "variance") {
+        compvariance()
+    } else if (discretekind == "standard") {
+        compstandard()
+    }
 }
 
 function binomial() {
@@ -571,6 +668,8 @@ function compbinomial() {
         compbinomialexpected()
     } else if (binomialtype == "variance") {
         compbinomialvariance()
+    } else if (binomialtype == "standard") {
+        compbinomialstandard()
     } else {
         compbinomialprob()
     }
@@ -600,6 +699,11 @@ function switchvariance() {
     $("#binomialprobability").hide(); $("#binomialexpected").hide(); $("#binomialvariance").show(); $("#binomialstandard").hide();
     binomialtype = "variance"
 }
+
+function switchstandard() {
+    $("#binomialprobability").hide(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").show();
+    binomialtype = "standard"
+}
  
 function switchprobability() {
     $("#binomialprobability").show(); $("#binomialexpected").hide(); $("#binomialvariance").hide(); $("#binomialstandard").hide();
@@ -622,7 +726,17 @@ function compbinomialvariance() {
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ $$ \\begin{align} \\sigma &= \\sqrt{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(trials*prob*(1-prob))).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compbinomialstandard() {
+    $("#explanation").show();
+    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 &= np(1-p) $$ $$ \\sigma = \\sqrt{\\text{Var}(x)} $$"
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(trials*prob*(1-prob))).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
