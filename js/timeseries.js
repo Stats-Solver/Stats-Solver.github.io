@@ -226,7 +226,7 @@ function stat(){
 }
 
 function naiveforecast() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In the naive method, the forecast of any period is equal to the actual value in the previous period."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = Y_t$$"
     document.getElementById("explanationtext").innerHTML = "Despite being the simplest forecasting method, the naive method is actually the most accurate method for forecasting financial data."
@@ -247,7 +247,7 @@ function naiveforecast() {
 }
 
 function naiveerror() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -269,7 +269,7 @@ function naiveerror() {
 } 
 
 function naivemae() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -295,7 +295,7 @@ function naivemae() {
 } 
 
 function naivemse() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -321,7 +321,7 @@ function naivemse() {
 } 
 
 function naivemape() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -347,7 +347,7 @@ function naivemape() {
 } 
 
 function averageforecast() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In the average method, the forecast of a period is equal to the average of the actual values in all previous periods."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{\\sum{Y_t}}{t}$$"
     document.getElementById("explanationtext").innerHTML = "The average method is suitable for forecasting patternless data."
@@ -375,7 +375,7 @@ function averageforecast() {
 }
 
 function averageerror() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -399,7 +399,7 @@ function averageerror() {
 } 
 
 function averagemae() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -427,7 +427,7 @@ function averagemae() {
 } 
 
 function averagemse() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -455,7 +455,7 @@ function averagemse() {
 } 
 
 function averagemape() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -483,7 +483,7 @@ function averagemape() {
 } 
 
 function movingforecast2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order two, the forecast is equal to the average of the previous two actual values."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-1}+Y_t}{2}$$"
     document.getElementById("explanationtext").innerHTML = "The higher order the moving average, the more the random fluctuations in the data are smoothed out."
@@ -511,7 +511,7 @@ function movingforecast2() {
 }
 
 function movingerror2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -536,7 +536,7 @@ function movingerror2() {
 } 
 
 function movingmae2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -565,7 +565,7 @@ function movingmae2() {
 } 
 
 function movingmse2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -594,7 +594,7 @@ function movingmse2() {
 } 
 
 function movingmape2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -623,7 +623,7 @@ function movingmape2() {
 } 
 
 function movingforecast3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order three, the forecast is equal to the average of the previous three actual values."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-2}+Y_{t-1}+Y_t}{3}$$"
     document.getElementById("explanationtext").innerHTML = "The higher order the moving average, the more the random fluctuations in the data are smoothed out."
@@ -652,7 +652,7 @@ function movingforecast3() {
 }
 
 function movingerror3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -678,7 +678,7 @@ function movingerror3() {
 } 
 
 function movingmae3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -708,7 +708,7 @@ function movingmae3() {
 } 
 
 function movingmse3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -738,7 +738,7 @@ function movingmse3() {
 } 
 
 function movingmape3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -768,7 +768,7 @@ function movingmape3() {
 } 
 
 function movingforecast4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order four, the forecast is equal to the average of the previous four actual values."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\frac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$$"
     document.getElementById("explanationtext").innerHTML = "The higher order the moving average, the more the random fluctuations in the data are smoothed out."
@@ -798,7 +798,7 @@ function movingforecast4() {
 }
 
 function movingerror4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -825,7 +825,7 @@ function movingerror4() {
 } 
 
 function movingmae4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -856,7 +856,7 @@ function movingmae4() {
 } 
 
 function movingmse4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -887,7 +887,7 @@ function movingmse4() {
 } 
 
 function movingmape4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -918,7 +918,7 @@ function movingmape4() {
 } 
 
 function weightedforecast2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a weighted moving average, each observation in the moving average is given a different weight."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = w_1 Y_{t-1}+w_2 Y_t$$"
     document.getElementById("explanationtext").innerHTML = "In a weighted moving average, recent observations typically get more weight."
@@ -948,7 +948,7 @@ function weightedforecast2() {
 }
 
 function weightederror2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -975,7 +975,7 @@ function weightederror2() {
 } 
 
 function weightedmae2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -1006,7 +1006,7 @@ function weightedmae2() {
 } 
 
 function weightedmse2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -1037,7 +1037,7 @@ function weightedmse2() {
 } 
 
 function weightedmape2() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -1068,7 +1068,7 @@ function weightedmape2() {
 } 
 
 function weightedforecast3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a weighted moving average, each observation in the moving average is given a different weight."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = w_1 Y_{t-2}+ w_2 Y_{t-1}+ w_3 Y_t$$"
     document.getElementById("explanationtext").innerHTML = "In a weighted moving average, recent observations typically get more weight."
@@ -1100,7 +1100,7 @@ function weightedforecast3() {
 }
 
 function weightederror3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -1129,7 +1129,7 @@ function weightederror3() {
 } 
 
 function weightedmae3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -1162,7 +1162,7 @@ function weightedmae3() {
 } 
 
 function weightedmse3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -1195,7 +1195,7 @@ function weightedmse3() {
 } 
 
 function weightedmape3() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -1228,7 +1228,7 @@ function weightedmape3() {
 } 
 
 function weightedforecast4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a weighted moving average, each observation in the moving average is given a different weight."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = w_1 Y_{t-3}+ w_2 Y_{t-2}+ w_3 Y_{t-1}+ w_4 Y_t$$"
     document.getElementById("explanationtext").innerHTML = "In a weighted moving average, recent observations typically get more weight."
@@ -1262,7 +1262,7 @@ function weightedforecast4() {
 }
 
 function weightederror4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -1293,7 +1293,7 @@ function weightederror4() {
 } 
 
 function weightedmae4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -1328,7 +1328,7 @@ function weightedmae4() {
 } 
 
 function weightedmse4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -1363,7 +1363,7 @@ function weightedmse4() {
 } 
 
 function weightedmape4() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -1398,7 +1398,7 @@ function weightedmape4() {
 } 
 
 function exponentialforecast() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
     document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
@@ -1425,7 +1425,7 @@ function exponentialforecast() {
 }
 
 function exponentialerror() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -1454,7 +1454,7 @@ function exponentialerror() {
 } 
 
 function exponentialmae() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -1489,7 +1489,7 @@ function exponentialmae() {
 } 
 
 function exponentialmse() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -1522,7 +1522,7 @@ function exponentialmse() {
 } 
 
 function exponentialmape() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -1606,7 +1606,7 @@ function linearforecast() {
 }
 
 function linearerror() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -1646,7 +1646,7 @@ function linearerror() {
 } 
 
 function linearmae() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -1692,7 +1692,7 @@ function linearmae() {
 } 
 
 function linearmse() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -1737,7 +1737,7 @@ function linearmse() {
 } 
 
 function linearmape() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
@@ -1784,7 +1784,7 @@ function linearmape() {
 } 
 
 function holtforecast() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
     document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
     document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
@@ -1819,7 +1819,7 @@ function holtforecast() {
 }
 
 function holterror() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
     document.getElementById("formulatext").innerHTML = "$$e_t = Y_t - F_t$$"
     document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
@@ -1855,7 +1855,7 @@ function holterror() {
 } 
 
 function holtmae() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
@@ -1897,7 +1897,7 @@ function holtmae() {
 } 
 
 function holtmse() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\sum{e_t^2}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
@@ -1937,7 +1937,7 @@ function holtmse() {
 } 
 
 function holtmape() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MAPE} = \\frac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $$"
     document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."

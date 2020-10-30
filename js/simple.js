@@ -94,7 +94,7 @@ function stat(){
 }
 
 function slope(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) corresponding to a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} $$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
@@ -151,7 +151,7 @@ function slope(){
 }
 
 function intercept(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The intercept of the estimated regression equation is the predicted value of dependent variable (y) when the independent variable (x) is equal to 0."
     document.getElementById("formulatext").innerHTML = "$$b_{0} = \\bar{y} - b_{1} \\bar{x}$$"
     document.getElementById("explanationtext").innerHTML = "The formula for the intercept is a result of the least squares method."
@@ -188,7 +188,7 @@ function intercept(){
 }
 
 function equation(){
-    $("#explanation").hide(); $("#predict").show();
+    $("#explanation").show(); $("#predict").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
@@ -232,7 +232,7 @@ function equation(){
 }
 
 function prediction(){
-    $("#explanation").hide(); $("#predict").show();
+    $("#explanation").show(); $("#predict").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
@@ -278,7 +278,7 @@ function prediction(){
 }
 
 function predicted(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
@@ -331,7 +331,7 @@ function predicted(){
 }
 
 function residuals(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
@@ -385,7 +385,7 @@ function residuals(){
 }
 
 function sse(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares error meausure the variability of the observations around the estimation regression equation."
     document.getElementById("formulatext").innerHTML = "$$ \\text{SSE} = \\sum(y - \\hat{y})^2 $$"
     document.getElementById("explanationtext").innerHTML = "The closer the observations are to the estimate regression line, the smaller the SSE will be."
@@ -440,12 +440,12 @@ function sse(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+Math.round(sum_yminusyhat)+"$</td>" +"<td>$"+parseFloat(sum_yminusyhat2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$ \\begin{align} \\text{SSE} &= \\sum(y - \\hat{y})^2 \\\\ &= \\boxed{"+parseFloat(anssse.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$  \\text{SSE} = \\boxed{"+parseFloat(anssse.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
 function sst(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares total meausures the overall variability of the value of the dependent variable (y)."
     document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\sum(y - \\bar{y})^2 $$"
     document.getElementById("explanationtext").innerHTML = "The closer the values of the dependent variable are to their mean, the smaller the SST will be."
@@ -507,12 +507,12 @@ function sst(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$"+parseFloat(sum_yminusy_bar2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$ \\begin{align} \\text{SST} &= \\sum(y - \\bar{y})^2 \\\\ &= \\boxed{"+parseFloat(anssst.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$ \\text{SST} = \\boxed{"+parseFloat(anssst.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
 function ssr(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares regression meausures the distance between the estimated regression line and the mean of the dependent variable (y)."
     document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$"
     document.getElementById("explanationtext").innerHTML = "The closer the estimated regression line is to the mean of the dependent variable, the smaller the SSR will be."
@@ -569,7 +569,7 @@ function ssr(){
 }
 
 function rsquared(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The coefficient of determination is a measure of the goodness of fit for the estimated regression equation."
     document.getElementById("formulatext").innerHTML = "$$ R^2 = \\frac{\\text{SSR}}{\\text{SST}} $$"
     document.getElementById("explanationtext").innerHTML = "The coefficient of determination takes a value between 0 and 1, with a higher value indicating a better fit."
@@ -628,7 +628,7 @@ function rsquared(){
 }
 
 function correlation(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationship between the dependent and independent variables."
     document.getElementById("formulatext").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} $$"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
@@ -731,7 +731,7 @@ function calcmeansquare() {
 }
 
 function mse(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = (\\text{sign of } b_1) \\sqrt{r^2} $$"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
@@ -802,7 +802,7 @@ function calcstandarderror() {
 }
 
 function see(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The standard error of estimate is the square root of the MSE."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -859,7 +859,7 @@ function see(){
 }
 
 function ses(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = ""
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -916,7 +916,7 @@ function ses(){
 }
 
 function tstat(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The t-statistic is the slope divided by the estimated standard deviation of the slope."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -976,7 +976,7 @@ function tstat(){
 }
 
 function msr(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The mean square regression is the SSR divided by the number of independent variables."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1035,7 +1035,7 @@ function msr(){
 }
 
 function fstat(){
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "The F-statistic is the MSR divided by the MSE."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1098,10 +1098,12 @@ function fstat(){
 function examplevalues(){
     document.getElementById('valuesx').value="1, 2, 3, 4, 5"
     document.getElementById('valuesy').value="3, 7, 5, 11, 14"
+    document.getElementById('xvalue').value="6"
 }
 
 function examplevalues2(){
     document.getElementById('valuesx').value="3, 12, 6, 20, 14"
     document.getElementById('valuesy').value="55, 40, 55, 10, 15"
+    document.getElementById('xvalue').value="10"
 }
 

@@ -208,7 +208,7 @@ function switchprobability() {
 }
 
 function compuniformexpected() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\frac{a+b}{2} $$"
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -218,7 +218,7 @@ function compuniformexpected() {
 }
 
 function compuniformvariance() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\frac{(b-a)^2}{12} $$"
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -228,7 +228,7 @@ function compuniformvariance() {
 }
 
 function compuniformstandard() {
-    $("#explanation").hide();
+    $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\frac{(b-a)^2}{12} $$"
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
@@ -238,7 +238,7 @@ function compuniformstandard() {
 }
 
 function compuniform1() {
-    $("#explanation").hide(); $("#myCanvas").show(); 
+    $("#explanation").show(); $("#myCanvas").show(); 
     
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
@@ -307,7 +307,7 @@ function compuniform1() {
 }
 
 function compuniform2() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -375,7 +375,7 @@ function compuniform2() {
 }
 
 function compuniform3() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -446,7 +446,7 @@ function compuniform3() {
 }
 
 function compuniform4() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -517,7 +517,7 @@ function compuniform4() {
 }
 
 function compuniform5() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -584,7 +584,7 @@ function compuniform5() {
 }
 
 function compuniform6() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -657,7 +657,7 @@ function compuniform6() {
 }
 
 function compuniform7() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -730,7 +730,7 @@ function compuniform7() {
 }
 
 function compuniform8() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -803,7 +803,7 @@ function compuniform8() {
 }
 
 function compuniform9() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
@@ -895,7 +895,7 @@ function compsnormal() {
 }
 
 function compsnormal1() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
@@ -1044,7 +1044,7 @@ function compsnormal1() {
 }
 
 function compsnormal2() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
@@ -1193,7 +1193,7 @@ function compsnormal2() {
 }
 
 function compsnormal3() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
@@ -1323,7 +1323,7 @@ function compsnormal3() {
 }
 
 function compsnormal4() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
@@ -1543,7 +1543,7 @@ function compnormal() {
 }
 
 function compnormal1() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
@@ -1692,7 +1692,7 @@ function compnormal1() {
 }
 
 function compnormal2() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
     document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
@@ -1844,7 +1844,7 @@ function compnormal2() {
 }
 
 function compnormal3() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
     document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
@@ -1983,7 +1983,7 @@ function compnormal3() {
 }
 
 function compnormal4() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\mu}{\\sigma} $$"
     document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
@@ -2208,7 +2208,7 @@ function compexponential() {
 }
 
 function compexponential1() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     
     document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
     document.getElementById("formulatext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
@@ -2315,7 +2315,7 @@ function compexponential1() {
 }
 
 function compexponential2() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
     var probtype = document.getElementById('probtype4').value
@@ -2421,7 +2421,7 @@ function compexponential2() {
 }
 
 function compexponential3() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
     var probtype = document.getElementById('probtype4').value
@@ -2522,7 +2522,7 @@ function compexponential3() {
 }
 
 function compexponential4() {
-    $("#explanation").hide(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
     var probtype = document.getElementById('probtype4').value
