@@ -165,7 +165,7 @@ function compprobabilities() {
 }
 
 function compprob1() {
-    $("#explanation").show();
+    $("#explanation").hide();
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -218,7 +218,7 @@ function compprob1() {
 }
 
 function compprob2() {
-    $("#explanation").show();
+    $("#explanation").hide();
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -264,7 +264,7 @@ function compprob2() {
 }
 
 function compprob3() {
-    $("#explanation").show();
+    $("#explanation").hide();
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -310,7 +310,7 @@ function compprob3() {
 }
 
 function compprob4() {
-    $("#explanation").show();
+    $("#explanation").hide();
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -363,7 +363,7 @@ function compprob4() {
 }
 
 function compprob5() {
-    $("#explanation").show();
+    $("#explanation").hide();
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -425,7 +425,7 @@ function expected() {
 }
 
 function compexpected() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
     document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
     document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
@@ -478,7 +478,7 @@ function variance() {
 }
 
 function compvariance() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
     document.getElementById("formulatext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
     document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
@@ -539,7 +539,7 @@ function standard() {
 }
 
 function compstandard() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The standard deviation of a random variable measures the variability in the values of the random variable. "
     document.getElementById("formulatext").innerHTML = "$$ \\sigma = \\sqrt{Var(x)} $$"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the random variable."
@@ -711,7 +711,7 @@ function switchprobability() {
 }
 
 function compbinomialexpected() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = np $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -721,7 +721,7 @@ function compbinomialexpected() {
 }
 
 function compbinomialvariance() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 &= np(1-p) $$ $$ \\sigma = \\sqrt{\\text{Var}(x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -731,7 +731,7 @@ function compbinomialvariance() {
 }
 
 function compbinomialstandard() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 &= np(1-p) $$ $$ \\sigma = \\sqrt{\\text{Var}(x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -741,7 +741,7 @@ function compbinomialstandard() {
 }
 
 function compbinomial1() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -781,7 +781,7 @@ function compbinomial1() {
 }
 
 function compbinomial2() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -867,7 +867,7 @@ function compbinomial2() {
 }
 
 function compbinomial4() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -954,7 +954,7 @@ function compbinomial4() {
 }
 
 function compbinomial3() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
     var trials = parseInt(document.getElementById('trials').value)
     var prob = document.getElementById('psuccess').value
@@ -1122,7 +1122,7 @@ function compbinomial3() {
 }
 
 function compbinomial5() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -1329,7 +1329,7 @@ function comppoisson() {
 }
 
 function comppoisson1() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
     var ave = document.getElementById('meanocc').value;
     var num = document.getElementById('poissval').value;
@@ -1342,7 +1342,7 @@ function comppoisson1() {
 }
 
 function comppoisson2() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
     var ave = document.getElementById('meanocc').value;
     var num = document.getElementById('poissval').value;
@@ -1373,7 +1373,7 @@ function comppoisson2() {
 }
 
 function comppoisson4() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
     var ave = document.getElementById('meanocc').value;
     var num = document.getElementById('poissval').value;
@@ -1405,7 +1405,7 @@ function comppoisson4() {
 }
 
 function comppoisson3() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
     var ave = document.getElementById('meanocc').value;
     var num = document.getElementById('poissval').value;
@@ -1437,7 +1437,7 @@ function comppoisson3() {
 }
 
 function comppoisson5() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{\\mu^x e^{-\\mu}}{x!} $$"
     var ave = document.getElementById('meanocc').value;
     var num = document.getElementById('poissval').value;
@@ -1511,7 +1511,7 @@ function comphypergeometric() {
 }
 
 function comphypergeometric1() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
     var ntrials = document.getElementById('ntrials').value
     var popsize = document.getElementById('popsize').value
@@ -1606,7 +1606,7 @@ function comphypergeometric1() {
 }
 
 function comphypergeometric2() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
     var ntrials = document.getElementById('ntrials').value
     var popsize = document.getElementById('popsize').value
@@ -1801,7 +1801,7 @@ function comphypergeometric2() {
 }
 
 function comphypergeometric4() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
     var ntrials = document.getElementById('ntrials').value
     var popsize = document.getElementById('popsize').value
@@ -1997,7 +1997,7 @@ function comphypergeometric4() {
 }
 
 function comphypergeometric3() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
     var ntrials = document.getElementById('ntrials').value
     var popsize = document.getElementById('popsize').value
@@ -2192,7 +2192,7 @@ function comphypergeometric3() {
 }
 
 function comphypergeometric5() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = \\frac{{r \\choose x}{N-r \\choose n-x}}{{N \\choose n}} $$"
     var ntrials = document.getElementById('ntrials').value
     var popsize = document.getElementById('popsize').value

@@ -70,8 +70,8 @@
               <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
-              <!--<a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
               <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
@@ -107,21 +107,21 @@
         </div>
         <table id = "nullalternative">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">H₀: </td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
             <td class="statistics"><select id="parameter1" class="hypinput4" onchange="parameter()"> <option value="mean"> &mu;₁ - &mu;₂ </option> <option value="proportion"> p₁ - p₂ </option> </select></td> 
             <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
             <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""><span id="proportionzero">0</span></td>
           </tr>
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">Hₐ: </td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
             <td class="statistics"> <span id = "parameter2">&mu;₁ - &mu;₂</span></td>
             <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
-            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">D₀</span></td>
+            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">$D_o$</span></td>
           </tr> 
         </table>
         <table class = "mt-2">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">n₁</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_1$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size1" class="hypinput2"></td>
             <td class="statistics">&nbsp; &nbsp;</td>
@@ -134,7 +134,7 @@
             <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev1" class="hypinput2"></td>
           </tr>  
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">n₂</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_2$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size2" class="hypinput2"></td>
             <td class="statistics">&nbsp; &nbsp;</td>
@@ -150,15 +150,15 @@
           </div>
       
       <div class = "text-center mt-2" id = "confidencelevel">
-          Confidence Level:
+          $\text{Confidence Level:}$
             <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
         </div>
       
       <div class = "text-center mt-2" id = "levelsignificance">
             <table class = "mt-2">
             <tr>
-                <td class="statistics"> Level of Significance: </td>
-                <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">&alpha;</td>
+                <td class="statistics"> $\text{Level of Significance:}$ </td>
+                <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
                 <td class="statistics"> = </td>
                 <td class="statistics" style="text-align:left"><select id="alpha" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
             </tr>   
@@ -211,7 +211,7 @@
       <canvas id="myCanvas2" width="375" height="188" ></canvas>
       </div>
       
-      <div class="container">
+      <div class="container mb-5">
         <div id="output3" class="output">
         </div>
       </div>

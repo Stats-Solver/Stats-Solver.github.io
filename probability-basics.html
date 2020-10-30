@@ -84,8 +84,8 @@
               <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
-              <!--<a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
               <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
@@ -122,7 +122,7 @@
                     <option value="deck">Deck of Cards</option>
                 </select>
                 </div>
-            <div class="col-4 col-md-2">
+            <div class="col-4 col-md-2" id = "times">
                 <select id="exptimes" class="form-control" onchange="">
                     <option value="choose">Times</option>
                 </select>
@@ -143,6 +143,9 @@
                     <option value="choose">Times</option>
                     <option value="one">1</option>
                 </select>
+                </div>
+            <div class="col-4 col-md-2" id = "blankspace">
+                
                 </div>
             </div>
           
@@ -216,7 +219,7 @@
           
           </div>
       
-      <div class="container mb-3" id="union">
+      <div class="container mb-2" id="union">
         <table>
           <tr>
             <td>$P(A)$</td>
@@ -234,27 +237,36 @@
             <tr>
               <td>$P(A \cap B)$</td>
             <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaib"></td>
+            <td><input class = "prob" type="text" id="probaib"><span id = "zero">$0$</span></td>
                 </tr>
         </table>
           
+          <div class = "text-center mt-2">
+            <input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "mutually()">
+            <label for="mutexc">$\text{Mutually Exclusive}$</label>
+        </div>
+          
           </div>
       
-      <div class="container mb-3" id="intersection">
+      <div class="container mb-2" id="intersection">
         <table>
           <tr>
-            <td>$P($<select id="probtype1" class="hypinput1 probtype" onchange=""> <option value="AgivB">A | B</option> <option value="A"> A </option></select>$)$</td>
+            <td>$P($<select id="probtype1" class="hypinput1 probtype" onchange="switchintersect()"> <option value="AgivB">A | B</option> <option value="A"> A </option></select><span id="probtype1a">A</span>$)$</td>
             <td>$=$</td>
             <td><input class = "prob" type="text" id="iproba"></td>
               
             <td>&nbsp; &nbsp;</td>
             
-              <td>$P($<select id="probtype2" class="hypinput1 probtype" onchange=""> <option value="B">B</option> <option value="BgivA"> B | A </option></select>$)$</td>
+              <td>$P($<span id="probtype2">B</span>$)$</td>
             <td>$=$</td>
             <td><input class = "prob" type="text" id="iprobb"></td>
                 </tr>
         </table> 
               
+          <div class = "text-center mt-2">
+            <input type="checkbox" id="indep" name="vehicle1" value="Bike" onchange = "independent()">
+            <label for="indep">$\text{Independent}$</label>
+        </div>
           
           </div>
       
@@ -301,21 +313,38 @@
           
           </div>
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()">
                     <option value="choose">Choose One</option>
-                    <!--<option value="samplespace">Sample Space</option>
+                    <option value="samplespace">Sample Space</option>
                     <option value="outcomes">Number of Outcomes</option>
-                    <option value="probability">Probability of Event</option>-->
+                    <!--<option value="tree">Tree Diagram</option>
                     <option value="experiments">Experiments</option>
+                    <option value="multistep">Multiple-Step Experiments</option>-->
                     <option value="combinations">Combinations</option>
                     <option value="permutations">Permutations</option>
+                    <!--<option value="experiments">Probability of Outcomes</option>
+                    <option value="events">Events</option>-->
+                    <option value="probability">Probability of Event</option>
+                    <!--<option value="multistep">Probability of Events</option>-->
                     <option value="complement">Complement</option>
+                    <!--<option value="venn">Venn Diagram</option>-->
                     <option value="union">Union</option>
-                    <option value="intersection">Intersection</option>
+                    <!--<option value="jointprob">Joint Probability Table</option>-->
                     <option value="conditional">Conditional Probability</option>
+                    <option value="intersection">Intersection</option>
                     <option value="bayes">Bayes Theorem</option>
                 </select>
                 </div>
@@ -357,6 +386,27 @@
         </div>
           
         </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
     <div class="container">
@@ -402,11 +452,21 @@
       
       
       
-      <div class="container text-center">
+      
+      
+      <!--<div class="container text-center">
+        <div id="expconf" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
+        </div>
+      </div>-->
+      
+          <footer id="footer">
+              <div class="container">
+                  <div class="container text-center">
       <canvas id="myCanvas" width="300" height="150" ></canvas>
       </div>
       
-      <div class="container mb-5" id="explanation">
+      <div class="container" id="explanation">
       <p  class="text-center">
           <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
         Definition
@@ -434,15 +494,6 @@
       </div>
     </div>
           </div>
-      
-      <!--<div class="container text-center">
-        <div id="expconf" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
-        </div>
-      </div>-->
-      
-          <footer id="footer">
-              <div class="container">
                   <!--<p>Related: <a href="discrete.html">Discrete Distributions Calculator</a> </p>-->
                 <hr>
             </div>

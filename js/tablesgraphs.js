@@ -1,6 +1,6 @@
 $("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide(); $("#label3").hide();
 $("#myCanvas").hide(); $("#myCanvas2").hide(); $("#firstclass").hide(); $("#label2").hide();
-$("#firstclasscross").hide();
+$("#firstclasscross").hide(); $("#label4").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -104,7 +104,7 @@ function avg(input){
 
 function showthings(){
     $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label2").hide(); $("#label3").hide();  $("#firstclass").hide();
-    $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide();
+    $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide(); $("#input1").show(); $("#label4").hide();
     var str = document.getElementById("values").value;
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
@@ -129,6 +129,8 @@ function showthings(){
         }
     } else if (x == "histogram") {
         $("#firstclass").hide(); $("#go").hide();
+    } else if (x == "boxplot") {
+        $("#firstclass").hide(); $("#go").hide();
     } else if (x == "cumfrequency") {
         $("#firstclass").show(); $("#go").hide();
     } else if (x == "cumrelative") {
@@ -145,7 +147,9 @@ function showthings(){
         scatter()
     } else if (x == "trendline") {
         trendline()
-    }    
+    } else if (x == "timeplot") {
+        timeplot()
+    }   
 }
 
 function stat(){
@@ -164,6 +168,8 @@ function stat(){
         pie()
     } else if (x == "histogram") {
         histogram()
+    } else if (x == "boxplot") {
+        boxplot()
     } else if (x == "cumfrequency") {
         cumfrequency()
     } else if (x == "cumrelative") {
@@ -180,6 +186,8 @@ function stat(){
         calcscatt()
     } else if (x == "trendline") {
         calctrend()
+    } else if (x == "timeplot") {
+        calctime()
     } else{
         document.getElementById("output").innerHTML = ""
     }
@@ -874,7 +882,7 @@ function calcpie(){
         chart.draw(data);
       }
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -915,89 +923,7 @@ function calchistogram(){
     var minvalue = Math.min.apply(Math, each);
     var classwidth = Math.ceil((maxvalue - minvalue) / 5);
     
-    if (lenn == 1) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 2) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 3) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 4) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 5) {
+    if (lenn == 5) {
         google.charts.load("current", {packages:["corechart"]});
         google.charts.setOnLoadCallback(drawChart);
           function drawChart() {
@@ -1920,1184 +1846,148 @@ function calchistogram(){
             var chart = new google.visualization.Histogram(document.getElementById('charts'));
             chart.draw(data, options);
       }
-    } else if (lenn == 31) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 32) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 33) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 34) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 35) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 36) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 37) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 38) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 39) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 40) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 41) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 42) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 43) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 44) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 45) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]],
-              [eachnums[44]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 46) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]],
-              [eachnums[44]],
-              [eachnums[45]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 47) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]],
-              [eachnums[44]],
-              [eachnums[45]],
-              [eachnums[46]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 48) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]],
-              [eachnums[44]],
-              [eachnums[45]],
-              [eachnums[46]],
-              [eachnums[47]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 49) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]],
-              [eachnums[44]],
-              [eachnums[45]],
-              [eachnums[46]],
-              [eachnums[47]],
-              [eachnums[48]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } else if (lenn == 50) {
-        google.charts.load("current", {packages:["corechart"]});
-        google.charts.setOnLoadCallback(drawChart);
-          function drawChart() {
-            var data = google.visualization.arrayToDataTable([
-              ['Value'],
-              [eachnums[0]],
-              [eachnums[1]],
-              [eachnums[2]],
-              [eachnums[3]],
-              [eachnums[4]],
-              [eachnums[5]],
-              [eachnums[6]],
-              [eachnums[7]],
-              [eachnums[8]],
-              [eachnums[9]],
-              [eachnums[10]],
-              [eachnums[11]],
-              [eachnums[12]],
-              [eachnums[13]],
-              [eachnums[14]],
-              [eachnums[15]],
-              [eachnums[16]],
-              [eachnums[17]],
-              [eachnums[18]],
-              [eachnums[19]],
-              [eachnums[20]],
-              [eachnums[21]],
-              [eachnums[22]],
-              [eachnums[23]],
-              [eachnums[24]],
-              [eachnums[25]],
-              [eachnums[26]],
-              [eachnums[27]],
-              [eachnums[28]],
-              [eachnums[29]],
-              [eachnums[30]],
-              [eachnums[31]],
-              [eachnums[32]],
-              [eachnums[33]],
-              [eachnums[34]],
-              [eachnums[35]],
-              [eachnums[36]],
-              [eachnums[37]],
-              [eachnums[38]],
-              [eachnums[39]],
-              [eachnums[40]],
-              [eachnums[41]],
-              [eachnums[42]],
-              [eachnums[43]],
-              [eachnums[44]],
-              [eachnums[45]],
-              [eachnums[46]],
-              [eachnums[47]],
-              [eachnums[48]],
-              [eachnums[49]]
-              ]);
-
-            var options = {
-              legend: { position: 'none' },
-              colors: ['blue'],
-              vAxis: {title: 'Frequency'},
-              hAxis: {title: 'Class'}
-            };
-
-            var chart = new google.visualization.Histogram(document.getElementById('charts'));
-            chart.draw(data, options);
-      }
-    } 
-    
-      
-    
-    //document.getElementById("output").innerHTML = ""
-    
-    MathJax.typeset();
+    }
 }
+
+
+function boxplot(){
+    $("#firstclass").hide();
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Box Plots require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
+    } else {
+        calcbox()
+    }
+}
+
+function calcbox() {
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number);var len = each.length;
+    var largest = Math.max(...each); var smallest = Math.min(...each)
+    var eachsort = each.sort();
+    
+    var eachsort2 = each.sort(function(a,b) {
+        return a - b;
+    });
+    var mid = (len-1)/2; var midr = len/2;  var midl = (len-2)/2;
+    var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
+    var sumlr = vall + valr; var avelr = (vall + valr)/2;
+    if (len % 2 != 0){
+         var medianans = valm
+    }else{
+        var medianans = avelr
+    }
+    
+    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25);
+    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75);
+    var val25indx = eachsort[indxval25-1]; var val25indxplus1 = eachsort[indxval25]; var val25avg = (val25indx + val25indxplus1) / 2;
+    var val75indx = eachsort[indxval75-1]; var val75indxplus1 = eachsort[indxval75]; var val75avg = (val75indx + val75indxplus1) / 2;
+    var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
+    var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
+    var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
+    if (indxint25 && indxint75){
+        
+        google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['x', smallest, val25avg, val75avg, largest]
+              // Treat first row as data as well.
+            ], true);
+
+            var options = {
+              legend:'none'
+            };
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+            chart.draw(data, options);
+          }
+        
+    } else if (indxint25 && !indxint75){
+        
+        google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['x', smallest, val25avg, answr75, largest]
+              // Treat first row as data as well.
+            ], true);
+
+            var options = {
+              legend:'none'
+            };
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+            chart.draw(data, options);
+          }
+        
+    } else if (!indxint25 && indxint75){
+        
+        google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', smallest, answr25, val75avg, largest]
+          // Treat first row as data as well.
+        ], true);
+
+        var options = {
+          legend:'none'
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
+        
+    }
+    else{
+        
+        google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', smallest, answr25, answr75, largest]
+          // Treat first row as data as well.
+        ], true);
+
+        var options = {
+          legend:'none'
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
+        
+    }
+    
+    if (indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    } else if (indxint25 && !indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    } else if (!indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    }
+    else{
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    }
+
+    MathJax.typeset();
+    
+}
+
 
 function cumulative(){
     $("#cumulative").show();
@@ -4243,7 +3133,7 @@ function calcrow1(){
         h += len2
     } 
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4449,7 +3339,7 @@ function calcrow2(){
         h += cols
     }
 
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4700,7 +3590,7 @@ function calcrow3(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4876,7 +3766,7 @@ function calcrow4(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -5035,7 +3925,7 @@ function calccol1(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -5257,7 +4147,7 @@ function calccol2(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -5524,7 +4414,7 @@ function calccol3(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -5715,7 +4605,7 @@ function calccol4(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -5903,6 +4793,52 @@ function calctrend(){
     MathJax.typeset();
 }
 
+function timeplot() {
+    $("#input1").hide(); $("#input2").show();  $("#label1").hide(); $("#label4").show();
+}
+
+function calctime() {
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    $("#myCanvas").show();
+    var str2 = document.getElementById("values2").value;
+    var each2 = str2.split(",")
+    var Y = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'X');
+          data.addColumn('number', 'Y');
+
+          data.addRows([
+            [1, Y[0]], [2, Y[1]], [3, Y[2]], [4, Y[3]], [5, Y[4]], [6, Y[5]], [7, Y[6]], [8, Y[7]], [9, Y[8]], [10, Y[9]],
+            [11, Y[10]], [12, Y[11]], [13, Y[12]], [14, Y[13]], [15, Y[14]], [16, Y[15]], [17, Y[16]], [18, Y[17]], [19, Y[18]], [20, Y[19]],
+            [21, Y[20]], [22, Y[21]], [23, Y[22]], [24, Y[23]], [25, Y[24]], [26, Y[25]], [27, Y[26]], [28, Y[27]], [29, Y[28]], [30, Y[29]],
+            [31, Y[30]], [32, Y[31]], [33, Y[32]], [34, Y[33]], [35, Y[34]], [36, Y[35]], [37, Y[36]], [38, Y[37]], [39, Y[38]], [40, Y[39]],
+            [41, Y[40]], [42, Y[41]], [43, Y[42]], [44, Y[43]], [45, Y[44]], [46, Y[45]], [47, Y[46]], [48, Y[47]], [49, Y[48]], [50, Y[49]]
+          ]);
+
+          var options = {
+            hAxis: {
+              title: 'Time'
+            },
+            vAxis: {
+              title: 'Value'
+            }
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+}
+
 
 function relativeexp(){
     $("#exprel").show();
@@ -5917,6 +4853,8 @@ function examplexvalues2(){
     var x = document.getElementById("stat").value;
     document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
     if (x == "histogram") {
+        $("#firstclass").hide();
+    } else if (x == "boxplot") {
         $("#firstclass").hide();
     } else {
         $("#firstclass").show();
@@ -5965,4 +4903,12 @@ function examplevalues5(){
 function examplevalues6(){
     document.getElementById('values').value="-22, -33, 2, 29, -13, 21, -13, -23, 14, 2"
     document.getElementById('values2').value="22, 49, 8, -16, 10, -28, 27, 35, -5, -3"
+}
+
+function examplevalues7(){
+    document.getElementById('values2').value="18, 13, 16, 11, 17, 14"
+}
+
+function examplevalues8(){
+    document.getElementById('values2').value="24, 13, 20, 12, 19, 23, 15"
 }

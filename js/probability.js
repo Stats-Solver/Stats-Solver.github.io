@@ -2,13 +2,17 @@ $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#comb").hide(); $("#perm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
 $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
 $("#bayes").hide(); $("#output2").hide(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+$("#times").show(); $("#blankspace").hide();
 
 $("#combinationexamples").hide(); $("#permutationexamples").hide();  $("#complementexamples").hide(); $("#unionexamples").hide();
 $("#intersectionexamples").hide(); $("#conditionalexamples").hide();  $("#bayesexamples").hide(); $("#experiments").show();
 
 $("#samplespace").hide(); $("#numberoutcomes").hide(); $("#probabilityevent").hide();
 
+$("#zero").hide(); $("#probtype1a").hide();
+
 experimentkind = "samplespace"
+mutuallyexc = "no"
 
 function factorial(n) {
     if (n > 0) {
@@ -21,7 +25,7 @@ function factorial(n) {
 function showstuff(){
     $("#comb").hide(); $("#perm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
     $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
-    $("#explanation").hide(); $("#experiments").hide(); $("#bayes").hide();
+    $("#experiments").hide(); $("#bayes").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     
@@ -104,7 +108,7 @@ function stat(){
 }
 
 function outcomes() {
-    $("#experiments").show(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    $("#experiments").show();
     $("#coinoneprob").hide();
 }
 
@@ -183,7 +187,7 @@ function compoutcomes() {
 }
 
 function samplespace() {
-    $("#experiments").show(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    $("#experiments").show();
     $("#coinoneprob").hide();
 }
 
@@ -262,7 +266,7 @@ function compsamplespace() {
 }
 
 function probability() {
-    $("#experiments").show(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
+    $("#experiments").show();
     $("#coinoneprob").hide();
 }
 
@@ -399,31 +403,6 @@ function compprobability() {
     MathJax.typeset();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function experiments() {
     $("#experiments").show();
     $("#coinoneprob").hide();
@@ -454,36 +433,6 @@ function compexperiments() {
         compprobability()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function combinations() {
@@ -581,7 +530,25 @@ function union() {
     $("#union").show();
 }
 
+function mutually() {
+    if (document.getElementById('mutexc').checked) {
+      $("#zero").show(); $("#probaib").hide();
+      mutuallyexc = "yes"
+  } else {
+      $("#zero").hide(); $("#probaib").show();
+      mutuallyexc = "no"
+  }
+}
+
 function compunion() {
+    if (mutuallyexc == "no") {
+        compunion1()
+    } else if (mutuallyexc == "yes") {
+        compunion2()
+    }
+}
+
+function compunion1() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The union of events A and B is the event containing all sample points in A, B and both A and B."
     document.getElementById("formulatext").innerHTML = "$$ \\text{Addition Law:} $$ $$ P(A \\cup B) = P(A) + P(B) - P(A \\cap B) $$ $$ \\text{Addition Law (Mutually Exclusive):} $$ $$ P(A \\cup B) = P(A) + P(B) $$"
@@ -590,12 +557,43 @@ function compunion() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\  &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\  &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compunion2() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The union of events A and B is the event containing all sample points in A, B and both A and B."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Addition Law:} $$ $$ P(A \\cup B) = P(A) + P(B) - P(A \\cap B) $$ $$ \\text{Addition Law (Mutually Exclusive):} $$ $$ P(A \\cup B) = P(A) + P(B) $$"
+    document.getElementById("explanationtext").innerHTML = "If the events are mutually exclusive, the intersection of A and B is empty."
+    var proba = document.getElementById("proba").value;
+    var probb = document.getElementById("probb").value;
+    var probaib = document.getElementById("probaib").value;
+    var ans = parseFloat(proba) + parseFloat(probb)
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) \\\\  &= " + proba + "+" + probb + "\\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function intersection() {
     $("#intersection").show();
+}
+
+function switchintersect() {
+    var x = document.getElementById("probtype1").value;
+    if (x == "AgivB") {
+        document.getElementById("probtype2").innerHTML = "B"
+    } else if (x == "A") {
+        document.getElementById("probtype2").innerHTML = "B | A"
+    }
+}
+
+function independent() {
+    if (document.getElementById('indep').checked) {
+      $("#probtype1a").show(); $("#probtype1").hide();
+      document.getElementById("probtype2").innerHTML = "B"
+  } else {
+      $("#probtype1a").hide(); $("#probtype1").show(); 
+  }
 }
 
 function compintersection() {

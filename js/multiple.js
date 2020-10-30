@@ -127,7 +127,7 @@ function stat(){
 }
 
 function interpretation(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Each slope coefficient can be interpreted as the change in the dependent variable (y) corresponding to a one-unit increase in the independent variable (xᵢ), holding the other independent variables constant."
     document.getElementById("formulatext").innerHTML = "The formulas for estimating the coefficients in multiple regression involves the use of more advanced math. "
     document.getElementById("explanationtext").innerHTML = "The interpretation of the coefficients in a multiple regression is identical to that in a simple regression except for the addition of holding other independent variables constant."
@@ -162,11 +162,11 @@ function interpretation(){
     }
     
     if (ind == 3) {
-        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$ and $x_3$ constant.<br><br> $b_2$: For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$ and $x_3$ constant. <br><br> $b_3$:  For every one-unit increase in $x_3$, $y$ is predicted to <u>"+ b3sign +" by " + Math.abs(b3) + " units</u>, holding $x_1$ and $x_2$ constant. <br><br>"
+        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to "+ b1sign +" by " + Math.abs(b1) + " units, holding $x_2$ and $x_3$ constant.<br><br> $b_2$: For every one-unit increase in $x_2$, $y$ is predicted to "+ b2sign +" by " + Math.abs(b2) + " units, holding $x_1$ and $x_3$ constant. <br><br> $b_3$:  For every one-unit increase in $x_3$, $y$ is predicted to "+ b3sign +" by " + Math.abs(b3) + " units, holding $x_1$ and $x_2$ constant. <br><br>"
     } else if (ind == 4) {
-        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$, $x_3$ and $x_4$ constant.<br><br> $b_2$:  For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$, $x_3$ and $x_4$ constant. <br><br> $b_3$:  For every one-unit increase in $x_3$, $y$ is predicted to <u>"+ b3sign +" by " + Math.abs(b3) + " units</u>, holding $x_1$, $x_2$ and $x_4$ constant. <br><br> $b_4$:  For every one-unit increase in $x_4$, $y$ is predicted to <u>"+ b4sign +" by " + Math.abs(b4) + " units</u>, holding $x_1$, $x_2$ and $x_3$ constant. <br><br>"
+        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to "+ b1sign +" by " + Math.abs(b1) + " units, holding $x_2$, $x_3$ and $x_4$ constant.<br><br> $b_2$:  For every one-unit increase in $x_2$, $y$ is predicted to "+ b2sign +" by " + Math.abs(b2) + " units, holding $x_1$, $x_3$ and $x_4$ constant. <br><br> $b_3$:  For every one-unit increase in $x_3$, $y$ is predicted to "+ b3sign +" by " + Math.abs(b3) + " units, holding $x_1$, $x_2$ and $x_4$ constant. <br><br> $b_4$:  For every one-unit increase in $x_4$, $y$ is predicted to "+ b4sign +" by " + Math.abs(b4) + " units, holding $x_1$, $x_2$ and $x_3$ constant. <br><br>"
     } else {
-        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to <u>"+ b1sign +" by " + Math.abs(b1) + " units</u>, holding $x_2$ constant.<br><br> $b_2$: For every one-unit increase in $x_2$, $y$ is predicted to <u>"+ b2sign +" by " + Math.abs(b2) + " units</u>, holding $x_1$ constant. <br><br>"
+        document.getElementById("output").innerHTML = "$b_1$: For every one-unit increase in $x_1$, $y$ is predicted to "+ b1sign +" by " + Math.abs(b1) + " units, holding $x_2$ constant.<br><br> $b_2$: For every one-unit increase in $x_2$, $y$ is predicted to "+ b2sign +" by " + Math.abs(b2) + " units, holding $x_1$ constant. <br><br>"
     }
     
     MathJax.typeset();
@@ -206,7 +206,7 @@ function prediction(){
 }
 
 function calcprediction(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Predictions can be made by plugging in values of the independent variable into the estimated regression equation."
     if (ind == 3) {
         document.getElementById("formulatext").innerHTML = "$$ \\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 $$ "
@@ -245,7 +245,7 @@ function sse(){
 }
 
 function calcsse(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares error measures the error between the data values and the estimated regression equation."
     document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$ "
     document.getElementById("explanationtext").innerHTML = "If two sum of squares are known, the third one is easy to find."
@@ -263,7 +263,7 @@ function rsquared(){
 }
 
 function calcrsquared(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The multiple coefficient of determination is a measure of goodness of fit for multiple regression."
     document.getElementById("formulatext").innerHTML = "$$ R^2 = \\frac{\\text{SSR}}{\\text{SST}} $$ "
     document.getElementById("explanationtext").innerHTML = "The coefficient of determination in multiple regression has the problem that its value increases automatically when independent variables are added."
@@ -281,7 +281,7 @@ function adjusted(){
 }
 
 function calcadjusted(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
     document.getElementById("formulatext").innerHTML = "$$ R_a^2 = 1 - (1 - R^2) \\frac{n-1}{n-p-1} $$ "
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
@@ -293,7 +293,7 @@ function calcadjusted(){
     var adjans = 1 - (1 - rsquared)*(n-1)/(n-p-1)
     var ansrsquper = adjans.toFixed(2) * 100;
     var interpret = "<b>Interpretation:</b> <u>" + parseFloat(ansrsquper.toFixed(0)) + "% of the variation</u> in y is explained by the estimated regression equation."
-    document.getElementById("output").innerHTML = "$$ \\begin{align} R_a^2 &= 1 - (1 - R^2) \\frac{n-1}{n-p-1} \\\\ &= 1 - (1 - " + rsquared.toFixed(2) + ") \\frac{" + n + " - 1}{" + n +" - " + p +" - 1} \\\\ &= \\boxed{"+adjans.toFixed(2)+"} \\end{align} $$" + interpret + "<br><br>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} R_a^2 &= 1 - (1 - R^2) \\frac{n-1}{n-p-1} \\\\ &= 1 - (1 - " + rsquared.toFixed(2) + ") \\frac{" + n + " - 1}{" + n +" - " + p +" - 1} \\\\ &= \\boxed{"+adjans.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -305,7 +305,7 @@ function msr(){
 }
 
 function calcmsr(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Like the mean square error, the mean square regression is an estimate of the error term."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{p} $$ "
     document.getElementById("explanationtext").innerHTML = "The MSR is divided by p because the SSR has p degrees of freedom."
@@ -323,7 +323,7 @@ function mse(){
 }
 
 function calcmse(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Like the mean square regression, the mean square error is an estimate of the error term."
     document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-p-1} $$ "
     document.getElementById("explanationtext").innerHTML = "The MSE is divided by n-p-1 because the SSE has n-p-1 degrees of freedom."
@@ -342,7 +342,7 @@ function fstat(){
 }
 
 function calcfstat(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
     document.getElementById("formulatext").innerHTML = "$$ R_a^2 = 1 - (1 - R^2) \\frac{n-1}{n-p-1} $$ "
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
@@ -386,7 +386,7 @@ function tstat(){
 }
 
 function calctstat(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
     document.getElementById("formulatext").innerHTML = "$$ R_a^2 = 1 - (1 - R^2) \\frac{n-1}{n-p-1} $$ "
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."

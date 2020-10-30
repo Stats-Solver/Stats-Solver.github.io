@@ -349,7 +349,7 @@ function hyptest(){
 }
 
 function hyptest1(){
-    $("#explanation").show();
+    $("#explanation").hide();
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
@@ -368,7 +368,7 @@ function hyptest1(){
     if (sigma == "known") {
             var degfree = ""
         } else if (sigma == "unknown") {
-            var degfree = "$$ \\begin{align} \\textbf{Degrees of Freedom: } \\text{df} &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= \\underline{"+(size-1)+"} \\end{align} $$"
+            var degfree = "$$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$"
     }
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
@@ -579,7 +579,7 @@ function hyptest1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     if (test < 0) {
@@ -596,7 +596,7 @@ function hyptest1(){
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table12 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     table2 = []
@@ -606,9 +606,9 @@ function hyptest1(){
     
     
     
-    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
     
-    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
     
     table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
     
@@ -616,8 +616,8 @@ function hyptest1(){
     
     if (sigma == "known") {
         //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablec = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
+        var tablep = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+        var tablec = "<table><tr style='border-top: thin solid'><td>z</td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
         } else if (sigma == "unknown") {
             var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
             var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
@@ -654,11 +654,11 @@ function hyptest1(){
     } 
     
     if (tail == "lower") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= "+test.toFixed(2)+" \\end{align} $$"+degfree+"   $ \\underline{\\text{p-Value Approach}} $"
     } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$"+degfree+" <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= "+test.toFixed(2)+" \\end{align}  $$"+degfree+" $ \\underline{\\text{p-Value Approach}} $"
     } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$"+degfree+"   $ \\underline{\\text{p-Value Approach}} $"
     }
     
     
@@ -692,14 +692,14 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",20,95);
+        ctx.fillText("p-value",24,97);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("z = "+test.toFixed(2),68,145);
+            ctx.fillText(test.toFixed(2),60,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("t = "+test.toFixed(2),68,145);  
+            ctx.fillText(test.toFixed(2),60,145);  
             //ctx.fillText("df = "+sizem1,220,40);
         }
         
@@ -741,14 +741,14 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",240,90);
+        ctx.fillText("p-value",240,95);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("z = "+test.toFixed(2),228,145);
+            ctx.fillText(test.toFixed(2),220,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("t = "+test.toFixed(2),228,145);  
+            ctx.fillText(test.toFixed(2),220,145);  
             //ctx.fillText("df = "+sizem1,215,40);
         }
 
@@ -805,12 +805,12 @@ function hyptest1(){
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-z = "+(-Math.abs(test.toFixed(2))),66,145);
-            ctx.fillText("+z = "+Math.abs(test.toFixed(2)),226,145);
+            ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
+            ctx.fillText(Math.abs(test.toFixed(2)),226,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-t = "+(-Math.abs(test.toFixed(2))),66,145);
-            ctx.fillText("+t = "+Math.abs(test.toFixed(2)),226,145); 
+            ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
+            ctx.fillText(Math.abs(test.toFixed(2)),226,145); 
             //ctx.fillText("df = "+sizem1,220,40);
         }
 
@@ -839,11 +839,11 @@ function hyptest1(){
 
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablep+ "$$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "}$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}} $"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = tablep+" $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
+        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}} $ "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = \\underline{"+pval+"} \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\underline{\\text{Critical Value Approach}} $"
     }
     
     
@@ -878,14 +878,16 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α = "+alpha,20,100);
+        ctx.fillText(alpha,35,100);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-zα",65,145);
+            ctx.fillText("-z",65,145);
+            ctx.fillText("α",74,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-tα",65,145); 
+            ctx.fillText("-t",65,145); 
+            ctx.fillText("α",72,146);
             //ctx.fillText("df = "+sizem1,220,40);
         }
 
@@ -928,14 +930,16 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α = "+alpha,250,100);
+        ctx.fillText(alpha,250,102);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("zα",225,145);
+            ctx.fillText("z",227,145);
+            ctx.fillText("α",233,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("tα",225,145);  
+            ctx.fillText("t",229,145);
+            ctx.fillText("α",233,146); 
             //ctx.fillText("df = "+sizem1,215,40);
         }
 
@@ -987,17 +991,21 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α/2 = "+(alpha/2),20,90);
-        ctx.fillText("α/2 = "+(alpha/2),230,90);
+        ctx.fillText((alpha/2),30,100);
+        ctx.fillText((alpha/2),245,100);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-zα",65,145);
-            ctx.fillText("zα/2",225,145);
+            ctx.fillText("-z",65,145);
+            ctx.fillText("α",74,146);
+            ctx.fillText("z",228,145);
+            ctx.fillText("α/2",234,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-tα",65,145);
-            ctx.fillText("tα/2",225,145);
+            ctx.fillText("-t",65,145);
+            ctx.fillText("α",72,146);
+            ctx.fillText("t",228,145);
+            ctx.fillText("α/2",232,146);
             //ctx.fillText("df = "+sizem1,220,40);
         }
 
@@ -1025,11 +1033,11 @@ function hyptest1(){
     
     
     if (tail == "lower") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     }
     
     

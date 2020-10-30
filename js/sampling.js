@@ -292,7 +292,7 @@ function popsizekind(){
 
 
 function conint1(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
@@ -304,9 +304,9 @@ function conint1(){
     var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
     
     if (size >= 30) {
-        var form = "Normal Distribution"
+        var form = "Normal"
     } else if (size < 30) {
-        var form = "Not a Normal Distribution"
+        var form = "Not Normal"
     }
 
     document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
@@ -314,21 +314,49 @@ function conint1(){
     document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
     
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{x}: $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean}: $$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{x}: $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean}: $$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
         } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{x}: $$ $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean}: $$ $$ \\begin{align} \\sigma_\\bar{x} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
         }
         
     }
 
     MathJax.typeset();
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+
+    ctx.fillText("x̄",285,132);
+    ctx.fillText("σ  ="+stderr,220,50);
+    ctx.fillText("x̄",226,55);
+    ctx.fillText(mu,145,145);
+
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
 }
 
 function conint2(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var prptn = document.getElementById("xbar").value;
@@ -342,9 +370,9 @@ function conint2(){
     var cond2 = size * (1 - prptn)
     
     if (cond1 >= 5 && cond2 >= 5) {
-        var form = "Normal Distribution"
+        var form = "Normal"
     } else {
-        var form = "Not a Normal Distribution"
+        var form = "Not Normal"
     }
 
     document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample proportion is the probability distribution of the sample proportion."
@@ -352,21 +380,51 @@ function conint2(){
     document.getElementById("explanationtext").innerHTML = "The sampling distribution of the sample proportion depends on both the sample size and the population proportion."
     
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{p}: $$ $$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\text{Standard Error of the Proportion}: $$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{p}: $$ $$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\text{Standard Error of the Proportion}: $$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
         } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value of } \\bar{p}: $$ $$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\text{Standard Error of the Proportion}: $$ $$ \\begin{align} \\sigma_\\bar{p} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form of the Distribution}: $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
         }
         
     }
     
+    
     MathJax.typeset();
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+
+
+    ctx.fillText("p̄",285,132);
+    ctx.fillText("σ  ="+parseFloat(stderr.toFixed(2).replace(/^0+/, '')),220,50);
+    ctx.fillText("p̄",226,55);
+    ctx.fillText(prptn,145,145);
+
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
 }
 
 function conint3(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
@@ -405,7 +463,7 @@ function conint3(){
 }
 
 function conint4(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var prptn = document.getElementById("xbar").value;
@@ -452,6 +510,7 @@ function example1(){
     document.getElementById('stdev').value="18"
     document.getElementById('size').value="81"
     document.getElementById('psize').value="inf"
+    document.getElementById("pmvalue1").value="3"
 }
 
 function example2(){
@@ -462,6 +521,7 @@ function example2(){
     document.getElementById('xbar').value=".30"
     document.getElementById('size').value="60"
     document.getElementById('psize').value="inf"
+    document.getElementById("pmvalue2").value=".1"
 }
 
 function samplestat() {

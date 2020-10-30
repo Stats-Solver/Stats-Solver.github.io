@@ -272,7 +272,7 @@ function conint(){
 
 
 function conint1(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var sigma = document.getElementById("sigma").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
@@ -290,13 +290,13 @@ function conint1(){
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
     } else if (sigma == "unknown") {
         document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$ \\begin{align} \\textbf{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= \\underline{"+sizem1+"} \\end{align}  $$"
+        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$"
     } 
     
     var c = document.getElementById("myCanvas");
@@ -328,14 +328,16 @@ function conint1(){
     ctx.stroke();
     
     ctx.fillText("0",148,145);
-    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),248,101);
 
     if (sigma == "known") {
         ctx.fillText("z",285,132);
-        ctx.fillText("zα/2",220,145);
+        ctx.fillText("z",228,145);
+        ctx.fillText("α/2",234,147);
     } else if (sigma == "unknown") {
         ctx.fillText("t",285,132);
-        ctx.fillText("tα/2",220,145);   
+        ctx.fillText("t",228,145);
+        ctx.fillText("α/2",232,147);
         //ctx.fillText("df = "+sizem1,220,40); 
     }
     
@@ -376,7 +378,7 @@ function conint1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table1 += "<td>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     table3 = []
@@ -384,11 +386,11 @@ function conint1(){
         table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
     
-    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
     
     table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
     
@@ -397,16 +399,16 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\underline{"+talphahalf.toFixed(3)+"} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
     } 
     
     MathJax.typeset();
 }
 
 function conint2(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var pbar = document.getElementById("xbar").value;
@@ -421,7 +423,7 @@ function conint2(){
     document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-    document.getElementById("output1").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+    document.getElementById("output1").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3) +"$$ "
 
     
     var c = document.getElementById("myCanvas");
@@ -453,10 +455,11 @@ function conint2(){
     ctx.stroke();
     
     ctx.fillText("0",148,145);
-    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),248,101);
 
     ctx.fillText("z",285,132);
-    ctx.fillText("zα/2",220,145);
+    ctx.fillText("z",228,145);
+    ctx.fillText("α/2",234,147);
     
     ctx.beginPath();
     ctx.moveTo(150, 135);
@@ -495,7 +498,7 @@ function conint2(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table1 += "<td>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     table3 = []
@@ -503,18 +506,18 @@ function conint2(){
         table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
     
-    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
     
     table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
     
     
     var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$ $$"+pbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+    document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = "+(1-alphahalf).toFixed(3) +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$ $$"+pbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     
     MathJax.typeset();
 }
@@ -567,7 +570,7 @@ function samplesize() {
 }
 
 function calcsize1() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
     document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} $$"
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
@@ -584,7 +587,7 @@ function calcsize1() {
 }
 
 function calcsize2() {
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
     document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} $$"
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."

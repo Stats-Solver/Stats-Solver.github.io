@@ -2,7 +2,7 @@ $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide(); $("#nulla
 $("#switchconfidence").hide(); $("#hypothesistitle").hide(); $("#levelsignificance").hide();
 $("#hypsolve").hide(); $("#confsolve").show(); $("#confidenceexamples").show(); $("#hypothesisexamples").hide();
 
-$("#xbar1s").hide(); $("#pbar1s").hide(); $("#samplestat1").show();
+$("#xbar1s").hide(); $("#pbar1s").hide(); $("#samplestat1").show(); $("#myCanvas2").hide();
 
 $("#proportionzero").hide();
 
@@ -398,7 +398,7 @@ function tinv(p, dof) {
 
 
 function conint(){
-    $("#myCanvas2").hide();
+    $("#myCanvas2").hide(); $("#output3").hide();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
         conint1()
@@ -409,7 +409,7 @@ function conint(){
 
 
 function conint1(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var sigma = document.getElementById("sigma").value;
     var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
@@ -436,13 +436,13 @@ function conint1(){
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\sigma_1^2}{n_1}+\\frac{\\sigma_2^2}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+        document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\sigma_1^2}{n_1}+\\frac{\\sigma_2^2}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
     } else if (sigma == "unknown") {
         document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ $$  \\textbf{Degrees of Freedom: } $$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\end{align} $$ $$ \\text{Round down to } df = \\underline{" + Math.floor(degreesfreedom) + "} $$"
+        document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\frac{s_1^2}{n_1}+\\frac{s_2^2}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$  \\text{Degrees of Freedom: } $$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\end{align} $$ $$ \\text{Round down to } df = " + Math.floor(degreesfreedom) + " $$"
     } 
     
     var c = document.getElementById("myCanvas");
@@ -474,14 +474,16 @@ function conint1(){
     ctx.stroke();
     
     ctx.fillText("0",148,145);
-    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),248,101);
 
     if (sigma == "known") {
         ctx.fillText("z",285,132);
-        ctx.fillText("zα/2",220,145);
+        ctx.fillText("z",228,145);
+        ctx.fillText("α/2",234,147);
     } else if (sigma == "unknown") {
         ctx.fillText("t",285,132);
-        ctx.fillText("tα/2",220,145);   
+        ctx.fillText("t",228,145);
+        ctx.fillText("α/2",232,147);
         //ctx.fillText("df = "+sizem1,220,40); 
     }
     
@@ -522,7 +524,7 @@ function conint1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td> <b>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table1 += "<td>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     table3 = []
@@ -530,11 +532,11 @@ function conint1(){
         table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
     
-    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
     
     table6 = "<td>"+ degreesfreedomf +"</td><td>"+tinv(.20,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.10,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.05,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.025,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.01,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.005,degreesfreedomf).toFixed(3)+"</td>"
     
@@ -543,16 +545,16 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\underline{"+talphahalf.toFixed(3)+"} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+(xbar1-xbar2) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+(xbar1-xbar2) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
     } 
     
     MathJax.typeset();
 }
 
 function conint2(){
-    $("#explanation").show();
+    $("#explanation").hide();
     $("#expconf").show();
     var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
     var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
@@ -569,7 +571,7 @@ function conint2(){
     document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-    document.getElementById("output1").innerHTML = "$$ \\bar{p}_1 - \\bar{p}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}_1(1-\\bar{p}_1)}{n_1}+\\frac{\\bar{p}_2(1-\\bar{p}_2)}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2) + "\\rightarrow \\alpha = "+alpha.toFixed(2)+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3) +"}$$ "
+    document.getElementById("output1").innerHTML = "$$ \\bar{p}_1 - \\bar{p}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}_1(1-\\bar{p}_1)}{n_1}+\\frac{\\bar{p}_2(1-\\bar{p}_2)}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ "
 
     
     var c = document.getElementById("myCanvas");
@@ -601,7 +603,7 @@ function conint2(){
     ctx.stroke();
     
     ctx.fillText("0",148,145);
-    ctx.fillText("α/2 = "+alphahalf.toFixed(3),235,95);
+    ctx.fillText("α/2 = "+alphahalf.toFixed(3).replace(/^0+/, ''),235,95);
 
     ctx.fillText("z",285,132);
     ctx.fillText("zα/2",220,145);
@@ -662,7 +664,7 @@ function conint2(){
     
     var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3)+" = \\underline{"+(1-alphahalf).toFixed(3) +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + pbar1 + " - "+ pbar2 +"\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar1+"(1-"+pbar1+")}{"+size1+"}+\\frac{"+pbar2+"(1-"+pbar2+")}{"+size2+"}}$$ $$"+parseFloat((pbar1-pbar2).toFixed(2)) + "\\pm" +marginerror.toFixed(3) + "$$ $$ \\boxed{" + anslow.toFixed(3) + "\\text{ to }" + anshigh.toFixed(3) + "} $$"
+    document.getElementById("output2").innerHTML = "$$\\textbf{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = \\underline{"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = \\underline{"+zalphahalf.toFixed(2)+"} $$ $$" + pbar1 + " - "+ pbar2 +"\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar1+"(1-"+pbar1+")}{"+size1+"}+\\frac{"+pbar2+"(1-"+pbar2+")}{"+size2+"}}$$ $$"+parseFloat((pbar1-pbar2).toFixed(2)) + "\\pm" +marginerror.toFixed(3) + "$$ $$ \\boxed{" + anslow.toFixed(3) + "\\text{ to }" + anshigh.toFixed(3) + "} $$"
     
     MathJax.typeset();
 }
@@ -694,6 +696,7 @@ function conint2(){
 
 
 function hyptest(){
+    $("#myCanvas2").show(); $("#output3").show();
     var x = document.getElementById("parameter1").value;
     if (x == "mean"){
         hyptest1()
@@ -703,7 +706,7 @@ function hyptest(){
 }
 
 function hyptest1(){
-    $("#explanation").show();
+    $("#explanation").hide();
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
@@ -731,7 +734,7 @@ function hyptest1(){
     if (sigma == "known") {
             var degfree = ""
         } else if (sigma == "unknown") {
-            var degfree = "$$  \\textbf{Degrees of Freedom: } $$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\end{align} $$ $$ \\text{Round down to } df = \\underline{" + Math.floor(degreesfreedom) + "} $$"
+            var degfree = "$$  \\text{Degrees of Freedom: } $$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\end{align} $$ $$ \\text{Round down to } df = " + Math.floor(degreesfreedom) + " $$"
     }
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
@@ -942,7 +945,7 @@ function hyptest1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     if (test < 0) {
@@ -959,7 +962,7 @@ function hyptest1(){
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td><b>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</b></td>";
+        table12 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
     
     table2 = []
@@ -969,9 +972,9 @@ function hyptest1(){
     
     
     
-    table4 = "<td></td><td colspan='6'><b>Area in Upper Tail</b></td>"
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
     
-    table5 = "<td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td>"
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
     
     table6 = "<td>"+ degreesfreedomf +"</td><td>"+tinv(.20,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.10,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.05,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.025,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.01,degreesfreedomf).toFixed(3)+"</td><td>"+tinv(.005,degreesfreedomf).toFixed(3)+"</td>"
     
@@ -979,8 +982,8 @@ function hyptest1(){
     
     if (sigma == "known") {
         //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablec = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
+        var tablep = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+        var tablec = "<table><tr style='border-top: thin solid'><td>z</td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
         } else if (sigma == "unknown") {
             var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
             var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
@@ -1017,11 +1020,11 @@ function hyptest1(){
     } 
     
     if (tail == "lower") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\dfrac{"+stndsymb+"_1^2}{n_1}+\\dfrac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach</u></b>"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\dfrac{"+stndsymb+"_1^2}{n_1}+\\dfrac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align} $$"+degfree+" $ \\underline{\\text{p-Value Approach}} $"
     } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\dfrac{"+stndsymb+"_1^2}{n_1}+\\dfrac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\    &= \\underline{"+test.toFixed(2)+"} \\end{align}  $$"+degfree+" <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\dfrac{"+stndsymb+"_1^2}{n_1}+\\dfrac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\    &= "+test.toFixed(2)+" \\end{align}  $$"+degfree+" $ \\underline{\\text{p-Value Approach}} $"
     } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = testtype + " $$ \\begin{align} \\textbf{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\dfrac{"+stndsymb+"_1^2}{n_1}+\\dfrac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\   &= \\underline{"+test.toFixed(2)+"} \\end{align} $$"+degfree+" <b><u>p-Value Approach<u></b>"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{(\\bar{x}_1-\\bar{x}_2)-D_o}{\\sqrt{\\dfrac{"+stndsymb+"_1^2}{n_1}+\\dfrac{"+stndsymb+"_2^2}{n_2}}} \\\\ &=\\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\   &= "+test.toFixed(2)+" \\end{align} $$"+degfree+" $ \\underline{\\text{p-Value Approach}} $"
     }
     
     
@@ -1055,14 +1058,14 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",20,95);
+        ctx.fillText("p-value",25,95);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("z = "+test.toFixed(2),68,145);
+            ctx.fillText(test.toFixed(2),60,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("t = "+test.toFixed(2),68,145);  
+            ctx.fillText(test.toFixed(2),60,145);  
             //ctx.fillText("df = "+sizem1,220,40);
         }
         
@@ -1104,14 +1107,14 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",240,90);
+        ctx.fillText("p-value",240,95);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("z = "+test.toFixed(2),228,145);
+            ctx.fillText(test.toFixed(2),220,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("t = "+test.toFixed(2),228,145);  
+            ctx.fillText(test.toFixed(2),220,145);  
             //ctx.fillText("df = "+sizem1,215,40);
         }
 
@@ -1163,17 +1166,17 @@ function hyptest1(){
         
         ctx.fillText("0",148,145);
         
-        ctx.fillText("p-value",20,90);
-        ctx.fillText("p-value",245,90);
+        ctx.fillText("p-value",25,95);
+        ctx.fillText("p-value",240,95);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-z = "+(-Math.abs(test.toFixed(2))),66,145);
-            ctx.fillText("+z = "+Math.abs(test.toFixed(2)),226,145);
+            ctx.fillText((-Math.abs(test.toFixed(2))),60,145);
+            ctx.fillText(Math.abs(test.toFixed(2)),220,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-t = "+(-Math.abs(test.toFixed(2))),66,145);
-            ctx.fillText("+t = "+Math.abs(test.toFixed(2)),226,145); 
+            ctx.fillText((-Math.abs(test.toFixed(2))),60,145);
+            ctx.fillText(Math.abs(test.toFixed(2)),220,145); 
             //ctx.fillText("df = "+sizem1,220,40);
         }
 
@@ -1202,11 +1205,11 @@ function hyptest1(){
 
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablep+ "$$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "}$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}} $"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = tablep+" $$\\textbf{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\underline{" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{"+concl+"} $$ <b><u>Critical Value Approach</u></b> "
+        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}} $ "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\textbf{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = \\underline{"+pval+"} \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl +"} $$ <b><u>Critical Value Approach</u></b>"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\underline{\\text{Critical Value Approach}} $"
     }
     
     
@@ -1241,14 +1244,16 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α = "+alpha,20,100);
+        ctx.fillText(alpha,35,100);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-zα",65,145);
+            ctx.fillText("-z",65,145);
+            ctx.fillText("α",74,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-tα",65,145); 
+            ctx.fillText("-t",65,145);
+            ctx.fillText("α",72,146);
             //ctx.fillText("df = "+sizem1,220,40);
         }
 
@@ -1291,14 +1296,16 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α = "+alpha,250,100);
+        ctx.fillText(alpha,250,100);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("zα",225,145);
+            ctx.fillText("z",228,145);
+            ctx.fillText("α",234,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("tα",225,145);  
+            ctx.fillText("t",229,145);
+            ctx.fillText("α",233,146);
             //ctx.fillText("df = "+sizem1,215,40);
         }
 
@@ -1350,17 +1357,21 @@ function hyptest1(){
         ctx.stroke();
         
         ctx.fillText("0",148,145);
-        ctx.fillText("α/2 = "+(alpha/2),20,90);
-        ctx.fillText("α/2 = "+(alpha/2),230,90);
+        ctx.fillText((alpha/2),30,100);
+        ctx.fillText((alpha/2),245,100);
         
         if (sigma == "known") {
             ctx.fillText("z",285,132);
-            ctx.fillText("-zα",65,145);
-            ctx.fillText("zα/2",225,145);
+            ctx.fillText("-z",65,145);
+            ctx.fillText("α/2",74,146);
+            ctx.fillText("z",228,145);
+            ctx.fillText("α/2",234,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText("-tα",65,145);
-            ctx.fillText("tα/2",225,145);
+            ctx.fillText("-t",65,145);
+            ctx.fillText("α/2",72,146);
+            ctx.fillText("t",229,145);
+            ctx.fillText("α/2",233,146);
             //ctx.fillText("df = "+sizem1,220,40);
         }
 
@@ -1388,11 +1399,11 @@ function hyptest1(){
     
     
     if (tail == "lower") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\textbf{Critical Value: }"+cvalsymb+" = \\underline{" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\textbf{Critical Values: } "+cvalsymb1+" &= \\underline{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\underline{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\textbf{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     }
     
     
@@ -1402,7 +1413,7 @@ function hyptest1(){
 }
 
 function hyptest2(){
-    $("#explanation").show();
+    $("#explanation").hide();
     var tail = document.getElementById("tail").value;
     var pknot = document.getElementById("muknot").value;
     var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
