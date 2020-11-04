@@ -1,12 +1,12 @@
-$("#links").show(); $("#topics").hide();
-$("#usefullinks").hide(); $("#listtopics").show();
-
-function switchlinks() {
-    $("#links").hide(); $("#topics").show();
-    $("#usefullinks").show(); $("#listtopics").hide();
-}
+$("#topics").hide(); $("#links").show(); 
+$("#listtopics").show(); $("#usefullinks").hide();
  
+function switchlinks() {
+    $("#topics").show(); $("#links").hide();
+    $("#listtopics").hide(); $("#usefullinks").show();
+}
+
 function switchtopics() {
-    $("#links").show(); $("#topics").hide();
-    $("#usefullinks").hide(); $("#listtopics").show();
+    $("#topics").hide(); $("#links").show(); 
+    $("#listtopics").show(); $("#usefullinks").hide();
 }

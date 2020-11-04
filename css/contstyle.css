@@ -77,6 +77,16 @@ footer {
     text-align-last:center;
 }
 
+.hypinput2{
+    width: 50px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+}
+
 /* Style all font awesome icons */
 .fa {
   padding: 0px;
@@ -88,4 +98,9 @@ footer {
 
 .fa:hover {
   text-decoration: none;
+}
+
+.dropdown-menu {
+    max-height: 390px;
+    overflow-y: auto;
 }

@@ -1,3 +1,8 @@
 th, td {
   padding: 6px 12px;
 }
+
+.dropdown-menu {
+    max-height: 390px;
+    overflow-y: auto;
+}

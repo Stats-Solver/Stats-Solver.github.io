@@ -1,1 +1,4918 @@
-var canvas,ctx;function resizeCanvasToDisplaySize(e){const t=e.clientWidth,a=e.clientHeight;return(e.width!==t||e.height!==a)&&(e.width=t,e.height=a,!0)}function removeDuplicates(e){return[...new Set(e)]}function inRange(e){return this[0]<=e&&e<=this[1]}function sortrem(e){var t,a=[],l=[];e.sort();for(var n=0;n<e.length;n++)e[n]!==t?(a.push(e[n]),l.push(1)):l[l.length-1]++,t=e[n];return a}function countem(e){var t,a=[],l=[];e.sort();for(var n=0;n<e.length;n++)e[n]!==t?(a.push(e[n]),l.push(1)):l[l.length-1]++,t=e[n];return l}function addnum(e){var t=document.getElementById("values").value;t+=e,document.getElementById("values").value=t}function sum(e){if("[object Array]"!==toString.call(e))return!1;for(var t=0,a=0;a<e.length;a++)isNaN(e[a])||(t+=Number(e[a]));return t}function avg(e){return sum(e)/e.length}function showthings(){$("#cumulative").hide(),$("#input2").hide(),$("#label1").show(),$("#label2").hide(),$("#label3").hide(),$("#firstclass").hide(),$("#firstclasscross").hide(),$("#firstclassx").hide(),$("#firstclassy").hide(),$("#input1").show(),$("#label4").hide();var e=null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/),t=document.getElementById("stat").value;"frequency"==t?1==e?$("#firstclass").show():$("#firstclass").hide():"relative"==t?1==e?$("#firstclass").show():$("#firstclass").hide():"percent"==t?1==e?$("#firstclass").show():$("#firstclass").hide():"histogram"==t?($("#firstclass").hide(),$("#go").hide()):"boxplot"==t?($("#firstclass").hide(),$("#go").hide()):"cumfrequency"==t?($("#firstclass").show(),$("#go").hide()):"cumrelative"==t?($("#firstclass").show(),$("#go").hide()):"cumpercent"==t?($("#firstclass").show(),$("#go").hide()):"crosstabulation"==t?crosstabulation():"rowpercent"==t?rowpercent():"colpercent"==t?colpercent():"scatter"==t?scatter():"trendline"==t?trendline():"timeplot"==t&&timeplot()}function stat(){$("#explanation").hide(),$("#charts").hide(),$("#myCanvas").hide(),$("#myCanvas2").hide(),$("#output").empty(),$("#output2").empty();var e=document.getElementById("stat").value;"frequency"==e?frequency():"relative"==e?relative():"percent"==e?percent():"bar"==e?bar():"pie"==e?pie():"histogram"==e?histogram():"boxplot"==e?boxplot():"cumfrequency"==e?cumfrequency():"cumrelative"==e?cumrelative():"cumpercent"==e?cumpercent():"crosstabulation"==e?calccross():"rowpercent"==e?calcrow():"colpercent"==e?calccol():"scatter"==e?calcscatt():"trendline"==e?calctrend():"timeplot"==e?calctime():document.getElementById("output").innerHTML=""}function frequency(){1==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?frequencyquant():frequencyqual()}function frequencyqual(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A frequency distribution is a table showing the number of items in each class.",document.getElementById("formulatext").innerHTML="The frequency of a class is the number of items in that class.",document.getElementById("explanationtext").innerHTML="The sum of the frequencies is always equal to the sample size (n).",$("#desfrequency").show(),$("#expfrequency").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=sortrem(e),a=t.length,l=countem(e),n="<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>",r=a,o=sum(l),i=0;i<r;i++)n+="<tr>",n+="<td>$\\text{"+t[i]+"}$</td>",n+="<td>$"+l[i]+"$</td>",n+="</tr>";n=n+"<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+o+"$</td></tr>",document.getElementById("output").innerHTML="<table>"+n+"</table> <br>",MathJax.typeset()}function frequencyquant(){$("#explanation").show(),$("#firstclass").show(),document.getElementById("descriptiontext").innerHTML="A frequency distribution is a table showing the number of items in each class.",document.getElementById("formulatext").innerHTML="The frequency of a class is the number of items in that class.",document.getElementById("explanationtext").innerHTML="The sum of the frequencies is always equal to the sample size (n).",$("#desfrequency").show(),$("#expfrequency").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,countem(e)),a=document.getElementById("lower").value,l=document.getElementById("upper").value,n=Math.max.apply(Math,e),r=(Math.min.apply(Math,e),l-a+1),o=parseFloat(a),i=parseFloat(l),s=[],d=[],u=[],c=0;n>i-r;)s[c]=o+"-"+i,d[c]=o,u[c]=i,o+=r,i+=r,c+=1;var g=c,h=[];for(c=0;c<g;c++)h[c]=e.filter(inRange,[d[c],u[c]]).length;for(var m="<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>",p=sum(t),f=0;f<g;f++)m+="<tr>",m+="<td>$"+s[f]+"$</td>",m+="<td>$"+h[f]+"$</td>",m+="</tr>";m=m+"<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+p+"$</td></tr>",document.getElementById("output").innerHTML="<table>"+m+"</table> <br>",MathJax.typeset()}function relative(){1==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?relativequant():relativequal()}function relativequal(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A relative frequency distribution is a table showing the proportion of items in each class.",document.getElementById("formulatext").innerHTML="$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$",document.getElementById("explanationtext").innerHTML="The sum of the relative frequencies is always equal to 1.",$("#desrelative").show(),$("#exprelative").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=sortrem(e),a=t.length,l=countem(e),n="<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Relative}$ <br> $\\text{Frequency}$</td></tr>",r=a,o=sum(l),i=l.map(function(e){return e/o}),s=0;s<r;s++)n+="<tr>",n+="<td>$\\text{"+t[s]+"}$</td>",n+="<td>$"+l[s]+"$</td>",n+="<td>$"+l[s]+"/"+o+"="+parseFloat(i[s].toFixed(3))+"$</td>",n+="</tr>";n=n+"<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+o+"$</td><td>$1$</td></tr>",document.getElementById("output").innerHTML="<table>"+n+"</table> <br>",MathJax.typeset()}function relativequant(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A relative frequency distribution is a table showing the proportion of items in each class.",document.getElementById("formulatext").innerHTML="$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$",document.getElementById("explanationtext").innerHTML="The sum of the relative frequencies is always equal to 1.",$("#desrelative").show(),$("#exprelative").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,countem(e)),a="<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>",l=sum(t),n=(t.map(function(e){return e/l}),document.getElementById("lower").value),r=document.getElementById("upper").value,o=Math.max.apply(Math,e),i=(Math.min.apply(Math,e),r-n+1),s=parseFloat(n),d=parseFloat(r),u=[],c=[],g=[],h=0;o>d-i;)u[h]=s+"-"+d,c[h]=s,g[h]=d,s+=i,d+=i,h+=1;var m=h,p=[];for(h=0;h<m;h++)p[h]=e.filter(inRange,[c[h],g[h]]).length;for(var f=p.map(function(e){return e/l}),y=0;y<m;y++)a+="<tr>",a+="<td>$"+u[y]+"$</td>",a+="<td>$"+p[y]+"$</td>",a+="<td>$"+p[y]+"/"+l+"="+parseFloat(f[y].toFixed(3))+"$</td>",a+="</tr>";a=a+"<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+l+"$</td><td>$1$</td></tr>",document.getElementById("output").innerHTML="<table>"+a+"</table> <br>",MathJax.typeset()}function percent(){1==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?percentquant():percentqual()}function percentqual(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A percent frequency distribution is a table showing the percentage of items in each class.",document.getElementById("formulatext").innerHTML="$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$",document.getElementById("explanationtext").innerHTML="The sum of the percent frequencies is always equal to 100.",$("#despercent").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=sortrem(e),a=t.length,l=countem(e),n="<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>",r=a,o=sum(l),i=l.map(function(e){return e/o}),s=i.map(function(e){return 100*e}),d=0;d<r;d++)n+="<tr>",n+="<td>$\\text{"+t[d]+"}$</td>",n+="<td>$"+parseFloat(i[d].toFixed(3))+"$</td>",n+="<td>$"+parseFloat(i[d].toFixed(3))+"\\times 100 = "+parseFloat(s[d].toFixed(1))+"$</td>",n+="</tr>";n+="<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>",document.getElementById("output").innerHTML="<table>"+n+"</table> <br>",MathJax.typeset()}function percentquant(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A percent frequency distribution is a table showing the percentage of items in each class.",document.getElementById("formulatext").innerHTML="$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$",document.getElementById("explanationtext").innerHTML="The sum of the percent frequencies is always equal to 100.",$("#despercent").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,countem(e)),a="<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>",l=sum(t),n=(t.map(function(e){return e/l}).map(function(e){return 100*e}),document.getElementById("lower").value),r=document.getElementById("upper").value,o=Math.max.apply(Math,e),i=(Math.min.apply(Math,e),r-n+1),s=parseFloat(n),d=parseFloat(r),u=[],c=[],g=[],h=0;o>d-i;)u[h]=s+"-"+d,c[h]=s,g[h]=d,s+=i,d+=i,h+=1;var m=h,p=[];for(h=0;h<m;h++)p[h]=e.filter(inRange,[c[h],g[h]]).length;for(var f=p.map(function(e){return e/l}),y=f.map(function(e){return 100*e}),v=0;v<m;v++)a+="<tr>",a+="<td>$"+u[v]+"$</td>",a+="<td>$"+parseFloat(f[v].toFixed(3))+"$</td>",a+="<td>$"+parseFloat(f[v].toFixed(3))+"\\times 100 = "+parseFloat(y[v].toFixed(1))+"$</td>",a+="</tr>";a+="<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>",document.getElementById("output").innerHTML="<table>"+a+"</table>",MathJax.typeset()}function bar(){1==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Bar charts require <span class='examplelink' onclick='examplexvalues()'>qualitative data</span>.":calcbar()}function calcbar(){$("#explanation").show(),$("#charts").show(),document.getElementById("descriptiontext").innerHTML="A bar chart is a graphical representation of a frequency distribution.",document.getElementById("formulatext").innerHTML="In a bar chart, a bar is drawn to the frequency for each class.",document.getElementById("explanationtext").innerHTML="There is distance between bars in a bar chart to signify the separation of the classes.",$("#myCanvas").hide();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=sortrem(e),a=t.length,l=countem(e),n=sum(l),r="<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>",o=a,i=(n=sum(l),0);i<o;i++)r+="<tr>",r+="<td>$\\text{"+t[i]+"}$</td>",r+="<td>$"+l[i]+"$</td>",r+="</tr>";if(r=r+"<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+n+"$</td></tr>",2==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(3==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(4==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(5==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(6==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]],[t[5],l[5]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(7==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]],[t[5],l[5]],[t[6],l[6]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(8==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]],[t[5],l[5]],[t[6],l[6]],[t[7],l[7]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(9==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]],[t[5],l[5]],[t[6],l[6]],[t[7],l[7]],[t[8],l[8]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}else if(10==a){function s(){(e=new google.visualization.DataTable).addColumn("timeofday","Time of Day"),e.addColumn("number","Motivation Level");var e=google.visualization.arrayToDataTable([["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]],[t[5],l[5]],[t[6],l[6]],[t[7],l[7]],[t[8],l[8]],[t[9],l[9]]]);new google.visualization.ColumnChart(document.getElementById("charts")).draw(e,{legend:"none",vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart","bar"]}),google.charts.setOnLoadCallback(s)}document.getElementById("output").innerHTML="<table>"+r+"</table> <br>",MathJax.typeset()}function pie(){1==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Pie charts require <span class='examplelink' onclick='examplexvalues()'>qualitative data</span>.":calcpie()}function calcpie(){$("#explanation").show(),$("#charts").show(),document.getElementById("descriptiontext").innerHTML="A pie chart is a graphical representation of a percent frequency distribution.",document.getElementById("formulatext").innerHTML="In a pie chart, the circle is divided according to the percent frequencies of each class.",document.getElementById("explanationtext").innerHTML="Pie charts can also be made using relative frequency distributions.",$("#myCanvas").hide();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=sortrem(e),a=t.length,l=countem(e),n=sum(l),r="<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>",o=a,i=l.map(function(e){return e/n}).map(function(e){return 100*e}),s=0;s<o;s++)r+="<tr>",r+="<td>$\\text{"+t[s]+"}$</td>",r+="<td>$"+parseFloat(i[s].toFixed(1))+"$</td>",r+="</tr>";r+="<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td></tr>",google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(function(){var e=google.visualization.arrayToDataTable(d);new google.visualization.PieChart(document.getElementById("charts")).draw(e)});var d=[["Class","Frequency"],[t[0],l[0]],[t[1],l[1]],[t[2],l[2]],[t[3],l[3]],[t[4],l[4]],[t[5],l[5]],[t[6],l[6]],[t[7],l[7]],[t[8],l[8]],[t[9],l[9]]];document.getElementById("output").innerHTML="<table>"+r+"</table> <br>",MathJax.typeset()}function histogram(){$("#firstclass").hide(),0==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Histograms require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>.":calchistogram()}function calchistogram(){$("#explanation").show(),$("#charts").show(),document.getElementById("explanationtext").innerHTML="In a histogram, a bar is drawn to the frequency for eachh class.",$("#myCanvas").show();var e=document.getElementById("values").value.split(","),t=e.map(function(e){return parseInt(e,10)}),a=t.length,l=(sortrem(e).length,countem(e)),n=(sum(l),l),r=(Math.max.apply(Math,n),Math.min.apply(Math,n),Math.max.apply(Math,e)),o=Math.min.apply(Math,e);Math.ceil((r-o)/5);if(5==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(6==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(7==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(8==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(9==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(10==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(11==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(12==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(13==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(14==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(15==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(16==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(17==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(18==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(19==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(20==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(21==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(22==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(23==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(24==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(25==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]],[t[24]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(26==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]],[t[24]],[t[25]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(27==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]],[t[24]],[t[25]],[t[26]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(28==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]],[t[24]],[t[25]],[t[26]],[t[27]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(29==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]],[t[24]],[t[25]],[t[26]],[t[27]],[t[28]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}else if(30==a){function i(){var e=google.visualization.arrayToDataTable([["Value"],[t[0]],[t[1]],[t[2]],[t[3]],[t[4]],[t[5]],[t[6]],[t[7]],[t[8]],[t[9]],[t[10]],[t[11]],[t[12]],[t[13]],[t[14]],[t[15]],[t[16]],[t[17]],[t[18]],[t[19]],[t[20]],[t[21]],[t[22]],[t[23]],[t[24]],[t[25]],[t[26]],[t[27]],[t[28]],[t[29]]]);new google.visualization.Histogram(document.getElementById("charts")).draw(e,{legend:{position:"none"},colors:["blue"],vAxis:{title:"Frequency"},hAxis:{title:"Class"}})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(i)}}function boxplot(){$("#firstclass").hide(),0==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Box Plots require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>.":calcbox()}function calcbox(){$("#explanation").show(),$("#charts").show(),document.getElementById("explanationtext").innerHTML="In a scatter diagram, a point is drawn on the graph for each pair of x and y values.";var e=document.getElementById("values").value.split(",").map(Number),t=e.length,a=Math.max(...e),l=Math.min(...e),n=e.sort(),r=(e.sort(function(e,t){return e-t}),t/2),o=(t-2)/2,i=e[(t-1)/2],s=e[r],d=e[o];if(t%2!=0)var u=i;else u=(d+s)/2;var c=.25*t,g=Math.ceil(c),h=.75*t,m=Math.ceil(h),p=(n[c-1]+n[c])/2,f=(n[h-1]+n[h])/2,y=Number.isInteger(c),v=Number.isInteger(h),x=n[g-1],b=n[m-1];if(y&&v){function w(){var e=google.visualization.arrayToDataTable([["x",l,p,f,a]],!0);new google.visualization.CandlestickChart(document.getElementById("charts")).draw(e,{legend:"none"})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(w)}else if(y&&!v){function w(){var e=google.visualization.arrayToDataTable([["x",l,p,b,a]],!0);new google.visualization.CandlestickChart(document.getElementById("charts")).draw(e,{legend:"none"})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(w)}else if(!y&&v){function w(){var e=google.visualization.arrayToDataTable([["x",l,x,f,a]],!0);new google.visualization.CandlestickChart(document.getElementById("charts")).draw(e,{legend:"none"})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(w)}else{function w(){var e=google.visualization.arrayToDataTable([["x",l,x,b,a]],!0);new google.visualization.CandlestickChart(document.getElementById("charts")).draw(e,{legend:"none"})}google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(w)}document.getElementById("output").innerHTML=y&&v?"$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+l+" \\\\ \\text{1st Quartile} &= "+p+" \\\\ \\text{Median} &= "+u+" \\\\ \\text{3rd Quartile} &= "+f+" \\\\ \\text{Maximum} &= "+a+" \\end{align} $$":y&&!v?"$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+l+" \\\\ \\text{1st Quartile} &= "+p+" \\\\ \\text{Median} &= "+u+" \\\\ \\text{3rd Quartile} &= "+b+" \\\\ \\text{Maximum} &= "+a+" \\end{align} $$":!y&&v?"$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+l+" \\\\ \\text{1st Quartile} &= "+x+" \\\\ \\text{Median} &= "+u+" \\\\ \\text{3rd Quartile} &= "+f+" \\\\ \\text{Maximum} &= "+a+" \\end{align} $$":"$$ \\text{Five-Number Summary}$$ $$ \\begin{align} \\text{Minimum} &= "+l+" \\\\ \\text{1st Quartile} &= "+x+" \\\\ \\text{Median} &= "+u+" \\\\ \\text{3rd Quartile} &= "+b+" \\\\ \\text{Maximum} &= "+a+" \\end{align} $$",MathJax.typeset()}function cumulative(){$("#cumulative").show()}function calccum(){var e=document.getElementById("cumtype").value;"frequency"==e?cumfrequency():"relative"==e?cumrelative():"percent"==e&&cumpercent()}function cumfrequency(){0==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Cumulative frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>.":cumfrequency2()()}function cumfrequency2(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A cumulative frequency distribution is a table showing the number of values less than or equal to the upper limit of each class.",document.getElementById("formulatext").innerHTML="For each class, add the frequency of the class to the cumulative frequency of the previous class.",document.getElementById("explanationtext").innerHTML="",$("#descumfrequency").show();var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,countem(e));let a=[t[0]];for(let e=1;e<t.length;e++)a[e]=a[e-1]+t[e];for(var l=document.getElementById("lower").value,n=document.getElementById("upper").value,r=Math.max.apply(Math,e),o=(Math.min.apply(Math,e),n-l+1),i=parseFloat(l),s=parseFloat(n),d=[],u=[],c=[],g=0;r>s-o;)d[g]=i+"-"+s,u[g]=i,c[g]=s,i+=o,s+=o,g+=1;var h=g,m=[];for(g=0;g<h;g++)m[g]=e.filter(inRange,[u[g],c[g]]).length;let p=[m[0]];for(let e=1;e<m.length;e++)p[e]=p[e-1]+m[e];for(var f="<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Frequency}$</td></tr>",y=(sum(t),0);y<1;y++)f+="<tr>",f+="<td>$"+d[y]+"$</td>",f+="<td>$"+m[y]+"$</td>",f+="<td>$"+p[y]+"$</td>",f+="</tr>";for(y=1;y<h;y++)f+="<tr>",f+="<td>$"+d[y]+"$</td>",f+="<td>$"+m[y]+"$</td>",f+="<td>$"+p[y-1]+" + "+m[y]+" = "+p[y]+"$</td>",f+="</tr>";document.getElementById("output").innerHTML=" <table>"+f+"</table> <br>",MathJax.typeset()}function cumrelative(){0==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Cumulative relative frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>.":cumrelative2()()}function cumrelative2(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A cumulative relative frequency distribution is a table showing the proportion of values less than or equal to the upper limit of each class.",document.getElementById("formulatext").innerHTML="For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class.",document.getElementById("explanationtext").innerHTML="",$("#descumrelative").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,countem(e)),a=sum(t),l=Math.max.apply(Math,e),n=(Math.min.apply(Math,e),document.getElementById("lower").value),r=document.getElementById("upper").value,o=r-n+1,i=parseFloat(n),s=parseFloat(r),d=[],u=[],c=[],g=0;l>s-o;)d[g]=i+"-"+s,u[g]=i,c[g]=s,i+=o,s+=o,g+=1;var h=g,m=[];for(g=0;g<h;g++)m[g]=e.filter(inRange,[u[g],c[g]]).length;var p=m.map(function(e){return e/a});let f=[m[0]];for(let e=1;e<m.length;e++)f[e]=f[e-1]+m[e];var y="<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";let v=[p[0]];for(let e=1;e<t.length;e++)v[e]=v[e-1]+p[e];for(var x=0;x<1;x++)y+="<tr>",y+="<td>$"+d[x]+"$</td>",y+="<td>$"+parseFloat(p[x].toFixed(2))+"$</td>",y+="<td>$"+parseFloat(v[x].toFixed(2))+"$</td>",y+="</tr>";for(x=1;x<h;x++)y+="<tr>",y+="<td>$"+d[x]+"$</td>",y+="<td>$"+parseFloat(p[x].toFixed(2))+"$</td>",y+="<td>$"+parseFloat(v[x-1].toFixed(2))+" + "+parseFloat(p[x].toFixed(2))+" = "+parseFloat(v[x].toFixed(2))+"$</td>",y+="</tr>";document.getElementById("output").innerHTML=" <table>"+y+"</table> <br>",MathJax.typeset()}function cumpercent(){0==(null!=document.getElementById("values").value.replace(/\s/g,"").match(/^[0-9+,]+$/))?document.getElementById("output").innerHTML="Cumulative percent frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>.":cumpercent2()()}function cumpercent2(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class.",document.getElementById("formulatext").innerHTML="For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class.",document.getElementById("explanationtext").innerHTML="",$("#descumrelative").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,countem(e)),a=sum(t),l=Math.max.apply(Math,e),n=(Math.min.apply(Math,e),document.getElementById("lower").value),r=document.getElementById("upper").value,o=r-n+1,i=parseFloat(n),s=parseFloat(r),d=[],u=[],c=[],g=0;l>s-o;)d[g]=i+"-"+s,u[g]=i,c[g]=s,i+=o,s+=o,g+=1;var h=g,m=[];for(g=0;g<h;g++)m[g]=e.filter(inRange,[u[g],c[g]]).length;var p=m.map(function(e){return e/a});let f=[m[0]];for(let e=1;e<m.length;e++)f[e]=f[e-1]+m[e];var y="<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Percent}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";let v=[p[0]];for(let e=1;e<t.length;e++)v[e]=v[e-1]+p[e];for(var x=0;x<1;x++)y+="<tr>",y+="<td>$"+d[x]+"$</td>",y+="<td>$"+parseFloat(100*p[x].toFixed(2))+"$</td>",y+="<td>$"+parseFloat(100*v[x].toFixed(2))+"$</td>",y+="</tr>";for(x=1;x<h;x++)y+="<tr>",y+="<td>$"+d[x]+"$</td>",y+="<td>$"+parseFloat(100*p[x].toFixed(2))+"$</td>",y+="<td>$"+parseFloat(100*v[x-1].toFixed(2))+" + "+parseFloat(100*p[x].toFixed(2))+" = "+parseFloat(100*v[x].toFixed(2))+"$</td>",y+="</tr>";document.getElementById("output").innerHTML=" <table>"+y+"</table> <br>",MathJax.typeset()}function cumpercent3(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class.",document.getElementById("formulatext").innerHTML="For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class.",document.getElementById("explanationtext").innerHTML="",$("#descumpercent").show();for(var e=document.getElementById("values").value.replace(/\s/g,"").split(","),t=(sortrem(e).length,sum(countem(e))),a=document.getElementById("lower").value,l=document.getElementById("upper").value,n=l-a+1,r=parseFloat(a),o=parseFloat(l),i=[],s=[],d=[],u=0;maxvalue>o-n;)i[u]=r+"-"+o,s[u]=r,d[u]=o,r+=n,o+=n,u+=1;var c=u,g=[];for(u=0;u<c;u++)g[u]=e.filter(inRange,[s[u],d[u]]).length;var h=g.map(function(e){return e/t}).map(function(e){return 100*e}),m="<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";m+="<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Percent Frequency}$</td><td>$\\text{Percent Frequency}$</td></tr>";let p=[h[0]];for(let e=1;e<g.length;e++)p[e]=p[e-1]+h[e];for(var f=0;f<1;f++)m+="<tr>",m+="<td>"+i[f]+"</td>",m+="<td>"+parseFloat(h[f].toFixed(2))+"</td>",m+="<td>"+parseFloat(cumperfreq[f].toFixed(2))+"</td>",m+="</tr>";for(f=1;f<c;f++)m+="<tr>",m+="<td>"+i[f]+"</td>",m+="<td>"+parseFloat(h[f].toFixed(2))+"</td>",m+="<td>"+parseFloat(p[f-1].toFixed(2))+" + "+parseFloat(h[f].toFixed(2))+" = "+parseFloat(p[f].toFixed(2))+"</td>",m+="</tr>";m+="<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td><td>$-$</td></tr>",document.getElementById("output").innerHTML=" <table>"+m+"</table> <br>",MathJax.typeset()}function crosstabulation(){$("#input2").show(),$("#label2").show(),$("#label1").hide(),$("#label3").hide();var e=document.getElementById("values").value,t=document.getElementById("values").value,a=e.replace(/\s/g,""),l=t.replace(/\s/g,""),n=null!=a.match(/^[0-9+,]+$/),r=null!=l.match(/^[0-9+,]+$/);0==n&&0==r?$("#firstclasscross").hide():0==n&&1==r&&$("#firstclasscross").show()}function calccross(){var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,""),l=t.replace(/\s/g,""),n=null!=a.match(/^[0-9+,]+$/),r=null!=l.match(/^[0-9+,]+$/);0==n&&0==r?calccross1():0==n&&1==r?calccross2():1==n&&0==r?calccross3():1==n&&1==r&&calccross4()}function calccross1(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A crosstabulation is a table summarizing data for two variables.",document.getElementById("formulatext").innerHTML="Count the number of observations that fall into each pair of classes.",document.getElementById("explanationtext").innerHTML="Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();var r=n.length;const o=[...[...new Set(l)]].sort();var i=o.length,s=r,d=i;let u=[];for(var c=0;c<n.length;c++)for(var g=0;g<o.length;g++)u.push(n[c]+o[g]);let h=[];for(c=0;c<a.length;c++)h.push(a[c]+l[c]);var m=new Array(u.length).fill(0);for(c=0;c<u.length;c++)for(g=0;g<h.length;g++)u[c]==h[g]&&m[c]++;for(var p="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",f=0;f<d;f++)p+="<td>$\\text{"+o[f]+"}$</td>";p+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var y=0,v=0,x=0,b=0,w=0,B=0,I=0,E=0,T=0,M=0,q=0,C=0;C<s;C++){var F=0;p+="<tr>",p+="<td style='border-right: thin solid'>$\\text{"+n[C]+"}$</td>";for(var L=0;L<d;L++)p+="<td>$"+m[L+y]+"$</td>",F+=m[L+y];p+="<td style='border-left: thin solid'>$"+F+"$</td></tr>",v+=m[y],x+=m[y+1],b+=m[y+2],w+=m[y+3],B+=m[y+4],I+=m[y+5],E+=m[y+6],T+=m[y+7],M+=m[y+8],q+=m[y+9],y+=i}var A=[v,x,b,w,B,I,E,T,M,q];p+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var H=0,k=0;k<d;k++)p+="<td>$"+A[k]+"$</td>",H+=A[k];p=p+"<td style='border-left: thin solid'>$"+H+"$</td></tr>",document.getElementById("output").innerHTML="<table>"+p+"</table> <br>",MathJax.typeset()}function calccross2(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A crosstabulation is a table summarizing data for two variables.",document.getElementById("formulatext").innerHTML="Count the number of observations that fall into each pair of classes.",document.getElementById("explanationtext").innerHTML="Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();var r=n.length;[...[...new Set(l)]].sort().length;for(var o=r,i=document.getElementById("lowery").value,s=document.getElementById("uppery").value,d=Math.max.apply(Math,l),u=(Math.min.apply(Math,l),s-i+1),c=parseFloat(i),g=parseFloat(s),h=[],m=[],p=[],f=0;d>g-u;)h[f]=c+"-"+g,m[f]=c,p[f]=g,c+=u,g+=u,f+=1;var y=h.length,v=f,x=[];for(f=0;f<v;f++)x[f]=l.filter(inRange,[m[f],p[f]]).length;var b=[];for(f=0;f<o;f++)for(var w=0;w<a.length;w++)n[f]==a[w]&&b.push(l[w]);var B=[],I=[],E=[],T=[],M=[],q=[],C=[],F=[],L=[],A=[];for(w=0;w<a.length;w++)n[0]==a[w]?B.push(l[w]):n[1]==a[w]?I.push(l[w]):n[2]==a[w]?E.push(l[w]):n[3]==a[w]?T.push(l[w]):n[4]==a[w]?M.push(l[w]):n[5]==a[w]?q.push(l[w]):n[6]==a[w]?C.push(l[w]):n[7]==a[w]?F.push(l[w]):n[8]==a[w]?L.push(l[w]):n[9]==a[w]&&A.push(l[w]);var H=[],k=[],z=[],R=[],D=[],O=[],S=[],J=[],V=[],P=[];for(f=0;f<y;f++)H[f]=B.filter(inRange,[m[f],p[f]]).length,k[f]=I.filter(inRange,[m[f],p[f]]).length,z[f]=E.filter(inRange,[m[f],p[f]]).length,R[f]=T.filter(inRange,[m[f],p[f]]).length,D[f]=M.filter(inRange,[m[f],p[f]]).length,O[f]=q.filter(inRange,[m[f],p[f]]).length,S[f]=C.filter(inRange,[m[f],p[f]]).length,J[f]=F.filter(inRange,[m[f],p[f]]).length,V[f]=L.filter(inRange,[m[f],p[f]]).length,P[f]=A.filter(inRange,[m[f],p[f]]).length;x=[...H,...k,...z,...R,...D,...O,...S,...J,...V,...P];let N=[];for(f=0;f<n.length;f++)for(w=0;w<h.length;w++)N.push(n[f]+h[w]);let Q=[];for(f=0;f<a.length;f++)Q.push(a[f]+l[f]);var X=new Array(N.length).fill(0);for(f=0;f<N.length;f++)for(w=0;w<Q.length;w++)N[f]==Q[w]&&X[f]++;for(var Y="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",_=0;_<y;_++)Y+="<td>$"+h[_]+"$</td>";Y+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<o;re++){var oe=0;Y+="<tr>",Y+="<td style='border-right: thin solid'>$\\text{"+n[re]+"}$</td>";for(var ie=0;ie<y;ie++)Y+="<td>$"+x[ie+j]+"$</td>",oe+=x[ie+j];Y+="<td style='border-left: thin solid'>$"+oe+"$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}var se=[W,G,K,U,Z,ee,te,ae,le,ne];Y+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var de=0,ue=0;ue<y;ue++)Y+="<td>$"+se[ue]+"$</td>",de+=se[ue];Y=Y+"<td style='border-left: thin solid'>$"+de+"$</td></tr>",document.getElementById("output").innerHTML="<table>"+Y+"</table> <br>",MathJax.typeset()}function calccross3(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A crosstabulation is a table summarizing data for two variables.",document.getElementById("formulatext").innerHTML="Count the number of observations that fall into each pair of classes.",document.getElementById("explanationtext").innerHTML="Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();n.length;const r=[...[...new Set(l)]].sort();r.length;for(var o=document.getElementById("lowerx").value,i=document.getElementById("upperx").value,s=Math.max.apply(Math,a),d=(Math.min.apply(Math,a),i-o+1),u=parseFloat(o),c=parseFloat(i),g=[],h=[],m=[],p=0;s>c-d;)g[p]=u+"-"+c,h[p]=u,m[p]=c,u+=d,c+=d,p+=1;var f=g.length,y=r.length,v=p,x=[];for(p=0;p<v;p++)x[p]=l.filter(inRange,[h[p],m[p]]).length;var b=[];for(p=0;p<f;p++)for(var w=0;w<a.length;w++)n[p]==a[w]&&b.push(l[w]);var B=[],I=[],E=[],T=[],M=[],q=[],C=[],F=[],L=[],A=[];for(w=0;w<a.length;w++)a[w]>=h[0]&&a[w]<=m[0]?B.push(l[w]):a[w]>=h[1]&&a[w]<=m[1]?I.push(l[w]):a[w]>=h[2]&&a[w]<=m[2]?E.push(l[w]):a[w]>=h[3]&&a[w]<=m[3]?T.push(l[w]):a[w]>=h[4]&&a[w]<=m[4]?M.push(l[w]):a[w]>=h[5]&&a[w]<=m[5]?q.push(l[w]):a[w]>=h[6]&&a[w]<=m[6]?C.push(l[w]):a[w]>=h[7]&&a[w]<=m[7]?F.push(l[w]):a[w]>=h[8]&&a[w]<=m[8]?L.push(l[w]):a[w]>=h[9]&&a[w]<=m[9]&&A.push(l[w]);var H=new Array(y).fill(0),k=new Array(y).fill(0),z=new Array(y).fill(0),R=new Array(y).fill(0),D=new Array(y).fill(0),O=new Array(y).fill(0),S=new Array(y).fill(0),J=new Array(y).fill(0),V=new Array(y).fill(0),P=new Array(y).fill(0);for(p=0;p<y;p++){for(w=0;w<B.length;w++)r[p]==B[w]&&H[p]++;for(w=0;w<I.length;w++)r[p]==I[w]&&k[p]++;for(w=0;w<E.length;w++)r[p]==E[w]&&z[p]++;for(w=0;w<T.length;w++)r[p]==T[w]&&R[p]++;for(w=0;w<M.length;w++)r[p]==M[w]&&D[p]++;for(w=0;w<q.length;w++)r[p]==q[w]&&O[p]++;for(w=0;w<C.length;w++)r[p]==C[w]&&S[p]++;for(w=0;w<F.length;w++)r[p]==F[w]&&J[p]++;for(w=0;w<L.length;w++)r[p]==L[w]&&V[p]++;for(w=0;w<A.length;w++)r[p]==A[w]&&P[p]++}x=[...H,...k,...z,...R,...D,...O,...S,...J,...V,...P];let N=[];for(p=0;p<n.length;p++)for(w=0;w<g.length;w++)N.push(n[p]+g[w]);let Q=[];for(p=0;p<a.length;p++)Q.push(a[p]+l[p]);var X=new Array(N.length).fill(0);for(p=0;p<N.length;p++)for(w=0;w<Q.length;w++)N[p]==Q[w]&&X[p]++;for(var Y="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",_=0;_<y;_++)Y+="<td>$\\text{"+r[_]+"}$</td>";Y+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<f;re++){var oe=0;Y+="<tr>",Y+="<td style='border-right: thin solid'>$"+g[re]+"$</td>";for(var ie=0;ie<y;ie++)Y+="<td>$"+x[ie+j]+"$</td>",oe+=x[ie+j];Y+="<td style='border-left: thin solid'>$"+oe+"$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}var se=[W,G,K,U,Z,ee,te,ae,le,ne];Y+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var de=0,ue=0;ue<y;ue++)Y+="<td>$"+se[ue]+"$</td>",de+=se[ue];Y=Y+"<td style='border-left: thin solid'>$"+de+"$</td></tr>",document.getElementById("output").innerHTML="<table>"+Y+"</table> <br>",MathJax.typeset()}function calccross4(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="A crosstabulation is a table summarizing data for two variables.",document.getElementById("formulatext").innerHTML="Count the number of observations that fall into each pair of classes.",document.getElementById("explanationtext").innerHTML="Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");[...[...new Set(a)]].sort().length;[...[...new Set(l)]].sort().length;for(var n=document.getElementById("lowerx").value,r=document.getElementById("lowery").value,o=document.getElementById("upperx").value,i=document.getElementById("uppery").value,s=Math.max.apply(Math,a),d=Math.max.apply(Math,l),u=(Math.min.apply(Math,a),Math.min.apply(Math,l),o-n+1),c=i-r+1,g=parseFloat(n),h=parseFloat(n),m=parseFloat(o),p=parseFloat(i),f=[],y=[],v=[],x=[],b=[],w=[],B=0;s>m-u;)f[B]=g+"-"+m,v[B]=g,b[B]=m,g+=u,m+=u,B+=1;for(var I=0;d>p-c;)y[I]=h+"-"+p,x[I]=h,w[I]=p,h+=c,p+=c,I+=1;var E=f.length,T=y.length,M=[],q=[],C=[],F=[],L=[],A=[],H=[],k=[],z=[],R=[];for(I=0;I<a.length;I++)a[I]>=v[0]&&a[I]<=b[0]?M.push(l[I]):a[I]>=v[1]&&a[I]<=b[1]?q.push(l[I]):a[I]>=v[2]&&a[I]<=b[2]?C.push(l[I]):a[I]>=v[3]&&a[I]<=b[3]?F.push(l[I]):a[I]>=v[4]&&a[I]<=b[4]?L.push(l[I]):a[I]>=v[5]&&a[I]<=b[5]?A.push(l[I]):a[I]>=v[6]&&a[I]<=b[6]?H.push(l[I]):a[I]>=v[7]&&a[I]<=b[7]?k.push(l[I]):a[I]>=v[8]&&a[I]<=b[8]?z.push(l[I]):a[I]>=v[9]&&a[I]<=b[9]&&R.push(l[I]);var D=[],O=[],S=[],J=[],V=[],P=[],N=[],Q=[],X=[],Y=[];for(B=0;B<T;B++)D[B]=M.filter(inRange,[x[B],w[B]]).length,O[B]=q.filter(inRange,[x[B],w[B]]).length,S[B]=C.filter(inRange,[x[B],w[B]]).length,J[B]=F.filter(inRange,[x[B],w[B]]).length,V[B]=L.filter(inRange,[x[B],w[B]]).length,P[B]=A.filter(inRange,[x[B],w[B]]).length,N[B]=H.filter(inRange,[x[B],w[B]]).length,Q[B]=k.filter(inRange,[x[B],w[B]]).length,X[B]=z.filter(inRange,[x[B],w[B]]).length,Y[B]=R.filter(inRange,[x[B],w[B]]).length;for(var _=[...D,...O,...S,...J,...V,...P,...N,...Q,...X,...Y],j="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",W=0;W<T;W++)j+="<td>$"+y[W]+"$</td>";j+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0,oe=0,ie=0;ie<E;ie++){var se=0;j+="<tr>",j+="<td style='border-right: thin solid'>$"+f[ie]+"$</td>";for(var de=0;de<T;de++)j+="<td>$"+_[de+G]+"$</td>",se+=_[de+G];j+="<td style='border-left: thin solid'>$"+se+"$</td></tr>",K+=_[G],U+=_[G+1],Z+=_[G+2],ee+=_[G+3],te+=_[G+4],ae+=_[G+5],le+=_[G+6],ne+=_[G+7],re+=_[G+8],oe+=_[G+9],G+=T}var ue=[K,U,Z,ee,te,ae,le,ne,re,oe];j+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var ce=0,ge=0;ge<T;ge++)j+="<td>$"+ue[ge]+"$</td>",ce+=ue[ge];j=j+"<td style='border-left: thin solid'>$"+ce+"$</td></tr>",document.getElementById("output").innerHTML="<table>"+j+"</table> <br>",MathJax.typeset()}function rowpercent(){$("#input2").show(),$("#label2").show(),$("#label1").hide(),$("#label3").hide()}function calcrow(){var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,""),l=t.replace(/\s/g,""),n=null!=a.match(/^[0-9+,]+$/),r=null!=l.match(/^[0-9+,]+$/);0==n&&0==r?calcrow1():0==n&&1==r?calcrow2():1==n&&0==r?calcrow3():1==n&&1==r&&calcrow4()}function calcrow1(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Row percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Row percentages provide the percentage of a row belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();var r=n.length;const o=[...[...new Set(l)]].sort();var i=o.length,s=r,d=i;let u=[];for(var c=0;c<n.length;c++)for(var g=0;g<o.length;g++)u.push(n[c]+o[g]);let h=[];for(c=0;c<a.length;c++)h.push(a[c]+l[c]);let m=new Array(a.length).fill(0);for(c=0;c<a.length;c++)m[c]=a[c]+l[c];var p=new Array(u.length).fill(0);for(c=0;c<u.length;c++)for(g=0;g<h.length;g++)u[c]==h[g]&&p[c]++;for(var f="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",y=0;y<d;y++)f+="<td>$\\text{"+o[y]+"}$</td>";f+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var v=0,x=0,b=0,w=0,B=0,I=0,E=0,T=0,M=0,q=0,C=0,F=0;F<s;F++){var L=0;f+="<tr>",f+="<td style='border-right: thin solid'>$\\text{"+n[F]+"}$</td>";for(var A=0;A<d;A++)L+=p[A+v];for(A=0;A<d;A++)f+="<td>$"+p[A+v]+"$</td>";f+="<td style='border-left: thin solid'>$ "+L+" $</td></tr>",x+=p[v],b+=p[v+1],w+=p[v+2],B+=p[v+3],I+=p[v+4],E+=p[v+5],T+=p[v+6],M+=p[v+7],q+=p[v+8],C+=p[v+9],v+=i}var H=[x,b,w,B,I,E,T,M,q,C];f+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var k=0,z=0;z<d;z++)f+="<td>$"+H[z]+"$</td>",k+=H[z];f=f+"<td style='border-left: thin solid'>$"+k+"$</td></tr>";var R="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(y=0;y<d;y++)R+="<td>$\\text{"+o[y]+"}$</td>";R+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(v=0,x=0,b=0,w=0,B=0,I=0,E=0,T=0,M=0,q=0,C=0,F=0;F<s;F++){L=0;R+="<tr>",R+="<td style='border-right: thin solid'>$\\text{"+n[F]+"}$</td>";for(A=0;A<d;A++)L+=p[A+v];for(A=0;A<d;A++)R+="<td>$"+p[A+v]+"/"+L+" \\times 100 = "+parseFloat((p[A+v]/L*100).toFixed(2))+" $</td>";R+="<td style='border-left: thin solid'>$ 100 $</td></tr>",x+=p[v],b+=p[v+1],w+=p[v+2],B+=p[v+3],I+=p[v+4],E+=p[v+5],T+=p[v+6],M+=p[v+7],q+=p[v+8],C+=p[v+9],v+=i}document.getElementById("output").innerHTML="<table>"+f+"</table> <br><table>"+R+"</table>",MathJax.typeset()}function calcrow2(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Row percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Row percentages provide the percentage of a row belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();var r=n.length;[...[...new Set(l)]].sort().length;for(var o=r,i=document.getElementById("lowery").value,s=document.getElementById("uppery").value,d=Math.max.apply(Math,l),u=(Math.min.apply(Math,l),s-i+1),c=parseFloat(i),g=parseFloat(s),h=[],m=[],p=[],f=0;d>g-u;)h[f]=c+"-"+g,m[f]=c,p[f]=g,c+=u,g+=u,f+=1;var y=h.length,v=f,x=[];for(f=0;f<v;f++)x[f]=l.filter(inRange,[m[f],p[f]]).length;var b=[];for(f=0;f<o;f++)for(var w=0;w<a.length;w++)n[f]==a[w]&&b.push(l[w]);var B=[],I=[],E=[],T=[],M=[],q=[],C=[],F=[],L=[],A=[];for(w=0;w<a.length;w++)n[0]==a[w]?B.push(l[w]):n[1]==a[w]?I.push(l[w]):n[2]==a[w]?E.push(l[w]):n[3]==a[w]?T.push(l[w]):n[4]==a[w]?M.push(l[w]):n[5]==a[w]?q.push(l[w]):n[6]==a[w]?C.push(l[w]):n[7]==a[w]?F.push(l[w]):n[8]==a[w]?L.push(l[w]):n[9]==a[w]&&A.push(l[w]);var H=[],k=[],z=[],R=[],D=[],O=[],S=[],J=[],V=[],P=[];for(f=0;f<y;f++)H[f]=B.filter(inRange,[m[f],p[f]]).length,k[f]=I.filter(inRange,[m[f],p[f]]).length,z[f]=E.filter(inRange,[m[f],p[f]]).length,R[f]=T.filter(inRange,[m[f],p[f]]).length,D[f]=M.filter(inRange,[m[f],p[f]]).length,O[f]=q.filter(inRange,[m[f],p[f]]).length,S[f]=C.filter(inRange,[m[f],p[f]]).length,J[f]=F.filter(inRange,[m[f],p[f]]).length,V[f]=L.filter(inRange,[m[f],p[f]]).length,P[f]=A.filter(inRange,[m[f],p[f]]).length;x=[...H,...k,...z,...R,...D,...O,...S,...J,...V,...P];let N=[];for(f=0;f<n.length;f++)for(w=0;w<h.length;w++)N.push(n[f]+h[w]);let Q=[];for(f=0;f<a.length;f++)Q.push(a[f]+l[f]);var X=new Array(N.length).fill(0);for(f=0;f<N.length;f++)for(w=0;w<Q.length;w++)N[f]==Q[w]&&X[f]++;for(var Y="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",_=0;_<y;_++)Y+="<td>$"+h[_]+"$</td>";Y+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<o;re++){var oe=0;Y+="<tr>",Y+="<td style='border-right: thin solid'>$\\text{"+n[re]+"}$</td>";for(var ie=0;ie<y;ie++)oe+=x[ie+j];for(ie=0;ie<y;ie++)Y+="<td>$"+x[ie+j]+"$</td>";Y+="<td style='border-left: thin solid'>$"+oe+"$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}var se=[W,G,K,U,Z,ee,te,ae,le,ne];Y+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var de=0,ue=0;ue<y;ue++)Y+="<td>$"+se[ue]+"$</td>",de+=se[ue];Y=Y+"<td style='border-left: thin solid'>$"+de+"$</td></tr>";var ce="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(_=0;_<y;_++)ce+="<td>$"+h[_]+"$</td>";ce+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<o;re++){oe=0;ce+="<tr>",ce+="<td style='border-right: thin solid'>$\\text{"+n[re]+"}$</td>";for(ie=0;ie<y;ie++)oe+=x[ie+j];for(ie=0;ie<y;ie++)ce+="<td>$"+x[ie+j]+"/"+oe+" \\times 100 = "+parseFloat((100*x[ie+j]/oe).toFixed(2))+"$</td>";ce+="<td style='border-left: thin solid'>$100$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}document.getElementById("output").innerHTML="<table>"+Y+"</table> <br><table>"+ce+"</table>",MathJax.typeset()}function calcrow3(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Row percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Row percentages provide the percentage of a row belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();n.length;const r=[...[...new Set(l)]].sort();r.length;for(var o=document.getElementById("lowerx").value,i=document.getElementById("upperx").value,s=Math.max.apply(Math,a),d=(Math.min.apply(Math,a),i-o+1),u=parseFloat(o),c=parseFloat(i),g=[],h=[],m=[],p=0;s>c-d;)g[p]=u+"-"+c,h[p]=u,m[p]=c,u+=d,c+=d,p+=1;var f=g.length,y=r.length,v=p,x=[];for(p=0;p<v;p++)x[p]=l.filter(inRange,[h[p],m[p]]).length;var b=[];for(p=0;p<f;p++)for(var w=0;w<a.length;w++)n[p]==a[w]&&b.push(l[w]);var B=[],I=[],E=[],T=[],M=[],q=[],C=[],F=[],L=[],A=[];for(w=0;w<a.length;w++)a[w]>=h[0]&&a[w]<=m[0]?B.push(l[w]):a[w]>=h[1]&&a[w]<=m[1]?I.push(l[w]):a[w]>=h[2]&&a[w]<=m[2]?E.push(l[w]):a[w]>=h[3]&&a[w]<=m[3]?T.push(l[w]):a[w]>=h[4]&&a[w]<=m[4]?M.push(l[w]):a[w]>=h[5]&&a[w]<=m[5]?q.push(l[w]):a[w]>=h[6]&&a[w]<=m[6]?C.push(l[w]):a[w]>=h[7]&&a[w]<=m[7]?F.push(l[w]):a[w]>=h[8]&&a[w]<=m[8]?L.push(l[w]):a[w]>=h[9]&&a[w]<=m[9]&&A.push(l[w]);var H=new Array(y).fill(0),k=new Array(y).fill(0),z=new Array(y).fill(0),R=new Array(y).fill(0),D=new Array(y).fill(0),O=new Array(y).fill(0),S=new Array(y).fill(0),J=new Array(y).fill(0),V=new Array(y).fill(0),P=new Array(y).fill(0);for(p=0;p<y;p++){for(w=0;w<B.length;w++)r[p]==B[w]&&H[p]++;for(w=0;w<I.length;w++)r[p]==I[w]&&k[p]++;for(w=0;w<E.length;w++)r[p]==E[w]&&z[p]++;for(w=0;w<T.length;w++)r[p]==T[w]&&R[p]++;for(w=0;w<M.length;w++)r[p]==M[w]&&D[p]++;for(w=0;w<q.length;w++)r[p]==q[w]&&O[p]++;for(w=0;w<C.length;w++)r[p]==C[w]&&S[p]++;for(w=0;w<F.length;w++)r[p]==F[w]&&J[p]++;for(w=0;w<L.length;w++)r[p]==L[w]&&V[p]++;for(w=0;w<A.length;w++)r[p]==A[w]&&P[p]++}x=[...H,...k,...z,...R,...D,...O,...S,...J,...V,...P];let N=[];for(p=0;p<n.length;p++)for(w=0;w<g.length;w++)N.push(n[p]+g[w]);let Q=[];for(p=0;p<a.length;p++)Q.push(a[p]+l[p]);var X=new Array(N.length).fill(0);for(p=0;p<N.length;p++)for(w=0;w<Q.length;w++)N[p]==Q[w]&&X[p]++;for(var Y="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",_=0;_<y;_++)Y+="<td>$\\text{"+r[_]+"}$</td>";Y+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<f;re++){var oe=0;Y+="<tr>",Y+="<td style='border-right: thin solid'>$"+g[re]+"$</td>";for(var ie=0;ie<y;ie++)oe+=x[ie+j];for(ie=0;ie<y;ie++)Y+="<td>$"+x[ie+j]+"$</td>";Y+="<td style='border-left: thin solid'>$"+oe+"$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}var se=[W,G,K,U,Z,ee,te,ae,le,ne];Y+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var de=0,ue=0;ue<y;ue++)Y+="<td>$"+se[ue]+"$</td>",de+=se[ue];Y=Y+"<td style='border-left: thin solid'>$"+de+"$</td></tr>";var ce="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(_=0;_<y;_++)ce+="<td>$\\text{"+r[_]+"}$</td>";ce+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<f;re++){oe=0;ce+="<tr>",ce+="<td style='border-right: thin solid'>$"+g[re]+"$</td>";for(ie=0;ie<y;ie++)oe+=x[ie+j];for(ie=0;ie<y;ie++)ce+="<td>$"+x[ie+j]+"/"+oe+" \\times 100 = "+parseFloat((100*x[ie+j]/oe).toFixed(2))+"$</td>";ce+="<td style='border-left: thin solid'>$100$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}document.getElementById("output").innerHTML="<table>"+Y+"</table> <br><table>"+ce+"</table>",MathJax.typeset()}function calcrow4(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Row percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Row percentages provide the percentage of a row belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");[...[...new Set(a)]].sort().length;[...[...new Set(l)]].sort().length;for(var n=document.getElementById("lowerx").value,r=document.getElementById("lowery").value,o=document.getElementById("upperx").value,i=document.getElementById("uppery").value,s=Math.max.apply(Math,a),d=Math.max.apply(Math,l),u=(Math.min.apply(Math,a),Math.min.apply(Math,l),o-n+1),c=i-r+1,g=parseFloat(n),h=parseFloat(n),m=parseFloat(o),p=parseFloat(i),f=[],y=[],v=[],x=[],b=[],w=[],B=0;s>m-u;)f[B]=g+"-"+m,v[B]=g,b[B]=m,g+=u,m+=u,B+=1;for(var I=0;d>p-c;)y[I]=h+"-"+p,x[I]=h,w[I]=p,h+=c,p+=c,I+=1;var E=f.length,T=y.length,M=[],q=[],C=[],F=[],L=[],A=[],H=[],k=[],z=[],R=[];for(I=0;I<a.length;I++)a[I]>=v[0]&&a[I]<=b[0]?M.push(l[I]):a[I]>=v[1]&&a[I]<=b[1]?q.push(l[I]):a[I]>=v[2]&&a[I]<=b[2]?C.push(l[I]):a[I]>=v[3]&&a[I]<=b[3]?F.push(l[I]):a[I]>=v[4]&&a[I]<=b[4]?L.push(l[I]):a[I]>=v[5]&&a[I]<=b[5]?A.push(l[I]):a[I]>=v[6]&&a[I]<=b[6]?H.push(l[I]):a[I]>=v[7]&&a[I]<=b[7]?k.push(l[I]):a[I]>=v[8]&&a[I]<=b[8]?z.push(l[I]):a[I]>=v[9]&&a[I]<=b[9]&&R.push(l[I]);var D=[],O=[],S=[],J=[],V=[],P=[],N=[],Q=[],X=[],Y=[];for(B=0;B<T;B++)D[B]=M.filter(inRange,[x[B],w[B]]).length,O[B]=q.filter(inRange,[x[B],w[B]]).length,S[B]=C.filter(inRange,[x[B],w[B]]).length,J[B]=F.filter(inRange,[x[B],w[B]]).length,V[B]=L.filter(inRange,[x[B],w[B]]).length,P[B]=A.filter(inRange,[x[B],w[B]]).length,N[B]=H.filter(inRange,[x[B],w[B]]).length,Q[B]=k.filter(inRange,[x[B],w[B]]).length,X[B]=z.filter(inRange,[x[B],w[B]]).length,Y[B]=R.filter(inRange,[x[B],w[B]]).length;for(var _=[...D,...O,...S,...J,...V,...P,...N,...Q,...X,...Y],j="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",W=0;W<T;W++)j+="<td>$"+y[W]+"$</td>";j+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0,oe=0,ie=0;ie<E;ie++){var se=0;j+="<tr>",j+="<td style='border-right: thin solid'>$"+f[ie]+"$</td>";for(var de=0;de<T;de++)se+=_[de+G];for(de=0;de<T;de++)j+="<td>$"+_[de+G]+" $</td>";j+="<td style='border-left: thin solid'>$"+se+"$</td></tr>",K+=_[G],U+=_[G+1],Z+=_[G+2],ee+=_[G+3],te+=_[G+4],ae+=_[G+5],le+=_[G+6],ne+=_[G+7],re+=_[G+8],oe+=_[G+9],G+=T}var ue=[K,U,Z,ee,te,ae,le,ne,re,oe];j+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var ce=0,ge=0;ge<T;ge++)j+="<td>$"+ue[ge]+"$</td>",ce+=ue[ge];j=j+"<td style='border-left: thin solid'>$"+ce+"$</td></tr>";var he="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(W=0;W<T;W++)he+="<td>$"+y[W]+"$</td>";he+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0,oe=0,ie=0;ie<E;ie++){se=0;he+="<tr>",he+="<td style='border-right: thin solid'>$"+f[ie]+"$</td>";for(de=0;de<T;de++)se+=_[de+G];for(de=0;de<T;de++)he+="<td>$"+_[de+G]+"/"+se+" \\times 100 = "+parseFloat((100*_[de+G]/se).toFixed(2))+" $</td>";he+="<td style='border-left: thin solid'>$100$</td></tr>",K+=_[G],U+=_[G+1],Z+=_[G+2],ee+=_[G+3],te+=_[G+4],ae+=_[G+5],le+=_[G+6],ne+=_[G+7],re+=_[G+8],oe+=_[G+9],G+=T}document.getElementById("output").innerHTML="<table>"+j+"</table> <br><table>"+he+"</table>",MathJax.typeset()}function colpercent(){$("#input2").show(),$("#label2").show(),$("#label1").hide(),$("#label3").hide()}function calccol(){var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,""),l=t.replace(/\s/g,""),n=null!=a.match(/^[0-9+,]+$/),r=null!=l.match(/^[0-9+,]+$/);0==n&&0==r?calccol1():0==n&&1==r?calccol2():1==n&&0==r?calccol3():1==n&&1==r&&calccol4()}function calccol1(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Column percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Column percentages provide the percentage of a column belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();var r=n.length;const o=[...[...new Set(l)]].sort();var i=o.length,s=r,d=i;let u=[];for(var c=0;c<n.length;c++)for(var g=0;g<o.length;g++)u.push(n[c]+o[g]);let h=[];for(c=0;c<a.length;c++)h.push(a[c]+l[c]);let m=new Array(a.length).fill(0);for(c=0;c<a.length;c++)m[c]=a[c]+l[c];var p=new Array(u.length).fill(0);for(c=0;c<u.length;c++)for(g=0;g<h.length;g++)u[c]==h[g]&&p[c]++;for(var f="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",y=0;y<d;y++)f+="<td>$\\text{"+o[y]+"}$</td>";f+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var v=0,x=0,b=0,w=0,B=0,I=0,E=0,T=0,M=0,q=0,C=0,F=0;F<s;F++){var L=0;f+="<tr>",f+="<td style='border-right: thin solid'>$\\text{"+n[F]+"}$</td>";for(var A=0;A<d;A++)L+=p[A+v];for(A=0;A<d;A++)f+="<td>$"+p[A+v]+"$</td>";f+="<td style='border-left: thin solid'>$ "+L+" $</td></tr>",x+=p[v],b+=p[v+1],w+=p[v+2],B+=p[v+3],I+=p[v+4],E+=p[v+5],T+=p[v+6],M+=p[v+7],q+=p[v+8],C+=p[v+9],v+=i}var H=[x,b,w,B,I,E,T,M,q,C];f+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var k=0,z=0;z<d;z++)f+="<td>$"+H[z]+"$</td>",k+=H[z];f=f+"<td style='border-left: thin solid'>$"+k+"$</td></tr>";var R="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(y=0;y<d;y++)R+="<td>$\\text{"+o[y]+"}$</td>";R+="</tr>";v=0,x=0,b=0,w=0,B=0,I=0,E=0,T=0,M=0,q=0,C=0;for(var D=0;D<s;D++)x+=p[v],b+=p[v+1],w+=p[v+2],B+=p[v+3],I+=p[v+4],E+=p[v+5],T+=p[v+6],M+=p[v+7],q+=p[v+8],C+=p[v+9],v+=i;for(H=[x,b,w,B,I,E,T,M,q,C],v=0,F=0;F<s;F++){R+="<tr>",R+="<td style='border-right: thin solid'>$\\text{"+n[F]+"}$</td>";for(A=0;A<d;A++)R+="<td>$"+p[A+v]+"/ "+H[A]+" \\times 100 = "+parseFloat((100*p[A+v]/H[A]).toFixed(2))+" $</td>";R+="</tr>",v+=i}R+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(k=0,z=0;z<d;z++)R+="<td>$ 100 $</td>",k+=H[z];R+="</tr>",document.getElementById("output").innerHTML="<table>"+f+"</table> <br><table>"+R+"</table>",MathJax.typeset()}function calccol2(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Column percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Column percentages provide the percentage of a column belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();var r=n.length;[...[...new Set(l)]].sort().length;for(var o=r,i=document.getElementById("lowery").value,s=document.getElementById("uppery").value,d=Math.max.apply(Math,l),u=(Math.min.apply(Math,l),s-i+1),c=parseFloat(i),g=parseFloat(s),h=[],m=[],p=[],f=0;d>g-u;)h[f]=c+"-"+g,m[f]=c,p[f]=g,c+=u,g+=u,f+=1;var y=h.length,v=f,x=[];for(f=0;f<v;f++)x[f]=l.filter(inRange,[m[f],p[f]]).length;var b=[];for(f=0;f<o;f++)for(var w=0;w<a.length;w++)n[f]==a[w]&&b.push(l[w]);var B=[],I=[],E=[],T=[],M=[],q=[],C=[],F=[],L=[],A=[];for(w=0;w<a.length;w++)n[0]==a[w]?B.push(l[w]):n[1]==a[w]?I.push(l[w]):n[2]==a[w]?E.push(l[w]):n[3]==a[w]?T.push(l[w]):n[4]==a[w]?M.push(l[w]):n[5]==a[w]?q.push(l[w]):n[6]==a[w]?C.push(l[w]):n[7]==a[w]?F.push(l[w]):n[8]==a[w]?L.push(l[w]):n[9]==a[w]&&A.push(l[w]);var H=[],k=[],z=[],R=[],D=[],O=[],S=[],J=[],V=[],P=[];for(f=0;f<y;f++)H[f]=B.filter(inRange,[m[f],p[f]]).length,k[f]=I.filter(inRange,[m[f],p[f]]).length,z[f]=E.filter(inRange,[m[f],p[f]]).length,R[f]=T.filter(inRange,[m[f],p[f]]).length,D[f]=M.filter(inRange,[m[f],p[f]]).length,O[f]=q.filter(inRange,[m[f],p[f]]).length,S[f]=C.filter(inRange,[m[f],p[f]]).length,J[f]=F.filter(inRange,[m[f],p[f]]).length,V[f]=L.filter(inRange,[m[f],p[f]]).length,P[f]=A.filter(inRange,[m[f],p[f]]).length;x=[...H,...k,...z,...R,...D,...O,...S,...J,...V,...P];let N=[];for(f=0;f<n.length;f++)for(w=0;w<h.length;w++)N.push(n[f]+h[w]);let Q=[];for(f=0;f<a.length;f++)Q.push(a[f]+l[f]);var X=new Array(N.length).fill(0);for(f=0;f<N.length;f++)for(w=0;w<Q.length;w++)N[f]==Q[w]&&X[f]++;for(var Y="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",_=0;_<y;_++)Y+="<td>$"+h[_]+"$</td>";Y+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<o;re++){var oe=0;Y+="<tr>",Y+="<td style='border-right: thin solid'>$\\text{"+n[re]+"}$</td>";for(var ie=0;ie<y;ie++)oe+=x[ie+j];for(ie=0;ie<y;ie++)Y+="<td>$"+x[ie+j]+"$</td>";Y+="<td style='border-left: thin solid'>$"+oe+"$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}var se=[W,G,K,U,Z,ee,te,ae,le,ne];Y+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var de=0,ue=0;ue<y;ue++)Y+="<td>$"+se[ue]+"$</td>",de+=se[ue];Y=Y+"<td style='border-left: thin solid'>$"+de+"$</td></tr>";var ce="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(_=0;_<y;_++)ce+="<td>$"+h[_]+"$</td>";ce+="</tr>";for(j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<o;re++)W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y;for(se=[W,G,K,U,Z,ee,te,ae,le,ne],j=0,re=0;re<o;re++){ce+="<tr>",ce+="<td style='border-right: thin solid'>$\\text{"+n[re]+"}$</td>";for(ie=0;ie<y;ie++)ce+="<td>$"+x[ie+j]+"/"+se[ie]+" \\times 100 = "+parseFloat((100*x[ie+j]/se[ie]).toFixed(2))+"$</td>";ce+="</tr>",j+=y}ce+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(de=0,ue=0;ue<y;ue++)ce+="<td>$100$</td>",de+=se[ue];ce+="</tr>",document.getElementById("output").innerHTML="<table>"+Y+"</table> <br><table>"+ce+"</table>",MathJax.typeset()}function calccol3(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Column percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Column percentages provide the percentage of a column belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");const n=[...[...new Set(a)]].sort();n.length;const r=[...[...new Set(l)]].sort();r.length;for(var o=document.getElementById("lowerx").value,i=document.getElementById("upperx").value,s=Math.max.apply(Math,a),d=(Math.min.apply(Math,a),i-o+1),u=parseFloat(o),c=parseFloat(i),g=[],h=[],m=[],p=0;s>c-d;)g[p]=u+"-"+c,h[p]=u,m[p]=c,u+=d,c+=d,p+=1;var f=g.length,y=r.length,v=p,x=[];for(p=0;p<v;p++)x[p]=l.filter(inRange,[h[p],m[p]]).length;var b=[];for(p=0;p<f;p++)for(var w=0;w<a.length;w++)n[p]==a[w]&&b.push(l[w]);var B=[],I=[],E=[],T=[],M=[],q=[],C=[],F=[],L=[],A=[];for(w=0;w<a.length;w++)a[w]>=h[0]&&a[w]<=m[0]?B.push(l[w]):a[w]>=h[1]&&a[w]<=m[1]?I.push(l[w]):a[w]>=h[2]&&a[w]<=m[2]?E.push(l[w]):a[w]>=h[3]&&a[w]<=m[3]?T.push(l[w]):a[w]>=h[4]&&a[w]<=m[4]?M.push(l[w]):a[w]>=h[5]&&a[w]<=m[5]?q.push(l[w]):a[w]>=h[6]&&a[w]<=m[6]?C.push(l[w]):a[w]>=h[7]&&a[w]<=m[7]?F.push(l[w]):a[w]>=h[8]&&a[w]<=m[8]?L.push(l[w]):a[w]>=h[9]&&a[w]<=m[9]&&A.push(l[w]);var H=new Array(y).fill(0),k=new Array(y).fill(0),z=new Array(y).fill(0),R=new Array(y).fill(0),D=new Array(y).fill(0),O=new Array(y).fill(0),S=new Array(y).fill(0),J=new Array(y).fill(0),V=new Array(y).fill(0),P=new Array(y).fill(0);for(p=0;p<y;p++){for(w=0;w<B.length;w++)r[p]==B[w]&&H[p]++;for(w=0;w<I.length;w++)r[p]==I[w]&&k[p]++;for(w=0;w<E.length;w++)r[p]==E[w]&&z[p]++;for(w=0;w<T.length;w++)r[p]==T[w]&&R[p]++;for(w=0;w<M.length;w++)r[p]==M[w]&&D[p]++;for(w=0;w<q.length;w++)r[p]==q[w]&&O[p]++;for(w=0;w<C.length;w++)r[p]==C[w]&&S[p]++;for(w=0;w<F.length;w++)r[p]==F[w]&&J[p]++;for(w=0;w<L.length;w++)r[p]==L[w]&&V[p]++;for(w=0;w<A.length;w++)r[p]==A[w]&&P[p]++}x=[...H,...k,...z,...R,...D,...O,...S,...J,...V,...P];let N=[];for(p=0;p<n.length;p++)for(w=0;w<g.length;w++)N.push(n[p]+g[w]);let Q=[];for(p=0;p<a.length;p++)Q.push(a[p]+l[p]);var X=new Array(N.length).fill(0);for(p=0;p<N.length;p++)for(w=0;w<Q.length;w++)N[p]==Q[w]&&X[p]++;for(var Y="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",_=0;_<y;_++)Y+="<td>$\\text{"+r[_]+"}$</td>";Y+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<f;re++){var oe=0;Y+="<tr>",Y+="<td style='border-right: thin solid'>$"+g[re]+"$</td>";for(var ie=0;ie<y;ie++)oe+=x[ie+j];for(ie=0;ie<y;ie++)Y+="<td>$"+x[ie+j]+"$</td>";Y+="<td style='border-left: thin solid'>$"+oe+"$</td></tr>",W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y}var se=[W,G,K,U,Z,ee,te,ae,le,ne];Y+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var de=0,ue=0;ue<y;ue++)Y+="<td>$"+se[ue]+"$</td>",de+=se[ue];Y=Y+"<td style='border-left: thin solid'>$"+de+"$</td></tr>";var ce="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(_=0;_<y;_++)ce+="<td>$\\text{"+r[_]+"}$</td>";ce+="</tr>";for(j=0,W=0,G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0;re<f;re++)W+=x[j],G+=x[j+1],K+=x[j+2],U+=x[j+3],Z+=x[j+4],ee+=x[j+5],te+=x[j+6],ae+=x[j+7],le+=x[j+8],ne+=x[j+9],j+=y;for(se=[W,G,K,U,Z,ee,te,ae,le,ne],j=0,re=0;re<f;re++){ce+="<tr>",ce+="<td style='border-right: thin solid'>$"+g[re]+"$</td>";for(ie=0;ie<y;ie++)ce+="<td>$"+x[ie+j]+"/"+se[ie]+" \\times 100 = "+parseFloat((100*x[ie+j]/se[ie]).toFixed(2))+" $</td>";ce+="</tr>",j+=y}ce+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(de=0,ue=0;ue<y;ue++)ce+="<td>$100$</td>",de+=se[ue];ce+="</tr>",document.getElementById("output").innerHTML="<table>"+Y+"</table> <br><table>"+ce+"</table>",MathJax.typeset()}function calccol4(){$("#explanation").show(),document.getElementById("descriptiontext").innerHTML="Column percetages are percent frequencies constructed using a crosstabulation.",document.getElementById("formulatext").innerHTML="$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$",document.getElementById("explanationtext").innerHTML="Column percentages provide the percentage of a column belonging to a certain class.",$("#desfrequency").show(),$("#expfrequency").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.replace(/\s/g,"").split(","),l=t.replace(/\s/g,"").split(",");[...[...new Set(a)]].sort().length;[...[...new Set(l)]].sort().length;for(var n=document.getElementById("lowerx").value,r=document.getElementById("lowery").value,o=document.getElementById("upperx").value,i=document.getElementById("uppery").value,s=Math.max.apply(Math,a),d=Math.max.apply(Math,l),u=(Math.min.apply(Math,a),Math.min.apply(Math,l),o-n+1),c=i-r+1,g=parseFloat(n),h=parseFloat(n),m=parseFloat(o),p=parseFloat(i),f=[],y=[],v=[],x=[],b=[],w=[],B=0;s>m-u;)f[B]=g+"-"+m,v[B]=g,b[B]=m,g+=u,m+=u,B+=1;for(var I=0;d>p-c;)y[I]=h+"-"+p,x[I]=h,w[I]=p,h+=c,p+=c,I+=1;var E=f.length,T=y.length,M=[],q=[],C=[],F=[],L=[],A=[],H=[],k=[],z=[],R=[];for(I=0;I<a.length;I++)a[I]>=v[0]&&a[I]<=b[0]?M.push(l[I]):a[I]>=v[1]&&a[I]<=b[1]?q.push(l[I]):a[I]>=v[2]&&a[I]<=b[2]?C.push(l[I]):a[I]>=v[3]&&a[I]<=b[3]?F.push(l[I]):a[I]>=v[4]&&a[I]<=b[4]?L.push(l[I]):a[I]>=v[5]&&a[I]<=b[5]?A.push(l[I]):a[I]>=v[6]&&a[I]<=b[6]?H.push(l[I]):a[I]>=v[7]&&a[I]<=b[7]?k.push(l[I]):a[I]>=v[8]&&a[I]<=b[8]?z.push(l[I]):a[I]>=v[9]&&a[I]<=b[9]&&R.push(l[I]);var D=[],O=[],S=[],J=[],V=[],P=[],N=[],Q=[],X=[],Y=[];for(B=0;B<T;B++)D[B]=M.filter(inRange,[x[B],w[B]]).length,O[B]=q.filter(inRange,[x[B],w[B]]).length,S[B]=C.filter(inRange,[x[B],w[B]]).length,J[B]=F.filter(inRange,[x[B],w[B]]).length,V[B]=L.filter(inRange,[x[B],w[B]]).length,P[B]=A.filter(inRange,[x[B],w[B]]).length,N[B]=H.filter(inRange,[x[B],w[B]]).length,Q[B]=k.filter(inRange,[x[B],w[B]]).length,X[B]=z.filter(inRange,[x[B],w[B]]).length,Y[B]=R.filter(inRange,[x[B],w[B]]).length;for(var _=[...D,...O,...S,...J,...V,...P,...N,...Q,...X,...Y],j="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>",W=0;W<T;W++)j+="<td>$"+y[W]+"$</td>";j+="<td style='border-left: thin solid'>$\\text{Total}$</td></tr>";for(var G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0,oe=0,ie=0;ie<E;ie++){var se=0;j+="<tr>",j+="<td style='border-right: thin solid'>$"+f[ie]+"$</td>";for(var de=0;de<T;de++)se+=_[de+G];for(de=0;de<T;de++)j+="<td>$"+_[de+G]+" $</td>";j+="<td style='border-left: thin solid'>$"+se+"$</td></tr>",K+=_[G],U+=_[G+1],Z+=_[G+2],ee+=_[G+3],te+=_[G+4],ae+=_[G+5],le+=_[G+6],ne+=_[G+7],re+=_[G+8],oe+=_[G+9],G+=T}var ue=[K,U,Z,ee,te,ae,le,ne,re,oe];j+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(var ce=0,ge=0;ge<T;ge++)j+="<td>$"+ue[ge]+"$</td>",ce+=ue[ge];j=j+"<td style='border-left: thin solid'>$"+ce+"$</td></tr>";var he="<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";for(W=0;W<T;W++)he+="<td>$"+y[W]+"$</td>";he+="</tr>";for(G=0,K=0,U=0,Z=0,ee=0,te=0,ae=0,le=0,ne=0,re=0,oe=0,ie=0;ie<E;ie++)K+=_[G],U+=_[G+1],Z+=_[G+2],ee+=_[G+3],te+=_[G+4],ae+=_[G+5],le+=_[G+6],ne+=_[G+7],re+=_[G+8],oe+=_[G+9],G+=T;for(ue=[K,U,Z,ee,te,ae,le,ne,re,oe],G=0,ie=0;ie<E;ie++){he+="<tr>",he+="<td style='border-right: thin solid'>$"+f[ie]+"$</td>";for(de=0;de<T;de++)he+="<td>$"+_[de+G]+"/"+ue[de]+" \\times 100 = "+parseFloat((100*_[de+G]/ue[de]).toFixed(2))+"$</td>";he+="</tr>",G+=T}he+="<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";for(ce=0,ge=0;ge<T;ge++)he+="<td>$100$</td>",ce+=ue[ge];he+="</tr>",document.getElementById("output").innerHTML="<table>"+j+"</table> <br><table>"+he+"</table>",MathJax.typeset()}function scatter(){$("#input2").show(),$("#label1").hide(),$("#label3").show()}function calcscatt(){$("#explanation").show(),$("#charts").show(),document.getElementById("descriptiontext").innerHTML="A scatter diagram is a graph summarizing data for two quantitative variables.",document.getElementById("formulatext").innerHTML="Draw a point on the graph for each pair of x and y values.",document.getElementById("explanationtext").innerHTML="The scatter diagram will indicate whether there is a positive, negative or no relationship between x and y.",$("#myCanvas").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.split(","),l=t.split(","),n=a.map(function(e){return parseInt(e,10)}),r=l.map(function(e){return parseInt(e,10)});google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(function(){var e=google.visualization.arrayToDataTable([["x","y"],[n[0],r[0]],[n[1],r[1]],[n[2],r[2]],[n[3],r[3]],[n[4],r[4]],[n[5],r[5]],[n[6],r[6]],[n[7],r[7]],[n[8],r[8]],[n[9],r[9]],[n[10],r[10]],[n[11],r[11]],[n[12],r[12]],[n[13],r[13]],[n[14],r[14]],[n[15],r[15]],[n[16],r[16]],[n[17],r[17]],[n[18],r[18]],[n[19],r[19]],[n[20],r[20]],[n[21],r[21]],[n[22],r[22]],[n[23],r[23]],[n[24],r[24]],[n[25],r[25]],[n[26],r[26]],[n[27],r[27]],[n[28],r[28]],[n[29],r[29]],[n[30],r[30]],[n[31],r[31]],[n[32],r[32]],[n[33],r[33]],[n[34],r[34]],[n[35],r[35]],[n[36],r[36]],[n[37],r[37]],[n[38],r[38]],[n[39],r[39]],[n[40],r[40]],[n[41],r[41]],[n[42],r[42]],[n[43],r[43]],[n[44],r[44]],[n[45],r[45]],[n[46],r[46]],[n[47],r[47]],[n[48],r[48]],[n[49],r[49]]]);new google.visualization.ScatterChart(document.getElementById("charts")).draw(e,{hAxis:{title:"x"},vAxis:{title:"y"},legend:"none"})}),MathJax.typeset()}function trendline(){$("#input2").show(),$("#label1").hide(),$("#label3").show()}function calctrend(){$("#explanation").show(),$("#charts").show(),document.getElementById("descriptiontext").innerHTML="A trendline provides an approximation of the relationship between x and y.",document.getElementById("formulatext").innerHTML="$$\\hat{y} = b_{0} + b_{1} x$$",document.getElementById("explanationtext").innerHTML="The equation of the trendline is estimated using the least squares method from simple regression.",$("#myCanvas").show();var e=document.getElementById("values").value,t=document.getElementById("values2").value,a=e.split(","),l=t.split(","),n=a.map(function(e){return parseInt(e,10)}),r=l.map(function(e){return parseInt(e,10)});google.charts.load("current",{packages:["corechart"]}),google.charts.setOnLoadCallback(function(){var e=google.visualization.arrayToDataTable([["x","y"],[n[0],r[0]],[n[1],r[1]],[n[2],r[2]],[n[3],r[3]],[n[4],r[4]],[n[5],r[5]],[n[6],r[6]],[n[7],r[7]],[n[8],r[8]],[n[9],r[9]],[n[10],r[10]],[n[11],r[11]],[n[12],r[12]],[n[13],r[13]],[n[14],r[14]],[n[15],r[15]],[n[16],r[16]],[n[17],r[17]],[n[18],r[18]],[n[19],r[19]],[n[20],r[20]],[n[21],r[21]],[n[22],r[22]],[n[23],r[23]],[n[24],r[24]],[n[25],r[25]],[n[26],r[26]],[n[27],r[27]],[n[28],r[28]],[n[29],r[29]],[n[30],r[30]],[n[31],r[31]],[n[32],r[32]],[n[33],r[33]],[n[34],r[34]],[n[35],r[35]],[n[36],r[36]],[n[37],r[37]],[n[38],r[38]],[n[39],r[39]],[n[40],r[40]],[n[41],r[41]],[n[42],r[42]],[n[43],r[43]],[n[44],r[44]],[n[45],r[45]],[n[46],r[46]],[n[47],r[47]],[n[48],r[48]],[n[49],r[49]]]);new google.visualization.ScatterChart(document.getElementById("charts")).draw(e,{hAxis:{title:"x"},vAxis:{title:"y"},legend:"none",trendlines:{0:{}}})}),MathJax.typeset()}function timeplot(){$("#input1").hide(),$("#input2").show(),$("#label1").hide(),$("#label4").show()}function calctime(){$("#explanation").show(),$("#charts").show(),document.getElementById("explanationtext").innerHTML="In a scatter diagram, a point is drawn on the graph for each pair of x and y values.",$("#myCanvas").show();var e=document.getElementById("values2").value.split(",").map(function(e){return parseInt(e,10)});google.charts.load("current",{packages:["corechart","line"]}),google.charts.setOnLoadCallback(function(){var t=new google.visualization.DataTable;t.addColumn("number","X"),t.addColumn("number","Y"),t.addRows([[1,e[0]],[2,e[1]],[3,e[2]],[4,e[3]],[5,e[4]],[6,e[5]],[7,e[6]],[8,e[7]],[9,e[8]],[10,e[9]],[11,e[10]],[12,e[11]],[13,e[12]],[14,e[13]],[15,e[14]],[16,e[15]],[17,e[16]],[18,e[17]],[19,e[18]],[20,e[19]],[21,e[20]],[22,e[21]],[23,e[22]],[24,e[23]],[25,e[24]],[26,e[25]],[27,e[26]],[28,e[27]],[29,e[28]],[30,e[29]],[31,e[30]],[32,e[31]],[33,e[32]],[34,e[33]],[35,e[34]],[36,e[35]],[37,e[36]],[38,e[37]],[39,e[38]],[40,e[39]],[41,e[40]],[42,e[41]],[43,e[42]],[44,e[43]],[45,e[44]],[46,e[45]],[47,e[46]],[48,e[47]],[49,e[48]],[50,e[49]]]);new google.visualization.LineChart(document.getElementById("charts")).draw(t,{hAxis:{title:"Time"},vAxis:{title:"Value"}})})}function relativeexp(){$("#exprel").show()}function examplexvalues(){document.getElementById("values").value="B, A, B, B, C, A, C, B, A, B",$("#firstclass").hide()}function examplexvalues2(){var e=document.getElementById("stat").value;document.getElementById("values").value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14","histogram"==e?$("#firstclass").hide():"boxplot"==e?$("#firstclass").hide():($("#firstclass").show(),document.getElementById("lower").value="10",document.getElementById("upper").value="14")}function examplevalues3(){document.getElementById("values").value="B, A, B, B, C, A, C, B, A, B",document.getElementById("values2").value="X, X, Y, X, Y, X, Y, Y, X, Y",$("#firstclasscross").hide(),$("#firstclassx").hide(),$("#firstclassy").hide()}function examplevalues4(){document.getElementById("values").value="A, A, B, A, B, A, B, B, C, C",document.getElementById("values2").value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14",$("#firstclasscross").show(),$("#firstclassx").hide(),$("#firstclassy").show(),document.getElementById("lowery").value="10",document.getElementById("uppery").value="14"}function examplevalues33(){document.getElementById("values2").value="B, A, B, B, C, A, C, B, A, B",document.getElementById("values").value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14",$("#firstclasscross").show(),$("#firstclassx").show(),$("#firstclassy").hide(),document.getElementById("lowerx").value="10",document.getElementById("upperx").value="14"}function examplevalues44(){document.getElementById("values").value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14",document.getElementById("values2").value="23, 18, 12, 14, 11, 21, 19, 11, 24, 17",$("#firstclasscross").show(),$("#firstclassx").show(),$("#firstclassy").show(),document.getElementById("lowerx").value="10",document.getElementById("upperx").value="14",document.getElementById("lowery").value="10",document.getElementById("uppery").value="14"}function examplevalues5(){document.getElementById("values").value="2, 5, 1, 3, 4, 1, 5, 3, 4, 2",document.getElementById("values2").value="50, 57, 41, 54, 54, 38, 63, 48, 59, 46"}function examplevalues6(){document.getElementById("values").value="-22, -33, 2, 29, -13, 21, -13, -23, 14, 2",document.getElementById("values2").value="22, 49, 8, -16, 10, -28, 27, 35, -5, -3"}function examplevalues7(){document.getElementById("values2").value="18, 13, 16, 11, 17, 14"}function examplevalues8(){document.getElementById("values2").value="24, 13, 20, 12, 19, 23, 15"}$("#input2").hide(),$("#explanation").hide(),$("#cumulative").hide(),$("#label3").hide(),$("#myCanvas").hide(),$("#myCanvas2").hide(),$("#firstclass").hide(),$("#label2").hide(),$("#firstclasscross").hide(),$("#label4").hide(),$(".popover-dismiss").popover({trigger:"focus"}),(ctx=(canvas=document.getElementById("myCanvas")).getContext("2d")).scale(1.25,1.25),(ctx=(canvas=document.getElementById("myCanvas2")).getContext("2d")).scale(1.25,1.25),$(document).ready(function(){$('[data-toggle="popover"]').popover()});
+$("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide(); $("#label3").hide();
+$("#myCanvas").hide(); $("#myCanvas2").hide(); $("#firstclass").hide(); $("#label2").hide();
+$("#firstclasscross").hide(); $("#label4").hide();
+
+$('.popover-dismiss').popover({
+  trigger: 'focus'
+})
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+function resizeCanvasToDisplaySize(canvas) {
+   // look up the size the canvas is being displayed
+   const width = canvas.clientWidth;
+   const height = canvas.clientHeight;
+
+   // If it's resolution does not match change it
+   if (canvas.width !== width || canvas.height !== height) {
+     canvas.width = width;
+     canvas.height = height;
+     return true;
+   }
+
+   return false;
+}
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+
+function removeDuplicates(array) {
+        return [...new Set(array)]
+}
+
+function inRange (x) {
+  return this[0] <= x && x <= this[1]
+}
+
+function sortrem(arr) {
+    var a = [], b = [], prev;
+
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = arr[i];
+    }
+
+    return a;
+}
+
+function countem(arr) {
+    var a = [], b = [], prev;
+
+    arr.sort();
+    for ( var i = 0; i < arr.length; i++ ) {
+        if ( arr[i] !== prev ) {
+            a.push(arr[i]);
+            b.push(1);
+        } else {
+            b[b.length-1]++;
+        }
+        prev = arr[i];
+    }
+
+    return b;
+}
+
+
+function addnum(num){
+    var str = document.getElementById("values").value;
+    str = str+num
+    document.getElementById("values").value = str;
+}
+
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+     
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
+
+function avg(input){
+    return sum(input)/input.length
+}
+
+function showthings(){
+    $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label2").hide(); $("#label3").hide();  $("#firstclass").hide();
+    $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide(); $("#input1").show(); $("#label4").hide();
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    var x = document.getElementById("stat").value;
+    if (x == "frequency") {
+        if (isnum == true) {
+            $("#firstclass").show();
+        } else {
+            $("#firstclass").hide();
+        }
+    } else if (x == "relative") {
+        if (isnum == true) {
+            $("#firstclass").show();
+        } else {
+            $("#firstclass").hide();
+        }
+    } else if (x == "percent") {
+        if (isnum == true) {
+            $("#firstclass").show();
+        } else {
+            $("#firstclass").hide();
+        }
+    } else if (x == "histogram") {
+        $("#firstclass").hide(); $("#go").hide();
+    } else if (x == "boxplot") {
+        $("#firstclass").hide(); $("#go").hide();
+    } else if (x == "cumfrequency") {
+        $("#firstclass").show(); $("#go").hide();
+    } else if (x == "cumrelative") {
+        $("#firstclass").show(); $("#go").hide();
+    } else if (x == "cumpercent") {
+        $("#firstclass").show(); $("#go").hide();
+    } else if (x == "crosstabulation") {
+        crosstabulation()
+    } else if (x == "rowpercent") {
+        rowpercent()
+    } else if (x == "colpercent") {
+        colpercent()
+    } else if (x == "scatter") {
+        scatter()
+    } else if (x == "trendline") {
+        trendline()
+    } else if (x == "timeplot") {
+        timeplot()
+    }   
+}
+
+function stat(){
+    $("#explanation").hide(); $("#charts").hide(); $("#myCanvas").hide(); $("#myCanvas2").hide();
+    $("#output").empty(); $("#output2").empty();
+    var x = document.getElementById("stat").value;
+    if (x == "frequency"){
+        frequency()
+    } else if (x == "relative"){
+        relative()
+    } else if (x == "percent") {
+        percent()
+    } else if (x == "bar") {
+        bar()
+    } else if (x == "pie") {
+        pie()
+    } else if (x == "histogram") {
+        histogram()
+    } else if (x == "boxplot") {
+        boxplot()
+    } else if (x == "cumfrequency") {
+        cumfrequency()
+    } else if (x == "cumrelative") {
+        cumrelative()
+    } else if (x == "cumpercent") {
+        cumpercent()
+    } else if (x == "crosstabulation") {
+        calccross()
+    } else if (x == "rowpercent") {
+        calcrow()
+    } else if (x == "colpercent") {
+        calccol()
+    } else if (x == "scatter") {
+        calcscatt()
+    } else if (x == "trendline") {
+        calctrend()
+    } else if (x == "timeplot") {
+        calctime()
+    } else{
+        document.getElementById("output").innerHTML = ""
+    }
+   
+}
+
+function frequency(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        frequencyquant()
+    } else {
+        frequencyqual()
+    }
+}
+
+function frequencyqual(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A frequency distribution is a table showing the number of items in each class."
+    document.getElementById("formulatext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("explanationtext").innerHTML = "The sum of the frequencies is always equal to the sample size (n)."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function frequencyquant(){
+    $("#explanation").show(); $("#firstclass").show();
+    document.getElementById("descriptiontext").innerHTML = "A frequency distribution is a table showing the number of items in each class."
+    document.getElementById("formulatext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("explanationtext").innerHTML = "The sum of the frequencies is always equal to the sample size (n)."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function relative(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        relativequant()
+    } else {
+        relativequal()
+    }
+}
+
+function relativequal(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
+    $("#desrelative").show(); $("#exprelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Relative}$ <br> $\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
+        table += "<td>$" + counts[r]+ "/" + tot + "=" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td>$1$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function relativequant(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
+    $("#desrelative").show(); $("#exprelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    for (var r = 0; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + quants[r]+ "/" + tot + "=" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td>$1$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function percent(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        percentquant()
+    } else {
+        percentqual()
+    }
+}
+
+function percentqual(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
+    $("#despercent").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "\\times 100 = "+ parseFloat(perfreq[r].toFixed(1)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function percentquant(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
+    document.getElementById("formulatext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
+    $("#despercent").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    var per = rel.map( function(value) {
+        return value * 100;
+    } );
+    
+    for (var r = 0; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "\\times 100 = "+ parseFloat(per[r].toFixed(1)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    MathJax.typeset();
+}
+
+function bar(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        document.getElementById("output").innerHTML = "Bar charts require <span class='examplelink' onclick='examplexvalues()'>qualitative data</span>."
+    } else {
+        calcbar()
+    }
+}
+
+function calcbar(){
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("descriptiontext").innerHTML = "A bar chart is a graphical representation of a frequency distribution."
+    document.getElementById("formulatext").innerHTML = "In a bar chart, a bar is drawn to the frequency for each class."
+    document.getElementById("explanationtext").innerHTML = "There is distance between bars in a bar chart to signify the separation of the classes."
+    $("#myCanvas").hide();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    var table = "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + counts[r] + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
+    
+    if (len == 2) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 3) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 4) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 5) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 6) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 7) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 8) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+            [eachonesort[7], counts[7]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 9) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+            [eachonesort[7], counts[7]],
+            [eachonesort[8], counts[8]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    } else if (len == 10) {
+        google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+          var x = ['Coke','Pepsi','Sprite']
+          var y = [3,1,2]
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [eachonesort[0], counts[0]],
+            [eachonesort[1], counts[1]],
+            [eachonesort[2], counts[2]],
+            [eachonesort[3], counts[3]],
+            [eachonesort[4], counts[4]],
+            [eachonesort[5], counts[5]],
+            [eachonesort[6], counts[6]],
+            [eachonesort[7], counts[7]],
+            [eachonesort[8], counts[8]],
+            [eachonesort[9], counts[9]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+    }
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+
+    MathJax.typeset();
+
+}
+
+function pie(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == true) {
+        document.getElementById("output").innerHTML = "Pie charts require <span class='examplelink' onclick='examplexvalues()'>qualitative data</span>."
+    } else {
+        calcpie()
+    }
+}
+
+function calcpie(){
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("descriptiontext").innerHTML = "A pie chart is a graphical representation of a percent frequency distribution."
+    document.getElementById("formulatext").innerHTML = "In a pie chart, the circle is divided according to the percent frequencies of each class."
+    document.getElementById("explanationtext").innerHTML = "Pie charts can also be made using relative frequency distributions."
+    $("#myCanvas").hide();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
+        table += "<td>$" + parseFloat(perfreq[r].toFixed(1)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td></tr>";
+    
+    google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+      
+      var myArray = [['Class', 'Frequency'], [eachonesort[0], counts[0]],[eachonesort[1], counts[1]], [eachonesort[2], counts[2]], [eachonesort[3], counts[3]], [eachonesort[4], counts[4]], [eachonesort[5], counts[5]], [eachonesort[6], counts[6]], [eachonesort[7], counts[7]], [eachonesort[8], counts[8]], [eachonesort[9], counts[9]]]
+
+      function drawChart() {
+
+        var data = google.visualization.arrayToDataTable(myArray);
+
+        var chart = new google.visualization.PieChart(document.getElementById('charts'));
+
+        chart.draw(data);
+      }
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+
+    MathJax.typeset();
+
+}
+
+function histogram(){
+    $("#firstclass").hide();
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Histograms require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
+    } else {
+        calchistogram()
+    }
+}
+
+function calchistogram(){
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "In a histogram, a bar is drawn to the frequency for eachh class."
+    $("#myCanvas").show();
+    var str = document.getElementById("values").value;
+    var each = str.split(","); 
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    var lenn = eachnums.length
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var graphValues = counts;
+    var maxval = Math.max.apply(Math, graphValues);
+    var minval = Math.min.apply(Math, graphValues);
+    var intervals = 90/maxval;
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    var classwidth = Math.ceil((maxvalue - minvalue) / 5);
+    
+    if (lenn == 5) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 6) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 7) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 8) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 9) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 10) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 11) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 12) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 13) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 14) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 15) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 16) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 17) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 18) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 19) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 20) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 21) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 22) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 23) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 24) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 25) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]],
+              [eachnums[24]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 26) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]],
+              [eachnums[24]],
+              [eachnums[25]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 27) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]],
+              [eachnums[24]],
+              [eachnums[25]],
+              [eachnums[26]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 28) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]],
+              [eachnums[24]],
+              [eachnums[25]],
+              [eachnums[26]],
+              [eachnums[27]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 29) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]],
+              [eachnums[24]],
+              [eachnums[25]],
+              [eachnums[26]],
+              [eachnums[27]],
+              [eachnums[28]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    } else if (lenn == 30) {
+        google.charts.load("current", {packages:["corechart"]});
+        google.charts.setOnLoadCallback(drawChart);
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['Value'],
+              [eachnums[0]],
+              [eachnums[1]],
+              [eachnums[2]],
+              [eachnums[3]],
+              [eachnums[4]],
+              [eachnums[5]],
+              [eachnums[6]],
+              [eachnums[7]],
+              [eachnums[8]],
+              [eachnums[9]],
+              [eachnums[10]],
+              [eachnums[11]],
+              [eachnums[12]],
+              [eachnums[13]],
+              [eachnums[14]],
+              [eachnums[15]],
+              [eachnums[16]],
+              [eachnums[17]],
+              [eachnums[18]],
+              [eachnums[19]],
+              [eachnums[20]],
+              [eachnums[21]],
+              [eachnums[22]],
+              [eachnums[23]],
+              [eachnums[24]],
+              [eachnums[25]],
+              [eachnums[26]],
+              [eachnums[27]],
+              [eachnums[28]],
+              [eachnums[29]]
+              ]);
+
+            var options = {
+              legend: { position: 'none' },
+              colors: ['blue'],
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+            };
+
+            var chart = new google.visualization.Histogram(document.getElementById('charts'));
+            chart.draw(data, options);
+      }
+    }
+}
+
+
+function boxplot(){
+    $("#firstclass").hide();
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Box Plots require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
+    } else {
+        calcbox()
+    }
+}
+
+function calcbox() {
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    
+    var str = document.getElementById("values").value;
+    var each = str.split(",").map(Number);var len = each.length;
+    var largest = Math.max(...each); var smallest = Math.min(...each)
+    var eachsort = each.sort();
+    
+    var eachsort2 = each.sort(function(a,b) {
+        return a - b;
+    });
+    var mid = (len-1)/2; var midr = len/2;  var midl = (len-2)/2;
+    var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
+    var sumlr = vall + valr; var avelr = (vall + valr)/2;
+    if (len % 2 != 0){
+         var medianans = valm
+    }else{
+        var medianans = avelr
+    }
+    
+    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25);
+    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75);
+    var val25indx = eachsort[indxval25-1]; var val25indxplus1 = eachsort[indxval25]; var val25avg = (val25indx + val25indxplus1) / 2;
+    var val75indx = eachsort[indxval75-1]; var val75indxplus1 = eachsort[indxval75]; var val75avg = (val75indx + val75indxplus1) / 2;
+    var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
+    var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
+    var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
+    if (indxint25 && indxint75){
+        
+        google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['x', smallest, val25avg, val75avg, largest]
+              // Treat first row as data as well.
+            ], true);
+
+            var options = {
+              legend:'none'
+            };
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+            chart.draw(data, options);
+          }
+        
+    } else if (indxint25 && !indxint75){
+        
+        google.charts.load('current', {'packages':['corechart']});
+          google.charts.setOnLoadCallback(drawChart);
+
+          function drawChart() {
+            var data = google.visualization.arrayToDataTable([
+              ['x', smallest, val25avg, answr75, largest]
+              // Treat first row as data as well.
+            ], true);
+
+            var options = {
+              legend:'none'
+            };
+
+            var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+            chart.draw(data, options);
+          }
+        
+    } else if (!indxint25 && indxint75){
+        
+        google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', smallest, answr25, val75avg, largest]
+          // Treat first row as data as well.
+        ], true);
+
+        var options = {
+          legend:'none'
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
+        
+    }
+    else{
+        
+        google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', smallest, answr25, answr75, largest]
+          // Treat first row as data as well.
+        ], true);
+
+        var options = {
+          legend:'none'
+        };
+
+        var chart = new google.visualization.CandlestickChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
+        
+    }
+    
+    if (indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    } else if (indxint25 && !indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    } else if (!indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    }
+    else{
+        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    }
+
+    MathJax.typeset();
+    
+}
+
+
+function cumulative(){
+    $("#cumulative").show();
+}
+
+function calccum(){
+    var val = document.getElementById("cumtype").value;
+    if (val=="frequency") {
+        cumfrequency()
+    } else if (val=="relative") {
+        cumrelative()
+    } else if (val=="percent") {
+        cumpercent()
+    }
+}
+
+function cumfrequency(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Cumulative frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
+    } else {
+        cumfrequency2()()
+    }
+}
+
+function cumfrequency2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A cumulative frequency distribution is a table showing the number of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the frequency of the class to the cumulative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
+    $("#descumfrequency").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each);
+    let cumcounts = [counts[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumcounts[i] = cumcounts[i-1] + counts[i]
+    }
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    let cumquants = [quants[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumquants[i] = cumquants[i-1] + quants[i]
+    }
+    
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + cumquants[r] + "$</td>";
+        table += "</tr>";
+    }
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + cumquants[r-1] + " + " + quants[r] +" = " + cumquants[r] + "$</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function cumrelative(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Cumulative relative frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
+    } else {
+        cumrelative2()()
+    }
+}
+
+function cumrelative2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A cumulative relative frequency distribution is a table showing the proportion of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
+    $("#descumrelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    let cumquants = [quants[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumquants[i] = cumquants[i-1] + quants[i]
+    }
+    
+    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    
+
+    let cumrel = [rel[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumrel[i] = cumrel[i-1] + rel[i]
+    }
+    
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(cumrel[r-1].toFixed(2))+ " + " + parseFloat(rel[r].toFixed(2)) + " = " + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function cumpercent(){
+    var str = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null;
+    if (isnum == false) {
+        document.getElementById("output").innerHTML = "Cumulative percent frequency distributions require <span class='examplelink' onclick='examplexvalues2()'>quantitative data</span>."
+    } else {
+        cumpercent2()()
+    }
+}
+
+function cumpercent2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
+    $("#descumrelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    let cumquants = [quants[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumquants[i] = cumquants[i-1] + quants[i]
+    }
+    
+    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Percent}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    
+
+    let cumrel = [rel[0]]
+    for (let i=1; i<counts.length; i++) {
+        cumrel[i] = cumrel[i-1] + rel[i]
+    }
+    
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(100*rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(100*rel[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(100*cumrel[r-1].toFixed(2))+ " + " + parseFloat(100*rel[r].toFixed(2)) + " = " + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function cumpercent3(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
+    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
+    document.getElementById("explanationtext").innerHTML = ""
+    $("#descumpercent").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var tot = sum(counts);
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    var per = rel.map( function(value) {
+        return value * 100;
+    } );
+    
+    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
+    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Percent Frequency}$</td><td>$\\text{Percent Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    
+    let cumper = [per[0]]
+    for (let i=1; i<quants.length; i++) {
+        cumper[i] = cumper[i-1] + per[i]
+    }
+    
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>" + classlimits[r] + "</td>";
+        table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
+        table += "</tr>";
+    }
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>" + classlimits[r] + "</td>";
+        table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
+        table += "<td>" + parseFloat(cumper[r-1].toFixed(2)) + " + " + parseFloat(per[r].toFixed(2)) + " = " + parseFloat(cumper[r].toFixed(2)) + "</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td><td>$-$</td></tr>";
+    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
+    MathJax.typeset();
+}
+
+function crosstabulation(){
+    $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide(); 
+    var str = document.getElementById("values").value; var str2 = document.getElementById("values").value;
+    var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
+    if (isnum == false && isnum2 == false) {
+        $("#firstclasscross").hide();
+    } else if (isnum == false && isnum2 == true) {
+        $("#firstclasscross").show();
+    }  
+}
+
+function calccross(){
+    var str = document.getElementById("values").value; var str2 = document.getElementById("values2").value;
+    var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
+    if (isnum == false && isnum2 == false) {
+        calccross1()
+    } else if (isnum == false && isnum2 == true) {
+        calccross2()
+    } else if (isnum == true && isnum2 == false) {
+        calccross3()
+    } else if (isnum == true && isnum2 == true) {
+        calccross4()
+    }  
+}
+
+function calccross1(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A crosstabulation is a table summarizing data for two variables."
+    document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
+    document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    var rows = len; var cols = len2;
+    //var tot = sum(counts);
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < eachonesort2.length; j++) {
+        pairs0.push(eachonesort[i] + eachonesort2[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+        if (pairs0[i]==pairs[j]) {
+            x[i]++;
+        }
+      }
+    }
+    
+    
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + x[t+h] + "$</td>";
+            rowtot += x[t+h] 
+        }
+        table += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
+        coltot5 += x[h+5]; coltot6 += x[h+6]; coltot7 += x[h+7]; coltot8 += x[h+8]; coltot9 += x[h+9];
+        h += len2
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    
+    MathJax.typeset();
+}
+
+function calccross2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A crosstabulation is a table summarizing data for two variables."
+    document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
+    document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    var rows = len; 
+    //var tot = sum(counts);
+    
+    var lower = document.getElementById("lowery").value
+    var upper = document.getElementById("uppery").value
+    
+    var maxvalue = Math.max.apply(Math, each2);
+    var minvalue = Math.min.apply(Math, each2);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var cols = classlimits.length;
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each2.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    
+    
+    var rowvals = [];
+    for (var i=0; i<rows; i++) {
+        for (var j=0; j<each.length; j++) {
+            if (eachonesort[i] == each[j]) {
+                rowvals.push(each2[j])
+            }
+        }
+    }
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (eachonesort[0] == each[j]) {
+            rowvals0.push(each2[j])
+        } else if (eachonesort[1] == each[j]) {
+            rowvals1.push(each2[j])
+        } else if (eachonesort[2] == each[j]) {
+            rowvals2.push(each2[j])
+        } else if (eachonesort[3] == each[j]) {
+            rowvals3.push(each2[j])
+        } else if (eachonesort[4] == each[j]) {
+            rowvals4.push(each2[j])
+        } else if (eachonesort[5] == each[j]) {
+            rowvals5.push(each2[j])
+        } else if (eachonesort[6] == each[j]) {
+            rowvals6.push(each2[j])
+        } else if (eachonesort[7] == each[j]) {
+            rowvals7.push(each2[j])
+        } else if (eachonesort[8] == each[j]) {
+            rowvals8.push(each2[j])
+        } else if (eachonesort[9] == each[j]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+
+    var quants0 = []; var quants1 = []; var quants2 = []; var quants3 = []; var quants4 = [];
+    var quants5 = []; var quants6 = []; var quants7 = []; var quants8 = []; var quants9 = [];
+    for (var i=0; i<cols; i++) {
+        quants0[i] = rowvals0.filter(inRange, [limits1[i], limits2[i]]).length
+        quants1[i] = rowvals1.filter(inRange, [limits1[i], limits2[i]]).length
+        quants2[i] = rowvals2.filter(inRange, [limits1[i], limits2[i]]).length
+        quants3[i] = rowvals3.filter(inRange, [limits1[i], limits2[i]]).length
+        quants4[i] = rowvals4.filter(inRange, [limits1[i], limits2[i]]).length
+        quants5[i] = rowvals5.filter(inRange, [limits1[i], limits2[i]]).length
+        quants6[i] = rowvals6.filter(inRange, [limits1[i], limits2[i]]).length
+        quants7[i] = rowvals7.filter(inRange, [limits1[i], limits2[i]]).length
+        quants8[i] = rowvals8.filter(inRange, [limits1[i], limits2[i]]).length
+        quants9[i] = rowvals9.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < classlimits.length; j++) {
+        pairs0.push(eachonesort[i] + classlimits[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+            if (pairs0[i]==pairs[j]) {
+                x[i]++;
+        }
+      }
+    }
+    
+    
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$" + classlimits[s] + "$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "$</td>";
+            rowtot += quants[t+h] 
+        }
+        table += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    
+    MathJax.typeset();
+}
+
+function calccross3(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A crosstabulation is a table summarizing data for two variables."
+    document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
+    document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    //var tot = sum(counts);
+    
+    var lower = document.getElementById("lowerx").value
+    var upper = document.getElementById("upperx").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var rows = classlimits.length; 
+    var cols = eachonesort2.length
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each2.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    
+    
+    var rowvals = [];
+    for (var i=0; i<rows; i++) {
+        for (var j=0; j<each.length; j++) {
+            if (eachonesort[i] == each[j]) {
+                rowvals.push(each2[j])
+            }
+        }
+    }
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (each[j] >= limits1[0] && each[j] <= limits2[0]) {
+            rowvals0.push(each2[j])
+        } else if (each[j] >= limits1[1] && each[j] <= limits2[1]) {
+            rowvals1.push(each2[j])
+        } else if (each[j] >= limits1[2] && each[j] <= limits2[2]) {
+            rowvals2.push(each2[j])
+        } else if (each[j] >= limits1[3] && each[j] <= limits2[3]) {
+            rowvals3.push(each2[j])
+        } else if (each[j] >= limits1[4] && each[j] <= limits2[4]) {
+            rowvals4.push(each2[j])
+        } else if (each[j] >= limits1[5] && each[j] <= limits2[5]) {
+            rowvals5.push(each2[j])
+        } else if (each[j] >= limits1[6] && each[j] <= limits2[6]) {
+            rowvals6.push(each2[j])
+        } else if (each[j] >= limits1[7] && each[j] <= limits2[7]) {
+            rowvals7.push(each2[j])
+        } else if (each[j] >= limits1[8] && each[j] <= limits2[8]) {
+            rowvals8.push(each2[j])
+        } else if (each[j] >= limits1[9] && each[j] <= limits2[9]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+    var quants0 = new Array(cols).fill(0); var quants1 = new Array(cols).fill(0);
+    var quants2 = new Array(cols).fill(0); var quants3 = new Array(cols).fill(0);
+    var quants4 = new Array(cols).fill(0); var quants5 = new Array(cols).fill(0);
+    var quants6 = new Array(cols).fill(0); var quants7 = new Array(cols).fill(0);
+    var quants8 = new Array(cols).fill(0); var quants9 = new Array(cols).fill(0);
+
+    for (var i=0; i<cols; i++) {
+        for (var j=0; j<rowvals0.length; j++) {
+            if (eachonesort2[i] == rowvals0[j]) {
+                quants0[i]++
+            }
+        }
+        for (var j=0; j<rowvals1.length; j++) {
+            if (eachonesort2[i] == rowvals1[j]) {
+                quants1[i]++
+            }
+        }
+        for (var j=0; j<rowvals2.length; j++) {
+            if (eachonesort2[i] == rowvals2[j]) {
+                quants2[i]++
+            }
+        }
+        for (var j=0; j<rowvals3.length; j++) {
+            if (eachonesort2[i] == rowvals3[j]) {
+                quants3[i]++
+            }
+        }
+        for (var j=0; j<rowvals4.length; j++) {
+            if (eachonesort2[i] == rowvals4[j]) {
+                quants4[i]++
+            }
+        }
+        for (var j=0; j<rowvals5.length; j++) {
+            if (eachonesort2[i] == rowvals5[j]) {
+                quants5[i]++
+            }
+        }
+        for (var j=0; j<rowvals6.length; j++) {
+            if (eachonesort2[i] == rowvals6[j]) {
+                quants6[i]++
+            }
+        }
+        for (var j=0; j<rowvals7.length; j++) {
+            if (eachonesort2[i] == rowvals7[j]) {
+                quants7[i]++
+            }
+        }
+        for (var j=0; j<rowvals8.length; j++) {
+            if (eachonesort2[i] == rowvals8[j]) {
+                quants8[i]++
+            }
+        }
+        for (var j=0; j<rowvals9.length; j++) {
+            if (eachonesort2[i] == rowvals9[j]) {
+                quants9[i]++
+            }
+        }
+
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < classlimits.length; j++) {
+        pairs0.push(eachonesort[i] + classlimits[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+            if (pairs0[i]==pairs[j]) {
+                x[i]++;
+        }
+      }
+    }
+    
+    
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "$</td>";
+            rowtot += quants[t+h] 
+        }
+        table += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    
+    MathJax.typeset();
+}
+
+function calccross4(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A crosstabulation is a table summarizing data for two variables."
+    document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
+    document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    //var tot = sum(counts);
+    
+    var lowerx = document.getElementById("lowerx").value; var lowery = document.getElementById("lowery").value
+    var upperx = document.getElementById("upperx").value; var uppery = document.getElementById("uppery").value
+    
+    var maxvaluex = Math.max.apply(Math, each); var maxvaluey = Math.max.apply(Math, each2);
+    var minvaluex = Math.min.apply(Math, each); var minvaluey = Math.min.apply(Math, each2);
+    
+    var classwidthx = upperx - lowerx + 1; var classwidthy = uppery - lowery + 1;
+    
+    var value1x = parseFloat(lowerx); var value1y = parseFloat(lowerx);
+    var value2x = parseFloat(upperx); var value2y = parseFloat(uppery);
+    var classlimitsx = []; var classlimitsy = [];
+    var limits1x = []; var limits1y = [];
+    var limits2x = []; var limits2y = [];
+
+    var i = 0
+    while (maxvaluex > value2x - classwidthx) {
+        classlimitsx[i] = value1x + "-" + value2x
+        limits1x[i] = value1x;
+        limits2x[i] = value2x;
+        value1x += classwidthx;
+        value2x += classwidthx;
+        i += 1
+    }
+    
+    var j = 0
+    while (maxvaluey > value2y - classwidthy) {
+        classlimitsy[j] = value1y + "-" + value2y
+        limits1y[j] = value1y;
+        limits2y[j] = value2y;
+        value1y += classwidthy;
+        value2y += classwidthy;
+        j += 1
+    }
+    
+    var rows = classlimitsx.length; 
+    var cols = classlimitsy.length
+    var endx = i; var endy = j;
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (each[j] >= limits1x[0] && each[j] <= limits2x[0]) {
+            rowvals0.push(each2[j])
+        } else if (each[j] >= limits1x[1] && each[j] <= limits2x[1]) {
+            rowvals1.push(each2[j])
+        } else if (each[j] >= limits1x[2] && each[j] <= limits2x[2]) {
+            rowvals2.push(each2[j])
+        } else if (each[j] >= limits1x[3] && each[j] <= limits2x[3]) {
+            rowvals3.push(each2[j])
+        } else if (each[j] >= limits1x[4] && each[j] <= limits2x[4]) {
+            rowvals4.push(each2[j])
+        } else if (each[j] >= limits1x[5] && each[j] <= limits2x[5]) {
+            rowvals5.push(each2[j])
+        } else if (each[j] >= limits1x[6] && each[j] <= limits2x[6]) {
+            rowvals6.push(each2[j])
+        } else if (each[j] >= limits1x[7] && each[j] <= limits2x[7]) {
+            rowvals7.push(each2[j])
+        } else if (each[j] >= limits1x[8] && each[j] <= limits2x[8]) {
+            rowvals8.push(each2[j])
+        } else if (each[j] >= limits1x[9] && each[j] <= limits2x[9]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+    var quants0 = []; var quants1 = []; var quants2 = []; var quants3 = []; var quants4 = [];
+    var quants5 = []; var quants6 = []; var quants7 = []; var quants8 = []; var quants9 = [];
+    for (var i=0; i<cols; i++) {
+        quants0[i] = rowvals0.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants1[i] = rowvals1.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants2[i] = rowvals2.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants3[i] = rowvals3.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants4[i] = rowvals4.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants5[i] = rowvals5.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants6[i] = rowvals6.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants7[i] = rowvals7.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants8[i] = rowvals8.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants9[i] = rowvals9.filter(inRange, [limits1y[i], limits2y[i]]).length
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$" + classlimitsy[s] + "$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "$</td>";
+            rowtot += quants[t+h] 
+        }
+        table += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    
+    MathJax.typeset();
+}
+
+
+function rowpercent(){
+    $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
+}
+
+function calcrow(){
+    var str = document.getElementById("values").value; var str2 = document.getElementById("values2").value;
+    var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
+    if (isnum == false && isnum2 == false) {
+        calcrow1()
+    } else if (isnum == false && isnum2 == true) {
+        calcrow2()
+    } else if (isnum == true && isnum2 == false) {
+        calcrow3()
+    } else if (isnum == true && isnum2 == true) {
+        calcrow4()
+    }  
+}
+
+function calcrow1(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    var rows = len; var cols = len2;
+    //var tot = sum(counts);
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < eachonesort2.length; j++) {
+        pairs0.push(eachonesort[i] + eachonesort2[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    let pairs2 = new Array(each.length).fill(0);
+    
+    for (var i = 0; i < each.length; i++) {
+        pairs2[i] = each[i] + each2[i];
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+        if (pairs0[i]==pairs[j]) {
+            x[i]++;
+        }
+      }
+    }
+
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += x[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + x[t+h] + "$</td>"; 
+        }
+        table0 += "<td style='border-left: thin solid'>$ " + rowtot + " $</td></tr>"; 
+        coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
+        coltot5 += x[h+5]; coltot6 += x[h+6]; coltot7 += x[h+7]; coltot8 += x[h+8]; coltot9 += x[h+9];
+        h += len2
+    } 
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += x[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + x[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat(((x[t+h]/rowtot)*100).toFixed(2)) + " $</td>"; 
+        }
+        table += "<td style='border-left: thin solid'>$ 100 $</td></tr>"; 
+        coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
+        coltot5 += x[h+5]; coltot6 += x[h+6]; coltot7 += x[h+7]; coltot8 += x[h+8]; coltot9 += x[h+9];
+        h += len2
+    } 
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function calcrow2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    var rows = len; 
+    //var tot = sum(counts);
+    
+    var lower = document.getElementById("lowery").value
+    var upper = document.getElementById("uppery").value
+    
+    var maxvalue = Math.max.apply(Math, each2);
+    var minvalue = Math.min.apply(Math, each2);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var cols = classlimits.length;
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each2.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    
+    
+    var rowvals = [];
+    for (var i=0; i<rows; i++) {
+        for (var j=0; j<each.length; j++) {
+            if (eachonesort[i] == each[j]) {
+                rowvals.push(each2[j])
+            }
+        }
+    }
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (eachonesort[0] == each[j]) {
+            rowvals0.push(each2[j])
+        } else if (eachonesort[1] == each[j]) {
+            rowvals1.push(each2[j])
+        } else if (eachonesort[2] == each[j]) {
+            rowvals2.push(each2[j])
+        } else if (eachonesort[3] == each[j]) {
+            rowvals3.push(each2[j])
+        } else if (eachonesort[4] == each[j]) {
+            rowvals4.push(each2[j])
+        } else if (eachonesort[5] == each[j]) {
+            rowvals5.push(each2[j])
+        } else if (eachonesort[6] == each[j]) {
+            rowvals6.push(each2[j])
+        } else if (eachonesort[7] == each[j]) {
+            rowvals7.push(each2[j])
+        } else if (eachonesort[8] == each[j]) {
+            rowvals8.push(each2[j])
+        } else if (eachonesort[9] == each[j]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+
+    var quants0 = []; var quants1 = []; var quants2 = []; var quants3 = []; var quants4 = [];
+    var quants5 = []; var quants6 = []; var quants7 = []; var quants8 = []; var quants9 = [];
+    for (var i=0; i<cols; i++) {
+        quants0[i] = rowvals0.filter(inRange, [limits1[i], limits2[i]]).length
+        quants1[i] = rowvals1.filter(inRange, [limits1[i], limits2[i]]).length
+        quants2[i] = rowvals2.filter(inRange, [limits1[i], limits2[i]]).length
+        quants3[i] = rowvals3.filter(inRange, [limits1[i], limits2[i]]).length
+        quants4[i] = rowvals4.filter(inRange, [limits1[i], limits2[i]]).length
+        quants5[i] = rowvals5.filter(inRange, [limits1[i], limits2[i]]).length
+        quants6[i] = rowvals6.filter(inRange, [limits1[i], limits2[i]]).length
+        quants7[i] = rowvals7.filter(inRange, [limits1[i], limits2[i]]).length
+        quants8[i] = rowvals8.filter(inRange, [limits1[i], limits2[i]]).length
+        quants9[i] = rowvals9.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < classlimits.length; j++) {
+        pairs0.push(eachonesort[i] + classlimits[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+            if (pairs0[i]==pairs[j]) {
+                x[i]++;
+        }
+      }
+    }
+    
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$" + classlimits[s] + "$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + quants[t+h] + "$</td>";
+        }
+        table0 += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$" + classlimits[s] + "$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
+        }
+        table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function calcrow3(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    //var tot = sum(counts);
+    
+    var lower = document.getElementById("lowerx").value
+    var upper = document.getElementById("upperx").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var rows = classlimits.length; 
+    var cols = eachonesort2.length
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each2.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    
+    
+    var rowvals = [];
+    for (var i=0; i<rows; i++) {
+        for (var j=0; j<each.length; j++) {
+            if (eachonesort[i] == each[j]) {
+                rowvals.push(each2[j])
+            }
+        }
+    }
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (each[j] >= limits1[0] && each[j] <= limits2[0]) {
+            rowvals0.push(each2[j])
+        } else if (each[j] >= limits1[1] && each[j] <= limits2[1]) {
+            rowvals1.push(each2[j])
+        } else if (each[j] >= limits1[2] && each[j] <= limits2[2]) {
+            rowvals2.push(each2[j])
+        } else if (each[j] >= limits1[3] && each[j] <= limits2[3]) {
+            rowvals3.push(each2[j])
+        } else if (each[j] >= limits1[4] && each[j] <= limits2[4]) {
+            rowvals4.push(each2[j])
+        } else if (each[j] >= limits1[5] && each[j] <= limits2[5]) {
+            rowvals5.push(each2[j])
+        } else if (each[j] >= limits1[6] && each[j] <= limits2[6]) {
+            rowvals6.push(each2[j])
+        } else if (each[j] >= limits1[7] && each[j] <= limits2[7]) {
+            rowvals7.push(each2[j])
+        } else if (each[j] >= limits1[8] && each[j] <= limits2[8]) {
+            rowvals8.push(each2[j])
+        } else if (each[j] >= limits1[9] && each[j] <= limits2[9]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+    var quants0 = new Array(cols).fill(0); var quants1 = new Array(cols).fill(0);
+    var quants2 = new Array(cols).fill(0); var quants3 = new Array(cols).fill(0);
+    var quants4 = new Array(cols).fill(0); var quants5 = new Array(cols).fill(0);
+    var quants6 = new Array(cols).fill(0); var quants7 = new Array(cols).fill(0);
+    var quants8 = new Array(cols).fill(0); var quants9 = new Array(cols).fill(0);
+
+    for (var i=0; i<cols; i++) {
+        for (var j=0; j<rowvals0.length; j++) {
+            if (eachonesort2[i] == rowvals0[j]) {
+                quants0[i]++
+            }
+        }
+        for (var j=0; j<rowvals1.length; j++) {
+            if (eachonesort2[i] == rowvals1[j]) {
+                quants1[i]++
+            }
+        }
+        for (var j=0; j<rowvals2.length; j++) {
+            if (eachonesort2[i] == rowvals2[j]) {
+                quants2[i]++
+            }
+        }
+        for (var j=0; j<rowvals3.length; j++) {
+            if (eachonesort2[i] == rowvals3[j]) {
+                quants3[i]++
+            }
+        }
+        for (var j=0; j<rowvals4.length; j++) {
+            if (eachonesort2[i] == rowvals4[j]) {
+                quants4[i]++
+            }
+        }
+        for (var j=0; j<rowvals5.length; j++) {
+            if (eachonesort2[i] == rowvals5[j]) {
+                quants5[i]++
+            }
+        }
+        for (var j=0; j<rowvals6.length; j++) {
+            if (eachonesort2[i] == rowvals6[j]) {
+                quants6[i]++
+            }
+        }
+        for (var j=0; j<rowvals7.length; j++) {
+            if (eachonesort2[i] == rowvals7[j]) {
+                quants7[i]++
+            }
+        }
+        for (var j=0; j<rowvals8.length; j++) {
+            if (eachonesort2[i] == rowvals8[j]) {
+                quants8[i]++
+            }
+        }
+        for (var j=0; j<rowvals9.length; j++) {
+            if (eachonesort2[i] == rowvals9[j]) {
+                quants9[i]++
+            }
+        }
+
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < classlimits.length; j++) {
+        pairs0.push(eachonesort[i] + classlimits[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+            if (pairs0[i]==pairs[j]) {
+                x[i]++;
+        }
+      }
+    }
+
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + quants[t+h] + "$</td>";
+        }
+        table0 += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
+        }
+        table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function calcrow4(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    //var tot = sum(counts);
+    
+    var lowerx = document.getElementById("lowerx").value; var lowery = document.getElementById("lowery").value
+    var upperx = document.getElementById("upperx").value; var uppery = document.getElementById("uppery").value
+    
+    var maxvaluex = Math.max.apply(Math, each); var maxvaluey = Math.max.apply(Math, each2);
+    var minvaluex = Math.min.apply(Math, each); var minvaluey = Math.min.apply(Math, each2);
+    
+    var classwidthx = upperx - lowerx + 1; var classwidthy = uppery - lowery + 1;
+    
+    var value1x = parseFloat(lowerx); var value1y = parseFloat(lowerx);
+    var value2x = parseFloat(upperx); var value2y = parseFloat(uppery);
+    var classlimitsx = []; var classlimitsy = [];
+    var limits1x = []; var limits1y = [];
+    var limits2x = []; var limits2y = [];
+
+    var i = 0
+    while (maxvaluex > value2x - classwidthx) {
+        classlimitsx[i] = value1x + "-" + value2x
+        limits1x[i] = value1x;
+        limits2x[i] = value2x;
+        value1x += classwidthx;
+        value2x += classwidthx;
+        i += 1
+    }
+    
+    var j = 0
+    while (maxvaluey > value2y - classwidthy) {
+        classlimitsy[j] = value1y + "-" + value2y
+        limits1y[j] = value1y;
+        limits2y[j] = value2y;
+        value1y += classwidthy;
+        value2y += classwidthy;
+        j += 1
+    }
+    
+    var rows = classlimitsx.length; 
+    var cols = classlimitsy.length
+    var endx = i; var endy = j;
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (each[j] >= limits1x[0] && each[j] <= limits2x[0]) {
+            rowvals0.push(each2[j])
+        } else if (each[j] >= limits1x[1] && each[j] <= limits2x[1]) {
+            rowvals1.push(each2[j])
+        } else if (each[j] >= limits1x[2] && each[j] <= limits2x[2]) {
+            rowvals2.push(each2[j])
+        } else if (each[j] >= limits1x[3] && each[j] <= limits2x[3]) {
+            rowvals3.push(each2[j])
+        } else if (each[j] >= limits1x[4] && each[j] <= limits2x[4]) {
+            rowvals4.push(each2[j])
+        } else if (each[j] >= limits1x[5] && each[j] <= limits2x[5]) {
+            rowvals5.push(each2[j])
+        } else if (each[j] >= limits1x[6] && each[j] <= limits2x[6]) {
+            rowvals6.push(each2[j])
+        } else if (each[j] >= limits1x[7] && each[j] <= limits2x[7]) {
+            rowvals7.push(each2[j])
+        } else if (each[j] >= limits1x[8] && each[j] <= limits2x[8]) {
+            rowvals8.push(each2[j])
+        } else if (each[j] >= limits1x[9] && each[j] <= limits2x[9]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+    var quants0 = []; var quants1 = []; var quants2 = []; var quants3 = []; var quants4 = [];
+    var quants5 = []; var quants6 = []; var quants7 = []; var quants8 = []; var quants9 = [];
+    for (var i=0; i<cols; i++) {
+        quants0[i] = rowvals0.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants1[i] = rowvals1.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants2[i] = rowvals2.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants3[i] = rowvals3.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants4[i] = rowvals4.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants5[i] = rowvals5.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants6[i] = rowvals6.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants7[i] = rowvals7.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants8[i] = rowvals8.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants9[i] = rowvals9.filter(inRange, [limits1y[i], limits2y[i]]).length
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$" + classlimitsy[s] + "$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + quants[t+h] + " $</td>";
+        }
+        table0 += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$" + classlimitsy[s] + "$</td>";
+    }  
+    
+    table = table + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + " $</td>";
+        }
+        table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function colpercent(){
+    $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
+}
+
+function calccol(){
+    var str = document.getElementById("values").value; var str2 = document.getElementById("values2").value;
+    var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
+    var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
+    if (isnum == false && isnum2 == false) {
+        calccol1()
+    } else if (isnum == false && isnum2 == true) {
+        calccol2()
+    } else if (isnum == true && isnum2 == false) {
+        calccol3()
+    } else if (isnum == true && isnum2 == true) {
+        calccol4()
+    }  
+}
+
+function calccol1(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    var rows = len; var cols = len2;
+    //var tot = sum(counts);
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < eachonesort2.length; j++) {
+        pairs0.push(eachonesort[i] + eachonesort2[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    let pairs2 = new Array(each.length).fill(0);
+    
+    for (var i = 0; i < each.length; i++) {
+        pairs2[i] = each[i] + each2[i];
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+        if (pairs0[i]==pairs[j]) {
+            x[i]++;
+        }
+      }
+    }
+    
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += x[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + x[t+h] + "$</td>"; 
+        }
+        table0 += "<td style='border-left: thin solid'>$ " + rowtot + " $</td></tr>"; 
+        coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
+        coltot5 += x[h+5]; coltot6 += x[h+6]; coltot7 += x[h+7]; coltot8 += x[h+8]; coltot9 += x[h+9];
+        h += len2
+    } 
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+    
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table = table + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var v = 0; v < rows; v++){
+        coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
+        coltot5 += x[h+5]; coltot6 += x[h+6]; coltot7 += x[h+7]; coltot8 += x[h+8]; coltot9 += x[h+9];
+        h += len2
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    var h = 0
+    
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + x[t+h] + "/ " + coltot[t] + " \\times 100 = " + parseFloat((x[t+h]*100/coltot[t]).toFixed(2)) + " $</td>";
+        }
+        table += "</tr>"; 
+        h += len2
+    }
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$ 100 $</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function calccol2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    var rows = len; 
+    //var tot = sum(counts);
+    
+    var lower = document.getElementById("lowery").value
+    var upper = document.getElementById("uppery").value
+    
+    var maxvalue = Math.max.apply(Math, each2);
+    var minvalue = Math.min.apply(Math, each2);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var cols = classlimits.length;
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each2.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    
+    
+    var rowvals = [];
+    for (var i=0; i<rows; i++) {
+        for (var j=0; j<each.length; j++) {
+            if (eachonesort[i] == each[j]) {
+                rowvals.push(each2[j])
+            }
+        }
+    }
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (eachonesort[0] == each[j]) {
+            rowvals0.push(each2[j])
+        } else if (eachonesort[1] == each[j]) {
+            rowvals1.push(each2[j])
+        } else if (eachonesort[2] == each[j]) {
+            rowvals2.push(each2[j])
+        } else if (eachonesort[3] == each[j]) {
+            rowvals3.push(each2[j])
+        } else if (eachonesort[4] == each[j]) {
+            rowvals4.push(each2[j])
+        } else if (eachonesort[5] == each[j]) {
+            rowvals5.push(each2[j])
+        } else if (eachonesort[6] == each[j]) {
+            rowvals6.push(each2[j])
+        } else if (eachonesort[7] == each[j]) {
+            rowvals7.push(each2[j])
+        } else if (eachonesort[8] == each[j]) {
+            rowvals8.push(each2[j])
+        } else if (eachonesort[9] == each[j]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+
+    var quants0 = []; var quants1 = []; var quants2 = []; var quants3 = []; var quants4 = [];
+    var quants5 = []; var quants6 = []; var quants7 = []; var quants8 = []; var quants9 = [];
+    for (var i=0; i<cols; i++) {
+        quants0[i] = rowvals0.filter(inRange, [limits1[i], limits2[i]]).length
+        quants1[i] = rowvals1.filter(inRange, [limits1[i], limits2[i]]).length
+        quants2[i] = rowvals2.filter(inRange, [limits1[i], limits2[i]]).length
+        quants3[i] = rowvals3.filter(inRange, [limits1[i], limits2[i]]).length
+        quants4[i] = rowvals4.filter(inRange, [limits1[i], limits2[i]]).length
+        quants5[i] = rowvals5.filter(inRange, [limits1[i], limits2[i]]).length
+        quants6[i] = rowvals6.filter(inRange, [limits1[i], limits2[i]]).length
+        quants7[i] = rowvals7.filter(inRange, [limits1[i], limits2[i]]).length
+        quants8[i] = rowvals8.filter(inRange, [limits1[i], limits2[i]]).length
+        quants9[i] = rowvals9.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < classlimits.length; j++) {
+        pairs0.push(eachonesort[i] + classlimits[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+            if (pairs0[i]==pairs[j]) {
+                x[i]++;
+        }
+      }
+    }
+    
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$" + classlimits[s] + "$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + quants[t+h] + "$</td>";
+        }
+        table0 += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+    
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$" + classlimits[s] + "$</td>";
+    }  
+    
+    table = table + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    var h = 0
+    
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "/" + coltot[t] + " \\times 100 = " +parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
+        }
+        table += "</tr>"; 
+        h += cols
+    }
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$100$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function calccol3(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    //var tot = sum(counts);
+    
+    var lower = document.getElementById("lowerx").value
+    var upper = document.getElementById("upperx").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var rows = classlimits.length; 
+    var cols = eachonesort2.length
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each2.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    
+    
+    var rowvals = [];
+    for (var i=0; i<rows; i++) {
+        for (var j=0; j<each.length; j++) {
+            if (eachonesort[i] == each[j]) {
+                rowvals.push(each2[j])
+            }
+        }
+    }
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (each[j] >= limits1[0] && each[j] <= limits2[0]) {
+            rowvals0.push(each2[j])
+        } else if (each[j] >= limits1[1] && each[j] <= limits2[1]) {
+            rowvals1.push(each2[j])
+        } else if (each[j] >= limits1[2] && each[j] <= limits2[2]) {
+            rowvals2.push(each2[j])
+        } else if (each[j] >= limits1[3] && each[j] <= limits2[3]) {
+            rowvals3.push(each2[j])
+        } else if (each[j] >= limits1[4] && each[j] <= limits2[4]) {
+            rowvals4.push(each2[j])
+        } else if (each[j] >= limits1[5] && each[j] <= limits2[5]) {
+            rowvals5.push(each2[j])
+        } else if (each[j] >= limits1[6] && each[j] <= limits2[6]) {
+            rowvals6.push(each2[j])
+        } else if (each[j] >= limits1[7] && each[j] <= limits2[7]) {
+            rowvals7.push(each2[j])
+        } else if (each[j] >= limits1[8] && each[j] <= limits2[8]) {
+            rowvals8.push(each2[j])
+        } else if (each[j] >= limits1[9] && each[j] <= limits2[9]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+    var quants0 = new Array(cols).fill(0); var quants1 = new Array(cols).fill(0);
+    var quants2 = new Array(cols).fill(0); var quants3 = new Array(cols).fill(0);
+    var quants4 = new Array(cols).fill(0); var quants5 = new Array(cols).fill(0);
+    var quants6 = new Array(cols).fill(0); var quants7 = new Array(cols).fill(0);
+    var quants8 = new Array(cols).fill(0); var quants9 = new Array(cols).fill(0);
+
+    for (var i=0; i<cols; i++) {
+        for (var j=0; j<rowvals0.length; j++) {
+            if (eachonesort2[i] == rowvals0[j]) {
+                quants0[i]++
+            }
+        }
+        for (var j=0; j<rowvals1.length; j++) {
+            if (eachonesort2[i] == rowvals1[j]) {
+                quants1[i]++
+            }
+        }
+        for (var j=0; j<rowvals2.length; j++) {
+            if (eachonesort2[i] == rowvals2[j]) {
+                quants2[i]++
+            }
+        }
+        for (var j=0; j<rowvals3.length; j++) {
+            if (eachonesort2[i] == rowvals3[j]) {
+                quants3[i]++
+            }
+        }
+        for (var j=0; j<rowvals4.length; j++) {
+            if (eachonesort2[i] == rowvals4[j]) {
+                quants4[i]++
+            }
+        }
+        for (var j=0; j<rowvals5.length; j++) {
+            if (eachonesort2[i] == rowvals5[j]) {
+                quants5[i]++
+            }
+        }
+        for (var j=0; j<rowvals6.length; j++) {
+            if (eachonesort2[i] == rowvals6[j]) {
+                quants6[i]++
+            }
+        }
+        for (var j=0; j<rowvals7.length; j++) {
+            if (eachonesort2[i] == rowvals7[j]) {
+                quants7[i]++
+            }
+        }
+        for (var j=0; j<rowvals8.length; j++) {
+            if (eachonesort2[i] == rowvals8[j]) {
+                quants8[i]++
+            }
+        }
+        for (var j=0; j<rowvals9.length; j++) {
+            if (eachonesort2[i] == rowvals9[j]) {
+                quants9[i]++
+            }
+        }
+
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    let pairs0 = [];
+    for (var i = 0; i < eachonesort.length; i++) {
+      for (var j = 0; j < classlimits.length; j++) {
+        pairs0.push(eachonesort[i] + classlimits[j]);
+      }
+    }
+
+    let pairs = [];
+    for (var i = 0; i < each.length; i++) {
+        pairs.push(each[i] + each2[i]);
+    }
+    
+    var x = new Array(pairs0.length).fill(0);
+
+    for (var i = 0; i < pairs0.length; i++) {
+        for (var j = 0; j < pairs.length; j++) {
+            if (pairs0[i]==pairs[j]) {
+                x[i]++;
+        }
+      }
+    }
+
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + quants[t+h] + "$</td>";
+        }
+        table0 += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$\\text{" + eachonesort2[s] + "}$</td>";
+    }  
+    
+    table = table + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    var h = 0
+    
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "/" + coltot[t] + " \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + " $</td>";
+        }
+        table += "</tr>"; 
+        h += cols
+    }
+    
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$100$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function calccol4(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
+    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
+    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //var counts = countem(each)
+    //var tot = sum(counts);
+    
+    var lowerx = document.getElementById("lowerx").value; var lowery = document.getElementById("lowery").value
+    var upperx = document.getElementById("upperx").value; var uppery = document.getElementById("uppery").value
+    
+    var maxvaluex = Math.max.apply(Math, each); var maxvaluey = Math.max.apply(Math, each2);
+    var minvaluex = Math.min.apply(Math, each); var minvaluey = Math.min.apply(Math, each2);
+    
+    var classwidthx = upperx - lowerx + 1; var classwidthy = uppery - lowery + 1;
+    
+    var value1x = parseFloat(lowerx); var value1y = parseFloat(lowerx);
+    var value2x = parseFloat(upperx); var value2y = parseFloat(uppery);
+    var classlimitsx = []; var classlimitsy = [];
+    var limits1x = []; var limits1y = [];
+    var limits2x = []; var limits2y = [];
+
+    var i = 0
+    while (maxvaluex > value2x - classwidthx) {
+        classlimitsx[i] = value1x + "-" + value2x
+        limits1x[i] = value1x;
+        limits2x[i] = value2x;
+        value1x += classwidthx;
+        value2x += classwidthx;
+        i += 1
+    }
+    
+    var j = 0
+    while (maxvaluey > value2y - classwidthy) {
+        classlimitsy[j] = value1y + "-" + value2y
+        limits1y[j] = value1y;
+        limits2y[j] = value2y;
+        value1y += classwidthy;
+        value2y += classwidthy;
+        j += 1
+    }
+    
+    var rows = classlimitsx.length; 
+    var cols = classlimitsy.length
+    var endx = i; var endy = j;
+    
+    var rowvals0 = []; var rowvals1 = []; var rowvals2 = []; var rowvals3 = []; var rowvals4 = []; 
+    var rowvals5 = []; var rowvals6 = []; var rowvals7 = []; var rowvals8 = []; var rowvals9 = [];
+    for (var j=0; j<each.length; j++) {
+        if (each[j] >= limits1x[0] && each[j] <= limits2x[0]) {
+            rowvals0.push(each2[j])
+        } else if (each[j] >= limits1x[1] && each[j] <= limits2x[1]) {
+            rowvals1.push(each2[j])
+        } else if (each[j] >= limits1x[2] && each[j] <= limits2x[2]) {
+            rowvals2.push(each2[j])
+        } else if (each[j] >= limits1x[3] && each[j] <= limits2x[3]) {
+            rowvals3.push(each2[j])
+        } else if (each[j] >= limits1x[4] && each[j] <= limits2x[4]) {
+            rowvals4.push(each2[j])
+        } else if (each[j] >= limits1x[5] && each[j] <= limits2x[5]) {
+            rowvals5.push(each2[j])
+        } else if (each[j] >= limits1x[6] && each[j] <= limits2x[6]) {
+            rowvals6.push(each2[j])
+        } else if (each[j] >= limits1x[7] && each[j] <= limits2x[7]) {
+            rowvals7.push(each2[j])
+        } else if (each[j] >= limits1x[8] && each[j] <= limits2x[8]) {
+            rowvals8.push(each2[j])
+        } else if (each[j] >= limits1x[9] && each[j] <= limits2x[9]) {
+            rowvals9.push(each2[j])
+        }
+    }
+    
+    var quants0 = []; var quants1 = []; var quants2 = []; var quants3 = []; var quants4 = [];
+    var quants5 = []; var quants6 = []; var quants7 = []; var quants8 = []; var quants9 = [];
+    for (var i=0; i<cols; i++) {
+        quants0[i] = rowvals0.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants1[i] = rowvals1.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants2[i] = rowvals2.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants3[i] = rowvals3.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants4[i] = rowvals4.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants5[i] = rowvals5.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants6[i] = rowvals6.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants7[i] = rowvals7.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants8[i] = rowvals8.filter(inRange, [limits1y[i], limits2y[i]]).length
+        quants9[i] = rowvals9.filter(inRange, [limits1y[i], limits2y[i]]).length
+    }
+
+    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table0 += "<td>$" + classlimitsy[s] + "$</td>";
+    }  
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$\\text{Total}$</td>" + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        var rowtot = 0
+        table0 += "<tr>";
+        table0 += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            rowtot += quants[t+h] 
+        }
+        for (var t = 0; t < cols; t++){
+            table0 += "<td>$" + quants[t+h] + " $</td>";
+        }
+        table0 += "<td style='border-left: thin solid'>$" + rowtot + "$</td></tr>"; 
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    table0 = table0 + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table0 += "<td>$" + coltot[z] + "$</td>";
+        totot += coltot[z]
+    }
+    
+    table0 = table0 + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
+
+    var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
+    
+    for (var s = 0; s < cols; s++){
+        table += "<td>$" + classlimitsy[s] + "$</td>";
+    }  
+    
+    table = table + "</tr>";
+    
+    
+    var h = 0
+    
+    //var coltot = new Array(len2).fill(0);
+    var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
+    var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
+    
+    for (var r = 0; r < rows; r++){
+        coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
+        coltot5 += quants[h+5]; coltot6 += quants[h+6]; coltot7 += quants[h+7]; coltot8 += quants[h+8]; coltot9 += quants[h+9];
+        h += cols
+    }
+    
+    var coltot = [coltot0, coltot1, coltot2, coltot3, coltot4, coltot5, coltot6, coltot7, coltot8, coltot9]
+    
+    var h = 0
+    
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
+        for (var t = 0; t < cols; t++){
+            table += "<td>$" + quants[t+h] + "/" + coltot[t] + " \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
+        }
+        table += "</tr>"; 
+        h += cols
+    }
+    
+    table = table + "<tr style='border-top: thin solid'><td style='border-right: thin solid'>$\\text{Total}$</td>";
+    
+    var totot = 0
+    
+    for (var z = 0; z < cols; z++){
+        table += "<td>$100$</td>";
+        totot += coltot[z]
+    }
+    
+    table = table + "</tr>";
+    
+    
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    
+    MathJax.typeset();
+}
+
+function scatter(){
+    $("#input2").show();  $("#label1").hide(); $("#label3").show();
+}
+
+function calcscatt(){
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("descriptiontext").innerHTML = "A scatter diagram is a graph summarizing data for two quantitative variables."
+    document.getElementById("formulatext").innerHTML = "Draw a point on the graph for each pair of x and y values."
+    document.getElementById("explanationtext").innerHTML = "The scatter diagram will indicate whether there is a positive, negative or no relationship between x and y."
+    $("#myCanvas").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each = str.split(","); var each2 = str2.split(",")
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    var eachnums2 = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', 'y'],
+          [ eachnums[0], eachnums2[0]],
+          [ eachnums[1], eachnums2[1]],
+          [ eachnums[2], eachnums2[2]],
+          [ eachnums[3], eachnums2[3]],
+          [ eachnums[4], eachnums2[4]],
+          [ eachnums[5], eachnums2[5]],
+          [ eachnums[6], eachnums2[6]],
+          [ eachnums[7], eachnums2[7]],
+          [ eachnums[8], eachnums2[8]],
+          [ eachnums[9], eachnums2[9]],
+          [ eachnums[10], eachnums2[10]],
+          [ eachnums[11], eachnums2[11]],
+          [ eachnums[12], eachnums2[12]],
+          [ eachnums[13], eachnums2[13]],
+          [ eachnums[14], eachnums2[14]],
+          [ eachnums[15], eachnums2[15]],
+          [ eachnums[16], eachnums2[16]],
+          [ eachnums[17], eachnums2[17]],
+          [ eachnums[18], eachnums2[18]],
+          [ eachnums[19], eachnums2[19]],
+          [ eachnums[20], eachnums2[20]],
+          [ eachnums[21], eachnums2[21]],
+          [ eachnums[22], eachnums2[22]],
+          [ eachnums[23], eachnums2[23]],
+          [ eachnums[24], eachnums2[24]],
+          [ eachnums[25], eachnums2[25]],
+          [ eachnums[26], eachnums2[26]],
+          [ eachnums[27], eachnums2[27]],
+          [ eachnums[28], eachnums2[28]],
+          [ eachnums[29], eachnums2[29]],
+          [ eachnums[30], eachnums2[30]],
+          [ eachnums[31], eachnums2[31]],
+          [ eachnums[32], eachnums2[32]],
+          [ eachnums[33], eachnums2[33]],
+          [ eachnums[34], eachnums2[34]],
+          [ eachnums[35], eachnums2[35]],
+          [ eachnums[36], eachnums2[36]],
+          [ eachnums[37], eachnums2[37]],
+          [ eachnums[38], eachnums2[38]],
+          [ eachnums[39], eachnums2[39]],
+          [ eachnums[40], eachnums2[40]],
+          [ eachnums[41], eachnums2[41]],
+          [ eachnums[42], eachnums2[42]],
+          [ eachnums[43], eachnums2[43]],
+          [ eachnums[44], eachnums2[44]],
+          [ eachnums[45], eachnums2[45]],
+          [ eachnums[46], eachnums2[46]],
+          [ eachnums[47], eachnums2[47]],
+          [ eachnums[48], eachnums2[48]],
+          [ eachnums[49], eachnums2[49]]
+        ]);
+
+        var options = {
+          hAxis: {title: 'x'},
+          vAxis: {title: 'y'},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
+
+    
+    MathJax.typeset();
+}
+
+function trendline(){
+    $("#input2").show();  $("#label1").hide(); $("#label3").show();
+}
+
+function calctrend(){
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("descriptiontext").innerHTML = "A trendline provides an approximation of the relationship between x and y."
+    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("explanationtext").innerHTML = "The equation of the trendline is estimated using the least squares method from simple regression."
+    $("#myCanvas").show();
+    var str = document.getElementById("values").value;
+    var str2 = document.getElementById("values2").value;
+    var each = str.split(","); var each2 = str2.split(",")
+    var eachnums = each.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    var eachnums2 = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['x', 'y'],
+          [ eachnums[0], eachnums2[0]],
+          [ eachnums[1], eachnums2[1]],
+          [ eachnums[2], eachnums2[2]],
+          [ eachnums[3], eachnums2[3]],
+          [ eachnums[4], eachnums2[4]],
+          [ eachnums[5], eachnums2[5]],
+          [ eachnums[6], eachnums2[6]],
+          [ eachnums[7], eachnums2[7]],
+          [ eachnums[8], eachnums2[8]],
+          [ eachnums[9], eachnums2[9]],
+          [ eachnums[10], eachnums2[10]],
+          [ eachnums[11], eachnums2[11]],
+          [ eachnums[12], eachnums2[12]],
+          [ eachnums[13], eachnums2[13]],
+          [ eachnums[14], eachnums2[14]],
+          [ eachnums[15], eachnums2[15]],
+          [ eachnums[16], eachnums2[16]],
+          [ eachnums[17], eachnums2[17]],
+          [ eachnums[18], eachnums2[18]],
+          [ eachnums[19], eachnums2[19]],
+          [ eachnums[20], eachnums2[20]],
+          [ eachnums[21], eachnums2[21]],
+          [ eachnums[22], eachnums2[22]],
+          [ eachnums[23], eachnums2[23]],
+          [ eachnums[24], eachnums2[24]],
+          [ eachnums[25], eachnums2[25]],
+          [ eachnums[26], eachnums2[26]],
+          [ eachnums[27], eachnums2[27]],
+          [ eachnums[28], eachnums2[28]],
+          [ eachnums[29], eachnums2[29]],
+          [ eachnums[30], eachnums2[30]],
+          [ eachnums[31], eachnums2[31]],
+          [ eachnums[32], eachnums2[32]],
+          [ eachnums[33], eachnums2[33]],
+          [ eachnums[34], eachnums2[34]],
+          [ eachnums[35], eachnums2[35]],
+          [ eachnums[36], eachnums2[36]],
+          [ eachnums[37], eachnums2[37]],
+          [ eachnums[38], eachnums2[38]],
+          [ eachnums[39], eachnums2[39]],
+          [ eachnums[40], eachnums2[40]],
+          [ eachnums[41], eachnums2[41]],
+          [ eachnums[42], eachnums2[42]],
+          [ eachnums[43], eachnums2[43]],
+          [ eachnums[44], eachnums2[44]],
+          [ eachnums[45], eachnums2[45]],
+          [ eachnums[46], eachnums2[46]],
+          [ eachnums[47], eachnums2[47]],
+          [ eachnums[48], eachnums2[48]],
+          [ eachnums[49], eachnums2[49]]
+        ]);
+
+        var options = {
+          hAxis: {title: 'x'},
+          vAxis: {title: 'y'},
+          legend: 'none',
+          trendlines: { 0: {} }    // Draw a trendline for data series 0. 
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('charts'));
+
+        chart.draw(data, options);
+      }
+
+    
+    MathJax.typeset();
+}
+
+function timeplot() {
+    $("#input1").hide(); $("#input2").show();  $("#label1").hide(); $("#label4").show();
+}
+
+function calctime() {
+    $("#explanation").show(); $("#charts").show();
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    $("#myCanvas").show();
+    var str2 = document.getElementById("values2").value;
+    var each2 = str2.split(",")
+    var Y = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'X');
+          data.addColumn('number', 'Y');
+
+          data.addRows([
+            [1, Y[0]], [2, Y[1]], [3, Y[2]], [4, Y[3]], [5, Y[4]], [6, Y[5]], [7, Y[6]], [8, Y[7]], [9, Y[8]], [10, Y[9]],
+            [11, Y[10]], [12, Y[11]], [13, Y[12]], [14, Y[13]], [15, Y[14]], [16, Y[15]], [17, Y[16]], [18, Y[17]], [19, Y[18]], [20, Y[19]],
+            [21, Y[20]], [22, Y[21]], [23, Y[22]], [24, Y[23]], [25, Y[24]], [26, Y[25]], [27, Y[26]], [28, Y[27]], [29, Y[28]], [30, Y[29]],
+            [31, Y[30]], [32, Y[31]], [33, Y[32]], [34, Y[33]], [35, Y[34]], [36, Y[35]], [37, Y[36]], [38, Y[37]], [39, Y[38]], [40, Y[39]],
+            [41, Y[40]], [42, Y[41]], [43, Y[42]], [44, Y[43]], [45, Y[44]], [46, Y[45]], [47, Y[46]], [48, Y[47]], [49, Y[48]], [50, Y[49]]
+          ]);
+
+          var options = {
+            hAxis: {
+              title: 'Time'
+            },
+            vAxis: {
+              title: 'Value'
+            }
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
+}
+
+
+function relativeexp(){
+    $("#exprel").show();
+}
+
+function examplexvalues(){
+    document.getElementById('values').value="B, A, B, B, C, A, C, B, A, B"
+    $("#firstclass").hide();
+}
+
+function examplexvalues2(){
+    var x = document.getElementById("stat").value;
+    document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    if (x == "histogram") {
+        $("#firstclass").hide();
+    } else if (x == "boxplot") {
+        $("#firstclass").hide();
+    } else {
+        $("#firstclass").show();
+        document.getElementById('lower').value="10"
+        document.getElementById('upper').value="14"
+    } 
+}
+
+function examplevalues3(){
+    document.getElementById('values').value="B, A, B, B, C, A, C, B, A, B"
+    document.getElementById('values2').value="X, X, Y, X, Y, X, Y, Y, X, Y"
+    $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide();
+}
+
+function examplevalues4(){
+    document.getElementById('values').value="A, A, B, A, B, A, B, B, C, C"
+    document.getElementById('values2').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    $("#firstclasscross").show(); $("#firstclassx").hide(); $("#firstclassy").show();
+    document.getElementById('lowery').value="10"
+    document.getElementById('uppery').value="14"
+}
+
+function examplevalues33(){
+    document.getElementById('values2').value="B, A, B, B, C, A, C, B, A, B"
+    document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    $("#firstclasscross").show(); $("#firstclassx").show(); $("#firstclassy").hide();
+    document.getElementById('lowerx').value="10"
+    document.getElementById('upperx').value="14"
+}
+
+function examplevalues44(){
+    document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    document.getElementById('values2').value="23, 18, 12, 14, 11, 21, 19, 11, 24, 17"
+    $("#firstclasscross").show(); $("#firstclassx").show(); $("#firstclassy").show();
+    document.getElementById('lowerx').value="10"
+    document.getElementById('upperx').value="14"
+    document.getElementById('lowery').value="10"
+    document.getElementById('uppery').value="14"
+}
+
+function examplevalues5(){
+    document.getElementById('values').value="2, 5, 1, 3, 4, 1, 5, 3, 4, 2"
+    document.getElementById('values2').value="50, 57, 41, 54, 54, 38, 63, 48, 59, 46"
+}
+
+function examplevalues6(){
+    document.getElementById('values').value="-22, -33, 2, 29, -13, 21, -13, -23, 14, 2"
+    document.getElementById('values2').value="22, 49, 8, -16, 10, -28, 27, 35, -5, -3"
+}
+
+function examplevalues7(){
+    document.getElementById('values2').value="18, 13, 16, 11, 17, 14"
+}
+
+function examplevalues8(){
+    document.getElementById('values2').value="24, 13, 20, 12, 19, 23, 15"
+}

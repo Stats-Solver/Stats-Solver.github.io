@@ -142,3 +142,8 @@ footer {
 .fa:hover {
   text-decoration: none;
 }
+
+.dropdown-menu {
+    max-height: 390px;
+    overflow-y: auto;
+}

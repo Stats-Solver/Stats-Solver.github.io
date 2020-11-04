@@ -1,1 +1,855 @@
-$("#values").hide(),$("#enterstats").hide(),$("#explanation").hide(),$("#expconf").hide(),$("#switchconfidence").hide(),$("#switchsize").show(),$("#samplesize").hide(),$("#confidence").show(),$(function(){$('[data-toggle="tooltip"]').tooltip()});var canvas=document.getElementById("myCanvas"),ctx=canvas.getContext("2d");function toFixing(e,t){var a=new RegExp("^-?\\d+(?:.\\d{0,"+(t||-1)+"})?");return e.toString().match(a)[0]}function showvals(){$("#values").show(),$("#statistics").hide(),$("#entervals").hide(),$("#enterstats").show()}function showstats(){$("#values").hide(),$("#statistics").show(),$("#entervals").show(),$("#enterstats").hide()}function normalcdf(e){var t=1/(1+.2316419*Math.abs(e)),a=.3989423*Math.exp(-e*e/2)*t*(.3193815+t*(t*(1.781478+t*(1.330274*t-1.821256))-.3565638));return e>0&&(a=1-a),a}function NormSInv(e){var t,a,n,o=-.00778489400243029,l=-.322396458041136,i=-2.40075827716184,d=-2.54973253934373,r=4.37466414146497,c=2.93816398269878,s=.00778469570904146,m=.32246712907004,h=2.445134137143,u=3.75440866190742;return e<0||e>1?(alert("NormSInv: Argument out of range."),n=0):n=e<.02425?(((((o*(t=Math.sqrt(-2*Math.log(e)))+l)*t+i)*t+d)*t+r)*t+c)/((((s*t+m)*t+h)*t+u)*t+1):e<=.97575?(((((-39.6968302866538*(a=(t=e-.5)*t)+220.946098424521)*a-275.928510446969)*a+138.357751867269)*a-30.6647980661472)*a+2.50662827745924)*t/(((((-54.4760987982241*a+161.585836858041)*a-155.698979859887)*a+66.8013118877197)*a-13.2806815528857)*a+1):-(((((o*(t=Math.sqrt(-2*Math.log(1-e)))+l)*t+i)*t+d)*t+r)*t+c)/((((s*t+m)*t+h)*t+u)*t+1),n}function ibetainv(e,t,a){var n,o,l,i,d,r,c,s,m,h,u=t-1,p=a-1,g=0;if(e<=0)return 0;if(e>=1)return 1;for(t>=1&&a>=1?(l=e<.5?e:1-e,r=(2.30753+.27061*(i=Math.sqrt(-2*Math.log(l))))/(1+i*(.99229+.04481*i))-i,e<.5&&(r=-r),c=(r*r-3)/6,s=2/(1/(2*t-1)+1/(2*a-1)),m=r*Math.sqrt(c+s)/s-(1/(2*a-1)-1/(2*t-1))*(c+5/6-2/(3*s)),r=t/(t+a*Math.exp(2*m))):(n=Math.log(t/(t+a)),o=Math.log(a/(t+a)),r=e<(i=Math.exp(t*n)/t)/(m=i+(d=Math.exp(a*o)/a))?Math.pow(t*m*e,1/t):1-Math.pow(a*m*(1-e),1/a)),h=-gammaln(t)-gammaln(a)+gammaln(t+a);g<10;g++){if(0===r||1===r)return r;if((r-=i=(d=(ibeta(r,t,a)-e)/(i=Math.exp(u*Math.log(r)+p*Math.log(1-r)+h)))/(1-.5*Math.min(1,d*(u/r-p/(1-r)))))<=0&&(r=.5*(r+i)),r>=1&&(r=.5*(r+i+1)),Math.abs(i)<1e-8*r&&g>0)break}return r}function ibeat(e,t,a){var n=0===e||1===e?0:Math.exp(gammaln(t+a)-gammaln(t)-gammaln(a)+t*Math.log(e)+a*Math.log(1-e));return!(e<0||e>1)&&(e<(t+1)/(t+a+2)?n*betacf(e,t,a)/t:1-n*betacf(1-e,a,t)/a)}function gammaln(e){var t,a,n,o=0,l=[76.18009172947146,-86.50532032941678,24.01409824083091,-1.231739572450155,.001208650973866179,-5395239384953e-18],i=1.000000000190015;for(n=(a=t=e)+5.5,n-=(t+.5)*Math.log(n);o<6;o++)i+=l[o]/++a;return Math.log(2.5066282746310007*i/t)-n}function gammafn(e){var t,a,n,o,l=[-1.716185138865495,24.76565080557592,-379.80425647094563,629.3311553128184,866.9662027904133,-31451.272968848367,-36144.413418691176,66456.14382024054],i=[-30.8402300119739,315.35062697960416,-1015.1563674902192,-3107.771671572311,22538.11842098015,4755.846277527881,-134659.9598649693,-115132.2596755535],d=!1,r=0,c=0,s=0,m=e;if(m<=0){if(!(o=m%1+3.6e-16))return 1/0;d=(1&m?-1:1)*Math.PI/Math.sin(Math.PI*o),m=1-m}for(n=m,a=m<1?m++:(m-=r=(0|m)-1)-1,t=0;t<8;++t)s=(s+l[t])*a,c=c*a+i[t];if(o=s/c+1,n<m)o/=n;else if(n>m)for(t=0;t<r;++t)o*=m,m++;return d&&(o=d/o),o}function betacf(e,t,a){var n,o,l,i,d,r,c,s,m,h=1;for(s=t-1,l=1,i=1-(c=t+a)*e/(m=t+1),Math.abs(i)<1e-30&&(i=1e-30),r=i=1/i;h<=100&&(i=1+(o=h*(a-h)*e/((s+(n=2*h))*(t+n)))*i,Math.abs(i)<1e-30&&(i=1e-30),l=1+o/l,Math.abs(l)<1e-30&&(l=1e-30),r*=(i=1/i)*l,i=1+(o=-(t+h)*(c+h)*e/((t+n)*(m+n)))*i,Math.abs(i)<1e-30&&(i=1e-30),l=1+o/l,Math.abs(l)<1e-30&&(l=1e-30),r*=d=(i=1/i)*l,!(Math.abs(d-1)<3e-7));h++);return r}function ibeta(e,t,a){var n=0===e||1===e?0:Math.exp(gammaln(t+a)-gammaln(t)-gammaln(a)+t*Math.log(e)+a*Math.log(1-e));return!(e<0||e>1)&&(e<(t+1)/(t+a+2)?n*betacf(e,t,a)/t:1-n*betacf(1-e,a,t)/a)}function tinv(e,t){var a=ibetainv(2*Math.min(e,1-e),.5*t,.5);return a=Math.sqrt(t*(1-a)/a),e>0?a:-a}function conint(){var e=document.getElementById("samplestat").value;"mean"==e?conint1():"proportion"==e?conint2():"standard"==e&&conint3()}function conint1(){$("#explanation").hide(),$("#canvascontainer").show(),$("#expconf").show();var e=document.getElementById("sigma").value,t=document.getElementById("size").value,a=t-1,n=document.getElementById("xbar").value,o=document.getElementById("stdev").value,l=.01*document.getElementById("conlev").value,i=1-l,d=i/2,r=NormSInv(1-d),c=tinv(d,a),s=r*(o/Math.sqrt(t)),m=c*(o/Math.sqrt(t)),h=n-s,u=parseFloat(n)+s,p=n-m,g=parseFloat(n)+m;"known"==e?(document.getElementById("descriptiontext").innerHTML="A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in.",document.getElementById("formulatext").innerHTML="$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$",document.getElementById("explanationtext").innerHTML="Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter.",document.getElementById("output1").innerHTML="$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = "+l.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha = "+i.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha / 2 = "+d.toFixed(3).replace(/^0+/,"")+"$$ "):"unknown"==e&&(document.getElementById("descriptiontext").innerHTML="A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in.",document.getElementById("formulatext").innerHTML="$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$",document.getElementById("explanationtext").innerHTML="Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter.",document.getElementById("output1").innerHTML="$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = "+l.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha = "+i.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha / 2 = "+d.toFixed(3).replace(/^0+/,"")+"$$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+t+" - 1 \\\\ &= "+a+" \\end{align}  $$");var v=document.getElementById("myCanvas").getContext("2d");v.clearRect(0,0,300,150),v.strokeStyle="lightgray",v.beginPath(),v.moveTo(230,96),v.lineTo(230,130),v.lineTo(280,130),v.lineTo(279,120),v.quadraticCurveTo(260,115,230,96),v.stroke(),v.fillStyle="lightgray",v.fill(),v.strokeStyle="black",v.fillStyle="black",v.beginPath(),v.moveTo(20,120),v.bezierCurveTo(120,80,100,20,150,20),v.stroke(),v.beginPath(),v.moveTo(150,20),v.bezierCurveTo(200,20,170,80,280,120),v.stroke(),v.beginPath(),v.moveTo(20,130),v.lineTo(280,130),v.stroke(),v.fillText("0",148,145),v.fillText(d.toFixed(3).replace(/^0+/,""),248,101),"known"==e?(v.fillText("z",285,132),v.fillText("z",228,145),v.fillText("α/2",234,147)):"unknown"==e&&(v.fillText("t",285,132),v.fillText("t",228,145),v.fillText("α/2",232,147)),v.beginPath(),v.moveTo(150,135),v.lineTo(150,125),v.stroke(),v.beginPath(),v.moveTo(230,135),v.lineTo(230,125),v.stroke();var f=toFixing(r,1),x=(""+r.toFixed(2))[3];if(0==x||1==x||2==x)var b=0,y=4;else if(3==x)b=1,y=5;else if(4==x)b=2,y=6;else if(5==x)b=3,y=7;else if(6==x)b=4,y=8;else if(7==x||8==x||9==x)b=5,y=9;table1=[];for(var T=b;T<y+1;T++)table1+="<td>"+(.01*T).toFixed(2).replace(/^0+/,"")+"</td>";table3=[];for(T=b;T<y+1;T++)table3+="<td>"+normalcdf(parseFloat(f)+parseFloat(.01*T)).toFixed(4).replace(/^0+/,"")+"</td>";var I="<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+f+"</td>"+table3+"</tr></table>";table4="<td></td><td colspan='6'>Area in Upper Tail</td>",table5="<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>",table6="<td>"+a+"</td><td>"+tinv(.2,a).toFixed(3)+"</td><td>"+tinv(.1,a).toFixed(3)+"</td><td>"+tinv(.05,a).toFixed(3)+"</td><td>"+tinv(.025,a).toFixed(3)+"</td><td>"+tinv(.01,a).toFixed(3)+"</td><td>"+tinv(.005,a).toFixed(3)+"</td>";var E="<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>";"known"==e?document.getElementById("output2").innerHTML="$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+d.toFixed(3).replace(/^0+/,"")+" = "+(1-d).toFixed(3).replace(/^0+/,"")+"$$"+I+"$$ z_{\\alpha/2} = "+r.toFixed(2)+" $$ $$"+n+"\\pm"+r.toFixed(2)+"\\frac{"+o+"}{\\sqrt{"+t+"}}$$ $$"+n+"\\pm"+s.toFixed(2)+"$$ $$ \\boxed{"+h.toFixed(2)+"\\text{ to }"+u.toFixed(2)+"} $$":"unknown"==e&&(document.getElementById("output2").innerHTML=E+"$$ t_{\\alpha/2} = "+c.toFixed(3)+" $$ $$"+n+"\\pm"+c.toFixed(3)+"\\frac{"+o+"}{\\sqrt{"+t+"}}$$ $$"+n+"\\pm"+parseFloat(m.toFixed(2))+"$$ $$ \\boxed{"+parseFloat(p.toFixed(2))+"\\text{ to }"+parseFloat(g.toFixed(2))+"} $$"),MathJax.typeset()}function conint2(){$("#explanation").hide(),$("#canvascontainer").show(),$("#expconf").show();var e=document.getElementById("size").value,t=e-1,a=document.getElementById("xbar").value,n=.01*document.getElementById("conlev").value,o=1-n,l=o/2,i=NormSInv(1-l),d=(tinv(l,t),parseFloat(a),parseFloat(1-parseFloat(a)),parseFloat(e),i*Math.sqrt(a*(1-a)/e)),r=a-d,c=parseFloat(a)+d;document.getElementById("descriptiontext").innerHTML="A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in.",document.getElementById("formulatext").innerHTML="$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$",document.getElementById("explanationtext").innerHTML="Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter.",document.getElementById("output1").innerHTML="$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$ 1 - \\alpha = "+n.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha = "+o.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha / 2 = "+l.toFixed(3).replace(/^0+/,"")+"$$ ";var s=document.getElementById("myCanvas").getContext("2d");s.clearRect(0,0,300,150),s.strokeStyle="lightgray",s.beginPath(),s.moveTo(230,96),s.lineTo(230,130),s.lineTo(280,130),s.lineTo(279,120),s.quadraticCurveTo(260,115,230,96),s.stroke(),s.fillStyle="lightgray",s.fill(),s.strokeStyle="black",s.fillStyle="black",s.beginPath(),s.moveTo(20,120),s.bezierCurveTo(120,80,100,20,150,20),s.stroke(),s.beginPath(),s.moveTo(150,20),s.bezierCurveTo(200,20,170,80,280,120),s.stroke(),s.beginPath(),s.moveTo(20,130),s.lineTo(280,130),s.stroke(),s.fillText("0",148,145),s.fillText(l.toFixed(3).replace(/^0+/,""),248,101),s.fillText("z",285,132),s.fillText("z",228,145),s.fillText("α/2",234,147),s.beginPath(),s.moveTo(150,135),s.lineTo(150,125),s.stroke(),s.beginPath(),s.moveTo(230,135),s.lineTo(230,125),s.stroke();var m=toFixing(i,1),h=(""+i.toFixed(2))[3];if(0==h||1==h||2==h)var u=0,p=4;else if(3==h)u=1,p=5;else if(4==h)u=2,p=6;else if(5==h)u=3,p=7;else if(6==h)u=4,p=8;else if(7==h||8==h||9==h)u=5,p=9;table1=[];for(var g=u;g<p+1;g++)table1+="<td>"+(.01*g).toFixed(2).replace(/^0+/,"")+"</td>";table3=[];for(g=u;g<p+1;g++)table3+="<td>"+normalcdf(parseFloat(m)+parseFloat(.01*g)).toFixed(4).replace(/^0+/,"")+"</td>";var v="<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+m+"</td>"+table3+"</tr></table>";table4="<td></td><td colspan='6'>Area in Upper Tail</td>",table5="<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>",table6="<td>"+t+"</td><td>"+tinv(.2,t).toFixed(3)+"</td><td>"+tinv(.1,t).toFixed(3)+"</td><td>"+tinv(.05,t).toFixed(3)+"</td><td>"+tinv(.025,t).toFixed(3)+"</td><td>"+tinv(.01,t).toFixed(3)+"</td><td>"+tinv(.005,t).toFixed(3)+"</td>";table4,table5,table6;document.getElementById("output2").innerHTML="$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+l.toFixed(3).replace(/^0+/,"")+" = "+(1-l).toFixed(3).replace(/^0+/,"")+"$$"+v+"$$ z_{\\alpha/2} = "+i.toFixed(2)+" $$ $$"+a+"\\pm"+i.toFixed(2)+"\\sqrt{\\frac{"+a+"(1-"+a+")}{"+e+"}}$$ $$"+a+"\\pm"+d.toFixed(2)+"$$ $$ \\boxed{"+r.toFixed(2)+"\\text{ to }"+c.toFixed(2)+"} $$",MathJax.typeset()}function conint3(){$("#explanation").hide(),$("#expconf").hide();var e=[13.787,16.791,18.493,43.773,46.979,53.672],t=[17.192,20.569,22.465,49.802,53.203,60.275],a=[20.707,24.433,26.509,55.758,59.342,66.766],n=[24.311,28.366,30.612,61.656,65.41,73.166],o=[27.991,32.357,34.764,67.505,71.42,79.49],l=[31.735,36.398,38.958,73.311,77.38,85.749],i=[35.543,40.482,43.188,79.082,83.298,91.942],d=[39.383,44.603,47.45,84.821,89.177,98.105],r=[43.275,48.758,51.739,90.531,95.023,104.215],c=[47.206,52.942,56.054,96.217,100.839,110.285],s=[51.172,57.153,60.391,101.879,106.629,116.321],m=[55.17,61.389,64.749,107.522,112.393,122.342],h=[59.196,65.647,69.126,113.145,118.136,128.299],u=[63.25,69.925,63.52,118.752,123.858,134.247],p=[0,[0,.001,.004,3.841,5.024,7.879],[.01,.051,.103,5.991,7.378,10.597],[.072,.216,.352,7.815,9.348,12.838],[.207,.484,.711,9.488,11.143,14.86],[.412,.831,1.145,11.07,12.832,16.75],[.676,1.237,1.635,12.592,14.449,18.548],[.989,1.69,2.167,14.067,16.013,20.278],[1.344,2.18,2.733,15.507,17.535,21.955],[1.735,2.7,3.325,16.919,19.023,23.589],[2.156,3.247,3.94,18.307,20.483,25.188],[2.603,3.816,4.575,19.675,21.92,26.757],[3.074,4.404,5.226,21.026,23.337,26.757],[3.565,5.009,5.892,22.362,24.736,29.819],[4.075,5.629,6.571,23.685,26.119,31.319],[4.601,6.262,7.261,24.996,27.448,32.801],[5.142,6.908,7.962,26.296,28.845,34.267],[5.687,7.564,8.672,27.587,30.191,35.718],[6.265,8.231,9.39,28.869,31.526,37.156],[6.844,8.907,10.117,30.144,32.852,38.582],[7.434,9.591,10.851,31.41,34.17,39.997],[8.034,10.283,11.591,32.671,35.479,41.401],[8.643,10.982,12.338,33.924,36.781,42.796],[9.26,11.689,13.091,35.172,38.076,44.181],[9.886,12.401,13.848,36.415,39.364,45.558],[10.52,13.12,14.611,37.652,40.646,46.928],[11.16,13.844,15.379,38.885,41.923,48.928],[11.808,14.573,16.151,40.113,43.195,49.645],[12.461,15.308,16.928,41.337,44.461,50.994],[13.121,16.047,17.708,42.557,45.722,52.335],e,e,e,e,e,t,t,t,t,t,a,a,a,a,a,n,n,n,n,n,o,o,o,o,o,l,l,l,l,l,i,i,i,i,i,d,d,d,d,d,r,r,r,r,r,c,c,c,c,c,s,s,s,s,s,m,m,m,m,m,h,h,h,h,h,u,u,u,u,u,[67.328,74.222,77.929,124.342,129.561,140.17]],g=document.getElementById("size").value,v=g-1,f=document.getElementById("xbar").value,x=document.getElementById("conlev").value,b=.01*x,y=1-b,T=y/2;chidf=p[v],99==x?(lowindex=0,highindex=5):95==x?(lowindex=1,highindex=4):90==x&&(lowindex=2,highindex=3);var I=v*(f*f)/chidf[highindex],E=v*(f*f)/chidf[lowindex];document.getElementById("descriptiontext").innerHTML="A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in.",document.getElementById("formulatext").innerHTML="$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$",document.getElementById("explanationtext").innerHTML="Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter.",document.getElementById("output1").innerHTML="$$ \\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+g+" - 1 \\\\ &= "+v+" \\end{align}  $$ $$ 1 - \\alpha = "+b.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha = "+y.toFixed(2).replace(/^0+/,"")+"\\rightarrow \\alpha / 2 = "+T.toFixed(3).replace(/^0+/,"")+"$$ $$ 1 - \\alpha / 2 = 1 - "+T.toFixed(3).replace(/^0+/,"")+" = "+(1-T).toFixed(3).replace(/^0+/,"")+" $$ $$ \\frac{("+g+"-1)"+f+"^2}{\\chi_{"+T.toFixed(3).replace(/^0+/,"")+"}^2} \\leq \\sigma^2 \\leq \\frac{("+g+"-1)"+f+"^2}{\\chi_{"+(1-T).toFixed(3).replace(/^0+/,"")+"}^2} $$ ";var F=document.getElementById("myCanvas").getContext("2d");F.clearRect(0,0,300,150),F.strokeStyle="lightgray",F.beginPath(),F.moveTo(20,130),F.quadraticCurveTo(50,100,53,90),F.lineTo(53,130),F.stroke(),F.fillStyle="lightgray",F.fill(),F.strokeStyle="lightgray",F.beginPath(),F.moveTo(210,130),F.lineTo(210,108),F.quadraticCurveTo(265,120,265,120),F.lineTo(265,130),F.stroke(),F.fillStyle="lightgray",F.fill(),F.strokeStyle="black",F.fillStyle="black",F.beginPath(),F.moveTo(20,130),F.bezierCurveTo(80,80,60,20,100,20),F.stroke(),F.beginPath(),F.moveTo(100,20),F.bezierCurveTo(140,20,120,100,265,120),F.stroke(),F.beginPath(),F.moveTo(20,5),F.lineTo(20,130),F.lineTo(280,130),F.stroke(),F.fillText("χ²",285,132),F.fillText("χ²",207,145),F.fillText(T.toFixed(3).replace(/^0+/,""),214,149),F.fillText("χ²",50,145),F.fillText((1-T).toFixed(3).replace(/^0+/,""),57,149),F.fillText(T.toFixed(3).replace(/^0+/,""),25,95),F.fillText(T.toFixed(3).replace(/^0+/,""),230,108),F.beginPath(),F.moveTo(53,135),F.lineTo(53,125),F.stroke(),F.beginPath(),F.moveTo(210,135),F.lineTo(210,125),F.stroke(),table1="<td></td><td colspan='6'>Area in Upper Tail</td>",table2="<td>df</td><td>.995</td><td>.975</td><td>.95</td><td>.05</td><td>.025</td><td>.005</td>",table3="<td>"+v+"</td><td>"+chidf[0]+"</td><td>"+chidf[1]+"</td><td>"+chidf[2]+"</td><td>"+chidf[3]+"</td><td>"+chidf[4]+"</td><td>"+chidf[5].toFixed(3)+"</td>";var B="<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>";document.getElementById("output2").innerHTML="<br>"+B+" $$ \\chi_{"+T.toFixed(3).replace(/^0+/,"")+"}^2 = "+chidf[highindex]+", \\: \\chi_{"+(1-T).toFixed(3).replace(/^0+/,"")+"}^2 = "+chidf[lowindex]+"  $$  $$ \\frac{("+g+"-1)"+f+"^2}{"+chidf[highindex]+"} \\leq \\sigma^2 \\leq \\frac{("+g+"-1)"+f+"^2}{"+chidf[lowindex]+"} $$ $$ \\boxed{"+parseFloat(I.toFixed(2))+" \\leq \\sigma^2 \\leq "+parseFloat(E.toFixed(2))+"} $$",MathJax.typeset()}function example1(){var e=document.getElementById("samplestat").value;"mean"==e?($("#sd1").show(),$("#sd2").show(),$("#sd3").show(),document.getElementById("size").value="30",document.getElementById("xbar").value="24",document.getElementById("stdev").value="6",document.getElementById("sigma").value="known",document.getElementById("conlev").value=95):"proportion"==e?($("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide(),document.getElementById("size").value="100",document.getElementById("xbar").value=".25",document.getElementById("conlev").value=95):"standard"==e&&($("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide(),document.getElementById("size").value="22",document.getElementById("xbar").value="6",document.getElementById("conlev").value=95)}function example2(){var e=document.getElementById("samplestat").value;"mean"==e?($("#sd1").show(),$("#sd2").show(),$("#sd3").show(),document.getElementById("size").value="50",document.getElementById("xbar").value="16",document.getElementById("stdev").value="4",document.getElementById("sigma").value="unknown",document.getElementById("conlev").value=99):"proportion"==e?($("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide(),document.getElementById("size").value="500",document.getElementById("xbar").value=".60",document.getElementById("conlev").value=90):"standard"==e&&($("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide(),document.getElementById("size").value="15",document.getElementById("xbar").value="4",document.getElementById("conlev").value=95)}function example3(){$("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide(),document.getElementById("samplestat").value="proportion",document.getElementById("size").value="100",document.getElementById("xbar").value=".25",document.getElementById("conlev").value=95}function samplestat(){var e=document.getElementById("samplestat").value;"mean"==e?($("#sd1").show(),$("#sd2").show(),$("#sd3").show()):"proportion"==e?($("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide()):"standard"==e&&($("#sd1").hide(),$("#sd2").hide(),$("#sd3").hide())}function samplesize(){var e=document.getElementById("planning").value;"sigma"==e?calcsize1():"pstar"==e&&calcsize2()}function calcsize1(){$("#explanation").hide(),document.getElementById("descriptiontext").innerHTML="A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in.",document.getElementById("formulatext").innerHTML="$$ n = \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} $$",document.getElementById("explanationtext").innerHTML="Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter.";var e=document.getElementById("planningvalue").value,t=document.getElementById("margin").value,a=NormSInv(1-(1-.01*document.getElementById("conlev").value)/2),n=a*a*e*e/(t*t);document.getElementById("output").innerHTML="$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} \\\\ &= \\frac{("+parseFloat(a.toFixed(2))+")^2 "+e+"^2}{"+t+"^2} \\\\ &= "+parseFloat(n.toFixed(2))+" \\end{align}$$ $$ \\text{Round up to } n = \\boxed{"+Math.ceil(n)+"} $$",MathJax.typeset()}function calcsize2(){$("#explanation").hide(),document.getElementById("descriptiontext").innerHTML="A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in.",document.getElementById("formulatext").innerHTML="$$ n = \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} $$",document.getElementById("explanationtext").innerHTML="Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter.";var e=document.getElementById("planningvalue").value,t=document.getElementById("margin").value,a=NormSInv(1-(1-.01*document.getElementById("conlev").value)/2),n=a*a*e*(1-e)/(t*t);document.getElementById("output").innerHTML="$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} \\\\ &= \\frac{("+parseFloat(a.toFixed(2))+")^2 "+e+" (1-"+e+")}{"+t+"^2} \\\\ &= "+parseFloat(n.toFixed(2))+" \\end{align}$$ $$ \\text{Round up to } n = \\boxed{"+Math.ceil(n)+"} $$",MathJax.typeset()}function example4(){document.getElementById("planning").value="sigma",document.getElementById("planningvalue").value="9.65",document.getElementById("margin").value="2",document.getElementById("conlev").value=95}function example5(){document.getElementById("planning").value="pstar",document.getElementById("planningvalue").value=".44",document.getElementById("margin").value=".025",document.getElementById("conlev").value=95}function switchsize(){$("#samplesize").show(),$("#confidence").hide(),$("#switchsize").hide(),$("#switchconfidence").show(),$("#output1").empty(),$("#output2").empty(),$("#explanation").hide(),$("#canvascontainer").hide()}function switchconfidence(){$("#samplesize").hide(),$("#confidence").show(),$("#switchsize").show(),$("#switchconfidence").hide(),$("#output").empty(),$("#explanation").hide(),$("#canvascontainer").hide()}ctx.scale(1.25,1.25),$(document).ready(function(){$('[data-toggle="popover"]').popover()});
+$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
+$("#expconf").hide();
+$("#switchconfidence").hide(); $("#switchsize").show();
+$("#samplesize").hide(); $("#confidence").show();
+
+$(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+function toFixing(num, fixed) {
+    var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
+    return num.toString().match(re)[0];
+}
+
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();
+});
+
+function showvals(){
+    $("#values").show(); 
+    $("#statistics").hide();
+    $("#entervals").hide();
+    $("#enterstats").show();
+    
+}
+
+function showstats(){
+    $("#values").hide(); 
+    $("#statistics").show();
+    $("#entervals").show();
+    $("#enterstats").hide();
+}
+
+function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
+	var T=1/(1+.2316419*Math.abs(X));
+	var D=.3989423*Math.exp(-X*X/2);
+	var Prob=D*T*(.3193815+T*(-.3565638+T*(1.781478+T*(-1.821256+T*1.330274))));
+	if (X>0) {
+		Prob=1-Prob
+	}
+	return Prob
+} 
+
+function NormSInv(p) {
+    var a1 = -39.6968302866538, a2 = 220.946098424521, a3 = -275.928510446969;
+    var a4 = 138.357751867269, a5 = -30.6647980661472, a6 = 2.50662827745924;
+    var b1 = -54.4760987982241, b2 = 161.585836858041, b3 = -155.698979859887;
+    var b4 = 66.8013118877197, b5 = -13.2806815528857, c1 = -7.78489400243029E-03;
+    var c2 = -0.322396458041136, c3 = -2.40075827716184, c4 = -2.54973253934373;
+    var c5 = 4.37466414146497, c6 = 2.93816398269878, d1 = 7.78469570904146E-03;
+    var d2 = 0.32246712907004, d3 = 2.445134137143, d4 = 3.75440866190742;
+    var p_low = 0.02425, p_high = 1 - p_low;
+    var q, r;
+    var retVal;
+
+    if ((p < 0) || (p > 1))
+    {
+        alert("NormSInv: Argument out of range.");
+        retVal = 0;
+    }
+    else if (p < p_low)
+    {
+        q = Math.sqrt(-2 * Math.log(p));
+        retVal = (((((c1 * q + c2) * q + c3) * q + c4) * q + c5) * q + c6) / ((((d1 * q + d2) * q + d3) * q + d4) * q + 1);
+    }
+    else if (p <= p_high)
+    {
+        q = p - 0.5;
+        r = q * q;
+        retVal = (((((a1 * r + a2) * r + a3) * r + a4) * r + a5) * r + a6) * q / (((((b1 * r + b2) * r + b3) * r + b4) * r + b5) * r + 1);
+    }
+    else
+    {
+        q = Math.sqrt(-2 * Math.log(1 - p));
+        retVal = -(((((c1 * q + c2) * q + c3) * q + c4) * q + c5) * q + c6) / ((((d1 * q + d2) * q + d3) * q + d4) * q + 1);
+    }
+
+    return retVal;
+}
+
+function ibetainv(p, a, b) {
+		var EPS = 1e-8,
+			a1 = a - 1,
+			b1 = b - 1,
+			j = 0,
+			lna, lnb, pp, t, u, err, x, al, h, w, afac;
+		if(p <= 0) return 0;
+		if(p >= 1) return 1;
+		if(a >= 1 && b >= 1) {
+			pp = (p < 0.5) ? p : 1 - p;
+			t = Math.sqrt(-2 * Math.log(pp));
+			x = (2.30753 + t * 0.27061) / (1 + t* (0.99229 + t * 0.04481)) - t;
+			if(p < 0.5) x = -x;
+			al = (x * x - 3) / 6;
+			h = 2 / (1 / (2 * a - 1)  + 1 / (2 * b - 1));
+			w = (x * Math.sqrt(al + h) / h) - (1 / (2 * b - 1) - 1 / (2 * a - 1)) * (al + 5 / 6 - 2 / (3 * h));
+			x = a / (a + b * Math.exp(2 * w));
+		} else {
+			lna = Math.log(a / (a + b));
+			lnb = Math.log(b / (a + b));
+			t = Math.exp(a * lna) / a;
+			u = Math.exp(b * lnb) / b;
+			w = t + u;
+			if(p < t / w) x = Math.pow(a * w * p, 1 / a);
+			else x = 1 - Math.pow(b * w * (1 - p), 1 / b);
+		}
+		afac = -gammaln(a) - gammaln(b) + gammaln(a + b);
+		for(; j < 10; j++) {
+			if(x === 0 || x === 1) return x;
+			err = ibeta(x, a, b) - p;
+			t = Math.exp(a1 * Math.log(x) + b1 * Math.log(1 - x) + afac);
+			u = err / t;
+			x -= (t = u / (1 - 0.5 * Math.min(1, u * (a1 / x - b1 / (1 - x)))));
+			if(x <= 0) x = 0.5 * (x + t);
+			if(x >= 1) x = 0.5 * (x + t + 1);
+			if(Math.abs(t) < EPS * x && j > 0) break;
+		}
+		return x;
+	}
+	
+function ibeat(x, a, b) {
+		// Factors in front of the continued fraction.
+		var bt = (x === 0 || x === 1) ?  0 :
+			Math.exp(gammaln(a + b) - gammaln(a) -
+			gammaln(b) + a * Math.log(x) + b *
+			Math.log(1 - x));
+		if(x < 0 || x > 1) return false;
+		if(x < (a + 1) / (a + b + 2))
+			// Use continued fraction directly.
+			return bt * betacf(x, a, b) / a;
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf(1 - x, b, a) / b;
+}
+
+function gammaln(x) {
+		var j = 0,
+			cof = [
+				76.18009172947146, -86.50532032941677, 24.01409824083091,
+				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
+			],
+			ser = 1.000000000190015,
+			xx, y, tmp;
+		tmp = (y = xx = x) + 5.5;
+		tmp -= (xx + 0.5) * Math.log(tmp);
+		for (; j < 6; j++) ser += cof[j] / ++y;
+		return Math.log(2.5066282746310005 * ser / xx) - tmp;
+	}
+
+	// gamma of x
+function gammafn(x) {
+		var p = [
+				-1.716185138865495, 24.76565080557592, -379.80425647094563,
+				629.3311553128184, 866.9662027904133, -31451.272968848367,
+				-36144.413418691176, 66456.14382024054
+			],
+			q = [
+				-30.8402300119739, 315.35062697960416, -1015.1563674902192,
+				-3107.771671572311, 22538.118420980151, 4755.8462775278811,
+				-134659.9598649693, -115132.2596755535
+			],
+			fact = false,
+			n = 0,
+			xden = 0,
+			xnum = 0,
+			y = x,
+			i, z, yi, res, sum, ysq;
+		if(y <= 0) {
+			res = y % 1 + 3.6e-16;
+			if (res) {
+				fact = (!(y & 1) ? 1 : -1) * Math.PI / Math.sin(Math.PI * res);
+				y = 1 - y;
+			} else {
+				return Infinity;
+			}
+		}
+		yi = y;
+		if (y < 1) {
+			z = y++;
+		} else {
+			z = (y -= n = (y | 0) - 1) - 1;
+		}
+		for (i = 0; i < 8; ++i) {
+			xnum = (xnum + p[i]) * z;
+			xden = xden * z + q[i];
+		}
+		res = xnum / xden + 1;
+		if (yi < y) {
+			res /= yi;
+		} else if (yi > y) {
+			for (i = 0; i < n; ++i) {
+				res *= y;
+				y++;
+			}
+		}
+		if (fact) {
+			res = fact / res;
+		}
+		return res;
+	}
+	
+function betacf(x, a, b) {
+		var fpmin = 1e-30,
+			m = 1,
+			m2, aa, c, d, del, h, qab, qam, qap;
+		// These q's will be used in factors that occur in the coefficients
+		qab = a + b;
+		qap = a + 1;
+		qam = a - 1;
+		c = 1;
+		d = 1 - qab * x / qap;
+		if(Math.abs(d) < fpmin) d = fpmin;
+		d = 1 / d;
+		h = d;
+		for (; m <= 100; m++) {
+			m2 = 2 * m;
+			aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+			// One step (the even one) of the recurrence
+			d = 1 + aa * d;
+			if(Math.abs(d) < fpmin) d = fpmin;
+			c = 1 + aa / c;
+			if(Math.abs(c) < fpmin) c = fpmin;
+			d = 1 / d;
+			h *= d * c;
+			aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+			// Next step of the recurrence (the odd one)
+			d = 1 + aa * d;
+			if(Math.abs(d) < fpmin) d = fpmin;
+			c = 1 + aa / c;
+			if(Math.abs(c) < fpmin) c = fpmin;
+			d = 1 / d;
+			del = d * c;
+			h *= del;
+			if(Math.abs(del - 1.0) < 3e-7) break;
+		}
+		return h;
+	}
+	
+	
+	 function ibeta (x, a, b) {
+		// Factors in front of the continued fraction.
+		var bt = (x === 0 || x === 1) ?  0 :
+			Math.exp(gammaln(a + b) - gammaln(a) -
+			gammaln(b) + a * Math.log(x) + b *
+			Math.log(1 - x));
+		if(x < 0 || x > 1) return false;
+		if(x < (a + 1) / (a + b + 2))
+			// Use continued fraction directly.
+			return bt * betacf(x, a, b) / a;
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf(1 - x, b, a) / b;
+	}
+
+function tinv(p, dof) {
+		var x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+		x = Math.sqrt(dof * (1 - x) / x);
+		return (p > 0) ? x : -x;
+	
+}
+
+function conint(){
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        conint1()
+    } else if (x == "proportion"){
+        conint2()
+    } else if (x == "standard"){
+        conint3()
+    } 
+}
+
+
+function conint1(){
+    $("#explanation").hide(); $("#canvascontainer").show();
+    $("#expconf").show();
+    var sigma = document.getElementById("sigma").value;
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var xbar = document.getElementById("xbar").value;
+    var stdev = document.getElementById("stdev").value;
+    var conlev = document.getElementById("conlev").value;
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,sizem1);
+    var marginerror = zalphahalf * (stdev / Math.sqrt(size)); var marginerrort = talphahalf * (stdev / Math.sqrt(size));
+    var anslow = xbar - marginerror; var anshigh = (parseFloat(xbar)+marginerror);
+    var anslowt = xbar - marginerrort; var anshight = (parseFloat(xbar)+marginerrort)
+    
+    if (sigma == "known") {
+        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
+        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
+    } else if (sigma == "unknown") {
+        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$"
+        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+        document.getElementById("output1").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$"
+    } 
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 96);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(280, 130);
+    ctx.lineTo(279, 120);
+    ctx.quadraticCurveTo(260, 115, 230, 96);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("0",148,145);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),248,101);
+
+    if (sigma == "known") {
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",228,145);
+        ctx.fillText("α/2",234,147);
+    } else if (sigma == "unknown") {
+        ctx.fillText("t",285,132);
+        ctx.fillText("t",228,145);
+        ctx.fillText("α/2",232,147);
+        //ctx.fillText("df = "+sizem1,220,40); 
+    }
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.stroke();
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    
+    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    
+    
+    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    
+    if (sigma == "known") {
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+    } else if (sigma == "unknown") {
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
+    } 
+    
+    MathJax.typeset();
+}
+
+function conint2(){
+    $("#explanation").hide(); $("#canvascontainer").show();
+    $("#expconf").show();
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var pbar = document.getElementById("xbar").value;
+    var conlev = document.getElementById("conlev").value;
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,sizem1);
+    var marginerror0 = parseFloat(pbar)*parseFloat((1-parseFloat(pbar)))/parseFloat(size)
+    var marginerror = zalphahalf * Math.sqrt((pbar*(1-pbar))/size);
+    var anslow = pbar - marginerror; var anshigh = (parseFloat(pbar)+marginerror);
+    
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+    document.getElementById("output1").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
+
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 96);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(280, 130);
+    ctx.lineTo(279, 120);
+    ctx.quadraticCurveTo(260, 115, 230, 96);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 120);
+    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(150, 20);
+    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("0",148,145);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),248,101);
+
+    ctx.fillText("z",285,132);
+    ctx.fillText("z",228,145);
+    ctx.fillText("α/2",234,147);
+    
+    ctx.beginPath();
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.stroke();
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td>" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "</td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>z</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    
+    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    
+    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    
+    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    
+    
+    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$ $$"+pbar + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+    
+    MathJax.typeset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function conint3(){
+    $("#explanation").hide();
+    $("#expconf").hide();
+    
+    var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
+    var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
+    var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
+    var chi4 = [.207, .484, .711, 9.488, 11.143, 14.860]
+    var chi5 = [.412, .831, 1.145, 11.070, 12.832, 16.750]
+    var chi6 = [.676, 1.237, 1.635, 12.592, 14.449, 18.548]
+    var chi7 = [.989, 1.690, 2.167, 14.067, 16.013, 20.278]
+    var chi8 = [1.344, 2.180, 2.733, 15.507, 17.535, 21.955]
+    var chi9 = [1.735, 2.700, 3.325, 16.919, 19.023, 23.589]
+    var chi10 = [2.156, 3.247, 3.940, 18.307, 20.483, 25.188]
+    var chi11 = [2.603, 3.816, 4.575, 19.675, 21.920, 26.757]
+    var chi12 = [3.074, 4.404, 5.226, 21.026, 23.337, 26.757]
+    var chi13 = [3.565, 5.009, 5.892, 22.362, 24.736, 29.819]
+    var chi14 = [4.075, 5.629, 6.571, 23.685, 26.119, 31.319]
+    var chi15 = [4.601, 6.262, 7.261, 24.996, 27.448, 32.801]
+    var chi16 = [5.142, 6.908, 7.962, 26.296, 28.845, 34.267]
+    var chi17 = [5.687, 7.564, 8.672, 27.587, 30.191, 35.718]
+    var chi18 = [6.265, 8.231, 9.390, 28.869, 31.526, 37.156]
+    var chi19 = [6.844, 8.907, 10.117, 30.144, 32.852, 38.582]
+    var chi20 = [7.434, 9.591, 10.851, 31.410, 34.170, 39.997]
+    var chi21 = [8.034, 10.283, 11.591, 32.671, 35.479, 41.401]
+    var chi22 = [8.643, 10.982, 12.338, 33.924, 36.781, 42.796]
+    var chi23 = [9.260, 11.689, 13.091, 35.172, 38.076, 44.181]
+    var chi24 = [9.886, 12.401, 13.848, 36.415, 39.364, 45.558]
+    var chi25 = [10.520, 13.120, 14.611, 37.652, 40.646, 46.928]
+    var chi26 = [11.160, 13.844, 15.379, 38.885, 41.923, 48.928]
+    var chi27 = [11.808, 14.573, 16.151, 40.113, 43.195, 49.645]
+    var chi28 = [12.461, 15.308, 16.928, 41.337, 44.461, 50.994]
+    var chi29 = [13.121, 16.047, 17.708, 42.557, 45.722, 52.335]
+    var chi30 = [13.787, 16.791, 18.493, 43.773, 46.979, 53.672]
+    var chi35 = [17.192, 20.569, 22.465, 49.802, 53.203, 60.275]
+    var chi40 = [20.707, 24.433, 26.509, 55.758, 59.342, 66.766]
+    var chi45 = [24.311, 28.366, 30.612, 61.656, 65.410, 73.166]
+    var chi50 = [27.991, 32.357, 34.764, 67.505, 71.420, 79.490]
+    var chi55 = [31.735, 36.398, 38.958, 73.311, 77.380, 85.749]
+    var chi60 = [35.543, 40.482, 43.188, 79.082, 83.298, 91.942]
+    var chi65 = [39.383, 44.603, 47.450, 84.821, 89.177, 98.105]
+    var chi70 = [43.275, 48.758, 51.739, 90.531, 95.023, 104.215]
+    var chi75 = [47.206, 52.942, 56.054, 96.217, 100.839, 110.285]
+    var chi80 = [51.172, 57.153, 60.391, 101.879, 106.629, 116.321]
+    var chi85 = [55.170, 61.389, 64.749, 107.522, 112.393, 122.342]
+    var chi90 = [59.196, 65.647, 69.126, 113.145, 118.136, 128.299]
+    var chi95 = [63.250, 69.925, 63.520, 118.752, 123.858, 134.247]
+    var chi100 = [67.328, 74.222, 77.929, 124.342, 129.561, 140.170]
+    
+    var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
+    
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var stdev = document.getElementById("xbar").value;
+    var conlev = document.getElementById("conlev").value;
+    var confor = "variance"
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    
+    chidf = chi[sizem1]
+    
+    if (conlev == 99) {
+        lowindex = 0
+        highindex = 5
+    } else if (conlev == 95) {
+        lowindex = 1
+        highindex = 4
+    } else if (conlev == 90) {
+        lowindex = 2
+        highindex = 3
+    }
+    
+    var anslow = (sizem1*(stdev*stdev))/chidf[highindex]
+    var anshigh = (sizem1*(stdev*stdev))/chidf[lowindex]
+    
+    if (confor == "variance") {
+        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
+        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+        document.getElementById("output1").innerHTML = "$$ \\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$ $$ \\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2} $$ "
+    } else if (confor == "standard") {
+        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
+        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+        
+        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
+    } 
+
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.quadraticCurveTo(50, 100, 53, 90);
+    ctx.lineTo(53, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(210, 130);
+    ctx.lineTo(210, 108);
+    ctx.quadraticCurveTo(265, 120, 265, 120);
+    ctx.lineTo(265, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.bezierCurveTo(80, 80, 60, 20, 100, 20);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(100, 20);
+    ctx.bezierCurveTo(140, 20, 120, 100, 265, 120);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(20, 5);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    
+    ctx.fillText("χ²",285,132);
+    ctx.fillText("χ²",207,145);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),214,149);
+    ctx.fillText("χ²",50,145);
+    ctx.fillText((1-alphahalf).toFixed(3).replace(/^0+/, ''),57,149);
+    
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),25,95);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),230,108);
+    
+    ctx.beginPath();
+    ctx.moveTo(53, 135);
+    ctx.lineTo(53, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(210, 135);
+    ctx.lineTo(210, 125);
+    ctx.stroke();
+
+    table1 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    
+    table2 = "<td>df</td><td>.995</td><td>.975</td><td>.95</td><td>.05</td><td>.025</td><td>.005</td>"
+    
+    table3 = "<td>"+ sizem1 +"</td><td>"+chidf[0]+"</td><td>"+chidf[1]+"</td><td>"+chidf[2]+"</td><td>"+chidf[3]+"</td><td>"+chidf[4]+"</td><td>"+chidf[5].toFixed(3)+"</td>"
+    
+    
+    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
+
+    if (confor == "variance") {
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$  $$ \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$"
+    } else if (confor == "standard") {
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + " $$ $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "}} $$ $$ \\boxed{"+parseFloat(Math.sqrt(anslow).toFixed(2))+" \\leq \\sigma \\leq " + parseFloat(Math.sqrt(anshigh).toFixed(2)) + "} $$"
+    } 
+    
+    MathJax.typeset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function example1(){
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean") {
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        document.getElementById('size').value="30"
+        document.getElementById('xbar').value="24"
+        document.getElementById('stdev').value="6"
+        document.getElementById('sigma').value="known"
+        document.getElementById('conlev').value=95
+    } else if (x == "proportion") {
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        document.getElementById('size').value="100"
+        document.getElementById('xbar').value=".25"
+        document.getElementById('conlev').value=95
+    } else if (x == "standard") {
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        document.getElementById('size').value="22"
+        document.getElementById('xbar').value="6"
+        document.getElementById('conlev').value=95
+    }
+    
+}
+
+function example2(){
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean") {
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        document.getElementById('size').value="50"
+        document.getElementById('xbar').value="16"
+        document.getElementById('stdev').value="4"
+        document.getElementById('sigma').value="unknown"
+        document.getElementById('conlev').value=99
+    } else if (x == "proportion") {
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        document.getElementById('size').value="500"
+        document.getElementById('xbar').value=".60"
+        document.getElementById('conlev').value=90
+    } else if (x == "standard") {
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        document.getElementById('size').value="15"
+        document.getElementById('xbar').value="4"
+        document.getElementById('conlev').value=95
+    }
+}
+
+function example3(){
+    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    document.getElementById("samplestat").value = "proportion"
+    document.getElementById('size').value="100"
+    document.getElementById('xbar').value=".25"
+    document.getElementById('conlev').value=95
+}
+
+function samplestat() {
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    } else if (x == "proportion"){
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    } else if (x == "standard"){
+        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+    } 
+}
+
+
+function samplesize() {
+    var planning = document.getElementById("planning").value
+    if (planning == "sigma") {
+        calcsize1()
+    } else if (planning == "pstar") {
+        calcsize2()
+    }
+}
+
+function calcsize1() {
+    $("#explanation").hide();
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+    var planval = document.getElementById("planningvalue").value
+    var margerr = document.getElementById('margin').value
+    var conlev = document.getElementById('conlev').value
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf);
+    var ans = (zalphahalf*zalphahalf*planval*planval)/(margerr*margerr)
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    
+    MathJax.typeset();
+}
+
+function calcsize2() {
+    $("#explanation").hide();
+    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
+    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} $$"
+    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
+    var planval = document.getElementById("planningvalue").value
+    var margerr = document.getElementById('margin').value
+    var conlev = document.getElementById('conlev').value
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf);
+    var ans = (zalphahalf*zalphahalf*planval*(1-planval))/(margerr*margerr)
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    
+    MathJax.typeset();
+}
+
+function example4(){
+    document.getElementById("planning").value = "sigma"
+    document.getElementById("planningvalue").value = "9.65"
+    document.getElementById('margin').value="2"
+    document.getElementById('conlev').value=95
+}
+
+function example5(){
+    document.getElementById("planning").value = "pstar"
+    document.getElementById("planningvalue").value = ".44"
+    document.getElementById('margin').value=".025"
+    document.getElementById('conlev').value=95
+}
+
+function switchsize() {
+    $("#samplesize").show(); $("#confidence").hide();
+    $("#switchsize").hide(); $("#switchconfidence").show();
+    $("#output1").empty(); $("#output2").empty(); $("#explanation").hide(); $("#canvascontainer").hide();
+}
+ 
+function switchconfidence() {
+    $("#samplesize").hide(); $("#confidence").show();
+    $("#switchsize").show(); $("#switchconfidence").hide();
+    $("#output").empty(); $("#explanation").hide(); $("#canvascontainer").hide();
+}
