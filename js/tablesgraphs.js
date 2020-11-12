@@ -3148,7 +3148,7 @@ function calcrow1(){
         h += len2
     } 
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3354,7 +3354,7 @@ function calcrow2(){
         h += cols
     }
 
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3605,7 +3605,7 @@ function calcrow3(){
     }
     
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3781,7 +3781,7 @@ function calcrow4(){
     }
     
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3941,7 +3941,7 @@ function calccol1(){
     table = table + "</tr>";
     
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4163,7 +4163,7 @@ function calccol2(){
     table = table + "</tr>";
     
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4430,7 +4430,7 @@ function calccol3(){
     table = table + "</tr>";
     
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4621,7 +4621,7 @@ function calccol4(){
     table = table + "</tr>";
     
     
-    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
