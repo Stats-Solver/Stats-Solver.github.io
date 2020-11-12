@@ -1,5 +1,8 @@
-$("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();xval
-$("#xval").hide();
+$("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();
+$("#xval").hide(); $("#prediction").hide(); $("#prediction2").hide(); $("#alternative").hide(); $("#alternative2").hide();
+$("#correlation").hide(); $("#correlation2").hide();
+
+
 
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
@@ -312,8 +315,9 @@ function showthings(){
 }
 
 function stat(){
-    $("#output").empty(); $("#explanation").hide();
-    $("#meansquare").hide(); $("#standarderror").hide();
+    $("#output").empty(); $("#explanation").hide(); $("#prediction").hide(); $("#prediction2").hide();
+    $("#meansquare").hide(); $("#standarderror").hide(); $("#alternative").hide(); $("#alternative2").hide();
+    $("#correlation").hide(); $("#correlation2").hide(); $("#output2").hide()
     var x = document.getElementById("stat").value;
     if (x == "slope"){
         slope()
@@ -360,7 +364,7 @@ function stat(){
 }
 
 function equation(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#prediction").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) corresponding to a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} $$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
@@ -421,6 +425,14 @@ function equation(){
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_xminusx_bar)+"$</td>"+ "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$"+parseFloat(sum_xxbminyyb.toFixed(2))+"$</td>"+"<td>$"+parseFloat(sum_xminusx_bar2.toFixed(2))+"$</td>"+ "</tr>";
     document.getElementById("output").innerHTML = "<table>" + table + "</table>$$b_{1}  = \\frac{"+parseFloat(sum_xxbminyyb.toFixed(2))+"}{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}="+parseFloat(ansslope.toFixed(2))+"$$ $$  b_{0} = "+parseFloat(mean_y.toFixed(2))+" - (" +parseFloat(ansslope.toFixed(2)) + ")(" + parseFloat(mean_x.toFixed(2))+ ") = "+parseFloat(ansint.toFixed(2))+" $$ $$\\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope +parseFloat(Math.abs(ansslope).toFixed(2))+"x} $$"
     MathJax.typeset();
+}
+
+function predictshow() {
+    $("#xval").show(); $("#prediction").hide(); $("#prediction2").show(); $("#output2").show();
+}
+
+function predictdontshow() {
+    $("#xval").hide(); $("#prediction").show(); $("#prediction2").hide(); $("#output2").hide();
 }
 
 function intercept(){
@@ -505,7 +517,7 @@ function equation2(){
 }
 
 function prediction(){
-    $("#explanation").show(); $("#predict").show();
+    $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
@@ -785,7 +797,7 @@ function sst(){
 }
 
 function ssr(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#alternative").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares regression meausures the distance between the estimated regression line and the mean of the dependent variable (y)."
     document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$"
     document.getElementById("explanationtext").innerHTML = "The closer the estimated regression line is to the mean of the dependent variable, the smaller the SSR will be."
@@ -842,7 +854,7 @@ function ssr(){
 }
 
 function rsquared(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#correlation").show();
     document.getElementById("descriptiontext").innerHTML = "The coefficient of determination is a measure of the goodness of fit for the estimated regression equation."
     document.getElementById("formulatext").innerHTML = "$$ R^2 = \\frac{\\text{SSR}}{\\text{SST}} $$"
     document.getElementById("explanationtext").innerHTML = "The coefficient of determination takes a value between 0 and 1, with a higher value indicating a better fit."
@@ -901,7 +913,7 @@ function rsquared(){
 }
 
 function correlation(){
-    $("#explanation").show();
+    $("#explanation").show(); $("#output2").show(); $("#correlation").hide(); $("#correlation2").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationship between the dependent and independent variables."
     document.getElementById("formulatext").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} $$"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
@@ -989,6 +1001,11 @@ function correlation(){
     document.getElementById("output").innerHTML = "$$ \\begin{align} r_{xy} &= (\\text{sign of } b_1) \\sqrt{r^2} \\\\ &= "+signslope+"\\sqrt{" +ansrsqu.toFixed(2) +"} \\\\ &= \\boxed{"+anscorcoef.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
+
+function hidecorrelation() {
+    $("#output2").hide(); $("#correlation").show(); $("#correlation2").hide();
+}
+
 
 function meansquare() {
     $("#meansquare").show(); 
@@ -1306,7 +1323,7 @@ function tstat(){
     var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{t-Statistic: } t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$" + tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
+    document.getElementById("output").innerHTML = " $$ \\begin{align} \\text{t-Statistic: } t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$" + tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
     
     
     
@@ -1438,12 +1455,10 @@ function fstat(){
 function examplevalues(){
     document.getElementById('valuesx').value="2, 4, 6, 8, 10"
     document.getElementById('valuesy').value="4, 6, 2, 9, 12"
-    document.getElementById('xvalue').value="5"
 }
 
 function examplevalues2(){
     document.getElementById('valuesx').value="4, 11, 7, 21, 15"
     document.getElementById('valuesy').value="45, 30, 65, 20, 25"
-    document.getElementById('xvalue').value="10"
 }
 

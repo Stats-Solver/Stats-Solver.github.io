@@ -117,21 +117,16 @@
     </div>
           </div>
       
-      
-      
-      
       <div class="container mb-3" id = "xval">
           <div class="row justify-content-center">
               
               <table id="statistics">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="x1s">$x=$ <input type="text" style="width:70px;" id="xvalue" class="hypinput2"></td>  
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="x1s">$x=$ <input type="text" style="width:50px;" id="xvalue" class="hypinput2"></td>  
           </tr>
         </table> 
               </div>
               </div>
-      
-      
       
       
       <div class="container">
@@ -141,14 +136,14 @@
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
                 <option value="equation">Estimated Regression Equation</option>
-                <!--<option value="prediction">Prediction</option>
-                <option value="predicted">Predicted Values</option>
+                <option value="prediction">Prediction</option>
+                <!--<option value="predicted">Predicted Values</option>
                 <option value="residuals">Residuals</option>-->
                 <option value="sse">Sum of Squares Error</option>
                 <option value="sst">Sum of Squares Total</option>
                 <option value="ssr">Sum of Squares Regression</option>
                 <option value="rsquared">Coefficient of Determination</option>
-                <!--<option value="correlation">Sample Correlation Coefficient</option>-->
+                <option value="correlation">Correlation Coefficient</option>
                 <option value="mse">Mean Square Error</option>
                 <option value="see">Standard Error of Estimate</option>
                 <!--<option value="ses">Standard Error of Slope</option>-->
@@ -216,6 +211,82 @@
         </div>
       </div>
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <!--<div class="container text-center mt-1"  id="alternative">
+        <span class="examplelink" onclick="alternativessr()">Alternative Method</span>
+      </div>
+      
+      <div class="container text-center mt-1"  id="alternative2">
+        <span class="examplelink" onclick="ssr()">Alternative Method</span>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container text-center mt-1"  id="correlation">
+        <span class="examplelink" onclick="correlation()">Correlation Coefficient</span>
+      </div>
+      
+      <div class="container text-center mt-1"  id="correlation2">
+        <span class="examplelink" onclick="hidecorrelation()">Correlation Coefficient</span>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container text-center mt-1"  id="prediction">
+        <span class="examplelink" onclick="predictshow()">Prediction</span>
+      </div>
+      
+      <div class="container text-center mt-1"  id="prediction2">
+        <span class="examplelink" onclick="predictdontshow()">Prediction</span>
+      </div>-->
+      
+      
+      
+      
+      
+      
+      <!--<div class="container mb-5">
+        <div id="output2">
+        </div>
+      </div>-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <!--<div class="container text-center form-inline" id="predict"> 
           <p>$\text{Predict } y \text{ when } x = $ <span><input type="text" id="predicty" class="form-control" ></span></p>
           </div>-->
@@ -253,7 +324,6 @@
                   </div>
                 </div>
                       </div>
-                  <!--<p>Related: <a href="multiple.html">Multiple Regression Calculator</a> </p>-->
                 <hr>
             </div>
           <p> 

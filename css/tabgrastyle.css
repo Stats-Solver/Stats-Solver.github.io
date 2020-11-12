@@ -95,6 +95,6 @@ th, td {
 }
 
 .dropdown-menu {
-    max-height: 330px;
+    max-height: 270px;
     overflow-y: auto;
 }
