@@ -2,6 +2,15 @@ $("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide(); $("#labe
 $("#myCanvas").hide(); $("#myCanvas2").hide(); $("#firstclass").hide(); $("#label2").hide();
 $("#firstclasscross").hide(); $("#label4").hide();
 
+$("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
+$("#trendline").hide(); $("#notrendline").hide(); 
+
+
+
+
+
+
+
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
@@ -153,6 +162,8 @@ function showthings(){
 }
 
 function stat(){
+    $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
+    $("#trendline").hide(); $("#notrendline").hide(); 
     $("#explanation").hide(); $("#charts").hide(); $("#myCanvas").hide(); $("#myCanvas2").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
@@ -823,8 +834,6 @@ function calcbar(){
           chart.draw(data, options);
         }
     }
-    
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -882,7 +891,6 @@ function calcpie(){
         chart.draw(data);
       }
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -2355,6 +2363,7 @@ function crosstabulation(){
 }
 
 function calccross(){
+    $("#rowcol").show();
     var str = document.getElementById("values").value; var str2 = document.getElementById("values2").value;
     var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
@@ -2995,11 +3004,17 @@ function calccross4(){
 }
 
 
+function hideout2() {
+    $("#output2").empty();
+    $("#rowcol").show(); $("#rowcol2").hide(); $("#rowcol3").hide();
+}
+
 function rowpercent(){
     $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
 }
 
 function calcrow(){
+    $("#rowcol").hide(); $("#rowcol2").show(); $("#rowcol3").hide();
     var str = document.getElementById("values").value; var str2 = document.getElementById("values2").value;
     var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
@@ -3125,7 +3140,7 @@ function calcrow1(){
             rowtot += x[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + x[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat(((x[t+h]/rowtot)*100).toFixed(2)) + " $</td>"; 
+            table += "<td>$ \\dfrac{" + x[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat(((x[t+h]/rowtot)*100).toFixed(2)) + " $</td>"; 
         }
         table += "<td style='border-left: thin solid'>$ 100 $</td></tr>"; 
         coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
@@ -3133,7 +3148,7 @@ function calcrow1(){
         h += len2
     } 
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3331,7 +3346,7 @@ function calcrow2(){
             rowtot += quants[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + quants[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
+            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
         }
         table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
         coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
@@ -3339,7 +3354,7 @@ function calcrow2(){
         h += cols
     }
 
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3581,7 +3596,7 @@ function calcrow3(){
             rowtot += quants[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + quants[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
+            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
         }
         table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
         coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
@@ -3590,7 +3605,7 @@ function calcrow3(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3757,7 +3772,7 @@ function calcrow4(){
             rowtot += quants[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + quants[t+h] + "/" + rowtot + " \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + " $</td>";
+            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + " $</td>";
         }
         table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
         coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
@@ -3766,7 +3781,7 @@ function calcrow4(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3776,6 +3791,7 @@ function colpercent(){
 }
 
 function calccol(){
+    $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").show();
     var str = document.getElementById("values").value; var str2 = document.getElementById("values2").value;
     var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
@@ -3907,7 +3923,7 @@ function calccol1(){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + x[t+h] + "/ " + coltot[t] + " \\times 100 = " + parseFloat((x[t+h]*100/coltot[t]).toFixed(2)) + " $</td>";
+            table += "<td>$ \\dfrac{" + x[t+h] + "}{" + coltot[t] + "} \\times 100 = " + parseFloat((x[t+h]*100/coltot[t]).toFixed(2)) + " $</td>";
         }
         table += "</tr>"; 
         h += len2
@@ -3925,7 +3941,7 @@ function calccol1(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4129,7 +4145,7 @@ function calccol2(){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + quants[t+h] + "/" + coltot[t] + " \\times 100 = " +parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
+            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = " +parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
         }
         table += "</tr>"; 
         h += cols
@@ -4147,7 +4163,7 @@ function calccol2(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4395,7 +4411,7 @@ function calccol3(){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + quants[t+h] + "/" + coltot[t] + " \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + " $</td>";
+            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + " $</td>";
         }
         table += "</tr>"; 
         h += cols
@@ -4414,7 +4430,7 @@ function calccol3(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4587,7 +4603,7 @@ function calccol4(){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$" + quants[t+h] + "/" + coltot[t] + " \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
+            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
         }
         table += "</tr>"; 
         h += cols
@@ -4605,7 +4621,7 @@ function calccol4(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table> <br>" + "<table>" + table + "</table>"
+    document.getElementById("output2").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4615,6 +4631,7 @@ function scatter(){
 }
 
 function calcscatt(){
+    $("#trendline").show(); $("#notrendline").hide();
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "A scatter diagram is a graph summarizing data for two quantitative variables."
     document.getElementById("formulatext").innerHTML = "Draw a point on the graph for each pair of x and y values."
@@ -4703,11 +4720,21 @@ function calcscatt(){
     MathJax.typeset();
 }
 
+
+
+
+
+
+
+
+
+
 function trendline(){
     $("#input2").show();  $("#label1").hide(); $("#label3").show();
 }
 
 function calctrend(){
+    $("#trendline").hide(); $("#notrendline").show();
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "A trendline provides an approximation of the relationship between x and y."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"

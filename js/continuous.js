@@ -12,6 +12,9 @@ $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples"
 $("#uniform").show(); $("#uniformab").hide(); 
 $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide();
 
+$("#snormalprob").show(); $("#snormalarea").hide();
+
+snormaltype = "probability"
 uniformtype = "probability"
 
 $(function () {
@@ -160,12 +163,26 @@ function compuniform(){
 
 function compuniformprob() {
     var probtype = document.getElementById("probtype").value
+    var probtypeb1 = document.getElementById("probtypeb1").value
+    var probtypeb2 = document.getElementById("probtypeb2").value
     if (probtype == "lessequal") {
         compuniform1() 
+    } else if (uniformtype = "probability" && probtype == "less") {
+        compuniform2() 
     } else if (probtype == "greaterequal") {
         compuniform3() 
-    } else {
+    } else if (probtype == "greater") {
+        compuniform4()
+    } else if (probtype == "equal") {
+        compuniform5()
+    } else if (probtypeb1 == "lessequal" && probtypeb2 == "lessequal") {
         compuniform6()
+    } else if (probtypeb1 == "lessequal" && probtypeb2 == "less") {
+        compuniform7()
+    } else if (probtypeb1 == "less" && probtypeb2 == "lessequal") {
+        compuniform8()
+    } else if (probtypeb1 == "less" && probtypeb2 == "less") {
+        compuniform9()
     } 
 }
 
@@ -861,19 +878,240 @@ function compuniform9() {
     MathJax.typeset();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function switchstandardarea() {
+    $("#snormalprob").hide(); $("#snormalarea").show();
+    snormaltype = "area"
+}
+
+function switchstandardprob() {
+    $("#snormalprob").show(); $("#snormalarea").hide();
+    snormaltype = "probability"
+}
+
+
 function snormal() {
     $("#snormal").show();
     $("#snormalprob").show();
     $("#snormalbetween").hide();
 }
 
+
 function compsnormal() {
+    if (snormaltype == "probability") {
+        compsnormalprob()
+    } else if (snormaltype == "area") {
+        compsnormalarea() 
+    } 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function compsnormalarea() {
+    var x = document.getElementById('areatype').value
+    if (x == "left") {
+        compsnormalarea1()
+    } else if (x == "right") {
+        compsnormalarea2()
+    }   
+}
+
+function compsnormalarea1() {
+    $("#explanation").show(); $("#myCanvas").show();
+    
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
+    
+    var area = document.getElementById('areaval').value
+    var z = NormSInv(area)
+    var exp = 2.71828;
+    
+    var lessval = z
+    var lessvalz = 30+10*lessval
+    
+    
+    
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText("z₀",18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+    
+    document.getElementById("output").innerHTML = "$$ P(z \\leq z_0) = " + area + " $$"
+    
+    document.getElementById("output2").innerHTML = "$$ z_0 = " + z + " $$"
+    
+    MathJax.typeset();
+    
+}
+
+
+
+
+
+
+function compsnormalarea2() {
+    $("#explanation").show(); $("#myCanvas").show();
+    
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
+    
+    var x = document.getElementById('areaval').value
+    
+    
+    
+    document.getElementById("output").innerHTML = "$$ P(z \\geq z_0) = " + x + " $$"
+    
+    MathJax.typeset();
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function compsnormalprob() {
     probtype = document.getElementById('probtype2').value
-    if (probtype == "lessequal") {
+    if (probtype == "lessequal" || probtype == "less") {
         compsnormal1() 
-    } else if (probtype == "greaterequal") {
+    } else if (probtype == "greaterequal" || probtype == "greater") {
         compsnormal2() 
-    } else {
+    } else if (probtype == "equal") {
+        compsnormal3() 
+    } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
         compsnormal4()
     }
 }
@@ -1494,6 +1732,83 @@ function compsnormal4() {
     MathJax.typeset();
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function normal() {
     $("#normal").show();
     $("#normalprob").show();
@@ -1502,11 +1817,13 @@ function normal() {
 
 function compnormal() {
     probtype = document.getElementById('probtype3').value
-    if (probtype == "lessequal") {
+    if (probtype == "lessequal" || probtype == "less") {
         compnormal1() 
-    } else if (probtype == "greaterequal") {
+    } if (probtype == "greaterequal" || probtype == "greater") {
         compnormal2() 
-    } else {
+    } else if (probtype == "equal") {
+        compnormal3() 
+    } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
         compnormal4()
     }
 }
@@ -2155,11 +2472,13 @@ function exponential() {
 
 function compexponential() {
     var probtype = document.getElementById('probtype4').value
-    if (probtype == "lessequal") {
+    if (probtype == "lessequal" || probtype == "less") {
         compexponential1() 
-    } else if (probtype == "greaterequal") {
+    } else if (probtype == "greaterequal" || probtype == "greater") {
         compexponential2() 
-    } else {
+    } else if (probtype == "equal") {
+        compexponential3()
+    } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
         compexponential4()
     }
 }
@@ -2607,15 +2926,26 @@ function exampleuniform2(){
 }
 
 function examplesnormal(){
-    document.getElementById('snormval').value="-.71"
-    document.getElementById('snormval1').value="-1.75"
-    document.getElementById('snormval2').value="-1.04"
+    if (snormaltype == "probability") {
+        document.getElementById('snormval').value="-.71"
+        document.getElementById('snormval1').value="-1.75"
+        document.getElementById('snormval2').value="-1.04"
+    } else if (snormaltype == "area") {
+        document.getElementById('areatype').value="left"
+        document.getElementById('areaval').value=".58"
+    } 
+    
 }
 
 function examplesnormal2(){
-    document.getElementById('snormval').value=".44"
-    document.getElementById('snormval1').value=".52"
-    document.getElementById('snormval2').value="1.22"
+    if (snormaltype == "probability") {
+        document.getElementById('snormval').value=".44"
+        document.getElementById('snormval1').value=".52"
+        document.getElementById('snormval2').value="1.22"
+    } else if (snormaltype == "area") {
+        document.getElementById('areatype').value="right"
+        document.getElementById('areaval').value=".23"
+    }
 }
 
 function examplenormal(){

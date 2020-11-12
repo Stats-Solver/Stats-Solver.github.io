@@ -148,15 +148,16 @@
                 <option value="bar">Bar Chart</option>
                 <option value="pie">Pie Chart</option>
                 <option value="histogram">Histogram</option>
-                <option value="boxplot">Box Plot</option>
+                <option value="cumfrequency">Cumulative Distributions</option>
+                <!--<option value="boxplot">Box Plot</option>
                 <option value="cumfrequency">Cumulative Frequency Distribution</option>
                 <option value="cumrelative">Cumulative Relative Frequency Distribution</option>
-                <option value="cumpercent">Cumulative Percent Frequency Distribution</option>
+                <option value="cumpercent">Cumulative Percent Frequency Distribution</option>-->
                 <option value="crosstabulation">Crosstabulation</option>
-                <option value="rowpercent">Row Percentages</option>
-                <option value="colpercent">Column Percentages</option>
+                <!--<option value="rowpercent">Row Percentages</option>
+                <option value="colpercent">Column Percentages</option>-->
                 <option value="scatter">Scatter Diagram</option>
-                <option value="trendline">Trendline</option>
+                <!--<option value="trendline">Trendline</option>-->
                 <option value="timeplot">Time Plot</option>
             </select>
         </div> 
@@ -166,51 +167,6 @@
               </div>
         </div>
 
-      
-      
-      
-      
-      
-      
-      
-      <!--<div class="container">
-          <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <select id="stat" class="form-control" onchange="showthings()">
-                <option value="choose">Choose One</option>
-                <option value="bar">Bar Chart</option>
-                <option value="boxplot">Box Plot</option>
-                <option value="colpercent">Column Percentages</option>
-                <option value="crosstabulation">Crosstabulation</option>
-                <option value="cumfrequency">Cumulative Frequency Distribution</option>
-                <option value="cumrelative">Cumulative Relative Frequency Distribution</option>
-                <option value="cumpercent">Cumulative Percent Frequency Distribution</option>
-                <option value="frequency">Frequency Distribution</option>
-                <option value="histogram">Histogram</option>
-                <option value="percent">Percent Frequency Distribution</option>
-                <option value="pie">Pie Chart</option>
-                <option value="relative">Relative Frequency Distribution</option>
-                <option value="rowpercent">Row Percentages</option>
-                <option value="scatter">Scatter Diagram</option>
-                <option value="timeplot">Time Plot</option>
-                <option value="trendline">Trendline</option>
-                
-            </select>
-        </div> 
-              <div class="col-4 col-md-2 inputWrapper">
-            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat()">Solve</button>
-        </div> 
-              </div>
-        </div>-->
-      
-      
-      
-      
-      
-      
-      
-      
-      
       
       
       <div class="container"> 
@@ -259,7 +215,88 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container text-center mt-2 mb-3"  id="rowcol">
+        <span class="examplelink" onclick="calcrow()">Row Percentages</span> &bull;
+        <span class="examplelink" onclick="calccol()">Column Percentages</span>
+      </div>
+      
+      <div class="container text-center mt-2 mb-3"  id="rowcol2">
+        <span class="examplelink" onclick="hideout2()">Row Percentages</span> &bull;
+        <span class="examplelink" onclick="calccol()">Column Percentages</span>
+      </div>
+      
+      <div class="container text-center mt-2 mb-3"  id="rowcol3">
+        <span class="examplelink" onclick="calcrow()">Row Percentages</span> &bull;
+        <span class="examplelink" onclick="hideout2()">Column Percentages</span>
+      </div>
+      
+    
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container text-center mt-2"  id="trendline">
+        <span class="examplelink" onclick="calctrend()">Trendline</span>
+      </div>
+      
+      
+      
+      
+      <div class="container text-center mt-2"  id="notrendline">
+        <span class="examplelink" onclick="calcscatt()">Trendline</span>
+      </div>
+      
      
+      
+      
+      
+      <div class="container mb-5">
+        <div id="output2">
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
           <footer id="footer">
               <div class="container">
                   <div class="container" id="explanation">

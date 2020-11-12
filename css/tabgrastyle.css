@@ -71,6 +71,11 @@ th, td {
     background-color: white;
 }
 
+.hypinput2{
+    width: 50px;
+    background-color: white;
+}
+
 .hypinput3{
     width: 60px;
     background-color: white;
@@ -90,6 +95,6 @@ th, td {
 }
 
 .dropdown-menu {
-    max-height: 390px;
+    max-height: 330px;
     overflow-y: auto;
 }

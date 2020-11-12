@@ -26,11 +26,9 @@ $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexample
 
 
 
-
-
-
-
-
+frequencytype = "distribution"
+formulatype = "probability"
+uniformtype = "probability"
 binomialtype = "probability"
 discretekind = "probability"
 
@@ -46,6 +44,22 @@ function factorial(n) {
     }
   
 }
+
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+     
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
 
 function showstuff(){
     $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); 
@@ -138,7 +152,7 @@ function showstuff(){
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").show();
     } else if (x == "frequency") {
         $("#frequency").show(); 
-        $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide();
+        $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").show();
         $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
         $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
         $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();
@@ -163,8 +177,12 @@ function stat(){
         compstandard()
     } else if (x == "discrete") {
         compdiscrete()
+    } else if (x == "frequency") {
+        compfrequency()
     } else if (x == "uniform") {
         compuniform()
+    } else if (x == "formula") {
+        compformula()
     } else if (x == "binomial") {
         compbinomial()
     } else if (x == "poisson") {
@@ -248,7 +266,7 @@ function compprob1() {
     } else if (x == x10) {
         ans = f10
     } else {
-        ans = "\\text{Not Defined}"
+        ans = "0"
     }
     
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + ans + "}   \\end{align} $$"
@@ -297,7 +315,7 @@ function compprob2() {
         ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + ans + "}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -449,7 +467,7 @@ function compprob5() {
         ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + ans + "}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -626,7 +644,7 @@ function compstandard() {
     //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
     //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
 
     document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(ans.toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
@@ -695,6 +713,1061 @@ function compdiscrete() {
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function frequency() {
+    //$("#probswitchf").show();
+    $("#frequency").show(); 
+    //$("#discreteprobs").show(); 
+    $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
+    $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
+    $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();
+    $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
+    rowsf = 3
+}
+
+function fswitchprobability() {
+    $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
+    frequencytype = "probability"
+}
+
+function fswitchexpected() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").show(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
+    frequencytype = "expected"
+}
+
+function fswitchvariance() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").show(); $("#frequencydist").hide();  
+    frequencytype = "variance"
+}
+
+function fswitchdistribution() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").show();  
+    frequencytype = "distribution"
+}
+
+
+function compfrequency() {
+    if (frequencytype == "probability") {
+        compprobabilitiesf()
+    } else if (frequencytype == "expected") {
+        compexpectedf()
+    } else if (frequencytype == "variance") {
+        compvariancef()
+    } else if (frequencytype == "distribution") {
+        compdistributionf()
+    } 
+}
+
+function compdistributionf() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1 = document.getElementById('f1f').value
+    var f2 = document.getElementById('f2f').value
+    var f3 = document.getElementById('f3f').value
+    var f4 = document.getElementById('f4f').value
+    var f5 = document.getElementById('f5f').value
+    var f6 = document.getElementById('f6f').value
+    var f7 = document.getElementById('f7f').value
+    var f8 = document.getElementById('f8f').value
+    var f9 = document.getElementById('f9f').value
+    var f10 = document.getElementById('f10f').value
+
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var tot = sum(f)
+    var ans = 0
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"/"+tot+"="+parseFloat((f[i]/tot).toFixed(2))+"$</td></tr>"
+        ans += x[i]*f[i]
+    }
+    
+    var adds = f[0]; 
+    for (let i=1; i<rowsf; i++){
+        adds += "+" + f[i]
+    }
+    
+    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
+    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
+    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td></tr></table>"
+ 
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Total} &= " + adds + "\\\\ &= " + tot +" \\end{align} $$ " + table
+    MathJax.typeset();
+}
+
+function compprobabilitiesf() {
+    var x = document.getElementById('probtype1f').value
+    if (x == "equal") {
+        compprob1f()
+    } else if (x == "lessequal") {
+        compprob2f()
+    } else if (x == "less") {
+        compprob3f()
+    } else if (x == "greaterequal") {
+        compprob4f()
+    } else if (x == "greater") {
+        compprob5f()
+    }
+}
+
+function compprob1f() {
+    $("#explanation").show();
+    var x = document.getElementById('probvalf').value
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
+
+    var ans = ""
+    if (x == x1) {
+        ans = f1
+    } else if (x == x2) {
+        ans = f2
+    } else if (x == x3) {
+        ans = f3
+    } else if (x == x4) {
+        ans = f4
+    } else if (x == x5) {
+        ans = f5
+    } else if (x == x6) {
+        ans = f6
+    } else if (x == x7) {
+        ans = f7
+    } else if (x == x8) {
+        ans = f8
+    } else if (x == x9) {
+        ans = f9
+    } else if (x == x10) {
+        ans = f10
+    } else {
+        ans = "0"
+    }
+    
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    var xs = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var tot = sum(f)
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+xs[i]+"$</td><td>$"+parseFloat((f[i]/tot).toFixed(2))+"$</td></tr>"
+    }
+    
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + ans + "}   \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob2f() {
+    $("#explanation").show();
+    var x = document.getElementById('probvalf').value
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf = xa.filter(y => y <= x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var adds2 = parseFloat((fa[0]).toFixed(2))
+    var ans = parseFloat(fa[0])
+    for (let i=1; i<xaf2.length; i++){
+        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        ans += parseFloat(fa[i])
+    }
+    
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+    }
+    
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob3f() {
+    $("#explanation").show();
+    var x = document.getElementById('probvalf').value
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf = xa.filter(y => y < x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var adds2 = parseFloat((fa[0]).toFixed(2))
+    var ans = parseFloat(fa[0])
+    for (let i=1; i<xaf2.length; i++){
+        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        ans += parseFloat(fa[i])
+    }
+    
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+    }
+    
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat((ans).toFixed(2)) + "}  \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob4f() {
+    $("#explanation").show();
+    var x = document.getElementById('probvalf').value
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf0 = xa.filter(y => y < x)
+    var xaf02 = xaf0.filter(y => y)
+    
+    var xaf = xa.filter(y => y >= x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var start = xaf02.length
+    var start2 = xaf02.length + 1
+    var end = xaf02.length + xaf2.length
+    
+    var adds2 = parseFloat((fa[start]).toFixed(2))
+    var ans = parseFloat(fa[start])
+    for (let i=start2; i<end; i++){
+        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        ans += parseFloat(fa[i])
+    }
+    
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+    }
+    
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compprob5f() {
+    $("#explanation").show();
+    var x = document.getElementById('probvalf').value
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
+    
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    
+    var xaf0 = xa.filter(y => y <= x)
+    var xaf02 = xaf0.filter(y => y)
+    
+    var xaf = xa.filter(y => y > x)
+    var xaf2 = xaf.filter(y => y)
+    
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    
+    var start = xaf02.length
+    var start2 = xaf02.length + 1
+    var end = xaf02.length + xaf2.length
+    
+    var adds2 = parseFloat((fa[start]).toFixed(2))
+    var ans = parseFloat(fa[start])
+    for (let i=start2; i<end; i++){
+        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        ans += parseFloat(fa[i])
+    }
+    
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+    }
+    
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat((ans).toFixed(2)) + "}  \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compexpectedf() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1 = document.getElementById('f1f').value
+    var f2 = document.getElementById('f2f').value
+    var f3 = document.getElementById('f3f').value
+    var f4 = document.getElementById('f4f').value
+    var f5 = document.getElementById('f5f').value
+    var f6 = document.getElementById('f6f').value
+    var f7 = document.getElementById('f7f').value
+    var f8 = document.getElementById('f8f').value
+    var f9 = document.getElementById('f9f').value
+    var f10 = document.getElementById('f10f').value
+
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var tot = sum(f)
+    var ans = 0
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+parseFloat((f[i]/tot).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]*f[i])/tot).toFixed(2))+"$</td></tr>"
+        ans += (x[i]*f[i])/tot
+    }
+    
+    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
+    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
+    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+ 
+    document.getElementById("output").innerHTML = table + "$$ E(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    MathJax.typeset();
+}
+
+function compvariancef() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
+    document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
+    
+    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
+
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
+    
+    
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var mu = 0
+    for (i = 0; i < rowsf; i++) {
+        mu += x[i]*f[i]
+    }
+    var ans = 0
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+parseFloat(f[i].toFixed(2))+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]-mu)**2).toFixed(2))+"$</td><td>$"+parseFloat((((x[i]-mu)**2)*f[i]).toFixed(2))+"$</td></tr>"
+        ans += ((x[i]-mu)**2)*f[i]
+    }
+    
+    
+    
+    
+    
+    
+    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
+    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
+    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+ 
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} $$"
+    MathJax.typeset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function switchexpectedu() {
+    $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); 
+    uniformtype = "expected"
+}
+
+function switchvarianceu() {
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); 
+    uniformtype = "variance"
+}
+
+function switchprobabilityu() {
+    $("#uniformprobability").show(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); 
+    uniformtype = "probability"
+}
+
+function compuniform() {
+    if (uniformtype == "expected") {
+        compexpecteduni()
+    } else if (uniformtype == "variance") {
+        compvarianceuni()
+    } else {
+        compprobuni()
+    }
+}
+
+function compprobuni() {
+    var x = document.getElementById('probtypeuni').value
+    if (x == "equal") {
+        compprobuni1()
+    } else if (x == "lessequal") {
+        compprobuni2()
+    } else if (x == "less") {
+        compprobuni3()
+    } else if (x == "greaterequal") {
+        compprobuni4()
+    } else if (x == "greater") {
+        compprobuni5()
+    }
+}
+
+function compprobuni1() {
+    $("#explanation").show();
+    
+    var uval = document.getElementById('uniformval').value
+    var x = document.getElementById('unival').value
+    var ans = 1/uval
+    
+    if (uval == 2) {
+        if (x == 1 || x == 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{1}{" + uval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (uval == 3) {
+        if (x == 1 || x == 2 || x == 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{1}{" + uval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (uval == 4) {
+        if (x == 1 || x == 2 || x == 3 || x == 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{1}{" + uval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (uval == 5) {
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{1}{" + uval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (uval == 6) {
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x ==5 || x == 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{1}{" + uval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    }
+
+    MathJax.typeset();
+}
+
+function compprobuni2() {
+    $("#explanation").show();
+    
+    var uval = document.getElementById('uniformval').value
+    var x = document.getElementById('unival').value
+    
+    if (uval == 2) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{2} \\\\ &= \\boxed{" + 1/2 + "}   \\end{align} $$"
+        } else if (x >= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{2} + \\frac{1}{2} \\\\ &= \\frac{2}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 3) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{2}{3} \\\\ &= \\boxed{" + parseFloat((2/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 4) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{4} \\\\ &= \\boxed{" + parseFloat((1/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{2}{4} \\\\ &= \\boxed{" + parseFloat((2/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{3}{4} \\\\ &= \\boxed{" + parseFloat((3/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{4}{4} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 5) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{5} \\\\ &= \\boxed{" + parseFloat((1/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{2}{15} \\\\ &= \\boxed{" + parseFloat((2/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{3}{15} \\\\ &= \\boxed{" + parseFloat((3/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{4}{5} \\\\ &= \\boxed{" + parseFloat((4/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{5}{5} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 6) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{6} \\\\ &= \\boxed{" + parseFloat((1/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{2}{6} \\\\ &= \\boxed{" + parseFloat((2/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{4}{6} \\\\ &= \\boxed{" + parseFloat((4/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 5 && x < 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{5}{6} \\\\ &= \\boxed{" + parseFloat((5/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    }
+
+    MathJax.typeset();
+}
+
+function compprobuni3() {
+    $("#explanation").show();
+    
+    var uval = document.getElementById('uniformval').value
+    var x = document.getElementById('unival').value
+    var ans = x/uval
+    
+    if (uval == 2) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{2} \\\\ &= \\boxed{" + parseFloat((1/2).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{2} + \\frac{1}{2} \\\\ &= \\frac{2}{2} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 3) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{2}{3} \\\\ &= \\boxed{" + parseFloat((2/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 4) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{4} \\\\ &= \\boxed{" + parseFloat((1/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{2}{4} \\\\ &= \\boxed{" + parseFloat((2/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{3}{4} \\\\ &= \\boxed{" + parseFloat((3/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{4}{4} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 5) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{5} \\\\ &= \\boxed{" + parseFloat((1/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{2}{5} \\\\ &= \\boxed{" + parseFloat((2/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{3}{5} \\\\ &= \\boxed{" + parseFloat((3/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{4}{5} \\\\ &= \\boxed{" + parseFloat((4/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{5}{5} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (uval == 6) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{6} \\\\ &= \\boxed{" + parseFloat((1/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{2}{6} \\\\ &= \\boxed{" + parseFloat((2/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{4}{6} \\\\ &= \\boxed{" + parseFloat((4/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 5 && x <= 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{5}{6} \\\\ &= \\boxed{" + parseFloat((5/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ P(x \\leq " + x + ") = 0 $$"
+        }
+    }
+
+    MathJax.typeset();
+}
+
+function compprobuni4() {
+    $("#explanation").show();
+    
+    var uval = document.getElementById('uniformval').value
+    var x = document.getElementById('unival').value
+    var ans = x/uval
+    
+    if (uval == 2) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(2) \\\\ &= \\frac{1}{2} \\\\ &= \\boxed{" + parseFloat((1/2).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{2} + \\frac{1}{2} \\\\ &= \\frac{2}{2} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (uval == 3) {
+        if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(3) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) \\\\ &= \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{2}{3} \\\\ &= \\boxed{" + parseFloat((2/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (uval == 4) {
+        if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(4) \\\\ &= \\frac{1}{4} \\\\ &= \\boxed{" + parseFloat((4/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{2}{4} \\\\ &= \\boxed{" + parseFloat((2/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{3}{4} \\\\ &= \\boxed{" + parseFloat((3/4).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{4}{4} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (uval == 5) {
+        if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(5) \\\\ &= \\frac{1}{5} \\\\ &= \\boxed{" + parseFloat((1/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{2}{5} \\\\ &= \\boxed{" + parseFloat((2/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(3) + f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{3}{5} \\\\ &= \\boxed{" + parseFloat((3/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{4}{5} \\\\ &= \\boxed{" + parseFloat((4/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{5}{5} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (uval == 6) {
+        if (x > 5 && x <= 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(6) \\\\ &= \\frac{1}{6} \\\\ &= \\boxed{" + parseFloat((6/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{2}{6} \\\\ &= \\boxed{" + parseFloat((2/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{4}{6} \\\\ &= \\boxed{" + parseFloat((4/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{5}{6} \\\\ &= \\boxed{" + parseFloat((5/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ P(x \\geq " + x + ") = 0 $$"
+        }
+    }
+
+    MathJax.typeset();
+}
+
+function compprobuni5() {
+    $("#explanation").show();
+    
+    var uval = document.getElementById('uniformval').value
+    var x = document.getElementById('unival').value
+    var ans = x/uval
+    
+    if (uval == 2) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x > " + x + ") &= f(2) \\\\ &= \\frac{1}{2} \\\\ &= \\boxed{" + parseFloat((1/2).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{2} + \\frac{1}{2} \\\\ &= \\frac{2}{2} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{2} \\text{ for } x = 1,2 $$ $$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (uval == 3) {
+        if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x > " + x + ") &= f(3) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + 1/3 + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) \\\\ &= \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{2}{3} \\\\ &= \\boxed{" + parseFloat((2/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{3} + \\frac{1}{3} + \\frac{1}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{3} \\text{ for } x = 1,2,3 $$ $$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (uval == 4) {
+        if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x > " + x + ") &= f(4) \\\\ &= \\frac{1}{4} \\\\ &= \\boxed{" + 1/4 + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x > " + x + ") &= f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{2}{4} \\\\ &= \\boxed{" + 2/4 + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{3}{4} \\\\ &= \\boxed{" + 3/4 + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} + \\frac{1}{4} \\\\ &= \\frac{4}{4} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{4} \\text{ for } x = 1,2,3,4 $$ $$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (uval == 5) {
+        if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x > " + x + ") &= f(5) \\\\ &= \\frac{1}{5} \\\\ &= \\boxed{" + parseFloat((1/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x > " + x + ") &= f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{2}{5} \\\\ &= \\boxed{" + 2/5 + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x > " + x + ") &= f(3) + f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{3}{5} \\\\ &= \\boxed{" + 3/5 + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{4}{5} \\\\ &= \\boxed{" + parseFloat((4/5).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} + \\frac{1}{5} \\\\ &= \\frac{5}{5} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{5} \\text{ for } x = 1,2,3,4,5 $$ $$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (uval == 6) {
+        if (x >= 5 && x < 6) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x > " + x + ") &= f(6) \\\\ &= \\frac{1}{6} \\\\ &= \\boxed{" + parseFloat((1/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x > " + x + ") &= f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{2}{6} \\\\ &= \\boxed{" + parseFloat((2/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x > " + x + ") &= f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x > " + x + ") &= f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{4}{6} \\\\ &= \\boxed{" + parseFloat((4/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{5}{6} \\\\ &= \\boxed{" + parseFloat((5/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} + \\frac{1}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ f(x) = \\frac{1}{6} \\text{ for } x = 1,2,3,4,5,6 $$ $$ P(x > " + x + ") = 0 $$"
+        }
+    }
+
+    MathJax.typeset();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function forvalues() {
     var x = document.getElementById('formulaval').value
     if (x == "3") {
@@ -713,16 +1786,28 @@ function forvalues() {
 
 function frmlswitchexpected() {
     $("#formulaprobs").hide(); $("#formulaexpected").show(); $("#formulavariance").hide(); 
+    formulatype = "expected"
 }
 
 function frmlswitchvariance() {
     $("#formulaprobs").hide(); $("#formulaexpected").hide(); $("#formulavariance").show(); 
+    formulatype = "variance"
 }
 
 function frmlswitchprobability() {
     $("#formulaprobs").show(); $("#formulaexpected").hide(); $("#formulavariance").hide(); 
+    formulatype = "probability"
 }
 
+function compformula() {
+    if (formulatype == "expected") {
+        compexpectedfrml()
+    } else if (formulatype == "variance") {
+        compvariancefrml()
+    } else {
+        compprobabilitiesfrml()
+    }
+}
 
 function compprobabilitiesfrml() {
     var x = document.getElementById('probtypefrml1').value
@@ -739,66 +1824,334 @@ function compprobabilitiesfrml() {
     }
 }
 
+function compprobfrml1() {
+    $("#explanation").show();
+    
+    var frmval = document.getElementById('formulaval').value
+    var x = document.getElementById('probvalfrml').value
+    var ans = x/frmval
+    
+    if (frmval == 3) {
+        if (x == 1 || x == 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{" + x + "}{" + frmval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (frmval == 6) {
+        if (x == 1 || x == 2 || x == 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{" + x + "}{" + frmval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (frmval == 10) {
+        if (x == 1 || x == 2 || x == 3 || x == 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{" + x + "}{" + frmval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (frmval == 15) {
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x == 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{" + x + "}{" + frmval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    } else if (frmval == 21) {
+        if (x == 1 || x == 2 || x == 3 || x == 4 || x ==5 || x == 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\frac{" + x + "}{" + frmval + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = \\boxed{" + 0 + "} $$"
+        }
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function fswitchexpected() {
-    $("#frequencyprobs").hide(); $("#frequencyexpected").show(); $("#frequencyvariance").hide(); 
+    MathJax.typeset();
 }
 
-function fswitchvariance() {
-    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").show(); 
+function compprobfrml2() {
+    $("#explanation").show();
+    
+    var frmval = document.getElementById('formulaval').value
+    var x = document.getElementById('probvalfrml').value
+    var ans = x/frmval
+    
+    if (frmval == 3) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{3} + \\frac{2}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 6) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{6} \\\\ &= \\boxed{" + parseFloat((1/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{6} + \\frac{2}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{6} + \\frac{2}{6} + \\frac{3}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 10) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{10} \\\\ &= \\boxed{" + parseFloat((1/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{10} + \\frac{2}{10} \\\\ &= \\frac{3}{10} \\\\ &= \\boxed{" + parseFloat((3/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{10} + \\frac{2}{10} + \\frac{3}{10} \\\\ &= \\frac{6}{10} \\\\ &= \\boxed{" + parseFloat((6/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{10} + \\frac{2}{10} + \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{10}{10} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 15) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{15} \\\\ &= \\boxed{" + parseFloat((1/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{15} + \\frac{2}{15} \\\\ &= \\frac{3}{15} \\\\ &= \\boxed{" + parseFloat((3/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} \\\\ &= \\frac{6}{15} \\\\ &= \\boxed{" + parseFloat((6/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} \\\\ &= \\frac{10}{15} \\\\ &= \\boxed{" + parseFloat((10/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{15}{15} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 21) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) \\\\ &= \\frac{1}{21} \\\\ &= \\boxed{" + parseFloat((1/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{21} + \\frac{2}{21} \\\\ &= \\frac{3}{21} \\\\ &= \\boxed{" + parseFloat((3/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} \\\\ &= \\frac{6}{21} \\\\ &= \\boxed{" + parseFloat((6/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} \\\\ &= \\frac{10}{21} \\\\ &= \\boxed{" + parseFloat((10/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 5 && x < 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} \\\\ &= \\frac{15}{21} \\\\ &= \\boxed{" + parseFloat((15/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{21}{21} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    }
+
+    MathJax.typeset();
 }
 
-function fswitchprobability() {
-    $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); 
+function compprobfrml3() {
+    $("#explanation").show();
+    
+    var frmval = document.getElementById('formulaval').value
+    var x = document.getElementById('probvalfrml').value
+    var ans = x/frmval
+    
+    if (frmval == 3) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{3} + \\frac{2}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 6) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{6} \\\\ &= \\boxed{" + parseFloat((1/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{6} + \\frac{2}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{6} + \\frac{2}{6} + \\frac{3}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 10) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{10} \\\\ &= \\boxed{" + parseFloat((1/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{10} + \\frac{2}{10} \\\\ &= \\frac{3}{10} \\\\ &= \\boxed{" + parseFloat((3/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{10} + \\frac{2}{10} + \\frac{3}{10} \\\\ &= \\frac{6}{10} \\\\ &= \\boxed{" + parseFloat((6/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{10} + \\frac{2}{10} + \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{10}{10} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 15) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{15} \\\\ &= \\boxed{" + parseFloat((1/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{15} + \\frac{2}{15} \\\\ &= \\frac{3}{15} \\\\ &= \\boxed{" + parseFloat((3/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} \\\\ &= \\frac{16}{15} \\\\ &= \\boxed{" + parseFloat((6/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} \\\\ &= \\frac{10}{15} \\\\ &= \\boxed{" + parseFloat((10/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{15}{15} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 21) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) \\\\ &= \\frac{1}{21} \\\\ &= \\boxed{" + parseFloat((1/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{21} + \\frac{2}{21} \\\\ &= \\frac{3}{21} \\\\ &= \\boxed{" + parseFloat((3/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} \\\\ &= \\frac{6}{21} \\\\ &= \\boxed{" + parseFloat((6/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} \\\\ &= \\frac{10}{21} \\\\ &= \\boxed{" + parseFloat((10/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 5 && x <= 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} \\\\ &= \\frac{15}{21} \\\\ &= \\boxed{" + parseFloat((15/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{21}{21} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\leq " + x + ") = 0 $$"
+        }
+    }
+
+    MathJax.typeset();
 }
 
+function compprobfrml4() {
+    $("#explanation").show();
+    
+    var frmval = document.getElementById('formulaval').value
+    var x = document.getElementById('probvalfrml').value
+    var ans = x/frmval
+    
+    if (frmval == 3) {
+        if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(2) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{3} + \\frac{2}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 6) {
+        if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(3) \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((3/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) \\\\ &= \\frac{2}{6} + \\frac{3}{6} \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + parseFloat((5/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{6} + \\frac{2}{6} + \\frac{3}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 10) {
+        if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(4) \\\\ &= \\frac{4}{10} \\\\ &= \\boxed{" + parseFloat((4/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(3) + f(4) \\\\ &= \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{3}{10} \\\\ &= \\boxed{" + parseFloat((7/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) + f(4) \\\\ &= \\frac{2}{10} + \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{6}{10} \\\\ &= \\boxed{" + parseFloat((9/10).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{10} + \\frac{2}{10} + \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{10}{10} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 15) {
+        if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(5) \\\\ &= \\frac{5}{15} \\\\ &= \\boxed{" + parseFloat((5/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(4) + f(5) \\\\ &= \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{9}{15} \\\\ &= \\boxed{" + parseFloat((9/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(3) + f(4) + f(5) \\\\ &= \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{12}{15} \\\\ &= \\boxed{" + parseFloat((12/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{14}{15} \\\\ &= \\boxed{" + parseFloat((14/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{15}{15} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\geq " + x + ") = 0 $$"
+        }
+    } else if (frmval == 21) {
+        if (x > 5 && x <= 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(6) \\\\ &= \\frac{6}{21} \\\\ &= \\boxed{" + parseFloat((6/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 4 && x <= 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(5) + f(6) \\\\ &= \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{11}{21} \\\\ &= \\boxed{" + parseFloat((3/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 3 && x <= 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(4) + f(5) + f(6) \\\\ &= \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{15}{21} \\\\ &= \\boxed{" + parseFloat((15/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 2 && x <= 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{18}{21} \\\\ &= \\boxed{" + parseFloat((18/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x > 1 && x <= 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{20}{21} \\\\ &= \\boxed{" + parseFloat((20/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x <= 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{21}{21} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x \\geq " + x + ") = 0 $$"
+        }
+    }
 
-
-
-
-
-
-
-
-
-function switchexpectedu() {
-    $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); 
+    MathJax.typeset();
 }
 
-function switchvarianceu() {
-    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); 
-}
+function compprobfrml5() {
+    $("#explanation").show();
+    
+    var frmval = document.getElementById('formulaval').value
+    var x = document.getElementById('probvalfrml').value
+    var ans = x/frmval
+    
+    if (frmval == 3) {
+        if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(2) \\\\ &= \\frac{1}{3} \\\\ &= \\boxed{" + parseFloat((1/3).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) \\\\ &= \\frac{1}{3} + \\frac{2}{3} \\\\ &= \\frac{3}{3} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (frmval == 6) {
+        if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(3) \\\\ &= \\frac{3}{6} \\\\ &= \\boxed{" + 3/6 + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) \\\\ &= \\frac{2}{6} + \\frac{3}{6} \\\\ &= \\frac{5}{6} \\\\ &= \\boxed{" + parseFloat((5/6).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) \\\\ &= \\frac{1}{6} + \\frac{2}{6} + \\frac{3}{6} \\\\ &= \\frac{6}{6} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (frmval == 10) {
+        if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(4) \\\\ &= \\frac{4}{10} \\\\ &= \\boxed{" + 4/10 + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(3) + f(4) \\\\ &= \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{3}{10} \\\\ &= \\boxed{" + 7/10 + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) + f(4) \\\\ &= \\frac{2}{10} + \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{6}{10} \\\\ &= \\boxed{" + 9/10 + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) + f(4) \\\\ &= \\frac{1}{10} + \\frac{2}{10} + \\frac{3}{10} + \\frac{4}{10} \\\\ &= \\frac{10}{10} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (frmval == 15) {
+        if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(5) \\\\ &= \\frac{5}{15} \\\\ &= \\boxed{" + parseFloat((5/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(4) + f(5) \\\\ &= \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{9}{15} \\\\ &= \\boxed{" + 9/15 + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(3) + f(4) + f(5) \\\\ &= \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{12}{15} \\\\ &= \\boxed{" + 12/15 + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{14}{15} \\\\ &= \\boxed{" + parseFloat((14/15).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) \\\\ &= \\frac{1}{15} + \\frac{2}{15} + \\frac{3}{15} + \\frac{4}{15} + \\frac{5}{15} \\\\ &= \\frac{15}{15} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x > " + x + ") = 0 $$"
+        }
+    } else if (frmval == 21) {
+        if (x >= 5 && x < 6) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(6) \\\\ &= \\frac{6}{21} \\\\ &= \\boxed{" + parseFloat((6/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 4 && x < 5) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(5) + f(6) \\\\ &= \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{11}{21} \\\\ &= \\boxed{" + parseFloat((11/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 3 && x < 4) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(4) + f(5) + f(6) \\\\ &= \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{15}{21} \\\\ &= \\boxed{" + parseFloat((15/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 2 && x < 3) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{18}{21} \\\\ &= \\boxed{" + parseFloat((18/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x >= 1 && x < 2) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{20}{21} \\\\ &= \\boxed{" + parseFloat((20/21).toFixed(2)) + "}   \\end{align} $$"
+        } else if (x < 1) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + x + ") &= f(1) + f(2) + f(3) + f(4) + f(5) + f(6) \\\\ &= \\frac{1}{21} + \\frac{2}{21} + \\frac{3}{21} + \\frac{4}{21} + \\frac{5}{21} + \\frac{6}{21} \\\\ &= \\frac{21}{21} \\\\ &= \\boxed{" + 1 + "}   \\end{align} $$"
+        } else {
+            document.getElementById("output").innerHTML = "$$ P(x > " + x + ") = 0 $$"
+        }
+    }
 
-function switchprobabilityu() {
-    $("#uniformprobability").show(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); 
+    MathJax.typeset();
 }
 
 
@@ -861,8 +2214,6 @@ function compbinomial() {
         compbinomialexpected()
     } else if (binomialtype == "variance") {
         compbinomialvariance()
-    } else if (binomialtype == "standard") {
-        compbinomialstandard()
     } else {
         compbinomialprob()
     }
@@ -921,16 +2272,6 @@ function compbinomialvariance() {
     var ans = trials*prob*(1-prob)
     
     document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ $$ \\sigma = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-}
-
-function compbinomialstandard() {
-    $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 &= np(1-p) $$ $$ \\sigma = \\sqrt{\\text{Var}(x)} $$"
-    var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(trials*prob*(1-prob))).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2639,6 +3980,64 @@ function exampleexpected2(){
     rows=4
 }
 
+function examplefrequency(){
+    $("#row3f").show(); $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); 
+    $("#row7f").hide(); $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
+    $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
+    $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide(); 
+    document.getElementById('x1f').value="1"
+    document.getElementById('x2f').value="2"
+    document.getElementById('x3f').value="3"
+    document.getElementById('x4f').value=""
+    document.getElementById('x5f').value=""
+    document.getElementById('x6f').value=""
+    document.getElementById('x7f').value=""
+    document.getElementById('x8f').value=""
+    document.getElementById('x9f').value=""
+    document.getElementById('x10f').value=""
+    document.getElementById('f1f').value="40"
+    document.getElementById('f2f').value="60"
+    document.getElementById('f3f').value="20"
+    document.getElementById('f4f').value=""
+    document.getElementById('f5f').value=""
+    document.getElementById('f6f').value=""
+    document.getElementById('f7f').value=""
+    document.getElementById('f8f').value=""
+    document.getElementById('f9f').value=""
+    document.getElementById('f10f').value=""
+    document.getElementById('probvalf').value="2"
+    rowsf=3
+}
+
+function examplefrequency2(){
+    $("#row3f").show(); $("#row4f").show(); $("#row5f").hide(); $("#row6f").hide(); 
+    $("#row7f").hide(); $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
+    $("#make2f").hide(); $("#make3f").hide(); $("#make4f").show(); $("#make5f").hide();
+    $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
+    document.getElementById('x1f').value="1"
+    document.getElementById('x2f').value="2"
+    document.getElementById('x3f').value="3"
+    document.getElementById('x4f').value="4"
+    document.getElementById('x5f').value=""
+    document.getElementById('x6f').value=""
+    document.getElementById('x7f').value=""
+    document.getElementById('x8f').value=""
+    document.getElementById('x9f').value=""
+    document.getElementById('x10f').value=""
+    document.getElementById('f1f').value="20"
+    document.getElementById('f2f').value="45"
+    document.getElementById('f3f').value="80"
+    document.getElementById('f4f').value="55"
+    document.getElementById('f5f').value=""
+    document.getElementById('f6f').value=""
+    document.getElementById('f7f').value=""
+    document.getElementById('f8f').value=""
+    document.getElementById('f9f').value=""
+    document.getElementById('f10f').value=""
+    document.getElementById('probvalf').value="3"
+    rowsf=4
+}
+
 function examplevariance(){
     document.getElementById('x1v').value="3"
     document.getElementById('x2v').value="6"
@@ -2690,6 +4089,26 @@ function examplehypergeometric2(){
     document.getElementById('popsize').value = 10
     document.getElementById('popsucc').value = 3
     document.getElementById('hypval').value = 1
+}
+
+function exampleformula() {
+    document.getElementById('formulaval').value = "10"
+    document.getElementById('probvalfrml').value = 3
+}
+
+function exampleformula2() {
+    document.getElementById('formulaval').value = "6"
+    document.getElementById('probvalfrml').value = 2
+}
+
+function exampleuniform() {
+    document.getElementById('uniformval').value = "2"
+    document.getElementById('unival').value = 1
+}
+
+function exampleuniform2() {
+    document.getElementById('uniformval').value = "6"
+    document.getElementById('unival').value = 3
 }
 
 
@@ -2772,79 +4191,79 @@ function make10(){
 
 
 
-function make2v(){
-    $("#row3v").hide();
-    $("#make2v").show();
-    $("#make3v").hide();
-    rows=2
+function make2f(){
+    $("#row3f").hide();
+    $("#make2f").show();
+    $("#make3f").hide();
+    rowsf=2
 }
 
-function make3v(){
-    $("#row3v").show();
-    $("#row4v").hide();
-    $("#make2v").hide();
-    $("#make3v").show();
-    $("#make4v").hide();
-    rows=3
+function make3f(){
+    $("#row3f").show();
+    $("#row4f").hide();
+    $("#make2f").hide();
+    $("#make3f").show();
+    $("#make4f").hide();
+    rowsf=3
 }
 
-function make4v(){
-    $("#row4v").show();
-    $("#row5v").hide();
-    $("#make3v").hide();
-    $("#make4v").show();
-    $("#make5v").hide();
-    rows=4
+function make4f(){
+    $("#row4f").show();
+    $("#row5f").hide();
+    $("#make3f").hide();
+    $("#make4f").show();
+    $("#make5f").hide();
+    rowsf=4
 }
 
-function make5v(){
-    $("#row5v").show();
-    $("#row6v").hide();
-    $("#make4v").hide();
-    $("#make5v").show();
-    $("#make6v").hide();
-    rows=5
+function make5f(){
+    $("#row5f").show();
+    $("#row6f").hide();
+    $("#make4f").hide();
+    $("#make5f").show();
+    $("#make6f").hide();
+    rowsf=5
 }
 
-function make6v(){
-    $("#row6v").show();
-    $("#row7v").hide();
-    $("#make5v").hide();
-    $("#make6v").show();
-    $("#make7v").hide();
-    rows=6
+function make6f(){
+    $("#row6f").show();
+    $("#row7f").hide();
+    $("#make5f").hide();
+    $("#make6f").show();
+    $("#make7f").hide();
+    rowsf=6
 }
 
-function make7v(){
-    $("#row7v").show();
-    $("#row8v").hide();
-    $("#make6v").hide();
-    $("#make7v").show();
-    $("#make8v").hide();
-    rows=7
+function make7f(){
+    $("#row7f").show();
+    $("#row8f").hide();
+    $("#make6f").hide();
+    $("#make7f").show();
+    $("#make8f").hide();
+    rowsf=7
 }
 
-function make8v(){
-    $("#row8v").show();
-    $("#row9v").hide();
-    $("#make7v").hide();
-    $("#make8v").show();
-    $("#make9v").hide();
-    rows=8
+function make8f(){
+    $("#row8f").show();
+    $("#row9f").hide();
+    $("#make7f").hide();
+    $("#make8f").show();
+    $("#make9f").hide();
+    rowsf=8
 }
 
-function make9v(){
-    $("#row9v").show();
-    $("#row10v").hide();
-    $("#make8v").hide();
-    $("#make9v").show();
-    $("#make10v").hide();
-    rows=9
+function make9f(){
+    $("#row9f").show();
+    $("#row10f").hide();
+    $("#make8f").hide();
+    $("#make9f").show();
+    $("#make10f").hide();
+    rowsf=9
 }
 
 function make10v(){
     $("#row10v").show();
     $("#make9v").hide();
     $("#make10v").show();
-    rows=10
+    rowsf=10
 }

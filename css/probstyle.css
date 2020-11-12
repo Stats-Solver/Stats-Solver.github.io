@@ -130,6 +130,17 @@ footer {
     display: inline;
 }
 
+.hypinput6{
+    width: 30px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+    display: inline;
+}
+
 /* Style all font awesome icons */
 .fa {
   padding: 0px;
@@ -144,6 +155,6 @@ footer {
 }
 
 .dropdown-menu {
-    max-height: 390px;
+    max-height: 330px;
     overflow-y: auto;
 }

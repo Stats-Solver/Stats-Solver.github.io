@@ -284,10 +284,10 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-         document.getElementById("output").innerHTML = " $$ \\text{Arranged Data: }"+eachsort+"$$ $$ \\text{Take the middle value.}$$ $$\\text{Median} = \\boxed{" + valm + "} $$"
+         document.getElementById("output").innerHTML = " $$ \\text{Arranged Data: }"+eachsort+"$$ $$\\text{Median} = \\boxed{" + valm + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: }"+eachsort+"$$ $$ \\text{Average the two middle values.}$$ $$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: }"+eachsort+"$$ $$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
     }
     MathJax.typeset();
 }
@@ -339,12 +339,12 @@ function mode(){
     
    
     if (each.length == themodes.length) {
-        document.getElementById("output").innerHTML = "<table>" + table + "</table> $$\\boxed{\\text{No Mode}}$$"
+        document.getElementById("output").innerHTML = "$$\\boxed{\\text{No Mode}}$$"
     } else if (themodes.length == 1) {
-        document.getElementById("output").innerHTML = "<table>" + table + "</table> $$\\text{Mode} = \\boxed{" + themodes + "}$$"
+        document.getElementById("output").innerHTML = "$$\\text{Mode} = \\boxed{" + themodes + "}$$"
     }
     else {
-        document.getElementById("output").innerHTML = "<table>" + table + "</table> $$\\text{Modes} = \\boxed{" + themodes + "}$$"
+        document.getElementById("output").innerHTML = "$$\\text{Modes} = \\boxed{" + themodes + "}$$"
     }
     MathJax.typeset();
 
@@ -391,10 +391,10 @@ function calcper(){
         var suff = "th"
     }
     if (indxint){
-        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Average values in positions }" + indxval + " \\text{ and } " + indxvalplus1 + "  $$ $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Round up to take value in position }" + indxrnd + " $$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Arranged Data: } "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
     }
     MathJax.typeset();
 }
@@ -699,7 +699,7 @@ function zscores(){
     var ansstd = Math.sqrt(ansvar);
     var ansz = (ansstd / mn) * 100;
     
-    var zval = [' <option>Choose</option>'];
+    var zval = [];
     for (let i=0; i<len; i++){
         zval += ' <option value='+each[i]+'>'+each[i]+'</option>'
     }
@@ -761,7 +761,7 @@ function calcchebyshev(){
     
     
     if (Math.abs(zminans) == zmaxans) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$\\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 \\\\ &= 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+"\\\\ &=\\boxed{"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%} \\end{align}$$ At least $"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\% $ of the data values must be between $"+min+"$ and $"+max+"$.<br><br>"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$\\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 \\\\ &= 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+" \\end{align}$$ At least $"+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\% $ of the data values must be between $"+min+"$ and $"+max+"$.<br><br>"
     } else {
         document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
     }

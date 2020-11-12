@@ -1,5 +1,7 @@
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
 
+$("#switchhypothesis").hide(); $("#switchtype").show();
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })

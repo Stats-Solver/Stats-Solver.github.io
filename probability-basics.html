@@ -131,8 +131,8 @@
                     <option value="one">1</option>
                     <option value="two">2</option>
                     <option value="three">3</option>
-                    <!--<option value="four">4</option>
-                    <option value="five">5</option>-->
+                    <option value="four">4</option>
+                    <option value="five">5</option>
                 </select>
                 <select id="exptimes2" class="form-control" onchange="">
                     <option value="choose">Times</option>
@@ -248,16 +248,37 @@
           
           </div>
       
+      <div class="container mb-2" id="conditional">
+        <table>
+          <tr>
+            <td>$P(A \cap B)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probaib2"></td>
+            <td>&nbsp; &nbsp;</td>
+            <td>$P($<select id="probtype3" class="hypinput6 probtype" onchange=""> <option value="B">B</option> <option value="A"> A </option></select>$)$</td>
+            <td>$=$</td>
+            <td><input class = "prob" type="text" id="probb3"></td>
+            
+        </table> 
+          
+          <div class = "text-center mt-2">
+            <input type="checkbox" id="indep" name="vehicle1" value="Bike" onchange = "independent()">
+            <label for="indep">$\text{Independent}$</label>
+        </div>
+          
+          </div>
+      
+      
       <div class="container mb-2" id="intersection">
         <table>
           <tr>
-            <td>$P($<select id="probtype1" class="hypinput1 probtype" onchange="switchintersect()"> <option value="AgivB">A | B</option> <option value="A"> A </option></select><span id="probtype1a">A</span>$)$</td>
+            <td>$P($<select id="probtype1" class="hypinput6 probtype" onchange="switchintersect()"> <option value="A">A</option> <option value="B">B</option></select><span id="probtype1a">A</span>$)$</td>
             <td>$=$</td>
             <td><input class = "prob" type="text" id="iproba"></td>
               
             <td>&nbsp; &nbsp;</td>
             
-              <td>$P($<span id="probtype2">B</span>$)$</td>
+              <td>$P($<span id="probtype2">B | A</span>$)$</td>
             <td>$=$</td>
             <td><input class = "prob" type="text" id="iprobb"></td>
                 </tr>
@@ -270,20 +291,7 @@
           
           </div>
       
-      <div class="container mb-3" id="conditional">
-        <table>
-          <tr>
-            <td>$P($<select id="probtype3" class="hypinput0 probtype" onchange=""> <option value="B">B</option> <option value="A"> A </option></select>$)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probb3"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td>$P(A \cap B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaib2"></td>
-            
-        </table> 
-          
-          </div>
+      
       
       <div class="container mb-3" id="bayes">
         <table>

@@ -163,6 +163,12 @@
                 <td class="statistics" style="text-align:left"><select id="alpha" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
             </tr>   
             </table> 
+          
+          <div class = "text-center mt-2">
+            <input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "mutually()">
+            <label for="mutexc">$\text{Matched Samples}$</label>
+        </div>
+          
         </div>
          
           <div class="container center">
@@ -247,8 +253,8 @@
       
           <footer id="footer">
               <div class="container">
-                  <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Switch to Hypothesis Testing</span>
-                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Switch to Confidence Intervals</span>
+                  <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Hypothesis Testing</span>
+                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Confidence Intervals</span>
                   <!--<p>Related: <a href="hypothesis.html">Hypothesis Testing Calculator</a> </p>-->
                 <hr>
             </div>
