@@ -1323,7 +1323,7 @@ function tstat(){
     var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = " $$ \\begin{align} \\text{t-Statistic: } t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$" + tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$  \\text{Estimated Standard Deviation of } b_1\\text{:} $$ $$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{t-Statistic: } t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$" + tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
     
     
     
