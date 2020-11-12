@@ -949,11 +949,11 @@ function calccovpop(){
     var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
     var anscov = sumeacheach2 / len;
     if (anscov > 0){
-        var interpret = "<b>Interpretation:</b> There is a <u>positive linear relationship</u> between x and y."
+        var interpret = "Interpretation: There is a positive linear relationship between x and y."
     } else if (anscov < 0){
-        var interpret = "<b>Interpretation:</b> There is a <u>negative linear relationship</u> between x and y."
+        var interpret = "Interpretation: There is a negative linear relationship between x and y."
     } else {
-        var interpret = "<b>Interpretation:</b> There is <u>no relationship</u> between x and y."
+        var interpret = "Interpretation: There is no relationship between x and y."
     }
     var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$x - \\mu_x$" + "</td>" + "<td>" + "$y - \\mu_y$" + "</td>"+ "<td>" + "$(x - \\mu_x)(y - \\mu_y)$" + "</td>" + "</tr>";
     var rows = len;
@@ -968,7 +968,7 @@ function calccovpop(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> $$ \\sigma_{xy} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"} = \\boxed{"+parseFloat(anscov.toFixed(2))+"}  $$"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> $$ \\sigma_{xy} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"} = \\boxed{"+parseFloat(anscov.toFixed(2))+"}  $$" + interpret
     MathJax.typeset();
 }
 
@@ -1178,7 +1178,7 @@ function calccorpop(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$$\\Sigma$$" + "</td>" + "<td>"+"$$-$$"+"</td>" + "<td>$$"+Math.round(sumeachminus)+"$$</td>"+ "<td>$$"+Math.round(sumeach2minus)+"$$</td>" +"<td>$$"+sumeachminus2.toFixed(2)+"$$</td>"+"<td>$$"+sumeach2minus2.toFixed(2)+"$$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} \\\\ &= \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} \\\\ &= \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"}  \\end{align} $$" + interpret
     MathJax.typeset();
 }
 

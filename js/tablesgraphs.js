@@ -834,6 +834,8 @@ function calcbar(){
           chart.draw(data, options);
         }
     }
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -891,6 +893,7 @@ function calcpie(){
         chart.draw(data);
       }
     
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -3148,7 +3151,7 @@ function calcrow1(){
         h += len2
     } 
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3354,7 +3357,7 @@ function calcrow2(){
         h += cols
     }
 
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3605,7 +3608,7 @@ function calcrow3(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3781,7 +3784,7 @@ function calcrow4(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3941,7 +3944,7 @@ function calccol1(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4163,7 +4166,7 @@ function calccol2(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4430,7 +4433,7 @@ function calccol3(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4621,7 +4624,7 @@ function calccol4(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
