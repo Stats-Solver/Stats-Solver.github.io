@@ -51,7 +51,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/statssolver_logo5.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -99,7 +99,7 @@
       <hr>
           </div>
       
-      <div class="container center">
+      <div class="container center" id = "xvalcontainer">
           <div class="row justify-content-center">
         <div class="col-12 col-md-5 mb-3">
             <input id="values" type="text" class="form-control" placeholder="Enter X Values (separated by commas)">
@@ -186,9 +186,9 @@
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
                 <option value="mean">Mean</option>
-                <!--<option value="meanpop">Population Mean</option>-->
+                <!--<option value="meanpop">Population Mean</option>
                 <option value="geometric">Geometric Mean</option>
-                <option value="weighted">Weighted Mean</option>
+                <option value="weighted">Weighted Mean</option>-->
                 <option value="median">Median</option>
                 <option value="mode">Mode</option>
                 <option value="percentiles">Percentiles</option>
@@ -203,7 +203,7 @@
                 <option value="zscores">z-Scores</option>
                 <option value="chebyshev">Chebyshev's Theorem</option>
                 <option value="empirical">Empirical Rule</option>
-                <!--<option value="fivenumber">Five-Number Summary</option>-->
+                <option value="fivenumber">Five-Number Summary</option>
                 <option value="covariance">Covariance</option>
                 <!--<option value="covariancepop">Population Covariance</option>-->
                 <option value="correlation">Correlation Coefficient</option>

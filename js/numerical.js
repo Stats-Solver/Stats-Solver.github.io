@@ -72,6 +72,7 @@ function avg(input){
 }
 
 function showthings(){
+     $("#xvalcontainer").show();
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide(); $("#label4").hide();
     var x = document.getElementById("stat").value;
@@ -740,7 +741,7 @@ function calcz(){
 }
 
 function chebyshev(){
-    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show(); $("#values").hide();
+    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show(); $("#xvalcontainer").hide();
 }
 
 function calcchebyshev(){
@@ -771,7 +772,7 @@ function calcchebyshev(){
 }
 
 function empirical(){
-    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show(); $("#values").hide();
+    $("#chebyshev").show(); $("#label1").hide(); $("#label2").hide(); $("#label3").show(); $("#xvalcontainer").hide();
 }
 
 function calcempirical(){

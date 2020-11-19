@@ -81,6 +81,6 @@ footer {
 }
 
 .dropdown-menu {
-    max-height: 270px;
+    max-height: 300px;
     overflow-y: auto;
 }

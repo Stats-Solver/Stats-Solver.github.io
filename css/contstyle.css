@@ -38,6 +38,14 @@ footer {
     width: 50px;
 }
 
+.combperm2{
+    width: 60px;
+}
+
+.combperm3{
+    width: 40px;
+}
+
 .button {
     border-radius: 6px;
     padding: 6px 6px;
@@ -87,6 +95,46 @@ footer {
     text-align-last:center;
 }
 
+.hypinput3{
+    width: 70px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+}
+
+.hypinput4{
+    width: 80px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+}
+
+.hypinput5{
+    width: 40px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+}
+
+.hypinput6{
+    width: 60px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+}
+
 /* Style all font awesome icons */
 .fa {
   padding: 0px;
@@ -101,6 +149,6 @@ footer {
 }
 
 .dropdown-menu {
-    max-height: 270px;
+    max-height: 300px;
     overflow-y: auto;
 }

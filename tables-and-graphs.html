@@ -45,7 +45,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/statssolver_logo5.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -129,7 +129,18 @@
       
       
       
-      
+      <div class="container"> 
+          <div class="row justify-content-center">
+                <div id="cumulative" class="col-6 col-md-2  mb-3">
+                    <select id="cumtype" class="form-control">
+                        <option value="choose">Choose</option>
+                        <option value="frequency">Frequency</option>
+                        <option value="relative">Relative Frequency</option>
+                        <option value="percent">Percent Frequency</option>
+                    </select>
+                </div>
+            </div>
+        </div>
       
       
       
@@ -148,11 +159,11 @@
                 <option value="bar">Bar Chart</option>
                 <option value="pie">Pie Chart</option>
                 <option value="histogram">Histogram</option>
-                <!--<option value="cumfrequency">Cumulative Distributions</option>
-                <option value="boxplot">Box Plot</option>-->
-                <option value="cumfrequency">Cumulative Frequency Distribution</option>
+                <option value="cumulative">Cumulative Distributions</option>
+                <option value="boxplot">Box Plot</option>
+                <!--<option value="cumfrequency">Cumulative Frequency Distribution</option>
                 <option value="cumrelative">Cumulative Relative Frequency Distribution</option>
-                <option value="cumpercent">Cumulative Percent Frequency Distribution</option>
+                <option value="cumpercent">Cumulative Percent Frequency Distribution</option>-->
                 <option value="crosstabulation">Crosstabulation</option>
                 <option value="rowpercent">Row Percentages</option>
                 <option value="colpercent">Column Percentages</option>
@@ -168,19 +179,6 @@
         </div>
 
       
-      
-      <div class="container"> 
-          <div class="row justify-content-center">
-                <div id="cumulative" class="col-6 col-md-2  mb-3">
-                    <select id="cumtype" class="form-control">
-                        <option value="choose">Choose One</option>
-                        <option value="frequency">Frequency</option>
-                        <option value="relative">Relative Frequency</option>
-                        <option value="percent">Percent Frequency</option>
-                    </select>
-                </div>
-            </div>
-        </div>
       
       <div class = "text-center" id = "label1">
             <span class="examplelink" onclick="examplexvalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplexvalues2()">Example 2</span>

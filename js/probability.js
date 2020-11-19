@@ -711,7 +711,7 @@ function compbayes() {
     var probbgiva2 = document.getElementById("probbgiva2").value;
     var ans1 = (proba1 * probbgiva1) / (proba1 * probbgiva1 + proba2 * probbgiva2);
     var ans2 = (proba2 * probbgiva2) / (proba1 * probbgiva1 + proba2 * probbgiva2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A_1 \\mid B) &= \\frac{" + proba1 + "(" + probbgiva1 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= " + ans1.toFixed(2) + "\\end{align} $$ $$ \\begin{align} P(A_2 \\mid B) &= \\frac{" + proba2 + "(" + probbgiva2 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= " + ans2.toFixed(2) + "\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A_1 \\mid B) &= \\frac{" + proba1 + "(" + probbgiva1 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= \\boxed{" + ans1.toFixed(2) + "} \\end{align} $$ $$ \\begin{align} P(A_2 \\mid B) &= \\frac{" + proba2 + "(" + probbgiva2 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= \\boxed{" + ans2.toFixed(2) + "} \\end{align} $$"
     MathJax.typeset();
 }
 

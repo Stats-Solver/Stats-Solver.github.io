@@ -64,7 +64,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/statssolver_logo5.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -183,12 +183,12 @@
           <div class = "text-center mt-2" id="snormalprob">
             $P(z$ <select id="probtype2" class="hypinput1 probtype" onchange="snormalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option> </select> <input class = "combperm" type="text" id="snormval">$)$ 
             
-            <!-- &nbsp;
+             &nbsp;
               
             <svg onclick="switchstandardarea()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg> -->
+            </svg> 
               
         </div>  
           <div class = "text-center mt-2"  id="snormalbetween">
@@ -202,7 +202,19 @@
         </div> 
         
           <div class = "text-center mt-2" id="snormalarea">
-            $\text{Area to the }$<select id="areatype" class="hypinput2 probtype" onchange="">  <option value="left"> left </option> <option value="right"> right </option> </select>$\text{ of } z \text{ is } $<input class = "combperm" type="text" id="areaval"> 
+            $\text{Area to the }$<select id="areatype" class="hypinput2 probtype" onchange="switchsnormal1()">  <option value="left"> left </option> <option value="right"> right </option> </select>$\text{ of } z \text{ is } $<input class = "combperm2" type="text" id="areaval"> 
+            
+             &nbsp;
+              
+            <svg onclick="switchstandardprob()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg> 
+              
+        </div> 
+          
+          <div class = "text-center mt-2" id="snormalarea2">
+            $\text{Area }$<select id="areatype2" class="hypinput4 probtype" onchange="switchsnormal2()">  <option value="left"> left </option> <option value="right"> right </option> <option value="between" selected> between </option></select> <select id="areatype21" class="hypinput5 probtype" onchange="">  <option value="negz"> -z </option> <option value="zero"> 0 </option></select> $\text{and}$ <select id="areatype22" class="hypinput5 probtype" onchange="">  <option value="posz"> z </option> <option value="zero"> 0 </option> </select> $\text{is}$ <input class = "combperm2" type="text" id="areaval"> 
             
              &nbsp;
               
@@ -232,7 +244,16 @@
           
           <table class = "mt-2" id="normalprob">
             <tr>
-            <td>$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option> </select> <input class = "combperm" type="text" id="normalval">$)$ </td>
+            <td>$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option> </select> <input class = "combperm" type="text" id="normalval">$)$ 
+            
+            &nbsp;
+              
+            <svg onclick="switchnormalarea()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>   
+            
+            </td>
             </tr>
         </table>  
           
@@ -244,8 +265,94 @@
           <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
         </svg>
               </button>    
+        </div>
+          
+          <div class = "text-center mt-2" id="normalarea">
+            $x \text{ is in the }$<select id="areatypen" class="hypinput6 probtype" onchange=""> <option value="lower"> lower </option> <option value="upper"> upper </option>  </select> <input class = "combperm3" type="text" id="areavaln"> % 
+            
+             &nbsp;
+              
+            <svg onclick="switchnormalprob()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg> 
+              
         </div> 
+          
           </div>
+      
+      
+      
+      
+      
+      
+      
+      <div class="container mb-3" id="approximation">
+          
+        <!--<table>
+          <tr>
+            <td style="text-align:right">$\text{Number of Trials:}$</td>
+            <td>$n = $</td>
+            <td><input class = "combperm" type="text" id="trials"></td>
+            </tr>
+            <tr>
+            <td style="text-align:right">$\text{Probability of Success:}$</td>
+            <td>$p = $</td>
+            <td><input class = "combperm" type="text" id="psuccess"></td>
+            </tr>
+        </table> -->
+          
+          <table>
+          <tr>
+            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
+            <td>$ = $</td>
+            <td><input class = "combperm" type="text" id="trials"></td>
+            <td>&nbsp; &nbsp;</td>
+            <td data-toggle="tooltip" data-placement="top" title="Probability of Success">$ p $</td>
+            <td>$ = $</td>
+            <td><input class = "combperm" type="text" id="psuccess"></td>
+            </tr>
+        </table>  
+          
+          <div class = " text-center mt-2" id = "approxmean">
+            $\mu$
+              
+              &nbsp;
+              
+            <svg onclick="switchstandard()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div> 
+          
+          <div class = " text-center mt-2" id = "approxstandard">
+            $\sigma$
+              
+              &nbsp;
+              
+            <svg onclick="switchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div> 
+          
+          <div class = " text-center mt-2" id = "approxprobability">
+            $P(x$ <select id="probtypea" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="approxval">)
+            
+            &nbsp;
+              
+            <svg onclick="switchmean()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div>
+          
+          </div> 
+      
+      
+      
+      
+      
       
       
       
@@ -275,6 +382,133 @@
         </div> 
           </div>
       
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container mb-3" id="tdistribution"> 
+          <table>
+          <tr>
+            <td data-toggle="tooltip" data-placement="top" title="Degrees of Freedom">$ df $</td>
+            <td>$ = $</td>
+            <td><input class = "combperm3" type="text" id="degfree"></td>
+            </tr>
+        </table> 
+          <div class = "text-center mt-2" id="tdistprob">
+             <select id="probtypet" class="hypinput6 probtype" onchange="snormalprob()">  <option value="right"> Right </option> <option value="left"> Left </option>  </select> $\text{ of } t=$ <input class = "combperm2" type="text" id="tdistval">
+            
+             &nbsp;
+              
+            <svg onclick="switchtdistarea()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg> 
+              
+        </div>  
+          <div class = "text-center mt-2"  id="tdistprobbetween">
+            $P($ <input class = "combperm" type="text" id="tdistval1"> <select id="probtype2b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype2b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select> <input class = "combperm" type="text" id="tdistval2">$)$
+              <button id = "switch1" class="btn btn-outline-primary" onclick="snormalback()" id="snormalback">
+              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+          <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
+          <path fill-rule="evenodd" d="M2.5 8a.5.5 0 0 1 .5-.5h10.5a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
+        </svg>
+              </button>    
+        </div> 
+        
+          <div class = "text-center mt-2" id="tdistprobarea">
+            <select id="areatypet" class="hypinput6 probtype" onchange="switchsnormal1()">  <option value="upper"> Upper </option> <option value="lower"> Lower </option> </select>$\text{ tail area is }$<select id="areat" class="hypinput2 probtype" onchange="switchsnormal1()">  <option value=".20"> .20 </option> <option value=".10"> .10 </option><option value=".05" selected> .05 </option> <option value=".025"> .025 </option><option value=".01"> .01 </option> <option value=".005"> .005 </option> </select>
+            
+             &nbsp;
+              
+            <svg onclick="switchtdistprob()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg> 
+              
+        </div> 
+          
+          <div class = "text-center mt-2" id="tdistprobarea2">
+            $\text{Area }$<select id="areatypet2" class="hypinput4 probtype" onchange="switchsnormal2()">  <option value="left"> left </option> <option value="right"> right </option> <option value="between" selected> between </option></select> <select id="areatypet21" class="hypinput5 probtype" onchange="">  <option value="negz"> -z </option> <option value="zero"> 0 </option></select> $\text{and}$ <select id="areatype22" class="hypinput5 probtype" onchange="">  <option value="posz"> z </option> <option value="zero"> 0 </option> </select> $\text{is}$ <input class = "combperm2" type="text" id="areavalt22"> 
+            
+             &nbsp;
+              
+            <svg onclick="switchtdistprob()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg> 
+              
+        </div> 
+          
+        </div>
+      
+      
+      
+      
+      
+      <div class="container mb-3" id="chidistribution"> 
+          <table>
+          <tr>
+            <td data-toggle="tooltip" data-placement="top" title="Degrees of Freedom">$ df $</td>
+            <td>$ = $</td>
+            <td><input class = "combperm3" type="text" id="degfreec"></td>
+            </tr>
+        </table> 
+          
+          <div class = "text-center mt-2" id="tdistprobarea">
+            $\text{Upper tail area is }$<select id="areac" class="hypinput2 probtype" onchange="switchsnormal1()">  <option value=".995"> .995 </option> <option value=".99"> .99 </option><option value=".975"> .975 </option> <option value=".95"> .95 </option><option value=".90"> .90 </option> <option value=".10"> .10 </option> <option value=".05" selected> .05 </option> <option value=".025"> .025 </option><option value=".01"> .01 </option> <option value=".005"> .005 </option> </select>
+              
+        </div> 
+          
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      <div class="container mb-3" id="fdistribution"> 
+          <table>
+          <tr>
+            <td data-toggle="tooltip" data-placement="top" title="Numerator Degrees of Freedom">$ \text{Num. } df $</td>
+            <td>$ = $</td>
+            <td><input class = "combperm3" type="text" id="numdf"></td>
+            <td>&nbsp; &nbsp;</td>
+            <td data-toggle="tooltip" data-placement="top" title="Denominator Degrees of Freedom">$ \text{Den. } df $</td>
+            <td>$ = $</td>
+            <td><input class = "combperm3" type="text" id="dendf"></td>
+            </tr>
+        </table> 
+          
+          <div class = "text-center mt-2" id="tdistprobarea">
+            $\text{Upper tail area is }$<select id="areaf" class="hypinput2 probtype" onchange="switchsnormal1()">  <option value=".10"> .10 </option><option value=".05" selected> .05 </option> <option value=".025"> .025 </option><option value=".01"> .01 </option>  </select>
+              
+        </div> 
+          
+        </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
@@ -283,10 +517,11 @@
                     <option value="uniform">Uniform Distribution</option>
                     <option value="snormal">Standard Normal Distribution</option>
                     <option value="normal">Normal Distribution</option>
+                    <option value="approximation">Approximation of Binomial</option>
                     <option value="exponential">Exponential Distribution</option>
-                    <!--<option value="student">Student's t-Distribution</option>
-                    <option value="fdist">F Distribution</option>
-                    <option value="chisquare">Chi-Square Distribution</option>-->
+                    <option value="tdistribution">Student's t-Distribution</option>
+                    <option value="chisquare">Chi-Square Distribution</option>
+                    <option value="fdistribution">F-Distribution</option>
                 </select>
                 </div>
                 <div class="col-4 col-md-2">
@@ -309,6 +544,22 @@
       
       <div class = "text-center mt-2" id = "exponentialexamples">
             <span class="examplelink" onclick="exampleexponential()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexponential2()">Example 2</span>
+        </div>
+      
+      <div class = "text-center mt-2" id = "tdistexamples">
+            <span class="examplelink" onclick="exampletdist()">Example 1</span> &bull; <span class="examplelink" onclick="exampletdist2()">Example 2</span>
+        </div>
+      
+      <div class = "text-center mt-2" id = "approxexamples">
+            <span class="examplelink" onclick="exampleapprox()">Example 1</span> &bull; <span class="examplelink" onclick="exampleapprox2()">Example 2</span>
+        </div>
+      
+      <div class = "text-center mt-2" id = "fdistexamples">
+            <span class="examplelink" onclick="examplefdist()">Example 1</span> &bull; <span class="examplelink" onclick="examplefdist2()">Example 2</span>
+        </div>
+      
+      <div class = "text-center mt-2" id = "chiexamples">
+            <span class="examplelink" onclick="examplechi()">Example 1</span> &bull; <span class="examplelink" onclick="examplechi2()">Example 2</span>
         </div>
       
     <div class="container">

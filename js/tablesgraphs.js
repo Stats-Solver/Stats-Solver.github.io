@@ -158,7 +158,9 @@ function showthings(){
         trendline()
     } else if (x == "timeplot") {
         timeplot()
-    }   
+    } else if (x == "cumulative") {
+        cumulative()
+    }  
 }
 
 function stat(){
@@ -181,6 +183,8 @@ function stat(){
         histogram()
     } else if (x == "boxplot") {
         boxplot()
+    } else if (x == "cumulative") {
+        calccum()
     } else if (x == "cumfrequency") {
         cumfrequency()
     } else if (x == "cumrelative") {
