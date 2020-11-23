@@ -112,7 +112,7 @@
       
       
       
-      <div class="container">
+      <div class="container" id="hypothesis">
         <table>
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
@@ -145,19 +145,75 @@
           </tr>
         </table>  
           </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container" id="type2error">
+        <div class = "container">
+            <h5 class="text-center text-primary mb-3">Type II Error</h5>
+        </div>
+        <table>
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
+            <td class="statistics">$\mu$</td> 
+            <td class="statistics"> <select id="tailt" class="hypinput1" onchange="tailsignst()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+            <td class="statistics"> <input type="text" style="width:40px;" id="muknott" class="hypinput2" oninput="muknotvalt()" placeholder=""></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="sizet" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Population Standard Deviation" id="sd1t"> &#963; </td>
+            <td class="statistics" id="sd2t"> = </td>
+            <td class="statistics" id="sd3t"><input type="text" style="width:50px;" id="stdevt" class="hypinput2"></td>
+
+          </tr>
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
+            <td class="statistics"> $\mu$</td>
+            <td class="statistics"> <span id = "lesst"> < </span> <span id = "greatert"> > </span> <span id = "notequalt"> &ne; </span></td>
+            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvaluet">$\mu_0$</span></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Population Mean"><span id = "samplestat">$\mu$</span></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="mut" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics" style="text-align:left"><select id="alphat" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
+          </tr>
+        </table>  
+          </div>
          
+      
+      
+      
+      
+      
+      
+      
+      
           <div class="container center">
           <div class="row justify-content-center">
         <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "hyptest" class="button btn-outline-primary" onclick="hyptest()">Solve</button>
+            <button id = "hyptest" class="button btn-outline-primary" onclick="solve()">Solve</button>
             <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
               <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
         </div>
           </div>
               </div>
       
-      <div class = "text-center mt-2">
+      <div class = "text-center mt-2" id = "hypexamples">
             <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+        </div>
+      
+      <div class = "text-center mt-2" id = "typeexamples">
+            <span class="examplelink" onclick="example3()">Example 1</span> &bull; <span class="examplelink" onclick="example4()">Example 2</span>
         </div>
       
       
@@ -165,6 +221,13 @@
     <div class="container">
       <hr>
           </div>
+      
+      
+      
+      
+      
+      
+      <div id = "hypoutputs">
       
      <div class="container">
         <div id="output1" class="output">
@@ -188,6 +251,40 @@
         <div id="output3" class="output">
         </div>
       </div>
+      
+      </div>
+      
+      
+      
+      
+      
+      
+      <div id = "typeoutputs">
+      
+      <div class="container">
+        <div id="output4" class="output">
+        </div>
+      </div>
+      
+      
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       <div class="container mb-5" id="explanation">
       <p  class="text-center">
@@ -220,8 +317,8 @@
       
           <footer id="footer">
               <div class="container">
-                  <!--<span class="examplelink" onclick="switchtype()" id="switchtype">Type II Error</span>
-                  <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Hypothesis Testing</span>-->
+                  <span class="examplelink" onclick="switchtype()" id="switchtype">Type II Error</span>
+                  <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Hypothesis Testing</span>
                 <hr>
             </div>
           <p> 

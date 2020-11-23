@@ -1,6 +1,15 @@
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
+$("#greatert").hide(); $("#notequalt").hide();
+
+$("#typeexamples").hide(); $("#hypexamples").show();
 
 $("#switchhypothesis").hide(); $("#switchtype").show();
+
+$("#datainput").hide(); $("#valuesinput").show();
+
+$("#hypothesis").show(); $("#type2error").hide();
+
+type = "hypothesis"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -9,6 +18,34 @@ $(function () {
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
     return num.toString().match(re)[0];
+}
+
+
+
+function switchtype() {
+    type = "type2error"
+    $("#hypothesis").hide(); $("#type2error").show();
+    $("#switchtype").hide(); $("#switchhypothesis").show();
+    $("#hypoutputs").hide(); $("#typeoutputs").show();
+    $("#hypexamples").hide(); $("#typeexamples").show();
+}
+
+function switchhypothesis() {
+    type = "hypothesis"
+    $("#hypothesis").show(); $("#type2error").hide();
+    $("#switchhypothesis").hide(); $("#switchtype").show();
+    $("#hypoutputs").show(); $("#typeoutputs").hide();
+    $("#typeexamples").hide(); $("#hypexamples").show();
+}
+
+
+
+function switchdata() {
+    $("#datainput").show(); $("#valuesinput").hide();
+}
+
+function switchvalues() {
+    $("#datainput").hide(); $("#valuesinput").show();
 }
 
 var canvas = document.getElementById("myCanvas1");
@@ -57,9 +94,31 @@ function tailsigns() {
     } 
 }
 
+function tailsignst() {
+    var x = document.getElementById("tailt").value;
+    if (x == "lower"){
+        $("#lesst").show();
+        $("#greatert").hide();
+        $("#notequalt").hide();
+    } else if (x == "upper"){
+        $("#lesst").hide();
+        $("#greatert").show();
+        $("#notequalt").hide();
+    } else if (x == "two") {
+        $("#lesst").hide();
+        $("#greatert").hide();
+        $("#notequalt").show();
+    } 
+}
+
 function muknotval() {
     var x = document.getElementById("muknot").value;
     document.getElementById("muknotvalue").innerHTML = x;
+}
+
+function muknotvalt() {
+    var x = document.getElementById("muknott").value;
+    document.getElementById("muknotvaluet").innerHTML = x;
 }
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
@@ -346,6 +405,91 @@ function tinv(p, dof) {
 	
 }
 
+function solve() {
+    if (type == "hypothesis") {
+        hyptest()
+    } else if (type == "type2error") {
+        type2()
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function type2() {
+    var tail = document.getElementById("tailt").value;
+    var muknot = document.getElementById("muknott").value;
+    var size = document.getElementById("sizet").value; var sizem1 = size - 1;
+    var mu = document.getElementById("mut").value;
+    var stdev = document.getElementById("stdevt").value;
+    var alpha = document.getElementById("alphat").value;
+    
+    var zcless = (NormSInv(alpha)).toFixed(2)
+    var xbarl = zcless * (stdev / Math.sqrt(size)) + parseFloat(muknot)
+    var zl = parseFloat(((xbarl - mu) / (stdev/Math.sqrt(size))).toFixed(2))
+    var zlprob = (normalcdf(zl)).toFixed(4)
+    var betal = (1 - zlprob).toFixed(4)
+    
+    var zcgreat = (NormSInv(1-alpha)).toFixed(2)
+    var xbarg = parseFloat((zcgreat * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2))
+    var zg = parseFloat(((xbarg - mu) / (stdev/Math.sqrt(size))).toFixed(2))
+    var zgprob = (normalcdf(zg)).toFixed(4)
+    var betag = zgprob
+    
+    var zcless2 = (NormSInv(alpha/2)).toFixed(2)
+    var zcgreat2 = (NormSInv(1-alpha/2)).toFixed(2)
+    var xbarl2 = zcless2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)
+    var xbarg2 = parseFloat((zcgreat2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2))
+    var zl2 = parseFloat(((xbarl2 - mu) / (stdev/Math.sqrt(size))).toFixed(2))
+    var zg2 = parseFloat(((xbarg2 - mu) / (stdev/Math.sqrt(size))).toFixed(2))
+    var zl2prob = (normalcdf(zl2)).toFixed(4)
+    var zg2prob = (normalcdf(zg2)).toFixed(4)
+    var beta2 = (zg2prob - zl2prob).toFixed(4)
+    
+    if (tail == "lower") {
+        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless+"  $$  $$ \\bar{x} \\leq "+xbarl+"  $$ $$ \\begin{align} z &= \\frac{"+xbarl+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zl+" \\end{align} $$ $$ \\begin{align} \\beta &= P(z \\geq "+zl+") \\\\ &= 1 - P(z \\leq "+zl+") \\\\ &= 1 - "+zlprob+" \\\\ &= \\boxed{"+betal+"} \\end{align} $$ "
+    } else if (tail == "upper") {
+        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat+"  $$ $$ \\bar{x} \\geq "+xbarg+"  $$ $$ \\begin{align} z &= \\frac{"+xbarg+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zg+" \\end{align} $$ $$ \\begin{align} \\beta &= P(z \\leq "+zg+") \\\\ &= \\boxed{"+betag+"} \\end{align} $$ "
+    } else if (tail == "two") {
+        document.getElementById("output4").innerHTML = " $$ \\begin{align} \\text{Reject } H_0 \\text{ if } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless2+" \\\\ \\text{or } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat2+" \\end{align} $$  $$ \\bar{x} \\leq "+xbarl2+" \\text{ or } \\bar{x} \\geq "+xbarg2+" $$ $$ \\begin{align} z &= \\frac{"+xbarl2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zl2+" \\end{align} $$ $$ \\begin{align} z &= \\frac{"+xbarg2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zg2+" \\end{align} $$ $$ \\begin{align} \\beta &= P("+zl2+" \\leq z \\leq "+zg2+") \\\\ &= P(z \\leq "+zg2+") - P(z \\leq "+zl2+") \\\\ &= "+zg2prob+" - "+zl2prob+" \\\\ &= \\boxed{"+beta2+"} \\end{align} $$ "
+    }
+    
+    
+    
+    MathJax.typeset();
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function hyptest(){
     var x = document.getElementById("parameter1").value;
     if (x == "mean"){
@@ -374,10 +518,11 @@ function hyptest1(){
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
     var tcless = -tinv(alpha,sizem1); var tcmore = tinv(alpha,sizem1)
     var tctwo1 = -tinv(alpha/2,sizem1); var tctwo2 = tinv(alpha/2,sizem1); 
+    var exp = 2.71828;
     if (sigma == "known") {
             var degfree = ""
         } else if (sigma == "unknown") {
-            var degfree = "$$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$"
+            var degfree = "$$ df = "+size+" - 1 = "+(size-1)+" $$"
     }
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
@@ -588,45 +733,45 @@ function hyptest1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
+        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
     }
     
     if (test < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
         }
     } else if (test >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
         }
     }
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
+        table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
     }
     
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
-        table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        table2 += "<td>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
     }
     
     
     
-    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
     
-    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
     
     
     
     if (sigma == "known") {
         //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablep = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablec = "<table><tr style='border-top: thin solid'><td>z</td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
+        var tablep = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+        var tablec = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit+"$</td>"+table2+"</tr></table>"
         } else if (sigma == "unknown") {
             var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
             var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
@@ -663,155 +808,227 @@ function hyptest1(){
     } 
     
     if (tail == "lower") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= "+test.toFixed(2)+" \\end{align} $$"+degfree+"   $ \\underline{\\text{p-Value Approach}} $"
+        document.getElementById("output1").innerHTML = " $$ "+testsymb+" = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$"+degfree+"   $ \\text{p-Value Approach:} $"
     } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\  &= "+test.toFixed(2)+" \\end{align}  $$"+degfree+" $ \\underline{\\text{p-Value Approach}} $"
+        document.getElementById("output1").innerHTML = " $$ "+testsymb+" = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"  $$"+degfree+" $ \\text{p-Value Approach:} $"
     } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }"+testsymb+" &=\\frac{\\bar{x}-\\mu_o}{"+stndsymb+"/\\sqrt{n}} \\\\ &=\\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$"+degfree+"   $ \\underline{\\text{p-Value Approach}} $"
+        document.getElementById("output1").innerHTML = " $$ "+testsymb+" = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$"+degfree+"   $ \\text{p-Value Approach:} $"
     }
     
     
     if (tail == "lower") {
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",24,97);
-        
+        ctx.fillText("p-value",25,105);
+
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText(test.toFixed(2),60,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText(test.toFixed(2),60,145);  
-            //ctx.fillText("df = "+sizem1,220,40);
+            ctx.fillText(test.toFixed(2),60,145);   
+            //ctx.fillText("df = "+sizem1,220,40); 
         }
+
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+
         
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
     } else if (tail == "upper") {
+        
+
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",240,95);
-        
+        ctx.fillText("p-value",240,100);
+
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText(test.toFixed(2),220,145);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
-            ctx.fillText(test.toFixed(2),220,145);  
-            //ctx.fillText("df = "+sizem1,215,40);
+            ctx.fillText(test.toFixed(2),220,145); 
+            //ctx.fillText("df = "+sizem1,220,40); 
         }
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
-        ctx.stroke();
+        
+        
+        
+        
+        
 
     } else if (tail == "two") {
+        
+
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+        
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
+        ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        
-        ctx.fillText("p-value",20,90);
-        ctx.fillText("p-value",245,90);
-        
+        ctx.fillText("p-value",25,105);
+        ctx.fillText("p-value",245,105);
+
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
@@ -820,75 +1037,92 @@ function hyptest1(){
             ctx.fillText("t",285,132);
             ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
             ctx.fillText(Math.abs(test.toFixed(2)),226,145); 
-            //ctx.fillText("df = "+sizem1,220,40);
+            //ctx.fillText("df = "+sizem1,220,40); 
         }
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
 
         
 
-
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
-
     }
 
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}} $"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:} $"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}} $ "
+        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:} $ "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\underline{\\text{Critical Value Approach}} $"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:} $"
     }
     
     
     
     if (tail == "lower") {
+        
+
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText(alpha,35,100);
-        
+        ctx.fillText(alpha,35,105);
+
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("-z",65,145);
@@ -896,51 +1130,79 @@ function hyptest1(){
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
             ctx.fillText("-t",65,145); 
-            ctx.fillText("α",72,146);
-            //ctx.fillText("df = "+sizem1,220,40);
+            ctx.fillText("α",72,146);   
+            //ctx.fillText("df = "+sizem1,220,40); 
         }
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
+        
+
 
     } else if (tail == "upper") {
+
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText(alpha,250,102);
-        
+        ctx.fillText(alpha,250,105);
+
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("z",227,145);
@@ -948,95 +1210,131 @@ function hyptest1(){
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
             ctx.fillText("t",229,145);
-            ctx.fillText("α",233,146); 
-            //ctx.fillText("df = "+sizem1,215,40);
+            ctx.fillText("α",233,146);  
+            //ctx.fillText("df = "+sizem1,220,40); 
         }
 
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
         
+
     } else if (tail == "two") {
+
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+        
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
+        ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText((alpha/2),30,100);
-        ctx.fillText((alpha/2),245,100);
-        
+        ctx.fillText((alpha/2),30,105);
+        ctx.fillText((alpha/2),245,105);
+
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("-z",65,145);
-            ctx.fillText("α",74,146);
+            ctx.fillText("α/2",74,146);
             ctx.fillText("z",228,145);
             ctx.fillText("α/2",234,146);
         } else if (sigma == "unknown") {
             ctx.fillText("t",285,132);
             ctx.fillText("-t",65,145);
-            ctx.fillText("α",72,146);
+            ctx.fillText("α/2",72,146);
             ctx.fillText("t",228,145);
             ctx.fillText("α/2",232,146);
-            //ctx.fillText("df = "+sizem1,220,40);
+            //ctx.fillText("df = "+sizem1,220,40); 
         }
 
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
-        ctx.stroke();
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
 
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
+
+        
     }
     
     
@@ -1068,6 +1366,7 @@ function hyptest2(){
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
     var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
+    var exp = 2.71828;
 
     if (tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
@@ -1183,27 +1482,27 @@ function hyptest2(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
+        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
     }
     
     table3 = []
     for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
     }
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
+        table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
     }
     
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
-        table2 += "<td>" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+        table2 += "<td>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
     }
  
 
-    var tablep = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-    var tablec = "<table><tr style='border-top: thin solid'><td>z</td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
+    var tablep = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    var tablec = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit+"$</td>"+table2+"</tr></table>"
 
     
     if (tail == "lower") {
@@ -1221,312 +1520,472 @@ function hyptest2(){
     } 
     
     if (tail == "lower") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align} $$ $ \\underline{\\text{p-Value Approach}}$"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align} $$ $ \\text{p-Value Approach:}$"
     } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align}  $$ $ \\underline{\\text{p-Value Approach}}$"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align}  $$ $ \\text{p-Value Approach:}$"
     } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$ $ \\underline{\\text{p-Value Approach}}$"
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$ $ \\text{p-Value Approach:}$"
     }
+    
+
     
     
     if (tail == "lower") {
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",25,95);
+        ctx.fillText("p-value",25,105);
 
         ctx.fillText("z",285,132);
         ctx.fillText(test.toFixed(2),60,145);
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
+
+        
     } else if (tail == "upper") {
+        
+
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText("p-value",240,90);
+        ctx.fillText("p-value",240,100);
 
         ctx.fillText("z",285,132);
         ctx.fillText(test.toFixed(2),220,145);
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
-        ctx.stroke();
+        
+        
+        
+        
+        
 
     } else if (tail == "two") {
+        
+
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+        
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
+        ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
-        ctx.fillText("0",148,145);
-        
-        ctx.fillText("p-value",25,95);
-        ctx.fillText("p-value",240,95);
-        
-        ctx.fillText("z",285,132);
-        ctx.fillText((-Math.abs(test.toFixed(2))),60,145);
-        ctx.fillText(Math.abs(test.toFixed(2)),220,145);
-
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
-        ctx.stroke();
-
-        
 
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
         ctx.moveTo(70, 135);
         ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",25,105);
+        ctx.fillText("p-value",245,105);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
+        ctx.fillText(Math.abs(test.toFixed(2)),226,145);
+
+
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
 
+        
+
     }
+    
+    
+    
+    
+
+    
 
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}}$"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\underline{\\text{Critical Value Approach}}$ "
+        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$ "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\underline{\\text{Critical Value Approach}}$"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:}$"
     }
     
+
     
     
     if (tail == "lower") {
+        
+
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText(alpha,30,100);
-        
+        ctx.fillText(alpha,35,105);
+
         ctx.fillText("z",285,132);
         ctx.fillText("-z",65,145);
         ctx.fillText("α",74,146);
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
+        
+
 
     } else if (tail == "upper") {
+
+        
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(20, 130);
-        ctx.lineTo(280, 130);
-        ctx.stroke();
-        
-        ctx.fillText("0",148,145);
-        ctx.fillText(alpha,250,100);
-        
-        ctx.fillText("z",285,132);
-        ctx.fillText("z",228,145);
-        ctx.fillText("α",234,146);
 
         ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
         ctx.moveTo(230, 135);
         ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText(alpha,250,105);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",227,145);
+        ctx.fillText("α",233,146);
+
+
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
         
+
     } else if (tail == "two") {
+
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+        }
+
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
-        ctx.moveTo(70, 94);
+        ctx.moveTo(70, 103);
         ctx.lineTo(70, 130);
-        ctx.lineTo(20, 130);
-        ctx.lineTo(20, 120);
-        ctx.quadraticCurveTo(40, 115, 70, 94);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
+        
         ctx.beginPath();
-        ctx.moveTo(230, 96);
+        ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
-        ctx.lineTo(280, 130);
-        ctx.lineTo(280, 120);
-        ctx.quadraticCurveTo(260, 115, 230, 96);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
         ctx.stroke();
+        ctx.fillStyle = "lightgray";
         ctx.fill();
+
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-        ctx.beginPath();
-        ctx.moveTo(20, 120);
-        ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(150, 20);
-        ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-        ctx.stroke();
+
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-        ctx.stroke();
-        
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        ctx.fillText((alpha/2),30,95);
-        ctx.fillText((alpha/2),240,95);
-        
+        ctx.fillText((alpha/2),30,105);
+        ctx.fillText((alpha/2),245,105);
+
         ctx.fillText("z",285,132);
         ctx.fillText("-z",65,145);
         ctx.fillText("α/2",74,146);
@@ -1534,26 +1993,35 @@ function hyptest2(){
         ctx.fillText("α/2",234,146);
 
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
-        ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(230, 135);
-        ctx.lineTo(230, 125);
-        ctx.stroke();
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
 
 
-        ctx.beginPath();
-        ctx.moveTo(150, 135);
-        ctx.lineTo(150, 125);
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
         ctx.stroke();
-        ctx.beginPath();
-        ctx.moveTo(70, 135);
-        ctx.lineTo(70, 125);
-        ctx.stroke();
+
+        
     }
     
+    
+
     
     
     if (tail == "lower") {
@@ -1834,7 +2302,82 @@ function example2(){
     }
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function example3(){
+    
+        $("#lesst").show();
+        $("#greatert").hide();
+        $("#notequalt").hide();
+        document.getElementById('tailt').value="lower"
+        document.getElementById('muknott').value="120"
+        document.getElementById('muknotvaluet').innerHTML="120"
+        document.getElementById('sizet').value="36"
+        document.getElementById('mut').value="112"
+        document.getElementById('stdevt').value="12"
+        document.getElementById('alphat').value=".05"
+        MathJax.typeset();
+    
+}
+
+function example4(){
+
+        $("#lesst").hide();
+        $("#greatert").hide();
+        $("#notequalt").show();
+        document.getElementById('tailt').value="two"
+        document.getElementById('muknott').value="15"
+        document.getElementById('muknotvaluet').innerHTML="15"
+        document.getElementById('sizet').value="100"
+        document.getElementById('mut').value="12.5"
+        document.getElementById('stdevt').value="7.5"
+        document.getElementById('alphat').value=".05"
+        MathJax.typeset();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function example5(){
     $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
     document.getElementById("parameter1").value = "proportion"
     document.getElementById("parameter2").innerHTML = "p"

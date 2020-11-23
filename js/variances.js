@@ -472,13 +472,13 @@ function conint1(){
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$ $$ \\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2} $$ "
+        document.getElementById("output1").innerHTML = " $$  df = n - 1 = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
     } else if (confor == "standard") {
         document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ df &= n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
     } 
 
     var c = document.getElementById("myCanvas");
@@ -538,19 +538,19 @@ function conint1(){
     ctx.lineTo(210, 125);
     ctx.stroke();
 
-    table1 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table2 = "<td>df</td><td>.995</td><td>.975</td><td>.95</td><td>.05</td><td>.025</td><td>.005</td>"
+    table2 = "<td>$df$</td><td>$.995$</td><td>$.975$</td><td>$.95$</td><td>$.05$</td><td>$.025$</td><td>$.005$</td>"
     
-    table3 = "<td>"+ sizem1 +"</td><td>"+chidf[0]+"</td><td>"+chidf[1]+"</td><td>"+chidf[2]+"</td><td>"+chidf[3]+"</td><td>"+chidf[4]+"</td><td>"+chidf[5].toFixed(3)+"</td>"
+    table3 = "<td>$"+ sizem1 +"$</td><td>$"+chidf[0]+"$</td><td>$"+chidf[1]+"$</td><td>$"+chidf[2]+"$</td><td>$"+chidf[3]+"$</td><td>$"+chidf[4]+"$</td><td>$"+chidf[5].toFixed(3)+"$</td>"
     
     
     var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
 
     if (confor == "variance") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$  $$ \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\sqrt{"+parseFloat(anslow.toFixed(2))+"} \\leq \\sigma \\leq \\sqrt{" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\boxed{"+parseFloat(Math.sqrt(anslow).toFixed(2))+" \\leq \\sigma \\leq " + parseFloat(Math.sqrt(anshigh).toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2} $$ $$ \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$"
     } else if (confor == "standard") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + " $$ $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "}} $$ $$ \\boxed{"+parseFloat(Math.sqrt(anslow).toFixed(2))+" \\leq \\sigma \\leq " + parseFloat(Math.sqrt(anshigh).toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + " $$ "
     } 
     
     MathJax.typeset();
@@ -634,13 +634,13 @@ function conint2(){
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$ $$ \\frac{("+size+"-1)"+stdev+"}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2} $$ "
+        document.getElementById("output1").innerHTML = " $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
     } else if (confor == "standard") {
         document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
     } 
     
     
@@ -702,16 +702,16 @@ function conint2(){
     ctx.lineTo(210, 125);
     ctx.stroke();
     
-    table1 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table2 = "<td>df</td><td>.995</td><td>.975</td><td>.95</td><td>.05</td><td>.025</td><td>.005</td>"
+    table2 = "<td>$df$</td><td>$.995$</td><td>$.975$</td><td>$.95$</td><td>$.05$</td><td>$.025$</td><td>$.005$</td>"
     
-    table3 = "<td>"+ sizem1 +"</td><td>"+chidf[0]+"</td><td>"+chidf[1]+"</td><td>"+chidf[2]+"</td><td>"+chidf[3]+"</td><td>"+chidf[4]+"</td><td>"+chidf[5].toFixed(3)+"</td>"
+    table3 = "<td>$"+ sizem1 +"$</td><td>$"+chidf[0]+"$</td><td>$"+chidf[1]+"$</td><td>$"+chidf[2]+"$</td><td>$"+chidf[3]+"$</td><td>$"+chidf[4]+"$</td><td>"+chidf[5].toFixed(3)+"</td>"
     
     var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
     
     if (confor == "variance") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$  $$ \\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\sqrt{"+parseFloat(anslow.toFixed(2))+"} \\leq \\sigma \\leq \\sqrt{" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\boxed{"+parseFloat(Math.sqrt(anslow).toFixed(2))+" \\leq \\sigma \\leq " + parseFloat(Math.sqrt(anshigh).toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2} $$  $$ \\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$ "
     } else if (confor == "standard") {
         document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + " $$ $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "}} $$ $$ \\boxed{"+parseFloat(Math.sqrt(anslow).toFixed(2))+" \\leq \\sigma \\leq " + parseFloat(Math.sqrt(anshigh).toFixed(2)) + "} $$"
     } 

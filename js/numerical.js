@@ -1,7 +1,8 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
 $("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide(); $("#label4").hide();
-$("#switchpopulation").hide(); $("#switchsample").hide();
+$("#switchpopulation").hide(); $("#switchsample").hide(); 
+$("#meanoptions").hide(); $("#vsccoptions").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -72,16 +73,22 @@ function avg(input){
 }
 
 function showthings(){
-     $("#xvalcontainer").show();
+    $("#xvalcontainer").show(); $("#meanoptions").hide(); $("#vsccoptions").hide();
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide(); $("#label4").hide();
     var x = document.getElementById("stat").value;
-    if (x == "weighted") {
+    if (x == "mean") {
+        $("#meanoptions").show();
+    } if (x == "weighted") {
         weighted()
     } else if (x == "percentiles") {
         percentiles()
     } else if (x == "quartiles") {
         quartiles()
+    } else if (x == "variance") {
+        $("#vsccoptions").show();
+    } else if (x == "stdev") {
+        $("#vsccoptions").show();
     } else if (x == "zscores") {
         zscores()
     } else if (x == "chebyshev") {
@@ -89,11 +96,11 @@ function showthings(){
     } else if (x == "empirical") {
         empirical()
     } else if (x == "covariance") {
-        covariance()
+        $("#vsccoptions").show(); $("#input2").show(); $("#label2").show(); $("#label1").hide();
     } else if (x == "covariancepop") {
         covariancepop()
     } else if (x == "correlation") {
-        correlation()
+        $("#vsccoptions").show(); $("#input2").show(); $("#label2").show(); $("#label1").hide();
     } else if (x == "correlationpop") {
         correlationpop()
     } 
@@ -144,11 +151,11 @@ function stat(){
     } else if (x == "fivenumber") {
         fivenumber()
     } else if (x == "covariance") {
-        calccov()
+        covariance()
     } else if (x == "covariancepop") {
         calccovpop()
     } else if (x == "correlation") {
-        calccor()
+        correlation()
     } else if (x == "correlationpop") {
         calccorpop()
     } else{
@@ -189,6 +196,17 @@ function switchsample() {
 }
 
 function mean(){
+    var x = document.getElementById("meantype").value;
+    if (x == "sample"){
+        meansam()
+    } else if (x == "population") {
+        meanpop()
+    } else if (x == "geometric") {
+        geometric()
+    }
+}
+
+function meansam(){
     $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The mean, or average, is the most commonly used measure of central location."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
@@ -410,7 +428,15 @@ function calcquart(){
     document.getElementById("formulatext").innerHTML = "Step 1: Arrange the data in ascending order. <br> Step 2: Calculate the index.$$i = \\left(\\frac{p}{100}\\right)n$$ Step 3: a. If the index is not an integer, round up and take the value in that position. <br> b. If the index is an integer, average the values in positions i and i + 1."
     document.getElementById("explanationtext").innerHTML = "The second quartile is the median."
     $("#inputqu").show(); $("#desquartiles").show();
-    var val = document.getElementById("valquart").value;
+    
+    if (document.getElementById('quart1').checked){
+        var val = 25
+    } else if (document.getElementById('quart2').checked){
+        var val = 50
+    } else if (document.getElementById('quart3').checked){
+        var val = 75
+    }
+
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort(function(a,b) {
@@ -423,13 +449,13 @@ function calcquart(){
     var answr = eachsort[indxrnd-1];
     var quartnum = ""
     if (val == 25){
-        var quartnum = "\\text{Q}_1"
+        var quartnum = "Q_1"
         var quartname = "First"
     } else if (val == 50){
-        var quartnum = "\\text{Q}_2"
+        var quartnum = "Q_2"
         var quartname = "Second"
     } else if (val == 75){
-        var quartnum = "\\text{Q}_3"
+        var quartnum = "Q_3"
         var quartname = "Third"
     } else {
         var quartnum = ""
@@ -471,21 +497,31 @@ function iqr(){
     var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
     var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
     var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
+
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr1+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= Q_3 - Q_1 \\\\ &= "+val75avg+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr1+"} \\end{align} $$"
     } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= Q_3 - Q_1 \\\\ &= "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} \\end{align} $$"
     } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+answr25+" \\\\ &= \\boxed{"+ansiqr3+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= Q_3 - Q_1 \\\\ &= "+val75avg+" - "+answr25+" \\\\ &= \\boxed{"+ansiqr3+"} \\end{align} $$"
     }
     else{
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+answr25+" \\\\ &= \\boxed{"+ansiqr4+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{IQR} &= Q_3 - Q_1 \\\\ &= "+answr75+" - "+answr25+" \\\\ &= \\boxed{"+ansiqr4+"} \\end{align} $$"
     }
 
     MathJax.typeset();
 }
 
 function variance(){
+    var x = document.getElementById("vscctype").value;
+    if (x == "sample"){
+        variancesam()
+    } else if (x == "population") {
+        variancepop()
+    } 
+}
+
+function variancesam(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The variances is a measure of variability that uses all of the data."
     document.getElementById("formulatext").innerHTML = "$$ s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} $$"
@@ -587,6 +623,15 @@ function variancepop2(){
 }
 
 function stdev(){
+    var x = document.getElementById("vscctype").value;
+    if (x == "sample"){
+        stdevsam()
+    } else if (x == "population") {
+        stdevpop()
+    } 
+}
+
+function stdevsam(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The standard deviation is a measure of variability that uses all of the data and is in the same units as the original data."
     document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
@@ -850,7 +895,12 @@ function fivenumber(){
 }
 
 function covariance(){
-    $("#input2").show(); $("#label2").show(); $("#label1").hide();
+    var x = document.getElementById("vscctype").value;
+    if (x == "sample"){
+        calccov()
+    } else if (x == "population") {
+        calccovpop()
+    } 
 }
 
 function calccov(){
@@ -1028,7 +1078,12 @@ function calccovpop2(){
 }
 
 function correlation(){
-    $("#input2").show(); $("#label2").show(); $("#label1").hide();
+    var x = document.getElementById("vscctype").value;
+    if (x == "sample"){
+        calccor()
+    } else if (x == "population") {
+        calccorpop()
+    } 
 }
 
 function calccor(){

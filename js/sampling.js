@@ -8,11 +8,19 @@ solvetype = "distribution"
 
 $("#calcprob").hide(); $("#probxbar").hide(); $("#probpbar").hide(); $("#calcprob2").hide();
 
+$("#up").hide(); $("#down").show();
+
+type = "distribution"
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
 
 var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
@@ -266,26 +274,12 @@ function tinv(p, dof) {
 	
 }
 
-function conint(){
-    $("#calcprob").show();
-    var x = document.getElementById("samplestat").value;
-    if (x == "mean"){
-        if (solvetype == "distribution"){
-            conint1()
-        } else if (solvetype == "probability"){
-            conint3()
-        }
-    } else if (x == "proportion"){
-        if (solvetype == "distribution"){
-            conint2()
-        } else if (solvetype == "probability"){
-            conint4()
-        }
-    } 
-}
+
 
 function calcprob() {
+    type = "probability"
     $("#calcprob2").show(); $("#calcprob").hide();
+    $("#up").show(); $("#down").hide();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
        $("#probxbar").show();
@@ -295,12 +289,34 @@ function calcprob() {
 }
 
 function calcprob2() {
+    type = "distribution"
     $("#calcprob").show(); $("#calcprob2").hide();
+    $("#up").hide(); $("#down").show();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
        $("#probxbar").hide();
     } else if (x == "proportion"){
        $("#probpbar").hide();
+    } 
+}
+
+
+
+function conint(){
+    $("#calcprob").show();
+    var x = document.getElementById("samplestat").value;
+    if (x == "mean"){
+        if (type == "distribution"){
+            conint1()
+        } else if (type == "probability"){
+            conint3()
+        }
+    } else if (x == "proportion"){
+        if (type == "distribution"){
+            conint2()
+        } else if (type == "probability"){
+            conint4()
+        }
     } 
 }
 
@@ -315,7 +331,7 @@ function popsizekind(){
 
 
 function conint1(){
-    $("#explanation").hide();
+    $("#explanation").hide(); $("#canvascontainer0").hide(); $("#output2").hide();
     $("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
@@ -325,141 +341,7 @@ function conint1(){
     var samptopopratio = size / popsizevalue
     var stderr = stdev / Math.sqrt(size)
     var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
-    
-    if (size >= 30) {
-        var form = "Normal"
-    } else if (size < 30) {
-        var form = "Not Normal"
-    }
-
-    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
-    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
-    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
-    
-    if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
-    } else if (popsize == "finite") {
-        if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &=  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
-        } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{x} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
-        }
-        
-    }
-
-    MathJax.typeset();
-    
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 120);
-    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(150, 20);
-    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
-
-    ctx.fillText("x̄",285,132);
-    ctx.fillText("σ  ="+stderr,220,50);
-    ctx.fillText("x̄",226,55);
-    ctx.fillText(mu,145,145);
-
-    ctx.beginPath();
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.stroke();
-}
-
-function conint2(){
-    $("#explanation").hide();
-    $("#expconf").show();
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var prptn = document.getElementById("xbar").value;
-    var stdev = document.getElementById("stdev").value;
-    var popsize = document.getElementById("popsize").value;
-    var popsizevalue = document.getElementById("popsizevalue").value;
-    var samptopopratio = size / popsizevalue
-    var stderr = Math.sqrt(prptn*(1-prptn)/size)
-    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * Math.sqrt(prptn*(1-prptn)/size)
-    var cond1 = size * prptn
-    var cond2 = size * (1 - prptn)
-    
-    if (cond1 >= 5 && cond2 >= 5) {
-        var form = "Normal"
-    } else {
-        var form = "Not Normal"
-    }
-
-    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample proportion is the probability distribution of the sample proportion."
-    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{p}) = p $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{p(1-p)}{n}} $$ The sampling distribution of the sample proportioncan be approximated by a normal distribution whenever np > 5 and n(1-p) > 5."
-    document.getElementById("explanationtext").innerHTML = "The sampling distribution of the sample proportion depends on both the sample size and the population proportion."
-    
-    if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
-    } else if (popsize == "finite") {
-        if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &=  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
-        } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\begin{align} \\sigma_\\bar{p} &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} \\\\ &= " + parseFloat(stderr2.toFixed(2)) + " \\end{align} $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
-        }
-        
-    }
-    
-    
-    MathJax.typeset();
-    
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 120);
-    ctx.bezierCurveTo(120, 80, 100, 20, 150, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(150, 20);
-    ctx.bezierCurveTo(200, 20, 170, 80, 280, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
-
-
-    ctx.fillText("p̄",285,132);
-    ctx.fillText("σ  ="+parseFloat(stderr.toFixed(2).replace(/^0+/, '')),220,50);
-    ctx.fillText("p̄",226,55);
-    ctx.fillText(prptn,145,145);
-
-    ctx.beginPath();
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.stroke();
-}
-
-function conint3(){
-    $("#explanation").hide();
-    $("#expconf").show();
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var mu = document.getElementById("xbar").value;
-    var stdev = document.getElementById("stdev").value;
-    var popsize = document.getElementById("popsize").value;
-    var popsizevalue = document.getElementById("popsizevalue").value;
-    var pmvalue = document.getElementById("pmvalue1").value;
-    var lowval = mu - pmvalue; var highval = parseFloat(mu) + parseFloat(pmvalue)
-    var stderr = stdev / Math.sqrt(size)
-    var lowvalz = (lowval - mu)/stderr; var highvalz = (highval - mu)/stderr;
-    var samptopopratio = size / popsizevalue
-    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
+    var exp = 2.71828;
     
     if (size >= 30) {
         var form = "Normal Distribution"
@@ -471,8 +353,438 @@ function conint3(){
     document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
     document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
     
+
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\  &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ")  \\end{align}$$ "
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
+    } else if (popsize == "finite") {
+        if (samptopopratio <= .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
+        } else if (samptopopratio > .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) = " + parseFloat(stderr2.toFixed(2)) + "  $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
+        }
+        
+    }
+
+    MathJax.typeset();
+
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    
+    
+    
+    ctx.fillText("x̄",285,132);
+    ctx.fillText("σ  ="+stderr,220,50);
+    ctx.fillText("x̄",226,55);
+    
+
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mu,145,145);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+
+}
+
+function conint2(){
+    $("#explanation").hide(); $("#canvascontainer0").hide(); $("#output2").hide();
+    $("#expconf").show();
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var prptn = document.getElementById("xbar").value;
+    var stdev = document.getElementById("stdev").value;
+    var popsize = document.getElementById("popsize").value;
+    var popsizevalue = document.getElementById("popsizevalue").value;
+    var samptopopratio = size / popsizevalue
+    var stderr = Math.sqrt(prptn*(1-prptn)/size)
+    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * Math.sqrt(prptn*(1-prptn)/size)
+    var cond1 = size * prptn
+    var cond2 = size * (1 - prptn)
+    var exp = 2.71828;
+    
+    if (cond1 >= 5 && cond2 >= 5) {
+        var form = "Normal Distribution"
+    } else {
+        var form = "Not a Normal Distribution"
+    }
+
+    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample proportion is the probability distribution of the sample proportion."
+    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{p}) = p $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{p(1-p)}{n}} $$ The sampling distribution of the sample proportioncan be approximated by a normal distribution whenever np > 5 and n(1-p) > 5."
+    document.getElementById("explanationtext").innerHTML = "The sampling distribution of the sample proportion depends on both the sample size and the population proportion."
+    
+    if (popsize == "infinite"  || popsize == "unknown") {
+        document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
+    } else if (popsize == "finite") {
+        if (samptopopratio <= .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + " $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
+        } else if (samptopopratio > .05) {
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr2.toFixed(2)) + "  $$ $$ \\text{Form: } \\text{"+ form + "} $$ "
+        }
+        
+    }
+    
+    
+    MathJax.typeset();
+    
+    
+    
+    
+    
+    
+    
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    
+    
+    
+    ctx.fillText("p̄",285,132);
+    ctx.fillText("σ  ="+parseFloat(stderr.toFixed(2).replace(/^0+/, '')),220,50);
+    ctx.fillText("p̄",226,55);
+    
+
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(prptn,145,145);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function conint3(){
+    $("#explanation").hide(); $("#canvascontainer0").show(); $("#output2").show();
+    $("#expconf").show();
+    
+    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
+    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
+    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
+    
+    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var mu = document.getElementById("xbar").value;
+    var stdev = document.getElementById("stdev").value;
+    var popsize = document.getElementById("popsize").value;
+    var popsizevalue = document.getElementById("popsizevalue").value;
+    var pmvalue = document.getElementById("pmvalue1").value;
+    var lowval = mu - pmvalue; var highval = parseFloat(mu) + parseFloat(pmvalue)
+    var stderr = stdev / Math.sqrt(size)
+    var lowvalz = parseFloat(((lowval - mu)/stderr).toFixed(2)); var highvalz = (highval - mu)/stderr;
+    var lowprob = (normalcdf(lowvalz)).toFixed(4); var highprob = (normalcdf(highvalz)).toFixed(4);
+    var ans = (highprob-lowprob).toFixed(4)
+    var samptopopratio = size / popsizevalue
+    var stderr2 = Math.sqrt((popsizevalue-size)/(popsizevalue-1)) * (stdev / Math.sqrt(size))
+    var lessv = lowval
+    var greaterv = highval
+    var lessval = lowvalz
+    var greaterval = highvalz
+    var lessvalz = 30+10*lowvalz
+    var greatervalz = 30+10*highvalz
+    var exp = 2.71828; 
+    
+    
+    
+    
+    
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*greatervalz, 130);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(parseFloat(lessv.toFixed(2)),15 + 4.4*(30+10*lessval),145);
+    ctx.fillText(parseFloat(greaterv.toFixed(2)),15 + 4.4*(30+10*greaterval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mu,145,145);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*greatervalz, 130);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
+    ctx.fillText(greaterval.toFixed(2),10 + 4.4*(30+10*greaterval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    if (popsize == "infinite"  || popsize == "unknown") {
+        document.getElementById("output1").innerHTML = "$$ P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") = P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") $$ $$ \\begin{align} z_{"+lowval+"} &= \\frac{"+lowval+"-"+mu+"}{"+stdev+"} = "+lowvalz+" \\\\ \\ z_{"+highval+"} &= \\frac{"+highval+"-"+mu+"}{"+stdev+"} = "+highvalz+" \\end{align} $$  "
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\ &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ") \\\\  &= "+highprob+" - "+lowprob+" \\\\  &= "+ans+" \\end{align}$$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\  &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ")  \\end{align}$$ "
@@ -484,6 +796,34 @@ function conint3(){
 
     MathJax.typeset();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function conint4(){
     $("#explanation").hide();
@@ -611,7 +951,7 @@ function stat(){
 }
 
 function calcmean(){
-    $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
+    $("#explanation").hide(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The point estimate of the population mean is the sample mean."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
     document.getElementById("explanationtext").innerHTML = "$$\\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
@@ -621,12 +961,12 @@ function calcmean(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$\\text{Sample Mean}$$ $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
 function calcstandard(){
-    $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
+    $("#explanation").hide(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The point estimate of the population standard deviation is the sample standard deviation."
     document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
@@ -646,7 +986,7 @@ function calcstandard(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "$$\\text{Sample Standard Deviation}$$ $$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{s^2} \\\\ &= \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} \\\\ &= \\boxed{"+parseFloat(ansstd.toFixed(2))+"}\\end{align} $$"
     MathJax.typeset();
 }
 

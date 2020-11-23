@@ -26,7 +26,7 @@ $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexample
 
 
 
-frequencytype = "distribution"
+frequencytype = "probability"
 formulatype = "probability"
 uniformtype = "probability"
 binomialtype = "probability"
@@ -152,7 +152,7 @@ function showstuff(){
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").show();
     } else if (x == "frequency") {
         $("#frequency").show(); 
-        $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").show();
+        $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide();
         $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
         $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
         $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();

@@ -98,27 +98,31 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div id = "confidence">
       <div class="container">
         <div class = "container" id = "confidencetitle">
             <h5 class="text-center text-primary mb-3">Confidence Intervals</h5>
         </div>
-        <div class = "container" id = "hypothesistitle">
-            <h5 class="text-center text-primary mb-3">Hypothesis Testing</h5>
-        </div>
-        <table id = "nullalternative">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
-            <td class="statistics"><select id="parameter1" class="hypinput4" onchange="parameter()"> <option value="mean"> &mu;₁ - &mu;₂ </option> <option value="proportion"> p₁ - p₂ </option> </select></td> 
-            <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""><span id="proportionzero">0</span></td>
-          </tr>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
-            <td class="statistics"> <span id = "parameter2">&mu;₁ - &mu;₂</span></td>
-            <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
-            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">$D_o$</span></td>
-          </tr> 
-        </table>
+
         <table class = "mt-2">
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_1$</td>
@@ -154,32 +158,11 @@
             <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
         </div>
       
-      <div class = "text-center mt-2" id = "levelsignificance">
-            <table class = "mt-2">
-            <tr>
-                <td class="statistics"> $\text{Level of Significance:}$ </td>
-                <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
-                <td class="statistics"> = </td>
-                <td class="statistics" style="text-align:left"><select id="alpha" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
-            </tr>   
-            </table> 
-          
-          <div class = "text-center mt-2">
-            <input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "mutually()">
-            <label for="mutexc">$\text{Matched Samples}$</label>
-        </div>
-          
-        </div>
          
           <div class="container center">
           <div class="row justify-content-center">
         <div class = "col-4 col-md-2 text-center mt-2" id = "confsolve">
             <button id = "hyptest" class="button btn-outline-primary" onclick="conint()">Solve</button>
-            <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
-              <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
-        </div>
-        <div class = "col-4 col-md-2 text-center mt-2" id = "hypsolve">
-            <button id = "hyptest" class="button btn-outline-primary" onclick="hyptest()">Solve</button>
             <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
               <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
         </div>
@@ -189,10 +172,137 @@
       <div class = "text-center mt-2" id = "confidenceexamples">
             <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span> <!--&bull; <span class="examplelink" onclick="example3()">Example 3</span>-->
         </div>
+          
+    </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div id = "hypothesis">
+      <div class="container">
+        <div class = "container" id = "hypothesistitle">
+            <h5 class="text-center text-primary mb-3">Hypothesis Testing</h5>
+        </div>
+        <table id = "nullalternative">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
+            <td class="statistics"><select id="parameter1" class="hypinput4" onchange="parameter()"> <option value="mean"> &mu;₁ - &mu;₂ </option> <option value="proportion"> p₁ - p₂ </option> </select></td> 
+            <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""><span id="proportionzero">0</span></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$ = <select id="alphah" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
+          </tr>
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
+            <td class="statistics"> <span id = "parameter2">&mu;₁ - &mu;₂</span></td>
+            <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
+            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">$D_o$</span></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics"><input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "matched()"> <label for="mutexc">$\text{Matched}$</label></td>
+          </tr> 
+        </table>
+        <table class = "mt-2">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_1$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="size1h" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><span id = "xbar1sh">$\bar{x}_1$</span><span id = "pbar1sh">$\bar{p}_1$</span></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="xbar1h" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigmah" class="hypinput1" onchange="stdevh()"> <option value="known"> &#963;₁ </option> <option value="unknown"> s₁ </option> </select></td>
+            <td class="statistics" id="sd2"> = </td>
+            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev1h" class="hypinput2"></td>
+          </tr>  
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_2$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="size2h" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><span id = "samplestat2h">$\bar{x}_2$</span></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="xbar2h" class="hypinput2"></td>
+            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd11"><span id = "standdev2h">&sigma;₂</span> </td>
+            <td class="statistics" id="sd22"> = </td>
+            <td class="statistics" id="sd33"><input type="text" style="width:50px;" id="stdev2h" class="hypinput2"></td>
+          </tr>   
+        </table>  
+          </div>
+      
+      
+      <!--<div class = "text-center mt-2" id = "levelsignificance">
+            <table class = "mt-2">
+            <tr>
+                <td class="statistics"> $\text{Level of Significance:}$ </td>
+                <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
+                <td class="statistics"> = </td>
+                <td class="statistics" style="text-align:left"><select id="alphah" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
+            </tr>   
+            </table> 
+          
+          <div class = "text-center mt-2">
+            <input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "matched()">
+            <label for="mutexc">$\text{Matched Samples}$</label>
+        </div>
+          
+        </div>-->
+         
+          <div class="container center">
+          <div class="row justify-content-center">
+        <div class = "col-4 col-md-2 text-center mt-2" id = "hypsolve">
+            <button id = "hyptest" class="button btn-outline-primary" onclick="hyptest()">Solve</button>
+            <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
+              <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
+        </div>
+          </div>
+              </div>
       
       <div class = "text-center mt-2" id = "hypothesisexamples">
             <span class="examplelink" onclick="example4()">Example 1</span> &bull; <span class="examplelink" onclick="example5()">Example 2</span> <!-- &bull; <span class="examplelink" onclick="example6()">Example 3</span> -->
         </div>
+          
+    </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       
       
     <div class="container">
@@ -213,12 +323,26 @@
         </div>
       </div>
       
+      <div class="container mb-5">
+        <div id="output3" class="output">
+        </div>
+      </div>
+      
       <div class="container text-center" id = "canvascontainer2">
       <canvas id="myCanvas2" width="375" height="188" ></canvas>
       </div>
       
       <div class="container mb-5">
-        <div id="output3" class="output">
+        <div id="output4" class="output">
+        </div>
+      </div>
+      
+      <div class="container text-center" id = "canvascontainer2">
+      <canvas id="myCanvas3" width="375" height="188" ></canvas>
+      </div>
+      
+      <div class="container mb-5">
+        <div id="output5" class="output">
         </div>
       </div>
       
