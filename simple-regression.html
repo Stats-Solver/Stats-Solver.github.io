@@ -141,17 +141,19 @@
                 <option value="prediction">Prediction</option>
                 <!--<option value="predicted">Predicted Values</option>
                 <option value="residuals">Residuals</option>-->
-                <option value="sse">Sum of Squares Error</option>
+                <option value="sse">Sum of Squares</option>
+                <!--<option value="sse">Sum of Squares Error</option>
                 <option value="sst">Sum of Squares Total</option>
-                <option value="ssr">Sum of Squares Regression</option>
+                <option value="ssr">Sum of Squares Regression</option>-->
                 <option value="rsquared">Coefficient of Determination</option>
                 <option value="correlation">Correlation Coefficient</option>
+                <!--<option value="mse">Mean Square</option>-->
                 <option value="mse">Mean Square Error</option>
                 <option value="see">Standard Error of Estimate</option>
                 <!--<option value="ses">Standard Error of Slope</option>-->
-                <option value="tstat">t-Statistic</option>
+                <option value="tstat">t-Test</option>
                 <option value="msr">Mean Square Regression</option>
-                <option value="fstat">F-Statistic</option>
+                <option value="fstat">F-Test</option>
                 <!--<option value="anova">ANOVA Table</option>
                 <option value="confinterval">Confidence Interval</option>
                 <option value="predinterval">Prediction Interval</option>
@@ -214,7 +216,14 @@
       </div>
       
       
+      <div class="container text-center">
+      <canvas id="myCanvas" width="375" height="188" ></canvas>
+      </div>
       
+      <div class="container">
+        <div id="output2" class="output">
+        </div>
+      </div>
       
       
       
@@ -361,7 +370,7 @@
             };
         </script> 
       
-      <script src="/js/simple.js"></script>
+      <script src="/js/simplem.js"></script>
       
   </body>
 </html>

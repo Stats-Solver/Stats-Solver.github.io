@@ -2,7 +2,9 @@ $("#explanation").hide(); $("#sumsquares").hide(); $("#meansquare").hide(); $("#
 $("#xval").hide(); $("#prediction").hide(); $("#prediction2").hide(); $("#alternative").hide(); $("#alternative2").hide();
 $("#correlation").hide(); $("#correlation2").hide();
 
-
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
 
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
@@ -317,7 +319,7 @@ function showthings(){
 function stat(){
     $("#output").empty(); $("#explanation").hide(); $("#prediction").hide(); $("#prediction2").hide();
     $("#meansquare").hide(); $("#standarderror").hide(); $("#alternative").hide(); $("#alternative2").hide();
-    $("#correlation").hide(); $("#correlation2").hide(); $("#output2").hide()
+    $("#correlation").hide(); $("#correlation2").hide(); $("#output2").hide(); $("#myCanvas").hide();
     var x = document.getElementById("stat").value;
     if (x == "slope"){
         slope()
@@ -347,6 +349,7 @@ function stat(){
         standarderror()
     } else if (x == "tstat") {
         tstat()
+        $("#output2").show(); $("#myCanvas").show();
     } else if (x == "msr") {
         msr()
     } else if (x == "fstat") {
@@ -1261,6 +1264,116 @@ function tstat(){
     var anststat = ansslope / ansses; var anststatneg = -Math.abs(anststat)
     var zptwo = normalcdf(anststatneg); var zptwo2 = 2 * zptwo;
     var test = anststat; var testtwo = -1*Math.abs(test);
+    var exp = 2.71828;
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        }
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 103);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",25,105);
+        ctx.fillText("p-value",245,105);
+
+
+            ctx.fillText("t",285,132);
+            ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
+            ctx.fillText(Math.abs(test.toFixed(2)),226,145); 
+            //ctx.fillText("df = "+sizem1,220,40); 
+
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -1311,11 +1424,11 @@ function tstat(){
     
     
     
-    table4 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
+    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table5 = "<td>df</td><td>.20</td><td>.10</td><td>.05</td><td>.025</td><td>.01</td><td>.005</td>"
+    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
     
-    table6 = "<td>"+ sizem1 +"</td><td>"+tinv(.20,sizem1).toFixed(3)+"</td><td>"+tinv(.10,sizem1).toFixed(3)+"</td><td>"+tinv(.05,sizem1).toFixed(3)+"</td><td>"+tinv(.025,sizem1).toFixed(3)+"</td><td>"+tinv(.01,sizem1).toFixed(3)+"</td><td>"+tinv(.005,sizem1).toFixed(3)+"</td>"
+    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
     
     
     
@@ -1323,9 +1436,9 @@ function tstat(){
     var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = "$$  \\text{Estimated Standard Deviation of } b_1\\text{:} $$ $$ \\begin{align} s_{b_1} &= \\frac{s}{\\sqrt{\\sum(x - \\bar{x})^2}} \\\\  &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{t-Statistic: } t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= " + anststat.toFixed(2) +" \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+" - 1 \\\\ &= "+(size-1)+" \\end{align} $$" + tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ s_{b_1} = \\frac{"+parseFloat(anssee.toFixed(2))+"}{\\sqrt{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}} = " + parseFloat(ansses.toFixed(2)) +" $$ $$ t = \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} = " + anststat.toFixed(2) +" $$ $$ df = "+size+" - 1 = "+(size-1)+" $$ "
     
-    
+    document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
     
     
     //document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= \\boxed{" + anststat.toFixed(2) +"} \\end{align} $$ $$ \\begin{align} \\text{p-value}&=2*P(t \\leq "+anststatneg.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+"\\leq \\alpha = .05 $$ $$ \\textbf{Conclusion:} \\text{ There is a significant linear relationship between x and y} $$"

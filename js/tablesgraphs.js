@@ -1883,7 +1883,7 @@ function calcbox() {
     
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
-    var largest = Math.max(...each); var smallest = Math.min(...each)
+    var largest = Math.max.apply(null,each); var smallest = Math.min.apply(null,each)
     var eachsort = each.sort();
     
     var eachsort2 = each.sort(function(a,b) {

@@ -371,7 +371,7 @@ function conint1(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -476,7 +476,7 @@ function conint2(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -590,7 +590,7 @@ function conint3(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas0");
@@ -686,7 +686,7 @@ function conint3(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");

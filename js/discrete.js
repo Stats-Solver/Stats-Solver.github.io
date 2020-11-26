@@ -300,8 +300,8 @@ function compprob2() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf = xa.filter(y => y <= x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y <= x}) //(y => y <= x) 
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -346,8 +346,8 @@ function compprob3() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf = xa.filter(y => y < x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y < x}) //(y => y < x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -392,11 +392,11 @@ function compprob4() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf0 = xa.filter(y => y < x)
-    var xaf02 = xaf0.filter(y => y)
+    var xaf0 = xa.filter(function(y) {return y < x}) //(y => y < x)
+    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
     
-    var xaf = xa.filter(y => y >= x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y >= x}) //(y => y >= x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -445,11 +445,11 @@ function compprob5() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf0 = xa.filter(y => y <= x)
-    var xaf02 = xaf0.filter(y => y)
+    var xaf0 = xa.filter(function(y) {return y <= x}) //(y => y <= x)
+    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
     
-    var xaf = xa.filter(y => y > x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y > x}) //(y => y > x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -558,7 +558,7 @@ function compvariance() {
     var f8 = document.getElementById('f8').value
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
-    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
+    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
 
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
     
@@ -571,8 +571,8 @@ function compvariance() {
     }
     var ans = 0
     for (i = 0; i < rows; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]-mu)**2).toFixed(2))+"$</td><td>$"+parseFloat((((x[i]-mu)**2)*f[i]).toFixed(2))+"$</td></tr>"
-        ans += ((x[i]-mu)**2)*f[i]
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>" 
+        ans += (Math.pow((x[i]-mu),2))*f[i]
     }
     
     
@@ -619,7 +619,7 @@ function compstandard() {
     var f8 = document.getElementById('f8').value
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
-    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
+    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
 
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
     
@@ -632,8 +632,8 @@ function compstandard() {
     }
     var ans = 0
     for (i = 0; i < rows; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]-mu)**2).toFixed(2))+"$</td><td>$"+parseFloat((((x[i]-mu)**2)*f[i]).toFixed(2))+"$</td></tr>"
-        ans += ((x[i]-mu)**2)*f[i]
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>"
+        ans += (Math.pow((x[i]-mu),2))*f[i]
     }
     
     
@@ -971,8 +971,8 @@ function compprob2f() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf = xa.filter(y => y <= x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y <= x}) //(y => y <= x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -1036,8 +1036,8 @@ function compprob3f() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf = xa.filter(y => y < x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y < x}) //(y => y < x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -1101,11 +1101,11 @@ function compprob4f() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf0 = xa.filter(y => y < x)
-    var xaf02 = xaf0.filter(y => y)
+    var xaf0 = xa.filter(function(y) {return y < x}) //(y => y < x)
+    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
     
-    var xaf = xa.filter(y => y >= x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y >= x}) //(y => y >= x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -1173,11 +1173,11 @@ function compprob5f() {
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
     
-    var xaf0 = xa.filter(y => y <= x)
-    var xaf02 = xaf0.filter(y => y)
+    var xaf0 = xa.filter(function(y) {return y <= x}) //(y => y <= x)
+    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
     
-    var xaf = xa.filter(y => y > x)
-    var xaf2 = xaf.filter(y => y)
+    var xaf = xa.filter(function(y) {return y > x}) //(y => y > x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
     
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
@@ -1289,7 +1289,7 @@ function compvariancef() {
     var f9 = f9f/tot
     var f10 = f10f/tot
     
-    var ans = (((x1-mu)**2)*f1) + (((x1-mu)**2)*f2) + (((x1-mu)**2)*f3);
+    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3); 
 
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
     
@@ -1302,8 +1302,8 @@ function compvariancef() {
     }
     var ans = 0
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+parseFloat(f[i].toFixed(2))+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]-mu)**2).toFixed(2))+"$</td><td>$"+parseFloat((((x[i]-mu)**2)*f[i]).toFixed(2))+"$</td></tr>"
-        ans += ((x[i]-mu)**2)*f[i]
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+parseFloat(f[i].toFixed(2))+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>"
+        ans += (Math.pow((x[i]-mu),2))*f[i]
     }
     
     
@@ -2309,9 +2309,9 @@ function compbinomial1() {
         var ansval = numerator3 / denominator3;
     }
     
-    var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
+    var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + parseFloat((1-prob).toFixed(2)) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat((prob ** num).toFixed(2))+"\\times"+parseFloat(((1-prob)**(trials-num)).toFixed(2))+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2))  + "}   \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + parseFloat((1-prob).toFixed(2)) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2))  + "}   \\end{align} $$ "
     MathJax.typeset();
 }
 
@@ -2358,7 +2358,7 @@ function compbinomial2() {
             var ansval = numerator3 / denominator3;
         }
 
-        var ans = ansval * (prob ** i) * (1-prob)**(trials-i)
+        var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
         ansplus += parseFloat(ans.toFixed(2)) + "+"
         finalans += parseFloat(ans.toFixed(2))
         
@@ -2391,7 +2391,7 @@ function compbinomial2() {
         var ansval = numerator3 / denominator3;
     }
 
-    var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
+    var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     finalans = finalans + parseFloat(ans.toFixed(2))
@@ -2445,7 +2445,7 @@ function compbinomial4() {
             var ansval = numerator3 / denominator3;
         }
 
-        var ans = ansval * (prob ** i) * (1-prob)**(trials-i)
+        var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
         ansplus += parseFloat(ans.toFixed(2)) + "+"
         finalans += parseFloat(ans.toFixed(2))
         
@@ -2478,7 +2478,7 @@ function compbinomial4() {
         var ansval = numerator3 / denominator3;
     }
 
-    var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
+    var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     finalans = finalans + parseFloat(ans.toFixed(2))
@@ -2534,7 +2534,7 @@ function compbinomial3() {
                 var ansval = numerator3 / denominator3;
             }
 
-            var ans = ansval * (prob ** i) * (1-prob)**(trials-i)
+            var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
             ansplus += parseFloat(ans.toFixed(2)) + "+"
             finalans += parseFloat(ans.toFixed(2))
 
@@ -2567,7 +2567,7 @@ function compbinomial3() {
             var ansval = numerator3 / denominator3;
         }
 
-        var ans = ansval * (prob ** trials) * (1-prob)**(trials-trials)
+        var ans = ansval * Math.pow(prob,trials) * Math.pow((1-prob),(trials-trials))
 
         ansplus = ansplus + parseFloat(ans.toFixed(2))
         finalans = finalans + parseFloat(ans.toFixed(2))
@@ -2611,7 +2611,7 @@ function compbinomial3() {
                 var ansval = numerator3 / denominator3;
             }
 
-            var ans = ansval * (prob ** i) * (1-prob)**(trials-i)
+            var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
             ansplus += parseFloat(ans.toFixed(2)) + "+"
             finalans += parseFloat(ans.toFixed(2))
 
@@ -2644,7 +2644,7 @@ function compbinomial3() {
             var ansval = numerator3 / denominator3;
         }
 
-        var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
+        var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
 
         ansplus = ansplus + parseFloat(ans.toFixed(2))
         finalans = finalans + parseFloat(ans.toFixed(2))
@@ -2701,7 +2701,7 @@ function compbinomial5() {
                 var ansval = numerator3 / denominator3;
             }
 
-            var ans = ansval * (prob ** i) * (1-prob)**(trials-i)
+            var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
             ansplus += parseFloat(ans.toFixed(2)) + "+"
             finalans += parseFloat(ans.toFixed(2))
 
@@ -2734,7 +2734,7 @@ function compbinomial5() {
             var ansval = numerator3 / denominator3;
         }
 
-        var ans = ansval * (prob ** trials) * (1-prob)**(trials-trials)
+        var ans = ansval * Math.pow(prob,trials) * Math.pow((1-prob),(trials-trials))
 
         ansplus = ansplus + parseFloat(ans.toFixed(2))
         finalans = finalans + parseFloat(ans.toFixed(2))
@@ -2777,7 +2777,7 @@ function compbinomial5() {
                 var ansval = numerator3 / denominator3;
             }
 
-            var ans = ansval * (prob ** i) * (1-prob)**(trials-i)
+            var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
             ansplus += parseFloat(ans.toFixed(2)) + "+"
             finalans += parseFloat(ans.toFixed(2))
 
@@ -2810,7 +2810,7 @@ function compbinomial5() {
             var ansval = numerator3 / denominator3;
         }
 
-        var ans = ansval * (prob ** num) * (1-prob)**(trials-num)
+        var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
 
         ansplus = ansplus + parseFloat(ans.toFixed(2))
         finalans = finalans + parseFloat(ans.toFixed(2))
@@ -2870,9 +2870,9 @@ function comppoisson1() {
     var num = document.getElementById('poissval').value;
     var exp = 2.71828;
     
-    var ans = ((ave**num)*(exp**(-ave)))/factorial(num)
+    var ans = (Math.pow(ave,num)*Math.pow(exp,(-ave)))/factorial(num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + (ave**num) + "\\times " + parseFloat((exp**(-ave)).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave))).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -2892,12 +2892,12 @@ function comppoisson2() {
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < num; i++) {
-        var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+        var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
         ansplus += parseFloat(ans.toFixed(2)) + "+"
         finalans += parseFloat(ans.toFixed(2))
     }
     
-    var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+    var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     
@@ -2924,12 +2924,12 @@ function comppoisson4() {
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numm1; i++) {
-        var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+        var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
         ansplus += parseFloat(ans.toFixed(2)) + "+"
         finalans += parseFloat(ans.toFixed(2))
     }
     
-    var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+    var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     
@@ -2956,12 +2956,12 @@ function comppoisson3() {
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numm1; i++) {
-        var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+        var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
         ansplus += parseFloat(ans.toFixed(2)) + "+"
         finalans += parseFloat(ans.toFixed(2))
     }
     
-    var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+    var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     
@@ -2989,12 +2989,12 @@ function comppoisson5() {
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < num; i++) {
-        var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+        var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
         ansplus += parseFloat(ans.toFixed(2)) + "+"
         finalans += parseFloat(ans.toFixed(2))
     }
     
-    var ans = ((ave**i)*(exp**(-ave)))/factorial(i)
+    var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
     ansplus = ansplus + parseFloat(ans.toFixed(2))
     

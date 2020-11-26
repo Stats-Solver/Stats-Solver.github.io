@@ -351,7 +351,7 @@ function condata() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))));
     }
     
     var c = document.getElementById("myCanvas");
@@ -513,7 +513,7 @@ function conint1(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -622,7 +622,7 @@ function conint1(){
         table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
     }
     
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
     table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
@@ -679,7 +679,7 @@ function conint2(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))
     }
     
     var c = document.getElementById("myCanvas");

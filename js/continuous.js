@@ -1088,7 +1088,7 @@ function compsnormalarea1() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -1239,7 +1239,7 @@ function compsnormalarea2() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -1428,7 +1428,7 @@ function compsnormal1() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -1576,7 +1576,7 @@ function compsnormal2() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))  
     }
     
     var c = document.getElementById("myCanvas");
@@ -1718,7 +1718,7 @@ function compsnormal3() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -1851,7 +1851,7 @@ function compsnormal4() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -2140,7 +2140,7 @@ function compnormalarea1() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -2310,7 +2310,7 @@ function compsnormalarea2() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -2522,7 +2522,7 @@ function compnormal1() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -2672,7 +2672,7 @@ function compnormal2() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -2818,7 +2818,7 @@ function compnormal3() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -2962,7 +2962,7 @@ function compnormal4() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -3675,12 +3675,12 @@ function compexponential1() {
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval').value;
     var lessvalz = (lessval / expval) * 15
-    var ans = 1 - exp**(-lessval/expval)
+    var ans = 1 - Math.pow(exp,(-lessval/expval))
     
     var f = [];
     var i;
     for (i = 0; i < 30; i++) {
-      f[i] = parseFloat(((1/15)*exp**(-i/15)))
+      f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
     }
     
     if (probtype == "lessequal") {
@@ -3779,12 +3779,12 @@ function compexponential2() {
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval').value;
     var lessvalz = (lessval / expval) * 15
-    var ans = 1 - exp**(-lessval/expval)
+    var ans = 1 - Math.pow(exp,(-lessval/expval))
     
     var f = [];
     var i;
     for (i = 0; i < 30; i++) {
-      f[i] = parseFloat(((1/15)*exp**(-i/15)))
+      f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
     }
     
     if (probtype == "greaterequal") {
@@ -3885,12 +3885,12 @@ function compexponential3() {
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval').value;
     var lessvalz = (lessval / expval) * 15
-    var ans = 1 - exp**(-lessval/expval)
+    var ans = 1 - Math.pow(exp,(-lessval/expval))
     
     var f = [];
     var i;
     for (i = 0; i < 30; i++) {
-      f[i] = parseFloat(((1/15)*exp**(-i/15)))
+      f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
     }
     
     if (probtype == "lessequal") {
@@ -3987,8 +3987,8 @@ function compexponential4() {
     var lessvalz = (lessval / expval) * 15
     var greaterval = document.getElementById('exponentialval2').value;
     var greatervalz = (greaterval / expval) * 15
-    var ans1 = 1 - exp**(-lessval/expval)
-    var ans2 = 1 - exp**(-greaterval/expval)
+    var ans1 = 1 - Math.pow(exp,(-lessval/expval))
+    var ans2 = 1 - Math.pow(exp,(-greaterval/expval))
     var ans = ans2 - ans1
     
     var sign1 = "\\leq"; var sign2 = "\\leq"
@@ -3996,7 +3996,7 @@ function compexponential4() {
     var f = [];
     var i;
     for (i = 0; i < 30; i++) {
-      f[i] = parseFloat(((1/15)*exp**(-i/15)))
+      f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
     }
     
     if (probtype == "greaterequal") {
@@ -4410,7 +4410,7 @@ function comptdist1() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
     }
     
     var c = document.getElementById("myCanvas");
@@ -4620,7 +4620,7 @@ function comptdist2() {
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
     }
     
     var c = document.getElementById("myCanvas");

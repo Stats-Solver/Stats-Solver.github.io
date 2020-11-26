@@ -476,7 +476,7 @@ function range(){
     document.getElementById("explanationtext").innerHTML = "The range is susceptible to being affected by extreme values."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
-    var largest = Math.max(...each); var smallest = Math.min(...each)
+    var largest = Math.max.apply(null,each); var smallest = Math.min.apply(null,each)
     var rng = largest - smallest
     document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ "\\\\ &= \\boxed{" + rng + "} \\end{align} $$"
     MathJax.typeset();
@@ -858,7 +858,7 @@ function fivenumber(){
     document.getElementById("explanationtext").innerHTML = "The interquartile range only uses two values from the entire data set: the third quartile and the first quartile."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
-    var largest = Math.max(...each); var smallest = Math.min(...each)
+    var largest = Math.max.apply(null,each); var smallest = Math.min.apply(null,each)
     var eachsort = each.sort();
     
     var eachsort2 = each.sort(function(a,b) {

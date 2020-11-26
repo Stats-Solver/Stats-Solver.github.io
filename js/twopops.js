@@ -453,7 +453,7 @@ function conint1(){
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
     var c = document.getElementById("myCanvas");
@@ -1066,7 +1066,7 @@ function hyptest1(){
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
 
         var c = document.getElementById("myCanvas2");
@@ -1143,7 +1143,7 @@ function hyptest1(){
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
 
         var c = document.getElementById("myCanvas2");
@@ -1225,7 +1225,7 @@ function hyptest1(){
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
 
         var c = document.getElementById("myCanvas2");
@@ -1332,7 +1332,7 @@ function hyptest1(){
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
 
         var c = document.getElementById("myCanvas3");
@@ -1412,7 +1412,7 @@ function hyptest1(){
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
 
         var c = document.getElementById("myCanvas3");
@@ -1490,7 +1490,7 @@ function hyptest1(){
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*exp**(-(j*j)/2)))
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
 
         var c = document.getElementById("myCanvas3");
