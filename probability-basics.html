@@ -85,8 +85,8 @@
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
               <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
@@ -105,7 +105,7 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="probability-basics.html">Probability Basics Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="probability-basics.html">Probability Basics</a></h4>
     </div>
       
       <div class="container">
@@ -115,10 +115,15 @@
       <div class="container mb-3" id="experiments">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
-                <select id="exptype" class="form-control" onchange="experiments2()">
+                <select id="exptype" class="form-control" onchange="showevents()">
                     <option value="choose">Experiment</option>
-                    <option value="coin">Tossing a Coin</option>
-                    <option value="dice">Rolling a Die</option>
+                    <option value="coin1">Tossing a Coin</option>
+                    <option value="coin2">Tossing 2 Coins</option>
+                    <option value="coin3">Tossing 3 Coins</option>
+                    <option value="coin4">Tossing 4 Coins</option>
+                    <option value="coin5">Tossing 5 Coins</option>
+                    <option value="dice1">Rolling a Die</option>
+                    <option value="dice2">Rolling 2 Dice</option>
                     <option value="deck">Deck of Cards</option>
                 </select>
                 </div>
@@ -145,8 +150,154 @@
                 </select>
                 </div>
             <div class="col-4 col-md-2" id = "blankspace">
-                
                 </div>
+            
+            <div class="col-4 col-md-2" id = "events">
+                <select id="eventsnone" class="form-control" onchange="">
+                </select>
+                <select id="eventscoin1" class="form-control" onchange="">
+                    <option value="head">Head</option>
+                    <option value="tail">Tail</option>
+                </select>
+                <select id="eventscoin2" class="form-control" onchange="">
+                    <option value="at1head">At Least 1 Head</option>
+                    <option value="at1tail">At Least 1 Tail</option>
+                    <option value="ex1head">Exactly 1 Head</option>
+                    <option value="ex1tail">Exactly 1 Tail</option>
+                    <option value="ex2head">Exactly 2 Heads</option>
+                    <option value="ex2tail">Exactly 2 Tails</option>
+                </select>
+                <select id="eventscoin3" class="form-control" onchange="">
+                    <option value="at1head">At Least 1 Head</option>
+                    <option value="at1tail">At Least 1 Tail</option>
+                    <option value="at2head">At Least 2 Heads</option>
+                    <option value="at2tail">At Least 2 Tails</option>
+                    <option value="ex1head">Exactly 1 Head</option>
+                    <option value="ex1tail">Exactly 1 Tail</option>
+                    <option value="ex2head">Exactly 2 Head</option>
+                    <option value="ex2tail">Exactly 2 Tail</option>
+                    <option value="ex3head">Exactly 2 Head</option>
+                    <option value="ex3tail">Exactly 2 Tail</option>
+                </select>
+                <select id="eventscoin4" class="form-control" onchange="">
+                    <option value="at1head">At Least 1 Head</option>
+                    <option value="at1tail">At Least 1 Tail</option>
+                    <option value="at2head">At Least 2 Heads</option>
+                    <option value="at2tail">At Least 2 Tails</option>
+                    <option value="at3head">At Least 3 Heads</option>
+                    <option value="at3tail">At Least 3 Tails</option>
+                    <option value="ex1head">Exactly 1 Head</option>
+                    <option value="ex1tail">Exactly 1 Tail</option>
+                    <option value="ex2head">Exactly 2 Head</option>
+                    <option value="ex2tail">Exactly 2 Tail</option>
+                    <option value="ex3head">Exactly 3 Head</option>
+                    <option value="ex3tail">Exactly 3 Tail</option>
+                    <option value="ex4head">Exactly 4 Head</option>
+                    <option value="ex4tail">Exactly 4 Tail</option>
+                </select>
+                <select id="eventscoin5" class="form-control" onchange="">
+                    <option value="at1head">At Least 1 Head</option>
+                    <option value="at1tail">At Least 1 Tail</option>
+                    <option value="at2head">At Least 2 Heads</option>
+                    <option value="at2tail">At Least 2 Tails</option>
+                    <option value="at3head">At Least 3 Heads</option>
+                    <option value="at3tail">At Least 3 Tails</option>
+                    <option value="at4head">At Least 4 Heads</option>
+                    <option value="at4tail">At Least 4 Tails</option>
+                    <option value="ex1head">Exactly 1 Head</option>
+                    <option value="ex1tail">Exactly 1 Tail</option>
+                    <option value="ex2head">Exactly 2 Head</option>
+                    <option value="ex2tail">Exactly 2 Tail</option>
+                    <option value="ex3head">Exactly 3 Head</option>
+                    <option value="ex3tail">Exactly 3 Tail</option>
+                    <option value="ex4head">Exactly 4 Head</option>
+                    <option value="ex4tail">Exactly 4 Tail</option>
+                    <option value="ex5head">Exactly 5 Head</option>
+                    <option value="ex5tail">Exactly 5 Tail</option>
+                </select>
+                <select id="eventsdice1" class="form-control" onchange="">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="even">Even Number</option>
+                    <option value="odd">Odd Number</option>
+                    <option value="high2">2 or Higher</option>
+                    <option value="high3">3 or Higher</option>
+                    <option value="high4">4 or Higher</option>
+                    <option value="high5">5 or Higher</option>
+                    <option value="high2">2 or Lower</option>
+                    <option value="high3">3 or Lower</option>
+                    <option value="high4">4 or Lower</option>
+                    <option value="high5">5 or Lower</option>
+                </select>
+                <select id="eventsdice2" class="form-control" onchange="">
+                    <option value="sum2">Sum is 2</option>
+                    <option value="sum3">Sum is 3</option>
+                    <option value="sum4">Sum is 4</option>
+                    <option value="sum5">Sum is 5</option>
+                    <option value="sum6">Sum is 6</option>
+                    <option value="sum7">Sum is 7</option>
+                    <option value="sum8">Sum is 8</option>
+                    <option value="sum9">Sum is 9</option>
+                    <option value="sum10">Sum is 10</option>
+                    <option value="sum11">Sum is 11</option>
+                    <option value="sum12">Sum is 12</option>
+                    <option value="sumeven">Sum is Even</option>
+                    <option value="sumodd">Sum is Odd</option>
+                    <option value="sum3high">Sum is 3 or Higher</option>
+                    <option value="sum4high">Sum is 4 or Higher</option>
+                    <option value="sum5high">Sum is 5 or Higher</option>
+                    <option value="sum6high">Sum is 6 or Higher</option>
+                    <option value="sum7high">Sum is 7 or Higher</option>
+                    <option value="sum8high">Sum is 8 or Higher</option>
+                    <option value="sum9high">Sum is 9 or Higher</option>
+                    <option value="sum10high">Sum is 10 or Higher</option>
+                    <option value="sum11high">Sum is 11 or Higher</option>
+                    <option value="sum3low">Sum is 3 or Lower</option>
+                    <option value="sum4low">Sum is 4 or Lower</option>
+                    <option value="sum5low">Sum is 5 or Lower</option>
+                    <option value="sum6low">Sum is 6 or Lower</option>
+                    <option value="sum7low">Sum is 7 or Lower</option>
+                    <option value="sum8low">Sum is 8 or Lower</option>
+                    <option value="sum9low">Sum is 9 or Lower</option>
+                    <option value="sum10low">Sum is 10 or Lower</option>
+                    <option value="sum11low">Sum is 11 or Lower</option>
+                </select>
+                <select id="eventsdeck" class="form-control" onchange="">
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="J">J</option>
+                    <option value="Q">Q</option>
+                    <option value="K">K</option>
+                    <option value="A">A</option>
+                    <option value="heart">Heart</option>
+                    <option value="diamond">Diamond</option>
+                    <option value="spade">Spade</option>
+                    <option value="club">Club</option>
+                    <option value="black">Black</option>
+                    <option value="red">Red</option>
+                    <option value="face">Face Card</option>
+                </select>
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
             </div>
           
           <div class = " text-center mt-2" id = "samplespace">
@@ -336,13 +487,13 @@
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()">
                     <option value="choose">Choose One</option>
-                    <option value="samplespace">Outcomes</option>
+                    <option value="samplespace">Sample Space</option>
                     <option value="outcomes">Number of Outcomes</option>
                     <!--<option value="tree">Tree Diagram</option>-->
                     <option value="combinations">Combinations</option>
                     <option value="permutations">Permutations</option>
-                    <!--<option value="outcomes">Probability of Outcome</option>
-                    <option value="events">Events</option>-->
+                    <!--<option value="outcomes">Probability of Outcome</option>-->
+                    <option value="events">Events</option>
                     <option value="probability">Probability of Event</option>
                     <option value="complement">Complement</option>
                     <option value="union">Union</option>
@@ -358,35 +509,35 @@
             </div>
           
           <div class = "text-center mt-2" id = "experimentexamples">
-            <span class="examplelink" onclick="exampleexperiments()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexperiments2()">Example 2</span>
+            <span class="examplelink" onclick="exampleexperiments()">Example</span> <!--&bull; <span class="examplelink" onclick="exampleexperiments2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id = "combinationexamples">
-            <span class="examplelink" onclick="examplecomb()">Example 1</span> &bull; <span class="examplelink" onclick="examplecomb2()">Example 2</span>
+            <span class="examplelink" onclick="examplecomb()">Example</span> <!--&bull; <span class="examplelink" onclick="examplecomb2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id = "permutationexamples">
-            <span class="examplelink" onclick="exampleperm()">Example 1</span> &bull; <span class="examplelink" onclick="exampleperm2()">Example 2</span>
+            <span class="examplelink" onclick="exampleperm()">Example</span> <!--&bull; <span class="examplelink" onclick="exampleperm2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id="complementexamples">
-            <span class="examplelink" onclick="examplecomplement()">Example 1</span> &bull; <span class="examplelink" onclick="examplecomplement2()">Example 2</span>
+            <span class="examplelink" onclick="examplecomplement()">Example</span> <!--&bull; <span class="examplelink" onclick="examplecomplement2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id="unionexamples">
-            <span class="examplelink" onclick="exampleunion()">Example 1</span> &bull; <span class="examplelink" onclick="exampleunion2()">Example 2</span>
+            <span class="examplelink" onclick="exampleunion()">Example</span> <!--&bull; <span class="examplelink" onclick="exampleunion2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id="intersectionexamples">
-            <span class="examplelink" onclick="exampleintersection()">Example 1</span> &bull; <span class="examplelink" onclick="exampleintersection2()">Example 2</span>
+            <span class="examplelink" onclick="exampleintersection()">Example</span> <!--&bull; <span class="examplelink" onclick="exampleintersection2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id="conditionalexamples">
-            <span class="examplelink" onclick="exampleconditional()">Example 1</span> &bull; <span class="examplelink" onclick="exampleconditional2()">Example 2</span>
+            <span class="examplelink" onclick="exampleconditional()">Example</span> <!--&bull; <span class="examplelink" onclick="exampleconditional2()">Example 2</span>-->
         </div>
           
           <div class = "text-center mt-2" id="bayesexamples">
-            <span class="examplelink" onclick="examplebayes()">Example 1</span> &bull; <span class="examplelink" onclick="examplebayes2()">Example 2</span>
+            <span class="examplelink" onclick="examplebayes()">Example</span> <!--&bull; <span class="examplelink" onclick="examplebayes2()">Example 2</span>-->
         </div>
           
         </div>

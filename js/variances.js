@@ -5,11 +5,21 @@ $("#samplesize").hide(); $("#confidence").show();
 $("#hypothesis").hide(); $("#confidence").show();
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
 
+$("#myCanvas1").hide(); $("#myCanvas2").hide();
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
 
 var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
@@ -117,16 +127,14 @@ function Gammacdf(x,a) {
 	return GI
 }
 
-function compute(form) {
-    Z=eval(form.argument.value)
-    DF=eval(form.df.value)
+function compute(Z,DF) {
 	if (DF<=0) {
 		alert("Degrees of freedom must be positive")
 	} else {
 		Chisqcdf=Gammacdf(Z/2,DF/2)
 	}
 	Chisqcdf=Math.round(Chisqcdf*100000)/100000;
-    form.result.value = Chisqcdf;
+    return Chisqcdf;
 }
 
 
@@ -450,6 +458,7 @@ function conint1(){
     var conlev = document.getElementById("conlev").value;
     var confor = "variance"
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var exp = 2.71828;
     
     chidf = chi[sizem1]
     
@@ -472,71 +481,99 @@ function conint1(){
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = " $$  df = n - 1 = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
+        document.getElementById("output1").innerHTML = " $$  df = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
     } else if (confor == "standard") {
         document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ df &= n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ df= "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
     } 
+    
 
+    var f = [];
+    var i;
+    for (i = 0; i < 20; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+    }
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     ctx.moveTo(20, 130);
-    ctx.quadraticCurveTo(50, 100, 53, 90);
-    ctx.lineTo(53, 130);
+    ctx.quadraticCurveTo(40, 120, 50, 85);
+    ctx.lineTo(50, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
 
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(210, 130);
-    ctx.lineTo(210, 108);
-    ctx.quadraticCurveTo(265, 120, 265, 120);
-    ctx.lineTo(265, 130);
+    ctx.moveTo(190, 130);
+    ctx.lineTo(190, 106);
+    ctx.quadraticCurveTo(210, 120, 247, 125);
+    ctx.lineTo(247, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
-
+    
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
+    
     ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.bezierCurveTo(80, 80, 60, 20, 100, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(100, 20);
-    ctx.bezierCurveTo(140, 20, 120, 100, 265, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 5);
+    ctx.moveTo(20, 10);
     ctx.lineTo(20, 130);
     ctx.lineTo(280, 130);
     ctx.stroke();
     
+    ctx.beginPath();
+    ctx.moveTo(50, 135);
+    ctx.lineTo(50, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(190, 135);
+    ctx.lineTo(190, 125);
+    ctx.stroke();
+    
     ctx.fillText("χ²",285,132);
-    ctx.fillText("χ²",207,145);
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),214,149);
+    ctx.fillText("χ²",186,145);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),192,149);
     ctx.fillText("χ²",50,145);
     ctx.fillText((1-alphahalf).toFixed(3).replace(/^0+/, ''),57,149);
     
     ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),25,95);
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),230,108);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),205,108);
+
     
-    ctx.beginPath();
-    ctx.moveTo(53, 135);
-    ctx.lineTo(53, 125);
+    var points = []
+    
+    for (i = 0; i < 20; i++) {
+      points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
     ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(210, 135);
-    ctx.lineTo(210, 125);
-    ctx.stroke();
+    
+
 
     table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
@@ -799,86 +836,620 @@ function hyp(){
     
     var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
     
+    var tail = document.getElementById("tail").value
     var muknot = document.getElementById("muknot").value
     var size = document.getElementById("size2").value; var sizem1 = size - 1;
     var stdev = document.getElementById("xbar").value;
     var alpha = document.getElementById("alpha").value;
-    var test = ((size-1)*(stdev*stdev))/muknot
+    var test = ((size-1)*(stdev*stdev))/muknot 
+    var exp = 2.71828;
     
     chidf = chi[sizem1]
+
+    if (tail == "lower"){
+        var tailsign = "\\leq";
+        var cvalsymb = "-t_\\alpha";
+        var pvalue = compute(test,size-1);
+        if (pvalue > .2) {
+            var pval = ".20 \\text{ to } 1"
+        } else if (pvalue <.2 && pvalue >.1) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalue <.1 && pvalue >.05) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalue <.05 && pvalue >.025) {
+            var pval = ".025 \\text{ to } .05"
+        } else if (pvalue <.025 && pvalue >.01) {
+            var pval = ".01 \\text{ to } .025"
+        } else if (pvalue <.01 && pvalue >.005) {
+            var pval = ".005 \\text{ to } .01"
+        } else if (pvalue <.005) {
+            var pval = "0 \\text{ to } .005"
+        } else {
+            var pval = pvalue.toFixed(4);
+        }
+    } else if (tail == "upper"){
+        var tailsign = "\\geq";
+        var cvalsymb = "t_\\alpha";
+        var pvalue = 1 - compute(test,size-1);
+        if (pvalue > .2) {
+            var pval = ".20 \\text{ to } 1"
+        } else if (pvalue <.2 && pvalue >.1) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalue <.1 && pvalue >.05) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalue <.05 && pvalue >.025) {
+            var pval = ".025 \\text{ to } .05"
+        } else if (pvalue <.025 && pvalue >.01) {
+            var pval = ".01 \\text{ to } .025"
+        } else if (pvalue <.01 && pvalue >.005) {
+            var pval = ".005 \\text{ to } .01"
+        } else if (pvalue <.005) {
+            var pval = "0 \\text{ to } .005"
+        } else {
+            var pval = pvalue.toFixed(4);
+        } 
+    } else if (tail == "two"){
+        var tailsign = "=";
+        var cvalsymb1 = "-t_{\\alpha / 2}";
+        var cvalsymb2 = "t_{\\alpha / 2}";
+        var pvalhalf = compute(test,size-1);
+        if (pvalhalf > .2) {
+            var pvalh = ".20 \\text{ to } 1"
+        } else if (pvalhalf <.2 && pvalhalf >.1) {
+            var pvalh = ".10 \\text{ to } .20"
+        } else if (pvalhalf <.1 && pvalhalf >.05) {
+            var pvalh = ".05 \\text{ to } .10"
+        } else if (pvalhalf <.05 && pvalhalf >.025) {
+            var pvalh = ".025 \\text{ to } .05"
+        } else if (pvalhalf <.025 && pvalhalf >.01) {
+            var pvalh = ".01 \\text{ to } .025"
+        } else if (pvalhalf <.01 && pvalhalf >.005) {
+            var pvalh = ".005 \\text{ to } .01"
+        } else if (pvalhalf <.005) {
+            var pvalh = "0 \\text{ to } .005"
+        } else {
+            var pvalh = pvalhalf.toFixed(4);
+        }     
+        var pvalue = 2 * pvalhalf;
+        if (pvalhalf > .2) {
+            var pval = ".40 \\text{ to } 1"
+        } else if (pvalhalf <.2 && pvalhalf >.1) {
+            var pval = ".20 \\text{ to } .40"
+        } else if (pvalhalf <.1 && pvalhalf >.05) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalhalf <.05 && pvalhalf >.025) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalhalf <.025 && pvalhalf >.01) {
+            var pval = ".02 \\text{ to } .05"
+        } else if (pvalhalf <.01 && pvalhalf >.005) {
+            var pval = ".01 \\text{ to } .02"
+        } else if (pvalhalf <.005) {
+            var pval = "0 \\text{ to } .01"
+        } else {
+            var pval = pvalue.toFixed(4);
+        }    
+    }
+
+    if (pvalue <= alpha) {
+        var pinequ = "\\leq"
+        var concl = "\\text{Reject } H_o"
+        var critsignlower = "\\leq"
+        var critsignupper = "\\geq"
+    } else if (pvalue > alpha) {
+        var pinequ = ">"
+        var concl = "\\text{Do Not Reject } H_o"
+        var critsignlower = ">"
+        var critsignupper = "<"
+    }
+    
+    
+    
+    
+    
+    
+    if (alpha == ".1") {
+        var cless = chidf[2]; var cmore = chidf[3]
+        var ctwo1 = chidf[1]; var ctwo2 = chidf[4]
+    } else if (alpha == ".05") {
+        var cless = chidf[2]; var cmore = chidf[3]
+        var ctwo1 = chidf[1]; var ctwo2 = chidf[4]
+    } else if (alpha == ".01") {
+        var cless = chidf[1]; var cmore = chidf[4]
+        var ctwo1 = chidf[0]; var ctwo2 = chidf[5]
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
     document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-    document.getElementById("output1").innerHTML = "$$ \\begin{align} \\text{Test Statistic: } \\chi^2 &= \\frac{(n-1)s^2}{\\sigma_o^2} \\\\ &= \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} \\\\ &= " + parseFloat(test.toFixed(2)) + " \\\\ \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$  "
+    document.getElementById("output3").innerHTML = "$$ \\chi^2 = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"
+    
+    if (tail == "lower") {
+        var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.quadraticCurveTo(40, 120, 50, 85);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",20,145);
+
+        ctx.beginPath();
+        ctx.moveTo(50, 135);
+        ctx.lineTo(50, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText(test.toFixed(2),50,145);
+
+        ctx.fillText("p-value",25,85);
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+        
+    } else if (tail == "upper") {
+        var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(190, 130);
+        ctx.lineTo(190, 106);
+        ctx.quadraticCurveTo(210, 120, 247, 125);
+        ctx.lineTo(247, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(190, 135);
+        ctx.lineTo(190, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText(test.toFixed(2),185,145);
+
+        ctx.fillText("p-value",205,108);
+
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    } else if (tail == "two") {
+        var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.quadraticCurveTo(40, 120, 50, 85);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(190, 130);
+        ctx.lineTo(190, 106);
+        ctx.quadraticCurveTo(210, 120, 247, 125);
+        ctx.lineTo(247, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(50, 135);
+        ctx.lineTo(50, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(190, 135);
+        ctx.lineTo(190, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText(test.toFixed(3).replace(/^0+/, ''),192,149);
+        ctx.fillText("χ²",50,145);
+        ctx.fillText(test.toFixed(3).replace(/^0+/, ''),57,149);
+
+        ctx.fillText(alpha,25,95);
+        ctx.fillText(alpha,205,108);
+
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    }
+    
+    
+    table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    
+    table2 = "<td>$df$</td><td>$.995$</td><td>$.975$</td><td>$.95$</td><td>$.05$</td><td>$.025$</td><td>$.005$</td>"
+    
+    table3 = "<td>$"+ sizem1 +"$</td><td>$"+chidf[0]+"$</td><td>$"+chidf[1]+"$</td><td>$"+chidf[2]+"$</td><td>$"+chidf[3]+"$</td><td>$"+chidf[4]+"$</td><td>$"+chidf[5].toFixed(3)+"$</td>"
+    
+    
+    var tablep = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
+    
+    
+    if (tail == "lower") {
+        document.getElementById("output4").innerHTML = tablep+ "$$\\text{p-value}=P(\\chi^2 \\leq "+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $$ \\text{Critical Value Approach:} $$"
+    } else if (tail == "upper") {
+        document.getElementById("output4").innerHTML = tablep+" $$\\text{p-value}=P(\\chi^2 \\geq "+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $$ \\text{Critical Value Approach:} $$"
+    } else if (tail == "two") {
+        document.getElementById("output4").innerHTML = tablep+"$$ \\text{p-value}=2*P(\\chi^2 \\geq "+test.toFixed(2)+" = "+pval+" $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $$ \\text{Critical Value Approach:} $$"
+    }
+    
+    if (tail == "lower") {
+        var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.quadraticCurveTo(40, 120, 50, 85);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+        
+        ctx.fillText("0",20,145);
+
+        ctx.beginPath();
+        ctx.moveTo(50, 135);
+        ctx.lineTo(50, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText("χ²",50,145);
+
+        ctx.fillText(alpha,25,85);
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+        
+    } else if (tail == "upper") {
+        var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(190, 130);
+        ctx.lineTo(190, 106);
+        ctx.quadraticCurveTo(210, 120, 247, 125);
+        ctx.lineTo(247, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(190, 135);
+        ctx.lineTo(190, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText(test.toFixed(2),185,145);
+
+        ctx.fillText("p-value",205,108);
+
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    } else if (tail == "two") {
+        var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.quadraticCurveTo(40, 120, 50, 85);
+        ctx.lineTo(50, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(190, 130);
+        ctx.lineTo(190, 106);
+        ctx.quadraticCurveTo(210, 120, 247, 125);
+        ctx.lineTo(247, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(50, 135);
+        ctx.lineTo(50, 125);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(190, 135);
+        ctx.lineTo(190, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText(test.toFixed(3).replace(/^0+/, ''),192,149);
+        ctx.fillText("χ²",50,145);
+        ctx.fillText(test.toFixed(3).replace(/^0+/, ''),57,149);
+
+        ctx.fillText(alpha,25,95);
+        ctx.fillText(alpha,205,108);
+
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    }
     
     
     
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
+    
+    
+    
+    
+    
+    if (tail == "lower") {
+        document.getElementById("output5").innerHTML = tablep+" $$ \\text{Critical Value: } \\chi^2_{"+(1-alpha)+"} = " + cless.toFixed(2) + " $$ $$ \\chi^2 ="+test.toFixed(2) +critsignlower+" \\chi^2_{"+(1-alpha)+"} = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$"
+    } else if (tail == "upper") {
+        document.getElementById("output5").innerHTML = tablep+"$$ \\text{Critical Value: } \\chi^2_{"+alpha+"} = " + cmore.toFixed(2) + " $$ $$ \\chi^2 ="+test.toFixed(2) +critsignupper+" \\chi^2_{"+alpha+"} = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$"
+    } else if (tail == "two") {
+        
+    }
     
     
     
     
     
     
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(210, 130);
-    ctx.lineTo(210, 108);
-    ctx.quadraticCurveTo(265, 120, 265, 120);
-    ctx.lineTo(265, 130);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    
-    
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.bezierCurveTo(80, 80, 60, 20, 100, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(100, 20);
-    ctx.bezierCurveTo(140, 20, 120, 100, 265, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 5);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
-    
-    ctx.fillText("χ²",285,132);
-    ctx.fillText(parseFloat(test.toFixed(2)),200,145);
-    ctx.fillText("0",19,142);
-    
-    ctx.fillText("p-value",223,105);
-    
-    ctx.beginPath();
-    ctx.moveTo(210, 135);
-    ctx.lineTo(210, 125);
-    ctx.stroke();
     
     
 
     
-    
-    
-    table1 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
-    
-    table2 = "<td>df</td><td>.995</td><td>.975</td><td>.95</td><td>.05</td><td>.025</td><td>.005</td>"
-    
-    table3 = "<td>"+ sizem1 +"</td><td>"+chidf[0]+"</td><td>"+chidf[1]+"</td><td>"+chidf[2]+"</td><td>"+chidf[3]+"</td><td>"+chidf[4]+"</td><td>"+chidf[5].toFixed(3)+"</td>"
-    
-    
-    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = "<br>" + table
 
     MathJax.typeset();
 }
@@ -1015,13 +1586,17 @@ function example5(){
 function switchhypothesis() {
     $("#hypothesis").show(); $("#confidence").hide();
     $("#switchhypothesis").hide(); $("#switchconfidence").show();
-    $("#output1").empty(); $("#output2").empty(); $("#explanation").hide(); $("#canvascontainer").show();
+    $("#explanation").hide(); $("#canvascontainer").show();
+    $("#myCanvas").hide(); $("#myCanvas1").show(); $("#myCanvas2").show();
+    $("#output1").hide(); $("#output2").hide(); $("#output3").show(); $("#output4").show(); $("#output5").show();
 }
  
 function switchconfidence() {
     $("#hypothesis").hide(); $("#confidence").show();
     $("#switchhypothesis").show(); $("#switchconfidence").hide();
-    $("#output").empty(); $("#explanation").hide(); $("#canvascontainer").show();
+    $("#explanation").hide(); $("#canvascontainer").show();
+    $("#myCanvas").show(); $("#myCanvas1").hide(); $("#myCanvas2").hide();
+    $("#output1").show(); $("#output2").show(); $("#output3").hide(); $("#output4").hide(); $("#output5").hide();
 }
 
 

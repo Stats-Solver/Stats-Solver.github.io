@@ -69,8 +69,8 @@
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
               <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
@@ -86,7 +86,7 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="multiple-regression.html">Multiple Regression Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="multiple-regression.html">Multiple Regression</a></h4>
     </div>
       
       <div class="container">
@@ -181,12 +181,18 @@
             <td class="statistics">&nbsp;</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sst">SST</td>
             <td class="statistics" id="equal1s">=</td>
-            <td class="statistics"><input type="text" style="width:80px;" id="sstvalue" class="hypinput2"></td>
+            <td class="statistics"><input type="text" style="width:60px;" id="sstvalue" class="hypinput2"></td>
             <td class="statistics">&nbsp;</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size" id="ssr">SSR</td>
             <td class="statistics" id="equal2s">=</td>
-            <td class="statistics"><input type="text" style="width:80px;" id="ssrvalue" class="hypinput2"></td>
-              
+            <td class="statistics"><input type="text" style="width:60px;" id="ssrvalue" class="hypinput2"></td>
+            <!--<td class="statistics">&nbsp;&nbsp;</td>
+            <td class="statistics">
+            <svg onclick="switchdata()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            </td> --> 
               
           </tr>
         </table> 
@@ -237,19 +243,19 @@
         </table> 
               </div>
               </div>
-               
+           
           <div class="container">
           <div class="row justify-content-center">
                   
-        <div class="col-8 col-md-3 mb-3">
+        <div class="col-8 col-md-3 mb-2">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
                 <option value="interpretation">Interpretation</option>
                 <option value="prediction">Prediction</option>
                 <option value="sse">Sum of Squares Error</option>
-                <option value="rsquared">Coefficient of Determination</option>
-                <!--<option value="rsquared">Multiple R-Squared</option>
-                <option value="adjusted">Adjusted R-Squared</option>-->
+                <!--<option value="rsquared">Coefficient of Determination</option>-->
+                <option value="rsquared">Multiple R-Squared</option>
+                <option value="adjusted">Adjusted R-Squared</option>
                 <option value="msr">Mean Square Regression</option>
                 <option value="mse">Mean Square Error</option>
                 <option value="fstat">F-Statistic</option>
@@ -264,7 +270,7 @@
     
       
                 <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
+            <span class="examplelink" onclick="examplevalues()">Example</span> <!--&bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>-->
         </div>
           
           </div>
@@ -288,30 +294,87 @@
       
       
       
+      
+      
+      
+      <!--<div class="container" id = "datainput">
+          <div class="row  justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" id="valuesx1" class="form-control" placeholder="Enter X₁ Values">
+        </div>
+
+        </div>
+          <div class="row  justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" id="valuesx2" class="form-control" placeholder="Enter X₂ Values">
+        </div>
+        </div>
+          <div class="row  justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" id="valuesyy" class="form-control" placeholder="Enter Y Values">
+        </div>
+        </div>
+          </div>-->
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
       <div class="container" id = "datainput">
       
           <div class="container">
               <div class="row  justify-content-center">
-            <div class="col-12 col-md-5 mb-3">
-                <input type="text" id="valuesx1" class="form-control" placeholder="Enter X₁ Values (separated by commas)">
+            <div class="col-8 col-md-3 mb-3">
+                <input type="text" id="valuesx1" class="form-control" placeholder="Enter X₁ Values">
             </div>
+            <div class="col-4 col-md-2 mb-3" id = "blankx1">
+        </div>
              </div>     
         </div>
 
           <div class="container">
               <div class="row  justify-content-center">
-            <div class="col-12 col-md-5 mb-3">
-                <input type="text" id="valuesx2" class="form-control" placeholder="Enter X₂ Values (separated by commas)">
+            <div class="col-8 col-md-3 mb-3">
+                <input type="text" id="valuesx2" class="form-control" placeholder="Enter X₂ Values">
             </div>
+            <div class="col-4 col-md-2 mb-3" id = "blankx2">
+        </div>
              </div>     
         </div>
 
           <div class="container">
               <div class="row justify-content-center">
-            <div class="col-12 col-md-5 mb-3">
-                <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values (separated by commas)">
+            <div class="col-8 col-md-3 mb-3">
+                <input type="text" id="valuesyy" class="form-control" placeholder="Enter Y Values">
             </div>
-
+            <div class="col-4 col-md-2 mb-3" id = "blanky">
+            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div>
 
         </div>
               </div>
@@ -319,15 +382,15 @@
           <div class="container">
           <div class="row justify-content-center">
                   
-        <div class="col-8 col-md-3 mb-3">
+        <div class="col-8 col-md-3 mb-2">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
-                <option value="equation">Estimated Regression Equation</option>
+                <option value="equation">Regression Equation</option>
                 <option value="interpretation2">Interpretation</option>
                 <option value="prediction2">Prediction</option>
                 <option value="sse2">Sum of Squares Error</option>
-                <option value="rsquared2">Multiple Coefficient of Determination</option>
-                <option value="adjusted2">Adjusted Coefficient of Determination</option>
+                <option value="rsquared2">Multiple R-Square</option>
+                <option value="adjusted2">Adjusted R-Square</option>
                 <option value="msr2">Mean Square Regression</option>
                 <option value="mse2">Mean Square Error</option>
                 <option value="fstat2">F-Statistic</option>
@@ -335,13 +398,13 @@
             </select>
         </div> 
               <div class="col-4 col-md-2 inputWrapper">
-            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat()">Solve</button>
+            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat2()">Solve</button>
         </div> 
               </div>
               </div>
 
           <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>
+            <span class="examplelink" onclick="examplevalues3()">Example</span> <!--&bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>-->
         </div>
           
         </div>

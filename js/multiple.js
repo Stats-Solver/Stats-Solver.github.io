@@ -2,9 +2,18 @@ $("#explanation").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $
 $("#plus3").hide(); $("#b3").hide(); $("#x3").hide(); $("#plus4").hide(); $("#b4").hide(); $("#x4").hide();
 $("#three2two").hide(); $("#three2four").hide(); $("#four2three").hide();
 $("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide()
-$("#sumsquares").hide(); 
 
 $("#switchvalues").hide(); $("#switchdata").show(); $("#valuesinput").show(); $("#datainput").hide();
+
+function switchdata() {
+    $("#datainput").show(); $("#valuesinput").hide();
+    type = "data"
+}
+
+function switchvalues() {
+    $("#datainput").hide(); $("#valuesinput").show();
+    type = "values"
+}
 
 function make2(){
     $("#plus3").hide(); $("#b3").hide(); $("#x3").hide(); $("#plus4").hide(); $("#b4").hide(); $("#x4").hide();
@@ -79,10 +88,10 @@ function avg(input){
 }
 
 function showthings(){
-    $("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide(); $("#sumsquares").hide();
+    $("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide()
     var x = document.getElementById("stat").value;
     if (x == "prediction"){
-        prediction()
+        prediction(); $("#sumsquares").hide();
     } else if (x == "sse"){
         sse()
     } else if (x == "rsquared"){
@@ -242,7 +251,7 @@ function calcprediction(){
 
 function sse(){
     $("#sumsquares").show();
-    $("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
+    //$("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
     $("#sst").show(); $("#equal1s").show(); $("#sstvalue").show();
 }
 
@@ -253,13 +262,13 @@ function calcsse(){
     document.getElementById("explanationtext").innerHTML = "If two sum of squares are known, the third one is easy to find."
     var sst = document.getElementById('sstvalue').value
     var ssr = document.getElementById('ssrvalue').value
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{SSE} &= \\text{SST} - \\text{SSR} \\\\ &= "+sst+" - " +ssr +" \\\\ &= \\boxed{"+(sst-ssr).toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{SSE} &= "+sst+" - " +ssr +" \\\\ &= \\boxed{"+(sst-ssr).toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
 function rsquared(){
     $("#sumsquares").show();
-    $("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
+    //$("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
     $("#sst").show(); $("#equal1s").show(); $("#sstvalue").show();
     $("#ssr").show(); $("#equal2s").show(); $("#ssrvalue").show();
 }
@@ -271,7 +280,7 @@ function calcrsquared(){
     document.getElementById("explanationtext").innerHTML = "The coefficient of determination in multiple regression has the problem that its value increases automatically when independent variables are added."
     var sst = document.getElementById('sstvalue').value
     var ssr = document.getElementById('ssrvalue').value
-    document.getElementById("output").innerHTML = "$$ \\begin{align} R^2 &= \\frac{\\text{SSR}}{\\text{SST}} \\\\ &= \\frac{"+ssr+"}{" +sst +"} \\\\ &= \\boxed{"+(ssr/sst).toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} R^2 &= \\frac{"+ssr+"}{" +sst +"} \\\\ &= \\boxed{"+(ssr/sst).toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -295,14 +304,14 @@ function calcadjusted(){
     var adjans = 1 - (1 - rsquared)*(n-1)/(n-p-1)
     var ansrsquper = adjans.toFixed(2) * 100;
     var interpret = "<b>Interpretation:</b> <u>" + parseFloat(ansrsquper.toFixed(0)) + "% of the variation</u> in y is explained by the estimated regression equation."
-    document.getElementById("output").innerHTML = "$$ \\begin{align} R_a^2 &= 1 - (1 - R^2) \\frac{n-1}{n-p-1} \\\\ &= 1 - (1 - " + rsquared.toFixed(2) + ") \\frac{" + n + " - 1}{" + n +" - " + p +" - 1} \\\\ &= \\boxed{"+adjans.toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} R_a^2 &= 1 - (1 - " + rsquared.toFixed(2) + ") \\frac{" + n + " - 1}{" + n +" - " + p +" - 1} \\\\ &= \\boxed{"+adjans.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
 function msr(){
     $("#sumsquares").show();
-    $("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
-    $("#sst").hide(); $("#equal1s").hide(); $("#sstvalue").hide();
+    //$("#samplesize").hide(); $("#equal0s").hide(); $("#nvalue").hide();
+    //$("#sst").hide(); $("#equal1s").hide(); $("#sstvalue").hide();
     $("#ssr").show(); $("#equal2s").show(); $("#ssrvalue").show();
 }
 
@@ -313,7 +322,7 @@ function calcmsr(){
     document.getElementById("explanationtext").innerHTML = "The MSR is divided by p because the SSR has p degrees of freedom."
     var ssr = document.getElementById('ssrvalue').value
     var p = ind
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\frac{\\text{SSR}}{p} \\\\ &= \\frac{"+ssr+"}{" +p +"} \\\\ &= \\boxed{"+parseFloat((ssr/p).toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\frac{"+ssr+"}{" +p +"} \\\\ &= \\boxed{"+parseFloat((ssr/p).toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }hide
 
@@ -335,7 +344,7 @@ function calcmse(){
     var n = document.getElementById('nvalue').value;
     var p = ind;
     var ans = sse/(n-p-1)
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSE} &= \\frac{\\text{SSE}}{n-p-1} \\\\ &= \\frac{"+sse+"}{" +n +"-" + p +"-1} \\\\ &= \\boxed{"+parseFloat(ans.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSE} &= \\frac{"+sse+"}{" +n +"-" + p +"-1} \\\\ &= \\boxed{"+parseFloat(ans.toFixed(2))+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -350,7 +359,7 @@ function calcfstat(){
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
     var msr = document.getElementById('msrvalue').value;
     var mse = document.getElementById('msevalue').value;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} F &= \\frac{\\text{MSR}}{\\text{MSE}} \\\\ &= \\frac{"+msr+"}{" +mse +"} \\\\ &= \\boxed{"+parseFloat((msr/mse).toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ F = \\frac{"+msr+"}{" +mse +"} = "+parseFloat((msr/mse).toFixed(2))+" $$"
     MathJax.typeset();
 }
 
@@ -404,11 +413,11 @@ function calctstat(){
     
     
     if (ind == 3) {
-        document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+b1+"}{" +sb1 +"} \\\\ &= \\boxed{"+parseFloat((b1/sb1).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_2}{s_{b_2}} \\\\ &= \\frac{"+b2+"}{" +sb2 +"} \\\\ &= \\boxed{"+parseFloat((b2/sb2).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_3}{s_{b_3}} \\\\ &= \\frac{"+b3+"}{" +sb3 +"} \\\\ &= \\boxed{"+parseFloat((b3/sb3).toFixed(2))+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "t = \\frac{"+b1+"}{" +sb1 +"} = \\boxed{"+parseFloat((b1/sb1).toFixed(2))+"}  $$ $$ \\begin{align} t &= \\frac{b_2}{s_{b_2}} \\\\ &= \\frac{"+b2+"}{" +sb2 +"} \\\\ &= \\boxed{"+parseFloat((b2/sb2).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_3}{s_{b_3}} \\\\ &= \\frac{"+b3+"}{" +sb3 +"} \\\\ &= \\boxed{"+parseFloat((b3/sb3).toFixed(2))+"} \\end{align} $$"
     } else if (ind == 4) {
         document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+b1+"}{" +sb1 +"} \\\\ &= \\boxed{"+parseFloat((b1/sb1).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_2}{s_{b_2}} \\\\ &= \\frac{"+b2+"}{" +sb2 +"} \\\\ &= \\boxed{"+parseFloat((b2/sb2).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_3}{s_{b_3}} \\\\ &= \\frac{"+b3+"}{" +sb3 +"} \\\\ &= \\boxed{"+parseFloat((b3/sb3).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_4}{s_{b_4}} \\\\ &= \\frac{"+b4+"}{" +sb4 +"} \\\\ &= \\boxed{"+parseFloat((b4/sb4).toFixed(2))+"} \\end{align} $$"
     } else {
-         document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+b1+"}{" +sb1 +"} \\\\ &= \\boxed{"+parseFloat((b1/sb1).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_2}{s_{b_2}} \\\\ &= \\frac{"+b2+"}{" +sb2 +"} \\\\ &= \\boxed{"+parseFloat((b2/sb2).toFixed(2))+"} \\end{align} $$"
+         document.getElementById("output").innerHTML = "$$ t = \\frac{"+b1+"}{" +sb1 +"} = "+parseFloat((b1/sb1).toFixed(2))+" $$ $$ t = \\frac{"+b2+"}{" +sb2 +"} = "+parseFloat((b2/sb2).toFixed(2))+" $$"
     }
     
     MathJax.typeset();
@@ -422,6 +431,28 @@ function calctstat(){
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function stat2() {
+    var x = document.getElementById("stat2").value;
+    if (x == "equation"){
+        equation()
+    } 
+}
 
 
 
@@ -648,7 +679,7 @@ function examplevalues2(){
 function examplevalues3() {
     document.getElementById('valuesx1').value="33, 45, 26, 60, 43, 52, 78, 31, 57, 79"
     document.getElementById('valuesx2').value="13, 11, 16, 14, 6, 18, 5, 14, 16, 12"
-    document.getElementById('valuesy').value="96, 105, 114, 173, 95, 174, 173, 118, 141, 210"
+    document.getElementById('valuesyy').value="96, 105, 114, 173, 95, 174, 173, 118, 141, 210"
 }
 
 function examplevalues4() {

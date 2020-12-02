@@ -3176,7 +3176,7 @@ function switchstandard() {
     approxtype = "standard"
 }
 
-function switchprobability() {
+function switchprobab() {
     $("#approxmean").hide();
     $("#approxstandard").hide();
     $("#approxprobability").show();

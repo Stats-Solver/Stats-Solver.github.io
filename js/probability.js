@@ -2,7 +2,7 @@ $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#comb").hide(); $("#perm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
 $("#intersection2").hide(); $("#conditional2").hide(); $("#union2").hide(); $("#intersection3").hide(); $("#intersection4").hide();
 $("#bayes").hide(); $("#output2").hide(); $("#exptimes").show(); $("#exptimes1").hide(); $("#exptimes2").hide(); $("#exptimes3").hide();
-$("#times").show(); $("#blankspace").hide();
+$("#times").hide(); $("#blankspace").show(); $("#events").hide();
 
 $("#combinationexamples").hide(); $("#permutationexamples").hide();  $("#complementexamples").hide(); $("#unionexamples").hide();
 $("#intersectionexamples").hide(); $("#conditionalexamples").hide();  $("#bayesexamples").hide(); $("#experiments").show();
@@ -32,16 +32,96 @@ function showstuff(){
     $("#combinationexamples").hide(); $("#permutationexamples").hide();  $("#complementexamples").hide(); $("#unionexamples").hide();
     $("#intersectionexamples").hide(); $("#conditionalexamples").hide();  $("#bayesexamples").hide(); $("#experimentexamples").hide(); 
     
+    $("#events").hide(); $("#blankspace").show();
+    
     var x = document.getElementById("stat").value;
+    var type = document.getElementById("exptype").value;
     if (x == "outcomes"){
         outcomes()
         $("#experimentexamples").show(); 
     } else if (x == "samplespace"){
         samplespace()
         $("#experimentexamples").show(); 
+    } else if (x == "events"){
+        $("#experiments").show();
+        $("#experimentexamples").show(); $("#events").show(); $("#blankspace").hide();
+        if (type == "coin1") {
+            $("#eventscoin1").show(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin2") {
+            $("#eventscoin1").hide(); $("#eventscoin2").show(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin3") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").show(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin4") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").show(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin5") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").show(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "dice1") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").show();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "dice2") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").show(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "deck") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").show(); $("#eventsnone").hide();
+        } else {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").show();
+        }
     } else if (x == "probability"){
         probability()
-        $("#experimentexamples").show(); 
+        $("#experimentexamples").show(); $("#events").show(); $("#blankspace").hide();
+        if (type == "coin1") {
+            $("#eventscoin1").show(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin2") {
+            $("#eventscoin1").hide(); $("#eventscoin2").show(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin3") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").show(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin4") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").show(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin5") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").show(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "dice1") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").show();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "dice2") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").show(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "deck") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").show(); $("#eventsnone").hide();
+        } else {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").show();
+        }
     } else if (x == "experiments"){
         experiments()
         $("#experimentexamples").show(); 
@@ -142,42 +222,42 @@ function compoutcomes() {
     var dice2val = document.getElementById("dice2val").value;
     var deck1val = document.getElementById("deck1val").value;
     
-    if (type == "coin" && times1 == "one") {
+    if (type == "coin1") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ 2$$"
-    } else if (type == "coin" && times1 == "two") {
+    } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ (2)(2) = 4  $$"
-    } else if (type == "coin" && times1 == "three") {
+    } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ (2)(2)(2) = 8 $$ "
-    } else if (type == "coin" && times1 == "four") {
+    } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ (2)(2)(2)(2) = 16 $$"
-    } else if (type == "coin" && times1 == "five") {
+    } else if (type == "coin5") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ (2)(2)(2)(2)(2) = 32 $$"
-    } else if (type == "dice" && times2 == "one") {
+    } else if (type == "dice1") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ 6$$"
-    } else if (type == "dice" && times2 == "two") {
+    } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ (6)(6) = 36 $$"
-    } else if (type == "deck" && times3 == "one") {
+    } else if (type == "deck") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
@@ -221,42 +301,42 @@ function compsamplespace() {
     var dice2val = document.getElementById("dice2val").value;
     var deck1val = document.getElementById("deck1val").value;
     
-    if (type == "coin" && times1 == "one") {
+    if (type == "coin1") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$  \\text{Head, Tail}$$"
-    } else if (type == "coin" && times1 == "two") {
+    } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$  \\text{(H,H), (H,T), (T,H), (T,T)}$$"
-    } else if (type == "coin" && times1 == "three") {
+    } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ \\text{(H,H,H), (H,H,T), (H,T,H), (H,T,T),}$$ $$\\text{(T,H,H), (T,H,T), (T,T,H), (T,T,T)} $$"
-    } else if (type == "coin" && times1 == "four") {
+    } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = " $$ \\text{(H,H,H,H), (H,H,H,T), (H,H,T,H), (H,T,H,H),}$$ $$\\text{(T,H,H,H), (H,H,T,T), (H,T,H,T), (H,T,T,H),} $$ $$\\text{(T,T,H,H), (T,H,H,T), (T,H,T,H), (T,H,T,T),} $$ $$\\text{(T,T,H,T), (T,T,T,H), (H,T,T,T), (T,T,T,T)} $$"
-    } else if (type == "coin" && times1 == "five") {
+    } else if (type == "coin5") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ \\text{(H,H,H,H,H), (H,H,H,T,H), (H,H,T,H,H), (H,T,H,H,H),}$$ $$\\text{(T,H,H,H,H), (H,H,T,T,H), (H,T,H,T,H), (H,T,T,H,H),} $$ $$\\text{(T,T,H,H,H), (T,H,H,T,H), (T,H,T,H,H), (T,H,T,T,H),} $$ $$\\text{(T,T,H,T,H), (T,T,T,H,H), (H,T,T,T,H), (T,T,T,T,H),} $$ $$ \\text{(H,H,H,H,T), (H,H,H,T,T), (H,H,T,H,T), (H,T,H,H,T),}$$ $$\\text{(T,H,H,H,T), (H,H,T,T,T), (H,T,H,T,T), (H,T,T,H,T),} $$ $$\\text{(T,T,H,H,T), (T,H,H,T,T), (T,H,T,H,T), (T,H,T,T,T),} $$ $$\\text{(T,T,H,T,T), (T,T,T,H,T), (H,T,T,T,T), (T,T,T,T,T)}$$"
-    } else if (type == "dice" && times2 == "one") {
+    } else if (type == "dice1") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ 1, 2, 3, 4, 5, 6$$"
-    } else if (type == "dice" && times2 == "two") {
+    } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
         document.getElementById("output").innerHTML = "$$ (1,1), (1,2), (1,3), (1,4), (1,5), (1,6),$$  $$(2,1), (2,2), (2,3), (2,4), (2,5), (2,6),$$ $$(3,1), (3,2), (3,3), (3,4), (3,5), (3,6),$$ $$(4,1), (4,2), (4,3), (4,4), (4,5), (4,6),$$ $$(5,1), (5,2), (5,3), (5,4), (5,5), (5,6),$$ $$(6,1), (6,2), (6,3), (6,4), (6,5), (6,6) $$"
-    } else if (type == "deck" && times3 == "one") {
+    } else if (type == "deck") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
@@ -264,6 +344,88 @@ function compsamplespace() {
     }
     MathJax.typeset();
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function showevents() {
+    var x = document.getElementById("stat").value;
+    if (x == "events" || x == "probability") {
+        var type = document.getElementById("exptype").value;
+        if (type == "coin1") {
+            $("#eventscoin1").show(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin2") {
+            $("#eventscoin1").hide(); $("#eventscoin2").show(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin3") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").show(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin4") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").show(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "coin5") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").show(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "dice1") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").show();
+            $("#eventsdice2").hide(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "dice2") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").show(); $("#eventsdeck").hide(); $("#eventsnone").hide();
+        } else if (type == "deck") {
+            $("#eventscoin1").hide(); $("#eventscoin2").hide(); $("#eventscoin3").hide(); 
+            $("#eventscoin4").hide(); $("#eventscoin5").hide(); $("#eventsdice1").hide();
+            $("#eventsdice2").hide(); $("#eventsdeck").show(); $("#eventsnone").hide();
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function probability() {
     $("#experiments").show();
@@ -300,7 +462,7 @@ function compprobability() {
     var dice2val = document.getElementById("dice2val").value;
     var deck1val = document.getElementById("deck1val").value;
     
-    if (type == "coin" && times1 == "one") {
+    if (type == "coin1") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").show(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
@@ -309,7 +471,7 @@ function compprobability() {
         } else {
             document.getElementById("coin1ans").innerHTML = " $\\boxed{1/2}$"
         }
-    } else if (type == "coin" && times1 == "two") {
+    } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").show(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
@@ -322,7 +484,7 @@ function compprobability() {
         } else if (coin2val == "exactly1tail") {
             document.getElementById("coin2ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } 
-    } else if (type == "coin" && times1 == "three") {
+    } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").show(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
@@ -339,17 +501,17 @@ function compprobability() {
         } else if (coin3val == "exactly1tail") {
             document.getElementById("coin3ans").innerHTML = "$$ \\begin{align} &= P(H,T)+P(T,H) \\\\ &= 1/4 + 1/4 \\\\ &= 2/4 \\\\ &= 1/2 \\end{align} $$"
         } 
-    } else if (type == "coin" && times1 == "four") {
+    } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").show(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
 
-    } else if (type == "coin" && times1 == "five") {
+    } else if (type == "coin5") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").show(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
 
-    } else if (type == "dice" && times2 == "one") {
+    } else if (type == "dice1") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").show(); $("#dice2").hide(); $("#deck1").hide();
@@ -366,7 +528,7 @@ function compprobability() {
         } else if (dice1val == "lower4") {
             document.getElementById("dice1ans").innerHTML = "$$ \\begin{align} &= P(1)+P(2)+P(3)+P(4) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/6 \\\\ &= \\boxed{2/3} \\end{align} $$"
         }
-    } else if (type == "dice" && times2 == "two") {
+    } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").show(); $("#deck1").hide();
@@ -381,7 +543,7 @@ function compprobability() {
         } else if (dice2val == "sum9") {
             document.getElementById("dice2ans").innerHTML = "$$ \\begin{align} &= P(6,3)+P(5,4)+P(4,5)+P(3,6) \\\\ &= 1/6 + 1/6 + 1/6 + 1/6 \\\\ &= 4/36 \\\\ &= \\boxed{1/9} \\end{align} $$"
         } 
-    } else if (type == "deck" && times3 == "one") {
+    } else if (type == "deck") {
         $("#explanation").show(); $("#output2").show(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").show();
@@ -717,7 +879,7 @@ function compbayes() {
 
 function exampleexperiments(){
     $("#exptimes").hide(); $("#exptimes1").show(); $("#exptimes2").hide(); $("#exptimes3").hide();
-    document.getElementById('exptype').value="coin"
+    document.getElementById('exptype').value="coin3"
     document.getElementById('exptimes1').value="three"
 }
 

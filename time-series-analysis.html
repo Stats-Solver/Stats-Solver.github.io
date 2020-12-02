@@ -75,8 +75,8 @@
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
               <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
@@ -93,7 +93,7 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="time-series-analysis.html">Time Series Analysis Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="time-series-analysis.html">Time Series Analysis</a></h4>
     </div>
       
       <div class="container">
@@ -102,8 +102,10 @@
       
       <div id="input" class="container center">
           <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input type="text" id="values" class="form-control" placeholder="Enter Y Values (separated by commas)">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" id="values" class="form-control" placeholder="Enter Values">
+        </div>
+        <div class="col-4 col-md-2 mb-3" id = "blankspace0">
         </div>
               </div>
     </div>
@@ -178,7 +180,7 @@
       
       <div class="container center">
           <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
+        <div class="col-8 col-md-3 mb-2">
             <select id="stat" class="form-control">
                 <option value="choose">Choose One</option>
                 <option value="forecast">Forecast</option>
@@ -197,15 +199,15 @@
 
 
       <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
+            <span class="examplelink" onclick="examplevalues()">Example</span> <!--&bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>-->
         </div>
       
       <div class = "text-center" id = "label2">
-            <span class="examplelink" onclick="examplevalues3()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>
+            <span class="examplelink" onclick="examplevalues3()">Example</span> <!--&bull; <span class="examplelink" onclick="examplevalues4()">Example 2</span>-->
         </div>
       
       <div class = "text-center" id = "label3">
-            <span class="examplelink" onclick="examplevalues5()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>
+            <span class="examplelink" onclick="examplevalues5()">Example</span> <!--&bull; <span class="examplelink" onclick="examplevalues6()">Example 2</span>-->
         </div>
       
       <div class="container">

@@ -71,8 +71,8 @@
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
               <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
@@ -89,7 +89,7 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="two-populations.html">Two Populations Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="two-populations.html">Two Populations</a></h4>
     </div>
       
       <div class="container">
@@ -136,6 +136,13 @@
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1" onchange="stdev()"> <option value="known"> &#963;₁ </option> <option value="unknown"> s₁ </option> </select></td>
             <td class="statistics" id="sd2"> = </td>
             <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev1" class="hypinput2"></td>
+            <!--<td class="statistics">&nbsp;</td>
+            <td class="statistics" rowspan="2">
+            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            </td>-->
           </tr>  
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_2$</td>
@@ -170,7 +177,7 @@
               </div>
       
       <div class = "text-center mt-2" id = "confidenceexamples">
-            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span> <!--&bull; <span class="examplelink" onclick="example3()">Example 3</span>-->
+            <span class="examplelink" onclick="example1()">Example</span> <!--&bull; <span class="examplelink" onclick="example2()">Example 2</span> &bull; <span class="examplelink" onclick="example3()">Example 3</span>-->
         </div>
           
     </div>
@@ -207,16 +214,12 @@
             <td class="statistics"><select id="parameter1" class="hypinput4" onchange="parameter()"> <option value="mean"> &mu;₁ - &mu;₂ </option> <option value="proportion"> p₁ - p₂ </option> </select></td> 
             <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
             <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""><span id="proportionzero">0</span></td>
-            <td class="statistics">&nbsp; &nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$ = <select id="alphah" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
           </tr>
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
             <td class="statistics"> <span id = "parameter2">&mu;₁ - &mu;₂</span></td>
             <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
             <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">$D_o$</span></td>
-            <td class="statistics">&nbsp; &nbsp;</td>
-            <td class="statistics"><input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "matched()"> <label for="mutexc">$\text{Matched}$</label></td>
           </tr> 
         </table>
         <table class = "mt-2">
@@ -232,6 +235,13 @@
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigmah" class="hypinput1" onchange="stdevh()"> <option value="known"> &#963;₁ </option> <option value="unknown"> s₁ </option> </select></td>
             <td class="statistics" id="sd2"> = </td>
             <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev1h" class="hypinput2"></td>
+            <!--<td class="statistics">&nbsp;</td>
+            <td class="statistics" rowspan="2">
+            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            </td>-->
           </tr>  
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n_2$</td>
@@ -246,7 +256,17 @@
             <td class="statistics" id="sd22"> = </td>
             <td class="statistics" id="sd33"><input type="text" style="width:50px;" id="stdev2h" class="hypinput2"></td>
           </tr>   
-        </table>  
+        </table>
+          
+          <table class = "mt-2">
+          <tr>
+            <td>$\text{Level of Significance:}$</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$ = <select id="alphah" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
+            <!--<td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics"><input type="checkbox" id="mutexc" name="vehicle1" value="Bike" onchange = "matched()"> <label for="mutexc">$\text{Matched Samples}$</label></td>-->
+          </tr> 
+        </table>
+          
           </div>
       
       
@@ -278,7 +298,7 @@
               </div>
       
       <div class = "text-center mt-2" id = "hypothesisexamples">
-            <span class="examplelink" onclick="example4()">Example 1</span> &bull; <span class="examplelink" onclick="example5()">Example 2</span> <!-- &bull; <span class="examplelink" onclick="example6()">Example 3</span> -->
+            <span class="examplelink" onclick="example4()">Example</span> <!--&bull; <span class="examplelink" onclick="example5()">Example 2</span>  &bull; <span class="examplelink" onclick="example6()">Example 3</span> -->
         </div>
           
     </div>

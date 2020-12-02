@@ -72,8 +72,8 @@
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
               <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
@@ -92,7 +92,7 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="simple-regression.html">Simple Regression Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="simple-regression.html">Simple Regression</a></h4>
     </div>
       
       <div class="container">
@@ -101,23 +101,55 @@
       
       <div class="container">
           <div class="row  justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values (separated by commas)">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values">
+        </div>
+        <div class="col-4 col-md-2 mb-3" id = "blankx">
+            
+        </div>
+        <div class = "col-4 col-md-2" id = "level">
+          $\text{Level:}$
+            <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
         </div>
          </div>     
     </div>
       
       <div class="container">
           <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values (separated by commas)">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values">
         </div>
-        
-        
+        <div class="col-4 col-md-2 mb-3" id = "blanky">
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="xval">      
+        $x=$ <input type="text" style="width:50px;" id="xvalue" class="hypinput2">
+        </div>    
+        <div class="col-4 col-md-2 mb-3" id="sumsquares">
+            <select class="form-control" id="sumsquaresval">
+                <option value="error">Error</option>
+                <option value="total">Total</option>
+                <option value="regression">Regression</option>
+            </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="meansquares">
+            <select class="form-control" id="meansquaresval">
+                <option value="error">Error</option>
+                <option value="regression">Regression</option>
+            </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="xpval">      
+        $x_p=$ <input type="text" style="width:50px;" id="xpvalue" class="hypinput2">
+        </div>  	
+        <div class="col-4 col-md-2 mb-3" id="residtype">
+            <select class="form-control" id="residtypeval">
+                <option value="againstx">Against x</option>
+                <option value="againsty">Against ŷ</option>
+            </select>
+        </div>
     </div>
           </div>
       
-      <div class="container mb-3" id = "xval">
+      <!--<div class="container mb-3" id = "xval">
           <div class="row justify-content-center">
               
               <table id="statistics">
@@ -126,40 +158,42 @@
           </tr>
         </table> 
               </div>
-              </div>
+              </div>-->
       
       
       <div class="container">
           <div class="row justify-content-center">
         
-        <div class="col-8 col-md-3 mb-3">
+        <div class="col-8 col-md-3 mb-2">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
                 <!--<option value="slope">Slope</option>
                 <option value="intercept">Intercept</option>-->
-                <option value="slope">Estimated Regression Equation</option>
+                <option value="slope">Regression Equation</option>
                 <option value="prediction">Prediction</option>
                 <!--<option value="predicted">Predicted Values</option>
                 <option value="residuals">Residuals</option>-->
-                <option value="sse">Sum of Squares</option>
+                <option value="sumsqu">Sum of Squares</option>
                 <!--<option value="sse">Sum of Squares Error</option>
                 <option value="sst">Sum of Squares Total</option>
                 <option value="ssr">Sum of Squares Regression</option>-->
                 <option value="rsquared">Coefficient of Determination</option>
                 <option value="correlation">Correlation Coefficient</option>
-                <!--<option value="mse">Mean Square</option>-->
-                <option value="mse">Mean Square Error</option>
+                <option value="meansqu">Mean Square</option>
+                <!--<option value="mse">Mean Square Error</option>-->
                 <option value="see">Standard Error of Estimate</option>
                 <!--<option value="ses">Standard Error of Slope</option>-->
-                <option value="tstat">t-Test</option>
-                <option value="msr">Mean Square Regression</option>
-                <option value="fstat">F-Test</option>
-                <!--<option value="anova">ANOVA Table</option>
+                <option value="tstat">t-Statistic</option>
+                <!--<option value="msr">Mean Square Regression</option>-->
+                <option value="fstat">F-Statistic</option>
+                <!--<option value="anova">ANOVA Table</option>-->
                 <option value="confinterval">Confidence Interval</option>
                 <option value="predinterval">Prediction Interval</option>
-                <option value="residuals">Residuals</option>
+                <!--<option value="residuals">Residuals</option>-->
                 <option value="resplot">Residual Plot</option>
-                <option value="standardized">Standardized Residuals</option>-->
+                <option value="standardized">Standardized Residuals</option>
+                <!--<option value="normalplot">Normal Probability Plot</option>-->
+                <option value="leverage">Leverage</option>
             </select>
         </div> 
               <div class="col-4 col-md-2 inputWrapper">
@@ -168,7 +202,7 @@
               </div>
     </div>
       
-      <div class="container"> 
+      <!--<div class="container"> 
           <div class="row  justify-content-center">
         <div class="col-5 col-md-2 mb-3" id="sumsquares">
             <select class="form-control" id="sumsquaresval">
@@ -179,10 +213,10 @@
             </select>
         </div>
               </div>
-             </div>
+             </div>-->
       
                 <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
+            <span class="examplelink" onclick="examplevalues()">Example</span> <!--&bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>-->
         </div>
       
       <!--<div class="container"> 
@@ -225,7 +259,9 @@
         </div>
       </div>
       
-      
+      <div class="container container2 text-center">
+      <div id="charts" style="width: 500px; height: 300px;"></div>
+      </div>
       
       
       
@@ -369,6 +405,8 @@
                 }
             };
         </script> 
+      
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       
       <script src="/js/simplem.js"></script>
       

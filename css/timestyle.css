@@ -6,3 +6,13 @@ th, td {
     max-height: 300px;
     overflow-y: auto;
 }
+
+.hypinput3{
+    width: 40px;
+    background-color: white;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    text-indent: 1px;
+    text-overflow: '';
+    text-align-last:center;
+}

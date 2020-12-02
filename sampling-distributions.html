@@ -87,8 +87,8 @@
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
               <a class="dropdown-item" href="two-populations.html">Two Populations</a>
               <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <!--<a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
@@ -104,7 +104,7 @@
     
       
     <div class = "container">
-        <h4 class="page-header text-center mt-2 text-primary"><a href="sampling-distributions.html">Sampling Distributions Calculator</a></h4>
+        <h4 class="page-header text-center mt-2 text-primary"><a href="sampling-distributions.html">Sampling Distributions</a></h4>
     </div>
       
       <div class="container">
@@ -153,8 +153,12 @@
           
           
           <div class="container text-center mt-2"  id="probxbar">
-        $P($ $\bar{x}$ within $\pm$ <input class = "combperm" style="width:50px;" type="text" id="pmvalue1"> of $\mu$ $)$
-      </div>
+            $P($ $\bar{x}$ within $\pm$ <input class = "combperm" style="width:50px;" type="text" id="pmvalue1"> of $\mu$ $)$
+          </div>
+          
+          <div class="container text-center mt-2"  id="probpbar">
+            $P($ $\bar{p}$ within $\pm$ <input class = "combperm" style="width:50px;" type="text" id="pmvalue2"> of $p$ $)$ 
+          </div>
           
           <!--<table id="statistics" class = "mt-2">
           <tr>
@@ -205,7 +209,7 @@
           
           
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+            <span class="examplelink" onclick="example1()">Example</span> <!--&bull; <span class="examplelink" onclick="example2()">Example 2</span>-->
         </div>
           
           </div>
@@ -219,9 +223,11 @@
         </div>
           <div class="container center" id="valuescontainer">
           <div class="row justify-content-center">
-        <div class="col-12 col-md-5 mb-3">
-            <input type="text" class="form-control" placeholder="Enter X Values (separated by commas)" id="values">
+        <div class="col-8 col-md-3 mb-3">
+            <input type="text" class="form-control" placeholder="Enter Values" id="values">
         </div>
+        <div class="col-4 col-md-2 mb-3">
+        </div>      
         </div>
         </div>
           <div class="row justify-content-center">
@@ -238,7 +244,7 @@
         </div> 
               </div>
           <div class = "text-center mt-2">
-            <span class="examplelink" onclick="example3()">Example 1</span> &bull; <span class="examplelink" onclick="example4()">Example 2</span>
+            <span class="examplelink" onclick="example3()">Example</span> <!--&bull; <span class="examplelink" onclick="example4()">Example 2</span>-->
         </div>
         </div>
       
@@ -309,10 +315,7 @@
       
       
       
-      <div class="container text-center mt-2"  id="probpbar">
-        $P($ $\bar{p}$ within $\pm$ <input class = "combperm" style="width:50px;" type="text" id="pmvalue2"> of $p$ $)$ &nbsp;
-          <span class="examplelink" onclick="probpbar()">Solve</span>
-      </div>
+      
       
       
       
