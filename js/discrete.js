@@ -2256,28 +2256,34 @@ function switchprobability() {
 
 function compbinomialexpected() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = np $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = np $"
+    document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= np \\\\ &= (" + trials + ")(" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= (" + trials + ")(" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function compbinomialvariance() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 &= np(1-p) $$ $$ \\sigma = \\sqrt{\\text{Var}(x)} $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = np(1-p) $"
+    document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     var ans = trials*prob*(1-prob)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= np(1-p) \\\\ &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ $$ \\sigma = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ "
     MathJax.typeset();
 }
 
 function compbinomial1() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
+    document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     var num = document.getElementById('binval').value
@@ -2311,13 +2317,15 @@ function compbinomial1() {
     
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}" + prob + "^" + num + " (" + parseFloat((1-prob).toFixed(2)) + ")^{(" + (trials-num) + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2))  + "}   \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2))  + "}   \\end{align} $$ "
     MathJax.typeset();
 }
 
 function compbinomial2() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
+    document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     var num = document.getElementById('binval').value
@@ -2403,7 +2411,9 @@ function compbinomial2() {
 
 function compbinomial4() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
+    document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     var num = document.getElementById('binval').value
@@ -2490,7 +2500,9 @@ function compbinomial4() {
 
 function compbinomial3() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
+    document.getElementById("explanationtext").innerHTML = ""
     var trials = parseInt(document.getElementById('trials').value)
     var prob = document.getElementById('psuccess').value
     var num = document.getElementById('binval').value
@@ -3136,7 +3148,7 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle\\left(\\frac{"+topna+"!}{"+bottomna+"!"+(topna-bottomna)+"!}\\right)\\left(\\frac{"+topnb+"!}{"+bottomnb+"!"+(topnb-bottomnb)+"!}\\right)}{\\displaystyle\\left(\\frac{"+topnc+"!}{"+bottomnc+"!"+(topnc-bottomnc)+"!}\\right)} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 

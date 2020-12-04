@@ -3,6 +3,7 @@ $("#expconf").hide();
 $("#switchconfidence").hide(); $("#switchsize").show();
 $("#samplesize").hide(); $("#confidence").show(); 
 $("#datainput").hide(); $("#valuesinput").show();
+$("#canvascontainer0").hide(); 
 
 type = "values"
 
@@ -11,6 +12,10 @@ $(function () {
     })
 
 var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
@@ -1106,12 +1111,126 @@ function calcsize1() {
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
     var planval = document.getElementById("planningvalue").value
     var margerr = document.getElementById('margin').value
-    var conlev = document.getElementById('conlev').value
+    var conlev = document.getElementById('conlev2').value
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var zalphahalf = NormSInv(1 - alphahalf);
     var ans = (zalphahalf*zalphahalf*planval*planval)/(margerr*margerr)
+    var exp = 2.71828;
+        
+    document.getElementById("output0").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
+
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 100);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(279, 130);
+    ctx.lineTo(279, 118);
+    ctx.quadraticCurveTo(260, 120, 230, 100);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
+
+
+    ctx.fillText("z",285,132);
+    ctx.fillText("z",228,145);
+    ctx.fillText("α/2",234,147);
+
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+
+    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
     
     MathJax.typeset();
 }
@@ -1123,12 +1242,126 @@ function calcsize2() {
     document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
     var planval = document.getElementById("planningvalue").value
     var margerr = document.getElementById('margin').value
-    var conlev = document.getElementById('conlev').value
+    var conlev = document.getElementById('conlev2').value
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var zalphahalf = NormSInv(1 - alphahalf);
     var ans = (zalphahalf*zalphahalf*planval*(1-planval))/(margerr*margerr)
+    var exp = 2.71828;
+        
+    document.getElementById("output0").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
+
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 100);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(279, 130);
+    ctx.lineTo(279, 118);
+    ctx.quadraticCurveTo(260, 120, 230, 100);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
+
+
+    ctx.fillText("z",285,132);
+    ctx.fillText("z",228,145);
+    ctx.fillText("α/2",234,147);
+
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+    }
+    
+    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    
+    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
     
     MathJax.typeset();
 }
@@ -1137,24 +1370,26 @@ function example4(){
     document.getElementById("planning").value = "sigma"
     document.getElementById("planningvalue").value = "9.65"
     document.getElementById('margin').value="2"
-    document.getElementById('conlev').value=95
+    document.getElementById('conlev2').value=95
 }
 
 function example5(){
     document.getElementById("planning").value = "pstar"
     document.getElementById("planningvalue").value = ".44"
     document.getElementById('margin').value=".025"
-    document.getElementById('conlev').value=95
+    document.getElementById('conlev2').value=95
 }
 
 function switchsize() {
     $("#samplesize").show(); $("#confidence").hide();
     $("#switchsize").hide(); $("#switchconfidence").show();
-    $("#output1").empty(); $("#output2").empty(); $("#explanation").hide(); $("#canvascontainer").hide();
+    $("#output0").show(); $("#output").show(); $("#output1").hide(); $("#output2").hide();
+    $("#explanation").hide(); $("#canvascontainer0").show(); $("#canvascontainer").hide();
 }
  
 function switchconfidence() {
     $("#samplesize").hide(); $("#confidence").show();
     $("#switchsize").show(); $("#switchconfidence").hide();
-    $("#output").empty(); $("#explanation").hide(); $("#canvascontainer").hide();
+    $("#output0").hide(); $("#output").hide(); $("#output1").show(); $("#output2").show(); 
+    $("#explanation").hide(); $("#canvascontainer0").hide(); $("#canvascontainer").show();
 }

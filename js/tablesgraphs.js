@@ -113,7 +113,7 @@ function avg(input){
 
 function showthings(){
     $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label2").hide(); $("#label3").hide();  $("#firstclass").hide();
-    $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide(); $("#input1").show(); $("#label4").hide();
+    $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide(); $("#input1").show(); $("#label4").hide(); $("#blankx").show();
     var str = document.getElementById("values").value;
     var str1 = str.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null;
@@ -314,7 +314,7 @@ function relative(){
 function relativequal(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Relative Frequency} = \\dfrac{\\text{Frequency}}{n}$"
     document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
@@ -342,7 +342,7 @@ function relativequal(){
 function relativequant(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Relative Frequency} = \\frac{\\text{Frequency}}{n}$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Relative Frequency} = \\dfrac{\\text{Frequency}}{n}$"
     document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
     $("#desrelative").show(); $("#exprelative").show();
     var str = document.getElementById("values").value;
@@ -417,7 +417,7 @@ function percent(){
 function percentqual(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$"
     document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
     $("#despercent").show();
     var str = document.getElementById("values").value;
@@ -448,7 +448,7 @@ function percentqual(){
 function percentquant(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$"
     document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
     $("#despercent").show();
     var str = document.getElementById("values").value;
@@ -839,7 +839,7 @@ function calcbar(){
         }
     }
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    //document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -897,7 +897,7 @@ function calcpie(){
         chart.draw(data);
       }
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    //document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
 
     MathJax.typeset();
 
@@ -1988,16 +1988,16 @@ function calcbox() {
         
     }
     
-    if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
-    } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
-    } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
-    }
-    else{
-        document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
-    }
+    //if (indxint25 && indxint75){
+      //  document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    //} else if (indxint25 && !indxint75){
+    //    document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    //} else if (!indxint25 && indxint75){
+    //    document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    //}
+    //else{
+    //    document.getElementById("output").innerHTML = "$$ \\text{Five-Number Summary:}$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+    //}
 
     MathJax.typeset();
     
@@ -2005,7 +2005,7 @@ function calcbox() {
 
 
 function cumulative(){
-    $("#cumulative").show();
+    $("#cumulative").show(); $("#blankx").hide();
 }
 
 function calccum(){
@@ -3039,7 +3039,7 @@ function calcrow(){
 function calcrow1(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -3155,7 +3155,9 @@ function calcrow1(){
         h += len2
     } 
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3163,7 +3165,7 @@ function calcrow1(){
 function calcrow2(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -3361,7 +3363,9 @@ function calcrow2(){
         h += cols
     }
 
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3369,7 +3373,7 @@ function calcrow2(){
 function calcrow3(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -3612,7 +3616,9 @@ function calcrow3(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3620,7 +3626,7 @@ function calcrow3(){
 function calcrow4(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Row percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Row Percentage} = \\frac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -3788,7 +3794,9 @@ function calcrow4(){
     }
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3816,7 +3824,7 @@ function calccol(){
 function calccol1(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Column Percentage} = \\dfrac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -3948,7 +3956,9 @@ function calccol1(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -3956,7 +3966,7 @@ function calccol1(){
 function calccol2(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Column Percentage} = \\dfrac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -4170,7 +4180,9 @@ function calccol2(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4437,7 +4449,9 @@ function calccol3(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }
@@ -4445,7 +4459,7 @@ function calccol3(){
 function calccol4(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "Column percetages are percent frequencies constructed using a crosstabulation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Column Percentage} = \\dfrac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
     var str = document.getElementById("values").value;
@@ -4628,7 +4642,9 @@ function calccol4(){
     table = table + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
     
     MathJax.typeset();
 }

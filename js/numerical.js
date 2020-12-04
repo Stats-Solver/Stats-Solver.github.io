@@ -109,12 +109,22 @@ function showthings(){
 
 function stat(){
     $("#explanation").hide();
-    $("#inputqu").hide(); $("#inputzscore").hide();
+    //$("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
+    var str = document.getElementById("values").value; var len = str.length;
+    var mn = document.getElementById("expval").value; var len1 = mn.length;
+    var std = document.getElementById("stdev").value; var len2 = std.length;
+    var min = document.getElementById("minval").value; var len3 = min.length;
+    var max = document.getElementById("maxval").value; var len4 = max.length;
+    var str2 = document.getElementById("values2").value; var len5 = str2.length;
     var x = document.getElementById("stat").value;
     if (x == "mean"){
-        mean()
+        if (len !== 0) {
+            mean()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "meanpop"){
         meanpop()
     } else if (x == "geometric"){
@@ -122,47 +132,104 @@ function stat(){
     } else if (x == "weighted"){
         calcweighted()
     } else if (x == "median"){
-        median()
+        if (len !== 0) {
+            median()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "mode") {
-        mode()
+        if (len !== 0) {
+            mode()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "percentiles") {
-        calcper()
+        if (len !== 0) {
+            calcper()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "quartiles") {
-        calcquart()
+        if (len !== 0) {
+            calcquart()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "range") {
-        range()
+        if (len !== 0) {
+            range()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "iqr") {
-        iqr()
+        if (len !== 0) {
+            iqr()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "variance") {
-        variance()
+        if (len !== 0) {
+            variance()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "variancepop") {
         variancepop()
     } else if (x == "stdev") {
-        stdev()
+        if (len !== 0) {
+            stdev()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "stdevpop") {
         stdevpop()
     } else if (x == "cv") {
-        cv()
+        if (len !== 0) {
+            cv()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "zscores") {
-        calcz()
+        if (len !== 0) {
+            calcz()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "chebyshev") {
-        calcchebyshev()
+        if (len1 !== 0 && len2 !== 0 && len3 !== 0 && len4 !== 0) {
+            calcchebyshev()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "empirical") {
-        calcempirical()
+        if (len1 !== 0 && len2 !== 0 && len3 !== 0 && len4 !== 0) {
+            calcempirical()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "fivenumber") {
         fivenumber()
     } else if (x == "covariance") {
-        covariance()
+        if (len !== 0 && len5 !== 0) {
+            covariance()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "covariancepop") {
         calccovpop()
     } else if (x == "correlation") {
-        correlation()
+        if (len !== 0 && len5 !== 0) {
+            correlation()
+        } else {
+            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
+        }
     } else if (x == "correlationpop") {
         calccorpop()
     } else{
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
     }
+    MathJax.typeset();
    
 }
 
@@ -210,7 +277,7 @@ function mean(){
 function meansam(){
     $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The mean is a measure of central location."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\bar{x} = \\dfrac{\\sum{x}}{n} $"
     document.getElementById("explanationtext").innerHTML = "The mean is the most commonly used measure of central location."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
@@ -227,7 +294,7 @@ function meansam(){
 function meanpop(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").show();
     document.getElementById("descriptiontext").innerHTML = "The mean is a measure of central location."
-    document.getElementById("formulatext").innerHTML = "$$ \\mu = \\frac{\\sum{x}}{N} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\mu = \\dfrac{\\sum{x}}{N} $"
     document.getElementById("explanationtext").innerHTML = "The mean is the most commonly used measure of central location."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
@@ -248,7 +315,7 @@ function weighted(){
 function calcweighted(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = ""
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{wx}}{w} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\bar{x} = \\dfrac{\\sum{wx}}{w} $"
     document.getElementById("explanationtext").innerHTML = ""
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
@@ -273,7 +340,7 @@ function calcweighted(){
 function geometric(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The geometric mean is a measure of central location that involves multiplying the values instead of adding them as in the (arithmetic) mean."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_g = \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\bar{x}_g = \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} $"
     document.getElementById("explanationtext").innerHTML = "The geometric mean can be interpreted as the growth rate of an investment."
     $("#output").empty();
     $("#desmean").show(); $("#popmean").show(); $("#sammean").hide();
@@ -388,7 +455,7 @@ function calcper(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "Approximately p% of the data is less than the pᵗʰ percentile."
     //Approximately (1-p)% of the data is greater than the p-th percentile.
-    document.getElementById("formulatext").innerHTML = "$$i = \\left(\\frac{p}{100}\\right)n$$"
+    document.getElementById("formulatext").innerHTML = "$i = \\left(\\dfrac{p}{100}\\right)n$"
     document.getElementById("explanationtext").innerHTML = "The 50th percentile is the median."
     var val = document.getElementById("myRange").value;
     var str = document.getElementById("values").value;
@@ -444,19 +511,19 @@ function calcquart(){
         var quartnum = "Q_1"
         var quartname = "First"
         document.getElementById("descriptiontext").innerHTML = "The first quartile is the 25th percentile."
-        document.getElementById("formulatext").innerHTML = "$$i = \\left(\\frac{25}{100}\\right)n$$"
+        document.getElementById("formulatext").innerHTML = "$i = \\left(\\dfrac{25}{100}\\right)n$"
         document.getElementById("explanationtext").innerHTML = "The second quartile is the median."
     } else if (val == 50){
         var quartnum = "Q_2"
         var quartname = "Second"
         document.getElementById("descriptiontext").innerHTML = "The second quartile is the 50th percentile."
-        document.getElementById("formulatext").innerHTML = "$$i = \\left(\\frac{50}{100}\\right)n$$"
+        document.getElementById("formulatext").innerHTML = "$i = \\left(\\dfrac{50}{100}\\right)n$"
         document.getElementById("explanationtext").innerHTML = "The second quartile is the median."
     } else if (val == 75){
         var quartnum = "Q_3"
         var quartname = "Third"
         document.getElementById("descriptiontext").innerHTML = "The third quartile is the 75th percentile."
-        document.getElementById("formulatext").innerHTML = "$$i = \\left(\\frac{75}{100}\\right)n$$"
+        document.getElementById("formulatext").innerHTML = "$i = \\left(\\dfrac{75}{100}\\right)n$"
         document.getElementById("explanationtext").innerHTML = "The second quartile is the median."
     } else {
         var quartnum = ""
@@ -473,7 +540,7 @@ function calcquart(){
 function range(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The range is a measure of variability."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Range} = \\text{Largest Value} - \\text{Smallest Value} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Range} = \\text{Largest Value} - \\text{Smallest Value} $"
     document.getElementById("explanationtext").innerHTML = "The range is the simplest measure of variability as it only uses two values."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);
@@ -486,7 +553,7 @@ function range(){
 function iqr(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The interquartile range is a measure of variability."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $"
     document.getElementById("explanationtext").innerHTML = "The interquartile range is useful when there are extreme values in the data."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -525,7 +592,7 @@ function variance(){
 function variancesam(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The variances is a measure of variability."
-    document.getElementById("formulatext").innerHTML = "$$ s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} $$"
+    document.getElementById("formulatext").innerHTML = "$ s^2 = \\dfrac{\\sum{(x-\\bar{x})^2}}{n-1} $"
     document.getElementById("explanationtext").innerHTML = "The variances uses all of the data."
     $("#output").empty();
     $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
@@ -560,7 +627,7 @@ function variancesam(){
 function variancepop(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").show();
     document.getElementById("descriptiontext").innerHTML = "The variances is a measure of variability."
-    document.getElementById("formulatext").innerHTML = "$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\sigma^2 = \\dfrac{\\sum{(x-\\mu)^2}}{N} $"
     document.getElementById("explanationtext").innerHTML = "The variances uses all of the data."
     $("#output").empty();
     $("#desvariance").show(); $("#popvariance").show(); $("#samvariance").hide();
@@ -635,7 +702,7 @@ function stdev(){
 function stdevsam(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The standard deviation is a measure of variability."
-    document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
+    document.getElementById("formulatext").innerHTML = "$ s = \\sqrt{s^2} $"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the data."
     $("#output").empty();
     $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
@@ -671,7 +738,7 @@ function stdevsam(){
 function stdevpop(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").show();
     document.getElementById("descriptiontext").innerHTML = "The standard deviation is a measure of variability."
-    document.getElementById("formulatext").innerHTML = "$$ \\sigma = \\sqrt{\\sigma^2} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\sigma = \\sqrt{\\sigma^2} $"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the data."
     $("#output").empty();
     $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
@@ -728,7 +795,7 @@ function stdevpop2(){
 function cv(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The coefficient of variation measures how large the standard deviation is relative to the mean."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{CV} = \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{CV} = \\left(\\dfrac{s}{\\bar{x}} \\times 100 \\right)\\% $"
     document.getElementById("explanationtext").innerHTML = "The coefficient of variation can be used to compare variability across variables."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -781,7 +848,7 @@ function zscores(){
 function calcz(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "z-Scores measure how many standard deviations a value is from the mean."
-    document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\bar{x}}{s} $$"
+    document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\bar{x}}{s} $"
     document.getElementById("explanationtext").innerHTML = "A positive z-score indicates a value is greater than the mean. A negative z-score indicates a value is less than the mean."
     $("#inputzscore").show();
     var str = document.getElementById("values").value;
@@ -815,7 +882,7 @@ function chebyshev(){
 function calcchebyshev(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "Chebyshev's theorem is used to get the percentage of values within z standard deviations of the mean."
-    document.getElementById("formulatext").innerHTML = "$$ 1-1/z^2 $$"
+    document.getElementById("formulatext").innerHTML = "$ 1-1/z^2 $"
     document.getElementById("explanationtext").innerHTML = "Chevbyshev's theorem works for any data regardless of its distribution."
     var mn = document.getElementById("expval").value;
     var std = document.getElementById("stdev").value;
@@ -846,7 +913,7 @@ function empirical(){
 function calcempirical(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The empirical rule is used to get the percentage of values within 1, 2 or 3 standard deviations of the mean when the data follows a normal distribution."
-    document.getElementById("formulatext").innerHTML = "$$ z = \\frac{x-\\bar{x}}{s} $$"
+    document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\bar{x}}{s} $"
     document.getElementById("explanationtext").innerHTML = "The empirical rule only works for data that follows a normal distribution."
     var mn = document.getElementById("expval").value;
     var std = document.getElementById("stdev").value;
@@ -877,7 +944,7 @@ function calcempirical(){
 function fivenumber(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The interquartile range is a measure of variability that isn't affected by extreme values."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 $"
     document.getElementById("explanationtext").innerHTML = "The interquartile range only uses two values from the entire data set: the third quartile and the first quartile."
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
@@ -929,7 +996,7 @@ function covariance(){
 function calccov(){
     $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The covariance is a measure of association."
-    document.getElementById("formulatext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
+    document.getElementById("formulatext").innerHTML = "$ s_{xy} = \\dfrac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} $"
     document.getElementById("explanationtext").innerHTML = "Only the sign of the covariance can be interpreted."
     $("#output").empty();
     $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
@@ -991,7 +1058,7 @@ function covariancepop(){
 function calccovpop(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").show();
     document.getElementById("descriptiontext").innerHTML = "The covariance is a measure of association."
-    document.getElementById("formulatext").innerHTML = "$$s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1}$$"
+    document.getElementById("formulatext").innerHTML = "$ \\sima_{xy} = \\frac{\\sum(x - \\mu_x)(y - \\mu_y)}{N} $"
     document.getElementById("explanationtext").innerHTML = "Only the sign of the covariance can be interpreted."
     $("#output").empty();
     $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
@@ -1112,7 +1179,7 @@ function correlation(){
 function calccor(){
     $("#explanation").show(); $("#switchpopulation").show(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient is a measure of association."
-    document.getElementById("formulatext").innerHTML = "$$r_{xy} = \\frac{s_{xy}}{s_x s_y}$$"
+    document.getElementById("formulatext").innerHTML = "$ r_{xy} = \\dfrac{s_{xy}}{s_x s_y} $"
     document.getElementById("explanationtext").innerHTML = "Both the sign and the size of the correlation coefficient can be interpreted."
     $("#output").empty();
     $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();
@@ -1191,7 +1258,7 @@ function correlationpop(){
 function calccorpop(){
     $("#explanation").show(); $("#switchpopulation").hide(); $("#switchsample").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient is a measure of association."
-    document.getElementById("formulatext").innerHTML = "$$r_{xy} = \\frac{s_{xy}}{s_x s_y}$$"
+    document.getElementById("formulatext").innerHTML = "$ \\rho_{xy} = \\dfrac{\\sigma_{xy}}{\\sigma_x \\sigma_y} $"
     document.getElementById("explanationtext").innerHTML = "Both the sign and the size of the correlation coefficient can be interpreted."
     $("#output").empty();
     $("#descorrelation").show(); $("#popcorrelation").show(); $("#samcorrelation").hide();

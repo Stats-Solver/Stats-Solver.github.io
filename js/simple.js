@@ -388,7 +388,7 @@ function stat(){
 function slope(){
     $("#explanation").show(); $("#prediction").show();
     document.getElementById("descriptiontext").innerHTML = "The regression equation desribes the relationship between x and y."
-    document.getElementById("formulatext").innerHTML = "$$b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2}$$"
+    document.getElementById("formulatext").innerHTML = "$b_{1} = \\dfrac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2}$"
     //\\quad b_{0} = \\bar{y} - b_{1} \\bar{x}
     document.getElementById("explanationtext").innerHTML = "The coefficients of the regression equation are provided by the least squares method."
     var str_x = document.getElementById("valuesx").value;
@@ -461,7 +461,7 @@ function predictdontshow() {
 function intercept(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The intercept of the estimated regression equation is the predicted value of dependent variable (y) when the independent variable (x) is equal to 0."
-    document.getElementById("formulatext").innerHTML = "$$b_{0} = \\bar{y} - b_{1} \\bar{x}$$"
+    document.getElementById("formulatext").innerHTML = "$b_{0} = \\bar{y} - b_{1} \\bar{x}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the intercept is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -498,7 +498,7 @@ function intercept(){
 function equation(){
     $("#explanation").show(); $("#predict").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("formulatext").innerHTML = "$\\hat{y} = b_{0} + b_{1} x$"
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -542,7 +542,7 @@ function equation(){
 function prediction(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the value of y for a given value of x."
-    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("formulatext").innerHTML = "$\\hat{y} = b_{0} + b_{1} x$"
     document.getElementById("explanationtext").innerHTML = "The value of y is predicted by plugging x into the estimated regression equation."
     var xvalue = document.getElementById("xvalue").value;
     var str_x = document.getElementById("valuesx").value;
@@ -588,7 +588,7 @@ function prediction(){
 function predicted(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("formulatext").innerHTML = "$\\hat{y} = b_{0} + b_{1} x$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -641,7 +641,7 @@ function predicted(){
 function residuals(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("formulatext").innerHTML = "$\\hat{y} = b_{0} + b_{1} x$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -706,7 +706,7 @@ function sumsquares() {
 function sse(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares error meausure the variability of the observations around the estimation regression equation."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{SSE} = \\sum(y - \\hat{y})^2 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{SSE} = \\sum(y - \\hat{y})^2 $"
     document.getElementById("explanationtext").innerHTML = "The closer the observations are to the estimate regression line, the smaller the SSE will be."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -766,7 +766,7 @@ function sse(){
 function sst(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares total meausures the overall variability of the value of the dependent variable (y)."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\sum(y - \\bar{y})^2 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{SST} = \\sum(y - \\bar{y})^2 $"
     document.getElementById("explanationtext").innerHTML = "The closer the values of the dependent variable are to their mean, the smaller the SST will be."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -833,7 +833,7 @@ function sst(){
 function ssr(){
     $("#explanation").show(); $("#alternative").show();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares regression meausures the distance between the estimated regression line and the mean of the dependent variable (y)."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{SST} = \\text{SSR} + \\text{SSE} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{SSR} = \\text{SST} - \\text{SSE} $"
     document.getElementById("explanationtext").innerHTML = "The closer the estimated regression line is to the mean of the dependent variable, the smaller the SSR will be."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -890,7 +890,7 @@ function ssr(){
 function rsquared(){
     $("#explanation").show(); $("#correlation").show();
     document.getElementById("descriptiontext").innerHTML = "The coefficient of determination is a measure of the goodness of fit for the estimated regression equation."
-    document.getElementById("formulatext").innerHTML = "$$ R^2 = \\frac{\\text{SSR}}{\\text{SST}} $$"
+    document.getElementById("formulatext").innerHTML = "$ R^2 = \\dfrac{\\text{SSR}}{\\text{SST}} $"
     document.getElementById("explanationtext").innerHTML = "The coefficient of determination takes a value between 0 and 1, with a higher value indicating a better fit."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -949,7 +949,7 @@ function rsquared(){
 function correlation(){
     $("#explanation").show(); $("#output2").show(); $("#correlation").hide(); $("#correlation2").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationship between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} $$"
+    document.getElementById("formulatext").innerHTML = "$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1066,7 +1066,7 @@ function meansquares() {
 function mse(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-2} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\text{SSE}}{n-2} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1137,7 +1137,7 @@ function calcstandarderror() {
 function see(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-2} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\text{SSE}}{n-2} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1196,7 +1196,7 @@ function see(){
 function ses(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-2} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\text{SSE}}{n-2} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1255,7 +1255,7 @@ function ses(){
 function tstat(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-2} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\text{SSE}}{n-2} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1494,7 +1494,7 @@ function tstat(){
 function msr(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{1} $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{MSR} = \\dfrac{\\text{SSR}}{1} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1555,7 +1555,7 @@ function msr(){
 function fstat(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$ F = \\frac{MSR}{MSE} $$ "
+    document.getElementById("formulatext").innerHTML = "$ F = \\dfrac{MSR}{MSE} $ "
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1616,7 +1616,7 @@ function fstat(){
 function confinterval() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The confidence interval provides an interval estimate for the expected value of y."
-    document.getElementById("formulatext").innerHTML = "$$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $$ "
+    document.getElementById("formulatext").innerHTML = "$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $ "
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
     var xvalue = document.getElementById("xpvalue").value;
     var str_x = document.getElementById("valuesx").value;
@@ -1702,7 +1702,7 @@ function confinterval() {
 function predinterval() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $$ "
+    document.getElementById("formulatext").innerHTML = "$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $ "
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
     var xvalue = document.getElementById("xpvalue").value;
     var str_x = document.getElementById("valuesx").value;
@@ -1797,7 +1797,7 @@ function resplot() {
 function resplotx(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$ \\text{Residual} = y - \\hat{y}$$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Residual} = y - \\hat{y}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -1933,7 +1933,7 @@ function resplotx(){
 function resploty(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Residual} = y - \\hat{y}$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Residual} = y - \\hat{y}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -2078,7 +2078,7 @@ function standardized() {
 function standardizedx(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Standardized Residual} = \\dfrac{y - \\hat{y}}{s_{y - \\hat{y}}}$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Standardized Residual} = \\dfrac{y - \\hat{y}}{s_{y - \\hat{y}}}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -2240,7 +2240,7 @@ function standardizedx(){
 function standardizedy(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\text{Standardized Residual} = \\dfrac{y - \\hat{y}}{s_{y - \\hat{y}}}$$"
+    document.getElementById("formulatext").innerHTML = "$\\text{Standardized Residual} = \\dfrac{y - \\hat{y}}{s_{y - \\hat{y}}}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -2402,7 +2402,7 @@ function standardizedy(){
 function standardizedxx(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("formulatext").innerHTML = "$\\hat{y} = b_{0} + b_{1} x$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -2568,7 +2568,7 @@ function standardizedxx(){
 function standardizedyy(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
+    document.getElementById("formulatext").innerHTML = "$\\hat{y} = b_{0} + b_{1} x$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
@@ -2734,7 +2734,7 @@ function standardizedyy(){
 function leverage(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
-    document.getElementById("formulatext").innerHTML = "$$ h = \\dfrac{1}{n} + \\dfrac{(x - \\bar{x})^2}{\\sum(x - \\bar{x})^2} $$"
+    document.getElementById("formulatext").innerHTML = "$ h = \\dfrac{1}{n} + \\dfrac{(x - \\bar{x})^2}{\\sum(x - \\bar{x})^2} $"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;

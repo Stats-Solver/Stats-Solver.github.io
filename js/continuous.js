@@ -17,6 +17,8 @@ $("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide(); $
 
 $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide(); $("#chidistribution").hide();
 
+$("#myCanvas0").hide();
+
 normaltype = "probability"
 snormaltype = "probability"
 approxtype = "probability"
@@ -42,6 +44,10 @@ function toFixing(num, fixed) {
 }
 
 var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
@@ -164,7 +170,7 @@ function showstuff(){
     $("#explanation").hide(); $("#myCanvas").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
-    $("#output").empty(); $("#output2").empty();
+    $("#output").empty(); $("#output2").empty(); $("#myCanvas0").hide();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         uniform()
@@ -215,6 +221,7 @@ function stat(){
     if (x == "uniform"){
         compuniform()
     } else if (x == "normal"){
+        $("#myCanvas0").show();
         compnormal()
     } else if (x == "snormal") {
         compsnormal()
@@ -223,6 +230,7 @@ function stat(){
     } else if (x == "tdistribution") {
         comptdist()
     } else if (x == "approximation") {
+        $("#myCanvas0").show(); $("#myCanvas").show(); 
         compapprox()
     } else if (x == "fdistribution") {
         compfdist()
@@ -309,21 +317,25 @@ function switchprobability() {
 
 function compuniformexpected() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ E(x) = \\mu = \\frac{a+b}{2} $$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\dfrac{a+b}{2} $"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= \\frac{a+b}{2} \\\\ &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function compuniformvariance() {
     $("#explanation").show();
-    document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\frac{(b-a)^2}{12} $$"
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$$ \\text{Var}(x) = \\dfrac{(b-a)^2}{12} $$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\frac{(b-a)^2}{12} \\\\ &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ $$ \\sigma = \\sqrt{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt((maxval-minval)*(maxval-minval)/12)).toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ "
     MathJax.typeset();
 }
 
@@ -1471,6 +1483,10 @@ function compsnormal1() {
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
     
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
     
@@ -1622,6 +1638,10 @@ function compsnormal2() {
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
     
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
     
@@ -1761,6 +1781,10 @@ function compsnormal3() {
     ctx.moveTo(50, 130);
     ctx.lineTo(250, 130);
     
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
     ctx.fillText("z",255,132);
     ctx.fillText(lessval,40 + 3.36*(30+10*lessval),145);
     
@@ -1893,6 +1917,10 @@ function compsnormal4() {
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
     
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
     ctx.fillText(greaterval,points0[i+1].x - 10,145);
@@ -2019,71 +2047,6 @@ function compsnormal4() {
     
     MathJax.typeset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -2270,29 +2233,6 @@ function compnormalarea1() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function compsnormalarea2() {
     $("#myCanvas").show();
     var expval = document.getElementById('expval').value
@@ -2446,38 +2386,6 @@ function compsnormalarea2() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function normal() {
     $("#normal").show();
     $("#normalprob").show();
@@ -2525,6 +2433,88 @@ function compnormal1() {
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(expval,145,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
@@ -2564,6 +2554,10 @@ function compnormal1() {
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
     
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
@@ -2637,7 +2631,7 @@ function compnormal1() {
         }
     }
     
-    document.getElementById("output").innerHTML = "$$\\begin{align} z &=\\frac{"+lessval0+"-"+expval+"}{"+sd+"}\\\\ &=" +lessval.toFixed(2)+ "\\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ z =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =" +lessval.toFixed(2)+ " $$ $$ P(x"+ sign + lessval0 + ") = P(z"+ sign + lessval.toFixed(2) + ") $$"
     
     var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
@@ -2667,6 +2661,92 @@ function compnormal2() {
     } else if (probtype == "greater") {
         var sign = ">"
     }
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(expval,145,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    ctx.lineTo(283, points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var f = [];
     var i;
@@ -2717,6 +2797,10 @@ function compnormal2() {
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
     
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
@@ -2791,7 +2875,7 @@ function compnormal2() {
         }
     }
     
-    document.getElementById("output").innerHTML = "$$\\begin{align} z &=\\frac{"+lessval0+"-"+expval+"}{"+sd+"}\\\\ &=" +lessval.toFixed(2)+ "\\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ z =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =" +lessval.toFixed(2)+ " $$ $$ P(x"+ sign + lessval0 + ") = P(z"+ sign + lessval.toFixed(2) + ") $$"
     
     var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
@@ -2813,6 +2897,87 @@ function compnormal3() {
     var lessval = (lessval0 - expval)/sd
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:250 - 3.36*i, y:120 - 220*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(50 + 3.36*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(50, 130);
+    ctx.lineTo(250, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(expval,145,145);
+    
+    ctx.fillText("x",255,132);
+    ctx.fillText(lessval0,40 + 3.36*(30+10*lessval),145);
+    
+    ctx.moveTo(50 + 3.36*(30+10*lessval), 135);
+    ctx.lineTo(50 + 3.36*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var f = [];
     var i;
@@ -2861,16 +3026,15 @@ function compnormal3() {
     ctx.moveTo(50, 130);
     ctx.lineTo(250, 130);
     
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
     ctx.fillText("z",255,132);
     ctx.fillText(lessval.toFixed(2),40 + 3.36*(30+10*lessval),145);
     
     ctx.moveTo(50 + 3.36*(30+10*lessval), 135);
     ctx.lineTo(50 + 3.36*(30+10*lessval), 125);
-    
-    
-    ctx.fillText("0",148,145);
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
     
     var points = []
     
@@ -2930,7 +3094,7 @@ function compnormal3() {
         table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
     
-    document.getElementById("output").innerHTML = "$$\\begin{align} z &=\\frac{"+lessval0+"-"+expval+"}{"+sd+"}\\\\ &=" +lessval.toFixed(2)+ "\\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ z =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =" +lessval.toFixed(2)+ " $$ $$ P(x = "+ lessval0 + ") = P(z = "+ lessval.toFixed(2) + ") $$"
     
     var table = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
@@ -2957,6 +3121,90 @@ function compnormal4() {
     
 
     var sign1 = "\\leq"; var sign2 = "\\leq"
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*greatervalz, 130);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(expval,148,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,10 + 4.4*(30+10*lessval),145);
+    ctx.fillText(greaterval0,10 + 4.4*(30+10*greaterval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var f = [];
     var i;
@@ -3004,6 +3252,10 @@ function compnormal4() {
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
     
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
@@ -3123,7 +3375,7 @@ function compnormal4() {
     }
     
     
-    document.getElementById("output").innerHTML = "$$\\begin{align} z_{"+lessval0+"} &=\\frac{"+lessval0+"-"+expval+"}{"+sd+"}\\\\ &=" +lessval.toFixed(2)+ "\\end{align}$$ $$\\begin{align} z_{"+greaterval0+"} &=\\frac{"+greaterval0+"-"+expval+"}{"+sd+"}\\\\ &=" +greaterval.toFixed(2)+ "\\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ z_{"+lessval0+"}  =\\frac{"+lessval0+"-"+expval+"}{"+sd+"}  =" +lessval.toFixed(2)+ " $$ $$ z_{"+greaterval0+"}  =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} =" +greaterval.toFixed(2)+ " $$ $$ P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") =  P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") $$"
     
     var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
     
@@ -3131,34 +3383,6 @@ function compnormal4() {
     
     MathJax.typeset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -3201,21 +3425,25 @@ function compapprox() {
 }
 
 function approxmean() {
+    $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide();
+    document.getElementById("explanationtext").innerHTML = "$$ \\mu = np $$"
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var ans = trials * psuccess
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\mu &= np \\\\ &= (" + trials + ") ( " + psuccess + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\mu &= (" + trials + ") ( " + psuccess + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     
     MathJax.typeset();
 }
 
 function approxstandard() {
+    $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide();
+    document.getElementById("explanationtext").innerHTML = "$$ \\sigma = \\sqrt{np(1-p)} $$"
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var ans = Math.sqrt(trials * psuccess * (1 - psuccess))
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -3241,6 +3469,7 @@ function approxprobability() {
 
 
 function approxprobability1() {
+    $("#myCanvas0").show(); $("#myCanvas").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -3253,9 +3482,192 @@ function approxprobability1() {
     var prob1 = (normalcdf(z1)).toFixed(4)
     var prob2 = (normalcdf(z2)).toFixed(4)
     var ans = (prob2 - prob1).toFixed(4)
+    var exp = 2.71828;
     
     var lessval = z1
     var greaterval = z2
+    var lessvalz = 30+10*lessval
+    var greatervalz = 30+10*greaterval
+    var lessval0 = xval1
+    var greaterval0 = xval2
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*greatervalz, 130);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mean,148,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,5 + 4.4*(30+10*lessval),145);
+    ctx.fillText(greaterval0,15 + 4.4*(30+10*greaterval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*greatervalz, 130);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval.toFixed(2),5 + 4.4*(30+10*lessval),145);
+    ctx.fillText(greaterval.toFixed(2),15 + 4.4*(30+10*greaterval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3345,12 +3757,13 @@ function approxprobability1() {
     
     document.getElementById("output").innerHTML = " $$ P(x=" + xval + ") = P(" + xval1 + " \\leq x \\leq " + xval2 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ $$ z_{" + xval2 + "} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = " + z2 + " $$"
     
-    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} P(" + xval1 + " \\leq x \\leq " + xval2 + ") &= P(" + z1 + " \\leq z \\leq " + z2 + ") \\\\ &= P(z \\leq " + z2 + ") - P(z \\leq " + z1 + ") \\\\ &= " + prob2 + " - " + prob1 + " \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} P(" + z1 + " \\leq z \\leq " + z2 + ") &= P(z \\leq " + z2 + ") - P(z \\leq " + z1 + ") \\\\ &= " + prob2 + " - " + prob1 + " \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
     
     MathJax.typeset();
 }
 
 function approxprobability2() {
+    $("#myCanvas0").show(); $("#myCanvas").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -3359,8 +3772,176 @@ function approxprobability2() {
     var stnd = parseFloat((Math.sqrt(trials * psuccess * (1 - psuccess))).toFixed(2))
     var z1 = parseFloat(((xval1 - mean)/stnd).toFixed(2))
     var prob1 = (normalcdf(z1)).toFixed(4)
+    var exp = 2.71828;
     
     var lessval = z1
+    var lessvalz = 30+10*lessval
+    var lessval0 = xval1
+    
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mean,145,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3408,12 +3989,13 @@ function approxprobability2() {
     
     document.getElementById("output").innerHTML = " $$ P(x \\leq " + xval + ") = P(x \\leq " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\leq " + xval1 + ") &= P(z \\leq " + z1 + ") \\\\ &= \\boxed{" + prob1 + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ P(z \\leq " + z1 + ") = \\boxed{" + prob1 + "} $$"
     
     MathJax.typeset();
 }
 
 function approxprobability3() {
+    $("#myCanvas0").show(); $("#myCanvas").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -3422,8 +4004,176 @@ function approxprobability3() {
     var stnd = parseFloat((Math.sqrt(trials * psuccess * (1 - psuccess))).toFixed(2))
     var z1 = parseFloat(((xval1 - mean)/stnd).toFixed(2))
     var prob1 = (normalcdf(z1)).toFixed(4)
+    var exp = 2.71828;
     
     var lessval = z1
+    var lessvalz = 30+10*lessval
+    var lessval0 = xval1
+    
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mean,145,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3471,12 +4221,13 @@ function approxprobability3() {
     
     document.getElementById("output").innerHTML = " $$ P(x < " + xval + ") = P(x < " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x < " + xval1 + ") &= P(z < " + z1 + ") \\\\ &= \\boxed{" + prob1 + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ P(z < " + z1 + ") = \\boxed{" + prob1 + "} $$"
     
     MathJax.typeset();
 }
 
 function approxprobability4() {
+    $("#myCanvas0").show(); $("#myCanvas").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -3486,8 +4237,183 @@ function approxprobability4() {
     var z1 = parseFloat(((xval1 - mean)/stnd).toFixed(2))
     var prob1 = (normalcdf(z1)).toFixed(4)
     var ans = (1-prob1).toFixed(4)
+    var exp = 2.71828;
     
     var lessval = z1
+    var lessvalz = 30+10*lessval
+    var lessval0 = xval1
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mean,145,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    ctx.lineTo(283, points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    ctx.lineTo(283, points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3535,12 +4461,13 @@ function approxprobability4() {
     
     document.getElementById("output").innerHTML = " $$ P(x \\geq " + xval + ") = P(x \\geq " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\geq " + xval1 + ") &= P(z \\geq " + z1 + ") \\\\ &= 1 - P(z \\leq " + z1 + ") \\\\ &= 1 - " + prob1 + " \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z \\geq " + z1 + ") &= 1 - P(z \\leq " + z1 + ") \\\\ &= 1 - " + prob1 + " \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
     
     MathJax.typeset();
 }
 
 function approxprobability5() {
+    $("#myCanvas0").show(); $("#myCanvas").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -3550,8 +4477,183 @@ function approxprobability5() {
     var z1 = parseFloat(((xval1 - mean)/stnd).toFixed(2))
     var prob1 = (normalcdf(z1)).toFixed(4)
     var ans = (1-prob1).toFixed(4)
+    var exp = 2.71828;
     
     var lessval = z1
+    var lessvalz = 30+10*lessval
+    var lessval0 = xval1
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(mean,145,145);
+    
+    ctx.fillText("x",285,132);
+    ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    ctx.lineTo(283, points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    ctx.lineTo(283, points[i+1].y);
+    
+    
+    ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3599,7 +4701,7 @@ function approxprobability5() {
     
     document.getElementById("output").innerHTML = " $$ P(x > " + xval + ") = P(x > " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x > " + xval1 + ") &= P(z > " + z1 + ") \\\\ &= 1 - P(z < " + z1 + ") \\\\ &= 1 - " + prob1 + ") \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z > " + z1 + ") &= 1 - P(z < " + z1 + ") \\\\ &= 1 - " + prob1 + ") \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -4834,9 +5936,77 @@ function chisquare() {
 function compchi() {
     var chidist = [[0,0,0,0,0,0,0,0,0,0],[.000,.000,.001,.004,.016,2.706,3.841,5.024,6.635,7.879],[.010,.020,.051,.103,.211,4.605,5.991,7.378,9.210,10.597],[.072,.115,.216,.352,.584,6.251,7.815,9.210,10.597],[.207,.297,.484,.711,1.064,7.779,9.448,11.143,13.277,14.860],[.412,.554,.831,1.145,1.610,9.236,11.070,12.832,15.086,16.750],[.676,.872,1.237,2.204,10.645,12.592,14.449,16.812,18.548],[.989,1.239,1.690,2.167,2.833,12.017,14.067,16.013,18.475,20.278],[1.344,1.647,2.180,2.733,3.490,13.362,15.507,17.535,20.090,21.955],[1.735,2.088,2.700,2.325,4.168,14.684,16.919,19.023,21.666,23.589],[2.156,2.558,3.247,3.940,4.865,15.987,18.307,20.483,23.209,25.188],[2.603,3.053,3.816,4.575,5.578,17.275,19.675,21.920,24.725,26.757],[3.074,3.571,4.404,5.226,6.304,18.549,21.026,23.337,26.217,28.300],[3.565,4.107,5.009,5.892,7.041,19.812,22.362,24.736,27.688,29.819],[4.075,4.660,5.629,6.571,7.790,21.064,23.685,26.119,29.141,31.319],[4.601,5.229,6.262,7.261,8.547,22.307,24.996,27.488,30.578,32.801],[5.142,5.812,6.908,7.962,9.312,23.542,26.296,28.845,32.000,34.267],[5.697,6.408,7.564,8.672,10.085,24.769,27.587,30.191,33.409,35.718],[6.265,7.015,8.231,9.390,10.865,25.989,28.869,31.526,34.805,37.156],[6.884,7.633,8.907,10.117,11.651,27.204,30.144,32.852,36.191,38.582],[7.434,8.260,9.591,10.851,12.443,28.412,31.410,34.170,37.566,39.997],[8.034,8.897,10.283,11.591,13.240,29.615,32.671,35.479,38.932,41.401],[8.643,9.542,10.982,12.338,14.041,30.813,33.924,36.781,40.289,42.796],[9.260,10.196,11.689,13.091,14.848,32.007,35.172,38.076,41.638,44.181],[9.886,10.856,12.401,13.848,15.659,33.196,36.415,39.364,42.980,45.558],[10.520,11.524,13.120,14.611,16.473,34.382,37.652,40.646,44.314,46.928],[11.160,12.198,13.844,15.379,17.292,35.563,38.885,41.923,45.642,48.290],[11.808,12.878,14.573,16.151,18.114,36.741,40.113,43.195,46.963,49.645],[12.461,13.565,15.308,16.928,18.939,37.916,41.337,44.461,48.378,50.994],[13.121,14.256,16.047,17.708,19.768,39.087,42.557,45.722,49.588,52.335],[13.787,14.953,16.791,18.493,20.599,40.256,43.773,46.979,50.892,53.672]]
     
+    $("#myCanvas").show();
     var area = document.getElementById('areac').value 
     var degf = document.getElementById('degfreec').value
     var row = chidist[degf]
+    var exp = 2.71828;
+    
+    var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(190, 130);
+        ctx.lineTo(190, 106);
+        ctx.quadraticCurveTo(210, 120, 247, 125);
+        ctx.lineTo(247, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(190, 135);
+        ctx.lineTo(190, 125);
+        ctx.stroke();
+
+        ctx.fillText("χ²",285,132);
+        ctx.fillText("χ²",185,145);
+        ctx.fillText(area,193,149);
+
+        ctx.fillText(area,205,108);
+
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
     
     if (degf > 0 && degf <= 30) {
         if (area == ".995") {
@@ -4899,9 +6069,77 @@ function compfdist() {
     
     var fdist01 = [[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],[0,4052.18,4999.50,5403.35,5624.58,5763.65,5858.99,5928.36,5981.07,6022.47,6055.85,6157.28,6208.73,6239.83,6260.65,6286.78,6313.03,6334.11,6362.68],[0,98.50,99.00,99.17,99.25,99.30,99.33,99.36,99.37,99.39,99.40,99.43,99.45,99.46,99.47,99.47,99.48,99.49,99.50],[0,34.12,30.82,29.46,28.71,28.24,27.91,27.67,27.49,27.35,27.23,26.87,26.69,26.58,26.50,26.41,26.32,26.24,26.14],[0,21.20,18.00,16.69,15.98,15.52,15.21,14.98,14.80,14.66,14.55,14.20,14.02,13.91,13.84,13.75,13.65,13.58,13.47],[0,16.26,13.27,12.06,11.39,10.97,10.67,10.46,10.29,10.16,10.05,9.72,9.55,9.45,9.38,9.29,9.20,9.13,9.03],[0,13.75,10.92,9.78,9.15,8.75,8.47,8.26,8.10,7.98,7.87,7.56,7.40,7.30,7.23,7.14,7.06,6.99,6.89],[0,12.25,9.55,8.45,7.85,7.46,7.19,6.99,6.84,6.72,6.62,6.31,6.16,6.06,5.99,5.91,5.82,5.75,5.66],[0,11.26,8.65,7.59,7.01,6.63,6.37,6.18,6.03,5.91,5.81,5.52,5.36,5.26,5.20,5.12,5.03,4.96,4.87],[0,10.56,8.02,6.99,6.42,6.06,5.80,5.61,5.47,5.35,5.26,4.96,4.81,4.71,4.65,4.57,4.48,4.41,4.32],[0,10.04,7.56,6.55,5.99,5.64,5.39,5.20,5.06,4.94,4.85,4.56,4.41,4.31,4.25,4.17,4.08,4.01,3.92],[0,9.65,7.21,6.22,5.67,5.32,5.07,4.89,4.74,4.63,4.54,4.25,4.10,4.01,3.94,3.86,3.78,3.71,3.61],[0,9.33,6.93,5.95,5.41,5.06,4.82,4.64,4.50,4.39,4.30,4.01,3.86,3.76,3.70,3.62,3.54,3.47,3.37],[0,9.07,6.70,5.74,5.21,4.86,4.62,4.44,4.30,4.19,4.10,3.82,3.66,3.57,3.51,3.43,3.34,3.27,3.18],[0,8.86,6.51,5.56,5.04,4.69,4.46,4.28,4.14,4.03,3.94,3.66,3.51,3.41,3.35,3.27,3.18,3.11,3.02],[0,8.68,6.36,5.42,4.89,4.56,4.32,4.14,4.00,3.89,3.80,3.52,3.37,3.28,3.21,3.13,3.05,2.98,2.88],[0,8.53,6.23,5.29,4.77,4.44,4.20,4.03,3.89,3.78,3.69,3.41,3.26,3.16,3.10,3.02,2.93,2.86,2.76],[0,8.40,6.11,5.18,4.67,4.34,4.10,3.93,3.79,3.68,3.59,3.31,3.16,3.07,3.00,2.92,2.83,2.76,2.66],[0,8.29,6.01,5.09,4.58,4.25,4.01,3.84,3.71,3.60,3.51,3.23,3.08,2.98,2.92,2.84,2.75,2.68,2.58],[0,8.18,5.93,5.01,4.50,4.17,3.94,3.77,3.63,3.52,3.43,3.15,3.00,2.91,2.84,2.76,2.67,2.60,2.50],[0,8.10,5.85,4.94,4.43,4.10,3.87,3.70,3.56,3.46,3.37,3.09,2.94,2.84,2.78,2.69,2.61,2.54,2.43],[0,8.02,5.78,4.87,4.37,4.04,3.81,3.64,3.51,3.40,3.31,3.03,2.88,2.79,2.72,2.64,2.55,2.48,2.37],[0,7.95,5.72,4.82,4.31,3.99,3.76,3.59,3.45,3.35,3.26,2.98,2.83,2.73,2.67,2.58,2.50,2.42,2.32],[0,7.88,5.66,4.76,4.26,3.94,3.71,3.54,3.41,3.30,3.21,2.93,2.78,2.69,2.62,2.54,2.45,2.37,2.27],[0,7.82,5.61,4.72,4.22,3.90,3.67,3.50,3.36,3.26,3.17,2.89,2.74,2.64,2.58,2.49,2.40,2.33,2.22],[0,7.77,5.57,4.68,4.18,3.85,3.63,3.46,3.32,3.22,3.13,2.85,2.70,2.60,2.54,2.45,2.36,2.29,2.18],[0,7.72,5.53,4.64,4.14,3.82,3.59,3.42,3.29,3.18,3.09,2.81,2.66,2.57,2.50,2.42,2.33,2.25,2.14],[0,7.68,5.49,4.60,4.11,3.78,3.56,3.39,3.26,3.15,3.06,2.78,2.63,2.54,2.47,2.38,2.29,2.22,2.11],[0,7.64,5.45,4.57,4.07,3.75,3.53,3.36,3.23,3.12,3.03,2.75,2.60,2.51,2.44,2.35,2.26,2.19,2.08],[0,7.60,5.42,4.54,4.04,3.73,3.50,3.33,3.20,3.09,3.00,2.73,2.57,2.48,2.41,2.33,2.23,2.16,2.05],[0,7.56,5.39,4.51,4.02,3.70,3.47,3.30,3.17,3.07,2.98,2.70,2.55,2.45,2.39,2.30,2.21,2.13,2.02],[0,7.31,5.18,4.31,3.83,3.51,3.29,3.12,2.99,2.89,2.80,2.52,2.37,2.27,2.20,2.11,2.02,1.94,1.82],[0,7.08,4.98,4.13,3.65,3.34,3.12,2.95,2.82,2.72,2.63,2.35,2.20,2.10,2.03,1.94,1.84,1.75,1.62],[0,6.90,4.82,3.98,3.51,3.21,2.99,2.82,2.69,2.59,2.50,2.22,2.07,1.97,1.89,1.80,1.69,1.60,1.45],[0,6.66,4.63,3.80,3.34,3.04,2.82,2.66,2.53,2.43,2.34,2.06,1.90,1.79,1.72,1.61,1.50,1.38,1.16]]
     
+    $("#myCanvas").show();
     var area = document.getElementById('areaf').value 
     var numdf = document.getElementById('numdf').value
     var dendf = document.getElementById('dendf').value
+    var exp = 2.71828;
+    
+    var f = [];
+        var i;
+        for (i = 0; i < 20; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+        }
+
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(190, 130);
+        ctx.lineTo(190, 106);
+        ctx.quadraticCurveTo(210, 120, 247, 125);
+        ctx.lineTo(247, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 10);
+        ctx.lineTo(20, 130);
+        ctx.lineTo(280, 130);
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(190, 135);
+        ctx.lineTo(190, 125);
+        ctx.stroke();
+
+        ctx.fillText("F",285,132);
+        ctx.fillText("F",185,145);
+        ctx.fillText(area,190,146);
+
+        ctx.fillText(area,205,108);
+
+
+        var points = []
+
+        for (i = 0; i < 20; i++) {
+          points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+
+
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
     
     if (area == ".10") {
         row = fdist10[dendf]
