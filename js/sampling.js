@@ -10,6 +10,13 @@ $("#calcprob").hide(); $("#probxbar").hide(); $("#probpbar").hide(); $("#calcpro
 
 $("#up").hide(); $("#down").show();
 
+$("#enterfrequencies").hide(); 
+$("#spacefd").hide(); $("#fd").hide(); $("#equalfd").hide(); $("#valuefd").hide();
+$("#spacefe").hide(); $("#fe").hide(); $("#equalfe").hide(); $("#valuefe").hide();
+$("#spaceff").hide(); $("#ff").hide(); $("#equalff").hide(); $("#valueff").hide();
+
+$("#four2three").hide(); $("#four2five").hide(); $("#five2four").hide(); $("#five2six").hide(); $("#six2five").hide();
+
 type = "distribution"
 
 $(function () {
@@ -32,6 +39,47 @@ function toFixing(num, fixed) {
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
 });
+
+function showthings() {
+    var x = document.getElementById("stat").value;
+    if (x == "mean" || x == "standard") {
+        $("#entervalues").show(); $("#enterfrequencies").hide();
+    } else if (x == "proportion") {
+        $("#entervalues").hide(); $("#enterfrequencies").show();
+    }
+}
+
+function make3() {
+    $("#spacefd").hide(); $("#fd").hide(); $("#equalfd").hide(); $("#valuefd").hide();
+    $("#spacefe").hide(); $("#fe").hide(); $("#equalfe").hide(); $("#valuefe").hide();
+    $("#spaceff").hide(); $("#ff").hide(); $("#equalff").hide(); $("#valueff").hide();
+    $("#three2four").show(); $("#four2three").hide(); $("#four2five").hide(); 
+    $("#five2four").hide(); $("#five2six").hide(); $("#six2five").hide();
+}
+
+function make4() {
+    $("#spacefd").show(); $("#fd").show(); $("#equalfd").show(); $("#valuefd").show();
+    $("#spacefe").hide(); $("#fe").hide(); $("#equalfe").hide(); $("#valuefe").hide();
+    $("#spaceff").hide(); $("#ff").hide(); $("#equalff").hide(); $("#valueff").hide();
+    $("#three2four").hide(); $("#four2three").show(); $("#four2five").show(); 
+    $("#five2four").hide(); $("#five2six").hide(); $("#six2five").hide();
+}
+
+function make5() {
+    $("#spacefd").show(); $("#fd").show(); $("#equalfd").show(); $("#valuefd").show();
+    $("#spacefe").show(); $("#fe").show(); $("#equalfe").show(); $("#valuefe").show();
+    $("#spaceff").hide(); $("#ff").hide(); $("#equalff").hide(); $("#valueff").hide();
+    $("#three2four").hide(); $("#four2three").hide(); $("#four2five").hide(); 
+    $("#five2four").show(); $("#five2six").show(); $("#six2five").hide();
+}
+
+function make6() {
+    $("#spacefd").show(); $("#fd").show(); $("#equalfd").show(); $("#valuefd").show();
+    $("#spacefe").show(); $("#fe").show(); $("#equalfe").show(); $("#valuefe").show();
+    $("#spaceff").show(); $("#ff").show(); $("#equalff").show(); $("#valueff").show();
+    $("#three2four").hide(); $("#four2three").hide(); $("#four2five").hide(); 
+    $("#five2four").hide(); $("#five2six").hide(); $("#six2five").show();
+}
 
 function showvals(){
     $("#values").show(); 
@@ -1123,18 +1171,6 @@ function avg(input){
 }
 
 
-
-function showthings(){
-    var x = document.getElementById("stat").value;
-    if (x == "mean"){
-        mean()
-    } else if (x == "standard"){
-        standard()
-    } else if (x == "proportion"){
-        proportion()
-    } 
-}
-
 function stat(){
     $("#output").empty();
     var x = document.getElementById("stat").value;
@@ -1202,13 +1238,15 @@ function example4(){
 function switchpoint() {
     $("#pointestimation").show(); $("#samplingdistributions").hide();
     $("#switchsampling").show(); $("#switchpoint").hide();
-    $("#output1").empty(); $("#explanation").hide();
+    $("#output").show(); $("#output1").hide(); $("#output2").hide(); $("#explanation").hide();
+    $("#myCanvas0").hide(); $("#myCanvas").hide(); 
 }
  
 function switchsampling() {
     $("#pointestimation").hide(); $("#samplingdistributions").show();
     $("#switchsampling").hide(); $("#switchpoint").show();
-    $("#output").empty(); $("#explanation").hide();
+    $("#output").hide(); $("#output1").show(); $("#output2").show(); $("#explanation").hide();
+    $("#myCanvas0").show(); $("#myCanvas").show(); 
 }
 
 function switchprobabilitiesxbar() {

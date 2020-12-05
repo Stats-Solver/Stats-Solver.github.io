@@ -964,21 +964,23 @@ function fivenumber(){
     }
     
     var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25);
+    var indxval50 = (50/100)*len;
     var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75);
     var val25indx = eachsort[indxval25-1]; var val25indxplus1 = eachsort[indxval25]; var val25avg = (val25indx + val25indxplus1) / 2;
     var val75indx = eachsort[indxval75-1]; var val75indxplus1 = eachsort[indxval75]; var val75avg = (val75indx + val75indxplus1) / 2;
     var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
     var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
     var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
+
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow  Q_1 = " + val25avg + " $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow  Q_3 = " + val75avg + "$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
     } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
     } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
     }
     else{
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
     }
 
     MathJax.typeset();

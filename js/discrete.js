@@ -483,7 +483,7 @@ function expected() {
 function compexpected() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\sum x f(x) $"
     document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -536,7 +536,7 @@ function variance() {
 function compvariance() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sum (x-f(x))^2 $"
     document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -585,7 +585,7 @@ function compvariance() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -1207,7 +1207,7 @@ function compprob5f() {
 function compexpectedf() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\sum x f(x) $"
     document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
     var x1 = document.getElementById('x1f').value
     var x2 = document.getElementById('x2f').value
@@ -1252,7 +1252,7 @@ function compexpectedf() {
 function compvariancef() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$$ Var(x) = \\sigma^2 = \\sum (x-f(x))^2 $$"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sum (x-f(x))^2 $"
     document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
     var x1 = document.getElementById('x1f').value
     var x2 = document.getElementById('x2f').value
@@ -1316,7 +1316,7 @@ function compvariancef() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -2257,7 +2257,7 @@ function switchprobability() {
 function compbinomialexpected() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = ""
-    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = np $"
+    document.getElementById("formulatext").innerHTML = "$ E(x) = np $"
     document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
@@ -2269,7 +2269,7 @@ function compbinomialexpected() {
 function compbinomialvariance() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = ""
-    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = np(1-p) $"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = np(1-p) $"
     document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value

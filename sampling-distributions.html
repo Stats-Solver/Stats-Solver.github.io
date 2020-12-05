@@ -221,22 +221,77 @@
           <div class = "container">
             <h5 class="text-center text-primary mb-3">Point Estimation</h5>
         </div>
-          <div class="container center" id="valuescontainer">
-          <div class="row justify-content-center">
+          
+          <div class="row justify-content-center" id = "entervalues">
         <div class="col-8 col-md-3 mb-3">
             <input type="text" class="form-control" placeholder="Enter Values" id="values">
         </div>
         <div class="col-4 col-md-2 mb-3">
         </div>      
         </div>
-        </div>
+          
+          <div class="container mb-3" id = "enterfrequencies">
+          <div class="row justify-content-center">
+              
+              <table id="statistics">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Frequency of A" id="fa">$f_A$</td>
+            <td class="statistics" id="equalfa">=</td>
+            <td class="statistics"><input type="text" style="width:60px;" id="valuefa" class="hypinput2"></td>
+            <td class="statistics">&nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Frequency of B" id="fb">$f_B$</td>
+            <td class="statistics" id="equalfb">=</td>
+            <td class="statistics"><input type="text" style="width:60px;" id="valuefb" class="hypinput2"></td>
+            <td class="statistics">&nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Frequency of C" id="fc">$f_C$</td>
+            <td class="statistics" id="equalfc">=</td>
+            <td class="statistics"><input type="text" style="width:60px;" id="valuefc" class="hypinput2"></td>
+            <td class="statistics" id="spacefd">&nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Frequency of D" id="fd">$f_D$</td>
+            <td class="statistics" id="equalfd">=</td>
+            <td class="statistics"><input type="text" style="width:60px;" id="valuefd" class="hypinput2"></td>
+            <td class="statistics" id="spacefe">&nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Frequency of E" id="fe">$f_E$</td>
+            <td class="statistics" id="equalfe">=</td>
+            <td class="statistics"><input type="text" style="width:60px;" id="valuefe" class="hypinput2"></td>
+            <td class="statistics" id="spaceff">&nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Frequency of F" id="ff">$f_F$</td>
+            <td class="statistics" id="equalff">=</td>
+            <td class="statistics"><input type="text" style="width:60px;" id="valueff" class="hypinput2"></td> 
+            <td class="statistics" id="three2four"><svg onclick = "make4()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg></td>
+
+                    <td class="statistics" id="four2three"><svg onclick = "make3()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg></td>
+                    <td class="statistics" id="four2five"><svg onclick = "make5()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg></td>
+
+                    <td class="statistics" id="five2four"><svg onclick = "make4()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg></td>
+
+                    <td class="statistics" id="five2six"><svg onclick = "make6()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-right" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg></td>
+
+                    <td class="statistics" id="six2five"><svg onclick = "make5()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+            </svg></td>
+          </tr>
+        </table> 
+              </div>
+              </div>
+          
           <div class="row justify-content-center">
         <div class="col-8 col-md-3">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
-                <option value="mean">Population Mean</option>
-                <option value="standard">Population Standard Deviation</option>
-                <option value="proportion">Population Proportion</option>
+                <option value="mean">Point Estimate of μ</option>
+                <option value="standard">Point Estimate of σ</option>
+                <option value="proportion">Point Estimate of p</option>
             </select>
         </div> 
         <div class="col-4 col-md-2 inputWrapper">

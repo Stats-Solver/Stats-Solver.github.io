@@ -649,6 +649,7 @@ function conint2(){
     var conlev = document.getElementById("conlev").value;
     var confor = "variance"
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var exp = 2.71828;
     
     chidf = chi[sizem1]
     
@@ -671,7 +672,7 @@ function conint2(){
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
         document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-        document.getElementById("output1").innerHTML = " $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
+        document.getElementById("output1").innerHTML = " $$ df = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
     } else if (confor == "standard") {
         document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
         document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
@@ -682,61 +683,86 @@ function conint2(){
     
     
     
+    var f = [];
+    var i;
+    for (i = 0; i < 20; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+    }
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     ctx.moveTo(20, 130);
-    ctx.quadraticCurveTo(50, 100, 53, 90);
-    ctx.lineTo(53, 130);
+    ctx.quadraticCurveTo(40, 120, 50, 85);
+    ctx.lineTo(50, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
 
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(210, 130);
-    ctx.lineTo(210, 108);
-    ctx.quadraticCurveTo(265, 120, 265, 120);
-    ctx.lineTo(265, 130);
+    ctx.moveTo(190, 130);
+    ctx.lineTo(190, 106);
+    ctx.quadraticCurveTo(210, 120, 247, 125);
+    ctx.lineTo(247, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
-
+    
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
+    
     ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.bezierCurveTo(80, 80, 60, 20, 100, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(100, 20);
-    ctx.bezierCurveTo(140, 20, 120, 100, 265, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 5);
+    ctx.moveTo(20, 10);
     ctx.lineTo(20, 130);
     ctx.lineTo(280, 130);
     ctx.stroke();
     
+    ctx.beginPath();
+    ctx.moveTo(50, 135);
+    ctx.lineTo(50, 125);
+    ctx.stroke();
+    ctx.beginPath();
+    ctx.moveTo(190, 135);
+    ctx.lineTo(190, 125);
+    ctx.stroke();
+    
     ctx.fillText("χ²",285,132);
-    ctx.fillText("χ²",207,145);
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),214,149);
+    ctx.fillText("χ²",186,145);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),192,149);
     ctx.fillText("χ²",50,145);
     ctx.fillText((1-alphahalf).toFixed(3).replace(/^0+/, ''),57,149);
     
     ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),25,95);
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),230,108);
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),205,108);
+
     
-    ctx.beginPath();
-    ctx.moveTo(53, 135);
-    ctx.lineTo(53, 125);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(210, 135);
-    ctx.lineTo(210, 125);
+    var points = []
+    
+    for (i = 0; i < 20; i++) {
+      points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
     ctx.stroke();
     
     table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
