@@ -118,6 +118,7 @@ function stat(){
     var min = document.getElementById("minval").value; var len3 = min.length;
     var max = document.getElementById("maxval").value; var len4 = max.length;
     var str2 = document.getElementById("values2").value; var len5 = str2.length;
+    var str1 = document.getElementById("values1").value; var len6 = str1.length;
     var x = document.getElementById("stat").value;
     if (x == "mean"){
         if (len !== 0) {
@@ -210,7 +211,7 @@ function stat(){
     } else if (x == "fivenumber") {
         fivenumber()
     } else if (x == "covariance") {
-        if (len !== 0 && len5 !== 0) {
+        if (len6 !== 0 && len5 !== 0) {
             covariance()
         } else {
             document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
@@ -218,7 +219,7 @@ function stat(){
     } else if (x == "covariancepop") {
         calccovpop()
     } else if (x == "correlation") {
-        if (len !== 0 && len5 !== 0) {
+        if (len6 !== 0 && len5 !== 0) {
             correlation()
         } else {
             document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
@@ -287,7 +288,7 @@ function meansam(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= " $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= " $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -304,7 +305,7 @@ function meanpop(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\mu &= \\frac{\\sum{x}}{N} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\mu = \\frac{\\sum{x}}{N} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -353,7 +354,7 @@ function geometric(){
         prod = prod * each[i]
     }
     var ans = Math.pow(prod, 1/len);
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_g &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &= \\sqrt[" + len + "]{" + adds + "} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\bar{x}_g = \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} =  \\sqrt[" + len + "]{" + prod + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -546,7 +547,7 @@ function range(){
     var each = str.split(",").map(Number);
     var largest = Math.max.apply(null,each); var smallest = Math.min.apply(null,each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ "\\\\ &= \\boxed{" + rng + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Range} = \\text{Largest} - \\text{Smallest} = "+largest+" - "+smallest+ " = \\boxed{" + rng + "} $$"
     MathJax.typeset();
 }
 
@@ -567,14 +568,14 @@ function iqr(){
     var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
 
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow  Q_1 = " + val25avg + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow  Q_3 = " + val75avg + "$$ $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr1+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow  Q_1 = " + val25avg + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow  Q_3 = " + val75avg + "$$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+val25avg+" = \\boxed{"+ansiqr1+"} $$"
     } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} $$"
     } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+val75avg+" - "+answr25+" \\\\ &= \\boxed{"+ansiqr3+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+answr25+" = \\boxed{"+ansiqr3+"}  $$"
     }
     else{
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\begin{align} \\text{IQR} &= \\text{Q}_3 - \\text{Q}_1 \\\\ &= "+answr75+" - "+answr25+" \\\\ &= \\boxed{"+ansiqr4+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+answr25+" = \\boxed{"+ansiqr4+"}  $$"
     }
 
     MathJax.typeset();
@@ -620,7 +621,7 @@ function variancesam(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(ansvar.toFixed(2))+"}  $$"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(ansvar.toFixed(2))+"}  $$"
     MathJax.typeset();
 }
 
@@ -655,7 +656,7 @@ function variancepop(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table>" + table + "</table>$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    document.getElementById("output").innerHTML = "$$ \\mu = \\frac{\\sum{x}}{N} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -700,7 +701,7 @@ function stdevsam(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = "+parseFloat(ansvar.toFixed(2))+"  $$ $$ s = \\sqrt{s^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = "+parseFloat(ansvar.toFixed(2))+"  $$ $$ s = \\sqrt{s^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -736,7 +737,7 @@ function stdevpop(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = " <table>" + table + "</table>$$ \\sigma^2 = \\dfrac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = "+parseFloat(ansvar.toFixed(2))+" $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$"
+    document.getElementById("output").innerHTML = "$$ \\mu = \\frac{\\sum{x}}{N} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\dfrac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = "+parseFloat(ansvar.toFixed(2))+" $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -954,7 +955,7 @@ function calccov(){
     document.getElementById("explanationtext").innerHTML = "Only the sign of the covariance can be interpreted."
     $("#output").empty();
     $("#descovariance").show(); $("#popcovariance").show(); $("#samcovariance").hide();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var each2 = str2.split(",").map(Number); var len2 = each2.length; var len2min1 = len2 - 1;
