@@ -754,7 +754,7 @@ function rsquared(){
     var ansrsqu = ansssr / anssst;
     var ansrsquper = ansrsqu.toFixed(2) * 100;
     var interpret = "$$" + parseFloat(ansrsquper.toFixed(0)) + "\\% \\text{ of the Variation is Explained} $$"
-    document.getElementById("output").innerHTML = "$$ \\begin{align} r^2 &= \\frac{\\text{SSR}}{\\text{SST}} \\\\ &= \\frac{"+parseFloat(ansssr.toFixed(2))+"}{" +parseFloat(anssst.toFixed(2)) +"} \\\\ &= \\boxed{"+parseFloat(ansrsqu.toFixed(2))+"} \\end{align} $$" + interpret
+    document.getElementById("output").innerHTML = "$$ r^2 = \\frac{\\text{SSR}}{\\text{SST}} = \\frac{"+parseFloat(ansssr.toFixed(2))+"}{" +parseFloat(anssst.toFixed(2)) +"} = \\boxed{"+parseFloat(ansrsqu.toFixed(2))+"}  $$" + interpret
     MathJax.typeset();
 }
 
@@ -844,7 +844,7 @@ function correlation(){
         var intinside = "<u>no"
     }
     var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship</u> between x and y."
-    document.getElementById("output").innerHTML = "$$ \\begin{align} r_{xy} &= (\\text{sign of } b_1) \\sqrt{r^2} \\\\ &= "+signslope+"\\sqrt{" +ansrsqu.toFixed(2) +"} \\\\ &= \\boxed{"+anscorcoef.toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} = "+signslope+"\\sqrt{" +ansrsqu.toFixed(2) +"} = \\boxed{"+anscorcoef.toFixed(2)+"} $$"
     MathJax.typeset();
 }
 
@@ -929,7 +929,7 @@ function mse(){
     var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSE} &= \\frac{\\text{SSE}}{n-2} \\\\ &= \\frac{"+parseFloat(anssse.toFixed(2))+"}{" + n_x +" - 2} \\\\ &= \\boxed{"+parseFloat(ansmse.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{MSE} = \\frac{\\text{SSE}}{n-2} = \\frac{"+parseFloat(anssse.toFixed(2))+"}{" + n_x +" - 2} = \\boxed{"+parseFloat(ansmse.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -1001,7 +1001,7 @@ function see(){
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
     var anssee = Math.sqrt(ansmse);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} s &= \\sqrt{\\text{MSE}} \\\\ &= \\sqrt{"+parseFloat(ansmse.toFixed(2))+"} \\\\ &= \\boxed{" + parseFloat(anssee.toFixed(2)) +"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ s = \\sqrt{\\text{MSE}} = \\sqrt{"+parseFloat(ansmse.toFixed(2))+"} = \\boxed{" + parseFloat(anssee.toFixed(2)) +"} $$"
     MathJax.typeset();
 }
 
@@ -1271,7 +1271,7 @@ function msr(){
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
     var anststat = ansslope / ansses;
     var ansmsr = ansssr;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\dfrac{\\text{SSR}}{1} \\\\ &= \\frac{\\text{"+parseFloat(ansssr.toFixed(2))+"}}{1} \\\\ &= \\boxed{"+parseFloat(ansmsr.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{1} = \\frac{\\text{"+parseFloat(ansssr.toFixed(2))+"}}{1} = \\boxed{"+parseFloat(ansmsr.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
