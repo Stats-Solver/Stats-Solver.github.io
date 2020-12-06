@@ -16,6 +16,7 @@ $("#intyesindep").hide();
 experimentkind = "samplespace"
 mutuallyexc = "no"
 intindepval = "no"
+condindepenent = "no"
 
 function factorial(n) {
     if (n > 0) {
@@ -828,7 +829,7 @@ function compcomp() {
     
     var probac = document.getElementById("probcomp").value;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - " + probac + "\\\\ &= \\boxed{" + (1-probac).toFixed(2) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + "\\\\ &= \\boxed{" + (1-probac).toFixed(2) + "} \\end{align} $$"
 
     
     MathJax.typeset();
@@ -865,7 +866,7 @@ function compunion1() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\ &= " + proba + "+" + probb + "-" + probaib + "\\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -878,7 +879,7 @@ function compunion2() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb)
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= " + proba + "+" + probb + "\\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) \\\\ &= " + proba + "+" + probb + "\\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -907,16 +908,11 @@ function independent() {
 
 function compintersection() {
     var probtype1 = document.getElementById("probtype1").value;
-    var probtype2 = document.getElementById("probtype2").value;
-    if (probtype1 == "AgivB" && probtype2 == "B") {
+    if (probtype1 == "B") {
         compintersection1()
-    } else if (probtype1 == "A" && probtype2 == "BgivA") {
+    } else if (probtype1 == "A") {
         compintersection2()
-    } else if (probtype1 == "A" && probtype2 == "B") {
-        compintersection3() 
-    } else if (probtype1 == "AgivB" && probtype2 == "BgivA") {
-        compintersection4() 
-    } 
+    }
 }
 
 function compintersection1() {
@@ -967,6 +963,16 @@ function compintersection4() {
     MathJax.typeset();
 }
 
+function condind() {
+    if (document.getElementById('condind').checked) {
+      $("#condindep1").hide(); $("#condindep2").hide(); $("#condindep3").hide(); $("#condindep4").hide();
+      condindepenent = "yes"
+  } else {
+      $("#condindep1").show(); $("#condindep2").show(); $("#condindep3").show(); $("#condindep4").show();
+      condindepenent = "no"
+  }
+}
+
 function conditional() {
     $("#conditional").show();
     conditionaltype = 1;
@@ -974,34 +980,67 @@ function conditional() {
 
 function compconditional() {
     var probtype = document.getElementById("probtype3").value;
-    if (probtype == "B") {
-        compconditional1()
-    } else if (probtype == "A") {
-        compconditional2()
-    } 
+    if (condindepenent == "no") {
+        if (probtype == "B") {
+            compconditional1()
+        } else if (probtype == "A") {
+            compconditional2()
+        } 
+    } else if (condindepenent == "yes") {
+        if (probtype == "B") {
+            compconditional3()
+        } else if (probtype == "A") {
+            compconditional4()
+        } 
+    }
+    
 }
 
 function compconditional1() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The probability of A given B is the probability of event A occuring given that event B has already occured."
-    document.getElementById("formulatext").innerHTML = "$ P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)}  $"
+    document.getElementById("formulatext").innerHTML = "$ P(A \\mid B) = \\dfrac{P(A \\cap B)}{P(B)} $"
     document.getElementById("explanationtext").innerHTML = ""
     var probb = document.getElementById("probb3").value;
-    var probaib = document.getElementById("probaib2").value;
-    var ans = parseFloat(probaib) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= \\boxed{" + ans.toFixed(2) + "} \\end{align} $$"
+    var probi = document.getElementById("probaib2").value;
+    var ans = parseFloat(probi) / parseFloat(probb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probi + "}{" + probb + "} \\\\ &= \\boxed{" + ans.toFixed(2) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
 function compconditional2() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The probability of B given A is the probability of event B occuring given that event A has already occured."
-    document.getElementById("formulatext").innerHTML = "$ P(B \\mid A) = \\dfrac{P(A \\cap B)}{P(A)}  $"
+    document.getElementById("formulatext").innerHTML = "$ P(B \\mid A) = \\dfrac{P(A \\cap B)}{P(A)} $"
     document.getElementById("explanationtext").innerHTML = ""
-    var probb = document.getElementById("probb33").value;
-    var probaib = document.getElementById("probaib22").value;
+    var proba = document.getElementById("probb3").value;
+    var probi = document.getElementById("probaib2").value;
+    var ans = parseFloat(probi) / parseFloat(proba);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(B \\mid A) &= \\frac{P(A \\cap B)}{P(A)} \\\\ &= \\frac{" + probi + "}{" + proba + "} \\\\ &= \\boxed{" + ans.toFixed(2) + "} \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compconditional3() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The probability of A given B is the probability of event A occuring given that event B has already occured."
+    document.getElementById("formulatext").innerHTML = "$ P(B \\mid A) = P(B) $"
+    document.getElementById("explanationtext").innerHTML = ""
+    var probb = document.getElementById("probb3").value;
+    var probi = document.getElementById("probaib2").value;
     var ans = parseFloat(probaib) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(B \\mid A) &= \\frac{" + probaib + "}{" + probb + "} \\\\ &= \\boxed{" + ans.toFixed(2) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(B \\mid A) &= P(B) \\\\ &= \\boxed{" + probb + "} \\end{align} $$"
+    MathJax.typeset();
+}
+
+function compconditional4() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The probability of B given A is the probability of event B occuring given that event A has already occured."
+    document.getElementById("formulatext").innerHTML = "$ P(A \\mid B) = P(A) $"
+    document.getElementById("explanationtext").innerHTML = ""
+    var proba = document.getElementById("probb3").value;
+    var probi = document.getElementById("probaib2").value;
+    var ans = parseFloat(probaib) / parseFloat(probb);
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= P(A) \\\\ &= \\boxed{" + proba + "} \\end{align}  $$"
     MathJax.typeset();
 }
 
@@ -1083,15 +1122,15 @@ function exampleunion2(){
 }
 
 function exampleintersection(){
-    document.getElementById('probtype1').value = "AgivB"
-    document.getElementById('probtype2').value = "B"
+    //document.getElementById('probtype1').value = "AgivB"
+    //document.getElementById('probtype2').value = "B"
     document.getElementById('iprobb').value=".85"
     document.getElementById("iproba").value=".73"
 }
 
 function exampleintersection2(){
-    document.getElementById('probtype1').value = "A"
-    document.getElementById('probtype2').value = "B"
+    //document.getElementById('probtype1').value = "A"
+    //document.getElementById('probtype2').value = "B"
     document.getElementById('iprobb').value=".81"
     document.getElementById("iproba").value=".84"
 }

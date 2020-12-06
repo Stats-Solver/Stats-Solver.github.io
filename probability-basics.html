@@ -311,14 +311,14 @@
             <td>$P($<select id="probtype3" class="hypinput6 probtype" onchange=""> <option value="A"> A </option><option value="B">B</option> </select>$)$</td>
             <td>$=$</td>
             <td><input class = "prob" type="text" id="probb3"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td>$P(A \cap B)$</td>
-            <td>$=$</td>
-            <td><input class = "prob" type="text" id="probaib2"></td>
+            <td id = "condindep1">&nbsp; &nbsp;</td>
+            <td id = "condindep2">$P(A \cap B)$</td>
+            <td id = "condindep3">$=$</td>
+            <td id = "condindep4"><input class = "prob" type="text" id="probaib2"></td>
         </table> 
           
           <div class = "text-center mt-2">
-            <input type="checkbox" id="condindep" name="vehicle1" value="Bike" onchange = "condindep()">
+            <input type="checkbox" id="condind" name="vehicle1" value="Bike" onchange = "condind()">
             <label for="indep">$\text{Independent}$</label>
         </div>
           

@@ -436,20 +436,20 @@ function type2() {
     var alpha = document.getElementById("alphat").value;
     
     var zcless = (NormSInv(alpha)).toFixed(2)
-    var xbarl = zcless * (stdev / Math.sqrt(size)) + parseFloat(muknot)
+    var xbarl = (zcless * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2)
     var zl = parseFloat(((xbarl - mu) / (stdev/Math.sqrt(size))).toFixed(2))
     var zlprob = (normalcdf(zl)).toFixed(4)
     var betal = (1 - zlprob).toFixed(4)
     
     var zcgreat = (NormSInv(1-alpha)).toFixed(2)
-    var xbarg = parseFloat((zcgreat * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2))
+    var xbarg = parseFloat((zcgreat * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2)).toFixed(2)
     var zg = parseFloat(((xbarg - mu) / (stdev/Math.sqrt(size))).toFixed(2))
     var zgprob = (normalcdf(zg)).toFixed(4)
     var betag = zgprob
     
     var zcless2 = (NormSInv(alpha/2)).toFixed(2)
     var zcgreat2 = (NormSInv(1-alpha/2)).toFixed(2)
-    var xbarl2 = zcless2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)
+    var xbarl2 = (zcless2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2)
     var xbarg2 = parseFloat((zcgreat2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2))
     var zl2 = parseFloat(((xbarl2 - mu) / (stdev/Math.sqrt(size))).toFixed(2))
     var zg2 = parseFloat(((xbarg2 - mu) / (stdev/Math.sqrt(size))).toFixed(2))
@@ -502,7 +502,6 @@ function hyptest(){
 }
 
 function hyptest1(){
-    $("#explanation").hide();
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
@@ -519,18 +518,14 @@ function hyptest1(){
     var tcless = -tinv(alpha,sizem1); var tcmore = tinv(alpha,sizem1)
     var tctwo1 = -tinv(alpha/2,sizem1); var tctwo2 = tinv(alpha/2,sizem1); 
     var exp = 2.71828;
-    if (sigma == "known") {
-            var degfree = ""
-        } else if (sigma == "unknown") {
-            var degfree = "$$ df = "+size+" - 1 = "+(size-1)+" $$"
-    }
+    
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "z";
         var tailsign = "\\leq";
         var stndsymb = "\\sigma"
         var cvalsymb = "-z_\\alpha";
-        var pvalue = normalcdf(test);
+        var pvalue = normalcdf(test.toFixed(2));
         var pval = pvalue.toFixed(4);
         var cless = zcless;
     } else if (sigma == "known" && tail == "upper"){
@@ -539,7 +534,7 @@ function hyptest1(){
         var tailsign = "\\geq";
         var stndsymb = "\\sigma"
         var cvalsymb = "z_\\alpha";
-        var pvalue = 1 - normalcdf(test);
+        var pvalue = 1 - normalcdf(test.toFixed(2));
         var pval = pvalue.toFixed(4);
         var cmore = zcmore;
     } else if (sigma == "known" && tail == "two"){
@@ -549,9 +544,9 @@ function hyptest1(){
         var stndsymb = "\\sigma"
         var cvalsymb1 = "-z_{\\alpha / 2}";
         var cvalsymb2 = "z_{\\alpha / 2}";
-        var pvalhalf = normalcdf(testtwo);
+        var pvalhalf = normalcdf(testtwo.toFixed(2));
         var pvalh = pvalhalf.toFixed(4);
-        var pvalue = 2 * pvalhalf;
+        var pvalue = 2 * pvalhalf.toFixed(4);
         var pval = pvalue.toFixed(4);
         var ctwo1 = zctwo1; var ctwo2 = zctwo2; 
     } else if (sigma == "unknown" && tail == "lower"){
@@ -777,43 +772,12 @@ function hyptest1(){
             var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     }
     
-    
-    
-    
-    
-    if (tail == "lower" && sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "two" && sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
+
+    if (sigma == "known") {
+        document.getElementById("output1").innerHTML = " $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$   $ \\text{p-Value Approach:} $"
+    } else if (sigma == "unknown") {
+        document.getElementById("output1").innerHTML = " $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
     } 
-    
-    if (tail == "lower") {
-        document.getElementById("output1").innerHTML = " $$ "+testsymb+" = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$"+degfree+"   $ \\text{p-Value Approach:} $"
-    } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = " $$ "+testsymb+" = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+"  $$"+degfree+" $ \\text{p-Value Approach:} $"
-    } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = " $$ "+testsymb+" = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$"+degfree+"   $ \\text{p-Value Approach:} $"
-    }
     
     
     if (tail == "lower") {
@@ -1339,12 +1303,18 @@ function hyptest1(){
     
     
     
-    if (tail == "lower") {
+    if (tail == "lower" && sigma == "known") {
         document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
-    } else if (tail == "upper") {
+    } else if (tail == "upper" && sigma == "known") {
         document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
-    } else if (tail == "two") {
+    } else if (tail == "two" && sigma == "known") {
         document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "lower" && sigma == "unknown") {
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(3) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "upper" && sigma == "unknown") {
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(3) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+    } else if (tail == "two" && sigma == "unknown") {
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(3) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(3) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     }
     
     
@@ -1354,13 +1324,12 @@ function hyptest1(){
 }
 
 function hyptest2(){
-    $("#explanation").hide();
     var tail = document.getElementById("tail").value;
     var pknot = document.getElementById("muknot").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var pbar = document.getElementById("xbar").value;
     var alpha = document.getElementById("alpha").value;
-    var test = (pbar-pknot)/Math.sqrt(pbar*(1-pbar)/size);
+    var test = (pbar-pknot)/Math.sqrt(pknot*(1-pknot)/size);
     var testtwo = -Math.abs(test);
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
@@ -1395,7 +1364,7 @@ function hyptest2(){
         var cvalsymb2 = "z_{\\alpha / 2}";
         var pvalhalf = normalcdf(testtwo);
         var pvalh = pvalhalf.toFixed(4);
-        var pvalue = 2 * pvalhalf;
+        var pvalue = 2 * pvalhalf.toFixed(4);
         var pval = pvalue.toFixed(4);
         var ctwo1 = zctwo1; var ctwo2 = zctwo2; 
     } 
@@ -1504,32 +1473,8 @@ function hyptest2(){
     var tablep = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     var tablec = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit+"$</td>"+table2+"</tr></table>"
 
-    
-    if (tail == "lower") {
-        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "upper") {
-        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "two") {
-        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } 
-    
-    if (tail == "lower") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align} $$ $ \\text{p-Value Approach:}$"
-    } else if (tail == "upper") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\  &= "+test.toFixed(2)+" \\end{align}  $$ $ \\text{p-Value Approach:}$"
-    } else if (tail == "two") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} \\text{Test Statistic: }z &=\\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} \\\\ &=\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$ $ \\text{p-Value Approach:}$"
-    }
-    
+    document.getElementById("output1").innerHTML = " $$ z =\\frac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} =\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} = "+test.toFixed(2)+"  $$ $ \\text{p-Value Approach:}$"
 
-    
-    
     if (tail == "lower") {
         
         var f = [];
@@ -2037,173 +1982,6 @@ function hyptest2(){
     
     MathJax.typeset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function hyptest3(){
-    $("#explanation").hide();
-    
-    var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
-    var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
-    var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
-    var chi4 = [.207, .484, .711, 9.488, 11.143, 14.860]
-    var chi5 = [.412, .831, 1.145, 11.070, 12.832, 16.750]
-    var chi6 = [.676, 1.237, 1.635, 12.592, 14.449, 18.548]
-    var chi7 = [.989, 1.690, 2.167, 14.067, 16.013, 20.278]
-    var chi8 = [1.344, 2.180, 2.733, 15.507, 17.535, 21.955]
-    var chi9 = [1.735, 2.700, 3.325, 16.919, 19.023, 23.589]
-    var chi10 = [2.156, 3.247, 3.940, 18.307, 20.483, 25.188]
-    var chi11 = [2.603, 3.816, 4.575, 19.675, 21.920, 26.757]
-    var chi12 = [3.074, 4.404, 5.226, 21.026, 23.337, 26.757]
-    var chi13 = [3.565, 5.009, 5.892, 22.362, 24.736, 29.819]
-    var chi14 = [4.075, 5.629, 6.571, 23.685, 26.119, 31.319]
-    var chi15 = [4.601, 6.262, 7.261, 24.996, 27.448, 32.801]
-    var chi16 = [5.142, 6.908, 7.962, 26.296, 28.845, 34.267]
-    var chi17 = [5.687, 7.564, 8.672, 27.587, 30.191, 35.718]
-    var chi18 = [6.265, 8.231, 9.390, 28.869, 31.526, 37.156]
-    var chi19 = [6.844, 8.907, 10.117, 30.144, 32.852, 38.582]
-    var chi20 = [7.434, 9.591, 10.851, 31.410, 34.170, 39.997]
-    var chi21 = [8.034, 10.283, 11.591, 32.671, 35.479, 41.401]
-    var chi22 = [8.643, 10.982, 12.338, 33.924, 36.781, 42.796]
-    var chi23 = [9.260, 11.689, 13.091, 35.172, 38.076, 44.181]
-    var chi24 = [9.886, 12.401, 13.848, 36.415, 39.364, 45.558]
-    var chi25 = [10.520, 13.120, 14.611, 37.652, 40.646, 46.928]
-    var chi26 = [11.160, 13.844, 15.379, 38.885, 41.923, 48.928]
-    var chi27 = [11.808, 14.573, 16.151, 40.113, 43.195, 49.645]
-    var chi28 = [12.461, 15.308, 16.928, 41.337, 44.461, 50.994]
-    var chi29 = [13.121, 16.047, 17.708, 42.557, 45.722, 52.335]
-    var chi30 = [13.787, 16.791, 18.493, 43.773, 46.979, 53.672]
-    var chi35 = [17.192, 20.569, 22.465, 49.802, 53.203, 60.275]
-    var chi40 = [20.707, 24.433, 26.509, 55.758, 59.342, 66.766]
-    var chi45 = [24.311, 28.366, 30.612, 61.656, 65.410, 73.166]
-    var chi50 = [27.991, 32.357, 34.764, 67.505, 71.420, 79.490]
-    var chi55 = [31.735, 36.398, 38.958, 73.311, 77.380, 85.749]
-    var chi60 = [35.543, 40.482, 43.188, 79.082, 83.298, 91.942]
-    var chi65 = [39.383, 44.603, 47.450, 84.821, 89.177, 98.105]
-    var chi70 = [43.275, 48.758, 51.739, 90.531, 95.023, 104.215]
-    var chi75 = [47.206, 52.942, 56.054, 96.217, 100.839, 110.285]
-    var chi80 = [51.172, 57.153, 60.391, 101.879, 106.629, 116.321]
-    var chi85 = [55.170, 61.389, 64.749, 107.522, 112.393, 122.342]
-    var chi90 = [59.196, 65.647, 69.126, 113.145, 118.136, 128.299]
-    var chi95 = [63.250, 69.925, 63.520, 118.752, 123.858, 134.247]
-    var chi100 = [67.328, 74.222, 77.929, 124.342, 129.561, 140.170]
-    
-    var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
-    
-    var tail = document.getElementById("tail").value;
-    var muknot = document.getElementById("muknot").value
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var stdev = document.getElementById("xbar").value;
-    var alpha = document.getElementById("alpha").value;
-    var test = ((size-1)*(stdev*stdev))/muknot
-    
-    chidf = chi[sizem1]
-    
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-    document.getElementById("output1").innerHTML = "$$ \\begin{align} \\text{Test Statistic: } \\chi^2 &= \\frac{(n-1)s^2}{\\sigma_o^2} \\\\ &= \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} \\\\ &= " + parseFloat(test.toFixed(2)) + " \\\\ \\end{align} $$ $$ \\begin{align} \\text{Degrees of Freedom: } df &= n - 1 \\\\ &= "+size+ " - 1 \\\\ &= "+sizem1+" \\end{align}  $$  "
-    
-    
-    
-    var c = document.getElementById("myCanvas1");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    
-    
-    
-    
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(210, 130);
-    ctx.lineTo(210, 108);
-    ctx.quadraticCurveTo(265, 120, 265, 120);
-    ctx.lineTo(265, 130);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    
-    
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.bezierCurveTo(80, 80, 60, 20, 100, 20);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(100, 20);
-    ctx.bezierCurveTo(140, 20, 120, 100, 265, 120);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(20, 5);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
-    
-    ctx.fillText("χ²",285,132);
-    ctx.fillText(parseFloat(test.toFixed(2)),200,145);
-    ctx.fillText("0",19,142);
-    
-    ctx.fillText("p-value",223,105);
-    
-    ctx.beginPath();
-    ctx.moveTo(210, 135);
-    ctx.lineTo(210, 125);
-    ctx.stroke();
-    
-    
-
-    
-    
-    
-    table1 = "<td></td><td colspan='6'>Area in Upper Tail</td>"
-    
-    table2 = "<td>df</td><td>.995</td><td>.975</td><td>.95</td><td>.05</td><td>.025</td><td>.005</td>"
-    
-    table3 = "<td>"+ sizem1 +"</td><td>"+chidf[0]+"</td><td>"+chidf[1]+"</td><td>"+chidf[2]+"</td><td>"+chidf[3]+"</td><td>"+chidf[4]+"</td><td>"+chidf[5].toFixed(3)+"</td>"
-    
-    
-    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = "<br>" + table
-
-    MathJax.typeset();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

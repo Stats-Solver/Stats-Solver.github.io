@@ -486,8 +486,7 @@ function conint(){
 
 
 function conint1(){
-    $("#explanation").hide(); $("#canvascontainer").show();
-    $("#expconf").show();
+    $("#canvascontainer").show();$("#expconf").show();
     var sigma = document.getElementById("sigma").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var xbar = document.getElementById("xbar").value;
@@ -501,17 +500,9 @@ function conint1(){
     var exp = 2.71828;
     
     if (sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
         document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
     } else if (sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = "+size+ " - 1 = "+sizem1+"   $$"
+        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+"   $$"
     } 
     
     var f = [];
@@ -640,10 +631,10 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$  "
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$  "
         // $ \\text{Interpretation: We are } " + conlev + " \\text{% confident that the} $ <br> $ \\text{population mean is between }" + anslow.toFixed(2) + "\\text{ and }" + anshigh.toFixed(2) + "\\text{.} $
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
         //$ \\text{Interpretation: We are } " + conlev + " \\text{% confident that the} $ <br> $ \\text{population mean is between }" + anslow.toFixed(2) + "\\text{ and }" + anshigh.toFixed(2) + "\\text{.} $ 
     } 
     
@@ -651,8 +642,7 @@ function conint1(){
 }
 
 function conint2(){
-    $("#explanation").hide(); $("#canvascontainer").show();
-    $("#expconf").show();
+    $("#canvascontainer").show();$("#expconf").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var pbar = document.getElementById("xbar").value;
     var conlev = document.getElementById("conlev").value;
@@ -662,23 +652,9 @@ function conint2(){
     var marginerror = zalphahalf * Math.sqrt((pbar*(1-pbar))/size);
     var anslow = pbar - marginerror; var anshigh = (parseFloat(pbar)+marginerror);
     var exp = 2.71828;
-    
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
     document.getElementById("output1").innerHTML = "$$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     var f = [];
     var i;
@@ -751,24 +727,7 @@ function conint2(){
     
     ctx.stroke();
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     var zvalue = toFixing(zalphahalf,1);
     var zalphahalfr = zalphahalf.toFixed(2); 
@@ -817,7 +776,7 @@ function conint2(){
     
     var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$ $$"+pbar + "\\pm" +marginerror.toFixed(4) + "$$ $$ \\boxed{" + anslow.toFixed(4) + "\\text{ to }" + anshigh.toFixed(4) + "} $$"
+    document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$ $$"+pbar + "\\pm" +marginerror.toFixed(4) + "$$ $$ \\boxed{" + anslow.toFixed(4) + "\\text{ to }" + anshigh.toFixed(4) + "} $$"
     
     MathJax.typeset();
 }
@@ -836,7 +795,6 @@ function conint2(){
 
 
 function conint3(){
-    $("#explanation").hide();
     $("#expconf").hide();
     
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
@@ -1105,10 +1063,6 @@ function samplesize() {
 }
 
 function calcsize1() {
-    $("#explanation").hide();
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
     var planval = document.getElementById("planningvalue").value
     var margerr = document.getElementById('margin').value
     var conlev = document.getElementById('conlev2').value
@@ -1230,16 +1184,12 @@ function calcsize1() {
     
     var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
 
-    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
     
     MathJax.typeset();
 }
 
 function calcsize2() {
-    $("#explanation").hide();
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
     var planval = document.getElementById("planningvalue").value
     var margerr = document.getElementById('margin').value
     var conlev = document.getElementById('conlev2').value
@@ -1361,7 +1311,7 @@ function calcsize2() {
     
     var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
-    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
+    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align}$$ $$ \\text{Round up to } n = \\boxed{" + Math.ceil(ans) + "} $$"
     
     MathJax.typeset();
 }

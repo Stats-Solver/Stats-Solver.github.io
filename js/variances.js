@@ -392,17 +392,8 @@ function tinv(p, dof) {
 	
 }
 
+
 function conint(){
-    var x = document.getElementById("samplestat").value;
-    if (x == "standard"){
-        conint1()
-    } else if (x == "variance"){
-        conint2()
-    } 
-}
-
-
-function conint1(){
     $("#explanation").hide();
     $("#expconf").hide();
     
@@ -453,6 +444,7 @@ function conint1(){
     
     var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
     
+    var samp = document.getElementById("samplestat").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var stdev = document.getElementById("samplestatval").value;
     var conlev = document.getElementById("conlev").value;
@@ -473,22 +465,15 @@ function conint1(){
         highindex = 3
     }
     
-    var anslow = (sizem1*(stdev*stdev))/chidf[highindex]
-    var anshigh = (sizem1*(stdev*stdev))/chidf[lowindex]
-    
-    if (confor == "variance") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-        document.getElementById("output1").innerHTML = " $$  df = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
-    } else if (confor == "standard") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ df= "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
+    if (samp == "standard"){
+        var anslow = (sizem1*(stdev*stdev))/chidf[highindex]
+        var anshigh = (sizem1*(stdev*stdev))/chidf[lowindex]
+    } else if (samp == "variance"){
+        var anslow = (sizem1*(stdev))/chidf[highindex]
+        var anshigh = (sizem1*(stdev))/chidf[lowindex]
     } 
+
+    document.getElementById("output1").innerHTML = " $$  df = n - 1 = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
     
 
     var f = [];
@@ -583,230 +568,17 @@ function conint1(){
     
     
     var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
-
-    if (confor == "variance") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$"
-    } else if (confor == "standard") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + " $$ "
+    
+    if (samp == "standard"){
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{(n-1)s^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2} $$ $$ \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"^2}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$"
+    } else if (samp == "variance"){
+        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{(n-1)s^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2} $$ $$ \\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$"
     } 
+
+    
     
     MathJax.typeset();
 }
-
-function conint2(){
-    $("#explanation").hide();
-    $("#expconf").hide();
-    
-    var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
-    var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
-    var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
-    var chi4 = [.207, .484, .711, 9.488, 11.143, 14.860]
-    var chi5 = [.412, .831, 1.145, 11.070, 12.832, 16.750]
-    var chi6 = [.676, 1.237, 1.635, 12.592, 14.449, 18.548]
-    var chi7 = [.989, 1.690, 2.167, 14.067, 16.013, 20.278]
-    var chi8 = [1.344, 2.180, 2.733, 15.507, 17.535, 21.955]
-    var chi9 = [1.735, 2.700, 3.325, 16.919, 19.023, 23.589]
-    var chi10 = [2.156, 3.247, 3.940, 18.307, 20.483, 25.188]
-    var chi11 = [2.603, 3.816, 4.575, 19.675, 21.920, 26.757]
-    var chi12 = [3.074, 4.404, 5.226, 21.026, 23.337, 26.757]
-    var chi13 = [3.565, 5.009, 5.892, 22.362, 24.736, 29.819]
-    var chi14 = [4.075, 5.629, 6.571, 23.685, 26.119, 31.319]
-    var chi15 = [4.601, 6.262, 7.261, 24.996, 27.448, 32.801]
-    var chi16 = [5.142, 6.908, 7.962, 26.296, 28.845, 34.267]
-    var chi17 = [5.687, 7.564, 8.672, 27.587, 30.191, 35.718]
-    var chi18 = [6.265, 8.231, 9.390, 28.869, 31.526, 37.156]
-    var chi19 = [6.844, 8.907, 10.117, 30.144, 32.852, 38.582]
-    var chi20 = [7.434, 9.591, 10.851, 31.410, 34.170, 39.997]
-    var chi21 = [8.034, 10.283, 11.591, 32.671, 35.479, 41.401]
-    var chi22 = [8.643, 10.982, 12.338, 33.924, 36.781, 42.796]
-    var chi23 = [9.260, 11.689, 13.091, 35.172, 38.076, 44.181]
-    var chi24 = [9.886, 12.401, 13.848, 36.415, 39.364, 45.558]
-    var chi25 = [10.520, 13.120, 14.611, 37.652, 40.646, 46.928]
-    var chi26 = [11.160, 13.844, 15.379, 38.885, 41.923, 48.928]
-    var chi27 = [11.808, 14.573, 16.151, 40.113, 43.195, 49.645]
-    var chi28 = [12.461, 15.308, 16.928, 41.337, 44.461, 50.994]
-    var chi29 = [13.121, 16.047, 17.708, 42.557, 45.722, 52.335]
-    var chi30 = [13.787, 16.791, 18.493, 43.773, 46.979, 53.672]
-    var chi35 = [17.192, 20.569, 22.465, 49.802, 53.203, 60.275]
-    var chi40 = [20.707, 24.433, 26.509, 55.758, 59.342, 66.766]
-    var chi45 = [24.311, 28.366, 30.612, 61.656, 65.410, 73.166]
-    var chi50 = [27.991, 32.357, 34.764, 67.505, 71.420, 79.490]
-    var chi55 = [31.735, 36.398, 38.958, 73.311, 77.380, 85.749]
-    var chi60 = [35.543, 40.482, 43.188, 79.082, 83.298, 91.942]
-    var chi65 = [39.383, 44.603, 47.450, 84.821, 89.177, 98.105]
-    var chi70 = [43.275, 48.758, 51.739, 90.531, 95.023, 104.215]
-    var chi75 = [47.206, 52.942, 56.054, 96.217, 100.839, 110.285]
-    var chi80 = [51.172, 57.153, 60.391, 101.879, 106.629, 116.321]
-    var chi85 = [55.170, 61.389, 64.749, 107.522, 112.393, 122.342]
-    var chi90 = [59.196, 65.647, 69.126, 113.145, 118.136, 128.299]
-    var chi95 = [63.250, 69.925, 63.520, 118.752, 123.858, 134.247]
-    var chi100 = [67.328, 74.222, 77.929, 124.342, 129.561, 140.170]
-    
-    var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
-    
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var stdev = document.getElementById("samplestatval").value;
-    var conlev = document.getElementById("conlev").value;
-    var confor = "variance"
-    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
-    var exp = 2.71828;
-    
-    chidf = chi[sizem1]
-    
-    if (conlev == 99) {
-        lowindex = 0
-        highindex = 5
-    } else if (conlev == 95) {
-        lowindex = 1
-        highindex = 4
-    } else if (conlev == 90) {
-        lowindex = 2
-        highindex = 3
-    }
-    
-    var anslow = (sizem1*stdev)/chidf[highindex]
-    var anshigh = (sizem1*stdev)/chidf[lowindex]
-    
-    if (confor == "variance") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-        document.getElementById("output1").innerHTML = " $$ df = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
-    } else if (confor == "standard") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-        document.getElementById("output1").innerHTML = "$$ \\sqrt{\\frac{(n-1)s^2}{\\chi_{\\alpha/2}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{(n-1)s^2}{\\chi_{(1-\\alpha/2)}^2}} $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2}} $$ "
-    } 
-    
-    
-    
-    var f = [];
-    var i;
-    for (i = 0; i < 20; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
-    }
-    
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.quadraticCurveTo(40, 120, 50, 85);
-    ctx.lineTo(50, 130);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(190, 130);
-    ctx.lineTo(190, 106);
-    ctx.quadraticCurveTo(210, 120, 247, 125);
-    ctx.lineTo(247, 130);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 10);
-    ctx.lineTo(20, 130);
-    ctx.lineTo(280, 130);
-    ctx.stroke();
-    
-    ctx.beginPath();
-    ctx.moveTo(50, 135);
-    ctx.lineTo(50, 125);
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(190, 135);
-    ctx.lineTo(190, 125);
-    ctx.stroke();
-    
-    ctx.fillText("χ²",285,132);
-    ctx.fillText("χ²",186,145);
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),192,149);
-    ctx.fillText("χ²",50,145);
-    ctx.fillText((1-alphahalf).toFixed(3).replace(/^0+/, ''),57,149);
-    
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),25,95);
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),205,108);
-
-    
-    var points = []
-    
-    for (i = 0; i < 20; i++) {
-      points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke();
-    
-    table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
-    
-    table2 = "<td>$df$</td><td>$.995$</td><td>$.975$</td><td>$.95$</td><td>$.05$</td><td>$.025$</td><td>$.005$</td>"
-    
-    table3 = "<td>$"+ sizem1 +"$</td><td>$"+chidf[0]+"$</td><td>$"+chidf[1]+"$</td><td>$"+chidf[2]+"$</td><td>$"+chidf[3]+"$</td><td>$"+chidf[4]+"$</td><td>"+chidf[5].toFixed(3)+"</td>"
-    
-    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
-    
-    if (confor == "variance") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$ "
-    } else if (confor == "standard") {
-        document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + " $$ $$ \\sqrt{\\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "}} \\leq \\sigma \\leq \\sqrt{\\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "}} $$ $$ \\boxed{"+parseFloat(Math.sqrt(anslow).toFixed(2))+" \\leq \\sigma \\leq " + parseFloat(Math.sqrt(anshigh).toFixed(2)) + "} $$"
-    } 
-    
-    MathJax.typeset();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -967,11 +739,7 @@ function hyp(){
         var critsignlower = ">"
         var critsignupper = "<"
     }
-    
-    
-    
-    
-    
+
     
     if (alpha == ".1") {
         var cless = chidf[2]; var cmore = chidf[3]
@@ -983,27 +751,8 @@ function hyp(){
         var cless = chidf[1]; var cmore = chidf[4]
         var ctwo1 = chidf[0]; var ctwo2 = chidf[5]
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
-    document.getElementById("output3").innerHTML = "$$ \\chi^2 = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"
+    document.getElementById("output3").innerHTML = "$$ \\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2} = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"
     
     if (tail == "lower") {
         var f = [];

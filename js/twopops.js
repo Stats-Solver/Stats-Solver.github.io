@@ -412,8 +412,7 @@ function conint(){
 
 
 function conint1(){
-    $("#explanation").hide(); $("#canvascontainer").show();
-    $("#expconf").show();
+    $("#canvascontainer").show();$("#expconf").show();
     var sigma = document.getElementById("sigma").value;
     var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
     var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
@@ -436,17 +435,9 @@ function conint1(){
     var exp = 2.71828;
     
     if (sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$ df = \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
         document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
     } else if (sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$ \\text{df} = n - 1 $$"
-        document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
-        
-        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow \\text{Round down to } " + Math.floor(degreesfreedom) + "\\end{align} $$ "
+        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow \\text{Round down to } " + Math.floor(degreesfreedom) + "\\end{align} $$ "
     } 
     
     var f = [];
@@ -574,17 +565,16 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\sqrt{\\dfrac{\\sigma_1^2}{n_1}+\\dfrac{\\sigma_2^2}{n_2}} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+(xbar1-xbar2) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+(xbar1-xbar2) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
     } 
     
     MathJax.typeset();
 }
 
 function conint2(){
-    $("#explanation").hide(); $("#canvascontainer").show();
-    $("#expconf").show();
+    $("#canvascontainer").show();$("#expconf").show();
     var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
     var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
     var pbar1 = document.getElementById("xbar1").value;
@@ -735,7 +725,7 @@ function hyptest(){
 }
 
 function hyptest1(){
-    $("#explanation").hide(); $("#canvascontainer").show(); $("#canvascontainer2").show();
+    $("#canvascontainer").show(); $("#canvascontainer2").show();
     var tail = document.getElementById("tail").value;
     var sigma = document.getElementById("sigmah").value;
     var muknot = document.getElementById("muknot").value;
@@ -765,7 +755,7 @@ function hyptest1(){
             var degfree = ""
             var standev = "\\sigma"
         } else if (sigma == "unknown") {
-            var degfree = " $$ \\begin{align} df &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow \\text{Round down to } " + Math.floor(degreesfreedom) + " \\end{align} $$ "
+            var degfree = " $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow \\text{Round down to } " + Math.floor(degreesfreedom) + " \\end{align} $$ "
             var standev = "s"
     }
     if (sigma == "known" && tail == "lower"){
@@ -1021,44 +1011,12 @@ function hyptest1(){
             var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     }
     
-    
-    
-    
-    
-    if (tail == "lower" && sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's less than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the lower tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's greater than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the upper tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "two" && sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's at least as unlikely as the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Values = values of the test statistic corresponding to areas of &alpha;/2 in the lower and upper tails of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the negative critical value or if it's greater than or equal to the positive critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's less than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the lower tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's greater than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the upper tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's at least as unlikely as the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Values = values of the test statistic corresponding to areas of &alpha;/2 in the lower and upper tails of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the negative critical value or if it's greater than or equal to the positive critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } 
-    
-    if (tail == "lower") {
-        document.getElementById("output3").innerHTML = " $$ "+testsymb+" = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+"  $$"+degfree+" $ \\text{p-Value Approach:} $"
-    } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = " $$ "+testsymb+" = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+"   $$"+degfree+" $ \\text{p-Value Approach:} $"
-    } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = " $$ "+testsymb+" = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+"  $$"+degfree+" $ \\text{p-Value Approach:} $"
+
+    if (sigma == "known") {
+        document.getElementById("output3").innerHTML = " $$ z = \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{\\sigma_1^2}{ n_1}+\\dfrac{\\sigma_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+" $$  $ \\text{p-Value Approach:} $"
+    } else if (sigma == "unknown") {
+        document.getElementById("output3").innerHTML = " $$ t = \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{s_1^2}{ n_1}+\\dfrac{s_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+"   $$"+degfree+" $ \\text{p-Value Approach:} $"
     }
-    
     
     if (tail == "lower") {
         
