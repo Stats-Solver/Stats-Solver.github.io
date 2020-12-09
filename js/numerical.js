@@ -1,8 +1,13 @@
 $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide();$("#inputzscore").hide(); $("#inputz").hide(); 
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide();
-$("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide(); $("#label4").hide();
-$("#switchpopulation").hide(); $("#switchsample").hide(); 
+$("#chebyshev").hide(); $("#label3").hide(); $("#weights").hide(); $("#label4").hide(); $("#switchpopulation").hide(); $("#switchsample").hide(); 
 $("#meanoptions").hide(); $("#vsccoptions").hide(); $("#vsoptions").hide(); $("#ccoptions").hide();
+$("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+$("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide(); 
+$("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+$("#grouped").hide(); $("#label5").hide();
+
+grouprows = 3;
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -76,7 +81,7 @@ function showthings(){
     $("#xvalcontainer").show(); $("#meanoptions").hide(); $("#vsccoptions").hide(); $("#blankx").show(); $("#blanky").show();
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide(); $("#label4").hide();
-    $("#vsoptions").hide(); $("#ccoptions").hide();
+    $("#vsoptions").hide(); $("#ccoptions").hide(); $("#grouped").hide(); $("#entervalues").show(); $("#label5").hide();
     var x = document.getElementById("stat").value;
     if (x == "mean") {
         $("#meanoptions").show(); $("#blankx").hide(); 
@@ -121,11 +126,7 @@ function stat(){
     var str1 = document.getElementById("values1").value; var len6 = str1.length;
     var x = document.getElementById("stat").value;
     if (x == "mean"){
-        if (len !== 0) {
-            mean()
-        } else {
-            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
-        }
+        mean()
     } else if (x == "meanpop"){
         meanpop()
     } else if (x == "geometric"){
@@ -169,19 +170,11 @@ function stat(){
             document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
         }
     } else if (x == "variance") {
-        if (len !== 0) {
-            variance()
-        } else {
-            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
-        }
+        variance()
     } else if (x == "variancepop") {
         variancepop()
     } else if (x == "stdev") {
-        if (len !== 0) {
-            stdev()
-        } else {
-            document.getElementById("output").innerHTML = "$$\\text{Please enter values.}$$"
-        }
+        stdev()
     } else if (x == "stdevpop") {
         stdevpop()
     } else if (x == "cv") {
@@ -264,6 +257,17 @@ function switchsample() {
     } 
 }
 
+function showmeanstuff() {
+    var x = document.getElementById("meantype").value;
+    if (x == "weighted"){
+        weighted(); $("#grouped").hide(); $("#entervalues").show(); $("#label5").hide();
+    } else if (x == "grouped") {
+        $("#grouped").show(); $("#entervalues").hide(); $("#weights").hide(); $("#label5").show(); $("#label1").hide(); $("#label4").hide(); 
+    } else {
+        $("#grouped").hide(); $("#weights").hide(); $("#entervalues").show(); $("#label5").hide(); $("#label4").hide(); $("#label1").show(); 
+    } 
+}
+
 function mean(){
     var x = document.getElementById("meantype").value;
     if (x == "sample"){
@@ -272,6 +276,10 @@ function mean(){
         meanpop()
     } else if (x == "geometric") {
         geometric()
+    } else if (x == "weighted") {
+        calcweighted()
+    } else if (x == "grouped") {
+        groupedmean()
     }
 }
 
@@ -334,7 +342,7 @@ function calcweighted(){
         adds3value += each2[i] * each[i]
         adds2value += each2[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + adds2 + "} \\\\ &=  \\frac{" + adds3value + "}{" + adds2value + "} \\\\ &= \\boxed{" + parseFloat((adds3value/adds2value).toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + adds2 + "} \\\\ &=  \\frac{" + adds3value + "}{" + adds2value + "} = \\boxed{" + parseFloat((adds3value/adds2value).toFixed(2)) + "} \\end{align}$$"
     MathJax.typeset();
 }
 
@@ -354,7 +362,57 @@ function geometric(){
         prod = prod * each[i]
     }
     var ans = Math.pow(prod, 1/len);
-    document.getElementById("output").innerHTML+= "$$ \\bar{x}_g = \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} =  \\sqrt[" + len + "]{" + prod + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_g &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    MathJax.typeset();
+}
+
+function groupedmean(){
+    var x1l = parseFloat(document.getElementById('x1').value)
+    var x2l = parseFloat(document.getElementById('x2').value)
+    var x3l = parseFloat(document.getElementById('x3').value)
+    var x4l = parseFloat(document.getElementById('x4').value)
+    var x5l = parseFloat(document.getElementById('x5').value)
+    var x6l = parseFloat(document.getElementById('x6').value)
+    var x7l = parseFloat(document.getElementById('x7').value)
+    var x8l = parseFloat(document.getElementById('x8').value)
+    var x9l = parseFloat(document.getElementById('x9').value)
+    var x10l = parseFloat(document.getElementById('x10').value)
+    var x1h = parseFloat(document.getElementById('x11').value)
+    var x2h = parseFloat(document.getElementById('x22').value)
+    var x3h = parseFloat(document.getElementById('x33').value)
+    var x4h = parseFloat(document.getElementById('x44').value)
+    var x5h = parseFloat(document.getElementById('x55').value)
+    var x6h = parseFloat(document.getElementById('x66').value)
+    var x7h = parseFloat(document.getElementById('x77').value)
+    var x8h = parseFloat(document.getElementById('x88').value)
+    var x9h = parseFloat(document.getElementById('x99').value)
+    var x10h = parseFloat(document.getElementById('x1010').value)
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
+    
+    var xl = [x1l,x2l,x3l,x4l,x5l,x6l,x7l,x8l,x9l,x10l]
+    var xh = [x1h,x2h,x3h,x4h,x5h,x6h,x7h,x8h,x9h,x10h]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var xm = [(x1l+x1h)/2,(x2l+x2h)/2,(x3l+x3h)/2,(x4l+x4h)/2,(x5l+x5h)/2,(x6l+x6h)/2,(x7l+x7h)/2,(x8l+x8h)/2,(x9l+x9h)/2,(x10l+x10h)/2]
+    
+    var table = "<table><tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$M$</td><td>$f$</td><td>$fM$</td></tr>"
+    var ans = 0; var total = 0;
+    for (i = 0; i < grouprows; i++) {
+        table += "<tr><td>$"+xl[i]+"-"+xh[i]+"$</td><td>$"+xm[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((xm[i]*f[i]).toFixed(2))+"$</td></tr>"
+        ans += xm[i]*f[i]
+        total += f[i]
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$-$</td><td>$"+parseFloat(total.toFixed(2))+"$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    
+    document.getElementById("output").innerHTML = table + "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"}  = \\boxed{" + parseFloat((ans/total).toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -547,7 +605,7 @@ function range(){
     var each = str.split(",").map(Number);
     var largest = Math.max.apply(null,each); var smallest = Math.min.apply(null,each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "$$ \\text{Range} = \\text{Largest} - \\text{Smallest} = "+largest+" - "+smallest+ " = \\boxed{" + rng + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ " = \\boxed{" + rng + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -581,12 +639,24 @@ function iqr(){
     MathJax.typeset();
 }
 
+function vschangestuff() {
+    var x = document.getElementById("vstype").value;
+    if (x == "grouped") {
+        $("#grouped").show(); $("#entervalues").hide(); $("#label5").show(); $("#label1").hide();
+    } else {
+        $("#grouped").hide(); $("#entervalues").show(); $("#label5").hide(); $("#label1").show();
+    }
+    
+}
+
 function variance(){
     var x = document.getElementById("vstype").value;
     if (x == "sample"){
         variancesam()
     } else if (x == "population") {
         variancepop()
+    } else if (x == "grouped") {
+        groupedvariance()
     } 
 }
 
@@ -660,12 +730,71 @@ function variancepop(){
     MathJax.typeset();
 }
 
+function groupedvariance(){
+    var x1l = parseFloat(document.getElementById('x1').value)
+    var x2l = parseFloat(document.getElementById('x2').value)
+    var x3l = parseFloat(document.getElementById('x3').value)
+    var x4l = parseFloat(document.getElementById('x4').value)
+    var x5l = parseFloat(document.getElementById('x5').value)
+    var x6l = parseFloat(document.getElementById('x6').value)
+    var x7l = parseFloat(document.getElementById('x7').value)
+    var x8l = parseFloat(document.getElementById('x8').value)
+    var x9l = parseFloat(document.getElementById('x9').value)
+    var x10l = parseFloat(document.getElementById('x10').value)
+    var x1h = parseFloat(document.getElementById('x11').value)
+    var x2h = parseFloat(document.getElementById('x22').value)
+    var x3h = parseFloat(document.getElementById('x33').value)
+    var x4h = parseFloat(document.getElementById('x44').value)
+    var x5h = parseFloat(document.getElementById('x55').value)
+    var x6h = parseFloat(document.getElementById('x66').value)
+    var x7h = parseFloat(document.getElementById('x77').value)
+    var x8h = parseFloat(document.getElementById('x88').value)
+    var x9h = parseFloat(document.getElementById('x99').value)
+    var x10h = parseFloat(document.getElementById('x1010').value)
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
+    
+    var xl = [x1l,x2l,x3l,x4l,x5l,x6l,x7l,x8l,x9l,x10l]
+    var xh = [x1h,x2h,x3h,x4h,x5h,x6h,x7h,x8h,x9h,x10h]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var xm = [(x1l+x1h)/2,(x2l+x2h)/2,(x3l+x3h)/2,(x4l+x4h)/2,(x5l+x5h)/2,(x6l+x6h)/2,(x7l+x7h)/2,(x8l+x8h)/2,(x9l+x9h)/2,(x10l+x10h)/2]
+    
+    var ans = 0; var total = 0;
+    for (i = 0; i < grouprows; i++) {
+        ans += xm[i]*f[i]
+        total += f[i]
+    }
+    
+    var xbar = parseFloat((ans/total).toFixed(2))
+    
+    var varans = 0;
+    var table = "<table><tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$M$</td><td>$f$</td><td>$M-\\bar{x}$</td><td>$(M-\\bar{x})^2$</td><td>$f(M-\\bar{x})^2$</td></tr>"
+    for (i = 0; i < grouprows; i++) {
+        table += "<tr><td>$"+xl[i]+"-"+xh[i]+"$</td><td>$"+xm[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((xm[i]-xbar).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((xm[i]-xbar),2)).toFixed(2))+"$</td><td>$"+parseFloat((f[i]*Math.pow((xm[i]-xbar),2)).toFixed(2))+"$</td></tr>"
+        varans += f[i]*Math.pow((xm[i]-xbar),2)
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$-$</td><td>$"+total+"$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(varans.toFixed(2))+"$</td></tr></table>"
+    
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"} = " + parseFloat((ans/total).toFixed(2)) + " $$" + table + "$$ s^2 = \\frac{\\sum f (M-\\bar{x})^2}{n-1} = \\frac{"+parseFloat(varans.toFixed(2))+"}{"+(total-1)+"}  = \\boxed{" + parseFloat((varans/(total-1)).toFixed(2)) + "} $$"
+    MathJax.typeset();
+}
+
 function stdev(){
     var x = document.getElementById("vstype").value;
     if (x == "sample"){
         stdevsam()
     } else if (x == "population") {
         stdevpop()
+    } else if (x == "grouped") {
+        groupedstdev()
     } 
 }
 
@@ -741,6 +870,63 @@ function stdevpop(){
     MathJax.typeset();
 }
 
+function groupedstdev(){
+    var x1l = parseFloat(document.getElementById('x1').value)
+    var x2l = parseFloat(document.getElementById('x2').value)
+    var x3l = parseFloat(document.getElementById('x3').value)
+    var x4l = parseFloat(document.getElementById('x4').value)
+    var x5l = parseFloat(document.getElementById('x5').value)
+    var x6l = parseFloat(document.getElementById('x6').value)
+    var x7l = parseFloat(document.getElementById('x7').value)
+    var x8l = parseFloat(document.getElementById('x8').value)
+    var x9l = parseFloat(document.getElementById('x9').value)
+    var x10l = parseFloat(document.getElementById('x10').value)
+    var x1h = parseFloat(document.getElementById('x11').value)
+    var x2h = parseFloat(document.getElementById('x22').value)
+    var x3h = parseFloat(document.getElementById('x33').value)
+    var x4h = parseFloat(document.getElementById('x44').value)
+    var x5h = parseFloat(document.getElementById('x55').value)
+    var x6h = parseFloat(document.getElementById('x66').value)
+    var x7h = parseFloat(document.getElementById('x77').value)
+    var x8h = parseFloat(document.getElementById('x88').value)
+    var x9h = parseFloat(document.getElementById('x99').value)
+    var x10h = parseFloat(document.getElementById('x1010').value)
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
+    
+    var xl = [x1l,x2l,x3l,x4l,x5l,x6l,x7l,x8l,x9l,x10l]
+    var xh = [x1h,x2h,x3h,x4h,x5h,x6h,x7h,x8h,x9h,x10h]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var xm = [(x1l+x1h)/2,(x2l+x2h)/2,(x3l+x3h)/2,(x4l+x4h)/2,(x5l+x5h)/2,(x6l+x6h)/2,(x7l+x7h)/2,(x8l+x8h)/2,(x9l+x9h)/2,(x10l+x10h)/2]
+    
+    var ans = 0; var total = 0;
+    for (i = 0; i < grouprows; i++) {
+        ans += xm[i]*f[i]
+        total += f[i]
+    }
+    
+    var xbar = parseFloat((ans/total).toFixed(2))
+    
+    var varans = 0;
+    var table = "<table><tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$M$</td><td>$f$</td><td>$M-\\bar{x}$</td><td>$(M-\\bar{x})^2$</td><td>$f(M-\\bar{x})^2$</td></tr>"
+    for (i = 0; i < grouprows; i++) {
+        table += "<tr><td>$"+xl[i]+"-"+xh[i]+"$</td><td>$"+xm[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((xm[i]-xbar).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((xm[i]-xbar),2)).toFixed(2))+"$</td><td>$"+parseFloat((f[i]*Math.pow((xm[i]-xbar),2)).toFixed(2))+"$</td></tr>"
+        varans += f[i]*Math.pow((xm[i]-xbar),2)
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$-$</td><td>$"+total+"$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(varans.toFixed(2))+"$</td></tr></table>"
+    
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"} = " + parseFloat((ans/total).toFixed(2)) + " $$" + table + "$$ s^2 = \\frac{\\sum f (M-\\bar{x})^2}{n-1} = \\frac{"+parseFloat(varans.toFixed(2))+"}{"+(total-1)+"}  = " + parseFloat((varans/(total-1)).toFixed(2)) + " $$ $$ s = \\sqrt{s^2} = \\sqrt{" + parseFloat((varans/(total-1)).toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt((varans/(total-1)))).toFixed(2)) + "} $$ "
+    MathJax.typeset();
+}
+
 function cv(){
     $("#explanation").show(); $("#label1").show(); $("#switchpopulation").hide(); $("#switchsample").hide();
     document.getElementById("descriptiontext").innerHTML = "The coefficient of variation measures how large the standard deviation is relative to the mean."
@@ -762,7 +948,7 @@ function cv(){
     var ansstd = Math.sqrt(ansvar);
     var stdmn = ansstd / mn;
     var anscv = (ansstd / mn) * 100
-    document.getElementById("output").innerHTML = "$$ \\text{CV} = \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% = \\left(\\frac{"+parseFloat(ansstd.toFixed(2))+"}{"+parseFloat(mn.toFixed(2))+"} \\times 100 \\right)\\% = \\boxed{"+parseFloat(anscv.toFixed(2))+"\\%} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% \\\\ &= \\left(\\frac{"+parseFloat(ansstd.toFixed(2))+"}{"+parseFloat(mn.toFixed(2))+"} \\times 100 \\right)\\% = \\boxed{"+parseFloat(anscv.toFixed(2))+"\\%} \\end{align} $$"
     MathJax.typeset()
 }
 
@@ -850,7 +1036,7 @@ function calcchebyshev(){
     
     
     if (Math.abs(zminans) == zmaxans) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ 1-1/z^2 = 1-1/"+zmaxans+"^2 = 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" = "+parseFloat((Math.pow(zmaxans,2)-1).toFixed(2))+"/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" ="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+" $$ $$ \\text{At Least } "+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%  \\text{ of the Values} $$"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 = 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &= "+parseFloat((Math.pow(zmaxans,2)-1).toFixed(2))+"/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" ="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+" \\end{align} $$ $$ \\text{At Least } "+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%  \\text{ of the Values} $$"
     } else {
         document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
     }
@@ -1246,13 +1432,13 @@ function examplexvalues2(){
 }
 
 function examplevalues3(){
-    document.getElementById('values1').value="6, 7, 10, 4, 12"
+    document.getElementById('values1').value="6, 7, 10, 5, 12"
     document.getElementById('values2').value="46, 55, 33, 61, 30"
 }
 
 function examplevalues4(){
     document.getElementById('values1').value="4, 12, 11, 18, 25"
-    document.getElementById('values2').value="5, 8, 7, 15, 14"
+    document.getElementById('values2').value="5, 8, 7, 16, 14"
 }
 
 function examplevalues5(){
@@ -1277,4 +1463,159 @@ function examplevalues7(){
 function examplevalues8(){
     document.getElementById('values').value="25, 22, 18, 17, 31, 33, 26, 20"
     document.getElementById('weightsvalues').value="7, 9, 4, 6, 5, 11, 8, 6"
+}
+
+function examplevalues9(){
+    $("#row3").show(); $("#row4").show(); $("#row5").show(); 
+    $("#row6").hide(); $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    $("#make2").hide();$("#make3").hide();$("#make4").hide();$("#make5").show();$("#make6").hide();
+    $("#make7").hide();$("#make8").hide();$("#make9").hide();$("#make10").hide();
+    grouprows=5
+    document.getElementById('x1').value = "0"
+    document.getElementById('x2').value = "5"
+    document.getElementById('x3').value = "10"
+    document.getElementById('x4').value = "15"
+    document.getElementById('x5').value = "20"
+    document.getElementById('x6').value = ""
+    document.getElementById('x7').value = ""
+    document.getElementById('x8').value = ""
+    document.getElementById('x9').value = ""
+    document.getElementById('x10').value = ""
+    document.getElementById('x11').value = "4"
+    document.getElementById('x22').value = "9"
+    document.getElementById('x33').value = "14"
+    document.getElementById('x44').value = "19"
+    document.getElementById('x55').value = "24"
+    document.getElementById('x66').value = ""
+    document.getElementById('x77').value = ""
+    document.getElementById('x88').value = ""
+    document.getElementById('x99').value = ""
+    document.getElementById('x1010').value = ""
+    document.getElementById('f1').value = "1"
+    document.getElementById('f2').value = "2"
+    document.getElementById('f3').value = "4"
+    document.getElementById('f4').value = "2"
+    document.getElementById('f5').value = "1"
+    document.getElementById('f6').value = ""
+    document.getElementById('f7').value = ""
+    document.getElementById('f8').value = ""
+    document.getElementById('f9').value = ""
+    document.getElementById('f10').value = ""
+}
+
+function examplevalues10(){
+    $("#row3").show(); $("#row4").show(); $("#row5").hide(); 
+    $("#row6").hide(); $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    $("#make2").hide();$("#make3").hide();$("#make4").hide();$("#make5").show();$("#make6").hide();
+    $("#make7").hide();$("#make8").hide();$("#make9").hide();$("#make10").hide();
+    grouprows=4
+    document.getElementById('x1').value = "8"
+    document.getElementById('x2').value = "13"
+    document.getElementById('x3').value = "18"
+    document.getElementById('x4').value = "23"
+    document.getElementById('x5').value = ""
+    document.getElementById('x6').value = ""
+    document.getElementById('x7').value = ""
+    document.getElementById('x8').value = ""
+    document.getElementById('x9').value = ""
+    document.getElementById('x10').value = ""
+    document.getElementById('x11').value = "12"
+    document.getElementById('x22').value = "17"
+    document.getElementById('x33').value = "22"
+    document.getElementById('x44').value = "27"
+    document.getElementById('x55').value = ""
+    document.getElementById('x66').value = ""
+    document.getElementById('x77').value = ""
+    document.getElementById('x88').value = ""
+    document.getElementById('x99').value = ""
+    document.getElementById('x1010').value = ""
+    document.getElementById('f1').value = "4"
+    document.getElementById('f2').value = "7"
+    document.getElementById('f3').value = "6"
+    document.getElementById('f4').value = "3"
+    document.getElementById('f5').value = ""
+    document.getElementById('f6').value = ""
+    document.getElementById('f7').value = ""
+    document.getElementById('f8').value = ""
+    document.getElementById('f9').value = ""
+    document.getElementById('f10').value = ""
+}
+
+
+
+function make2(){
+    $("#row3").hide();
+    $("#make2").show();
+    $("#make3").hide();
+    grouprows=2
+}
+
+function make3(){
+    $("#row3").show();
+    $("#row4").hide();
+    $("#make2").hide();
+    $("#make3").show();
+    $("#make4").hide();
+    grouprows=3
+}
+
+function make4(){
+    $("#row4").show();
+    $("#row5").hide();
+    $("#make3").hide();
+    $("#make4").show();
+    $("#make5").hide();
+    grouprows=4
+}
+
+function make5(){
+    $("#row5").show();
+    $("#row6").hide();
+    $("#make4").hide();
+    $("#make5").show();
+    $("#make6").hide();
+    grouprows=5
+}
+
+function make6(){
+    $("#row6").show();
+    $("#row7").hide();
+    $("#make5").hide();
+    $("#make6").show();
+    $("#make7").hide();
+    grouprows=6
+}
+
+function make7(){
+    $("#row7").show();
+    $("#row8").hide();
+    $("#make6").hide();
+    $("#make7").show();
+    $("#make8").hide();
+    grouprows=7
+}
+
+function make8(){
+    $("#row8").show();
+    $("#row9").hide();
+    $("#make7").hide();
+    $("#make8").show();
+    $("#make9").hide();
+    grouprows=8
+}
+
+function make9(){
+    $("#row9").show();
+    $("#row10").hide();
+    $("#make8").hide();
+    $("#make9").show();
+    $("#make10").hide();
+    grouprows=9
+}
+
+function make10(){
+    $("#row10").show();
+    $("#make9").hide();
+    $("#make10").show();
+    grouprows=10
 }

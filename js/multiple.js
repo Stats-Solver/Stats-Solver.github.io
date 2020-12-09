@@ -138,7 +138,7 @@ function stat(){
 }
 
 function interpretation(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Each slope coefficient can be interpreted as the change in the dependent variable (y) corresponding to a one-unit increase in the independent variable (xᵢ), holding the other independent variables constant."
     document.getElementById("formulatext").innerHTML = "The formulas for estimating the coefficients in multiple regression involves the use of more advanced math. "
     document.getElementById("explanationtext").innerHTML = "The interpretation of the coefficients in a multiple regression is identical to that in a simple regression except for the addition of holding other independent variables constant."
@@ -217,7 +217,7 @@ function prediction(){
 }
 
 function calcprediction(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Predictions can be made by plugging in values of the independent variable into the estimated regression equation."
     if (ind == 3) {
         document.getElementById("formulatext").innerHTML = "$ \\hat{y} = b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 $ "
@@ -239,11 +239,11 @@ function calcprediction(){
     var x4 = document.getElementById("x4value").value;
     
     if (ind == 3) {
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= " + b0 + " + " + b1 + " (" + x1 + ") + " + b2 + " (" + x2 + ") + " + b3 + " (" + x3 + ") \\\\ &= \\boxed{" + (parseFloat(b0)+parseFloat(b1*x1)+parseFloat(b2*x2)+parseFloat(b3*x3)).toFixed(2) + "} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 \\\\ &= " + b0 + " + " + b1 + " (" + x1 + ") + " + b2 + " (" + x2 + ") + " + b3 + " (" + x3 + ") \\\\ &= \\boxed{" + (parseFloat(b0)+parseFloat(b1*x1)+parseFloat(b2*x2)+parseFloat(b3*x3)).toFixed(2) + "} \\end{align} $$"
     } else if (ind == 4) {
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= " + b0 + " + " + b1 + " (" + x1 + ") + " + b2 + " (" + x2 + ") + " + b3 + " (" + x3 + ") + " + b4 + " (" + x4 + ") \\\\ &= \\boxed{" + (parseFloat(b0)+parseFloat(b1*x1)+parseFloat(b2*x2)+parseFloat(b3*x3)+parseFloat(b4*x4)).toFixed(2) + "} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= b_0 + b_1 x_1 + b_2 x_2 + b_3 x_3 + b_4 x_4 \\\\ &= " + b0 + " + " + b1 + " (" + x1 + ") + " + b2 + " (" + x2 + ") + " + b3 + " (" + x3 + ") + " + b4 + " (" + x4 + ") \\\\ &= \\boxed{" + (parseFloat(b0)+parseFloat(b1*x1)+parseFloat(b2*x2)+parseFloat(b3*x3)+parseFloat(b4*x4)).toFixed(2) + "} \\end{align} $$"
     } else {
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= " + b0 + " + " + b1 + " (" + x1 + ") + " + b2 + " (" + x2 + ") \\\\ &= \\boxed{" + (parseFloat(b0)+parseFloat(b1*x1)+parseFloat(b2*x2)).toFixed(2) + "} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= b_0 + b_1 x_1 + b_2 x_2 \\\\ &= " + b0 + " + " + b1 + " (" + x1 + ") + " + b2 + " (" + x2 + ") \\\\ &= \\boxed{" + (parseFloat(b0)+parseFloat(b1*x1)+parseFloat(b2*x2)).toFixed(2) + "} \\end{align} $$"
     }
     
     MathJax.typeset();
@@ -256,13 +256,13 @@ function sse(){
 }
 
 function calcsse(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The sum of squares error measures the error between the data values and the estimated regression equation."
     document.getElementById("formulatext").innerHTML = "$ \\text{SST} = \\text{SSR} + \\text{SSE} $ "
     document.getElementById("explanationtext").innerHTML = "If two sum of squares are known, the third one is easy to find."
     var sst = document.getElementById('sstvalue').value
     var ssr = document.getElementById('ssrvalue').value
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{SSE} &= "+sst+" - " +ssr +" \\\\ &= \\boxed{"+(sst-ssr).toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{SSE} &= \\text{SST} - \\text{SSR} \\\\ &= "+sst+" - " +ssr +" \\\\ &= \\boxed{"+(sst-ssr).toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -274,13 +274,13 @@ function rsquared(){
 }
 
 function calcrsquared(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The multiple coefficient of determination is a measure of goodness of fit for multiple regression."
     document.getElementById("formulatext").innerHTML = "$ R^2 = \\dfrac{\\text{SSR}}{\\text{SST}} $ "
     document.getElementById("explanationtext").innerHTML = "The coefficient of determination in multiple regression has the problem that its value increases automatically when independent variables are added."
     var sst = document.getElementById('sstvalue').value
     var ssr = document.getElementById('ssrvalue').value
-    document.getElementById("output").innerHTML = "$$ \\begin{align} R^2 &= \\frac{"+ssr+"}{" +sst +"} \\\\ &= \\boxed{"+(ssr/sst).toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ R^2 = \\dfrac{\\text{SSR}}{\\text{SST}} = \\frac{"+ssr+"}{" +sst +"} = \\boxed{"+(ssr/sst).toFixed(2)+"} $$"
     MathJax.typeset();
 }
 
@@ -292,7 +292,7 @@ function adjusted(){
 }
 
 function calcadjusted(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
     document.getElementById("formulatext").innerHTML = "$ R_a^2 = 1 - (1 - R^2) \\dfrac{n-1}{n-p-1} $ "
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
@@ -304,7 +304,7 @@ function calcadjusted(){
     var adjans = 1 - (1 - rsquared)*(n-1)/(n-p-1)
     var ansrsquper = adjans.toFixed(2) * 100;
     var interpret = "<b>Interpretation:</b> <u>" + parseFloat(ansrsquper.toFixed(0)) + "% of the variation</u> in y is explained by the estimated regression equation."
-    document.getElementById("output").innerHTML = "$$ \\begin{align} R_a^2 &= 1 - (1 - " + rsquared.toFixed(2) + ") \\frac{" + n + " - 1}{" + n +" - " + p +" - 1} \\\\ &= \\boxed{"+adjans.toFixed(2)+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} R_a^2 &= 1 - (1 - R^2) \\dfrac{n-1}{n-p-1} \\\\ &= 1 - (1 - " + rsquared.toFixed(2) + ") \\frac{" + n + " - 1}{" + n +" - " + p +" - 1} = \\boxed{"+adjans.toFixed(2)+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -316,13 +316,13 @@ function msr(){
 }
 
 function calcmsr(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Like the mean square error, the mean square regression is an estimate of the error term."
     document.getElementById("formulatext").innerHTML = "$ \\text{MSR} = \\dfrac{\\text{SSR}}{p} $ "
     document.getElementById("explanationtext").innerHTML = "The MSR is divided by p because the SSR has p degrees of freedom."
     var ssr = document.getElementById('ssrvalue').value
     var p = ind
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSR} &= \\frac{"+ssr+"}{" +p +"} \\\\ &= \\boxed{"+parseFloat((ssr/p).toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{p} = \\frac{"+ssr+"}{" +p +"} = \\boxed{"+parseFloat((ssr/p).toFixed(2))+"} $$"
     MathJax.typeset();
 }hide
 
@@ -334,7 +334,7 @@ function mse(){
 }
 
 function calcmse(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "Like the mean square regression, the mean square error is an estimate of the error term."
     document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\text{SSE}}{n-p-1} $ "
     document.getElementById("explanationtext").innerHTML = "The MSE is divided by n-p-1 because the SSE has n-p-1 degrees of freedom."
@@ -344,7 +344,7 @@ function calcmse(){
     var n = document.getElementById('nvalue').value;
     var p = ind;
     var ans = sse/(n-p-1)
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{MSE} &= \\frac{"+sse+"}{" +n +"-" + p +"-1} \\\\ &= \\boxed{"+parseFloat(ans.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{MSE} = \\dfrac{\\text{SSE}}{n-p-1} = \\frac{"+sse+"}{" +n +"-" + p +"-1} = \\boxed{"+parseFloat(ans.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -353,13 +353,13 @@ function fstat(){
 }
 
 function calcfstat(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
     document.getElementById("formulatext").innerHTML = "$ R_a^2 = 1 - (1 - R^2) \\dfrac{n-1}{n-p-1} $ "
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
     var msr = document.getElementById('msrvalue').value;
     var mse = document.getElementById('msevalue').value;
-    document.getElementById("output").innerHTML = "$$ F = \\frac{"+msr+"}{" +mse +"} = "+parseFloat((msr/mse).toFixed(2))+" $$"
+    document.getElementById("output").innerHTML = "$$ F= \\frac{\\text{MSR}}{\\text{MSE}}  = \\frac{"+msr+"}{" +mse +"} = "+parseFloat((msr/mse).toFixed(2))+" $$"
     MathJax.typeset();
 }
 
@@ -397,7 +397,7 @@ function tstat(){
 }
 
 function calctstat(){
-    $("#explanation").show();
+    $("#explanation").hide();
     document.getElementById("descriptiontext").innerHTML = "The adjusted coefficient of determination is a measure of goodness of fit for multiple regression that adjusts for the number of independent variables."
     document.getElementById("formulatext").innerHTML = "$ R_a^2 = 1 - (1 - R^2) \\dfrac{n-1}{n-p-1} $ "
     document.getElementById("explanationtext").innerHTML = "The adjusted coefficient of determination is preferred for measuring goodness of fit in multiple regression because it gives a penalty for each additional independent variable."
@@ -413,11 +413,11 @@ function calctstat(){
     
     
     if (ind == 3) {
-        document.getElementById("output").innerHTML = "t = \\frac{"+b1+"}{" +sb1 +"} = \\boxed{"+parseFloat((b1/sb1).toFixed(2))+"}  $$ $$ \\begin{align} t &= \\frac{b_2}{s_{b_2}} \\\\ &= \\frac{"+b2+"}{" +sb2 +"} \\\\ &= \\boxed{"+parseFloat((b2/sb2).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_3}{s_{b_3}} \\\\ &= \\frac{"+b3+"}{" +sb3 +"} \\\\ &= \\boxed{"+parseFloat((b3/sb3).toFixed(2))+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ t = \\frac{b_1}{s_{b_1}} = \\frac{"+b1+"}{" +sb1 +"} = "+parseFloat((b1/sb1).toFixed(2))+" $$ $$ t = \\frac{b_2}{s_{b_2}} = \\frac{"+b2+"}{" +sb2 +"} = "+parseFloat((b2/sb2).toFixed(2))+" $$ $$ t = \\frac{b_3}{s_{b_3}} = \\frac{"+b3+"}{" +sb3 +"} = "+parseFloat((b3/sb3).toFixed(2))+" $$"
     } else if (ind == 4) {
-        document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+b1+"}{" +sb1 +"} \\\\ &= \\boxed{"+parseFloat((b1/sb1).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_2}{s_{b_2}} \\\\ &= \\frac{"+b2+"}{" +sb2 +"} \\\\ &= \\boxed{"+parseFloat((b2/sb2).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_3}{s_{b_3}} \\\\ &= \\frac{"+b3+"}{" +sb3 +"} \\\\ &= \\boxed{"+parseFloat((b3/sb3).toFixed(2))+"} \\end{align} $$ $$ \\begin{align} t &= \\frac{b_4}{s_{b_4}} \\\\ &= \\frac{"+b4+"}{" +sb4 +"} \\\\ &= \\boxed{"+parseFloat((b4/sb4).toFixed(2))+"} \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ t = \\frac{b_1}{s_{b_1}} = \\frac{"+b1+"}{" +sb1 +"} = "+parseFloat((b1/sb1).toFixed(2))+"$$ $$ t = \\frac{b_2}{s_{b_2}} = \\frac{"+b2+"}{" +sb2 +"} = "+parseFloat((b2/sb2).toFixed(2))+" $$ $$ t = \\frac{b_3}{s_{b_3}} = \\frac{"+b3+"}{" +sb3 +"} = "+parseFloat((b3/sb3).toFixed(2))+" $$ $$ t = \\frac{b_4}{s_{b_4}} = \\frac{"+b4+"}{" +sb4 +"} = "+parseFloat((b4/sb4).toFixed(2))+" $$"
     } else {
-         document.getElementById("output").innerHTML = "$$ t = \\frac{"+b1+"}{" +sb1 +"} = "+parseFloat((b1/sb1).toFixed(2))+" $$ $$ t = \\frac{"+b2+"}{" +sb2 +"} = "+parseFloat((b2/sb2).toFixed(2))+" $$"
+         document.getElementById("output").innerHTML = "$$ t = \\frac{b_1}{s_{b_1}} = \\frac{"+b1+"}{" +sb1 +"} = "+parseFloat((b1/sb1).toFixed(2))+" $$ $$ t = \\frac{b_2}{s_{b_2}} = \\frac{"+b2+"}{" +sb2 +"} = "+parseFloat((b2/sb2).toFixed(2))+" $$"
     }
     
     MathJax.typeset();

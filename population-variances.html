@@ -121,25 +121,42 @@
           <div class = "container" id = "confidencetitle">
             <h5 class="text-center text-primary mb-3">Confidence Interval</h5>
         </div>
-
+          
+          <div id = "valuesinput">
         <table id="statistics">
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
-            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics">&nbsp;</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat" class="hypinput1" style="width:33px;"> <option value="standard"> s </option> <option value="variance"> s² </option> </select></td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="samplestatval" class="hypinput2"></td>
-            <!--<td class="statistics">&nbsp;&nbsp;</td>
+            <td class="statistics"></td>
             <td class="statistics">
-            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg onclick="switchdata()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
-            </td>-->
+            </td>
           </tr>
         </table> 
+            </div>
+          
+          <div class="container center" id="datainput">
+           <table>
+          <tr>
+            <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values" size="20"> </td>
+            <td class="statistics"></td>
+            <td class="statistics">
+                <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+                  <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+                </svg>
+            </td>
+          </tr>
+        </table>  
+        </div>
           
           <div class = "text-center mt-2">
           $\text{Confidence Level:}$ <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> %
@@ -155,8 +172,6 @@
           <div class="row justify-content-center">
         <div class = "col-4 col-md-2 text-center mt-2">
             <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
-            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
-            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
         </div>
               </div>
               </div>
@@ -176,9 +191,9 @@
         <table class = "mb-2">
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
-            <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()" style="width:35px;"> <option value="mean"> &sigma;² </option> <option value="proportion"> &sigma;₁² </option> </select></td> 
+            <td class="statistics"><select id="parameter" class="hypinput1" onchange="sigmaswitch()" style="width:35px;"> <option value="sigma"> &sigma;² </option> <option value="sigma1"> &sigma;₁² </option> </select></td> 
             <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""></td>
+            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""><span id = "parameter3">&sigma;₂²</span></td>
           </tr>
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
@@ -188,24 +203,41 @@
           </tr>
         </table> 
           
+          <div id = "valuesinput2">
           <table class = "mb-2">
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size2" class="hypinput2"></td>
-            <td class="statistics">&nbsp; &nbsp;</td>
+            <td class="statistics">&nbsp;</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat2" class="hypinput1" style="width:33px;"> <option value="standard"> s </option> <option value="variance"> s² </option> </select></td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
-            <!--<td class="statistics">&nbsp;&nbsp;</td>
+            <td class="statistics"></td>
             <td class="statistics">
-            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg onclick="switchdata2()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
-            </td>-->
+            </td>
           </tr>
         </table> 
+            </div>
+          
+          <div class="container center" id="datainput2">
+           <table class = "mb-2">
+          <tr>
+            <td class="statistics"> <input type="text" class="form-control" id="xvalues2" placeholder="Enter Values" size="20"> </td>
+            <td class="statistics"></td>
+            <td class="statistics">
+                <svg onclick="switchvalues2()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+                  <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+                </svg>
+            </td>
+          </tr>
+        </table>  
+        </div>
           
           <table>
           <tr>
@@ -280,45 +312,7 @@
         <div id="output5">
         </div>
       </div>
-      
-      
-      <div class="container mb-5" id="explanation">
-      <p  class="text-center">
-      <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Definition
-      </a> &bull;
-    <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Formula
-      </a> &bull;
-    <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-        Explanation
-      </a>
-    </p>
-    <div class="collapse" id="collapseExample" data-parent="#explanation">
-      <div class="card card-body" id="descriptiontext">
 
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample2" data-parent="#explanation">
-      <div class="card card-body" id="formulatext">
-
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample3" data-parent="#explanation">
-      <div class="card card-body" id="explanationtext">
-
-      </div>
-    </div>
-          </div>
-      
-      
-      
-      
-      <!--<div class="container text-center">
-        <div id="expconf" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
-        </div>
-      </div>-->
       
           <footer id="footer">
               <div class="container">

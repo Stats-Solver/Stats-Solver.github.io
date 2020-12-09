@@ -379,8 +379,7 @@ function popsizekind(){
 
 
 function conint1(){
-    $("#explanation").hide(); $("#canvascontainer0").hide(); $("#output2").hide(); $("#canvascontainer").hide();
-    $("#expconf").show();
+    $("#canvascontainer0").hide(); $("#output2").hide(); $("#canvascontainer").hide();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
@@ -396,10 +395,6 @@ function conint1(){
     } else if (size < 30) {
         var form = "Not a Normal Distribution"
     }
-
-    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
-    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
-    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
     
 
     if (popsize == "infinite"  || popsize == "unknown") {
@@ -418,8 +413,7 @@ function conint1(){
 }
 
 function conint2(){
-    $("#explanation").hide(); $("#canvascontainer0").hide(); $("#output2").hide(); $("#canvascontainer").hide(); 
-    $("#expconf").show();
+    $("#canvascontainer0").hide(); $("#output2").hide(); $("#canvascontainer").hide(); 
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var prptn = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
@@ -437,10 +431,6 @@ function conint2(){
     } else {
         var form = "Not a Normal Distribution"
     }
-
-    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample proportion is the probability distribution of the sample proportion."
-    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{p}) = p $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{p(1-p)}{n}} $$ The sampling distribution of the sample proportioncan be approximated by a normal distribution whenever np > 5 and n(1-p) > 5."
-    document.getElementById("explanationtext").innerHTML = "The sampling distribution of the sample proportion depends on both the sample size and the population proportion."
     
     if (popsize == "infinite"  || popsize == "unknown") {
         document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(4)) + "  $$ $$ \\text{"+ form + "} $$ "
@@ -455,39 +445,12 @@ function conint2(){
     
     
     MathJax.typeset();
-    
-    
-    
-    
+
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function conint3(){
-    $("#explanation").hide(); $("#canvascontainer0").show(); $("#output2").show();  $("#canvascontainer").show();
-    $("#expconf").show();
-    
-    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
-    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
-    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
-    
+     $("#canvascontainer0").show(); $("#output2").show();  $("#canvascontainer").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
@@ -508,12 +471,7 @@ function conint3(){
     var lessvalz = 30+10*lowvalz
     var greatervalz = 30+10*highvalz
     var exp = 2.71828; 
-    
-    
-    
-    
-    
-    
+
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
@@ -597,19 +555,7 @@ function conint3(){
     
     
     ctx.stroke();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
@@ -693,17 +639,7 @@ function conint3(){
     
     
     ctx.stroke();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -790,32 +726,7 @@ function conint3(){
     }
     
     var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-    
     
     if (popsize == "infinite"  || popsize == "unknown") {
         document.getElementById("output1").innerHTML = "$$ P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") = P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") $$ $$ \\begin{align} z &= \\frac{"+lowval+"-"+mu+"}{"+stderr+"} = "+lowvalz+" \\\\ \\ z &= \\frac{"+highval+"-"+mu+"}{"+stderr+"} = "+highvalz+" \\end{align} $$  "
@@ -833,36 +744,8 @@ function conint3(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function conint4(){
-    $("#explanation").hide(); $("#canvascontainer0").show();  $("#canvascontainer").show();  $("#output2").show();
-    $("#expconf").show();
+    $("#canvascontainer0").show();  $("#canvascontainer").show();  $("#output2").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var prptn = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
@@ -890,18 +773,6 @@ function conint4(){
         var form = "Not a Normal Distribution"
     }
 
-    document.getElementById("descriptiontext").innerHTML = "The sampling distribution of the sample mean is the probability distribution of the sample mean."
-    document.getElementById("formulatext").innerHTML = "$$ E(\\bar{x}) = \\mu $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} $$ Central Limit Theorem: As the sample size becomes large, the sampling distribution of the sample mean can be approximated by a normal distribution."
-    document.getElementById("explanationtext").innerHTML = "If the population being sampled from is normal, the sampling distribution of the sample mean is normal."
-    
-    
-    
-    
-    
-    
-    
-    
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
@@ -985,18 +856,7 @@ function conint4(){
     
     
     ctx.stroke();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     var f = [];
     var i;
@@ -1081,15 +941,7 @@ function conint4(){
     
     
     ctx.stroke();
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     
     if (popsize == "infinite"  || popsize == "unknown") {
@@ -1108,27 +960,26 @@ function conint4(){
 }
 
 function example1(){
-    var x = document.getElementById("samplestat").value;
-    if (x == "mean"){
-        document.getElementById('xbar').value="100"
-        document.getElementById('stdev').value="18"
-        document.getElementById('size').value="81"
-        document.getElementById('popsize').value="infinite"
-        document.getElementById("pmvalue1").value="4"
-    } else if (x == "proportion"){
-        document.getElementById('xbar').value=".30"
-        document.getElementById('size').value="60"
-        document.getElementById('popsize').value="infinite"
-        document.getElementById("pmvalue2").value=".1"
-    } 
-    
+    $("#samplingdistributionxbar").show(); $("#samplingdistributionpbar").hide();
+    $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
+    $("#sd0").show(); $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+    document.getElementById("samplestat").value="mean"
+    document.getElementById('xbar').value="100"
+    document.getElementById('stdev').value="18"
+    document.getElementById('size').value="81"
+    document.getElementById('popsize').value="infinite"
+    document.getElementById("pmvalue1").value="4"
 }
 
 function example2(){
     $("#samplingdistributionxbar").hide(); $("#samplingdistributionpbar").show();
     $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
     $("#sd0").hide(); $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
-    
+    document.getElementById("samplestat").value="proportion"
+    document.getElementById('xbar').value=".30"
+    document.getElementById('size').value="60"
+    document.getElementById('popsize').value="infinite"
+    document.getElementById("pmvalue2").value=".1"
 }
 
 function samplestat() {
@@ -1185,27 +1036,17 @@ function stat(){
 }
 
 function calcmean(){
-    $("#explanation").hide(); $("#switchpopulation").show(); $("#switchsample").hide();
-    document.getElementById("descriptiontext").innerHTML = "The point estimate of the population mean is the sample mean."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} $$"
-    document.getElementById("explanationtext").innerHTML = "$$\\sum{x} = x_1 + x_2 + \\cdots + x_n $$"
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length;
     var adds = each[0];  var avgeach = avg(each);  
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x} &= \\frac{" + adds + "}{" + len + "} \\\\ &=  \\frac{" + sum(each) + "}{" + len + "} \\\\ &= \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
 function calcstandard(){
-    $("#explanation").hide(); $("#label1").show(); $("#switchpopulation").show(); $("#switchsample").hide();
-    document.getElementById("descriptiontext").innerHTML = "The point estimate of the population standard deviation is the sample standard deviation."
-    document.getElementById("formulatext").innerHTML = "$$ s = \\sqrt{s^2} $$"
-    document.getElementById("explanationtext").innerHTML = "The standard deviation is the square root of the variance."
-    $("#output").empty();
-    $("#desstdev").show(); $("#popstdev").show(); $("#samstdev").hide();
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
     var sumeach = sum(each);
@@ -1220,7 +1061,18 @@ function calcstandard(){
     var sumeachminus2 = sum(eachminus2);
     var ansvar = sumeachminus2 / lenmin1;
     var ansstd = Math.sqrt(ansvar);
-    document.getElementById("output").innerHTML = "$$ s = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$"
+    var table = "<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>" + "<td>" + "$x - \\bar{x}$" + "</td>" + "<td>" + "$(x - \\bar{x})^2$" + "</td>" + "</tr>";
+    var rows = len;
+    var cols = 3;
+    for (var r = 0; r < rows; r++){
+        table += "<tr>";
+        table += "<td>$" + each[r] + "$</td>";
+        table += "<td>$" + parseFloat(eachminus[r].toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(eachminus2[r].toFixed(2)) + "$</td>";
+        table += "</tr>";
+    }
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table> $$ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 

@@ -1,11 +1,8 @@
-$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#expconf").hide();
-$("#switchconfidence").hide(); $("#switchhypothesis").show();
-$("#samplesize").hide(); $("#confidence").show();
-$("#hypothesis").hide(); $("#confidence").show();
-$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
-
-$("#myCanvas1").hide(); $("#myCanvas2").hide();
+$("#values").hide(); $("#enterstats").hide();$("#switchconfidence").hide(); $("#switchhypothesis").show();
+$("#samplesize").hide(); $("#confidence").show();$("#hypothesis").hide(); $("#confidence").show();
+$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide(); $("#myCanvas1").hide(); $("#myCanvas2").hide();
+$("#datainput").hide(); $("#valuesinput").show(); $("#datainput2").hide(); $("#valuesinput2").show(); $("#parameter3").hide(); 
+type = "values"; type2 = "values"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -22,6 +19,26 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+     
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
+
+function avg(input){
+    return sum(input)/input.length
+}
 
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
@@ -48,24 +65,38 @@ function showstats(){
 }
 
 
+function switchdata() {
+    $("#datainput").show(); $("#valuesinput").hide();
+    type = "data"
+}
 
+function switchvalues() {
+    $("#datainput").hide(); $("#valuesinput").show();
+    type = "values"
+}
 
+function switchdata2() {
+    $("#datainput2").show(); $("#valuesinput2").hide();
+    type2 = "data"
+}
 
+function switchvalues2() {
+    $("#datainput2").hide(); $("#valuesinput2").show();
+    type2 = "values"
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+function sigmaswitch() {
+    var x = document.getElementById("parameter").value;
+    if (x == "sigma") {
+        document.getElementById("parameter2").innerHTML = "&sigma;²"
+        document.getElementById("muknotvalue").innerHTML = "&sigma;₀²"
+        $("#parameter3").hide(); $("#muknot").show();
+    } else if (x == "sigma1") {
+        document.getElementById("parameter2").innerHTML = "&sigma;₁²"
+        document.getElementById("muknotvalue").innerHTML = "&sigma;₂²"
+        $("#parameter3").show(); $("#muknot").hide();
+    }
+}
 
 function LogGamma(Z) {
 	with (Math) {
@@ -136,34 +167,6 @@ function compute(Z,DF) {
 	Chisqcdf=Math.round(Chisqcdf*100000)/100000;
     return Chisqcdf;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
@@ -394,9 +397,6 @@ function tinv(p, dof) {
 
 
 function conint(){
-    $("#explanation").hide();
-    $("#expconf").hide();
-    
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
     var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
     var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
@@ -444,9 +444,31 @@ function conint(){
     
     var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
     
-    var samp = document.getElementById("samplestat").value;
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var stdev = document.getElementById("samplestatval").value;
+    
+    if (type == "values") {
+        var samp = document.getElementById("samplestat").value;
+        var size = document.getElementById("size").value; var sizem1 = size - 1;
+        var stdev = document.getElementById("samplestatval").value;
+    } else if (type == "data") {
+        var samp = "variance"
+        var str = document.getElementById("xvalues").value;
+        var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+        var sumeach = sum(each);
+        var mn = avg(each);
+        var eachminus = each.map( function(value) {
+            return value - mn;
+        } );
+        var eachminus2 = eachminus.map( function(value) {
+            return value * value;
+        } );
+        var sumeachminus = sum(eachminus);
+        var sumeachminus2 = sum(eachminus2);
+        var ansvar = sumeachminus2 / lenmin1;
+        var ansstd = Math.sqrt(ansvar);
+        var size = len; var sizem1 = size - 1;
+        var stdev = parseFloat(ansvar.toFixed(2));
+    } 
+
     var conlev = document.getElementById("conlev").value;
     var confor = "variance"
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
@@ -472,8 +494,12 @@ function conint(){
         var anslow = (sizem1*(stdev))/chidf[highindex]
         var anshigh = (sizem1*(stdev))/chidf[lowindex]
     } 
-
-    document.getElementById("output1").innerHTML = " $$  df = n - 1 = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
+    
+    if (type == "values") {
+        document.getElementById("output1").innerHTML = "$$  df = n - 1 = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
+    } else if (type == "data") {
+        document.getElementById("output1").innerHTML = "$$ s^2 = \\dfrac{\\sum{(x-\\bar{x})^2}}{n-1} = \\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = "+parseFloat(ansvar.toFixed(2))+" $$ $$  df = n - 1 = "+size+ " - 1 = "+sizem1+"  $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ 1 - \\alpha / 2 = 1 - " + alphahalf.toFixed(3).replace(/^0+/, '') + " = "+(1-alphahalf).toFixed(3).replace(/^0+/, '')+ " $$  "
+    } 
     
 
     var f = [];
@@ -575,8 +601,6 @@ function conint(){
         document.getElementById("output2").innerHTML = "<br>" + table + " $$ \\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[highindex] + ", \\: \\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2 = " + chidf[lowindex] + "  $$ $$ \\frac{(n-1)s^2}{\\chi_{" + alphahalf.toFixed(3).replace(/^0+/, '') + "}^2} \\leq \\sigma^2 \\leq \\frac{(n-1)s^2}{\\chi_{" + (1-alphahalf).toFixed(3).replace(/^0+/, '') + "}^2} $$ $$ \\frac{("+size+"-1)"+stdev+"}{" + chidf[highindex] + "} \\leq \\sigma^2 \\leq \\frac{("+size+"-1)"+stdev+"}{" + chidf[lowindex] + "} $$ $$ \\boxed{"+parseFloat(anslow.toFixed(2))+" \\leq \\sigma^2 \\leq " + parseFloat(anshigh.toFixed(2)) + "} $$"
     } 
 
-    
-    
     MathJax.typeset();
 }
 
@@ -584,8 +608,6 @@ function conint(){
 
 
 function hyp(){
-    $("#explanation").hide();
-    $("#expconf").hide();
     
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
     var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
@@ -634,10 +656,32 @@ function hyp(){
     
     var chi = [0, chi1, chi2, chi3, chi4, chi5, chi6, chi7, chi8, chi9, chi10, chi11, chi12, chi13, chi14, chi15, chi16, chi17, chi18, chi19, chi20, chi21, chi22, chi23, chi24, chi25, chi26, chi27, chi28, chi29, chi30, chi30, chi30, chi30, chi30, chi35, chi35, chi35, chi35, chi35, chi40, chi40, chi40, chi40, chi40, chi45, chi45, chi45, chi45, chi45, chi50, chi50, chi50, chi50, chi50, chi55, chi55, chi55, chi55, chi55, chi60, chi60, chi60, chi60, chi60, chi65, chi65, chi65, chi65, chi65, chi70, chi70, chi70, chi70, chi70, chi75, chi75, chi75, chi75, chi75, chi80, chi80, chi80, chi80, chi80, chi85, chi85, chi85, chi85, chi85, chi90, chi90, chi90, chi90, chi90, chi95, chi95, chi95, chi95, chi95, chi100]
     
+    if (type2 == "values") {
+        var samp = document.getElementById("samplestat2").value;
+        var size = document.getElementById("size2").value; var sizem1 = size - 1;
+        var stdev = document.getElementById("xbar").value;
+    } else if (type2 == "data") {
+        var samp = "variance"
+        var str = document.getElementById("xvalues2").value;
+        var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+        var sumeach = sum(each);
+        var mn = avg(each);
+        var eachminus = each.map( function(value) {
+            return value - mn;
+        } );
+        var eachminus2 = eachminus.map( function(value) {
+            return value * value;
+        } );
+        var sumeachminus = sum(eachminus);
+        var sumeachminus2 = sum(eachminus2);
+        var ansvar = sumeachminus2 / lenmin1;
+        var ansstd = Math.sqrt(ansvar);
+        var size = len; var sizem1 = size - 1;
+        var stdev = parseFloat(ansvar.toFixed(2));
+    } 
+    
     var tail = document.getElementById("tail").value
     var muknot = document.getElementById("muknot").value
-    var size = document.getElementById("size2").value; var sizem1 = size - 1;
-    var stdev = document.getElementById("xbar").value;
     var alpha = document.getElementById("alpha").value;
     var test = ((size-1)*(stdev*stdev))/muknot 
     var exp = 2.71828;
@@ -751,8 +795,12 @@ function hyp(){
         var cless = chidf[1]; var cmore = chidf[4]
         var ctwo1 = chidf[0]; var ctwo2 = chidf[5]
     }
-        
-    document.getElementById("output3").innerHTML = "$$ \\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2} = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"
+    
+    if (type2 == "values") {
+        document.getElementById("output3").innerHTML = "$$ \\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2} = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"
+    } else if (type2 == "data") {
+        document.getElementById("output3").innerHTML = "$$ s^2 = \\dfrac{\\sum{(x-\\bar{x})^2}}{n-1} = \\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = "+parseFloat(ansvar.toFixed(2))+" $$ $$ \\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2} = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"
+    } 
     
     if (tail == "lower") {
         var f = [];
@@ -1200,14 +1248,7 @@ function hyp(){
 
         ctx.stroke();
     }
-    
-    
-    
-    
-    
-    
-    
-    
+
     if (tail == "lower") {
         document.getElementById("output5").innerHTML = tablep+" $$ \\text{Critical Value: } \\chi^2_{"+(1-alpha)+"} = " + cless.toFixed(2) + " $$ $$ \\chi^2 ="+test.toFixed(2) +critsignlower+" \\chi^2_{"+(1-alpha)+"} = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$"
     } else if (tail == "upper") {
@@ -1215,52 +1256,9 @@ function hyp(){
     } else if (tail == "two") {
         
     }
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
 
     MathJax.typeset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function example1(){
@@ -1318,10 +1316,6 @@ function samplesize() {
 }
 
 function calcsize1() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
     var planval = document.getElementById("planningvalue").value
     var margerr = document.getElementById('margin').value
     var conlev = document.getElementById('conlev').value
@@ -1335,10 +1329,6 @@ function calcsize1() {
 }
 
 function calcsize2() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ n = \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
     var planval = document.getElementById("planningvalue").value
     var margerr = document.getElementById('margin').value
     var conlev = document.getElementById('conlev').value

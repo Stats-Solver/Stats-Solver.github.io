@@ -269,7 +269,7 @@ function compprob1() {
         ans = "0"
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + ans + "}   \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = f(" + x + ") = \\boxed{" + ans + "} $$"
     MathJax.typeset();
 }
 
@@ -520,7 +520,7 @@ function compexpected() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -585,7 +585,7 @@ function compvariance() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -926,7 +926,7 @@ function compprob1f() {
         table += "<tr><td>$"+xs[i]+"$</td><td>$"+parseFloat((f[i]/tot).toFixed(2))+"$</td></tr>"
     }
     
-    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + ans + "}   \\end{align} $$"
+    document.getElementById("output").innerHTML = table + "$$ P(x=" + x + ") = f(" + x + ") = \\boxed{" + ans + "} $$"
     MathJax.typeset();
 }
 
@@ -1245,7 +1245,7 @@ function compexpectedf() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1316,7 +1316,7 @@ function compvariancef() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -2262,7 +2262,7 @@ function compbinomialexpected() {
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= (" + trials + ")(" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ E(x) = np = (" + trials + ")(" + prob + ") = \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -2275,7 +2275,7 @@ function compbinomialvariance() {
     var prob = document.getElementById('psuccess').value
     var ans = trials*prob*(1-prob)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= (" + trials + ")(" + prob + ")(1-" + prob + ") \\\\ &= \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = np(1-p) = (" + trials + ")(" + prob + ")(1-" + prob + ") = \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -2317,7 +2317,7 @@ function compbinomial1() {
     
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2))  + "}   \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") = {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" = \\boxed{" + parseFloat(ans.toFixed(2))  + "} \\end{align} $$ "
     MathJax.typeset();
 }
 
@@ -2884,7 +2884,7 @@ function comppoisson1() {
     
     var ans = (Math.pow(ave,num)*Math.pow(exp,(-ave)))/factorial(num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave))).toFixed(2)) + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave))).toFixed(2)) + "}{" + factorial(num) + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3148,7 +3148,7 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     MathJax.typeset();
 }
 

@@ -1,26 +1,38 @@
-$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
-$("#greatert").hide(); $("#notequalt").hide();
-
-$("#typeexamples").hide(); $("#hypexamples").show();
-
-$("#switchhypothesis").hide(); $("#switchtype").show();
-
-$("#datainput").hide(); $("#valuesinput").show();
-
-$("#hypothesis").show(); $("#type2error").hide();
+$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();$("#greatert").hide(); $("#notequalt").hide();
+$("#typeexamples").hide(); $("#hypexamples").show(); $("#switchhypothesis").hide(); $("#switchtype").show();
+$("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide();
 
 type = "hypothesis"
+inputtype = "values"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
 
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+     
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
+
+function avg(input){
+    return sum(input)/input.length
+}
+
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
     return num.toString().match(re)[0];
 }
-
-
 
 function switchtype() {
     type = "type2error"
@@ -42,10 +54,12 @@ function switchhypothesis() {
 
 function switchdata() {
     $("#datainput").show(); $("#valuesinput").hide();
+    inputtype = "data"
 }
 
 function switchvalues() {
     $("#datainput").hide(); $("#valuesinput").show();
+    inputtype = "values"
 }
 
 var canvas = document.getElementById("myCanvas1");
@@ -413,20 +427,6 @@ function solve() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function type2() {
     var tail = document.getElementById("tailt").value;
     var muknot = document.getElementById("muknott").value;
@@ -458,11 +458,11 @@ function type2() {
     var beta2 = (zg2prob - zl2prob).toFixed(4)
     
     if (tail == "lower") {
-        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless+"  $$  $$ \\bar{x} \\leq "+xbarl+"  $$ $$ \\begin{align} z &= \\frac{"+xbarl+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zl+" \\end{align} $$ $$ \\begin{align} \\beta &= P(z \\geq "+zl+") \\\\ &= 1 - P(z \\leq "+zl+") \\\\ &= 1 - "+zlprob+" \\\\ &= \\boxed{"+betal+"} \\end{align} $$ "
+        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless+"  $$  $$ \\bar{x} \\leq "+xbarl+"  $$ $$ z = \\frac{"+xbarl+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+zl+" $$ $$ \\begin{align} \\beta &= P(z \\geq "+zl+") = 1 - P(z \\leq "+zl+") \\\\ &= 1 - "+zlprob+" = \\boxed{"+betal+"} \\end{align} $$ "
     } else if (tail == "upper") {
-        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat+"  $$ $$ \\bar{x} \\geq "+xbarg+"  $$ $$ \\begin{align} z &= \\frac{"+xbarg+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zg+" \\end{align} $$ $$ \\begin{align} \\beta &= P(z \\leq "+zg+") \\\\ &= \\boxed{"+betag+"} \\end{align} $$ "
+        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat+"  $$ $$ \\bar{x} \\geq "+xbarg+"  $$ $$ z = \\frac{"+xbarg+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+zg+" $$ $$ \\begin{align} \\beta &= P(z \\leq "+zg+") = \\boxed{"+betag+"} \\end{align} $$ "
     } else if (tail == "two") {
-        document.getElementById("output4").innerHTML = " $$ \\begin{align} \\text{Reject } H_0 \\text{ if } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless2+" \\\\ \\text{or } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat2+" \\end{align} $$  $$ \\bar{x} \\leq "+xbarl2+" \\text{ or } \\bar{x} \\geq "+xbarg2+" $$ $$ \\begin{align} z &= \\frac{"+xbarl2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zl2+" \\end{align} $$ $$ \\begin{align} z &= \\frac{"+xbarg2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} \\\\ &= "+zg2+" \\end{align} $$ $$ \\begin{align} \\beta &= P("+zl2+" \\leq z \\leq "+zg2+") \\\\ &= P(z \\leq "+zg2+") - P(z \\leq "+zl2+") \\\\ &= "+zg2prob+" - "+zl2prob+" \\\\ &= \\boxed{"+beta2+"} \\end{align} $$ "
+        document.getElementById("output4").innerHTML = " $$ \\begin{align} \\text{Reject } H_0 \\text{ if } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless2+" \\\\ \\text{or } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat2+" \\end{align} $$  $$ \\bar{x} \\leq "+xbarl2+" \\text{ or } \\bar{x} \\geq "+xbarg2+" $$ $$ z = \\frac{"+xbarl2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}}  = "+zl2+"  $$ $$ z = \\frac{"+xbarg2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+zg2+" $$ $$ \\begin{align} \\beta &= P("+zl2+" \\leq z \\leq "+zg2+") \\\\ &= P(z \\leq "+zg2+") - P(z \\leq "+zl2+") \\\\ &= "+zg2prob+" - "+zl2prob+" = \\boxed{"+beta2+"} \\end{align} $$ "
     }
     
     
@@ -470,25 +470,6 @@ function type2() {
     MathJax.typeset();
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function hyptest(){
     var x = document.getElementById("parameter1").value;
@@ -502,12 +483,33 @@ function hyptest(){
 }
 
 function hyptest1(){
+    if (inputtype == "values") {
+        var sigma = document.getElementById("sigma").value;
+        var size = document.getElementById("size").value; var sizem1 = size - 1;
+        var xbar = document.getElementById("xbar").value;
+        var stdev = document.getElementById("stdev").value;
+    } else if (inputtype == "data") {
+        var str = document.getElementById("xvalues").value;
+        var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+        var sumeach = sum(each);
+        var mn = avg(each);
+        var eachminus = each.map( function(value) {
+            return value - mn;
+        } );
+        var eachminus2 = eachminus.map( function(value) {
+            return value * value;
+        } );
+        var sumeachminus = sum(eachminus);
+        var sumeachminus2 = sum(eachminus2);
+        var ansvar = sumeachminus2 / lenmin1;
+        var ansstd = Math.sqrt(ansvar);
+        var size = len; var sizem1 = size - 1;
+        var xbar = mn;
+        var stdev = parseFloat(ansstd.toFixed(2));
+        var sigma = "unknown"
+    } 
     var tail = document.getElementById("tail").value;
-    var sigma = document.getElementById("sigma").value;
     var muknot = document.getElementById("muknot").value;
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
-    var xbar = document.getElementById("xbar").value;
-    var stdev = document.getElementById("stdev").value;
     var alpha = document.getElementById("alpha").value;
     var test = (xbar-muknot)/(stdev/Math.sqrt(size));
     var testtwo = -Math.abs(test);
@@ -776,7 +778,11 @@ function hyptest1(){
     if (sigma == "known") {
         document.getElementById("output1").innerHTML = " $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$   $ \\text{p-Value Approach:} $"
     } else if (sigma == "unknown") {
-        document.getElementById("output1").innerHTML = " $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+        if (inputtype == "values") {
+            document.getElementById("output1").innerHTML = " $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+        } else if (inputtype == "data") {
+            document.getElementById("output1").innerHTML = " $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+        } 
     } 
     
     
@@ -839,9 +845,6 @@ function hyptest1(){
 
             // move to the first point
            ctx.moveTo(points[0].x, points[0].y);
-
-
-
 
            for (i = 1; i < points.length - 2; i ++)
            {
@@ -906,8 +909,6 @@ function hyptest1(){
             ctx.fillText(test.toFixed(2),220,145); 
             //ctx.fillText("df = "+sizem1,220,40); 
         }
-
-
         var points = []
 
         for (i = 0; i < 60; i++) {
@@ -916,9 +917,6 @@ function hyptest1(){
 
             // move to the first point
            ctx.moveTo(points[0].x, points[0].y);
-
-
-
 
            for (i = 1; i < points.length - 2; i ++)
            {
@@ -931,16 +929,9 @@ function hyptest1(){
 
 
         ctx.stroke();
-        
-        
-        
-        
-        
 
     } else if (tail == "two") {
-        
 
-        
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
@@ -1014,9 +1005,6 @@ function hyptest1(){
             // move to the first point
            ctx.moveTo(points[0].x, points[0].y);
 
-
-
-
            for (i = 1; i < points.length - 2; i ++)
            {
               var xc = (points[i].x + points[i + 1].x) / 2;
@@ -1028,8 +1016,6 @@ function hyptest1(){
 
 
         ctx.stroke();
-
-        
 
     }
 
@@ -1045,9 +1031,7 @@ function hyptest1(){
     
     
     if (tail == "lower") {
-        
 
-        
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
@@ -1519,8 +1503,6 @@ function hyptest2(){
         ctx.fillText("z",285,132);
         ctx.fillText(test.toFixed(2),60,145);
 
-
-
         var points = []
 
         for (i = 0; i < 60; i++) {
@@ -1529,9 +1511,6 @@ function hyptest2(){
 
             // move to the first point
            ctx.moveTo(points[0].x, points[0].y);
-
-
-
 
            for (i = 1; i < points.length - 2; i ++)
            {
@@ -1601,9 +1580,6 @@ function hyptest2(){
             // move to the first point
            ctx.moveTo(points[0].x, points[0].y);
 
-
-
-
            for (i = 1; i < points.length - 2; i ++)
            {
               var xc = (points[i].x + points[i + 1].x) / 2;
@@ -1615,11 +1591,6 @@ function hyptest2(){
 
 
         ctx.stroke();
-        
-        
-        
-        
-        
 
     } else if (tail == "two") {
         
@@ -1681,8 +1652,6 @@ function hyptest2(){
         ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
         ctx.fillText(Math.abs(test.toFixed(2)),226,145);
 
-
-
         var points = []
 
         for (i = 0; i < 60; i++) {
@@ -1707,16 +1676,7 @@ function hyptest2(){
 
         ctx.stroke();
 
-        
-
     }
-    
-    
-    
-    
-
-    
-
     
     if (tail == "lower") {
         document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$"
@@ -1725,14 +1685,9 @@ function hyptest2(){
     } else if (tail == "two") {
         document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:}$"
     }
-    
 
-    
-    
     if (tail == "lower") {
-        
 
-        
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
@@ -1962,12 +1917,8 @@ function hyptest2(){
 
         ctx.stroke();
 
-        
     }
-    
-    
 
-    
     
     if (tail == "lower") {
         document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
@@ -1976,133 +1927,113 @@ function hyptest2(){
     } else if (tail == "two") {
         document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     }
-    
-    
-    
-    
+
     MathJax.typeset();
 }
 
-
-
-
 function example1(){
-    var x = document.getElementById("parameter1").value;
-    if (x == "mean") {
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-        document.getElementById("parameter2").innerHTML = "&mu;"
-        document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
-        $("#less").show();
-        $("#greater").hide();
-        $("#notequal").hide();
-        document.getElementById('tail').value="lower"
-        document.getElementById('muknot').value="30"
-        document.getElementById('muknotvalue').innerHTML="30"
-        document.getElementById('size').value="60"
-        document.getElementById('xbar').value="29.3"
-        document.getElementById('stdev').value="3"
-        document.getElementById('sigma').value="known"
-        document.getElementById('alpha').value=".05"
-        MathJax.typeset();
-    } else if (x == "proportion") {
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
-        document.getElementById("parameter2").innerHTML = "p"
-        document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
-        $("#less").hide();
-        $("#greater").hide();
-        $("#notequal").show();
-        document.getElementById('tail').value="two"
-        document.getElementById('muknot').value=".30"
-        document.getElementById('muknotvalue').innerHTML=".30"
-        document.getElementById('size').value="500"
-        document.getElementById('xbar').value=".28"
-        document.getElementById('alpha').value=".05"
-        MathJax.typeset();
-    } else if (x == "variance") {
-        $("#less").hide();
-        $("#greater").show();
-        $("#notequal").hide();
-        document.getElementById('tail').value="upper"
-        document.getElementById('muknot').value="40"
-        document.getElementById('muknotvalue').innerHTML="40"
-        document.getElementById('size').value="25"
-        document.getElementById('xbar').value="6"
-        document.getElementById('alpha').value=".05"
-        MathJax.typeset();
-    }
-    
+    if (inputtype == "values") {
+            var x = document.getElementById("parameter1").value;
+            if (x == "mean") {
+                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                document.getElementById("parameter2").innerHTML = "&mu;"
+                document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
+                $("#less").show();
+                $("#greater").hide();
+                $("#notequal").hide();
+                document.getElementById('tail').value="lower"
+                document.getElementById('muknot').value="30"
+                document.getElementById('muknotvalue').innerHTML="30"
+                document.getElementById('size').value="60"
+                document.getElementById('xbar').value="29.3"
+                document.getElementById('stdev').value="3"
+                document.getElementById('sigma').value="known"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+            } else if (x == "proportion") {
+                $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+                document.getElementById("parameter2").innerHTML = "p"
+                document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
+                $("#less").hide();
+                $("#greater").hide();
+                $("#notequal").show();
+                document.getElementById('tail').value="two"
+                document.getElementById('muknot').value=".30"
+                document.getElementById('muknotvalue').innerHTML=".30"
+                document.getElementById('size').value="500"
+                document.getElementById('xbar').value=".28"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+            } 
+        } else if (inputtype == "data") {
+                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                document.getElementById("parameter2").innerHTML = "&mu;"
+                $("#less").show();
+                $("#greater").hide();
+                $("#notequal").hide();
+                document.getElementById('tail').value="lower"
+                document.getElementById('muknot').value="4"
+                document.getElementById('muknotvalue').innerHTML="4"
+                document.getElementById('xvalues').value="1,2,3,4,5"
+                document.getElementById('sigma').value="unknown"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+        } 
 }
 
 function example2(){
-    var x = document.getElementById("parameter1").value;
-    if (x == "mean") {
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-        document.getElementById("parameter1").value = "mean"
-        document.getElementById("parameter2").innerHTML = "&mu;"
-        document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
-        $("#less").hide();
-        $("#greater").show();
-        $("#notequal").hide();
-        document.getElementById('tail').value="upper"
-        document.getElementById('muknot').value="14"
-        document.getElementById('muknotvalue').innerHTML="14"
-        document.getElementById('size').value="23"
-        document.getElementById('xbar').value="15.5"
-        document.getElementById('stdev').value="3.61"
-        document.getElementById('sigma').value="unknown"
-        document.getElementById('alpha').value=".05"
-        MathJax.typeset();
-    } else if (x == "proportion") {
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
-        document.getElementById("parameter2").innerHTML = "p"
-        document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
-        $("#less").hide();
-        $("#greater").hide();
-        $("#notequal").show();
-        document.getElementById('tail').value="lower"
-        document.getElementById('muknot').value=".65"
-        document.getElementById('muknotvalue').innerHTML=".65"
-        document.getElementById('size').value="200"
-        document.getElementById('xbar').value=".58"
-        document.getElementById('alpha').value=".05"
-        MathJax.typeset();
-    } else if (x == "variance") {
-        $("#less").hide();
-        $("#greater").hide();
-        $("#notequal").show();
-        document.getElementById('tail').value="two"
-        document.getElementById('muknot').value="90"
-        document.getElementById('muknotvalue').innerHTML="90"
-        document.getElementById('size').value="40"
-        document.getElementById('xbar').value="9"
-        document.getElementById('alpha').value=".05"
-        MathJax.typeset();
-    }
+    if (inputtype == "values") {
+            var x = document.getElementById("parameter1").value;
+            if (x == "mean") {
+                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                document.getElementById("parameter1").value = "mean"
+                document.getElementById("parameter2").innerHTML = "&mu;"
+                document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
+                $("#less").hide();
+                $("#greater").show();
+                $("#notequal").hide();
+                document.getElementById('tail').value="upper"
+                document.getElementById('muknot').value="14"
+                document.getElementById('muknotvalue').innerHTML="14"
+                document.getElementById('size').value="23"
+                document.getElementById('xbar').value="15.5"
+                document.getElementById('stdev').value="3.61"
+                document.getElementById('sigma').value="unknown"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+            } else if (x == "proportion") {
+                $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+                document.getElementById("parameter2").innerHTML = "p"
+                document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
+                $("#less").hide();
+                $("#greater").hide();
+                $("#notequal").show();
+                document.getElementById('tail').value="lower"
+                document.getElementById('muknot').value=".65"
+                document.getElementById('muknotvalue').innerHTML=".65"
+                document.getElementById('size').value="200"
+                document.getElementById('xbar').value=".58"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+            } 
+        } else if (inputtype == "data") {
+                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                document.getElementById("parameter2").innerHTML = "&mu;"
+                $("#less").hide();
+                $("#greater").show();
+                $("#notequal").hide();
+                document.getElementById('tail').value="upper"
+                document.getElementById('muknot').value="5"
+                document.getElementById('muknotvalue').innerHTML="5"
+                document.getElementById('xvalues').value="2,4,6,8,10"
+                document.getElementById('sigma').value="unknown"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+        }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function example3(){
-    
         $("#lesst").show();
         $("#greatert").hide();
         $("#notequalt").hide();
@@ -2114,11 +2045,9 @@ function example3(){
         document.getElementById('stdevt').value="12"
         document.getElementById('alphat').value=".05"
         MathJax.typeset();
-    
 }
 
 function example4(){
-
         $("#lesst").hide();
         $("#greatert").hide();
         $("#notequalt").show();
@@ -2130,30 +2059,7 @@ function example4(){
         document.getElementById('stdevt').value="7.5"
         document.getElementById('alphat').value=".05"
         MathJax.typeset();
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function example5(){
     $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();

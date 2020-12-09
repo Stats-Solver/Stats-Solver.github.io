@@ -288,25 +288,6 @@ function rowssix2five() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function colstwo2three() {
     indcols = 3
     $("#colstwo2three").hide(); $("#colsthree2two").show(); $("#colsthree2four").show();
@@ -434,34 +415,6 @@ function colssix2five() {
         $("#cellf").hide(); $("#cellpf").hide(); $("#cellqf").hide(); $("#cellrf").hide(); $("#cellsf").hide(); $("#celltf").hide(); $("#celluf").hide();
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -685,26 +638,6 @@ function stat() {
     MathJax.typeset();
     
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -974,28 +907,6 @@ function stat2() {
     MathJax.typeset();
     
 }
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

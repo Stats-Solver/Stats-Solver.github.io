@@ -290,7 +290,7 @@ function naivemae() {
         total += Math.abs((values[r]-values[r-1]))
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+total+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + total + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "}  $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} = \\frac{" + total + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "}  $$"
     MathJax.typeset();
 } 
 
@@ -316,7 +316,7 @@ function naivemse() {
         total += Math.pow((values[r]-values[r-1]),2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+total+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{" + total + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\dfrac{" + total + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -342,7 +342,7 @@ function naivemape() {
         total += 100*Math.abs((values[r]-values[r-1]))/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\dfrac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
     MathJax.typeset();
 } 
 
@@ -422,7 +422,7 @@ function averagemae() {
         sumsvalue += values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -450,7 +450,7 @@ function averagemse() {
         sumsvalue += values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -478,7 +478,7 @@ function averagemape() {
         sumsvalue += values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
     MathJax.typeset();
 } 
 
@@ -560,7 +560,7 @@ function movingmae2() {
         total += Math.abs(values[r]-sumsvalue/2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -589,7 +589,7 @@ function movingmse2() {
         total += Math.pow(values[r]-sumsvalue/2,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -618,7 +618,7 @@ function movingmape2() {
         total += 100*Math.abs(values[r]-sumsvalue/2)/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + " \\% } $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
 
@@ -703,7 +703,7 @@ function movingmae3() {
         total += Math.abs(values[r]-sumsvalue/3)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -733,7 +733,7 @@ function movingmse3() {
         total += Math.pow(values[r]-sumsvalue/3,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -763,7 +763,7 @@ function movingmape3() {
         total += 100*Math.abs(values[r]-sumsvalue/3)/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + " \\% } $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
 
@@ -851,7 +851,7 @@ function movingmae4() {
         total += Math.abs(values[r]-sumsvalue/4)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -882,7 +882,7 @@ function movingmse4() {
         total += Math.pow(values[r]-sumsvalue/4,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -913,7 +913,7 @@ function movingmape4() {
         total += 100*Math.abs(values[r]-sumsvalue/4)/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + " \\% } $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
 
@@ -1001,7 +1001,7 @@ function weightedmae2() {
         total += Math.abs(values[r]-sumsvalue/2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1032,7 +1032,7 @@ function weightedmse2() {
         total += Math.pow(values[r]-sumsvalue/2,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1063,7 +1063,7 @@ function weightedmape2() {
         total += 100*Math.abs(values[r]-sumsvalue)/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + " \\% } $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
 
@@ -1157,7 +1157,7 @@ function weightedmae3() {
         total += Math.abs(values[r]-sumsvalue/3)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1190,7 +1190,7 @@ function weightedmse3() {
         total += Math.pow(values[r]-sumsvalue,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1223,7 +1223,7 @@ function weightedmape3() {
         total += 100*Math.abs(values[r]-sumsvalue)/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + " \\% } $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
 
@@ -1323,7 +1323,7 @@ function weightedmae4() {
         total += Math.abs(values[r]-sumsvalue)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1358,7 +1358,7 @@ function weightedmse4() {
         total += Math.pow(values[r]-sumsvalue,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1393,7 +1393,7 @@ function weightedmape4() {
         total += 100*Math.abs(values[r]-sumsvalue)/values[r]
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + " \\% } $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
 
@@ -1484,7 +1484,7 @@ function exponentialmae() {
         total += abserror
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1517,7 +1517,7 @@ function exponentialmse() {
         total += Math.pow(error,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1552,7 +1552,7 @@ function exponentialmape() {
         total += aperror
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
     MathJax.typeset();
 } 
 
@@ -1687,7 +1687,7 @@ function linearmae() {
         total += abserror
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1732,7 +1732,7 @@ function linearmse() {
         total += Math.pow(error,2)
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1779,7 +1779,7 @@ function linearmape() {
         total += aperror
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "\\%} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + rows + "} = \\boxed{" + parseFloat((total/rows).toFixed(2)) + "\\%} $$"
     MathJax.typeset();
 } 
 
@@ -1892,7 +1892,7 @@ function holtmae() {
         trend1 = trend
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1932,7 +1932,7 @@ function holtmse() {
         trend1 = trend
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
     MathJax.typeset();
 } 
 
@@ -1974,7 +1974,7 @@ function holtmape() {
         trend1 = trend
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
+    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t}\\\\\\\\\\\\\\\\\\\\ = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
     MathJax.typeset();
 } 
 

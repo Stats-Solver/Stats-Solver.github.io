@@ -323,7 +323,7 @@ function compuniformexpected() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ E(x) = \\frac{a+b}{2} = \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} = \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -335,7 +335,7 @@ function compuniformvariance() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\dfrac{(b-a)^2}{12} = \\frac{(" + maxval + "-" + minval + ")^2}{12} = \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -413,7 +413,7 @@ function compuniform1() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P(x \\leq "+lessval+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} $$"
     
     MathJax.typeset();
 }
@@ -481,7 +481,7 @@ function compuniform2() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x < "+lessval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P(x < "+lessval+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (lessval - minval) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} $$"
     
     MathJax.typeset();
 }
@@ -549,7 +549,7 @@ function compuniform3() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P(x \\geq "+greaterval+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval)).toFixed(2))+"} $$"
  
     
     
@@ -620,7 +620,7 @@ function compuniform4() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x > "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P(x > "+greaterval+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (maxval - greaterval) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval)).toFixed(2))+"} $$"
  
     
     
@@ -687,7 +687,7 @@ function compuniform5() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x = "+greaterval+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + 0 + " \\\\ &= \\boxed{"+0+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P(x = "+greaterval+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + 0 + " = \\boxed{"+0+"} $$"
  
     
     
@@ -762,7 +762,7 @@ function compuniform6() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" \\leq x \\leq "+twoval2+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P("+twoval1+" \\leq x \\leq "+twoval2+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} $$"
 
     
     MathJax.typeset();
@@ -835,7 +835,7 @@ function compuniform7() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" \\leq x < "+twoval2+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P("+twoval1+" \\leq x < "+twoval2+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} $$"
 
     
     MathJax.typeset();
@@ -908,7 +908,7 @@ function compuniform8() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" < x \\leq "+twoval2+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P("+twoval1+" < x \\leq "+twoval2+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} $$"
 
     
     MathJax.typeset();
@@ -981,7 +981,7 @@ function compuniform9() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" < x < "+twoval2+") &= \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} \\end{align}$$"
+    document.getElementById("output2").innerHTML = "$$ P("+twoval1+" < x < "+twoval2+") = \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} \\times " + (twoval2 - twoval1) + " = \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1)).toFixed(2))+"} $$"
 
     
     MathJax.typeset();
@@ -1718,7 +1718,7 @@ function compsnormal2() {
     
     var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval))).toFixed(4)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " = \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval))).toFixed(4)) + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -2043,7 +2043,7 @@ function compsnormal4() {
     
     var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align} P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval)).toFixed(4)) + " - "+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align} P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval)).toFixed(4)) + " - "+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " = \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4) + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -2879,7 +2879,7 @@ function compnormal2() {
     
     var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval.toFixed(2) + ") &= 1 - P(z \\leq" + lessval.toFixed(2) + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval))).toFixed(4)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval.toFixed(2) + ") &= 1 - P(z \\leq" + lessval.toFixed(2) + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " = \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval))).toFixed(4)) + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -3375,11 +3375,11 @@ function compnormal4() {
     }
     
     
-    document.getElementById("output").innerHTML = "$$ z_{"+lessval0+"}  =\\frac{"+lessval0+"-"+expval+"}{"+sd+"}  =" +lessval.toFixed(2)+ " $$ $$ z_{"+greaterval0+"}  =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} =" +greaterval.toFixed(2)+ " $$ $$ P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") =  P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") $$"
+    document.getElementById("output").innerHTML = "$$ z  =\\frac{"+lessval0+"-"+expval+"}{"+sd+"}  =" +lessval.toFixed(2)+ " $$ $$ z  =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} =" +greaterval.toFixed(2)+ " $$ $$ P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") =  P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") $$"
     
     var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align} P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval)).toFixed(4)) + " - "+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align} P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval)).toFixed(4)) + " - "+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " = \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4) + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -3431,7 +3431,7 @@ function approxmean() {
     var psuccess = document.getElementById('psuccess').value
     var ans = trials * psuccess
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\mu &= (" + trials + ") ( " + psuccess + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     
     MathJax.typeset();
 }
@@ -3443,7 +3443,7 @@ function approxstandard() {
     var psuccess = document.getElementById('psuccess').value
     var ans = Math.sqrt(trials * psuccess * (1 - psuccess))
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     
     MathJax.typeset();
 }
@@ -3755,9 +3755,9 @@ function approxprobability1() {
     
     var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
     
-    document.getElementById("output").innerHTML = " $$ P(x=" + xval + ") = P(" + xval1 + " \\leq x \\leq " + xval2 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ $$ z_{" + xval2 + "} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = " + z2 + " $$"
+    document.getElementById("output").innerHTML = " $$ P(x=" + xval + ") = P(" + xval1 + " \\leq x \\leq " + xval2 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ $$ z = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = " + z2 + " $$"
     
-    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} P(" + z1 + " \\leq z \\leq " + z2 + ") &= P(z \\leq " + z2 + ") - P(z \\leq " + z1 + ") \\\\ &= " + prob2 + " - " + prob1 + " \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} P(" + z1 + " \\leq z \\leq " + z2 + ") &= P(z \\leq " + z2 + ") - P(z \\leq " + z1 + ") \\\\ &= " + prob2 + " - " + prob1 + " = \\boxed{" + ans + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -3987,7 +3987,7 @@ function approxprobability2() {
     var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = " $$ P(x \\leq " + xval + ") = P(x \\leq " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output").innerHTML = " $$ P(x \\leq " + xval + ") = P(x \\leq " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
     document.getElementById("output2").innerHTML = tablea + "$$ P(z \\leq " + z1 + ") = \\boxed{" + prob1 + "} $$"
     
@@ -4219,7 +4219,7 @@ function approxprobability3() {
     var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = " $$ P(x < " + xval + ") = P(x < " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output").innerHTML = " $$ P(x < " + xval + ") = P(x < " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
     document.getElementById("output2").innerHTML = tablea + "$$ P(z < " + z1 + ") = \\boxed{" + prob1 + "} $$"
     
@@ -4459,9 +4459,9 @@ function approxprobability4() {
     var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = " $$ P(x \\geq " + xval + ") = P(x \\geq " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output").innerHTML = " $$ P(x \\geq " + xval + ") = P(x \\geq " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z \\geq " + z1 + ") &= 1 - P(z \\leq " + z1 + ") \\\\ &= 1 - " + prob1 + " \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z \\geq " + z1 + ") &= 1 - P(z \\leq " + z1 + ") \\\\ &= 1 - " + prob1 + " = \\boxed{" + ans + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -4699,9 +4699,9 @@ function approxprobability5() {
     var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = " $$ P(x > " + xval + ") = P(x > " + xval1 + ") $$ $$ z_{" + xval1 + "} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output").innerHTML = " $$ P(x > " + xval + ") = P(x > " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z > " + z1 + ") &= 1 - P(z < " + z1 + ") \\\\ &= 1 - " + prob1 + ") \\\\ &= \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z > " + z1 + ") &= 1 - P(z < " + z1 + ") \\\\ &= 1 - " + prob1 + " = \\boxed{" + ans + "} \\end{align} $$"
     
     MathJax.typeset();
 }
@@ -4866,7 +4866,7 @@ function compexponential1() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+ sign + lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ P(x "+ sign + lessval + ") = 1 - e^{-"+ lessval + "/"+ expval + "} = \\boxed{"+ parseFloat(ans.toFixed(2)) + "} $$"
     
     MathJax.typeset();
     
@@ -4972,7 +4972,7 @@ function compexponential2() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - "+ parseFloat(ans.toFixed(2)) + "\\\\ &= \\boxed{"+ parseFloat((1-ans).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - "+ parseFloat(ans.toFixed(2)) + " = \\boxed{"+ parseFloat((1-ans).toFixed(2)) + "} \\end{align} $$"
     
     MathJax.typeset();
     
@@ -5185,7 +5185,7 @@ function compexponential4() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= "+ parseFloat(ans2.toFixed(2)) + " - "+ parseFloat(ans1.toFixed(2)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= "+ parseFloat(ans2.toFixed(2)) + " - "+ parseFloat(ans1.toFixed(2)) + " = \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
     
     MathJax.typeset();
     

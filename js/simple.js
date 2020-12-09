@@ -500,7 +500,7 @@ function prediction(){
     } 
     
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\hat{y} &= "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" x \\\\ &= "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML = "$$ \\hat{y} = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" x = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -695,7 +695,7 @@ function ssr(){
     var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
     var anssst = sum_yminusy_bar2;
     var ansssr = anssst - anssse;
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{SSR} &= \\text{SST} - \\text{SSE} \\\\ &= "+parseFloat(anssst.toFixed(2))+" - " +parseFloat(anssse.toFixed(2)) +" \\\\ &= \\boxed{"+parseFloat(ansssr.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{SSR} = \\text{SST} - \\text{SSE} = "+parseFloat(anssst.toFixed(2))+" - " +parseFloat(anssse.toFixed(2)) +" = \\boxed{"+parseFloat(ansssr.toFixed(2))+"} $$"
     MathJax.typeset();
 }
 
@@ -1418,7 +1418,7 @@ function confinterval() {
     
     var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output").innerHTML = "$$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = " + parseFloat(ans.toFixed(2)) + " $$ $$ s_{\\hat{y}_p} = s \\sqrt{ \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} = "+parseFloat(anssee.toFixed(2))+" \\sqrt{ \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}}  = " + parseFloat(ansans.toFixed(2)) + " $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = n - 2 = "+size+ " - 2 = "+sizem1+"   $$" + tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = " + parseFloat(ans.toFixed(2)) + " $$ $$ \\begin{align} s_{\\hat{y}_p} &= s \\sqrt{ \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{ \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}}  = " + parseFloat(ansans.toFixed(2)) + " \\end{align} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = n - 2 = "+size+ " - 2 = "+sizem1+"   $$" + tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1504,7 +1504,7 @@ function predinterval() {
     
     var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output").innerHTML = "$$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = " + parseFloat(ans.toFixed(2)) + " $$ $$ s_{\\text{ind}} = s \\sqrt{1 + \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} = "+parseFloat(anssee.toFixed(2))+" \\sqrt{1 + \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}}  = " + parseFloat(ansans.toFixed(2)) + " $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = "+size+ " - 2 = "+sizem1+"   $$" + tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = " + parseFloat(ans.toFixed(2)) + " $$ $$ \\begin{align} s_{\\text{ind}} &= s \\sqrt{1 + \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{1 + \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}} = " + parseFloat(ansans.toFixed(2)) + " \\end{align} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = "+size+ " - 2 = "+sizem1+"   $$" + tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -2537,7 +2537,7 @@ function leverage(){
 function examplevalues(){
     var x = document.getElementById("stat").value;
     document.getElementById('valuesx').value="2, 4, 6, 8, 10"
-    document.getElementById('valuesy').value="4, 6, 2, 9, 12"
+    document.getElementById('valuesy').value="9, 14, 7, 18, 27"
     if (x == "prediction") {
         document.getElementById('xvalue').value="5"
     } else if (x == "confinterval" || x == "predinterval") {
@@ -2546,7 +2546,13 @@ function examplevalues(){
 }
 
 function examplevalues2(){
-    document.getElementById('valuesx').value="4, 11, 7, 21, 15"
-    document.getElementById('valuesy').value="45, 30, 65, 20, 25"
+    var x = document.getElementById("stat").value;
+    document.getElementById('valuesx').value="4, 12, 8, 16, 10"
+    document.getElementById('valuesy').value="45, 35, 45, 15, 25"
+    if (x == "prediction") {
+        document.getElementById('xvalue').value="14"
+    } else if (x == "confinterval" || x == "predinterval") {
+        document.getElementById('xpvalue').value="14"
+    } 
 }
 

@@ -2358,7 +2358,7 @@ function cumpercent3(){
 }
 
 function crosstabulation(){
-    $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide(); 
+    $("#input1").hide(); $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide(); 
     var str = document.getElementById("values").value; var str2 = document.getElementById("values").value;
     var str1 = str.replace(/\s/g, ''); var str22 = str2.replace(/\s/g, '');
     var isnum = str1.match(/^[0-9+,]+$/) != null; var isnum2 = str22.match(/^[0-9+,]+$/) != null;
@@ -2391,7 +2391,7 @@ function calccross1(){
     document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
     document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -2478,7 +2478,7 @@ function calccross2(){
     document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
     document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -2653,7 +2653,7 @@ function calccross3(){
     document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
     document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -2872,7 +2872,7 @@ function calccross4(){
     document.getElementById("formulatext").innerHTML = "Count the number of observations that fall into each pair of classes."
     document.getElementById("explanationtext").innerHTML = "Crosstabulations work for two quantitative, two qualitative and one qualitative/one quantitative variables."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -3017,7 +3017,7 @@ function hideout2() {
 }
 
 function rowpercent(){
-    $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
+    $("#input1").hide(); $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
 }
 
 function calcrow(){
@@ -3042,7 +3042,7 @@ function calcrow1(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -3168,7 +3168,7 @@ function calcrow2(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -3376,7 +3376,7 @@ function calcrow3(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -3629,7 +3629,7 @@ function calcrow4(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Row Percentage} = \\dfrac{\\text{Frequency}}{\\text{Row Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Row percentages provide the percentage of a row belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -3802,7 +3802,7 @@ function calcrow4(){
 }
 
 function colpercent(){
-    $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
+    $("#input1").hide(); $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide();
 }
 
 function calccol(){
@@ -3827,7 +3827,7 @@ function calccol1(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Column Percentage} = \\dfrac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -3969,7 +3969,7 @@ function calccol2(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Column Percentage} = \\dfrac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -4193,7 +4193,7 @@ function calccol3(){
     document.getElementById("formulatext").innerHTML = "$$ \\text{Column Percentage} = \\frac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $$"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -4462,7 +4462,7 @@ function calccol4(){
     document.getElementById("formulatext").innerHTML = "$ \\text{Column Percentage} = \\dfrac{\\text{Frequency}}{\\text{Column Total}} \\times 100 $"
     document.getElementById("explanationtext").innerHTML = "Column percentages provide the percentage of a column belonging to a certain class."
     $("#desfrequency").show(); $("#expfrequency").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
@@ -4650,7 +4650,7 @@ function calccol4(){
 }
 
 function scatter(){
-    $("#input2").show();  $("#label1").hide(); $("#label3").show();
+    $("#input1").hide(); $("#input2").show();  $("#label1").hide(); $("#label3").show();
 }
 
 function calcscatt(){
@@ -4660,7 +4660,7 @@ function calcscatt(){
     document.getElementById("formulatext").innerHTML = "Draw a point on the graph for each pair of x and y values."
     document.getElementById("explanationtext").innerHTML = "The scatter diagram will indicate whether there is a positive, negative or no relationship between x and y."
     $("#myCanvas").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
     var eachnums = each.map(function(v) {
@@ -4753,7 +4753,7 @@ function calcscatt(){
 
 
 function trendline(){
-    $("#input2").show();  $("#label1").hide(); $("#label3").show();
+    $("#input1").hide(); $("#input2").show();  $("#label1").hide(); $("#label3").show();
 }
 
 function calctrend(){
@@ -4763,7 +4763,7 @@ function calctrend(){
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The equation of the trendline is estimated using the least squares method from simple regression."
     $("#myCanvas").show();
-    var str = document.getElementById("values").value;
+    var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
     var eachnums = each.map(function(v) {
@@ -4848,14 +4848,14 @@ function calctrend(){
 }
 
 function timeplot() {
-    $("#input1").hide(); $("#input2").show();  $("#label1").hide(); $("#label4").show();
+    $("#input1").show(); $("#input2").hide();  $("#label1").hide(); $("#label4").show();
 }
 
 function calctime() {
     $("#explanation").show(); $("#charts").show();
     document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
     $("#myCanvas").show();
-    var str2 = document.getElementById("values2").value;
+    var str2 = document.getElementById("values").value;
     var each2 = str2.split(",")
     var Y = each2.map(function(v) {
   		return parseInt(v, 10);
@@ -4918,13 +4918,13 @@ function examplexvalues2(){
 }
 
 function examplevalues3(){
-    document.getElementById('values').value="B, A, B, B, C, A, C, B, A, B"
+    document.getElementById('values1').value="B, A, B, B, C, A, C, B, A, B"
     document.getElementById('values2').value="X, X, Y, X, Y, X, Y, Y, X, Y"
     $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide();
 }
 
 function examplevalues4(){
-    document.getElementById('values').value="A, A, B, A, B, A, B, B, C, C"
+    document.getElementById('values1').value="A, A, B, A, B, A, B, B, C, C"
     document.getElementById('values2').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
     $("#firstclasscross").show(); $("#firstclassx").hide(); $("#firstclassy").show();
     document.getElementById('lowery').value="10"
@@ -4933,14 +4933,14 @@ function examplevalues4(){
 
 function examplevalues33(){
     document.getElementById('values2').value="B, A, B, B, C, A, C, B, A, B"
-    document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    document.getElementById('values1').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
     $("#firstclasscross").show(); $("#firstclassx").show(); $("#firstclassy").hide();
     document.getElementById('lowerx').value="10"
     document.getElementById('upperx').value="14"
 }
 
 function examplevalues44(){
-    document.getElementById('values').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
+    document.getElementById('values1').value="11, 16, 21, 20, 16, 15, 12, 23, 19, 14"
     document.getElementById('values2').value="23, 18, 12, 14, 11, 21, 19, 11, 24, 17"
     $("#firstclasscross").show(); $("#firstclassx").show(); $("#firstclassy").show();
     document.getElementById('lowerx').value="10"
@@ -4950,19 +4950,19 @@ function examplevalues44(){
 }
 
 function examplevalues5(){
-    document.getElementById('values').value="2, 5, 1, 3, 4, 1, 5, 3, 4, 2"
+    document.getElementById('values1').value="2, 5, 1, 3, 4, 1, 5, 3, 4, 2"
     document.getElementById('values2').value="50, 57, 41, 54, 54, 38, 63, 48, 59, 46"
 }
 
 function examplevalues6(){
-    document.getElementById('values').value="-22, -33, 2, 29, -13, 21, -13, -23, 14, 2"
+    document.getElementById('values1').value="-22, -33, 2, 29, -13, 21, -13, -23, 14, 2"
     document.getElementById('values2').value="22, 49, 8, -16, 10, -28, 27, 35, -5, -3"
 }
 
 function examplevalues7(){
-    document.getElementById('values2').value="18, 13, 16, 11, 17, 14"
+    document.getElementById('values').value="18, 13, 16, 11, 17, 14"
 }
 
 function examplevalues8(){
-    document.getElementById('values2').value="24, 13, 20, 12, 19, 23, 15"
+    document.getElementById('values').value="24, 13, 20, 12, 19, 23, 15"
 }

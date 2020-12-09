@@ -1,15 +1,32 @@
-$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();
-$("#switchconfidence").hide();
-
+$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();$("#switchconfidence").hide();
 $("#xbar1s").hide(); $("#pbar1s").hide(); $("#samplestat1").show(); $("#myCanvas2").hide(); $("#myCanvas3").hide();
-
-$("#proportionzero").hide();
-
-$("#hypothesis").hide();
+$("#proportionzero").hide();$("#hypothesis").hide();$("#datainput").hide(); $("#valuesinput").show(); 
+$("#datainput2").hide(); $("#valuesinput2").show(); inputtype = "values"; inputtype2 = "values"
+$("#matchedmu").hide(); $("#matchedmu2").hide();  $("#matchedinput").hide(); 
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
+
+function sum(input){
+             
+ if (toString.call(input) !== "[object Array]")
+    return false;
+     
+            var total =  0;
+            for(var i=0;i<input.length;i++)
+              {                  
+                if(isNaN(input[i])){
+                continue;
+                 }
+                  total += Number(input[i]);
+               }
+             return total;
+            }
+
+function avg(input){
+    return sum(input)/input.length
+}
 
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
@@ -27,6 +44,38 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas3");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+function matched() {
+    if (document.getElementById('matched').checked) {
+      $("#matchedmu").show(); $("#parameter1").hide(); $("#matchedmu2").show(); $("#parameter2").hide();$("#muknotvalue").hide();
+      $("#matchedinput").show(); $("#input2").hide();
+      matchedsamples = "yes"
+  } else {
+      $("#matchedmu").hide(); $("#parameter1").show(); $("#matchedmu2").hide(); $("#parameter2").show();$("#muknotvalue").show();
+      $("#matchedinput").hide(); $("#input2").show();
+      matchedsamples = "no"
+  }
+}
+
+function switchdata() {
+    $("#datainput").show(); $("#valuesinput").hide();
+    inputtype = "data"
+}
+
+function switchvalues() {
+    $("#datainput").hide(); $("#valuesinput").show();
+    inputtype = "values"
+}
+
+function switchdata2() {
+    $("#datainput2").show(); $("#valuesinput2").hide();
+    inputtype2 = "data"
+}
+
+function switchvalues2() {
+    $("#datainput2").hide(); $("#valuesinput2").show();
+    inputtype2 = "values"
+}
 
 function samplestat() {
     var x = document.getElementById("samplestat").value;
@@ -380,26 +429,6 @@ function tinv(p, dof) {
 	
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function conint(){
     $("#myCanvas2").hide(); $("#output3").hide();
     var x = document.getElementById("samplestat").value;
@@ -412,14 +441,43 @@ function conint(){
 
 
 function conint1(){
-    $("#canvascontainer").show();$("#expconf").show();
-    var sigma = document.getElementById("sigma").value;
-    var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
-    var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
-    var xbar1 = document.getElementById("xbar1").value;
-    var xbar2 = document.getElementById("xbar2").value;
-    var stdev1 = document.getElementById("stdev1").value;
-    var stdev2 = document.getElementById("stdev2").value;
+    $("#canvascontainer").show();
+    if (inputtype == "values") {
+        var sigma = document.getElementById("sigma").value;
+        var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
+        var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
+        var xbar1 = document.getElementById("xbar1").value;
+        var xbar2 = document.getElementById("xbar2").value;
+        var stdev1 = document.getElementById("stdev1").value;
+        var stdev2 = document.getElementById("stdev2").value;
+    } else if (inputtype == "data") {
+        var str = document.getElementById("x1values").value;
+        var str2 = document.getElementById("x2values").value;
+        var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+        var each2 = str2.split(",").map(Number); var len2 = each.length; var len2min1 = len - 1;
+        var sumeach = sum(each); var sumeach2 = sum(each2);
+        var mn = avg(each); var mn2 = avg(each2);
+        var eachminus = each.map( function(value) {
+            return value - mn;
+        } );
+        var eachminus2 = eachminus.map( function(value) {
+            return value * value;
+        } );
+        var each2minus = each2.map( function(value) {
+            return value - mn;
+        } );
+        var each2minus2 = each2minus.map( function(value) {
+            return value * value;
+        } );
+        var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+        var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2);
+        var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
+        var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2);
+        var size1 = len; var sizem1 = size1 - 1; var size2 = len2; var size2m1 = size2 - 1;
+        var xbar1 = mn; var xbar2 = mn2;
+        var stdev1 = parseFloat(ansstd.toFixed(2)); var stdev2 = parseFloat(ansstd2.toFixed(2));
+        var sigma = "unknown"
+    } 
     var conlev = document.getElementById("conlev").value;
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var zalphahalf = NormSInv(1 - alphahalf);
@@ -437,7 +495,11 @@ function conint1(){
     if (sigma == "known") {
         document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
     } else if (sigma == "unknown") {
-        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow \\text{Round down to } " + Math.floor(degreesfreedom) + "\\end{align} $$ "
+        if (inputtype == "values") {
+            document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow " + Math.floor(degreesfreedom) + "\\end{align} $$ "
+        } else if (inputtype == "data") {
+            document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 = \\frac{\\sum{x_1}}{n_1} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $$ \\bar{x}_2 = \\frac{\\sum{x_2}}{n_2} =  \\frac{" + sumeach2 + "}{" + len2 + "}  = " + parseFloat(mn2.toFixed(2)) + " $$ $$ \\ s_1 = \\sqrt{\\dfrac{\\sum{(x_1-\\bar{x}_1)^2}}{n_1-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $$ \\ s_2 = \\sqrt{\\dfrac{\\sum{(x_2-\\bar{x}_2)^2}}{n_2-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len2+"-1}} = "+parseFloat(ansstd2.toFixed(2))+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow " + Math.floor(degreesfreedom) + "\\end{align} $$ "
+        } 
     } 
     
     var f = [];
@@ -567,7 +629,7 @@ function conint1(){
     if (sigma == "known") {
         document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\sqrt{\\dfrac{\\sigma_1^2}{n_1}+\\dfrac{\\sigma_2^2}{n_2}} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$"
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+(xbar1-xbar2) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}} $$ $$" + xbar1 + " - " + xbar2 + "\\pm" + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}}$$ $$"+parseFloat((xbar1-xbar2).toFixed(2)) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$"
     } 
     
     MathJax.typeset();
@@ -585,10 +647,6 @@ function conint2(){
     var marginerror0 = parseFloat(pbar1)*parseFloat((1-parseFloat(pbar1)))/parseFloat(size1)
     var marginerror = zalphahalf * Math.sqrt((pbar2*(1-pbar2))/size2+(pbar2*(1-pbar2))/size2);
     var anslow = (pbar1-pbar2) - marginerror; var anshigh = (parseFloat(pbar1-pbar2)+marginerror);
-    
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that a population parameter, such as the population mean, is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$"
-    document.getElementById("explanationtext").innerHTML = "Choosing a higher confidence level will increase the size of the confidence interval since a larger range of values is more likely to contain the population parameter."
         
     document.getElementById("output1").innerHTML = "$$ \\bar{p}_1 - \\bar{p}_2 \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}_1(1-\\bar{p}_1)}{n_1}+\\frac{\\bar{p}_2(1-\\bar{p}_2)}{n_2}} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = \\underline{"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ "
 
@@ -690,30 +748,6 @@ function conint2(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function hyptest(){
     $("#myCanvas2").show(); $("#output3").show();
     var x = document.getElementById("parameter1").value;
@@ -726,16 +760,45 @@ function hyptest(){
 
 function hyptest1(){
     $("#canvascontainer").show(); $("#canvascontainer2").show();
+    if (inputtype2 == "values") {
+        var sigma = document.getElementById("sigmah").value;
+        var size1 = document.getElementById("size1h").value; var size1m1 = size1 - 1;
+        var size2 = document.getElementById("size2h").value; var size2m1 = size2 - 1;
+        var xbar1 = document.getElementById("xbar1h").value;
+        var xbar2 = document.getElementById("xbar2h").value;
+        var stdev1 = document.getElementById("stdev1h").value;
+        var stdev2 = document.getElementById("stdev2h").value;
+    } else if (inputtype2 == "data") {
+        var str = document.getElementById("x1values2").value;
+        var str2 = document.getElementById("x2values2").value;
+        var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+        var each2 = str2.split(",").map(Number); var len2 = each.length; var len2min1 = len - 1;
+        var sumeach = sum(each); var sumeach2 = sum(each2);
+        var mn = avg(each); var mn2 = avg(each2);
+        var eachminus = each.map( function(value) {
+            return value - mn;
+        } );
+        var eachminus2 = eachminus.map( function(value) {
+            return value * value;
+        } );
+        var each2minus = each2.map( function(value) {
+            return value - mn;
+        } );
+        var each2minus2 = each2minus.map( function(value) {
+            return value * value;
+        } );
+        var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+        var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2);
+        var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
+        var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2);
+        var size1 = len; var sizem1 = size1 - 1; var size2 = len2; var size2m1 = size2 - 1;
+        var xbar1 = mn; var xbar2 = mn2;
+        var stdev1 = parseFloat(ansstd.toFixed(2)); var stdev2 = parseFloat(ansstd2.toFixed(2));
+        var sigma = "unknown"
+    } 
     var tail = document.getElementById("tail").value;
-    var sigma = document.getElementById("sigmah").value;
     var muknot = document.getElementById("muknot").value;
-    var size1 = document.getElementById("size1h").value; var size1m1 = size1 - 1;
-    var size2 = document.getElementById("size2h").value; var size2m1 = size2 - 1;
     var dfree = parseFloat(size1)+parseFloat(size2)-2
-    var xbar1 = document.getElementById("xbar1h").value;
-    var xbar2 = document.getElementById("xbar2h").value;
-    var stdev1 = document.getElementById("stdev1h").value;
-    var stdev2 = document.getElementById("stdev2h").value;
     var alpha = document.getElementById("alphah").value;
     var test = ((xbar1-xbar2)-muknot)/Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2));
     var testtwo = -Math.abs(test);
@@ -755,7 +818,7 @@ function hyptest1(){
             var degfree = ""
             var standev = "\\sigma"
         } else if (sigma == "unknown") {
-            var degfree = " $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow \\text{Round down to } " + Math.floor(degreesfreedom) + " \\end{align} $$ "
+            var degfree = " $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow " + Math.floor(degreesfreedom) + " \\end{align} $$ "
             var standev = "s"
     }
     if (sigma == "known" && tail == "lower"){
@@ -1013,9 +1076,14 @@ function hyptest1(){
     
 
     if (sigma == "known") {
-        document.getElementById("output3").innerHTML = " $$ z = \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{\\sigma_1^2}{ n_1}+\\dfrac{\\sigma_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+" $$  $ \\text{p-Value Approach:} $"
+        document.getElementById("output3").innerHTML = " $$ \\begin{align} z &= \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{\\sigma_1^2}{ n_1}+\\dfrac{\\sigma_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$  $ \\text{p-Value Approach:} $"
     } else if (sigma == "unknown") {
-        document.getElementById("output3").innerHTML = " $$ t = \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{s_1^2}{ n_1}+\\dfrac{s_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} = "+test.toFixed(2)+"   $$"+degfree+" $ \\text{p-Value Approach:} $"
+        
+        if (inputtype2 == "values") {
+            document.getElementById("output3").innerHTML = " $$ \\begin{align} t &= \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{s_1^2}{ n_1}+\\dfrac{s_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$"+degfree+" $ \\text{p-Value Approach:} $"
+        } else if (inputtype2 == "data") {
+            document.getElementById("output3").innerHTML = "$$ \\bar{x}_1 = \\frac{\\sum{x_1}}{n_1} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $$ \\bar{x}_2 = \\frac{\\sum{x_2}}{n_2} =  \\frac{" + sumeach2 + "}{" + len2 + "}  = " + parseFloat(mn2.toFixed(2)) + " $$ $$ \\ s_1 = \\sqrt{\\dfrac{\\sum{(x_1-\\bar{x}_1)^2}}{n_1-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $$ \\ s_2 = \\sqrt{\\dfrac{\\sum{(x_2-\\bar{x}_2)^2}}{n_2-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len2+"-1}} = "+parseFloat(ansstd2.toFixed(2))+" $$ $$ \\begin{align} t &= \\frac{(\\bar{x}_1-\\bar{x}_2)-\\mu_0}{\\sqrt{\\dfrac{s_1^2}{ n_1}+\\dfrac{s_2^2}{n_2}}} = \\frac{("+xbar1+"-"+xbar2+")-"+muknot+"}{\\sqrt{\\dfrac{"+stdev1+"^2}{ "+size1+"}+\\dfrac{"+stdev2+"^2}{ "+size2+"}}} \\\\ &= "+test.toFixed(2)+" \\end{align} $$"+degfree+" $ \\text{p-Value Approach:} $"
+        } 
     }
     
     if (tail == "lower") {
@@ -1169,11 +1237,7 @@ function hyptest1(){
 
 
         ctx.stroke();
-        
-        
-        
-        
-        
+
 
     } else if (tail == "two") {
         
@@ -1548,10 +1612,7 @@ function hyptest1(){
     } else if (tail == "two") {
         document.getElementById("output5").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     }
-    
-    
-    
-    
+
     MathJax.typeset();
 }
 
@@ -1709,20 +1770,6 @@ function hyptest2(){
     var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
     var tablec = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table12+"</tr><tr style='border-top: thin solid'><td>"+zcrit+"</td>"+table2+"</tr></table>"
 
-    
-    if (tail == "lower") {
-        document.getElementById("descriptiontext").innerHTML = "A lower tail test is used to determine whether the population mean is less than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's less than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the lower tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "upper") {
-        document.getElementById("descriptiontext").innerHTML = "An upper tail test is used to determine whether the population mean is greater than the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's greater than or equal to the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Value = value of the test statistic corresponding to an area of &alpha; in the upper tail of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } else if (tail == "two") {
-        document.getElementById("descriptiontext").innerHTML = "A two-tailed test is used to determine whether the population mean is different from the hypothesized value of the population mean."
-        document.getElementById("formulatext").innerHTML = "$$ \\text{Test Statistic: } z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $$ p-Value = probability of getting a value for the test statistic that's at least as unlikely as the value from the sample <br> p-Value Rejection Rule: reject the null hypothesis if the p-value is less than or equal to &alpha; <br><br> Critical Values = values of the test statistic corresponding to areas of &alpha;/2 in the lower and upper tails of the sampling distribution of the test statistic <br> Critical Value Rejection Rule: reject the null hypothesis if the test statistic is less than or equal to the negative critical value or if it's greater than or equal to the positive critical value"
-        document.getElementById("explanationtext").innerHTML = "By rejecting the null hypothesis, you are accepting the alternative hypothesis. By not rejecting the null hypothesis, you are not accepting the alternative hypothesis."
-    } 
     
     if (tail == "lower") {
         document.getElementById("output1").innerHTML = testtype + "$$ \\begin{align} \\bar{p} &= \\frac{n_1 \\bar{p}_1 + n_2 \\bar{p}_2}{n_1 + n_2} \\\\ &= \\frac{"+size1+" ("+pbar1+") + "+size2+" ("+pbar2+")}{"+size1+" + "+size2+"} \\\\ &= \\underline{" + parseFloat(ppool.toFixed(2)) + "} \\end{align} $$ $$ \\textbf{Test Statistic: } $$ $$ \\begin{align} z &=\\dfrac{(\\bar{p}_1-\\bar{p}_2)}{\\sqrt{\\bar{p}(1-\\bar{p})\\left(\\dfrac{1}{n_1}+\\dfrac{1}{n_2}\\right)}} \\\\ &=\\frac{("+pbar1+"-"+pbar2+")}{\\sqrt{"+parseFloat(ppool.toFixed(2))+"(1-"+parseFloat(ppool.toFixed(2))+")\\left(\\dfrac{1}{ "+size1+"}+\\dfrac{1}{ "+size2+"}\\right)}} \\\\  &= \\underline{"+test.toFixed(2)+"} \\end{align} $$ <b><u>p-Value Approach</u></b>"
@@ -2071,34 +2118,44 @@ function hyptest2(){
 }
 
 function example1(){
-    document.getElementById("samplestat").value = "mean"
-    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
-    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
-    document.getElementById("standdev2").innerHTML = "&sigma;₂";
-    document.getElementById('size1').value="25"
-    document.getElementById('size2').value="64"
-    document.getElementById('xbar1').value="42"
-    document.getElementById('xbar2').value="36"
-    document.getElementById('stdev1').value="7"
-    document.getElementById('stdev2').value="8"
-    document.getElementById('sigma').value="known"
+    if (inputtype == "values") {
+        document.getElementById("samplestat").value = "mean"
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+        document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+        document.getElementById("standdev2").innerHTML = "&sigma;₂";
+        document.getElementById('size1').value="25"
+        document.getElementById('size2').value="64"
+        document.getElementById('xbar1').value="42"
+        document.getElementById('xbar2').value="36"
+        document.getElementById('stdev1').value="7"
+        document.getElementById('stdev2').value="8"
+        document.getElementById('sigma').value="known"
+    } else if (inputtype == "data") {
+        document.getElementById('x1values').value="1,2,3,4,5"
+        document.getElementById('x2values').value="2,5,1,9,6"
+    } 
     MathJax.typeset();
 }
 
 function example2(){
-    document.getElementById("samplestat").value = "mean"
-    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
-    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
-    document.getElementById("standdev2").innerHTML = "s₂";
-    document.getElementById('size1').value="30"
-    document.getElementById('size2').value="20"
-    document.getElementById('xbar1').value="135"
-    document.getElementById('xbar2').value="94"
-    document.getElementById('stdev1').value="14"
-    document.getElementById('stdev2').value="11"
-    document.getElementById('sigma').value="unknown"
+    if (inputtype == "values") {
+        document.getElementById("samplestat").value = "mean"
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+        document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+        document.getElementById("standdev2").innerHTML = "s₂";
+        document.getElementById('size1').value="30"
+        document.getElementById('size2').value="20"
+        document.getElementById('xbar1').value="135"
+        document.getElementById('xbar2').value="94"
+        document.getElementById('stdev1').value="14"
+        document.getElementById('stdev2').value="11"
+        document.getElementById('sigma').value="unknown"
+    } else if (inputtype == "data") {
+        document.getElementById('x1values').value="5,8,2,9,7"
+        document.getElementById('x2values').value="9,5,3,4,6"
+    } 
     MathJax.typeset();
 }
 
@@ -2130,56 +2187,70 @@ function switchconfidence() {
 }
 
 function example4(){
-    $("#proportionzero").hide(); $("#muknot").show();
-    $("#xbar1s").show(); $("#pbar1s").hide(); $("#samplestat1").hide();
-    $("#less").hide();
-    $("#greater").hide();
-    $("#notequal").show();
-    document.getElementById('muknot').value="0"
-    document.getElementById('muknotvalue').innerHTML="0"
-    document.getElementById("samplestat").value = "mean"
-    document.getElementById("parameter1").value = "mean"
-    document.getElementById("parameter2").innerHTML = "&mu;₁ - &mu;₂"
-    document.getElementById("tail").value = "two"
-    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
-    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
-    document.getElementById("standdev2").innerHTML = "&sigma;₂";
-    document.getElementById('size1h').value="35"
-    document.getElementById('size2h').value="45"
-    document.getElementById('xbar1h').value="83"
-    document.getElementById('xbar2h').value="76"
-    document.getElementById('stdev1h').value="12"
-    document.getElementById('stdev2h').value="12"
-    document.getElementById('alphah').value=".05"
-    document.getElementById('sigmah').value="known"
+    if (inputtype2 == "values") {
+        $("#proportionzero").hide(); $("#muknot").show();
+        $("#xbar1s").show(); $("#pbar1s").hide(); $("#samplestat1").hide();
+        $("#less").hide();
+        $("#greater").hide();
+        $("#notequal").show();
+        document.getElementById('muknot').value="0"
+        document.getElementById('muknotvalue').innerHTML="0"
+        document.getElementById("samplestat").value = "mean"
+        document.getElementById("parameter1").value = "mean"
+        document.getElementById("parameter2").innerHTML = "&mu;₁ - &mu;₂"
+        document.getElementById("tail").value = "two"
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+        document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+        document.getElementById("standdev2").innerHTML = "&sigma;₂";
+        document.getElementById('size1h').value="35"
+        document.getElementById('size2h').value="45"
+        document.getElementById('xbar1h').value="83"
+        document.getElementById('xbar2h').value="76"
+        document.getElementById('stdev1h').value="12"
+        document.getElementById('stdev2h').value="12"
+        document.getElementById('alphah').value=".05"
+        document.getElementById('sigmah').value="known"
+    } else if (inputtype2 == "data") {
+        document.getElementById('muknot').value="0"
+        document.getElementById('muknotvalue').innerHTML="0"
+        document.getElementById('x1values2').value="5,8,2,9,7"
+        document.getElementById('x2values2').value="9,5,3,4,6"
+    } 
     MathJax.typeset();
 }
 
 function example5(){
-    $("#proportionzero").hide(); $("#muknot").show();
-    $("#xbar1s").show(); $("#pbar1s").hide(); $("#samplestat1").hide();
-    $("#less").hide();
-    $("#greater").hide();
-    $("#notequal").show();
-    document.getElementById('muknot').value="0"
-    document.getElementById('muknotvalue').innerHTML="0"
-    document.getElementById("samplestat").value = "mean"
-    document.getElementById("parameter1").value = "mean"
-    document.getElementById("parameter2").innerHTML = "&mu;₁ - &mu;₂"
-    document.getElementById("tail").value = "two"
-    $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-    $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
-    document.getElementById("samplestat2").innerHTML = "x&#772;₂";
-    document.getElementById("standdev2").innerHTML = "s₂";
-    document.getElementById('size1h').value="15"
-    document.getElementById('size2h').value="15"
-    document.getElementById('xbar1h').value="312"
-    document.getElementById('xbar2h').value="275"
-    document.getElementById('stdev1h').value="42"
-    document.getElementById('stdev2h').value="46"
-    document.getElementById('alphah').value=".05"
-    document.getElementById('sigmah').value="unknown"
+    if (inputtype2 == "values") {
+        $("#proportionzero").hide(); $("#muknot").show();
+        $("#xbar1s").show(); $("#pbar1s").hide(); $("#samplestat1").hide();
+        $("#less").hide();
+        $("#greater").hide();
+        $("#notequal").show();
+        document.getElementById('muknot').value="0"
+        document.getElementById('muknotvalue').innerHTML="0"
+        document.getElementById("samplestat").value = "mean"
+        document.getElementById("parameter1").value = "mean"
+        document.getElementById("parameter2").innerHTML = "&mu;₁ - &mu;₂"
+        document.getElementById("tail").value = "two"
+        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
+        document.getElementById("samplestat2").innerHTML = "x&#772;₂";
+        document.getElementById("standdev2").innerHTML = "s₂";
+        document.getElementById('size1h').value="15"
+        document.getElementById('size2h').value="15"
+        document.getElementById('xbar1h').value="312"
+        document.getElementById('xbar2h').value="275"
+        document.getElementById('stdev1h').value="42"
+        document.getElementById('stdev2h').value="46"
+        document.getElementById('alphah').value=".05"
+        document.getElementById('sigmah').value="unknown"
+    } else if (inputtype2 == "data") {
+        document.getElementById('muknot').value="0"
+        document.getElementById('muknotvalue').innerHTML="0"
+        document.getElementById('x1values2').value="5,3,4,8,5"
+        document.getElementById('x2values2').value="8,4,1,5,7"
+    } 
     MathJax.typeset();
 }
 
