@@ -1,50 +1,20 @@
 $("#input2").hide(); $("#explanation").hide(); $("#cumulative").hide(); $("#label3").hide();
-$("#myCanvas").hide(); $("#myCanvas2").hide(); $("#firstclass").hide(); $("#label2").hide();
+$("#firstclass").hide(); $("#label2").hide();
 $("#firstclasscross").hide(); $("#label4").hide();
 
 $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
 $("#trendline").hide(); $("#notrendline").hide(); 
 
-
-
-
-
-
-
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
 
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
-
-var canvas = document.getElementById("myCanvas2");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
-
-function resizeCanvasToDisplaySize(canvas) {
-   // look up the size the canvas is being displayed
-   const width = canvas.clientWidth;
-   const height = canvas.clientHeight;
-
-   // If it's resolution does not match change it
-   if (canvas.width !== width || canvas.height !== height) {
-     canvas.width = width;
-     canvas.height = height;
-     return true;
-   }
-
-   return false;
-}
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
 });
 
-function removeDuplicates(array) {
-        return [...new Set(array)]
-}
+//function removeDuplicates(array) {return [...new Set(array)]}
 
 function inRange (x) {
   return this[0] <= x && x <= this[1]
@@ -166,7 +136,7 @@ function showthings(){
 function stat(){
     $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
     $("#trendline").hide(); $("#notrendline").hide(); 
-    $("#explanation").hide(); $("#charts").hide(); $("#myCanvas").hide(); $("#myCanvas2").hide();
+    $("#explanation").hide(); $("#charts").hide();
     $("#output").empty(); $("#output2").empty();
     var x = document.getElementById("stat").value;
     if (x == "frequency"){
@@ -532,7 +502,6 @@ function calcbar(){
     document.getElementById("descriptiontext").innerHTML = "A bar chart is a graphical representation of a frequency distribution."
     document.getElementById("formulatext").innerHTML = "In a bar chart, a bar is drawn to the frequency for each class."
     document.getElementById("explanationtext").innerHTML = "There is distance between bars in a bar chart to signify the separation of the classes."
-    $("#myCanvas").hide();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -861,7 +830,6 @@ function calcpie(){
     document.getElementById("descriptiontext").innerHTML = "A pie chart is a graphical representation of a percent frequency distribution."
     document.getElementById("formulatext").innerHTML = "In a pie chart, the circle is divided according to the percent frequencies of each class."
     document.getElementById("explanationtext").innerHTML = "Pie charts can also be made using relative frequency distributions."
-    $("#myCanvas").hide();
     var str = document.getElementById("values").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var eachonesort = sortrem(each); var len = eachonesort.length;
@@ -918,7 +886,6 @@ function histogram(){
 function calchistogram(){
     $("#explanation").show(); $("#charts").show();
     document.getElementById("explanationtext").innerHTML = "In a histogram, a bar is drawn to the frequency for eachh class."
-    $("#myCanvas").show();
     var str = document.getElementById("values").value;
     var each = str.split(","); 
     var eachnums = each.map(function(v) {
@@ -2030,76 +1997,7 @@ function cumfrequency(){
     }
 }
 
-function cumfrequency2(){
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A cumulative frequency distribution is a table showing the number of values less than or equal to the upper limit of each class."
-    document.getElementById("formulatext").innerHTML = "For each class, add the frequency of the class to the cumulative frequency of the previous class."
-    document.getElementById("explanationtext").innerHTML = ""
-    $("#descumfrequency").show();
-    var str = document.getElementById("values").value;
-    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
-    var eachonesort = sortrem(each); var len = eachonesort.length;
-    var counts = countem(each);
-    let cumcounts = [counts[0]]
-    for (let i=1; i<counts.length; i++) {
-        cumcounts[i] = cumcounts[i-1] + counts[i]
-    }
-    
-    var lower = document.getElementById("lower").value
-    var upper = document.getElementById("upper").value
-    
-    var maxvalue = Math.max.apply(Math, each);
-    var minvalue = Math.min.apply(Math, each);
-    
-    var classwidth = upper - lower + 1;
-    
-    var value1 = parseFloat(lower);
-    var value2 = parseFloat(upper);
-    var classlimits = [];
-    var limits1 = [];
-    var limits2 = [];
-    
-    var i = 0
-    while (maxvalue > value2 - classwidth) {
-        classlimits[i] = value1 + "-" + value2
-        limits1[i] = value1;
-        limits2[i] = value2;
-        value1 += classwidth;
-        value2 += classwidth;
-        i += 1
-    }
-    
-    var end = i;
-    
-    var quants = [];
-    for (var i=0; i<end; i++) {
-        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
-    }
-    let cumquants = [quants[0]]
-    for (let i=1; i<quants.length; i++) {
-        cumquants[i] = cumquants[i-1] + quants[i]
-    }
-    
-    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Frequency}$</td></tr>";
-    var rows = len; var cols = 2;
-    var tot = sum(counts);
-    for (var r = 0; r < 1; r++){
-        table += "<tr>";
-        table += "<td>$" + classlimits[r] + "$</td>";
-        table += "<td>$" + quants[r] + "$</td>";
-        table += "<td>$" + cumquants[r] + "$</td>";
-        table += "</tr>";
-    }
-    for (var r = 1; r < end; r++){
-        table += "<tr>";
-        table += "<td>$" + classlimits[r] + "$</td>";
-        table += "<td>$" + quants[r] + "$</td>";
-        table += "<td>$" + cumquants[r-1] + " + " + quants[r] +" = " + cumquants[r] + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
-    MathJax.typeset();
-}
+
 
 function cumrelative(){
     var str = document.getElementById("values").value;
@@ -2112,84 +2010,7 @@ function cumrelative(){
     }
 }
 
-function cumrelative2(){
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A cumulative relative frequency distribution is a table showing the proportion of values less than or equal to the upper limit of each class."
-    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
-    document.getElementById("explanationtext").innerHTML = ""
-    $("#descumrelative").show();
-    var str = document.getElementById("values").value;
-    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
-    var eachonesort = sortrem(each); var len = eachonesort.length;
-    var counts = countem(each)
-    var tot = sum(counts);
-    
-    var maxvalue = Math.max.apply(Math, each);
-    var minvalue = Math.min.apply(Math, each);
-    
-    var lower = document.getElementById("lower").value
-    var upper = document.getElementById("upper").value
-    
-    var classwidth = upper - lower + 1;
-    
-    var value1 = parseFloat(lower);
-    var value2 = parseFloat(upper);
-    var classlimits = [];
-    var limits1 = [];
-    var limits2 = [];
-    
-    var i = 0
-    while (maxvalue > value2 - classwidth) {
-        classlimits[i] = value1 + "-" + value2
-        limits1[i] = value1;
-        limits2[i] = value2;
-        value1 += classwidth;
-        value2 += classwidth;
-        i += 1
-    }
-    
-    var end = i;
-    
-    var quants = [];
-    for (var i=0; i<end; i++) {
-        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
-    }
-    
-    var rel = quants.map( function(value) {
-        return value / tot;
-    } );
-    
-    let cumquants = [quants[0]]
-    for (let i=1; i<quants.length; i++) {
-        cumquants[i] = cumquants[i-1] + quants[i]
-    }
-    
-    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";
-    var rows = len; var cols = 2;
-    
 
-    let cumrel = [rel[0]]
-    for (let i=1; i<counts.length; i++) {
-        cumrel[i] = cumrel[i-1] + rel[i]
-    }
-    
-    for (var r = 0; r < 1; r++){
-        table += "<tr>";
-        table += "<td>$" + classlimits[r] + "$</td>";
-        table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    for (var r = 1; r < end; r++){
-        table += "<tr>";
-        table += "<td>$" + classlimits[r] + "$</td>";
-        table += "<td>$" + parseFloat(rel[r].toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(cumrel[r-1].toFixed(2))+ " + " + parseFloat(rel[r].toFixed(2)) + " = " + parseFloat(cumrel[r].toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
-    MathJax.typeset();
-}
 
 function cumpercent(){
     var str = document.getElementById("values").value;
@@ -2202,160 +2023,7 @@ function cumpercent(){
     }
 }
 
-function cumpercent2(){
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
-    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
-    document.getElementById("explanationtext").innerHTML = ""
-    $("#descumrelative").show();
-    var str = document.getElementById("values").value;
-    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
-    var eachonesort = sortrem(each); var len = eachonesort.length;
-    var counts = countem(each)
-    var tot = sum(counts);
-    
-    var maxvalue = Math.max.apply(Math, each);
-    var minvalue = Math.min.apply(Math, each);
-    
-    var lower = document.getElementById("lower").value
-    var upper = document.getElementById("upper").value
-    
-    var classwidth = upper - lower + 1;
-    
-    var value1 = parseFloat(lower);
-    var value2 = parseFloat(upper);
-    var classlimits = [];
-    var limits1 = [];
-    var limits2 = [];
-    
-    var i = 0
-    while (maxvalue > value2 - classwidth) {
-        classlimits[i] = value1 + "-" + value2
-        limits1[i] = value1;
-        limits2[i] = value2;
-        value1 += classwidth;
-        value2 += classwidth;
-        i += 1
-    }
-    
-    var end = i;
-    
-    var quants = [];
-    for (var i=0; i<end; i++) {
-        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
-    }
-    
-    var rel = quants.map( function(value) {
-        return value / tot;
-    } );
-    
-    let cumquants = [quants[0]]
-    for (let i=1; i<quants.length; i++) {
-        cumquants[i] = cumquants[i-1] + quants[i]
-    }
-    
-    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Percent}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
-    var rows = len; var cols = 2;
-    
 
-    let cumrel = [rel[0]]
-    for (let i=1; i<counts.length; i++) {
-        cumrel[i] = cumrel[i-1] + rel[i]
-    }
-    
-    for (var r = 0; r < 1; r++){
-        table += "<tr>";
-        table += "<td>$" + classlimits[r] + "$</td>";
-        table += "<td>$" + parseFloat(100*rel[r].toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    for (var r = 1; r < end; r++){
-        table += "<tr>";
-        table += "<td>$" + classlimits[r] + "$</td>";
-        table += "<td>$" + parseFloat(100*rel[r].toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(100*cumrel[r-1].toFixed(2))+ " + " + parseFloat(100*rel[r].toFixed(2)) + " = " + parseFloat(100*cumrel[r].toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
-    MathJax.typeset();
-}
-
-function cumpercent3(){
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "A cumulative percent frequency distribution is a table showing the percentage of values less than or equal to the upper limit of each class."
-    document.getElementById("formulatext").innerHTML = "For each class, add the relative frequency of the class to the cumulative relative frequency of the previous class."
-    document.getElementById("explanationtext").innerHTML = ""
-    $("#descumpercent").show();
-    var str = document.getElementById("values").value;
-    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
-    var eachonesort = sortrem(each); var len = eachonesort.length;
-    var counts = countem(each)
-    var tot = sum(counts);
-    
-    var lower = document.getElementById("lower").value
-    var upper = document.getElementById("upper").value
-    
-    var classwidth = upper - lower + 1;
-    
-    var value1 = parseFloat(lower);
-    var value2 = parseFloat(upper);
-    var classlimits = [];
-    var limits1 = [];
-    var limits2 = [];
-    
-    var i = 0
-    while (maxvalue > value2 - classwidth) {
-        classlimits[i] = value1 + "-" + value2
-        limits1[i] = value1;
-        limits2[i] = value2;
-        value1 += classwidth;
-        value2 += classwidth;
-        i += 1
-    }
-    
-    var end = i;
-    
-    var quants = [];
-    for (var i=0; i<end; i++) {
-        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
-    }
-    
-    var rel = quants.map( function(value) {
-        return value / tot;
-    } );
-    
-    var per = rel.map( function(value) {
-        return value * 100;
-    } );
-    
-    var table = "<tr><td></td><td></td><td style='padding: 0px 0px'>$\\text{Cumulative}$</td></tr>";
-    table = table + "<tr style='border-bottom: thin solid'><td>$\\text{Class}$</td><td>$\\text{Percent Frequency}$</td><td>$\\text{Percent Frequency}$</td></tr>";
-    var rows = len; var cols = 2;
-    
-    let cumper = [per[0]]
-    for (let i=1; i<quants.length; i++) {
-        cumper[i] = cumper[i-1] + per[i]
-    }
-    
-    for (var r = 0; r < 1; r++){
-        table += "<tr>";
-        table += "<td>" + classlimits[r] + "</td>";
-        table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
-        table += "<td>" + parseFloat(cumperfreq[r].toFixed(2)) + "</td>";
-        table += "</tr>";
-    }
-    for (var r = 1; r < end; r++){
-        table += "<tr>";
-        table += "<td>" + classlimits[r] + "</td>";
-        table += "<td>" + parseFloat(per[r].toFixed(2)) + "</td>";
-        table += "<td>" + parseFloat(cumper[r-1].toFixed(2)) + " + " + parseFloat(per[r].toFixed(2)) + " = " + parseFloat(cumper[r].toFixed(2)) + "</td>";
-        table += "</tr>";
-    }
-    table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$100$</td><td>$-$</td></tr>";
-    document.getElementById("output").innerHTML = " <table>" + table + "</table> <br>"
-    MathJax.typeset();
-}
 
 function crosstabulation(){
     $("#input1").hide(); $("#input2").show(); $("#label2").show(); $("#label1").hide(); $("#label3").hide(); 
@@ -2395,8 +2063,39 @@ function calccross1(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    
+    
+    
+    
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
+
+    
+    
+    
+    
+    
     //var counts = countem(each)
     var rows = len; var cols = len2;
     //var tot = sum(counts);
@@ -2482,8 +2181,32 @@ function calccross2(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
+    
+    
     //var counts = countem(each)
     var rows = len; 
     //var tot = sum(counts);
@@ -2574,7 +2297,12 @@ function calccross2(){
         quants9[i] = rowvals9.filter(inRange, [limits1[i], limits2[i]]).length
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     let pairs0 = [];
     for (var i = 0; i < eachonesort.length; i++) {
@@ -2657,8 +2385,34 @@ function calccross3(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    
+    
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
+    
+    
+    
     //var counts = countem(each)
     //var tot = sum(counts);
     
@@ -2793,7 +2547,11 @@ function calccross3(){
 
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     let pairs0 = [];
     for (var i = 0; i < eachonesort.length; i++) {
@@ -2876,8 +2634,30 @@ function calccross4(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     //var tot = sum(counts);
     
@@ -2960,7 +2740,11 @@ function calccross4(){
         quants9[i] = rowvals9.filter(inRange, [limits1y[i], limits2y[i]]).length
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
 
     var table = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
     
@@ -3046,8 +2830,30 @@ function calcrow1(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     var rows = len; var cols = len2;
     //var tot = sum(counts);
@@ -3172,8 +2978,29 @@ function calcrow2(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     var rows = len; 
     //var tot = sum(counts);
@@ -3264,7 +3091,11 @@ function calcrow2(){
         quants9[i] = rowvals9.filter(inRange, [limits1[i], limits2[i]]).length
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     let pairs0 = [];
     for (var i = 0; i < eachonesort.length; i++) {
@@ -3380,8 +3211,29 @@ function calcrow3(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     //var tot = sum(counts);
     
@@ -3516,7 +3368,11 @@ function calcrow3(){
 
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     let pairs0 = [];
     for (var i = 0; i < eachonesort.length; i++) {
@@ -3633,8 +3489,29 @@ function calcrow4(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     //var tot = sum(counts);
     
@@ -3717,7 +3594,11 @@ function calcrow4(){
         quants9[i] = rowvals9.filter(inRange, [limits1y[i], limits2y[i]]).length
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
 
     var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
     
@@ -3831,8 +3712,29 @@ function calccol1(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     var rows = len; var cols = len2;
     //var tot = sum(counts);
@@ -3973,8 +3875,29 @@ function calccol2(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     var rows = len; 
     //var tot = sum(counts);
@@ -4065,7 +3988,12 @@ function calccol2(){
         quants9[i] = rowvals9.filter(inRange, [limits1[i], limits2[i]]).length
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     let pairs0 = [];
     for (var i = 0; i < eachonesort.length; i++) {
@@ -4197,8 +4125,29 @@ function calccol3(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     //var tot = sum(counts);
     
@@ -4333,7 +4282,12 @@ function calccol3(){
 
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     let pairs0 = [];
     for (var i = 0; i < eachonesort.length; i++) {
@@ -4466,8 +4420,29 @@ function calccol4(){
     var str2 = document.getElementById("values2").value;
     var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
     var each00 = str2.replace(/\s/g, ''); var each2 = each00.split(",");
-    let eachonetrunc = [...new Set(each)]; const eachonesort = [...eachonetrunc].sort(); var len = eachonesort.length;
-    let eachonetrunc2 = [...new Set(each2)]; const eachonesort2 = [...eachonetrunc2].sort(); var len2 = eachonesort2.length;
+    //let eachonetrunc = [...new Set(each)]; 
+    //const eachonesort = [...eachonetrunc].sort(); 
+
+    var eachonetrunc = each.filter(function(item, pos) {
+        return each.indexOf(item) == pos;
+    })
+    var eachonesort = eachonetrunc.slice();
+    eachonesort.sort(); 
+    var len = eachonesort.length;
+    
+    
+    
+    
+    //let eachonetrunc2 = [...new Set(each2)]; 
+    //const eachonesort2 = [...eachonetrunc2].sort(); 
+    //var len2 = eachonesort2.length;
+    
+    var eachonetrunc2 = each2.filter(function(item, pos) {
+        return each2.indexOf(item) == pos;
+    })
+    var eachonesort2 = eachonetrunc2.slice();
+    eachonesort2.sort(); 
+    var len2 = eachonesort2.length;
     //var counts = countem(each)
     //var tot = sum(counts);
     
@@ -4550,7 +4525,12 @@ function calccol4(){
         quants9[i] = rowvals9.filter(inRange, [limits1y[i], limits2y[i]]).length
     }
 
-    var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    //var quants = [...quants0,...quants1,...quants2,...quants3,...quants4,...quants5,...quants6,...quants7,...quants8,...quants9]
+    
+    var quants = []; Array.prototype.push.apply(quants, quants0); 
+    Array.prototype.push.apply(quants, quants1); Array.prototype.push.apply(quants, quants2); Array.prototype.push.apply(quants, quants3); 
+    Array.prototype.push.apply(quants, quants4); Array.prototype.push.apply(quants, quants5);  Array.prototype.push.apply(quants, quants6);
+    Array.prototype.push.apply(quants, quants7); Array.prototype.push.apply(quants, quants8);  Array.prototype.push.apply(quants, quants9);
     
     var table0 = "<tr style='border-bottom: thin solid'><td style='border-right: thin solid'>$\\text{Class}$</td>";
     
@@ -4659,7 +4639,6 @@ function calcscatt(){
     document.getElementById("descriptiontext").innerHTML = "A scatter diagram is a graph summarizing data for two quantitative variables."
     document.getElementById("formulatext").innerHTML = "Draw a point on the graph for each pair of x and y values."
     document.getElementById("explanationtext").innerHTML = "The scatter diagram will indicate whether there is a positive, negative or no relationship between x and y."
-    $("#myCanvas").show();
     var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
@@ -4762,7 +4741,6 @@ function calctrend(){
     document.getElementById("descriptiontext").innerHTML = "A trendline provides an approximation of the relationship between x and y."
     document.getElementById("formulatext").innerHTML = "$$\\hat{y} = b_{0} + b_{1} x$$"
     document.getElementById("explanationtext").innerHTML = "The equation of the trendline is estimated using the least squares method from simple regression."
-    $("#myCanvas").show();
     var str = document.getElementById("values1").value;
     var str2 = document.getElementById("values2").value;
     var each = str.split(","); var each2 = str2.split(",")
@@ -4854,7 +4832,6 @@ function timeplot() {
 function calctime() {
     $("#explanation").show(); $("#charts").show();
     document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
-    $("#myCanvas").show();
     var str2 = document.getElementById("values").value;
     var each2 = str2.split(",")
     var Y = each2.map(function(v) {

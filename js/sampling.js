@@ -398,12 +398,12 @@ function conint1(){
     
 
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
+        document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
         } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x})  &= "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) = " + parseFloat(stderr2.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) = " + parseFloat(stderr2.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
         }
         
     }
@@ -433,12 +433,12 @@ function conint2(){
     }
     
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(4)) + "  $$ $$ \\text{"+ form + "} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(4)) + "  $$ $$ \\text{"+ form + "} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(4)) + " $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr.toFixed(4)) + " $$ $$ \\text{"+ form + "} $$ "
         } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p})  &= "+ prptn +" \\end{align}$$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr2.toFixed(4)) + "  $$ $$ \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + parseFloat(stderr2.toFixed(4)) + "  $$ $$ \\text{"+ form + "} $$ "
         }
         
     }
