@@ -1,7 +1,6 @@
 $("#next").hide();
 
-//rand0 = Math.floor(Math.random() * 5) + 1;
-rand0 = 1;
+rand0 = Math.floor(Math.random() * 5) + 1;
 
 if (rand0 == 1) {
     question1()
@@ -79,11 +78,7 @@ function next() {
 
 function question1() {
     question = 1; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. Suppose that $\\sum{x} = 50$ and the sample size is $n=10$. What is the sample mean $\\bar{x}$?"
-    document.getElementById("ansa").innerHTML = "1"
-    document.getElementById("ansb").innerHTML = "5"
-    document.getElementById("ansc").innerHTML = "10"
-    document.getElementById("ansd").innerHTML = "50"
+    document.getElementById("output").innerHTML = "Suppose that $\\sum{x} = 50$ and the sample size is $n=10$. What is the sample mean $\\bar{x}$?"
     MathJax.typeset();
 }
 
@@ -103,7 +98,7 @@ function wrong1() {
 
 function question2() {
     question = 2; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. A sample with an even number of values has middle values 14 and 16. What is the median?"
+    document.getElementById("output").innerHTML = "A sample with an even number of values has middle values 14 and 16. What is the median?"
     MathJax.typeset();
 }
 
@@ -123,7 +118,7 @@ function wrong2() {
 
 function question3() {
     question = 3; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. A sample has values 6, 3, 7, 4, 3. What is the mode?"
+    document.getElementById("output").innerHTML = "A sample has values 6, 3, 7, 4, 3. What is the mode?"
     MathJax.typeset();
 }
 
@@ -143,7 +138,7 @@ function wrong3() {
 
 function question4() {
     question = 4; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose the index for the 25th percentile is 1.25. What is the sample size?"
+    document.getElementById("output").innerHTML = "Suppose the index for the 25th percentile is 1.25. What is the sample size?"
     MathJax.typeset();
 }
 
@@ -163,7 +158,7 @@ function wrong4() {
 
 function question5() {
     question = 5; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose the index for the 3rd quartile is 4.5. What is the sample size?"
+    document.getElementById("output").innerHTML = "Suppose the index for the 3rd quartile is 4.5. What is the sample size?"
     MathJax.typeset();
 }
 
@@ -183,7 +178,7 @@ function wrong5() {
 
 function question6() {
     question = 6; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. Suppose a sample, with a maximum of 21, has a range of 11. What is the minimum?"
+    document.getElementById("output").innerHTML = "Suppose a sample, with a maximum of 21, has a range of 11. What is the minimum?"
     MathJax.typeset();
 }
 
@@ -203,7 +198,7 @@ function wrong6() {
 
 function question6() {
     question = 6; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. Suppose a sample, with a maximum of 21, has a range of 11. What is the minimum?"
+    document.getElementById("output").innerHTML = "Suppose a sample, with a maximum of 21, has a range of 11. What is the minimum?"
     MathJax.typeset();
 }
 
