@@ -1,4 +1,16 @@
-$("#next").hide();
+$("#next").hide(); $("#hint").hide();
+hintval = 1
+
+function showhint() {
+    if (hintval==1) {
+        $("#hint").show();
+        hintval = 2
+    } else if (hintval==2) {
+        $("#hint").hide();
+        hintval = 1
+    }
+    
+}
 
 rand0 = Math.floor(Math.random() * 5) + 1;
 
@@ -19,7 +31,7 @@ if (rand0 == 1) {
 function solve() {
     var x = document.getElementById("ans").value
     if (question == 1) {
-        if (x == "10") {
+        if (x == "5") {
             correct1()
         } else {
             wrong1()
@@ -37,7 +49,7 @@ function solve() {
             wrong3()
         }
     } else if (question == 4) {
-        if (x == "5") {
+        if (x == "2") {
             correct4()
         } else {
             wrong4()
@@ -79,80 +91,81 @@ function next() {
 function question1() {
     question = 1; document.getElementById("ans").value = ""
     document.getElementById("output").innerHTML = "Suppose that $\\sum{x} = 50$ and the sample size is $n=10$. What is the sample mean $\\bar{x}$?"
+    document.getElementById("hint").innerHTML = "$ \\bar{x} = \\dfrac{\\sum x}{n} $"
     MathJax.typeset();
 }
 
 function correct1() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ \\bar{x} = \\dfrac{\\sum x}{n} \\rightarrow \\dfrac{50}{n} = 5 $"
+    document.getElementById("output4").innerHTML = "$ \\bar{x} = \\dfrac{\\sum x}{n} = \\dfrac{50}{10} = 5 $"
     MathJax.typeset();
 }
 
 function wrong1() {
-    $("#output2").hide(); $("#output3").show(); 
+    var ans = document.getElementById("ans").value
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: $ \\bar{x} = \\dfrac{\\sum x}{n} $"
+    document.getElementById("output4").innerHTML = "$ \\bar{x} = \\dfrac{\\sum x}{n} = \\dfrac{50}{10} \\neq "+ans+" $"
     MathJax.typeset();
 }
 
 function question2() {
     question = 2; document.getElementById("ans").value = ""
     document.getElementById("output").innerHTML = "A sample with an even number of values has middle values 14 and 16. What is the median?"
+    document.getElementById("hint").innerHTML = "When there's an even number of values,<br> median = average of two middle values"
     MathJax.typeset();
 }
 
 function correct2() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ \\text{Median} = \\dfrac{14+16}{2} = \\boxed{15} $"
+    document.getElementById("output4").innerHTML = "median $ = \\dfrac{\\sum x}{n} = \\dfrac{50}{10} = 5 $"
     MathJax.typeset();
 }
 
 function wrong2() {
-    $("#output2").hide(); $("#output3").show(); 
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: When there are an even number of values, the median is the average of the two middle values."
+    document.getElementById("output4").innerHTML = "$ \\bar{x} = \\dfrac{\\sum x}{n} = \\dfrac{50}{10} = 5 $"
     MathJax.typeset();
 }
 
 function question3() {
     question = 3; document.getElementById("ans").value = ""
     document.getElementById("output").innerHTML = "A sample has values 6, 3, 7, 4, 3. What is the mode?"
+    document.getElementById("hint").innerHTML = "Mode = value that occurs with highest frequency"
     MathJax.typeset();
 }
 
 function correct3() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ \\text{Mode} = \\boxed{3} $"
     MathJax.typeset();
 }
 
 function wrong3() {
-    $("#output2").hide(); $("#output3").show(); 
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: The mode is the value that occurs with the highest frequency."
     MathJax.typeset();
 }
 
 function question4() {
     question = 4; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Suppose the index for the 25th percentile is 1.25. What is the sample size?"
+    document.getElementById("output").innerHTML = "Suppose that the sample size is $n=10$. What is the index for the $20$th percentile?"
+    document.getElementById("hint").innerHTML = "$i=\\left(\\dfrac{p}{100}\\right)n$"
     MathJax.typeset();
 }
 
 function correct4() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$i=\\dfrac{p}{100}n$"
     MathJax.typeset();
 }
 
 function wrong4() {
-    $("#output2").hide(); $("#output3").show(); 
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: $i=\\dfrac{p}{100}n$"
     MathJax.typeset();
 }
 
@@ -163,16 +176,14 @@ function question5() {
 }
 
 function correct5() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$i=\\dfrac{75}{100}n$"
     MathJax.typeset();
 }
 
 function wrong5() {
-    $("#output2").hide(); $("#output3").show(); 
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: $i=\\dfrac{75}{100}n$"
     MathJax.typeset();
 }
 
@@ -183,35 +194,31 @@ function question6() {
 }
 
 function correct6() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$i=\\dfrac{75}{100}n$"
     MathJax.typeset();
 }
 
 function wrong6() {
-    $("#output2").hide(); $("#output3").show(); 
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: $i=\\dfrac{75}{100}n$"
     MathJax.typeset();
 }
 
-function question6() {
-    question = 6; document.getElementById("ans").value = ""
+function question7() {
+    question = 7; document.getElementById("ans").value = ""
     document.getElementById("output").innerHTML = "Suppose a sample, with a maximum of 21, has a range of 11. What is the minimum?"
     MathJax.typeset();
 }
 
-function correct6() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); 
+function correct7() {
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$i=\\dfrac{75}{100}n$"
     MathJax.typeset();
 }
 
-function wrong6() {
-    $("#output2").hide(); $("#output3").show(); 
+function wrong7() {
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output3").innerHTML = "Wrong"
-    document.getElementById("output4").innerHTML = "Hint: $i=\\dfrac{75}{100}n$"
     MathJax.typeset();
 }
