@@ -1,6 +1,6 @@
 $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#explanation").hide(); $("#label2").hide(); $("#label3").hide();
 
-$("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); $("#weights").hide(); $("#holt").hide();
+$("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); $("#weights").hide(); $("#holt").hide(); $("#581773186").hide();
 
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
@@ -104,7 +104,7 @@ function showweights(){
 }
 
 function stat(){
-    $("#explanation").hide();
+    $("#explanation").hide(); $("#581773186").show();
     $("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();

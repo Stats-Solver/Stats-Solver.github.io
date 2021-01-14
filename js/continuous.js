@@ -17,7 +17,7 @@ $("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide(); $
 
 $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide(); $("#chidistribution").hide();
 
-$("#myCanvas0").hide();
+$("#myCanvas0").hide(); $("#581773186").hide();
 
 normaltype = "probability"
 snormaltype = "probability"
@@ -216,7 +216,7 @@ function showstuff(){
 }
 
 function stat(){
-    $("#output").empty(); 
+    $("#output").empty(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         compuniform()

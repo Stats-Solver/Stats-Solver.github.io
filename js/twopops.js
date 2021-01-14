@@ -2,7 +2,7 @@ $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();$("#switch
 $("#xbar1s").hide(); $("#pbar1s").hide(); $("#samplestat1").show(); $("#myCanvas2").hide(); $("#myCanvas3").hide();
 $("#proportionzero").hide();$("#hypothesis").hide();$("#datainput").hide(); $("#valuesinput").show(); 
 $("#datainput2").hide(); $("#valuesinput2").show(); inputtype = "values"; inputtype2 = "values"
-$("#matchedmu").hide(); $("#matchedmu2").hide();  $("#matchedinput").hide(); 
+$("#matchedmu").hide(); $("#matchedmu2").hide();  $("#matchedinput").hide(); $("#581773186").hide();
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -430,6 +430,7 @@ function tinv(p, dof) {
 }
 
 function conint(){
+    $("#581773186").show();
     $("#myCanvas2").hide(); $("#output3").hide();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
@@ -749,7 +750,7 @@ function conint2(){
 
 
 function hyptest(){
-    $("#myCanvas2").show(); $("#output3").show();
+    $("#myCanvas2").show(); $("#output3").show(); $("#581773186").show();
     var x = document.getElementById("parameter1").value;
     if (x == "mean"){
         hyptest1()

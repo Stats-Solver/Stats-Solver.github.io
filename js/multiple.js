@@ -1,7 +1,7 @@
 $("#explanation").hide(); $("#meansquare").hide(); $("#standarderror").hide(); $("#predict").hide();
 $("#plus3").hide(); $("#b3").hide(); $("#x3").hide(); $("#plus4").hide(); $("#b4").hide(); $("#x4").hide();
 $("#three2two").hide(); $("#three2four").hide(); $("#four2three").hide();
-$("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide()
+$("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide(); $("#581773186").hide();
 
 $("#switchvalues").hide(); $("#switchdata").show(); $("#valuesinput").show(); $("#datainput").hide();
 
@@ -110,6 +110,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#581773186").show();
     $("#output").empty(); $("#explanation").hide(); 
     $("#meansquare").hide(); $("#standarderror").hide();
     var x = document.getElementById("stat").value;

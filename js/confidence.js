@@ -3,7 +3,7 @@ $("#expconf").hide();
 $("#switchconfidence").hide(); $("#switchsize").show();
 $("#samplesize").hide(); $("#confidence").show(); 
 $("#datainput").hide(); $("#valuesinput").show();
-$("#canvascontainer0").hide(); 
+$("#canvascontainer0").hide();  $("#581773186").hide();
 
 type = "values"
 
@@ -300,6 +300,7 @@ function tinv(p, dof) {
 }
 
 function solve(){
+     $("#581773186").show();
     if (type == "values") {
         conint()
     } else if (type == "data") {

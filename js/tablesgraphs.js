@@ -3,7 +3,7 @@ $("#firstclass").hide(); $("#label2").hide();
 $("#firstclasscross").hide(); $("#label4").hide();
 
 $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
-$("#trendline").hide(); $("#notrendline").hide(); 
+$("#trendline").hide(); $("#notrendline").hide(); $("#581773186").hide();
 
 $('.popover-dismiss').popover({
   trigger: 'focus'
@@ -134,6 +134,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#581773186").show();
     $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
     $("#trendline").hide(); $("#notrendline").hide(); 
     $("#explanation").hide(); $("#charts").hide();

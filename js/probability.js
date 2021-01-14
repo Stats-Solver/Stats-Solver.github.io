@@ -7,7 +7,7 @@ $("#times").hide(); $("#blankspace").show(); $("#events").hide();
 $("#combinationexamples").hide(); $("#permutationexamples").hide();  $("#complementexamples").hide(); $("#unionexamples").hide();
 $("#intersectionexamples").hide(); $("#conditionalexamples").hide();  $("#bayesexamples").hide(); $("#experiments").show();
 
-$("#samplespace").hide(); $("#numberoutcomes").hide(); $("#probabilityevent").hide();
+$("#samplespace").hide(); $("#numberoutcomes").hide(); $("#probabilityevent").hide(); $("#581773186").hide();
 
 $("#zero").hide(); $("#probtype1a").hide(); $("#bayesrow3").hide();
 
@@ -162,6 +162,7 @@ function showstuff(){
 }
 
 function stat(){
+    $("#581773186").show();
     $("#output").empty();  $("#myCanvas").hide(); $("#output2").hide();
     var x = document.getElementById("stat").value;
     if (x == "outcomes"){

@@ -5,7 +5,7 @@ $("#meanoptions").hide(); $("#vsccoptions").hide(); $("#vsoptions").hide(); $("#
 $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide(); $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
 $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide(); 
 $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-$("#grouped").hide(); $("#label5").hide();
+$("#grouped").hide(); $("#label5").hide(); $("#581773186").hide();
 
 grouprows = 3;
 
@@ -113,7 +113,7 @@ function showthings(){
 }
 
 function stat(){
-    $("#explanation").hide();
+    $("#explanation").hide(); $("#581773186").show();
     //$("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();

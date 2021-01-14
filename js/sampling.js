@@ -8,7 +8,7 @@ solvetype = "distribution"
 
 $("#calcprob").hide(); $("#probxbar").hide(); $("#probpbar").hide(); $("#calcprob2").hide();
 
-$("#up").hide(); $("#down").show();
+$("#up").hide(); $("#down").show(); $("#581773186").hide();
 
 $("#enterfrequencies").hide(); 
 $("#spacefd").hide(); $("#fd").hide(); $("#equalfd").hide(); $("#valuefd").hide();
@@ -351,7 +351,7 @@ function calcprob2() {
 
 
 function conint(){
-    $("#calcprob").show();
+    $("#calcprob").show(); $("#581773186").show();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
         if (type == "distribution"){
@@ -1023,7 +1023,7 @@ function avg(input){
 
 
 function stat(){
-    $("#output").empty();
+    $("#output").empty(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "mean"){
         calcmean()

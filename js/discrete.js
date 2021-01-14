@@ -24,6 +24,7 @@ $("#probswitch").hide(); $("#explanation").hide();
 $("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
 $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
 
+$("#581773186").hide();
 
 
 frequencytype = "probability"
@@ -165,7 +166,7 @@ function showstuff(){
 }
 
 function stat(){
-    $("#output").empty(); $("#myCanvas").hide();
+    $("#output").empty(); $("#myCanvas").hide(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "probabilities"){
         compprobabilities()

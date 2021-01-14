@@ -1,6 +1,6 @@
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();$("#greatert").hide(); $("#notequalt").hide();
 $("#typeexamples").hide(); $("#hypexamples").show(); $("#switchhypothesis").hide(); $("#switchtype").show();
-$("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide();
+$("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide(); $("#581773186").hide();
 
 type = "hypothesis"
 inputtype = "values"
@@ -420,6 +420,7 @@ function tinv(p, dof) {
 }
 
 function solve() {
+    $("#581773186").show();
     if (type == "hypothesis") {
         hyptest()
     } else if (type == "type2error") {

@@ -16,7 +16,7 @@ $("#rowsfive2four").hide(); $("#rowsfive2six").hide(); $("#rowssix2five").hide()
 $("#colstwo2three").hide(); $("#colsfour2five").hide(); $("#colsfive2six").hide();
 $("#colsfour2three").hide(); $("#colsfive2four").hide(); $("#colssix2five").hide();
 $("#blankrowq").hide(); $("#blankrowr").hide(); $("#blankrows").hide(); $("#blankrowt").hide();
-$("#myCanvas3").hide(); $("#myCanvas4").hide();
+$("#myCanvas3").hide(); $("#myCanvas4").hide(); $("#581773186").hide();
 categories = 3; indcols = 3; indrows = 2;
 
 $(function () {
@@ -419,6 +419,7 @@ function colssix2five() {
 
 
 function stat() {
+    $("#581773186").show();
     var chidist = [[0,0,0,0,0],[2.706,3.841,5.024,6.635,7.879],[4.605,5.991,7.378,9.210,10.597],[6.251,7.815,9.210,10.597],[7.779,9.448,11.143,13.277,14.860],[9.236,11.070,12.832,15.086,16.750]]
     var pa = document.getElementById("valuepa").value; var fa = document.getElementById("valuefa").value
     var pb = document.getElementById("valuepb").value; var fb = document.getElementById("valuefb").value

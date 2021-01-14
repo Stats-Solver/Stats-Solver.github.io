@@ -1,6 +1,7 @@
 $("#explanation").hide(); $("#sumsquares").hide(); $("#meansquares").hide(); $("#standarderror").hide(); $("#predict").hide();
 $("#xval").hide(); $("#prediction").hide(); $("#prediction2").hide(); $("#alternative").hide(); $("#alternative2").hide();
 $("#correlation").hide(); $("#correlation2").hide(); $("#xpval").hide(); $("#level").hide(); $("#residtype").hide(); $("#charts").hide();
+$("#581773186").hide();
 
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
@@ -326,6 +327,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#581773186").show();
     $("#output").empty(); $("#explanation").hide(); $("#prediction").hide(); $("#prediction2").hide();
     $("#meansquare").hide(); $("#standarderror").hide(); $("#alternative").hide(); $("#alternative2").hide();
     $("#correlation").hide(); $("#correlation2").hide(); $("#output2").hide(); $("#myCanvas").hide(); $("#charts").hide();

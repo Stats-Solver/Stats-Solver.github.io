@@ -2,6 +2,7 @@ $("#values").hide(); $("#enterstats").hide();$("#switchconfidence").hide(); $("#
 $("#samplesize").hide(); $("#confidence").show();$("#hypothesis").hide(); $("#confidence").show();
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide(); $("#myCanvas1").hide(); $("#myCanvas2").hide();
 $("#datainput").hide(); $("#valuesinput").show(); $("#datainput2").hide(); $("#valuesinput2").show(); $("#parameter3").hide(); 
+$("#581773186").hide();
 type = "values"; type2 = "values"
 
 $(function () {
@@ -397,6 +398,7 @@ function tinv(p, dof) {
 
 
 function conint(){
+    $("#581773186").show();
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
     var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
     var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
@@ -608,7 +610,7 @@ function conint(){
 
 
 function hyp(){
-    
+    $("#581773186").show();
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
     var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
     var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
