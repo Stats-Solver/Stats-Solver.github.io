@@ -138,7 +138,7 @@ function next() {
 
 function question1() {
     question = 1; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. Suppose that $\\sum{x} = 50$ and the sample size is $n=10$. What is the sample mean $\\bar{x}$?"
+    document.getElementById("output").innerHTML = "Suppose that $\\sum{x} = 50$ and the sample size is $n=10$. What is the sample mean $\\bar{x}$?"
     document.getElementById("hint").innerHTML = "$ \\bar{x} = \\dfrac{\\sum x}{n} $"
     MathJax.typeset();
 }
@@ -160,7 +160,7 @@ function wrong1() {
 
 function question2() {
     question = 2; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. A sample with an even number of values has middle values 14 and 16. What is the median?"
+    document.getElementById("output").innerHTML = "A sample with an even number of values has middle values 14 and 16. What is the median?"
     document.getElementById("hint").innerHTML = "When there's an even number of values,<br> median = average of two middle values"
     MathJax.typeset();
 }
@@ -182,7 +182,7 @@ function wrong2() {
 
 function question3() {
     question = 3; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. A sample has values 6, 3, 7, 4, 3. What is the mode?"
+    document.getElementById("output").innerHTML = "A sample has values 6, 3, 7, 4, 3. What is the mode?"
     document.getElementById("hint").innerHTML = "Mode = value that occurs with highest frequency"
     MathJax.typeset();
 }
@@ -204,7 +204,7 @@ function wrong3() {
 
 function question4() {
     question = 4; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. Suppose that the sample size is $n=10$. What is the index for the $20$th percentile?"
+    document.getElementById("output").innerHTML = "Suppose that the sample size is $n=10$. What is the index for the $20$th percentile?"
     document.getElementById("hint").innerHTML = "$i=\\left(\\dfrac{p}{100}\\right)n$"
     MathJax.typeset();
 }
@@ -226,7 +226,7 @@ function wrong4() {
 
 function question5() {
     question = 5; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "1. A sample with an odd number of values has middle values 24, 27, 31. What is the median?"
+    document.getElementById("output").innerHTML = "A sample with an odd number of values has middle values 24, 27, 31. What is the median?"
     document.getElementById("hint").innerHTML = "When there are an odd number of values,<br> median = middle value"
     MathJax.typeset();
 }
@@ -257,7 +257,7 @@ function wrong5() {
 
 function question6() {
     question = 6; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose a sample has a maximum value of 21 and a minimum value of 10. What is the range?"
+    document.getElementById("output").innerHTML = "Suppose a sample has a maximum value of 21 and a minimum value of 10. What is the range?"
     document.getElementById("hint").innerHTML = "$ \\text{Range} = \\text{Largest Value} - \\text{Smallest Value} $"
     MathJax.typeset();
 }
@@ -279,7 +279,7 @@ function wrong6() {
 
 function question7() {
     question = 7; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose a sample has a third quartile of 7 and a first quartile of 2. What is the interquartile range?"
+    document.getElementById("output").innerHTML = "Suppose a sample has a third quartile of 7 and a first quartile of 2. What is the interquartile range?"
     MathJax.typeset();
 }
 
@@ -298,7 +298,7 @@ function wrong7() {
 
 function question8() {
     question = 8; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose that $\\sum(x-\\bar{x})^2 = 50$ and the sample size is $n = 6$. What is the sample variance?"
+    document.getElementById("output").innerHTML = "Suppose that $\\sum(x-\\bar{x})^2 = 50$ and the sample size is $n = 6$. What is the sample variance?"
     document.getElementById("hint").innerHTML = "$s^2=\\dfrac{\\sum\\left( x - \\bar{x}\\right)^2}{n-1}$"
     MathJax.typeset();
 }
@@ -320,7 +320,7 @@ function wrong8() {
 
 function question9() {
     question = 9; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose the sample variance is 81. What is the sample standard deviation?"
+    document.getElementById("output").innerHTML = "Suppose the sample variance is 81. What is the sample standard deviation?"
     document.getElementById("hint").innerHTML = "$s=\\sqrt{s^2}$"
     MathJax.typeset();
 }
@@ -342,7 +342,7 @@ function wrong9() {
 
 function question10() {
     question = 10; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "2. Suppose a sample has a third quartile of 7 and a first quartile of 2. What is the interquartile range?"
+    document.getElementById("output").innerHTML = "Suppose a sample has a third quartile of 7 and a first quartile of 2. What is the interquartile range?"
     document.getElementById("hint").innerHTML = "$\\text{IQR} = Q_3 - Q_1$"
     MathJax.typeset();
 }
@@ -372,7 +372,7 @@ function wrong10() {
 
 function question11() {
     question = 11; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. Suppose the sample mean is $\\bar{x}=5$ and the sample standard deviation is $s=2$. What is the z-score for an x value of $9$?"
+    document.getElementById("output").innerHTML = "Suppose the sample mean is $\\bar{x}=5$ and the sample standard deviation is $s=2$. What is the z-score for an x value of $9$?"
     document.getElementById("hint").innerHTML = "$ z = \\dfrac{x-\\bar{x}}{s} $"
     MathJax.typeset();
 }
@@ -394,7 +394,7 @@ function wrong11() {
 
 function question12() {
     question = 12; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. According to Chevbyshev's Theorem, at least what percent of values must be between 2 stanndard deviations of the mean?"
+    document.getElementById("output").innerHTML = "According to Chevbyshev's Theorem, at least what percent of values must be between 2 stanndard deviations of the mean?"
     MathJax.typeset();
 }
 
@@ -413,7 +413,7 @@ function wrong12() {
 
 function question13() {
     question = 13; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. Suppose that $\\sum(x-\\bar{x})^2 = 50$ and the sample size is $n = 6$. What is the sample variance?"
+    document.getElementById("output").innerHTML = "Suppose that $\\sum(x-\\bar{x})^2 = 50$ and the sample size is $n = 6$. What is the sample variance?"
     document.getElementById("hint").innerHTML = "$s^2=\\dfrac{\\sum\\left( x - \\bar{x}\\right)^2}{n-1}$"
     MathJax.typeset();
 }
@@ -435,7 +435,7 @@ function wrong13() {
 
 function question14() {
     question = 14; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. Suppose the sample variance is 81. What is the sample standard deviation?"
+    document.getElementById("output").innerHTML = "Suppose the sample variance is 81. What is the sample standard deviation?"
     document.getElementById("hint").innerHTML = "$s=\\sqrt{s^2}$"
     MathJax.typeset();
 }
@@ -457,7 +457,7 @@ function wrong14() {
 
 function question15() {
     question = 15; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "3. Suppose a sample has a third quartile of 7 and a first quartile of 2. What is the interquartile range?"
+    document.getElementById("output").innerHTML = "Suppose a sample has a third quartile of 7 and a first quartile of 2. What is the interquartile range?"
     document.getElementById("hint").innerHTML = "$\\text{IQR} = Q_3 - Q_1$"
     MathJax.typeset();
 }
