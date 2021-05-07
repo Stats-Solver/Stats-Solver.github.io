@@ -206,34 +206,10 @@ function next() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Summarizing Qualitative Data
-
-
-
-
-
-
-
-
-
-
 function question1() {
     rand1 = .1*Math.floor(Math.random() * 4) + .1;
     question = 1; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x = 20$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>1</td><td>0.15</td></tr><tr><td>2</td><td>"+rand1.toFixed(2)+"</td></tr><tr><td>3</td><td>"+(.5-rand1).toFixed(2)+"</td></tr><tr><td>4</td><td>0.35</td></tr></table>"
+    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x = 20$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>$1$</td><td>$0.15$</td></tr><tr><td>$2$</td><td>$"+rand1.toFixed(2)+"$</td></tr><tr><td>$3$</td><td>$"+(.5-rand1).toFixed(2)+"$</td></tr><tr><td>$4$</td><td>$0.35$</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ P(x=x_0) = f(x_0) $"
     MathJax.typeset();
 }
@@ -256,7 +232,7 @@ function wrong1() {
 function question2() {
     rand2 = .1*Math.floor(Math.random() * 4) + .1;
     question = 2; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x$ is less than or equal to $2$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>1</td><td>0.15</td></tr><tr><td>2</td><td>"+rand2.toFixed(2)+"</td></tr><tr><td>3</td><td>"+(.5-rand2).toFixed(2)+"</td></tr><tr><td>4</td><td>0.35</td></tr></table>"
+    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x$ is less than or equal to $2$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>$1$</td><td>$0.15$</td></tr><tr><td>$2$</td><td>$"+rand2.toFixed(2)+"$</td></tr><tr><td>$3$</td><td>$"+(.5-rand2).toFixed(2)+"$</td></tr><tr><td>$4$</td><td>$0.35$</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ P(x=x_0) = f(x_0) $"
     MathJax.typeset();
 }
@@ -264,7 +240,7 @@ function question2() {
 function correct2() {
     $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();  
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ P(x \\leq 2) = f(1) + f(2) = 0.15 + "+Math.round(rand2*10)/10+" = "+Math.round((.15 + rand2)*100)/100+"$"
+    document.getElementById("output4").innerHTML = "$\\begin{align} P(x \\leq 2) &= f(1) + f(2) \\\\ &= 0.15 + "+Math.round(rand2*10)/10+" \\\\ &= "+Math.round((.15 + rand2)*100)/100+" \\end{align} $"
     MathJax.typeset();
 }
 
@@ -272,14 +248,14 @@ function wrong2() {
     var ans = document.getElementById("ans").value
     $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();  
     document.getElementById("output3").innerHTML = "Wrong - Try Again"
-    document.getElementById("output4").innerHTML = "$ P(x \\leq 2) = f(1) + f(2) = 0.15 + "+Math.round(rand2*10)/10+" \\neq "+ans+"$"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} P(x \\leq 2) &= f(1) + f(2) \\\\ &= 0.15 + "+Math.round(rand2*10)/10+" \\neq "+ans+" \\end{align} $"
     MathJax.typeset();
 }
 
 function question3() {
     rand3 = .1*Math.floor(Math.random() * 4) + .1;
     question = 3; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x$ is greater than $2$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>1</td><td>0.15</td></tr><tr><td>2</td><td>"+rand3.toFixed(2)+"</td></tr><tr><td>3</td><td>"+(.5-rand3).toFixed(2)+"</td></tr><tr><td>4</td><td>0.35</td></tr></table>"
+    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x$ is greater than $2$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>$1$</td><td>$0.15$</td></tr><tr><td>$2$</td><td>$"+rand3.toFixed(2)+"$</td></tr><tr><td>$3$</td><td>$"+(.5-rand3).toFixed(2)+"$</td></tr><tr><td>$4$</td><td>$0.35$</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ P(x=x_0) = f(x_0)$"
     MathJax.typeset();
 }
@@ -287,7 +263,7 @@ function question3() {
 function correct3() {
     $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ P(x > 2) = f(3) + f(4) = "+Math.round((.5-rand3)*10)/10+" + 0.35 = "+Math.round((.35+.5-rand3)*10)/10+"$"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} P(x > 2) &= f(3) + f(4) \\\\ &= "+Math.round((.5-rand3)*10)/10+" + 0.35 \\\\ &= "+Math.round((.35+.5-rand3)*10)/10+" \\end{align} $"
     MathJax.typeset();
 }
 
@@ -295,14 +271,14 @@ function wrong3() {
     var ans = document.getElementById("ans").value
     $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output3").innerHTML = "Wrong - Try Again"
-    document.getElementById("output4").innerHTML = "$ P(x > 2) = f(3) + f(4) = "+Math.round((.5-rand3)*10)/10+" + 0.35 \\neq "+ans+"$"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} P(x > 2) &= f(3) + f(4) \\\\ &= "+Math.round((.5-rand3)*10)/10+" + 0.35 \\neq "+ans+" \\end{align} $"
     MathJax.typeset();
 }
 
 function question4() {
     rand4 = .1*Math.floor(Math.random() * 4) + .4;
     question = 4; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the table shown below. What is the expected value of x? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr><tr><td>10</td><td>0.20</td><td>2</td></tr><tr><td>20</td><td>"+rand4.toFixed(2)+"</td><td>"+Math.round(rand4*20)+"</td></tr><tr><td>30</td><td>"+(.8-rand4).toFixed(2)+"</td><td>"+Math.round((.8-rand4)*30)+"</td></tr></table>"
+    document.getElementById("output").innerHTML = "Consider the table shown below. What is the expected value of x? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr><tr><td>$10$</td><td>$0.20$</td><td>$2$</td></tr><tr><td>$20$</td><td>$"+rand4.toFixed(2)+"$</td><td>$"+Math.round(rand4*20)+"$</td></tr><tr><td>$30$</td><td>$"+(.8-rand4).toFixed(2)+"$</td><td>$"+Math.round((.8-rand4)*30)+"$</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ E(x) = \\sum{xf(x)} $"
     MathJax.typeset();
 }
@@ -310,7 +286,7 @@ function question4() {
 function correct4() {
     $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ E(x) = \\sum{xf(x)} = 2 + "+Math.round(rand4*20)+" + "+Math.round((.8-rand4)*30)+" = "+Math.round(2 + rand4*20 + (.8-rand4)*30)+" $"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} E(x) &= \\sum{xf(x)} \\\\ &= 2 + "+Math.round(rand4*20)+" + "+Math.round((.8-rand4)*30)+" \\\\ &= "+Math.round(2 + rand4*20 + (.8-rand4)*30)+" \\end{align} $"
     MathJax.typeset();
 }
 
@@ -318,7 +294,7 @@ function wrong4() {
     var ans = document.getElementById("ans").value
     $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output3").innerHTML = "Wrong - Try Again"
-    document.getElementById("output4").innerHTML = "$ E(x) = \\sum{xf(x)} = 2 + "+Math.round(rand4*20)+" + "+Math.round((.8-rand4)*30)+" \\neq "+ans+" $"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} E(x) &= \\sum{xf(x)} \\\\ &= 2 + "+Math.round(rand4*20)+" + "+Math.round((.8-rand4)*30)+" \\neq "+ans+" \\end{align} $"
     MathJax.typeset();
 }
 
@@ -326,7 +302,7 @@ function question5() {
     rand5 = Math.floor(Math.random() * 4) + 1;
     var exp = .2*(5*rand5) + .6*(10*rand5) + .2*(15*rand5)
     question = 5; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the table shown below. What is the variance of $x$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr><tr><td>"+(5*rand5)+"</td><td>0.20</td><td>"+(5*rand5-exp).toFixed(0)+"</td><td>"+Math.pow(5*rand5-exp,2).toFixed(0)+"</td><td>"+(Math.pow(5*rand5-exp,2)*.2).toFixed(0)+"</td></tr><tr><td>"+(10*rand5)+"</td><td>0.60</td><td>"+(10*rand5-exp).toFixed(0)+"</td><td>"+Math.pow(10*rand5-exp,2).toFixed(0)+"</td><td>"+(Math.pow(10*rand5-exp,2)*.6).toFixed(0)+"</td></tr><tr><td>"+(15*rand5)+"</td><td>0.20</td><td>"+(15*rand5-exp).toFixed(0)+"</td><td>"+Math.pow(15*rand5-exp,2).toFixed(0)+"</td><td>"+(Math.pow(15*rand5-exp,2)*.2).toFixed(0)+"</td></tr></table>"
+    document.getElementById("output").innerHTML = "Consider the table shown below. What is the variance of $x$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr><tr><td>$"+(5*rand5)+"$</td><td>$0.20$</td><td>$"+(5*rand5-exp).toFixed(0)+"$</td><td>$"+Math.pow(5*rand5-exp,2).toFixed(0)+"$</td><td>$"+(Math.pow(5*rand5-exp,2)*.2).toFixed(0)+"$</td></tr><tr><td>$"+(10*rand5)+"$</td><td>$0.60$</td><td>$"+(10*rand5-exp).toFixed(0)+"$</td><td>$"+Math.pow(10*rand5-exp,2).toFixed(0)+"$</td><td>$"+(Math.pow(10*rand5-exp,2)*.6).toFixed(0)+"$</td></tr><tr><td>$"+(15*rand5)+"$</td><td>$0.20$</td><td>$"+(15*rand5-exp).toFixed(0)+"$</td><td>$"+Math.pow(15*rand5-exp,2).toFixed(0)+"$</td><td>$"+(Math.pow(15*rand5-exp,2)*.2).toFixed(0)+"$</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ Var(x) = \\sum{(x-\\mu)^2f(x)} $"
     MathJax.typeset();
 }
@@ -335,7 +311,7 @@ function correct5() {
     var exp = .2*(5*rand5) + .6*(10*rand5) + .2*(15*rand5)
     $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ Var(x) = \\sum{(x-\\mu)^2f(x)} = "+(Math.pow(5*rand5-exp,2)*.2).toFixed(0)+" + "+(Math.pow(10*rand5-exp,2)*.6).toFixed(0)+" + "+(Math.pow(15*rand5-exp,2)*.2).toFixed(0)+" = "+(Math.pow(5*rand5-exp,2)*.2 + Math.pow(10*rand5-exp,2)*.6 + Math.pow(15*rand5-exp,2)*.2).toFixed(0)+" $"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} Var(x) &= \\sum{(x-\\mu)^2f(x)} \\\\ &= "+(Math.pow(5*rand5-exp,2)*.2).toFixed(0)+" + "+(Math.pow(10*rand5-exp,2)*.6).toFixed(0)+" + "+(Math.pow(15*rand5-exp,2)*.2).toFixed(0)+" \\\\ &= "+(Math.pow(5*rand5-exp,2)*.2 + Math.pow(10*rand5-exp,2)*.6 + Math.pow(15*rand5-exp,2)*.2).toFixed(0)+" \\end{align} $"
     MathJax.typeset();
 }
 
@@ -344,7 +320,7 @@ function wrong5() {
     var ans = document.getElementById("ans").value
     $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output3").innerHTML = "Wrong - Try Again"
-    document.getElementById("output4").innerHTML = "$ Var(x) = \\sum{(x-\\mu)^2f(x)} = "+(Math.pow(5*rand5-exp,2)*.2).toFixed(0)+" + "+(Math.pow(10*rand5-exp,2)*.6).toFixed(0)+" + "+(Math.pow(15*rand5-exp,2)*.2).toFixed(0)+" \\neq "+ans+" $"
+    document.getElementById("output4").innerHTML = "$ \\begin{align} Var(x) &= \\sum{(x-\\mu)^2f(x)} \\\\ &= "+(Math.pow(5*rand5-exp,2)*.2).toFixed(0)+" + "+(Math.pow(10*rand5-exp,2)*.6).toFixed(0)+" + "+(Math.pow(15*rand5-exp,2)*.2).toFixed(0)+" \\neq "+ans+" \\end{align} $"
     MathJax.typeset();
 }
 
