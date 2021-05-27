@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Hypothesis testing calculator with steps. Solve the test statistic, p-value and critical value.">
+    <meta name="description" content="Population variances calculator with steps.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -30,9 +30,11 @@
             };
         </script>  
       
-    <title>Hypothesis Testing Calculator - Stats Solver</title>
+    <title>Population Variances Calculator - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
+      
+      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       
                 <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
@@ -43,17 +45,16 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
+      
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
-      
-     <script type="text/javascript">
+    <script type="text/javascript">
     window._mNHandle = window._mNHandle || {};
     window._mNHandle.queue = window._mNHandle.queue || [];
     medianet_versionId = "3121199";
 </script>
 <script src="https://contextual.media.net/dmedianet.js?cid=8CU4R757V" async="async"></script>
 
-      
       
   </head>
   <body>
@@ -66,27 +67,30 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
+          <!--<li class="nav-item">
+            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
+          </li>-->
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Statistics Calculators
+             Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="probability-basics.html">Probability Basics</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-populations.html">Two Populations</a>
-              <a class="dropdown-item" href="population-variances.html">Population Variances</a>
-              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
-              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
-              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
-              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
+              <a class="dropdown-item" href="tables-and-graphs-calculator.html">Tables and Graphs</a>
+              <a class="dropdown-item" href="numerical-summaries-calculator.html">Numerical Summaries</a>
+              <a class="dropdown-item" href="probability-basics-calculator.html">Probability Basics</a>
+              <a class="dropdown-item" href="discrete-distributions-calculator.html">Discrete Distributions</a>
+              <a class="dropdown-item" href="continuous-distributions-calculator.html">Continuous Distributions</a>
+              <a class="dropdown-item" href="sampling-distributions-calculator.html">Sampling Distributions</a>
+              <a class="dropdown-item" href="confidence-intervals-calculator.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="hypothesis-testing-calculator.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="two-populations-calculator.html">Two Populations</a>
+              <a class="dropdown-item" href="population-variances-calculator.html">Population Variances</a>
+              <a class="dropdown-item" href="goodness-of-fit-calculator.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance-calculator.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="simple-regression-calculator.html">Simple Regression</a>
+              <a class="dropdown-item" href="multiple-regression-calculator.html">Multiple Regression</a>
+              <a class="dropdown-item" href="time-series-analysis-calculator.html">Time Series Analysis</a>
             </div>
           </li>
             <li class="nav-item dropdown">
@@ -116,52 +120,34 @@
           </li>
         </ul>
       </div>
-
     </nav>
           </div>
     
       
     <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="hypothesis-testing.html">Hypothesis Testing Calculator</a></h1>
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="population-variances-calculator.html">Population Variances Calculator</a></h1>
     </div>
       
       <div class="container">
       <hr>
           </div>
       
-      
-      
-      <div class="container" id="hypothesis">
+      <div class="container" id = "confidence">
           
-        <table>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
-            <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td> 
-            <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""></td>
-          </tr>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
-            <td class="statistics"> <span id = "parameter2">&mu;</span></td>
-            <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
-            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">&mu;₀</span></td>
-          </tr>
-        </table>
+          <div class = "container" id = "confidencetitle">
+            <h5 class="text-center text-primary mb-3">Confidence Interval</h5>
+        </div>
           
-          <div id="valuesinput">
-          <table class = "mt-2">
+          <div id = "valuesinput">
+        <table id="statistics">
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
             <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><span id = "samplestat">$\bar{x}$</span></td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat" class="hypinput1" style="width:33px;"> <option value="standard"> s </option> <option value="variance"> s² </option> </select></td>
             <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
-            <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
-            <td class="statistics" id="sd2"> = </td>
-            <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
+            <td class="statistics"><input type="text" style="width:50px;" id="samplestatval" class="hypinput2"></td>
             <td class="statistics"></td>
             <td class="statistics">
             <svg onclick="switchdata()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -171,12 +157,12 @@
             </td>
           </tr>
         </table> 
-          </div>
+            </div>
           
-          <div class="container center mt-2" id="datainput">      
-             <table class = "mt-2">
+          <div class="container center" id="datainput">
+           <table>
           <tr>
-            <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values"  size="30"> </td>
+            <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values" size="20"> </td>
             <td class="statistics"></td>
             <td class="statistics">
                 <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -188,126 +174,162 @@
         </table>  
         </div>
           
-          <table class = "mt-2">
+          <div class = "text-center mt-2">
+          $\text{Confidence Level:}$ <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> %
+        </div>
+          
+          
+          <!--<div class = "text-center mt-2">
+          Confidence Interval of <select id="confor" class="hypinput1"> <option value="variance"> &sigma;² </option> <option value="standard"> &sigma; </option> </select>
+        </div>-->
+
+          
+          <div class="container center">
+          <div class="row justify-content-center">
+        <div class = "col-4 col-md-2 text-center mt-2">
+            <button id = "conint" class="button btn-outline-primary" onclick="conint()">Solve</button>
+        </div>
+              </div>
+              </div>
+          
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+        </div>
+          
+          </div> 
+      
+      <div class="container" id = "hypothesis">
+          
+          <div class = "container" id = "hypothesistitle">
+            <h5 class="text-center text-primary mb-3">Hypothesis Testing</h5>
+        </div>
+          
+        <table class = "mb-2">
           <tr>
-            <td class="statistics">$ \text{Level of Significance: } $</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
+            <td class="statistics"><select id="parameter" class="hypinput1" onchange="sigmaswitch()" style="width:35px;"> <option value="sigma"> &sigma;² </option> <option value="sigma1"> &sigma;₁² </option> </select></td> 
+            <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""><span id = "parameter3">&sigma;₂²</span></td>
+          </tr>
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
+            <td class="statistics"> <span id = "parameter2">&sigma;²</span></td>
+            <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
+            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">&sigma;₀²</span></td>
+          </tr>
+        </table> 
+          
+          <div id = "valuesinput2">
+          <table class = "mb-2">
+          <tr>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="size2" class="hypinput2"></td>
+            <td class="statistics">&nbsp;</td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat2" class="hypinput1" style="width:33px;"> <option value="standard"> s </option> <option value="variance"> s² </option> </select></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
+            <td class="statistics"></td>
+            <td class="statistics">
+            <svg onclick="switchdata2()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            </td>
+          </tr>
+        </table> 
+            </div>
+          
+          <div class="container center" id="datainput2">
+           <table class = "mb-2">
+          <tr>
+            <td class="statistics"> <input type="text" class="form-control" id="xvalues2" placeholder="Enter Values" size="20"> </td>
+            <td class="statistics"></td>
+            <td class="statistics">
+                <svg onclick="switchvalues2()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+                  <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+                </svg>
+            </td>
+          </tr>
+        </table>  
+        </div>
+          
+          <table>
+          <tr>
+            <td class="statistics">$\text{Level of Significance: }$</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
             <td class="statistics"> = </td>
             <td class="statistics" style="text-align:left"><select id="alpha" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
           </tr>
         </table> 
           
-          
-          
-          </div>
- 
-      <div class="container" id="type2error">
-        <div class = "container">
-            <h5 class="text-center text-primary mb-3">Type II Error</h5>
-        </div>
-        <table>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
-            <td class="statistics">$\mu$</td> 
-            <td class="statistics"> <select id="tailt" class="hypinput1" onchange="tailsignst()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknott" class="hypinput2" oninput="muknotvalt()" placeholder=""></td>
-
-          </tr>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
-            <td class="statistics"> $\mu$</td>
-            <td class="statistics"> <span id = "lesst"> < </span> <span id = "greatert"> > </span> <span id = "notequalt"> &ne; </span></td>
-            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvaluet">$\mu_0$</span></td>
-          </tr>
-        </table>  
-          
-          <table class = "mt-2">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="sizet" class="hypinput2"></td>
-            <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Population Standard Deviation" id="sd1t"> &#963; </td>
-            <td class="statistics" id="sd2t"> = </td>
-            <td class="statistics" id="sd3t"><input type="text" style="width:50px;" id="stdevt" class="hypinput2"></td>
-            <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Population Mean"><span id = "samplestat">$\mu$</span></td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="mut" class="hypinput2"></td>
-          </tr>
-        </table>
-          
-          <table class = "mt-2">
-          <tr>
-            <td class="statistics">$\text{Level of Significance: }$</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics" style="text-align:left"><select id="alphat" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
-          </tr>
-        </table>
-          </div>
-
           <div class="container center">
           <div class="row justify-content-center">
         <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "hyptest" class="button btn-outline-primary" onclick="solve()">Solve</button>
+            <button id = "hyptest" class="button btn-outline-primary" onclick="hyp()">Solve</button>
             <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
               <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
         </div>
           </div>
               </div>
-      
-      <div class = "text-center mt-2" id = "hypexamples">
-            <span class="examplelink" onclick="example1()">Example 1</span>  &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+          
+          <div class = "text-center mt-2">
+            <span class="examplelink" onclick="example3()">Example 1</span> &bull; <span class="examplelink" onclick="example4()">Example 2</span>
         </div>
-      
-      <div class = "text-center mt-2" id = "typeexamples">
-            <span class="examplelink" onclick="example3()">Example 1</span>  &bull; <span class="examplelink" onclick="example4()">Example 2</span>
-        </div>
-      
-      
+          
+          </div>
       
     <div class="container">
       <hr>
           </div>
-
-      <div id = "hypoutputs">
+      
+      <div class="container">
+        <div id="output">
+        </div>
+      </div>
       
      <div class="container">
-        <div id="output1" class="output">
+        <div id="output1">
         </div>
       </div>
       
-      <div class="container text-center">
-      <canvas id="myCanvas1" width="375" height="188" ></canvas>
+      <div class="container text-center" id="canvascontainer">
+        <canvas id="myCanvas" width="375" height="188"></canvas>
       </div>
       
       <div class="container">
-        <div id="output2" class="output">
+        <div id="output2">
         </div>
       </div>
       
-      <div class="container text-center">
-      <canvas id="myCanvas2" width="375" height="188" ></canvas>
+      
+      
+      
+      <div class="container mb">
+        <div id="output3">
+        </div>
+      </div>
+      
+      <div class="container text-center" id="canvascontainer2">
+        <canvas id="myCanvas1" width="375" height="188"></canvas>
       </div>
       
       <div class="container">
-        <div id="output3" class="output">
+        <div id="output4">
         </div>
       </div>
       
+      <div class="container text-center" id="canvascontainer3">
+        <canvas id="myCanvas2" width="375" height="188"></canvas>
+      </div>
+      
+      <div class="container">
+        <div id="output5">
+        </div>
       </div>
 
-      <div id = "typeoutputs">
       
-      <div class="container">
-        <div id="output4" class="output">
-        </div>
-      </div>
-      
-      
-      </div>
-
       <div id="581773186" class="text-center">
     <script type="text/javascript">
         try {
@@ -321,8 +343,8 @@
       
           <footer id="footer">
               <div class="container">
-                  <span class="examplelink" onclick="switchtype()" id="switchtype">Type II Error</span>
                   <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Hypothesis Testing</span>
+                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Confidence Interval</span>
                 <hr>
             </div>
           <p> 
@@ -331,12 +353,14 @@
               </p>
           </footer>
       
-    <!--<div style = "height: 400px"></div>-->
+      
+    <!--  style="border:1px solid #d3d3d3;"-->
+    <!-- <div style = "height: 400px"></div>-->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script src="/js/hypothesism.js"></script>
+      <script src="/js/variancesm.js"></script>
   </body>
 </html>
