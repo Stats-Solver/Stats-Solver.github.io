@@ -209,7 +209,7 @@ function next() {
 function question1() {
     rand1 = .1*Math.floor(Math.random() * 4) + .1;
     question = 1; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x = 20$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>$1$</td><td>$0.15$</td></tr><tr><td>$2$</td><td>$"+rand1.toFixed(2)+"$</td></tr><tr><td>$3$</td><td>$"+(.5-rand1).toFixed(2)+"$</td></tr><tr><td>$4$</td><td>$0.35$</td></tr></table>"
+    document.getElementById("output").innerHTML = "Consider the probablity distribution shown below. What is the probability that $x$ is equal to $2$? <br><table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr><tr><td>$1$</td><td>$0.15$</td></tr><tr><td>$2$</td><td>$"+rand1.toFixed(2)+"$</td></tr><tr><td>$3$</td><td>$"+(.5-rand1).toFixed(2)+"$</td></tr><tr><td>$4$</td><td>$0.35$</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ P(x=x_0) = f(x_0) $"
     MathJax.typeset();
 }
