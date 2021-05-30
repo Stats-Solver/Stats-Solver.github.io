@@ -72,16 +72,16 @@
               Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="probability-basics.html">Probability Basics</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-populations.html">Two Populations</a>
-              <a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <a class="dropdown-item" href="two-population.html">Two Population</a>
+              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
               <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
               <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
@@ -94,21 +94,21 @@
             Practice
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="practice/tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="practice/numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="practice/probability-basics.html">Probability Basics</a>
-              <a class="dropdown-item" href="practice/discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="practice/continuous-distributions.html">Continuous Distributions</a>
-              <!--<a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="practice/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="practice/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="practice/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="practice/continuous-distribution.html">Continuous Distribution</a>
+              <!--<a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-populations.html">Two Populations</a>
-              <a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <a class="dropdown-item" href="two-population.html">Two Population</a>
+              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
               <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
               <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
-              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>-->
+              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> -->
             </div>
           </li>
             <li class="nav-item">
@@ -271,8 +271,38 @@
       <hr>
           </div>
 
-      <div id = "hypoutputs">
+      <div class="container" id="how">
+        <div id="how1" class="output" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            The first step in a hypothesis test is to calculate the test statistic. For hypothesis tests about the population mean, if the population standard deviation is known, the test statistic is $ z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $. However, if the population standard deviation is unknown, the test statistic is $ t = \frac{\bar{x}-\mu_0}{s/\sqrt{n}} $. And for hypothesis tests about the population proportion, the test statistic is $ z = \frac{\bar{p}-p_0}{\sigma/\sqrt{n}} $. Then, the test statistic is used to conduct the test using either the p-value approach or critical value approach. 
+            <br><br>
+            <!--$\qquad \qquad \qquad \qquad \qquad \qquad \text{Lower Tail Test} \qquad \qquad \text{Upper Tail Test} \qquad \qquad \text{Two-Tailed Test}$<br>
+            $\qquad \qquad \qquad \qquad \qquad \qquad H_0: \mu \geq \mu_0 \qquad \qquad \qquad H_0: \mu \leq \mu_0 \qquad \qquad \qquad H_0: \mu = \mu_0 $<br>
+            $\qquad \qquad \qquad \qquad \qquad \qquad H_a: \mu < \mu_0 \qquad \qquad \qquad H_a: \mu > \mu_0 \qquad \qquad \qquad H_a: \mu \neq \mu_0 $
+            <br><br>
+            Note: To switch from hypothesis tests about the population mean to the population proportion, click on $\boxed{\mu}$ in the Hypothesis Testing Calculator. To switch from population standard deviation known to the population standard deviation unknown, click on $\boxed{\sigma}$. 
+            <br><br>-->
+            In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic less than or equal to the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic greater than or equal to the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample.
+            <br><br>
+            <!--Note: To switch from a lower tail test to upper tail or two-tailed, click on $\boxed{\geq}$.
+            <br><br>-->
+            To test the hypothesis in the p-value approach, compare the p-value to the level of signigicance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of signifance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test.
+            <br><br>
+            <!--Note: To change the level of significance from .05 to .01 or .1, click on $\boxed{.05}$.
+            <br><br>-->
+            In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper-tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.
+            <br><br>
+            To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.
+            
+            
+        </div>
+      </div>
       
+      <div id = "hypoutputs">
+
      <div class="container">
         <div id="output1" class="output">
         </div>
