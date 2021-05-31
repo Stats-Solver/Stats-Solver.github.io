@@ -3,6 +3,9 @@ $("#typeexamples").hide(); $("#hypexamples").show(); $("#switchhypothesis").hide
 $("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide(); $("#581773186").hide();
 $("#hypoutputs").hide();
 
+how1(); how2(); how3(); 
+how4(); how5(); how6();
+
 type = "hypothesis"
 inputtype = "values"
 
@@ -70,6 +73,511 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas3");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas4");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas5");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas6");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+function how1(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 103);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",25,105);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",68,145);
+    
+        ctx.fillText("Lower Tail Test",120,10);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+}
+
+function how2(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",240,100);
+
+
+            ctx.fillText("z",285,132);
+            ctx.fillText("z",228,145);
+        var points = []
+        
+        ctx.fillText("Upper Tail Test",120,10);
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+}
+
+function how3(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        }
+
+        var c = document.getElementById("howCanvas3");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 103);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("p-value",25,105);
+        ctx.fillText("p-value",245,105);
+
+            ctx.fillText("z",285,132);
+            ctx.fillText("-z",66,145);
+            ctx.fillText("z",226,145);
+        
+        ctx.fillText("Two-Tailed Test",115,10);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function how4(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas4");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 103);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("α",40,105);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("-z",65,145);
+        ctx.fillText("α",74,146);
+    
+        ctx.fillText("Lower Tail Test",120,10);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+}
+
+function how5(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas5");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("α",255,105);
+
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",227,145);
+        ctx.fillText("α",233,146);
+        
+        var points = []
+        
+        ctx.fillText("Upper Tail Test",120,10);
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+}
+
+function how6(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        }
+
+        var c = document.getElementById("howCanvas6");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(70, 103);
+        ctx.lineTo(70, 130);
+        ctx.lineTo(21, 130);
+        ctx.lineTo(21, 118);
+        ctx.quadraticCurveTo(40, 120, 70, 103);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+        
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(70, 135);
+        ctx.lineTo(70, 125);
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("α/2",35,105);
+        ctx.fillText("α/2",255,105);
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("-z",65,145);
+        ctx.fillText("α/2",74,146);
+        ctx.fillText("z",228,145);
+        ctx.fillText("α/2",234,146);
+        
+        ctx.fillText("Two-Tailed Test",115,10);
+
+        var points = []
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function parameter() {
     var x = document.getElementById("parameter1").value;
