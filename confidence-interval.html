@@ -30,7 +30,7 @@
             };
         </script>  
       
-    <title>Confidence Interval Calculator - Stats Solver</title>
+    <title>Confidence Interval Calculator with Steps - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -73,16 +73,16 @@
               Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="probability-basics.html">Probability Basics</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
+              <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="-basic-probability.html">Probability Basic</a>
+              <a class="dropdown-item" href="discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-populations.html">Two Populations</a>
-              <a class="dropdown-item" href="population-variances.html">Population Variances</a>
+              <a class="dropdown-item" href="two-population.html">Two Population</a>
+              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
               <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
               <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
@@ -244,17 +244,84 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic that corresponds to the population parameter we are constructing a confidence interval for. So if we're constructing a confidence interval of the population mean, we use the sample mean. If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ in the Confidence Interval Calculator.
+            A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So if we're constructing a confidence interval for the population mean ($\mu$), we use the sample mean ($\bar{x}$). The confidence interval is created by adding and subtracting the margin of error from the point estimate.
             <br><br>
-            The first step in computing the margin of error is to set 1 - $\alpha$ equal to the confidence coefficient. The confidence coefficient is simply the decimal form of the confidence level. So for example, if the confidence level is 95%, the confidence coefficient is .95. The next step is to solve for $\alpha/2$. So continuing with our example, we would have 1 - $\alpha$ = .95 and find the value of $\alpha/2$ to be .025. The most commonly used confidence level is 95% while 90% and 99% are also popular. To channge the confidence level from 95% to 90% or 99%, click on $\boxed{95\%}$.
+            <table style="width:100%">
+              <tr>
+                <td>Confidence Interval = $\bar{x}$ $\pm$ Margin of Error </td>
+              </tr>
+            </table>
+            <br>
+            Since the sample mean is easy to calculate, the focus will be on finding the margin of error. The formula we use to compute the margin of error depends on whether the population standard deviation ($\sigma$) is known or unknown. If $\sigma$ is known, the margin of error is given by $z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. The use of $z$ in this formula indicates the use of the $z$-distribution. If $\sigma$ is unknown, we replace the $z$-distribution with the $t$-distribution and $\sigma$ with the sample standard deviation ($s$). This gives us $t_{\alpha/2} \frac{s}{\sqrt{n}}$. To change from $\sigma$ known to $\sigma$ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Confidence Interval Calculator.
             <br><br>
-            The next step depends on whether the population standard deviation ($\sigma$) is known or unknown. If it's known, we find the z-value that provides an area of $\alpha/2$ in the upper tail of the standard normal (z) distribution. If it's unknown, we find the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is knnown and we're using the z distribution, it is useful to calculate the area to the left
-            
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>Population Mean:<br>$\sigma$ Known</td>
+                <td>Population Mean:<br>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Margin of Error</td>  
+                <td>$ z_{\alpha/2} \dfrac{\sigma}{\sqrt{n}} $</td>
+                <td>$ t_{\alpha/2} \dfrac{s}{\sqrt{n}} $</td>
+              </tr>
+            </table>
+            <br>
+            In order to find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $), we must first find the value of $\alpha/2$. We start by setting 1 - $\alpha$ equal to the confidence coefficient. The confidence coefficient is simply the decimal form of the confidence level. So for example, if the confidence level is 95%, the confidence coefficient is .95. The next step is to solve for $\alpha/2$. So continuing with our example, we would have 1 - $\alpha$ = .95 and find the value of $\alpha/2$ to be .025. The most commonly used confidence level is 95% while 90% and 99% are also popular. To change the confidence level from 95% to 90% or 99%, click on $\boxed{95\%}$ and select $\boxed{90\%}$ or $\boxed{99\%}$, respectively.
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td>Confidence Level</td>
+                <td>90%</td>
+                <td>95%</td>
+                <td>99%</td>
+              </tr>
+              <tr>
+                <td>Confidence Coefficient</td>
+                <td>.90</td>
+                <td>.95</td>
+                <td>.99</td>
+              </tr>
+              <tr>
+                <td>$\alpha/2$</td>
+                <td>.05</td>
+                <td>.025</td>
+                <td>.005</td>
+              </tr>
+            </table>
+            <br>
+            Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $). We can get $ z_{\alpha/2} $ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the z-distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1).
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="300" height="150"></canvas></td>
+                <td><canvas id="howCanvas2" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            Finally, we can put the point estimate and margin of error together to make the confidence interval. If $\sigma$ is known, the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If $\sigma$ is unknown, the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level.
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>Population Mean:<br>$\sigma$ Known</td>
+                <td>Population Mean:<br>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Confidence Interval</td>  
+                <td>$ \bar{x} \pm z_{\alpha/2} \dfrac{\sigma}{\sqrt{n}} $</td>
+                <td>$ \bar{x} \pm t_{\alpha/2} \dfrac{s}{\sqrt{n}} $</td>
+              </tr>
+            </table>
+            <br>
+            If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.
+            <br><br>
             
         </div>
       </div>
       
       
+    <div id="confoutputs">
       <div class="container">
         <div id="output0">
         </div>
@@ -283,6 +350,8 @@
         <div id="output2">
         </div>
       </div>
+        
+        </div>
       
         <div id="581773186" class="text-center">
             <script type="text/javascript">

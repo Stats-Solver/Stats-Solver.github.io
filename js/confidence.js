@@ -4,6 +4,9 @@ $("#switchconfidence").hide(); $("#switchsize").show();
 $("#samplesize").hide(); $("#confidence").show(); 
 $("#datainput").hide(); $("#valuesinput").show();
 $("#canvascontainer0").hide();  $("#581773186").hide();
+$("#confoutputs").hide();
+
+how1(); how2(); 
 
 type = "values"
 
@@ -18,6 +21,188 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+
+
+
+
+
+
+
+function how1(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("α/2",250,105);
+
+
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",228,145);
+        ctx.fillText("α/2",233,146);
+        var points = []
+        
+        ctx.fillText("σ Known",130,10);
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    
+}
+
+
+function how2(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas2");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(230, 100);
+        ctx.lineTo(230, 130);
+        ctx.lineTo(279, 130);
+        ctx.lineTo(279, 118);
+        ctx.quadraticCurveTo(260, 120, 230, 100);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(230, 135);
+        ctx.lineTo(230, 125);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+        ctx.fillText("α/2",250,105);
+
+
+        ctx.fillText("t",285,132);
+        ctx.fillText("t",228,145);
+        ctx.fillText("α/2",233,146);
+        var points = []
+        
+        ctx.fillText("σ Unknown",125,10);
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function sum(input){
              
@@ -300,6 +485,7 @@ function tinv(p, dof) {
 }
 
 function solve(){
+    $("#confoutputs").show(); $("#how").hide();
      $("#581773186").show();
     if (type == "values") {
         conint()
