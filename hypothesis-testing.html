@@ -277,25 +277,76 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            The first step in a hypothesis test is to calculate the test statistic. For hypothesis tests about the population mean, if the population standard deviation is known, the test statistic is $ z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $. However, if the population standard deviation is unknown, the test statistic is $ t = \frac{\bar{x}-\mu_0}{s/\sqrt{n}} $. And for hypothesis tests about the population proportion, the test statistic is $ z = \frac{\bar{p}-p_0}{\sigma/\sqrt{n}} $. Then, the test statistic is used to conduct the test using either the p-value approach or critical value approach. 
+            The first step in hypothesis testing is to calculate the test statistic. For hypothesis tests about the population mean, the test statistic is $ z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $ if the population standard deviation ($\sigma$) is known and $ t = \frac{\bar{x}-\mu_0}{s/\sqrt{n}} $ if $\sigma$ is unknown. Note that the test statistic is written either as $z$ or $t$, indicating whether you need to use the $z$-distribution or $t$-distribution. To switch from population standard deviation known to the population standard deviation unknown, click on $\boxed{\sigma}$ in the Hypothesis Testing Calculator. 
             <br><br>
-            <!--$\qquad \qquad \qquad \qquad \qquad \qquad \text{Lower Tail Test} \qquad \qquad \text{Upper Tail Test} \qquad \qquad \text{Two-Tailed Test}$<br>
-            $\qquad \qquad \qquad \qquad \qquad \qquad H_0: \mu \geq \mu_0 \qquad \qquad \qquad H_0: \mu \leq \mu_0 \qquad \qquad \qquad H_0: \mu = \mu_0 $<br>
-            $\qquad \qquad \qquad \qquad \qquad \qquad H_a: \mu < \mu_0 \qquad \qquad \qquad H_a: \mu > \mu_0 \qquad \qquad \qquad H_a: \mu \neq \mu_0 $
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>Population Mean:<br>$\sigma$ Known</td>
+                <td>Population Mean:<br>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Test Statistic</th>  
+                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $</td>
+                <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
+              </tr>
+            </table>
+            <br>
+            Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test. That is, whether it is a lower tail, upper tail or two-tailed test. The form of the hypothesis test can easily be identified by looking at the alternative hypothesis ($H_a$). If there is a less than sign in the alternative then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to upper tail or two-tailed, click on $\boxed{\geq}$.
             <br><br>
-            Note: To switch from hypothesis tests about the population mean to the population proportion, click on $\boxed{\mu}$ in the Hypothesis Testing Calculator. To switch from population standard deviation known to the population standard deviation unknown, click on $\boxed{\sigma}$. 
-            <br><br>-->
-            In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic less than or equal to the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic greater than or equal to the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample.
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td>$H_0: \mu \geq \mu_0$</td>
+                <td>$H_0: \mu \leq \mu_0$</td>
+                <td>$H_0: \mu = \mu_0$</td>
+              </tr>
+              <tr>
+                <td>$H_a: \mu < \mu_0$</td>
+                <td>$H_a: \mu > \mu_0$</td>
+                <td>$H_a: \mu \neq \mu_0$</td>
+              </tr>
+            </table>
+            <br>
+            In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic less than or equal to the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic greater than or equal to the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. 
+            <br>
+            <!--<canvas id="howCanvas1" width="375" height="188" ></canvas>-->
+            <br>
+            To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance from .05 to .01 or .1, click on $\boxed{.05}$.
             <br><br>
-            <!--Note: To switch from a lower tail test to upper tail or two-tailed, click on $\boxed{\geq}$.
-            <br><br>-->
-            To test the hypothesis in the p-value approach, compare the p-value to the level of signigicance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of signifance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test.
-            <br><br>
-            <!--Note: To change the level of significance from .05 to .01 or .1, click on $\boxed{.05}$.
-            <br><br>-->
+            <table style="width:100%">
+              <tr>
+                <td>If p-value $\leq \alpha$, reject $H_0$. </td>
+              </tr>
+            </table>
+            <br>
             In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper-tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.
             <br><br>
             To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.
+            <br>
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td>If $z \leq -z_\alpha$, reject $H_0$.</td>
+                <td>If $z \geq z_\alpha$, reject $H_0$.</td>
+                <td>If $z \leq -z_{\alpha/2}$ or $z \geq z_{\alpha/2}$, reject $H_0$.</td>
+              </tr>
+              <tr>
+                <td>If $t \leq -t_\alpha$, reject $H_0$.</td>
+                <td>If $t \geq t_\alpha$, reject $H_0$.</td>
+                <td>If $t \leq -t_{\alpha/2}$ or $t \geq t_{\alpha/2}$, reject $H_0$.</td>
+              </tr>
+            </table>
+          <br>
+          For hypothesis tests about the population proportion, the test statistic is $ z = \frac{\bar{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} $. To switch from hypothesis tests about the population mean to the population proportion, click on $\boxed{\mu}$. 
             
             
         </div>
