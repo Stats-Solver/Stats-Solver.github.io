@@ -6,6 +6,10 @@ $("#probabilitiesxbar").hide(); $("#probabilitiespbar").hide();
 $("#finitepopsize1").hide(); $("#finitepopsize2").hide(); $("#finitepopsize3").hide(); $("#finitepopsize4").hide();
 solvetype = "distribution"
 
+$("#sampoutputs").hide();
+
+how1();
+
 $("#calcprob").hide(); $("#probxbar").hide(); $("#probpbar").hide(); $("#calcprob2").hide();
 
 $("#up").hide(); $("#down").show(); $("#581773186").hide();
@@ -30,6 +34,81 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+
+
+
+
+
+
+
+
+
+function how1(){
+        var exp = 2.71828;
+        var f = [];
+        var i;
+        for (i = 0; i < 60; i++) {
+          var j = (i-30)/10
+          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        }
+
+        var c = document.getElementById("howCanvas1");
+        var ctx = c.getContext("2d");
+        ctx.clearRect(0, 0, 300, 150);
+
+        ctx.strokeStyle = 'black';
+        ctx.fillStyle = "black";
+
+        ctx.beginPath();
+        ctx.moveTo(20, 130);
+        ctx.lineTo(280, 130);
+
+
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("μ",148,145);
+
+
+        ctx.fillText("x̄",285,132);
+        var points = []
+        
+
+        for (i = 0; i < 60; i++) {
+          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+            }
+
+            // move to the first point
+           ctx.moveTo(points[0].x, points[0].y);
+
+           for (i = 1; i < points.length - 2; i ++)
+           {
+              var xc = (points[i].x + points[i + 1].x) / 2;
+              var yc = (points[i].y + points[i + 1].y) / 2;
+              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+           }
+         // curve through the last two points
+         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
+
+        ctx.stroke();
+    
+}
+
+
+
+
+
+
+
+
+
+
+
 
 function toFixing(num, fixed) {
     var re = new RegExp('^-?\\d+(?:\.\\d{0,' + (fixed || -1) + '})?');
@@ -351,6 +430,7 @@ function calcprob2() {
 
 
 function conint(){
+    $("#sampoutputs").show(); $("#how").hide();
     $("#calcprob").show(); $("#581773186").show();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){

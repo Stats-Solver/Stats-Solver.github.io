@@ -330,6 +330,76 @@
           </div>
       
       
+      <div class="container" id="how">
+        <div id="how1" class="output" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            A sampling distribution is the probability distribution of a sample statistic. So, for example, the sampling distribution of the sample mean ($\bar{x}$) is the probability distribution of $\bar{x}$. There are three things we need to know to fully describe a probability distribution: the expected value, the standard deviation and the form of the distribution. First, the expected value of the sample mean is equal to the population mean ($\mu$).
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td>Expected Value: $E(\bar{x}) = \mu$ </td>
+              </tr>
+            </table>
+            <br>
+             Calculating of the standard deviation depends on whether we're sampling from a finite population or an infinite population. For a finite population, the standard deviation is given by $\sqrt{\frac{N-n}{N-1}}\left(\frac{\sigma}{N}\right)$. For an infinite population, the standard deviation is given by $\frac{\sigma}{N}$. To switch from an infinite population to a finite population, click on $\boxed{\text{Infinite}}$ and select $\boxed{\text{Finite}}$. You can then enter the population size ($N$).
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>Finite Population</td>
+                <td>Infinite Population</td>
+              </tr>
+              <tr>
+                <td>Standard Deviation</td>
+                <td>$\sigma_\bar{x} = \sqrt{\dfrac{N-n}{N-1}} \left(\dfrac{\sigma}{\sqrt{n}} \right) $</td>
+                <td>$\sigma_\bar{x} = \dfrac{\sigma}{\sqrt{n}} $ </td>
+              </tr>
+            </table>
+            <br>
+            Notice that the only difference in the formulas for the standard deviation of a finite population and an infinite population is the term $\sqrt{\frac{N-n}{N-1}}$. This is known as the finite population correction factor. Plugging in a large value for N and a relatively small value for n, we get a value close to 1 for the population correction factor. This allows us to use the following rule of thumb for the standard deviation of the sample mean.
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td>Use $\sigma_\bar{x} = \dfrac{\sigma}{\sqrt{n}} $ whenever</td>
+              </tr>
+              <tr>
+                <td>1. The population is infinite, or</td>
+              </tr>
+              <tr>
+                <td>2. The population is finite and n/N < .05</td>
+              </tr>
+            </table>
+            <br>
+            The form of the sampling distribution of the sample mean depends on the form of the population. If the population has a normal distribution, the sampling distribution of $\bar{x}$ is a normal distribution. If the population does not have a normal distribution, we must use the Central Limit Theorem. It says that as the sample size becomes large, the sampling distribution of $\bar{x}$ approximates a normal distribution.
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br><br>
+        </div>
+      </div>
+      
+      <!--
+      A sampling distribution is the probability distribution of a sample statistic. So, for example, the sampling distribution of the sample mean ($\bar{x}$) is the probability distribution of $\bar{x}$. The idea here is that random sampling is what is known in probability theory as an experiment. An experiment is any process that generates a set of outcomes. The outcome of the experiment of random sampling is the unique sample that is chosen. The sample mean describes the outcome of this experiment numerically, so it is what we call a random variable. And random variables have probability distributions. 
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td>Sampling Distribution of $\bar{x}$ = Probability Distribution of $\bar{x}$ </td>
+              </tr>
+            </table>
+            <br>
+            There are three things we need to know to fully describe the sampling distribution of $\bar{x}$. These are the expected value, the standard deviation and the form of the distribution. The expected value of the sample mean is equal to the population mean ($E(\bar{x}) = \mu$). This can be understood in the following way. If we took the sample means from all of the possible different samples in a population, their average would be equal to the mean of the population.
+            <br><br>
+       The standard deviation of the sample mean ($\sigma_\bar{x}$) is commonly referred to as the standard error of the mean. This is to avoid confusing it with the the sample standard deviation.
+      -->
+      
+      <div id = "sampoutputs">
+      
       <div class="container">
         <div id="output">
         </div>
@@ -355,6 +425,8 @@
         <div id="output2">
         </div>
       </div>
+          
+     </div>
       
       
         <div id="581773186" class="text-center">
