@@ -147,10 +147,10 @@ function how1(){
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    ctx.moveTo(125, 130);
-    ctx.lineTo(125, 45);
-    ctx.lineTo(175, 45);
-    ctx.lineTo(175, 130);
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(150, 45);
+    ctx.lineTo(150, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
@@ -167,9 +167,9 @@ function how1(){
     ctx.fillText("f(x)",35,15);
     ctx.fillText("x",265,132);
     ctx.fillText("1",15,42);
-    ctx.fillText("30",12,55);
+    ctx.fillText("40",12,55);
     ctx.fillText("10",70,145);
-    ctx.fillText("40",220,145);
+    ctx.fillText("50",220,145);
     
     ctx.moveTo(10, 45);
     ctx.lineTo(25, 45);
@@ -185,13 +185,16 @@ function how1(){
     ctx.lineTo(225, 45);
     ctx.lineTo(225, 130);
     
-    ctx.moveTo(125, 135);
-    ctx.lineTo(125, 125);
-    ctx.fillText("20",120,145);
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("30",145,145);
     
-    ctx.moveTo(175, 135);
-    ctx.lineTo(175, 125);
-    ctx.fillText("30",170,145);
+    //ctx.fillText("20",110,40);
+    //ctx.fillText("1",160,82);
+    //ctx.fillText("40",157,95);
+    
+    //ctx.moveTo(155, 85);
+    //ctx.lineTo(170, 85); 
     
     ctx.stroke();
 }
@@ -329,6 +332,20 @@ function how3(){
 
 
 function how4(){
+    
+    var area = .10565
+    var z = NormSInv(area)
+    
+    var lessval = z
+    var lessvalz = 30+10*lessval
+    
+    
+
+    
+    
+    
+    
+    
     var exp = 2.71828;
 
     var f = [];
@@ -343,6 +360,44 @@ function how4(){
     ctx.clearRect(0, 0, 300, 150);
     
     
+    
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < lessvalz; i++) {
+      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*0, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    
+    
+    
+    
+    
+    
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
     
@@ -354,6 +409,19 @@ function how4(){
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
+    
+    
+    
+    
+    
+    
+    ctx.fillText("-1.25",10 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    
+    
     
     
     var points = []
@@ -386,6 +454,11 @@ function how4(){
 
 
 function how5(){
+    
+    var lessval = -1.25
+    var lessvalz = 30+10*lessval
+    var greaterval = .86
+    var greatervalz = 30+10*greaterval
     var exp = 2.71828;
 
     var f = [];
@@ -399,6 +472,35 @@ function how5(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    
+    ctx.lineTo(points0[i+1].x, 130);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
     
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
@@ -411,6 +513,14 @@ function how5(){
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
+    
+    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
+    ctx.fillText(greaterval,points0[i+1].x - 10,145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(points0[i+1].x, 135);
+    ctx.lineTo(points0[i+1].x, 125);
     
     
     var points = []
@@ -442,6 +552,9 @@ function how5(){
 
 
 function how6(){
+    
+    var lessval = .86
+    var lessvalz = 30+10*lessval
     var exp = 2.71828;
 
     var f = [];
@@ -455,6 +568,39 @@ function how6(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    var points0 = []
+    
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    
+    for (i = 0; i < lessvalz2; i++) {
+      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points0[0].x, points0[0].y);
+
+
+   for (i = 1; i < points0.length - 2; i ++)
+   {
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+   }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
     
@@ -466,6 +612,11 @@ function how6(){
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
+    
+    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
     
     
     var points = []
