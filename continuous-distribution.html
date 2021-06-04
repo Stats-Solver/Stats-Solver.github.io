@@ -585,6 +585,82 @@
       <hr>
           </div>
       
+      <div class="container" id="how">
+        <div id="how1" class="output" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            For a continuous probability distribution, probability is calculated by taking the area under the graph of the probability density function, written f(x). In some cases, the area can be found using a simple calculation, as in the uniform probability distriution. In other cases, f(x) is more complicated and it requires a table to get the area under the graph, as is typically done for the normal probability distribution. Sometimes the area is found using a formula, as in the exponential probaility distribution.
+            <br><br>
+            <table style="width:100%">
+            <tr>
+            <td>Probability = area under the graph of $f(x)$ </td>
+            </tr>
+            </table>
+            <br>
+            The simplest continuous probability distribution is the uniform probability distribution. The probability density function is given by $f(x)=\begin{cases} \frac{1}{b-a} \\ 0 \end{cases}$. The graph of this function is simply a rectangle, shown below. Then the area under the graph of f(x) is also going to be a rectangle, whose area can easily be calculated as length$\times$width. Furthermore, the expected value and variance of a uniform random variable can be calculated using $E(x)=\frac{a+b}{2}$ and $Var(x)=\frac{(b-a)^2}{12}$, respectively.
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            The most important continuous probability distribution is the normal probability distribution. Its graph is bell-shaped and is defined by its mean ($\mu$) and standard deviation ($\sigma$). Obviously, this is a much more complicated shape than in the uniform probability distribution. The area under it can't be calculated with a simple formula like length$\times$width. So, instead, we rely on the standard normal probability distribution to calculate probabilities for the normal probabilty distribution.
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas2" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            The standard normal probability distribution (or z distribution) is a normal probability distribution with a mean of 0 and a standard deviation of 1. There are three types of probabilities to know how to compute for the z distribution: (1) the probability that z will be less than or equal to a value, (2) the probability that z will be greater than or equal to a value and (3) the probability that z will be greater than or equal to a value. These probabilities all involve the use of the z distribution table (or z-table), a small portion of which is shown below.
+            <br><br>
+            <table style="width:100%">
+              <tr style='border-top: thin solid'>
+                <td style='border-right: thin solid'>z</td>
+                <td>.00</td>
+                <td>.01</td>
+                <td>.02</td>
+                <td>.03</td>
+                <td>.04</td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td style='border-right: thin solid'>0.0</td>
+                <td>.50000</td>
+                <td>.50399</td>
+                <td>.50798</td>
+                <td>.51197</td>
+                <td>.51595</td>
+              </tr>
+              <tr>
+                <td style='border-right: thin solid'>0.1</td>
+                <td>.53983</td>
+                <td>.54380</td>
+                <td>.54776</td>
+                <td>.55172</td>
+                <td>.55567</td>
+              </tr>
+              <tr>
+                <td style='border-right: thin solid'>0.2</td>
+                <td>.57926</td>
+                <td>.58317</td>
+                <td>.58706</td>
+                <td>.59095</td>
+                <td>.59483</td>
+              </tr>
+            </table>
+            <br>
+            The first type of probability can be found simply by looking up the z-value in the table. The second type of probability can be calculated by subtracting the table value for the smaller z-value from the table value for the larger z-value. The third type of probability can be calculated by subtracting the tasble value from the z-value from 1.
+            <br><br>
+            
+            
+      </div>
+      </div>
+      
+      
+      <div id = "contoutputs">
       <div class="container text-center">
         <canvas id="myCanvas0" width="375" height="188"></canvas>
       </div>
@@ -602,16 +678,9 @@
         <div id="output2">
         </div>
       </div>
+      </div>
       
-      
-      
-      <!--<div class="container text-center">
-        <div id="expconf" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
-        </div>
-      </div>-->
-      
-              <div id="581773186" class="text-center">
+      <div id="581773186" class="text-center">
             <script type="text/javascript">
                 try {
                     window._mNHandle.queue.push(function (){
@@ -621,6 +690,15 @@
                 catch (error) {}
             </script>
         </div>
+
+      
+      <!--<div class="container text-center">
+        <div id="expconf" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
+        </div>
+      </div>-->
+      
+              
       
           <footer id="footer">
               <div class="container">

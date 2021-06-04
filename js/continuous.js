@@ -19,6 +19,10 @@ $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide
 
 $("#myCanvas0").hide(); $("#581773186").hide();
 
+$("#contoutputs").hide();
+
+how1(); how2();
+
 normaltype = "probability"
 snormaltype = "probability"
 approxtype = "probability"
@@ -50,6 +54,136 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function how1(){
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    
+    
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1",15,42);
+    ctx.fillText("b-a",12,55);
+    ctx.fillText("a",72,145);
+    ctx.fillText("b",222,145);
+    
+    ctx.moveTo(10, 45);
+    ctx.lineTo(30, 45);
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    
+    ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+function how2(){
+    var exp = 2.71828;
+
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.fillText("x",285,132);
+    
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke(); 
+}
+
+
+
+
+
+
+
+
+
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
 	var T=1/(1+.2316419*Math.abs(X));
@@ -216,6 +350,7 @@ function showstuff(){
 }
 
 function stat(){
+    $("#contoutputs").show(); $("#how").hide();
     $("#output").empty(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
