@@ -599,23 +599,31 @@
             </tr>
             </table>
             <br>
-            The simplest continuous probability distribution is the uniform probability distribution. The probability density function is given by $f(x)=\begin{cases} \frac{1}{b-a} \\ 0 \end{cases}$. The graph of this function is simply a rectangle, shown below. Then the area under the graph of f(x) is also going to be a rectangle, whose area can easily be calculated as length$\times$width. Furthermore, the expected value and variance of a uniform random variable can be calculated using $E(x)=\frac{a+b}{2}$ and $Var(x)=\frac{(b-a)^2}{12}$, respectively.
+            The simplest continuous probability distribution is the uniform probability distribution. The probability density function is given by $f(x)=\begin{cases} \frac{1}{b-a} \\ 0 \end{cases}$. The graph of this function is simply a rectangle, shown below. Then the area under the graph of f(x) is also going to be a rectangle, whose area can easily be calculated as length$\times$width. So, for example, if x is uniformly distributed between 10 and 40, we have a = 10 and b = 40. The probability dennsity functionn will be given by $f(x)=\begin{cases} \frac{1}{30-10} \\ 0 \end{cases} =\begin{cases} \frac{1}{30} \\ 0 \end{cases}$. Then the probability that x will be between 20 and 30 will be $P(20 \leq x \leq 30)$ = length $\times$ width $ = 1/30 \times (30-20) = 10/30 = .33$.
             <br><br>
             <table style="width:100%">
               <tr>
-                <td><canvas id="howCanvas1" width="300" height="150"></canvas></td>
+                <td><canvas id="howCanvas0" width="300" height="150"></canvas><canvas id="howCanvas1" width="300" height="150"></canvas></td>
               </tr>
             </table>
             <br>
-            The most important continuous probability distribution is the normal probability distribution. Its graph is bell-shaped and is defined by its mean ($\mu$) and standard deviation ($\sigma$). Obviously, this is a much more complicated shape than in the uniform probability distribution. The area under it can't be calculated with a simple formula like length$\times$width. So, instead, we rely on the standard normal probability distribution to calculate probabilities for the normal probabilty distribution.
+            The most important continuous probability distribution is the normal probability distribution. Its graph is bell-shaped and is defined by its mean ($\mu$) and standard deviation ($\sigma$). Obviously, this is a much more complicated shape than in the uniform probability distribution. The area under it can't be calculated with a simple formula like length$\times$width. So, instead, we rely on the standard normal probability distribution to calculate probabilities for the normal probabilty distribution. The standard normal probability distribution (or z distribution) is a normal probability distribution with a mean of 0 and a standard deviation of 1. 
             <br><br>
             <table style="width:100%">
               <tr>
-                <td><canvas id="howCanvas2" width="300" height="150"></canvas></td>
+                <td><canvas id="howCanvas2" width="300" height="150"></canvas><canvas id="howCanvas3" width="300" height="150"></canvas></td>
               </tr>
             </table>
             <br>
-            The standard normal probability distribution (or z distribution) is a normal probability distribution with a mean of 0 and a standard deviation of 1. There are three types of probabilities to know how to compute for the z distribution: (1) the probability that z will be less than or equal to a value, (2) the probability that z will be greater than or equal to a value and (3) the probability that z will be greater than or equal to a value. These probabilities all involve the use of the z distribution table (or z-table), a small portion of which is shown below.
+            There are three types of probabilities to know how to compute for the z distribution: (1) the probability that z will be less than or equal to a value, (2) the probability that z will be greater than or equal to a value and (3) the probability that z will be greater than or equal to a value. 
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas4" width="300" height="150"></canvas><canvas id="howCanvas5" width="300" height="150"></canvas><canvas id="howCanvas6" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            These probabilities all involve the use of the z distribution table (or z-table), a small portion of which is shown below. The first type of probability can be found simply by looking up the z-value in the table. The second type of probability can be calculated by subtracting the table value for the smaller z-value from the table value for the larger z-value. The third type of probability can be calculated by subtracting the tasble value from the z-value from 1.
             <br><br>
             <table style="width:100%">
               <tr style='border-top: thin solid'>
@@ -652,8 +660,6 @@
               </tr>
             </table>
             <br>
-            The first type of probability can be found simply by looking up the z-value in the table. The second type of probability can be calculated by subtracting the table value for the smaller z-value from the table value for the larger z-value. The third type of probability can be calculated by subtracting the tasble value from the z-value from 1.
-            <br><br>
             
             
       </div>
