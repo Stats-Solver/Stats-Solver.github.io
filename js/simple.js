@@ -3,6 +3,8 @@ $("#xval").hide(); $("#prediction").hide(); $("#prediction2").hide(); $("#altern
 $("#correlation").hide(); $("#correlation2").hide(); $("#xpval").hide(); $("#level").hide(); $("#residtype").hide(); $("#charts").hide();
 $("#581773186").hide();
 
+$("#simpoutputs").hide();
+
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
@@ -327,6 +329,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#simpoutputs").show(); $("#how").hide();
     $("#581773186").show();
     $("#output").empty(); $("#explanation").hide(); $("#prediction").hide(); $("#prediction2").hide();
     $("#meansquare").hide(); $("#standarderror").hide(); $("#alternative").hide(); $("#alternative2").hide();
