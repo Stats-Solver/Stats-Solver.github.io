@@ -13,6 +13,10 @@ $("#zero").hide(); $("#probtype1a").hide(); $("#bayesrow3").hide();
 
 $("#intyesindep").hide();
 
+$("#proboutputs").hide();
+
+how1(); how2(); how3();
+
 experimentkind = "samplespace"
 mutuallyexc = "no"
 intindepval = "no"
@@ -25,6 +29,171 @@ function factorial(n) {
         return 1
     } 
 }
+
+
+
+
+
+
+
+
+
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas3");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+
+
+
+
+
+
+function how1(){
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Complement",125,10);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    
+    ctx.arc(110, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 130);
+    ctx.lineTo(250, 130);
+    ctx.lineTo(250, 20);
+    ctx.lineTo(50, 20);
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.fillText("A",105,75);
+    ctx.fillText("A",195,75);
+    ctx.fillText("c",201,70);
+
+    
+    ctx.stroke();
+}
+
+
+function how2(){
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Union",135,10);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "lightgray";
+    
+    ctx.beginPath();
+    ctx.arc(125, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.arc(175, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+    
+    ctx.beginPath();
+    ctx.arc(125, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.arc(175, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 130);
+    ctx.lineTo(250, 130);
+    ctx.lineTo(250, 20);
+    ctx.lineTo(50, 20);
+    
+    ctx.fillStyle = "black";
+    ctx.fillText("A",115,75);
+    ctx.fillText("B",180,75);
+
+    
+    ctx.stroke();
+}
+
+function how3(){
+    var c = document.getElementById("howCanvas3");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Intersection",125,10);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "white";
+    
+    ctx.save();
+    ctx.beginPath();
+    ctx.arc(125, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    ctx.fill();
+    
+    
+    ctx.beginPath();
+    ctx.fillStyle = "lightgray";
+    ctx.globalCompositeOperation = "source-atop";
+    ctx.arc(175, 75, 40, 0, 2 * Math.PI);
+    ctx.fill();
+    ctx.stroke();
+    ctx.restore();
+    
+    ctx.beginPath();
+    ctx.globalCompositeOperation = "destination-over";
+    ctx.arc(175, 75, 40, 0, 2 * Math.PI);
+    ctx.fill();
+    
+    ctx.globalCompositeOperation = "source-over";
+    
+    ctx.beginPath();
+    ctx.arc(125, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.arc(175, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 130);
+    ctx.lineTo(250, 130);
+    ctx.lineTo(250, 20);
+    ctx.lineTo(50, 20);
+    
+    ctx.fillStyle = "black";
+    ctx.fillText("A",115,75);
+    ctx.fillText("B",180,75);
+
+    
+    ctx.stroke();
+}
+
+
+
+
+
 
 function showstuff(){
     $("#comb").hide(); $("#perm").hide(); $("#complement").hide(); $("#union").hide(); $("#intersection").hide(); $("#conditional").hide();
@@ -162,6 +331,7 @@ function showstuff(){
 }
 
 function stat(){
+    $("#proboutputs").show(); $("#how").hide();
     $("#581773186").show();
     $("#output").empty();  $("#myCanvas").hide(); $("#output2").hide();
     var x = document.getElementById("stat").value;

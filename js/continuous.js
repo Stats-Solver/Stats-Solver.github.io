@@ -99,7 +99,7 @@ function how0(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
-    //ctx.fillText("Uniform Probability Distribution",80,10);
+    ctx.fillText("Uniform Probability Distribution",80,10);
     
     
     ctx.strokeStyle = 'black';
@@ -219,7 +219,7 @@ function how2(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
-    //ctx.fillText("Normal Probability Distribution",80,10);
+    ctx.fillText("Normal Probability Distribution",80,10);
     
     
     ctx.strokeStyle = 'black';

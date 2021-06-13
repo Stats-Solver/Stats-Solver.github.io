@@ -519,11 +519,110 @@
       <hr>
           </div>
       
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container" id="how">
+        <div id="how1" class="output" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            In probability, an experiment is any process that generates some outcomes. The set of all possible outcomes is called the sample space and individual outcomes are referred to as sample points. There are three different ways of calculating the number of outcomes in an experiment, or in other words, the size of the sample space. If the experiment is made up of several smaller experiments, the counting rule for multiple-step experiments is used. If the experiment involves selecting $n$ objects from a larger set of $N$ objects, the counting rule for combinations is used. If the experiment involves selecting $n$ objects from a larger set of $N$ objects and order of selection matters, the counting rule for permutations is used. 
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td>Combinations</td>
+                <td>Permutations</td>
+              </tr>
+              <tr>  
+                <td>$ C^N_n = \dfrac{N!}{n!(N-n)!} $</td>
+                <td>$ P^N_n = \dfrac{N!}{(N-n)!} $</td>
+              </tr>
+            </table>
+            <br>
+            The probability of an outcome can be calculated in one of three different ways. If the outcomes are equally likely, the classical method can be used. The classical method says that the probability of each outcome is 1/n, where n is the number of possible outcomes. If historical data is available where the experimennt has beenn repeated several times, the relative frequency method can be used. It says the probability of each outcome is equal to the proportion of times it has occured in the past, also known as the relative frequency. If outcomes are not equally likely and historical data is not available, the subjective method can be used.  
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td>Classical Method</td>
+                <td>Relative Frequency Method</td>
+              </tr>
+              <tr>
+                <td>P(outcome) = 1 / number of outcomes</td>  
+                <td>P(outcome) = relative frequency</td>
+              </tr>
+            </table>
+            <br>
+            In probability, an event is defined as a collection of sample points (outcomes). The probability of an event can be calculated simply by summing the probabilities of the sample points in the event. So, for example, consider the experiment of rolling a die. The sample space is S = {1,2,3,4,5,6} and, using the classical method, the probability of each outcome is 1/6. Let A be the event that an even number is rolled. Then A = {2,4,6} and P(A) = P(2) + P(4) + P(6) = 1/6 + 1/6 + 1/6 = 3/6 = 1/2.
+            <br><br>
+            <div id="723716610" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            <br>
+            Given an event A, the complement of A, written A<sup>c</sup>, is the event containing all sample points not in A. Relationships in probability can be illustrated in a Venn diagram, as shown below. The rectangle represents the sample space. Since an event and its complement make up the entire sample space, their probabilities sum to one. That is, P(A) + P(A<sup>c</sup>) = 1. So given the probability of the complement of an event, we can calculate the probability of an event using P(A) = 1 - P(A<sup>c</sup>).
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            Given two events A and B, the union of A and B, written A∪B is the event containing all sample points in A, B or both A and B. On the other hand, the intersection of A and B, written A∩B, is the event containing all sample points in both A and B. The probability of the union of two events can be calculated using the addition law, which says P(A∪B) = P(A) + P(B) - P(A∩B). If the events don't have any sample points in common, they are said to be mutually exclusive, and the addition law becomes P(A∪B) = P(A) + P(B).
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas2" width="300" height="150"></canvas><canvas id="howCanvas3" width="300" height="150"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            Sometimes, the probability of one event occuring is affected by another event occuring. This is known as conditional probability. The probability of event A occuring given that event B has already occured, or simply the probability of A given B, is written as P(A|B). The formula for conditional probability is P(A|B) = $\frac{P(A \cap B)}{P(B)}$. We can rearrange the terms in this formula to get the probability of the intersection, P(A∩B)=P(B)P(A|B). This is known as the multiplication law. If event A's probability isn't affected by event B, we say A and B are independent. Then we have P(A|B)=P(A) and P(A∩B)=P(A)P(B).
+      </div>
+      </div> 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div id = "proboutputs">
      <div class="container">
         <div id="output">
         </div>
       </div>
-      
+      </div>
       
     
       
