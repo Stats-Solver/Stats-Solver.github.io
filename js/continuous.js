@@ -21,7 +21,7 @@ $("#myCanvas0").hide(); $("#581773186").hide();
 
 $("#contoutputs").hide();
 
-how0(); how2();
+
 
 normaltype = "probability"
 snormaltype = "probability"
@@ -73,21 +73,22 @@ ctx.scale(1.25, 1.25);
 
 var canvas = document.getElementById("howCanvas4");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas5");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas6");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 
 
 
 
-
+how0(); how1(); how2(); how3(); 
+how4(); how5(); how6();
 
 
 
@@ -360,7 +361,8 @@ function how4(){
     ctx.clearRect(0, 0, 300, 150);
     
     
-    
+    //ctx.fillText("P(-1.25 ≤ z ≤ 0.86)",80,10);
+    ctx.fillText("Type 1",135,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -472,6 +474,8 @@ function how5(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Type 2",135,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -567,6 +571,8 @@ function how6(){
     var c = document.getElementById("howCanvas6");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Type 3",135,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();

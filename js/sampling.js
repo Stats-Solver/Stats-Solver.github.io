@@ -8,8 +8,6 @@ solvetype = "distribution"
 
 $("#sampoutputs").hide();
 
-how1();
-
 $("#calcprob").hide(); $("#probxbar").hide(); $("#probpbar").hide(); $("#calcprob2").hide();
 
 $("#up").hide(); $("#down").show(); $("#581773186").hide();
@@ -42,9 +40,7 @@ ctx.scale(1.25, 1.25);
 
 
 
-
-
-
+how1();
 
 
 
@@ -60,6 +56,8 @@ function how1(){
         var c = document.getElementById("howCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
+    
+        ctx.fillText("Sampling Distribution of x̄",90,10);
 
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";

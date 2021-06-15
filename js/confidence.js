@@ -6,7 +6,7 @@ $("#datainput").hide(); $("#valuesinput").show();
 $("#canvascontainer0").hide();  $("#581773186").hide();
 $("#confoutputs").hide();
 
-how1(); how2(); 
+ 
 
 type = "values"
 
@@ -32,7 +32,7 @@ ctx.scale(1.25, 1.25);
 
 
 
-
+how1(); how2();
 
 
 

@@ -3,8 +3,6 @@ $("#typeexamples").hide(); $("#hypexamples").show(); $("#switchhypothesis").hide
 $("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide(); $("#581773186").hide();
 $("#hypoutputs").hide();
 
-how1(); how2(); how3(); 
-how4(); how5(); how6();
 
 type = "hypothesis"
 inputtype = "values"
@@ -76,27 +74,30 @@ ctx.scale(1.25, 1.25);
 
 var canvas = document.getElementById("howCanvas1");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas2");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas3");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas4");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas5");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
 
 var canvas = document.getElementById("howCanvas6");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+ctx.scale(1.167, 1.167);
+
+how1(); how2(); how3(); 
+how4(); how5(); how6();
 
 function how1(){
         var exp = 2.71828;

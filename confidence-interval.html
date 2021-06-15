@@ -257,8 +257,8 @@
             <table style="width:100%">
               <tr>
                 <td></td>
-                <td>Population Mean:<br>$\sigma$ Known</td>
-                <td>Population Mean:<br>$\sigma$ Unknown</td>
+                <td>$\sigma$ Known</td>
+                <td>$\sigma$ Unknown</td>
               </tr>
               <tr>
                 <td>Margin of Error</td>  
@@ -269,16 +269,12 @@
             <br>
             In order to find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $), we must first find the value of $\alpha/2$. We start by setting 1 - $\alpha$ equal to the confidence coefficient. The confidence coefficient is simply the decimal form of the confidence level. So for example, if the confidence level is 95%, the confidence coefficient is .95. The next step is to solve for $\alpha/2$. So continuing with our example, we would have 1 - $\alpha$ = .95 and find the value of $\alpha/2$ to be .025. The most commonly used confidence level is 95% while 90% and 99% are also popular. To change the confidence level, click on $\boxed{95\%}$.
             <br><br>
-            <div id="723716610" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>
+            <table style="width:100%">
+              <tr>
+                <td> $1 - \alpha = $ Confidence Coefficient </td>
+              </tr>
+            </table>
+            <br>
             <!--<table style="width:100%">
               <tr>
                 <td>Confidence Level</td>
@@ -298,17 +294,8 @@
                 <td>.025</td>
                 <td>.005</td>
               </tr>
-            </table>-->
-            <br>
-            Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $). We can get $ z_{\alpha/2} $ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the z-distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1).
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas1" width="300" height="150"></canvas>&nbsp;&nbsp;&nbsp;<canvas id="howCanvas2" width="300" height="150"></canvas></td>
-              </tr>
             </table>
-            <br>
-            Finally, we can put the point estimate and margin of error together to make the confidence interval. If $\sigma$ is known, the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If $\sigma$ is unknown, the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level.
+
             <br><br>
             <table style="width:100%">
               <tr>
@@ -323,6 +310,28 @@
               </tr>
             </table>
             <br>
+            -->
+            <br>
+            Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $). We can get $ z_{\alpha/2} $ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the z-distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1).
+            <br><br>
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="375" height="188"></canvas><canvas id="howCanvas2" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            Finally, we can put the point estimate and margin of error together to make the confidence interval. If $\sigma$ is known, the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If $\sigma$ is unknown, the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level.
+            <br><br>
+            <div id="723716610" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
             If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.
             <br><br>
             

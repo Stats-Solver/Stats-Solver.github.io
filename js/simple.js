@@ -9,6 +9,141 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.33, 1.33);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.33, 1.33);
+
+
+how1(); how2();
+
+
+
+
+function how1(){
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    ctx.fillText("Estimated Regression Line",90,10);
+    
+    ctx.fillText("y",37,15);
+    ctx.fillText("x",265,182);
+    ctx.fillText("ŷ",255,50);
+    //ctx.fillText("b₀",25,130);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    
+    ctx.moveTo(40, 130);
+    ctx.lineTo(245, 50);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    ctx.fillRect(70,130,3,3);
+    ctx.fillRect(85,100,3,3);
+    ctx.fillRect(100,140,3,3);
+    ctx.fillRect(115,70,3,3);
+    ctx.fillRect(130,110,3,3);
+    ctx.fillRect(145,60,3,3);
+    ctx.fillRect(160,70,3,3);
+    ctx.fillRect(175,110,3,3);
+    ctx.fillRect(190,60,3,3);
+    ctx.fillRect(205,40,3,3);
+    ctx.fillRect(220,80,3,3);
+    //ctx.fillRect(235,50,3,3);
+    
+    ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+function how2(){
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    ctx.fillText("Sum of Squares",115,10);
+    
+    ctx.fillText("y",37,15);
+    ctx.fillText("x",265,182);
+    ctx.fillText("ŷ",265,50);
+    ctx.fillText("ȳ",265,90);
+    
+    ctx.fillText("y-ŷ",200,50);
+    ctx.fillText("ŷ-ȳ",200,82);
+    ctx.fillText("y-ȳ",242,70);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    
+    ctx.moveTo(40, 130);
+    ctx.lineTo(255, 50);
+    
+    ctx.moveTo(40, 90);
+    ctx.lineTo(255, 90);
+    
+    ctx.moveTo(223,32);
+    ctx.bezierCurveTo(217, 40, 217, 50, 223,59);
+    
+    ctx.moveTo(223,63);
+    ctx.bezierCurveTo(217, 70, 217, 80, 223,88);
+    
+    ctx.moveTo(230,32);
+    ctx.bezierCurveTo(240, 45, 240, 75, 230,88);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    ctx.fillRect(70,130,3,3);
+    ctx.fillRect(85,100,3,3);
+    ctx.fillRect(100,140,3,3);
+    ctx.fillRect(115,70,3,3);
+    ctx.fillRect(130,110,3,3);
+    ctx.fillRect(145,60,3,3);
+    //ctx.fillRect(160,70,3,3);
+    ctx.fillRect(175,110,3,3);
+    //ctx.fillRect(190,60,3,3);
+    ctx.fillRect(225,30,3,3);
+    //ctx.fillRect(220,80,3,3);
+    //ctx.fillRect(235,50,3,3);
+    
+    ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
 	var T=1/(1+.2316419*Math.abs(X));
