@@ -413,6 +413,113 @@
       <hr>
           </div>
     
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container" id="how">
+        <div id="how1" class="output text-center" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            Numerical summaries are used to describe characteristics of the data such as the location or variability of the values. The most important measure of central location is the mean, or average. The formula for the sample mean is $\bar{x} = \frac{\sum x}{n}$ and the formula for the population mean is $\mu = \frac{\sum x}{N}$. If there are extreme values in the data, the median is the preferred measure of central location. The median is the middle value if there are an odd number of values and the average of the two middle values if there are an even number of values. The mode is the most common value.
+            <br><br>
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Sample Mean</td>
+                <td>Population Mean</td>
+              </tr>
+            <tr>
+                <td>$\bar{x} = \dfrac{\sum x}{n}$</td>
+                <td>$\mu = \dfrac{\sum x}{N}$</td>
+              </tr>
+            </table>
+            <br>
+            Percentiles describe the location of a value relative to the rest of the data. The p<sup>th</sup> percentile is the value such that p% of the data is less than that value and (1-p)% of the data is greater than that value. Percentiles are calculated by first calculating an index using the formula $i=\left(\frac{p}{100}\right)n$. Then, if the index is not an integer, round up and take the value in that position. If the index is an integer, average the values in positions i and i+1. Quartiles are the name given to some common percentiles. Quartile 1 ($Q_1$) is the 25<sup>th</sup> percentile, Quartile 2 ($Q_2$) is the 50<sup>th</sup> percentile and Quartile 3 ($Q_3$) is the 75<sup>th</sup> percentile.
+            
+            <br><br>
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td><canvas id="howCanvas1" width="375" height="125"></canvas></td>
+              </tr>
+            </table>
+            Aside from knowing the location of the data values, it is also useful to know their spread, or variability. The simplest measure of variability is the range as it only uses two values: Range = Largest Value - Smallest Value. When there are extreme values in the data, the interquartile range is preferred to the range: IQR = Q3 - Q1. Both the range and innterquartile range are limited by the fact that they only use two values from the entire datatset. The variance is a measure of variability that uses all data values. The formula for the sample variance is $ s^2 = \frac{\sum (x - \bar{x})^2}{n-1} $ and the formula for the population variance is $ \sigma^2 = \frac{\sum (x - \mu)^2}{N}$.
+            <br><br>
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Sample Variance</td>
+                <td>Population Variance</td>
+              </tr>
+            <tr>
+                <td>$ s^2 = \dfrac{\sum (x - \bar{x})^2}{n-1}$</td>
+                <td>$ \sigma^2 = \dfrac{\sum (x - \mu)^2}{N}$</td>
+              </tr>
+            </table>
+            <br>
+            The standard deviation is simply the square root of the variance. The formula for the sample standard deviation is $ s = \sqrt{s^2} $ and the formula for the population standard deviation is $ \sigma = \sqrt{\sigma^2} $.
+            <br><br>
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Sample Standard Deviation</td>
+                <td>Population Standard Deviation</td>
+              </tr>
+            <tr>
+                <td>$ s = \sqrt{s^2} $</td>
+                <td>$ \sigma = \sqrt{\sigma^2} $</td>
+              </tr>
+            </table>
+            <br>
+            A z-score is a measure of relative location, as it tells you where a data value is located relative to the mean. The formula for a z-score is $ z = \dfrac{x - \bar{x}}{s}$. Chebyshev's Theorem uses z-scores to determine what percentage of the data must be within a certain range. It says that at least (1-1/z<sup>2</sup>) of the values must be within z standard deviations of the mean. So, for example, with z=2, we have at least 1-1/2<sup>2</sup> = 1-1/4 = 3/4 = .75 = 75% of the values must be within 2 standard deviations of the mean. Using z-values of 3 and 4, we get at least 89% of the values must be within 3 standard deviations of the mean and at least 94% of the values must be within 4 standard deviations of the mean.
+            <br><br>
+            <div id="723716610" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            <br>
+            The Empirical Rule is similar to Chebyshev's Theorem in that it tells you the percentage of values within a certain range. However, the Empirical Rule only works for data having a bell-shaped distribution while Chebyshev's Theorem works for any distribution. It says that for data having a bell-shaped distribution, approximately 68% of the values are within 1 standard deviation of the mean. Approximately 95% of the values are within 2 standard deviations of the mean. Almost all of the values are within 3 standard deviations of the mean.
+            <br><br>
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td><canvas id="howCanvas2" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+      </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div id = "numoutputs">
     
       <div class="container mb-5">
         <div id="output">
@@ -423,7 +530,9 @@
     <div class="container">
         <div id="output2">
         </div>
-      </div>  
+      </div> 
+          
+         </div>  
       
       <div id="581773186" class="text-center">
     <script type="text/javascript">
@@ -472,7 +581,7 @@
                 <hr>
             </div>
           <p> 
-              &copy; 2021 <a href="/about.html">Solver, Inc.</a> 
+              &copy; 2021 <a href="/about.html">Solver Inc.</a> 
               
               </p>
           </footer>

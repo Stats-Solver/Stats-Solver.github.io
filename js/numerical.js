@@ -7,6 +7,8 @@ $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
 $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
 $("#grouped").hide(); $("#label5").hide(); $("#581773186").hide();
 
+$("#numoutputs").hide();
+
 grouprows = 3;
 
 $(document).ready(function(){
@@ -16,6 +18,210 @@ $(document).ready(function(){
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+
+how1(); how2();
+
+
+
+function how1(){
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 100);
+    
+    ctx.fillText("Quartiles",130,10);
+    
+    ctx.fillText("Min",40,40);
+    ctx.fillText("Q",95,40);
+    ctx.fillText("1",104,42);
+    ctx.fillText("Q",145,40);
+    ctx.fillText("2",154,42);
+    ctx.fillText("Q",195,40);
+    ctx.fillText("3",204,42);
+    ctx.fillText("Max",240,40);
+    
+    ctx.fillText("0%",45,75);
+    ctx.fillText("25%",95,75);
+    ctx.fillText("50%",145,75);
+    ctx.fillText("75%",195,75);
+    ctx.fillText("100%",240,75);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+
+    ctx.lineTo(50, 55);
+    ctx.lineTo(250, 55);
+    
+    ctx.moveTo(50, 45);
+    ctx.lineTo(50, 65);
+    
+    ctx.moveTo(100, 45);
+    ctx.lineTo(100, 65);
+    
+    ctx.moveTo(150, 45);
+    ctx.lineTo(150, 65);
+    
+    ctx.moveTo(200, 45);
+    ctx.lineTo(200, 65);
+    
+    ctx.moveTo(250, 45);
+    ctx.lineTo(250, 65);
+
+    
+    ctx.stroke();
+    
+}
+
+
+
+
+
+
+
+
+function how2(){
+    var exp = 2.71828;
+
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Empirical Rule",120,10);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.fillText("x",285,132);
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("μ",148,145);
+    
+    ctx.moveTo(185, 135);
+    ctx.lineTo(185, 125);
+    ctx.moveTo(220, 135);
+    ctx.lineTo(220, 125);
+    ctx.moveTo(255, 135);
+    ctx.lineTo(255, 125);
+    
+    ctx.fillText("+1σ",178,145);
+    ctx.fillText("+2σ",213,145);
+    ctx.fillText("+3σ",248,145);
+    
+    ctx.moveTo(115, 135);
+    ctx.lineTo(115, 125);
+    ctx.moveTo(80, 135);
+    ctx.lineTo(80, 125);
+    ctx.moveTo(45, 135);
+    ctx.lineTo(45, 125);
+    
+    ctx.fillText("-1σ",109,145);
+    ctx.fillText("-2σ",74,145);
+    ctx.fillText("-3σ",39,145);
+    
+    //ctx.moveTo(117, 40);
+    //ctx.lineTo(117, 50);
+    ctx.moveTo(118, 45);
+    ctx.lineTo(136, 45);
+    //ctx.moveTo(185, 40);
+    //ctx.lineTo(185, 50);
+    ctx.moveTo(185, 45);
+    ctx.lineTo(169, 45);
+    ctx.fillText("~68%",140,48);
+    
+    //ctx.moveTo(220, 90);
+    //ctx.lineTo(220, 100);
+    //ctx.moveTo(80, 90);
+    //ctx.lineTo(80, 100);
+    ctx.moveTo(80, 94);
+    ctx.lineTo(135, 94);
+    ctx.moveTo(224, 94);
+    ctx.lineTo(169, 94);
+    ctx.fillText("~95%",140,97);
+    
+    ctx.moveTo(45, 115);
+    ctx.lineTo(133, 115);
+    ctx.moveTo(259, 115);
+    ctx.lineTo(171, 115);
+    ctx.fillText("~100%",137,118);
+    
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke(); 
+}
+
+
+
+
+
+
+
+
+
+
+
 
 function sortrem(arr) {
     var a = [], b = [], prev;
@@ -113,6 +319,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#numoutputs").show(); $("#how").hide(); 
     $("#explanation").hide(); $("#581773186").show();
     //$("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
