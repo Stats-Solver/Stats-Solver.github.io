@@ -26,6 +26,8 @@ $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexample
 
 $("#581773186").hide();
 
+$("#discoutputs").hide();
+
 
 frequencytype = "probability"
 formulatype = "probability"
@@ -166,6 +168,7 @@ function showstuff(){
 }
 
 function stat(){
+    $("#discoutputs").show(); $("#how").hide();
     $("#output").empty(); $("#myCanvas").hide(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "probabilities"){

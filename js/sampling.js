@@ -37,9 +37,9 @@ var canvas = document.getElementById("howCanvas1");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas2");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+//var canvas = document.getElementById("howCanvas2");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.25, 1.25);
 
 //var canvas = document.getElementById("howCanvas3");
 //var ctx = canvas.getContext("2d");
@@ -53,7 +53,8 @@ ctx.scale(1.25, 1.25);
 
 
 
-how1(); how2(); 
+how1(); 
+//how2(); 
 //how3(); 
 //how4();
 

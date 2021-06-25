@@ -830,6 +830,24 @@
             
       </div>
       </div> 
+
+        <p class = "p1"> The hypergeometric probability distribution is similar to the binomial probability distribution. The difference is that in the hypergeometric probability distribution the trials are not independent and the probability of success changes from trial to trial. </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Hypergeometric Probability Function </td>
+              </tr>
+              <tr>
+                <td>$ f(x) = \dfrac{{n \choose x}{N-r \choose n-x}}{{N \choose n}} $ </td>
+              </tr>
+              <tr>
+                <td>$ N $ = number of elements in population   </td>
+              </tr>
+              <tr>
+                <td>$ r $ = number of successes in population   </td>
+              </tr>
+            </table>
+            <br>
       -->
       
       
@@ -841,6 +859,129 @@
       
       
       
+      
+      
+      
+      
+      
+      
+      <div class="container" id="how">
+        <div id="how1" class="output" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            
+            <p class = "p1"> A discrete probability distribution is the probability distribution for a discrete random variable. A discrete random variable takes whole number values such 0, 1, 2 and so on while a continuous random variable can take any value inside of an interval. Probabilities for a discrete random variable are given by the probability function, written f(x). There are two requirements for the probability function. The first is that the value of each f(x) is at least zero. The second requirement is that the values of f(x) sum to one. </p>
+
+
+            <table style="width:100%">
+              <tr>
+                <td>Requirements for Probability Function </td>
+              </tr>
+              <tr>
+                <td>$ f(x) \geq 0 $ </td>
+              </tr>
+                <tr>
+                <td>$ \sum f(x) = 1 $ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> A discrete probability distribution can be represented in a couple of different ways. One common method is to present it in a table, where the first column is the different values of x and the second column is the probabilities, or f(x). Another method is to create a graph with the values of x on the horizontal axis and the values of f(x) on the vertical axis. A third way is to provide a formula for the probability function. The simplest example of this method is the discrete uniform probability distribution. </p>
+
+
+            <table style="width:100%">
+              <tr>
+                <td>Discrete Uniform Probability Function </td>
+              </tr>
+              <tr>
+                <td>$ f(x) = \dfrac{1}{n} $ </td>
+              </tr>
+                <tr>
+                <td>$ n $ = number of values of $x$ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> Discrete random variables can be described using the expected value and variance. The expected value, or mean, measures the central location of the random variable. The variance measures the variability in the values of the random variable. When the discrete probability distribution is presented as a table, it is straight-forward to calculate the expected value and variance by expanding the table. The expected value can be calculated by adding a column for xf(x). The variance can be computed by adding three rows: x-mu, (x-mu)^2 and (x-mu)^2 f(x). </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td> Expected Value </td>
+                <td> Variance </td>
+              </tr>
+              <tr>
+                <td>$ E(x) = \sum x f(x) $ </td>
+                <td>$ \text{Var}(x)  = \sum (x - \mu)^2 f(x) $ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The standard deviation can be found by taking the square root of the variance. Like the variance, the standard deviation is a measure of variability for a discrete random variable. However, unlike the variance, it is in the same units as the random variable. The reason the variance is not in the same units as the random variable is because its formula involves squaring the difference between x and the mean. So, the units of the variance are in the units of the random variable squared. Taking the square root brings the value back to the same units as the random variable. </p>
+            
+            <div id="723716610" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            <br>
+            
+            <p class = "p1"> The binomial probability distribution is associated with a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p). </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Binomial Probability Function </td>
+              </tr>
+              <tr>
+                <td>$ f(x) = {n \choose x} p^x (1-p)^{(n-x)} $ </td>
+              </tr>
+              <tr>
+                <td>$ {n \choose x} = \dfrac{n!}{x!(n-x)!} $ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The Poisson probability distribution is useful when the random variable measures the number of occurrences over an interval of time or space. It is associated with a Poisson experiment. A Poisson experiment is one in which the probability of an occurrence is the same for any two intervals of the same length and occurrences are independent of each other. Probabilities for a Poisson probability distribution can be calculated using the Poisson probability function. </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Poisson Probability Function </td>
+              </tr>
+              <tr>
+                <td>$ f(x) = \dfrac{\mu^x e^{-\mu}}{x!} $ </td>
+              </tr>
+              <tr>
+                <td>$ \mu $ = mean number of occurences </td>
+              </tr>
+            </table>
+            <br>
+            
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div id = "discoutputs">
      <div class="container">
         <div id="output">
         </div>
@@ -849,6 +990,7 @@
       <div class="container text-center">
       <canvas id="myCanvas" width="300" height="150" ></canvas>
       </div>
+        </div>
       
       <!--<div class="container text-center">
         <div id="expconf" class="explanation">

@@ -337,16 +337,7 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">A sampling distribution is the probability distribution of a sample statistic. So, for example, the sampling distribution of the sample mean ($\bar{x}$) is the probability distribution of $\bar{x}$. The idea is that random sampling is an experiment as it is a process that generates some outcomes: the various samples. Then a sample statistic like the sample mean describes the outcome of this experiment (the sample) numerically. So the sample statistic is a random variable and so it has a probability distribution. </p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Sampling Distribution of $\bar{x}$ = Probability Distribution of $\bar{x}$ </td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">There are three things we need to know to fully describe a probability distribution: the expected value, the standard deviation and the form of the distribution. First, the expected value of the sample mean is equal to the population mean ($\mu$). The idea here is that if we took all possible samples from the population and computed their sample means, they would average to equal the population mean.</p>
+            <p class = "p1">A sampling distribution is the probability distribution of a sample statistic. So, for example, the sampling distribution of the sample mean ($\bar{x}$) is the probability distribution of $\bar{x}$. There are three things we need to know to fully describe a probability distribution of $\bar{x}$: the expected value, the standard deviation and the form of the distribution. First, the expected value of the sample mean is equal to the population mean ($\mu$). The idea here is that if we took all possible samples from the population and computed their sample means, they would average to equal the population mean.</p>
 
             <table style="width:100%">
               <tr>
@@ -358,7 +349,7 @@
             </table>
             <br>
             
-             <p class = "p1">Calculation of the standard deviation depends on whether we're sampling from a finite population or an infinite population. The difference between the two formulas is the term $\sqrt{\frac{N-n}{N-1}}$, which is known as the finite population correction factor. Plugging in a large value for N and a relatively small value for n, we get a value close to 1. This allows us to use the simpler formula whenever the sample size is small relative to the population. To switch from an infinite population to a finite population, click on $\boxed{\text{Infinite}}$ and select $\boxed{\text{Finite}}$. You can then enter the population size ($N$).</p>
+             <p class = "p1">Calculation of the standard deviation depends on whether we're sampling from a finite population or an infinite population. Note that the formulas below have two standard deviations. One of them, $\sigma_\bar{x}$, is the standard deviation of the sample mean while the other one, $\sigma$, is the standard deviation of the population. Two avoid confusing the two, $\sigma_\bar{x}$ is referred to as the standard error of the mean. To switch from an infinite population to a finite population, click on $\boxed{\text{Infinite}}$ and select $\boxed{\text{Finite}}$. </p>
 
             <table style="width:100%">
               <tr>
@@ -374,7 +365,25 @@
             </table>
             <br>
             
-            <p class = "p1"> Note that the formulas above have two standard deviations. One of them, $\sigma_\bar{x}$, is the standard deviation of the sample mean while the other one, $\sigma$, is the standard deviation of the population. Two avoid confusing the two, $\sigma_\bar{x}$ is referred to as the standard error of the mean. The standard error of the mean measures how much error there is in using the sample mean to estimate the population mean. </p>
+            <p class = "p1"> The standard error of the mean measures the amount of error in using $\bar{x}$ to estimate $\mu$. The sample size, n, being in the denominator of the formulas indicates that increasing the sample size decreases this error. Note that the only difference between the two formulas above is the term $\sqrt{\frac{N-n}{N-1}}$. This is referred to as the finite population correction factor. Plugging in a large value for N and a relatively small value for n into the finite population correction factor, we get a value close to one. This allows us to use the following rule of thumb.  </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Rule of Thumb</td>
+              </tr>
+              <tr>
+                <td>Use $\sigma_\bar{x} = \dfrac{\sigma}{\sqrt{n}} $ whenever</td>
+              </tr>
+              <tr>
+                <td>1. The population is infinite, or 	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;	&nbsp;&nbsp;</td>
+              </tr>
+              <tr>
+                <td>2. The population is finite and n/N $\leq$ .05</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The form of the sampling distribution of the sample mean depends on the form of the population. If the population has a normal distribution, the sampling distribution of $\bar{x}$ is a normal distribution. If the population does not have a normal distribution, we must use the Central Limit Theorem. It says that as the sample size becomes large, the sampling distribution of $\bar{x}$ approximates a normal distribution. Generally, a sample size of at least thirty is sufficient for the sampling distribution of $\bar{x}$ to be approximately normal. </p>
 
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
@@ -388,20 +397,11 @@
             </div>
             <br>
             
-            <p class = "p1">The form of the sampling distribution of the sample mean depends on the form of the population. If the population has a normal distribution, the sampling distribution of $\bar{x}$ is a normal distribution. If the population does not have a normal distribution, we must use the Central Limit Theorem. It says that as the sample size becomes large, the sampling distribution of $\bar{x}$ approximates a normal distribution. Generally, a sample size of at least 30 will mean the sampling distribution of $\bar{x}$ is approximately normal.</p>
-
+            <p class = "p1">One of the benefits of knowing the sampling distribution of the sample mean is that we can calculate the probability that $\bar{x}$ will be within a certain range of the population mean. Since the sample mean follows a normal distribution, calculating probabilities for $\bar{x}$ simply involves converting to the standard normal distribution. The formula for converting from normal to standard normal involves subtracting by the mean and dividing by the standard deviation: $z=\frac{x-\mu}{\sigma}$. In the case of the sampling distribution of sample mean, the mean is the population mean, $\mu$, and the standard deviation is the standard error of the mean, $\sigma_{\bar{x}}$.</p>
+            
             <table style="width:100%">
               <tr>
                 <td><canvas id="howCanvas1" width="375" height="188"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">One of the benefits of knowing the sampling distribution of the sample mean is that we can calculate the probability that $\bar{x}$ will be within a certain range of the population mean. Since the sample mean follows a normal distribution, calculating probabilities for $\bar{x}$ simply involves converting to the standard normal distribution. The formula for converting from normal to standard nnormal involves subtractinng by the mean and dividing by the standard deviation: $z=\frac{x-\mu}{\sigma}$. In the case of the sampling distribution of $x$, the mean is the population mean ($\mu$) and the standard deviation is the standard error ($\sigma_{\bar{x}}$)</p>
-            
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas2" width="375" height="188"></canvas></td>
               </tr>
             </table>
             <br>
@@ -413,7 +413,37 @@
       
       <!--
 
+        You can then enter the population size ($N$).
 
+        <p class = "p1">The form of the sampling distribution of the sample mean depends on the form of the population. If the population has a normal distribution, the sampling distribution of $\bar{x}$ is a normal distribution. If the population does not have a normal distribution, we must use the Central Limit Theorem. It says that as the sample size becomes large, the sampling distribution of $\bar{x}$ approximates a normal distribution. Generally, a sample size of at least thirty is sufficient for the sampling distribution of $\bar{x}$ to be approximately normal.</p>
+
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">One of the benefits of knowing the sampling distribution of the sample mean is that we can calculate the probability that $\bar{x}$ will be within a certain range of the population mean. Since the sample mean follows a normal distribution, calculating probabilities for $\bar{x}$ simply involves converting to the standard normal distribution. The formula for converting from normal to standard normal involves subtracting by the mean and dividing by the standard deviation: $z=\frac{x-\mu}{\sigma}$. In the case of the sampling distribution of $x$, the mean is the population mean ($\mu$) and the standard deviation is the standard error ($\sigma_{\bar{x}}$)</p>
+            
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas2" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+
+
+        The idea is that random sampling is an experiment as it is a process that generates some outcomes: the various samples. Then a sample statistic like the sample mean describes the outcome of this experiment (the sample) numerically. So the sample statistic is a random variable and so it has a probability distribution. </p>
+
+            <table style="width:100%">
+              <tr>
+                <td>Sampling Distribution of $\bar{x}$ = Probability Distribution of $\bar{x}$ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">
 
 
 

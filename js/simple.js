@@ -9,16 +9,16 @@ var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas1");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+//var canvas = document.getElementById("howCanvas1");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.25, 1.25);
 
 //var canvas = document.getElementById("howCanvas2");
 //var ctx = canvas.getContext("2d");
 //ctx.scale(1.33, 1.33);
 
 
-how1(); 
+//how1(); 
 
 
 
