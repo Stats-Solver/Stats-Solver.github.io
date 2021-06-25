@@ -123,6 +123,7 @@
       
     <div class = "container">
         <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="confidence-interval.html">Confidence Interval Calculator</a></h1>
+        <h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="hypothesis-testing.html" class="text-primary" >Hypothesis Testing Calculator</a></h2>
     </div>
       
       <div class="container">
@@ -244,16 +245,8 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So if we're constructing a confidence interval for the population mean ($\mu$), we use the sample mean ($\bar{x}$). The confidence interval is created by adding and subtracting the margin of error from the point estimate.
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td>Confidence Interval = $\bar{x}$ $\pm$ Margin of Error </td>
-              </tr>
-            </table>
-            <br>
-            Since the sample mean is easy to calculate, the focus will be on finding the margin of error. The formula we use to compute the margin of error depends on whether the population standard deviation ($\sigma$) is known or unknown. If $\sigma$ is known, the margin of error is given by $z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. The use of $z$ in this formula indicates the use of the $z$-distribution. If $\sigma$ is unknown, we replace the $z$-distribution with the $t$-distribution and $\sigma$ with the sample standard deviation ($s$). This gives us $t_{\alpha/2} \frac{s}{\sqrt{n}}$. To change from $\sigma$ known to $\sigma$ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Confidence Interval Calculator.
-            <br><br>
+            <p class = "p1">A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So if we're constructing a confidence interval for the population mean ($\mu$), we use the sample mean ($\bar{x}$). Since the sample mean is easy to calculate, the focus will be on finding the margin of error. The formula we use to compute the margin of error depends on whether the population standard deviation ($\sigma$) is known or unknown. To change from $\sigma$ known to $\sigma$ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Confidence Interval Calculator.</p>
+
             <table style="width:100%">
               <tr>
                 <td></td>
@@ -267,11 +260,25 @@
               </tr>
             </table>
             <br>
-            In order to find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $), we must first find the value of $\alpha/2$. We start by setting 1 - $\alpha$ equal to the confidence coefficient. The confidence coefficient is simply the decimal form of the confidence level. So for example, if the confidence level is 95%, the confidence coefficient is .95. The next step is to solve for $\alpha/2$. So continuing with our example, we would have 1 - $\alpha$ = .95 and find the value of $\alpha/2$ to be .025. The most commonly used confidence level is 95% while 90% and 99% are also popular. To change the confidence level, click on $\boxed{95\%}$.
-            <br><br>
+            
+            <p class = "p1">In order to find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $), we must first find the value of $\alpha/2$. We start by setting 1 - $\alpha$ equal to the confidence coefficient. The confidence coefficient is simply the decimal form of the confidence level. So for example, if the confidence level is 95%, the confidence coefficient is .95. The next step is to solve for $\alpha/2$. So continuing with our example, we would have 1 - $\alpha$ = .95 and find the value of $\alpha/2$ to be .025. The most commonly used confidence level is 95% while 90% and 99% are also popular. To change the confidence level, click on $\boxed{95\%}$.</p>
+
             <table style="width:100%">
               <tr>
-                <td> $1 - \alpha = $ Confidence Coefficient </td>
+                <td>Confidence Level</td>
+                <td>Confidence Coefficient</td>
+              </tr>
+              <tr> 
+                <td>99%</td>
+                <td>.99</td>
+              </tr>
+              <tr> 
+                <td>95%</td>
+                <td>.95</td>
+              </tr>
+              <tr> 
+                <td>90%</td>
+                <td>.90</td>
               </tr>
             </table>
             <br>
@@ -310,18 +317,90 @@
               </tr>
             </table>
             <br>
-            -->
+
+            <table style="width:100%">
+              <tr>
+                <td>Confidence Interval = $\bar{x}$ $\pm$ Margin of Error </td>
+              </tr>
+            </table>
             <br>
-            Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $). We can get $ z_{\alpha/2} $ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the z-distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1).
-            <br><br>
+
+            The use of $z$ in this formula indicates the use of the $z$-distribution. If $\sigma$ is unknown, we replace the $z$-distribution with the $t$-distribution and $\sigma$ with the sample standard deviation ($s$). 
+            
+            <table style="width:100%">
+              <tr>
+                <td> $1 - \alpha = $ Confidence Coefficient </td>
+              </tr>
+            </table>
+            <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <p class = "p1">If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
+            
+            <table>
+              <tr>
+                <td></td>
+                <td>Population Mean</td>
+              </tr>
+              <tr>
+                <td>Sample Size</td>  
+                <td>$ n = \dfrac{(z_{\alpha/2})^2 \sigma^2}{E^2} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
+            
+            <table>
+              <tr>
+                <td></td>
+                <td>Population Proportion</td>
+              </tr>
+              <tr>
+                <td>Sample Size</td>  
+                <td>$ n = \dfrac{(z_{\alpha/2})^2 p^* (1-p^*)}{E^2} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
+            
+            <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            -->
+
+            <p class = "p1">Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $). We can get $ z_{\alpha/2} $ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the z-distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1).</p>
+
             <table style="width:100%">
               <tr>
                 <td><canvas id="howCanvas1" width="375" height="188"></canvas><canvas id="howCanvas2" width="375" height="188"></canvas></td>
               </tr>
             </table>
             <br>
-            Finally, we can put the point estimate and margin of error together to make the confidence interval. If $\sigma$ is known, the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If $\sigma$ is unknown, the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level.
-            <br><br>
+            
+            <p class = "p1">Finally, we can put the point estimate and margin of error together to make the confidence interval. The confidence interval is created by adding and subtracting the margin of error from the point estimate. If $\sigma$ is known, the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If $\sigma$ is unknown, the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level.</p>
+
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
                     try {
@@ -332,8 +411,23 @@
                     catch (error) {}
                 </script>
             </div>
-            If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.
-            <br><br>
+            <br>
+            
+            <p class = "p1">If we're constructing a confidennce interval of the population proportion, we use the sample proprtion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean annd sample proportion are easy to calculate, the focus will be on findinng the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
+            
+            <table>
+              <tr>
+                <td></td>
+                <td>Population Proportion</td>
+              </tr>
+              <tr>
+                <td>Margin of Error</td>  
+                <td>$ z_{\alpha/2} \sqrt{\dfrac{\bar{p}(1-\bar{p})}{n}} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            
             
         </div>
       </div>

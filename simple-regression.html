@@ -109,6 +109,7 @@
       
     <div class = "container">
         <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="simple-regression.html">Simple Regression Calculator</a></h1>
+        <h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="multiple-regression.html" class="text-primary" >Multiple Regression Calculator</a></h2>
     </div>
       
       <div class="container">
@@ -240,7 +241,10 @@
                 <option value="slope">Slope</option>
             </select>
         </div>
-             </div>-->
+             </div>
+There are two things we need to get the estimated regression equation: the slope ($b_1$) and the intercept ($b_0$). The slope and intercept are calculated using the formulas $b_1 = \frac{\sum (x-\bar{x})(y-\bar{y})}{\sum (x-\bar{x})^2}$ and $b_0 = \bar{y} - b_1 \bar{x}$, respectively. 
+
+-->
       
       
     <div class="container">
@@ -253,15 +257,22 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            In simple linear regression, the starting point is the estimated regression equation: $\hat{y} = b_0 + b_1 x$. It provides a mathematical relationship between the dependent variable ($y$) and the independent variable ($x$). Furthermore, it can be used to predict the value of $y$ for a given value of $x$. There are two things we need to get the estimated regression equation: the slope ($b_1$) and the intercept ($b_0$). The slope and intercept are calculated using the formulas $b_1 = \frac{\sum (x-\bar{x})(y-\bar{y})}{\sum (x-\bar{x})^2}$ and $b_0 = \bar{y} - b_1 \bar{x}$, respectively. The graph of the estimated regression equation is known as the estimated regression line.
-            <br><br>
+            <p class = "p1">In simple linear regression, the regression model describes how the dependent variable (y) is related to the independent variable (x) and an error term (ε): y = β<sub>0</sub> + β<sub>1</sub>x + ε. Ignoring ε, we have the equation of a straight line, where β<sub>0</sub> is the intercept and β<sub>1</sub> is the slope. The expected value, or mean, of y for a given value of x is given by the regression equation: E(y) = β<sub>0</sub> + β<sub>1</sub>x. If β<sub>0</sub> and β<sub>1</sub> were known, instead of unknown parameters, we could use E(y) to predict y. The estimate of the regression equation is simply the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. The graph of the estimated regression equation is known as the estimated regression line.</p>
+
             <table style="width:100%" class="text-center">
               <tr>
-                <td><canvas id="howCanvas1" width="400" height="266"></canvas></td>
+                <td><canvas id="howCanvas1" width="375" height="250"></canvas></td>
               </tr>
             </table>
-            <br>
+
             <!--<br><br>
+            n simple linear regression, the starting point is the estimated regression equation: 
+            . It provides a mathematical relationship between the dependent variable () and the independent variable (). Furthermore, it can be used to predict the value of  for a given value of . There are two things we need to get the estimated regression equation: the slope () and the intercept (). The slope and intercept are calculated using the formulas 
+
+             and 
+            , respectively. The graph of the estimated regression equation is known as the estimated regression line.
+
+            It can be used to predict the value of y for a given value of $x$. 
             <table style="width:100%" class="text-center">
               <tr>
                 <td>Slope</td>
@@ -287,30 +298,73 @@
               </tr>
             </table>
             <br>
-            -->
-            After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted $r^2$, provides a measure of goodness of fit for the estimated regression equation. Before we can find the $r^2$, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The formulas for them are $ \text{SSE} = \sum (y-\hat{y})^2 $, $ \text{SSR} = \sum (\hat{y}-\bar{y})^2 $ and $ \text{SST} =  \sum (y-\bar{y})^2 $. The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.
-            <br><br>
+
+            The formulas for them are $ \text{SSE} = \sum (y-\hat{y})^2 $, $ \text{SSR} = \sum (\hat{y}-\bar{y})^2 $ and $ \text{SST} =  \sum (y-\bar{y})^2 $. 
+
             <table style="width:100%" class="text-center">
               <tr>
-                <td><canvas id="howCanvas2" width="400" height="266"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            Now that we know the sum of squares, we can calculate the coefficient of determination using the formula $r^2 = \frac{SSR}{SST}.$ The $r^2$ takes a value between 0 and 1, with 0 indicating the worst fit and 1 indicating a perfect fit. When interpreting the $r^2$, first convert is value to a percentage. Then it can be interpreted as the percentage of the variability in $y$ explained by the estimated regression equation. The sample correlation coefficient can be calculated using the coefficient of determination, indicating a close relationship between regression and correlation. The formula for this is $r_{xy} = (\text{sign of } b_1) \sqrt{r^2}$.
-            <br><br>
-            <table style="width:100%" class="text-center">
-              <tr>
-                <td>Coefficient of Determination</td>
-                <td>Correlation Coefficient</td>
+                  <td>Coefficient of Determination</td>
+                  <td>Correlation Coefficient</td>
               </tr>
             <tr>
                 <td>$ r^2 = \dfrac{\text{SSR}}{\text{SST}} $</td>
                 <td>$ r_{xy} = (\text{sign of }b_1)\sqrt{r^2} $</td>
               </tr>
             </table>
+            <br> 
+
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>F Test</td>
+                <td>F Statistic</td>
+              </tr>
+            <tr>
+                <td> $ H_0: \beta = 0 $ <br> $ H_a: \beta \neq 0 $ </td>
+                <td>$ F = \dfrac{b_1}{s_{b_1}} $</td>
+              </tr>
+            </table>
             <br>
-            The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between $x$ and $y$. There are two ways of doing this, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. 
-            <br><br>
+
+            The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. Tests for significance in regression rest on a set of four assumptions. If these four assumptions are not satisfied, the tests for significance are not valid. 
+                
+            -->
+            <p class = "p1">There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The slope and intercept of the estimated regression equation can be interpreted in the same way as the slope and intercept of any straight line. The only differennce is that instead of y we are dealing with $\hat{y}$, the predicted value of y. The slope of a line is the change in y from a one-unit increase in x and the intercept is the value of y whennn x = 0. So b<sub>1</sub> can be interpreted as the predicted change in y corresponding to a one-unit increase in x. Similarly, b<sub>0</sub> can be interpreted as the predicted value of y when x = 0.</p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                  <td>Slope</td>
+                  <td>Intercept</td>
+              </tr>
+            <tr>
+                <td>$b_1 = \dfrac{\sum (x-\bar{x})(y-\bar{y})}{\sum (x-\bar{x})^2}$</td>
+                <td>$b_0 = \bar{y} - b_1 \bar{x}$</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted r<sup>2</sup>, provides a measure of goodness of fit for the estimated regression equation. Before we can find the r<sup>2</sup>, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.</p>
+
+            <table class="text-center">
+              <tr>
+                <td colspan="2">Sum of Squares</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td>Error</td>
+                <td>$ \text{SSE} = \sum (y-\hat{y})^2 $</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td>Regression</td>
+                <td>$ \text{SSR} = \sum (\hat{y}-\bar{y})^2 $</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td>Total</td>
+                <td>$ \text{SST} = \sum (\hat{y}-\bar{y})^2 $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Now that we know the sum of squares, we can calculate the coefficient of determination. The r<sup>2</sup> takes a value between 0 and 1, with 0 indicating the worst fit and 1 indicating a perfect fit. When interpreting the r<sup>2</sup>, the first step is to convert its value to a percentage. Then it can be interpreted as the percentage of the variability in y explained by the estimated regression equation. The sample correlation coefficient can be calculated using the coefficient of determination, indicating a close relationship between regression and correlation. </p>
+
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
                     try {
@@ -322,12 +376,27 @@
                 </script>
             </div>
             <br>
-            The t Test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, $b_1$, by the estimated standard deviation of $b_1$, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t Distribution with n - 2 degrees of freedom. If the p-value is less than the level of significance, the null hypothesis is rejected, indicating a signnificant relationship between $x$ and $y$.
-            <br><br>
+            
+            <p class = "p1">The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. There are two ways of testing for significance, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Mean Square Error</td>
+                <td>Standard Error of Estimate</td>
+              </tr>
+            <tr>
+                <td>$ \text{MSE} = \dfrac{\text{SSE}}{n-2}$</td>
+                <td>$ s = \sqrt{\text{MSE}} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">The t Test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, b<sub>1</sub>, by the estimated standard deviation of b<sub>1</sub>, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t Distribution with n - 2 degrees of freedom. If the p-value is less than the level of significance, the null hypothesis is rejected, indicating a signnificant relationship between $x$ and $y$.</p>
+
             <table style="width:100%" class="text-center">
               <tr>
                 <td>t Test</td>
-                <td>Test Statistic</td>
+                <td>t Statistic</td>
               </tr>
             <tr>
                 <td> $ H_0: \beta = 0 $ <br> $ H_a: \beta \neq 0 $ </td>
@@ -335,6 +404,9 @@
               </tr>
             </table>
             <br>
+            
+            
+            
       </div>
       </div>
       
@@ -368,7 +440,36 @@
       
       
       
-      <!--<div class="container text-center mt-1"  id="alternative">
+      <!--
+
+
+        <p class = "p1">The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. Tests for significance in regression rest on a set of four assumptions about the error term, ε. The first assumption is that the expected value of ε is 0. The second assumption is that the variance of ε is the same for all x. The third assumption is that the values of ε are independent. The fourth assumption is that ε is normally distributed. </p>
+
+            <p class = "p1">There are two ways of testing for significance, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. </p>
+
+        
+
+        <p class = "p1">In simple linear regression, the F test amounts to the same hypothesis test as the t test. This is because the F test simultaneously tests all independent varavles. Since in simple linear regression, there is only one independent variable, the F test will be the same as the t test. The only difference will be the test statistic and the probability distribution used. </p>
+            
+            <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+
+
+
+
+
+
+
+
+        <div class="container text-center mt-1"  id="alternative">
         <span class="examplelink" onclick="alternativessr()">Alternative Method</span>
       </div>
       

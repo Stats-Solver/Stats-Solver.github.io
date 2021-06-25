@@ -121,7 +121,7 @@ function how2(){
     
     var c = document.getElementById("howCanvas2");
     var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
+    ctx.clearRect(0, 0, 300, 200);
     
     ctx.fillText("Empirical Rule",120,10);
     
@@ -138,53 +138,57 @@ function how2(){
     ctx.lineTo(150, 125);
     ctx.fillText("μ",148,145);
     
-    ctx.moveTo(185, 135);
-    ctx.lineTo(185, 125);
-    ctx.moveTo(220, 135);
-    ctx.lineTo(220, 125);
-    ctx.moveTo(255, 135);
-    ctx.lineTo(255, 125);
+    ctx.moveTo(190, 135);
+    ctx.lineTo(190, 125);
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.moveTo(270, 135);
+    ctx.lineTo(270, 125);
     
-    ctx.fillText("+1σ",178,145);
-    ctx.fillText("+2σ",213,145);
-    ctx.fillText("+3σ",248,145);
+    ctx.fillText("+1σ",183,145);
+    ctx.fillText("+2σ",223,145);
+    ctx.fillText("+3σ",263,145);
     
-    ctx.moveTo(115, 135);
-    ctx.lineTo(115, 125);
-    ctx.moveTo(80, 135);
-    ctx.lineTo(80, 125);
-    ctx.moveTo(45, 135);
-    ctx.lineTo(45, 125);
+    ctx.moveTo(110, 135);
+    ctx.lineTo(110, 125);
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.moveTo(30, 135);
+    ctx.lineTo(30, 125);
     
-    ctx.fillText("-1σ",109,145);
-    ctx.fillText("-2σ",74,145);
-    ctx.fillText("-3σ",39,145);
+    ctx.fillText("-1σ",104,145);
+    ctx.fillText("-2σ",64,145);
+    ctx.fillText("-3σ",24,145);
     
-    //ctx.moveTo(117, 40);
-    //ctx.lineTo(117, 50);
-    ctx.moveTo(118, 45);
-    ctx.lineTo(136, 45);
-    //ctx.moveTo(185, 40);
-    //ctx.lineTo(185, 50);
-    ctx.moveTo(185, 45);
-    ctx.lineTo(169, 45);
-    ctx.fillText("~68%",140,48);
+    ctx.moveTo(110, 150);
+    ctx.lineTo(110, 155);
+    ctx.moveTo(110, 155);
+    ctx.lineTo(136, 155);
+    ctx.moveTo(190, 150);
+    ctx.lineTo(190, 155);
+    ctx.moveTo(190, 155);
+    ctx.lineTo(169, 155);
+    ctx.fillText("~68%",140,158);
     
-    //ctx.moveTo(220, 90);
-    //ctx.lineTo(220, 100);
-    //ctx.moveTo(80, 90);
-    //ctx.lineTo(80, 100);
-    ctx.moveTo(80, 94);
-    ctx.lineTo(135, 94);
-    ctx.moveTo(224, 94);
-    ctx.lineTo(169, 94);
-    ctx.fillText("~95%",140,97);
+    ctx.moveTo(230, 150);
+    ctx.lineTo(230, 170);
+    ctx.moveTo(70, 150);
+    ctx.lineTo(70, 170);
+    ctx.moveTo(70, 170);
+    ctx.lineTo(135, 170);
+    ctx.moveTo(230, 170);
+    ctx.lineTo(169, 170);
+    ctx.fillText("~95%",140,172);
     
-    ctx.moveTo(45, 115);
-    ctx.lineTo(133, 115);
-    ctx.moveTo(259, 115);
-    ctx.lineTo(171, 115);
-    ctx.fillText("~100%",137,118);
+    ctx.moveTo(270, 150);
+    ctx.lineTo(270, 185);
+    ctx.moveTo(30, 150);
+    ctx.lineTo(30, 185);
+    ctx.moveTo(30, 185);
+    ctx.lineTo(133, 185);
+    ctx.moveTo(270, 185);
+    ctx.lineTo(171, 185);
+    ctx.fillText("~100%",137,187);
     
     
     var points = []

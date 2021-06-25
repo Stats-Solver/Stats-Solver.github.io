@@ -122,6 +122,7 @@
       
     <div class = "container">
         <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="basic-probability.html">Basic Probability Calculator</a></h1>
+        <h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="discrete-distribution.html" class="text-primary" >Discrete Distribution Calculator</a></h2>
     </div>
       
       <div class="container">
@@ -538,8 +539,30 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            In probability, an experiment is any process that generates some outcomes. The set of all possible outcomes is called the sample space and individual outcomes are referred to as sample points. There are three different ways of calculating the number of outcomes in an experiment, or in other words, the size of the sample space. If the experiment is made up of several smaller experiments, the counting rule for multiple-step experiments is used. If the experiment involves selecting $n$ objects from a larger set of $N$ objects, the counting rule for combinations is used. If the experiment involves selecting $n$ objects from a larger set of $N$ objects and order of selection matters, the counting rule for permutations is used. 
-            <br><br>
+            <p class = "p1">In probability, an experiment is any process that generates some outcomes. The set of all possible outcomes of an experiment is called the sample space and each element of the sample space is known as a sample point. Since the sample space is made up of outcomes, sample point is another word for outcome. When calculating probability, it is often necessary to know how many possible outcomes there are. Sometimes there are only a few outcomes in an experiment so it is easy to count the number of outcomes. When there are many possible outcomes in an experiment, it is helpful to use one of the counting rules.  </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Experiment:</td>
+                <td>Outcomes:</td>
+              </tr>
+              <tr>
+                <td>Toss a Coin</td>
+                <td>Head, Tail</td>
+              </tr>
+              <tr>
+                <td>Roll a Die</td>
+                <td>1, 2, 3, 4, 5, 6</td>
+              </tr>
+              <tr>
+                <td>Play a Game</td>
+                <td>Win, Lose, Tie</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">There are three different ways of calculating the number of outcomes in an experiment. If the experiment is made up of several smaller experiments, the counting rule for multiple-step experiments is used. It says that when there are k steps in an experiment, with n1 outcomes in step 1, n2 in step 2 and so on. Then the total number of outcomes can be calculated using ()()$\cdots$(). If the experiment involves selecting $n$ objects from a larger set of $N$ objects, the counting rule for combinations is used. If the experiment involves selecting $n$ objects from a larger set of $N$ objects and order of selection matters, the counting rule for permutations is used. </p>
+
             <table style="width:100%">
               <tr>
                 <td>Combinations</td>
@@ -551,37 +574,31 @@
               </tr>
             </table>
             <br>
-            The probability of an outcome can be calculated in a few different ways. If the outcomes are equally likely, the classical method says that the probability of each outcome is 1 divided by the number of possible outcomes. If historical data is available where the experimennt has been repeated several times, the relative frequency method says the probability of each outcome is the relative frequency. The probability of a collection of outcomes, or event, can be calculated by summing the probabilities of the outcomes of th event. 
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td>Classical Method</td>
-              </tr>
-              <tr>
-                <td>P(outcome) = 1 / number of outcomes</td>  
-              </tr>
-            </table>
-            <br>
-            <!--In probability, an event is defined as a collection of sample points (outcomes). The probability of an event can be calculated simply by summing the probabilities of the sample points in the event. So, for example, consider the experiment of rolling a die. The sample space is S = {1,2,3,4,5,6} and, using the classical method, the probability of each outcome is 1/6. Let A be the event that an even number is rolled. Then A = {2,4,6} and P(A) = P(2) + P(4) + P(6) = 1/6 + 1/6 + 1/6 = 3/6 = 1/2.-->
             
-            Given an event A, the complement of A, written A<sup>c</sup>, is the event containing all sample points not in A. Relationships in probability can be illustrated in a Venn diagram, as shown below. The rectangle represents the sample space. Since an event and its complement make up the entire sample space, their probabilities sum to one. That is, P(A) + P(A<sup>c</sup>) = 1. So given the probability of the complement of an event, we can calculate the probability of an event using P(A) = 1 - P(A<sup>c</sup>).
-            <br><br>
+            <p class = "p1">The probability of an outcome can be calculated in a few different ways. If the outcomes are equally likely, the classical method says that the probability of each outcome is 1 divided by the number of possible outcomes. If historical data is available where the experimennt has been repeated several times, the relative frequency method says the probability of each outcome is the relative frequency. If the outcomes are not equally likely annd there's no hisorical data, we must rely on the subjective method. It says that the probability of each outcome is the degree of belief that it will occur. </p>
+
             <table style="width:100%">
               <tr>
-                <td><canvas id="howCanvas1" width="400" height="200"></canvas></td>
+                <td>Method:</td>
+                <td>Probability of Outcome:</td>
+              </tr>
+              <tr>
+                <td>Classical</td>
+                <td>1 / number of outcomes</td>
+              </tr>
+              <tr>
+                <td>Relative Frequency</td>
+                <td>proportion of times</td>
+              </tr>
+              <tr>
+                <td>Subjective</td>
+                <td>degree of belief</td>
               </tr>
             </table>
             <br>
-            Given two events A and B, the union of A and B, written A∪B is the event containing all sample points in A, B or both A and B. On the other hand, the intersection of A and B, written A∩B, is the event containing all sample points in both A and B. The probability of the union of two events can be calculated using the addition law, which says P(A∪B) = P(A) + P(B) - P(A∩B). If the events don't have any sample points in common, they are said to be mutually exclusive, and the addition law becomes P(A∪B) = P(A) + P(B).
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas2" width="400" height="200"></canvas><canvas id="howCanvas3" width="400" height="200"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            Sometimes, the probability of one event occuring is affected by another event occuring. This is known as conditional probability. The probability of event A occuring given that event B has already occured, or simply the probability of A given B, is written as P(A|B). The formula for conditional probability is P(A|B) = $\frac{P(A \cap B)}{P(B)}$. We can rearrange the terms in this formula to get the probability of the intersection, P(A∩B)=P(B)P(A|B). This is known as the multiplication law. If event A's probability isn't affected by event B, we say A and B are independent. Then we have P(A|B)=P(A) and P(A∩B)=P(A)P(B).
-            <br><br>
+            
+            <p class = "p1"> Regardless of which method is used to assign probability, it is important that two requirements are satisfied. The first requirement is that the probability of each outcome is between zero and one. The second requirement is that the sum of the probabilities equals one. In probability, the term "event" has a different meaning than it does in everyday life. An event is defined to be a collection of sample points (outcomes). To calculate the probability of event, simply sum the probabilities of the outcomes of the event.  </p>
+            
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
                     try {
@@ -593,6 +610,106 @@
                 </script>
             </div>
             <br>
+            
+            <!--
+
+            In probability, an event is defined as a collection of sample points (outcomes). The probability of an event can be calculated simply by summing the probabilities of the sample points in the event. So, for example, consider the experiment of rolling a die. The sample space is S = {1,2,3,4,5,6} and, using the classical method, the probability of each outcome is 1/6. Let A be the event that an even number is rolled. Then A = {2,4,6} and P(A) = P(2) + P(4) + P(6) = 1/6 + 1/6 + 1/6 = 3/6 = 1/2.
+
+
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas4" width="400" height="200"></canvas></td>
+              </tr>
+            </table>
+
+            In our example, the intersection of A and B will be A∩B = {4,6}. For example, aggain consider the experiment of rolling a die. Let A be the event of getting an even number and B be the event of getting at least a 4. Then A = {2,4,6}, B = {4,5,6} and A∪B = {2,4,5,6}. 
+
+            <p class = "p1"> The addition law can be used to calculate the probability of the union of two events. It says that P(A∪B) = P(A) + P(B) - P(A∩B). The idea here is that when you sum the probabilities of A and B, you're counting the intersection twice so you need to subtract it once. If the events don't have any sample points in common, they are said to be mutually exclusive. Since there won't be any sample points in the intersection, the probability of the intersection will be zero. So for mutualy exclusive events, the addition law becomes simply P(A∪B) = P(A) + P(B).</p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Addition Law</td>
+              </tr>
+              <tr>  
+                <td>$ P(A \cup B) = P(A) + P(B) - P(A \cap B) $</td>
+              </tr>
+            <tr>  
+                <td>Mutually Exclusive - $ P(A \cup B) = P(A) + P(B) $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Bayes' Theorem</td>
+              </tr>
+              <tr>  
+                <td>$P(A_1 \mid B) = \dfrac{P(A_1)P(B \mid A_1)}{P(A_1)P(B \mid A_1)+P(A_2)P(B \mid A_2)}$</td>
+              </tr>
+            <tr> 
+            <tr>  
+                <td>$P(A_2 \mid B) = \dfrac{P(A_2)P(B \mid A_2)}{P(A_1)P(B \mid A_1)+P(A_2)P(B \mid A_2)}$</td>
+              </tr>
+            </table>
+            <br>
+
+            The probability of event A occuring given that event B has already occured, or simply the probability of A given B, is written as P(A|B). The formula for conditional probability is P(A|B) = $\frac{P(A \cap B)}{P(B)}$ or P(B|A) = $\frac{P(A \cap B)}{P(A)}$.
+
+            <p class = "p1"> The multiplication law can be used to calculate the probability of the union of two events. It can be easily derived from the conditional probability formula, P(A|B) = $\frac{P(A \cap B)}{P(B)}$ or P(B|A) = $\frac{P(A \cap B)}{P(A)}$. By rearranging the terms, we get P(A∩B)=P(B)P(A|B) or P(A∩B)=P(A)P(B|A). This is known as the multiplication law. If A and B are independent, then P(A|B) = P(A) or P(B|A) = P(B). Plugging these in to the multiplication law, we get P(A∩B)=P(A)P(B). </p>
+            
+            <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            <br>
+
+            -->
+            
+            <p class = "p1">Given an event A, the complement of A, written A<sup>c</sup>, is the event containing all sample points not in A. Relationships in probability can be illustrated in a Venn diagram, as shown below. The rectangle represents the sample space. Since an event and its complement make up the entire sample space, their probabilities sum to one. That is, P(A) + P(A<sup>c</sup>) = 1. So given the probability of the complement of an event, we can calculate the probability of an event using P(A) = 1 - P(A<sup>c</sup>). Alternatively, given the probability of the an event, we can calculate the probability of the complement of the event using P(A<sup>c</sup>) = 1 - P(A).</p>
+
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="400" height="200"></canvas></td>
+              </tr>
+            </table>
+
+            <p class = "p1">Given two events A and B, the union of A and B, written A∪B is the event containing all sample points in A, B or both A and B. On the other hand, the intersection of A and B, written A∩B, is the event containing all sample points in both A and B. The addition law can be used to calculate the probability of the union of two events. It says that P(A∪B) = P(A) + P(B) - P(A∩B). If the events don't have any sample points in common, they are said to be mutually exclusive. Since there won't be any sample points in the intersection, the probability of the intersection will be zero. So for mutualy exclusive events, the addition law becomes simply P(A∪B) = P(A) + P(B). </p>
+
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas2" width="400" height="200"></canvas><canvas id="howCanvas3" width="400" height="200"></canvas></td>
+              </tr>
+            </table>
+
+            <p class = "p1">Sometimes, the probability of one event occuring is affected by another event occuring. This is known as conditional probability and is written P(A|B). This can be read as the probability of event A occuring given that event B has occured, or simply the probability of A given B. If event A's probability isn't affected by event B, we say A and B are independent. For independent events the formula for conditional probability is P(A|B) = P(A) or P(B|A) = P(B). By rearranging the terms in the conditional probability formula, we can calculate the probability of intersection: P(A∩B)=P(B)P(A|B) or P(A∩B)=P(A)P(B|A). If A and B are independent, we get P(A∩B)=P(A)P(B). </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Conditional Probability</td>
+              </tr>
+              <tr>  
+                <td>$P(A \mid B) = \dfrac{P(A \cap B)}{P(B)}$</td>
+              </tr>
+            <tr> 
+            <tr>  
+                <td>or</td>
+              </tr>
+            <tr>
+            <tr>  
+                <td>$P(B \mid A) = \dfrac{P(A \cap B)}{P(A)}$</td>
+              </tr>
+            </table>
+            <br>
+            
+            
+
+            
       </div>
       </div> 
       
@@ -625,7 +742,16 @@
       
     
       
-      
+      <div id="581773186" class="text-center">
+    <script type="text/javascript">
+        try {
+            window._mNHandle.queue.push(function (){
+                window._mNDetails.loadTag("581773186", "300x250", "581773186");
+            });
+        }
+        catch (error) {}
+    </script>
+</div>
       
       
       

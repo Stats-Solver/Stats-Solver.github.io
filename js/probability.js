@@ -51,8 +51,13 @@ var canvas = document.getElementById("howCanvas3");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.33, 1.33);
 
+//var canvas = document.getElementById("howCanvas4");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.33, 1.33);
 
-how1(); how2(); how3();
+how1(); how2(); how3(); 
+
+//how4();
 
 
 
@@ -191,7 +196,38 @@ function how3(){
 }
 
 
+function how4(){
+    var c = document.getElementById("howCanvas4");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Mutually Exclusive",110,10);
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "lightgray";
+    
+    ctx.beginPath();
+    ctx.arc(103, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.beginPath();
+    ctx.arc(197, 75, 40, 0, 2 * Math.PI);
+    ctx.stroke();
+    
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 130);
+    ctx.lineTo(250, 130);
+    ctx.lineTo(250, 20);
+    ctx.lineTo(50, 20);
+    
+    ctx.fillStyle = "black";
+    ctx.fillText("A",100,75);
+    ctx.fillText("B",195,75);
 
+    
+    ctx.stroke();
+}
 
 
 

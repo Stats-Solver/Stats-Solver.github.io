@@ -123,6 +123,7 @@
       
     <div class = "container">
         <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="hypothesis-testing.html">Hypothesis Testing Calculator</a></h1>
+        <h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="confidence-interval.html" class="text-primary" >Confidence Interval Calculator</a></h2>
     </div>
       
       <div class="container">
@@ -277,8 +278,8 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            The first step in hypothesis testing is to calculate the test statistic. For hypothesis tests about the population mean ($\mu$), the test statistic is $ z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $ if the population standard deviation ($\sigma$) is known and $ t = \frac{\bar{x}-\mu_0}{s/\sqrt{n}} $ if $\sigma$ is unknown. Note that the test statistic is written as $z$ or $t$, indicating whether to use the $z$-distribution or $t$-distribution. To switch from $\sigma$ known to $\sigma$ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. 
-            <br><br>
+            <p class = "p1">The first step in hypothesis testing is to calculate the test statistic. For hypothesis tests about the population mean (μ), the test statistic is $ z = \frac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $ if the population standard deviation (σ) is known and t = $  \frac{\bar{x}-\mu_0}{s/\sqrt{n}} $ if σ is unknown. Note that the test statistic is written as z or t, indicating whether to use the z-distribution or t-distribution. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
+
             <table style="width:100%">
               <tr>
                 <td></td>
@@ -292,8 +293,9 @@
               </tr>
             </table>
             <br>
-            Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis ($H_a$). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.
-            <br><br>
+            
+            <p class = "p1">Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
+
             <table style="width:100%">
               <tr>
                 <td>Lower Tail Test</td>
@@ -312,16 +314,18 @@
               </tr>
             </table>
             <br>
-            In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. 
-            <br><br>
+            
+            <p class = "p1">In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. </p>
+
             <table style="width:100%">
               <tr>
                 <td><canvas id="howCanvas1" width="350" height="175"></canvas><canvas id="howCanvas2" width="350" height="175"></canvas><canvas id="howCanvas3" width="350" height="175"></canvas></td>
               </tr>
             </table>
             <br>
-            To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$.
-            <br><br>
+            
+            <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$.</p>
+
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
                     try {
@@ -338,16 +342,17 @@
               </tr>
             </table>-->
             <br>
-            In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper-tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.
-            <br><br>
+            
+            <p class = "p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper-tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
+
             <table style="width:100%">
               <tr>
                 <td><canvas id="howCanvas4" width="350" height="175"></canvas><canvas id="howCanvas5" width="350" height="175"></canvas><canvas id="howCanvas6" width="350" height="175"></canvas></td>
               </tr>
             </table>
-            <br>
-            To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.
-            <br><br>
+
+            <p class = "p1">To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.</p>
+
             <table style="width:100%">
               <tr>
                 <td>Lower Tail Test</td>
@@ -366,8 +371,48 @@
               </tr>
             </table>
           <br>
-          For hypothesis tests about the population proportion, the test statistic is $ z = \frac{\bar{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} $. To switch from hypothesis tests about the population mean to the population proportion, click on $\boxed{\mu}$ and select $\boxed{p}$. 
-          <br><br>  
+          
+            <p class = "p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. There are two types of errors you can make:  Type I Error and Type II Error. A Type I Error is committed if you reject the null hypothesis when the null hypothesis is true. Ideally, we'd like to accept the null hypothesis when the null hypothesis is true. A Type II Error is committed if you accept the null hypothesis when the alternative hypothesis is true. Ideally, we'd like to reject the null hypothesis when the alternative hypothesis is true.</p>
+
+            <table>
+              <tr>
+                <td></td>
+                <td></td>
+                <td colspan="2">Condition</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td style = "border-right: thin solid; border-bottom: thin solid"></td>
+                <td style = "border-bottom: thin solid">$H_0$ True</td>
+                <td style = "border-bottom: thin solid">$H_a$ True</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Conclusion</td>
+                <td style = "border-right: thin solid">Accept $H_0$</td>
+                <td>Correct</td>
+                <td>Type II Error</td>
+              </tr>
+              <tr>
+                <td style = "border-right: thin solid">Reject $H_0$</td>
+                <td>Type I Error</td>
+                <td>Correct</td>
+              </tr>
+            </table>
+          <br>
+            
+          <p class = "p1">For hypothesis tests about the population proportion, the test statistic is $ z = \frac{\bar{p}-p_0}{\sqrt{\frac{p_0(1-p_0)}{n}}} $. The procedure for conducting a hypothesis test about the population proprtion is the same as the population mean when sigma is known. That is, we calculate the p-value and critical values in the same way while using the z distribution. Furthermore, our rules for rejecting the null hypothesis will be the same for both approaches. To switch from hypothesis tests about the population mean to the population proportion, click on $\boxed{\mu}$ and select $\boxed{p}$. </p>
+            
+          <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
             
         </div>
       </div>

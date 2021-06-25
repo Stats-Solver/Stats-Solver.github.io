@@ -11,14 +11,14 @@ ctx.scale(1.25, 1.25);
 
 var canvas = document.getElementById("howCanvas1");
 var ctx = canvas.getContext("2d");
-ctx.scale(1.33, 1.33);
+ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas2");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.33, 1.33);
+//var canvas = document.getElementById("howCanvas2");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.33, 1.33);
 
 
-how1(); how2();
+how1(); 
 
 
 
@@ -55,9 +55,9 @@ function how1(){
     ctx.fillRect(115,70,3,3);
     ctx.fillRect(130,110,3,3);
     ctx.fillRect(145,60,3,3);
-    ctx.fillRect(160,70,3,3);
+    //ctx.fillRect(160,70,3,3);
     ctx.fillRect(175,110,3,3);
-    ctx.fillRect(190,60,3,3);
+    ctx.fillRect(185,60,3,3);
     ctx.fillRect(205,40,3,3);
     ctx.fillRect(220,80,3,3);
     //ctx.fillRect(235,50,3,3);

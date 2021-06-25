@@ -59,36 +59,39 @@ var canvas = document.getElementById("howCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas1");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+//var canvas = document.getElementById("howCanvas1");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.25, 1.25);
 
 var canvas = document.getElementById("howCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas3");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
+//var canvas = document.getElementById("howCanvas3");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas4");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.167, 1.167);
+//var canvas = document.getElementById("howCanvas4");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.167, 1.167);
 
-var canvas = document.getElementById("howCanvas5");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.167, 1.167);
+//var canvas = document.getElementById("howCanvas5");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.167, 1.167);
 
-var canvas = document.getElementById("howCanvas6");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.167, 1.167);
-
-
+//var canvas = document.getElementById("howCanvas6");
+//var ctx = canvas.getContext("2d");
+//ctx.scale(1.167, 1.167);
 
 
 
-how0(); how1(); how2(); how3(); 
-how4(); how5(); how6();
+
+
+how0(); 
+//how1(); 
+how2(); 
+//how3(); 
+//how4(); how5(); how6();
 
 
 
