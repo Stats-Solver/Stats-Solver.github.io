@@ -1,6 +1,13 @@
 $("#next").hide(); $("#hint").hide(); $("#charts").hide(); 
 hintval = 1
 
+$("#practice").hide(); $("#start").show();
+
+function start(){
+    $("#practice").show(); $("#start").hide(); 
+    //$("#examples").hide();
+}
+
 function showhint() {
     if (hintval==1) {
         $("#hint").show();

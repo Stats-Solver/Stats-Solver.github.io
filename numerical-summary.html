@@ -101,6 +101,19 @@
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> -->
             </div>
           </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tables
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="tables/z-distribution.html">z Distribution</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t Distribution</a>
+              <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
+              <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
+              <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
+              <a class="dropdown-item" href="tables/z-distribution.html">Poisson Probability</a> -->
+            </div>
+          </li>
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -115,7 +128,7 @@
         
 
         <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="numerical-summary.html">Numerical Summary Calculator</a></h1>
-        <h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="table-and-graph.html" class="text-primary" >Table and Graph Calculator</a></h2>
+        <!--<h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="table-and-graph.html" class="text-primary" >Table and Graph Calculator</a></h2>-->
     </div>
       
       <div class="container">
@@ -447,7 +460,7 @@
               </tr>
             </table>
             <br>
-            <p class = "p1">Percentiles describe the location of a value relative to the rest of the data. The p<sup>th</sup> percentile is the value such that p% of the data is less than that value and (1-p)% of the data is greater than that value. Percentiles are calculated by first calculating an index using the formula i=$\left(\frac{p}{100}\right)$n. Then, if the index is not an integer, round up and take the value in that position. If the index is an integer, average the values in positions i and i+1. Quartiles are the name given to some common percentiles. Quartile 1 (Q<sub>1</sub>) is the 25<sup>th</sup> percentile, Quartile 2 (Q<sub>2</sub>) is the 50<sup>th</sup> percentile and Quartile 3 (Q<sub>3</sub>) is the 75<sup>th</sup> percentile.</p>
+            <p class = "p1">Percentiles describe the location of a value relative to the rest of the data. The p<sup>th</sup> percentile is the value such that p% of the data is less than that value and (1-p)% of the data is greater than that value. Percentiles are calculated by first calculating an index using the formula i=$\left(\frac{p}{100}\right)$n. Then, if the index is not an integer, round up and take the value in that position. If the index is an integer, average the values in positions i and i+1. Quartiles are the name given to some common percentiles. Quartile 1 (Q<sub>1</sub>) is the 25<sup>th</sup> percentile, Quartile 2 (Q<sub>2</sub>) is the 50<sup>th</sup> percentile and Quartile 3 (Q<sub>3</sub>) is the 75<sup>th</sup> percentile. All three quartiles along with the minimum and maximum values are called a five-number summary.  </p>
             
             <table style="width:100%" class="text-center">
               <tr>
@@ -484,6 +497,9 @@
             <br>
             
             <!--
+
+            A five-number-summary is a list of five numbers used to summarize data. They include the minimum, the maximum and the three quartiles.
+
             <table style="width:100%" class="text-center">
               <tr>
                 <td>Sample Standard Deviation</td>
@@ -515,12 +531,14 @@
             1-1/2<sup>2</sup> = 1-1/4 = 3/4 = .75 = 
 
             Using z-values of 3 and 4, we get at least 89% of the values must be within 3 standard deviations of the mean and at least 94% of the values must be within 4 standard deviations of the mean.
+
+            So, for example, with z=2, we have at least 75% of the values must be within two standard deviations of the mean.
             
             -->
             
             
             
-            <p class = "p1">A z-score is a measure of relative location, as it tells you where a data value is located relative to the mean. A z-score can be interpreted as the number of standard deviations a value is from the mean. Chebyshev's Theorem uses z-scores to determine what percentage of the data must be within a certain range. It says that at least (1-1/z<sup>2</sup>) of the values must be within z standard deviations of the mean. So, for example, with z=2, we have at least 75% of the values must be within two standard deviations of the mean. </p>
+            <p class = "p1">A z-score is a measure of relative location, as it tells you where a data value is located relative to the mean. A z-score can be interpreted as the number of standard deviations a value is from the mean. One use of z-scores is that they can be used to identify extreme values (or outliers). An outlier can be identified as any value with a z-score greater than three in absolute value. Chebyshev's Theorem uses z-scores to determine what percentage of the data must be within a certain range. It says that at least (1-1/z<sup>2</sup>) of the values must be within z standard deviations of the mean.  </p>
 
             <table style="width:100%" class="text-center">
               <tr>

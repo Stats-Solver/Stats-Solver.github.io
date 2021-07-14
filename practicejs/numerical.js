@@ -1,9 +1,15 @@
 $("#next").hide(); $("#hint").hide(); 
 hintval = 1
 
+$("#practice").hide(); $("#start").show();
+
+function start(){
+    $("#practice").show(); $("#start").hide(); $("#examples").hide();
+}
 
 
-    $("#practice").show(); $("#start").hide();
+
+    
     rand0 = Math.floor(Math.random() * 12) + 1;
     //rand0 = 15
     if (rand0 == 1) {
