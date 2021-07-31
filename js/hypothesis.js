@@ -1288,12 +1288,12 @@ function hyptest1(){
     
 
     if (sigma == "known") {
-        document.getElementById("output1").innerHTML = " $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$   $ \\text{p-Value Approach:} $"
+        document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$   $ \\text{p-Value Approach:} $"
     } else if (sigma == "unknown") {
         if (inputtype == "values") {
-            document.getElementById("output1").innerHTML = " $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+            document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
         } else if (inputtype == "data") {
-            document.getElementById("output1").innerHTML = " $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+            document.getElementById("output1").innerHTML = " $ \\text{Sample Mean:} $ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $ \\text{Sample Standard Deviation:} $ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
         } 
     } 
     
@@ -1969,7 +1969,7 @@ function hyptest2(){
     var tablep = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     var tablec = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit+"$</td>"+table2+"</tr></table>"
 
-    document.getElementById("output1").innerHTML = " $$ z =\\frac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} =\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} = "+test.toFixed(2)+"  $$ $ \\text{p-Value Approach:}$"
+    document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} =\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} = "+test.toFixed(2)+"  $$ $ \\text{p-Value Approach:}$"
 
     if (tail == "lower") {
         

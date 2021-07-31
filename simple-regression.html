@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Simple regression calculator with steps. Solve the regression equation, sum of squares, coefficient of determination and more.">
+    <meta name="description" content="The easy-to-use simple linear regression calculator gives you step-by-step solutions to the estimated regression equation, coefficient of determination and more.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -13,7 +13,7 @@
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
 
-    <title>Simple Regression Calculator with Steps - Stats Solver</title>
+    <title>Simple Linear Regression Calculator with Steps - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -56,7 +56,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Statistics Calculators
+              Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
@@ -103,8 +103,8 @@
             Tables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/z-distribution.html">z Distribution</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t Distribution</a>
+              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
               <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
@@ -257,6 +257,18 @@
              </div>
 There are two things we need to get the estimated regression equation: the slope ($b_1$) and the intercept ($b_0$). The slope and intercept are calculated using the formulas $b_1 = \frac{\sum (x-\bar{x})(y-\bar{y})}{\sum (x-\bar{x})^2}$ and $b_0 = \bar{y} - b_1 \bar{x}$, respectively. 
 
+<table style="width:100%" class="text-center">
+              <tr>
+                <td>Slope</td>
+                <td>Intercept</td>
+              </tr>
+            <tr>
+                <td>$b_1 = \dfrac{\sum (x-\bar{x})(y-\bar{y})}{\sum (x-\bar{x})^2}$</td>
+                <td>$b_0 = \bar{y} - b_1 \bar{x}$</td>
+              </tr>
+            </table>
+            <br>
+
 -->
       
       
@@ -271,18 +283,12 @@ There are two things we need to get the estimated regression equation: the slope
         </div>
         <div id="how2" class="how" style="color: darkslategray">
             <p class = "p1">In simple linear regression, the starting point is the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. It provides a mathematical relationship between the dependent variable (y) and the independent variable (x). Furthermore, it can be used to predict the value of y for a given value of x. There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The formulas for the slope and intercept are derived from the least squares method: min Σ(y - ŷ)<sup>2</sup>. That is, b<sub>0</sub> and b<sub>1</sub> are chosen so that the sum of the squared difference between the actual y and the predicted y, ŷ, is minimized. </p>
-
+            
             <table style="width:100%" class="text-center">
               <tr>
-                <td>Slope</td>
-                <td>Intercept</td>
-              </tr>
-            <tr>
-                <td>$b_1 = \dfrac{\sum (x-\bar{x})(y-\bar{y})}{\sum (x-\bar{x})^2}$</td>
-                <td>$b_0 = \bar{y} - b_1 \bar{x}$</td>
+                <td><canvas id="howCanvas1" width="375" height="250"></canvas></td>
               </tr>
             </table>
-            <br>
 
             <!--<br><br>
 
@@ -366,6 +372,32 @@ There are two things we need to get the estimated regression equation: the slope
               </tr>
             </table>
             <br>
+
+             <p class = "p1">In simple linear regression, the F test amounts to the same hypothesis test as the t test. This is because the F test simultaneously tests all independent variables for significance. Since in simple linear regression, there is only one independent variable, the F test will be the same as the t test. The only difference will be the test statistic and the probability distribution used. The test statistic in the F test is the ratio of the MSR to the MSE and the probability distribution is the F distribution. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>F Test</td>
+                <td>Test Statistic</td>
+              </tr>
+            <tr>
+                <td> $ H_0: \beta_1 = 0 $ <br> $ H_a: \beta_1 \neq 0 $ </td>
+                <td>$ F = \dfrac{\text{MSR}}{\text{MSE}} $</td>
+              </tr>
+            </table>
+            <br>
+
+            <table style="width:100%" class="text-center">
+              <tr>
+                  <td>Coefficient of Determination</td>
+                  <td>Correlation Coefficient</td>
+              </tr>
+            <tr>
+                <td>$ r^2 = \dfrac{\text{SSR}}{\text{SST}} $</td>
+                <td>$ r_{xy} = (\text{sign of }b_1)\sqrt{r^2} $</td>
+              </tr>
+            </table>
+            <br> 
             -->
             
             <p class = "p1">After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted r<sup>2</sup>, provides a measure of goodness of fit for the estimated regression equation. Before we can find the r<sup>2</sup>, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.</p>
@@ -394,11 +426,9 @@ There are two things we need to get the estimated regression equation: the slope
             <table style="width:100%" class="text-center">
               <tr>
                   <td>Coefficient of Determination</td>
-                  <td>Correlation Coefficient</td>
               </tr>
             <tr>
                 <td>$ r^2 = \dfrac{\text{SSR}}{\text{SST}} $</td>
-                <td>$ r_{xy} = (\text{sign of }b_1)\sqrt{r^2} $</td>
               </tr>
             </table>
             <br> 
@@ -431,7 +461,7 @@ There are two things we need to get the estimated regression equation: the slope
             </table>
             <br>
             
-            <p class = "p1">The t test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, b<sub>1</sub>, by the estimated standard deviation of b<sub>1</sub>, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t distribution with n-2 degrees of freedom. If the p-value is less than the level of significance, the null hypothesis is rejected, indicating a significant relationship between x and y.</p>
+            <p class = "p1">The t test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, b<sub>1</sub>, by the estimated standard deviation of b<sub>1</sub>, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t distribution with n-2 degrees of freedom. In simple linear regression, the F test amounts to the same hypothesis test as the t test. The only difference will be the test statistic and the probability distribution used. </p>
 
             <table style="width:100%" class="text-center">
               <tr>
@@ -445,19 +475,27 @@ There are two things we need to get the estimated regression equation: the slope
             </table>
             <br>
             
-            <p class = "p1">In simple linear regression, the F test amounts to the same hypothesis test as the t test. This is because the F test simultaneously tests all independent variables for significance. Since in simple linear regression, there is only one independent variable, the F test will be the same as the t test. The only difference will be the test statistic and the probability distribution used. The test statistic in the F test is the ratio of the MSR to the MSE and the probability distribution is the F distribution. </p>
+            <p class = "p1">Confidence intervals and predictions intervals can be constructed around the estimated regression line. In both cases, the intervals will be narrowest near the mean of x and get wider the further they move from the mean. The differennce between them is that a confidence interval gives a range for the expected value of y. A prediction interval gives a range for the predicted value of y. Confidence intervals will be narrower than prediction intervals. </p>
             
             <table style="width:100%" class="text-center">
               <tr>
-                <td>F Test</td>
-                <td>Test Statistic</td>
-              </tr>
-            <tr>
-                <td> $ H_0: \beta_1 = 0 $ <br> $ H_a: \beta_1 \neq 0 $ </td>
-                <td>$ F = \dfrac{\text{MSR}}{\text{MSE}} $</td>
+                <td><canvas id="howCanvas2" width="375" height="250"></canvas></td>
               </tr>
             </table>
-            <br>
+            
+            <p class = "p1">After the simple regression model has been fit to the data, the residuals can be analyzed to check the assumptions in regression. Residuals in regression are the difference between the actual values and predicted values of y. One way of analyzing the residuals is to plot them against the values of the independent variable x. Looking at this plot will tell you whether the residuals have a constant variance and the assumption of a linear relationship is valid.  </p>
+            
+            <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            
             
             
       </div>

@@ -71,7 +71,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Statistics Calculators
+              Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
@@ -118,8 +118,8 @@
             Tables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/z-distribution.html">z Distribution</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t Distribution</a>
+              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
               <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
@@ -861,6 +861,10 @@
               </tr>
             </table>
             <br>
+
+                      <tr>
+                <td>$ \mu $ = mean number of occurences </td>
+              </tr>
       -->
       
       
@@ -969,8 +973,17 @@
               <tr>
                 <td>$ f(x) = \dfrac{\mu^x e^{-\mu}}{x!} $ </td>
               </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The hypergeometric probabiity distribution is very similar to the binomial probability distributionn. The differences are that in a hypergeometric distribution, the trials are not independent and the probability of success changes from trial to trial. Another difference between the two is that for the binomial probability function, we use the probability of success, p. For the hypergeometric probability distribution, we use the number of successes, r, in the population, N. The expected value and variance are given by E(x) = n$\left(\frac{r}{N}\right)$ and Var(x) = n$\left(\frac{r}{N}\right) \left(1 - \frac{r}{N}\right) \left(\frac{N-n}{N-1}\right)$. </p>
+            
+            <table style="width:100%">
               <tr>
-                <td>$ \mu $ = mean number of occurences </td>
+                <td>Hypergeometric Probability Function </td>
+              </tr>
+              <tr>
+                <td>$ f(x) = \dfrac{{r \choose x}{N-r \choose n-x}}{{N \choose n}} $ </td>
               </tr>
             </table>
             <br>

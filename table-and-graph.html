@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Tables and graphs calculator with steps. Solve the frequency distribution, bar chart, histogram and more.">
+    <meta name="description" content="The easy-to-use table and graph calculator gives you step-by-step solutions to the frequency distribution, bar chart, histogram and more.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -53,7 +53,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Statistics Calculators
+            Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
@@ -100,8 +100,8 @@
             Tables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/z-distribution.html">z Distribution</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t Distribution</a>
+              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
               <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
@@ -239,7 +239,17 @@
       
       
       
-      
+      <!--
+       <table style="width:100%" class="text-center">
+            <tr>
+                <td> $ \text{Relative Frequency} = \dfrac{\text{Frequency}}{n} $</td>
+              </tr>
+            <tr>
+                <td>$ \text{Percent Frequency} = \text{Relative Frequency} \times 100\% $</td>
+              </tr>
+            </table>
+            <br> 
+     -->
       
       
       
@@ -249,30 +259,80 @@
       
       
       
-      <!--
+
       <div class="container" id="how">
         <div id="how1" class="output text-center" style="color: darkslategray">
             How it Works:
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">Tables and graphs are two out of three ways to summarize data, with the third being numerical summaries. A frequency distribution is a table that is used to summarize either quantitative or qualitative data. It is made up of two columns, with the first column being the different classes or categories. The second column in a frequency distribution is the frequency, or the number of times that class occurs in the data. A relative frequency distribution is similar to a frequency distribution except it uses relative frequencies. A percent frequency distribution is the relative frequency  </p>
+            <p class = "p1">Tables and graphs are two out of three ways to summarize data, with the third being numerical summaries. A frequency distribution is a table that is used to summarize either quantitative or qualitative data. It is made up of two columns, with the first column being the different classes (or categories). The second column in a frequency distribution is the frequency, or the number of times that class occurs in the data. At the bottom of a frequency distribution, the total of the frequencies are usually given. The frequencies should sum to equal the sample size. </p>
             
-            <table style="width:100%" class="text-center">
-            <tr>
-                <td> $ \text{Relative Frequency} = \dfrac{\text{Frequency}}{n} $</td>
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> $ \text{Class} $ </td>
+                <td> $ \text{Frequency} $ </td>
               </tr>
             <tr>
-                <td>$ \text{Percent Frequency} = \text{Relative Frequency} \times 100\% $</td>
+                <td>$ \text{Pepsi} $</td>
+                <td>$ 3 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{Coke} $</td>
+                <td>$ 5 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{Sprite} $</td>
+                <td>$ 2 $</td>
+              </tr>
+            <tr style='border-top: thin solid'>
+                <td>$ \text{Total} $</td>
+                <td>$ 10 $</td>
               </tr>
             </table>
             <br>
             
-            <p class = "p1">We can use the tables above to create graphs that allow us to visualize the data. A bar chart is a graph that is created using a frequency distribution. In a bar chart, we put the classes on the horizontal axis and the frequencies on the vertical axis. Then we draw a bar for each class up to its frequenncy. A pie chart is a graph that is created using a frequency distribution. In a pie chart, the pie is divided up according to its percent frequencies.</p>
+            <p class = "p1"> There are two tables that we can derive from a frequency distribution: relative frequency distribution and percent frequency distribution. A relative frequency distribution provides the proportion of observations belonging to each class. Relative frequencies can be computed by dividin the frequencies by the total number of observations. A percent frequency distribution gives the percentage of observations beloning to each class. Percent frequencies can be calculated by multiplying the relative frequencies by 100%. Note that the relative frequencies will always sum to 1 and the percent frequencies will sum to 100%.  </p>
             
-            <p class = "p1">The tables and graphs we use for qualitative data are a bit different. First of all </p>
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> <br>$ \text{Class} $ </td>
+                <td> $ \text{Relative} $<br>$ \text{Frequency} $ </td>
+                <td> $ \text{Percent} $<br> $\text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ \text{Pepsi} $</td>
+                <td>$ .30 $</td>
+                <td>$ 30 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{Coke} $</td>
+                <td>$ .50 $</td>
+                <td>$ 50 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{Sprite} $</td>
+                <td>$ .20 $</td>
+                <td>$ 20 $</td>
+              </tr>
+            <tr style='border-top: thin solid'>
+                <td>$ \text{Total} $</td>
+                <td>$ 1 $</td>
+                <td>$ 100 $</td>
+              </tr>
+            </table>
+            <br>
             
-            <p class = "p1">The tables and graphs we use for qualitative data are a bit different. First of all </p>
+            <p class = "p1">We can use the tables above to create graphs that allow us to visualize the data. A bar chart is a graph that is created using a frequency distribution. In a bar chart, we put the classes on the horizontal axis and the frequencies on the vertical axis. Then we draw a bar for each class up to its frequency. A pie chart is a graph that is created using a frequency distribution. In a pie chart, the pie is divided up according to its percent frequencies.</p>
+            
+            <table class="text-center">
+            <tr>
+                <td><canvas id="howCanvas1" width="375" height="250"></canvas><canvas id="howCanvas2" width="375" height="250"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">The tables we use for quantitative data are a bit different than the ones we use for qualitative data. We can still use frequency, relative frequency and percent frequency distribution. However, we also have cumulative version of each of these table. That is, for quantiative data, we also have cumulative frequency, cumulative relative and cumulative percent frequency distributions. The graphs we use for quantitative data are different. For quantitative data, we use a histogram instead of a bar chart.  </p>
             
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
@@ -285,12 +345,69 @@
                 </script>
             </div>
             <br>
+            
+            <p class = "p1">When creating frequency distributions for quantitative data, we run into the problem that the classes are not predefined. Given a set of numerical values, the first step is to separate them into different class. It is important that the classes are all the same size and that they don't overlap. Once the classes are defined for quantitative data, we can construct frequency, relative frequency and percent frequency distributions as we do for qualitative data. For quantitative data, we can also construct cumulative distributions. A cumulative frequency distribution gives the number of observations less than or equal to the upper limit of each class.</p>
+            
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> $ \text{Class} $ </td>
+                <td> $ \text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ 10-19 $</td>
+                <td>$ 3 $</td>
+              </tr>
+            <tr>
+                <td>$ 20-29 $</td>
+                <td>$ 4 $</td>
+              </tr>
+            <tr>
+                <td>$ 30-39 $</td>
+                <td>$ 3 $</td>
+              </tr>
+            <tr style='border-top: thin solid'>
+                <td>$ \text{Total} $</td>
+                <td>$ 10 $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">The graph we use to summarize quantitative data is different from the ones used to summarize qualitative data. For qualitative data, we use a bar chart or a pie chart. For quantitative data, we use a histogram. A histogram is similar to a bar chart in that we draw bars up to the frequency for each class. The only difference is that in a histogram, the bars are connected while in a bar chart, the bar are separated. The reason for this is to show the continuity in quantitative data and separation in qualitative data. </p>
+            
+            <table class="text-center">
+            <tr>
+                <td><canvas id="howCanvas3" width="375" height="250"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> Sometimes we're interested in summarizing data for two variables. The purpose of this is usually to describe the relationship between the variables. The graph used to summarize data for two variables is known as a scatter diagram (or scatter plot). A scatter diagram will indicate whether there is a positive, negative or no relationship between the two variables. Note that a scatter diagram only works when the two variables are both quantitative.  </p>
+            
+            <table class="text-center">
+            <tr>
+                <td><canvas id="howCanvas4" width="375" height="250"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The table used to summarize data for two variables is called a crosstabulation. While a scatter diagram works for only quantitative variables, a crosstabulation works for any combination of quantitative and qualitative variables. In a crostabulation, the classes for the first variable are listed in the first column and the classes for the seond variable are listed in the first row. The cell in which the row and column inntersect lists the frequency of observations that belong to both classes.  </p>
+            
+            <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
 
             
       </div>
       </div>
 
-        -->
+       
       
       
       
@@ -309,8 +426,7 @@
       
       
       
-      
-      
+      <div id = "taboutputs">
       
       
       <div class="container">
@@ -321,6 +437,8 @@
       
       <div class="container container2 text-center">
       <div id="charts" style="width: 500px; height: 300px;"></div>
+          </div>
+          
           </div>
       
       <div id="581773186" class="text-center">

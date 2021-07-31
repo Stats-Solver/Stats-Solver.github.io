@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Numerical summaries calculator with steps. Solve the mean, median, mode, variance, standard deviation, covariance, correlation coefficient and more.">
+    <meta name="description" content="The easy-to-use numerical summary calculator can be used to get step-by-step solutions to the mean, median, mode, variance, standard deviation and more.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -59,7 +59,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Statistics Calculators
+            Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
@@ -106,8 +106,8 @@
             Tables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/z-distribution.html">z Distribution</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t Distribution</a>
+              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
               <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
@@ -533,6 +533,35 @@
             Using z-values of 3 and 4, we get at least 89% of the values must be within 3 standard deviations of the mean and at least 94% of the values must be within 4 standard deviations of the mean.
 
             So, for example, with z=2, we have at least 75% of the values must be within two standard deviations of the mean.
+
+
+            <p class = "p1">Sometimes, instead of summarizing just one variable, we're interested in summarizing two variables at the same time. The purpose of this is usually to determine the relationship between the variables. The covariance is a measure of the linear relationship between two variables. When interpreting the covariance, it's important to focus on the sign and ignore the size of the value. If the covariance is positive, it indicates a positive linear relationship between x and y. A negative value indicates a negative linear relationship. A value of zero indicates no linear relationship.</p>
+
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Sample Covariance</td>
+                <td>Population Covariance</td>
+              </tr>
+            <tr>
+                <td>$ s_{xy} = \dfrac{\sum (x - \bar{x})(y - \bar{y})}{n-1}$</td>
+                <td>$ \sigma_{xy} = \dfrac{\sum (x - \mu_x)(y - \mu_y)}{N}$</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">The correlation coefficient, like the covariance, measures the linear relationship between two variables. However, both the sign and size of the correlation coefficient are interpretable. Like the covariance, a positive sign indicates a positive relationship, a negative sign indicates a negative relationship and zero indicates no relationship. A value close to one, whether negative or positive, indicates a strong relationship. a value close to zero indicates a weak relationship. A value of one indicates a perfect relationship.  </p>
+
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Sample Covariance</td>
+                <td>Population Covariance</td>
+              </tr>
+            <tr>
+                <td>$ s_{xy} = \dfrac{\sum (x - \bar{x})(y - \bar{y})}{n-1}$</td>
+                <td>$ \sigma_{xy} = \dfrac{\sum (x - \mu_x)(y - \mu_y)}{N}$</td>
+              </tr>
+            </table>
+            <br>
             
             -->
             
@@ -558,7 +587,7 @@
               </tr>
             </table>
 
-            <p class = "p1">Sometimes, instead of summarizing just one variable, we're interested in summarizing two variables at the same time. The purpose of this is usually to determine the relationship between the variables. The covariance is a measure of the linear relationship between two variables. When interpreting the covariance, it's important to focus on the sign and ignore the size of the value. If the covariance is positive, it indicates a positive linear relationship between x and y. A negative value indicates a negative linear relationship. A value of zero indicates no linear relationship.</p>
+            <p class = "p1">Sometimes, instead of summarizing just one variable, we're interested in summarizing two variables at the same time. The purpose of this is usually to determine the relationship between the variables. The covariance and correlation coefficiennt are measures of the linear relationship between two variables. When interpreting the covariance, it's important to focus on the sign and ignore the size of the value. For the correlation coefficient, both the sign and size are interpretable.  </p>
 
             <table style="width:100%" class="text-center">
               <tr>
@@ -572,7 +601,7 @@
             </table>
             <br>
             
-            <p class = "p1">The correlation coefficient, like the covariance, measures the linear relationship between two variables. However, both the sign and size of the correlation coefficient are interpretable. Like the covariance, a positive sign indicates a positive relationship, a negative sign indicates a negative relationship and zero indicates no relationship. A value close to one, whether negative or positive, indicates a strong relationship. a value close to zero indicates a weak relationship. A value of one indicates a perfect relationship.  </p>
+            <p class = "p1">A five-number summary describes the data using five numbers. At the extreme ends of the five-number summary is the minimum, or lowest value, and the maximum, or highest value. In the middle is the the second quartile (or 50th percentile). The 50th percentile is always equal to the median of the data. Between the minimum value and the median is the first quartile (or 25th percentile). Finally, between the median and maximum value is the third quartile (or 75th percentile). Five-number summaries are graphically represented with a box plot. </p>
 
             
             <div id="519762228" class="text-center">
@@ -585,6 +614,7 @@
                     catch (error) {}
                 </script>
             </div>
+            
             
       </div>
       </div>

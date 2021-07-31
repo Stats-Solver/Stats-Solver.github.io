@@ -5,6 +5,8 @@ $("#firstclasscross").hide(); $("#label4").hide();
 $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
 $("#trendline").hide(); $("#notrendline").hide(); $("#581773186").hide();
 
+$("#taboutputs").hide();
+
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
@@ -81,6 +83,301 @@ function avg(input){
     return sum(input)/input.length
 }
 
+
+
+
+
+
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas3");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas4");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+
+howbar(); howpie(); howhist(); howscat()
+
+function howbar() {
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    //ctx.fillText("Bar Chart",130,10);
+    
+    ctx.fillText("Frequency",15,15);
+    ctx.fillText("Class",265,182);
+    //ctx.fillText("b₀",25,130);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    
+    ctx.moveTo(35, 155);
+    ctx.lineTo(45, 155);
+    ctx.moveTo(35, 130);
+    ctx.lineTo(45, 130);
+    ctx.moveTo(35, 105);
+    ctx.lineTo(45, 105);
+    ctx.moveTo(35, 80);
+    ctx.lineTo(45, 80);
+    ctx.moveTo(35, 55);
+    ctx.lineTo(45, 55);
+    //ctx.moveTo(35, 30);
+    //ctx.lineTo(45, 30);
+    
+    ctx.fillText("1",25,158);
+    ctx.fillText("2",25,133);
+    ctx.fillText("3",25,108);
+    ctx.fillText("4",25,83);
+    ctx.fillText("5",25,58);
+    //ctx.fillText("6",25,33);
+    
+    ctx.moveTo(65, 180);
+    ctx.lineTo(65, 105);
+    ctx.lineTo(105, 105);
+    ctx.lineTo(105, 180);
+    
+    ctx.moveTo(130, 180);
+    ctx.lineTo(130, 55);
+    ctx.lineTo(170, 55);
+    ctx.lineTo(170, 180);
+    
+    ctx.moveTo(195, 180);
+    ctx.lineTo(195, 130);
+    ctx.lineTo(235, 130);
+    ctx.lineTo(235, 180);
+    
+    ctx.fillText("Pepsi",72,193);
+    ctx.fillText("Coke",138,193);
+    ctx.fillText("Sprite",202,193);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    
+    ctx.stroke();
+    
+}
+
+
+       
+
+
+
+function howpie() {
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    ctx.beginPath();
+    ctx.arc(150, 100, 85, 0, 2 * Math.PI);
+    
+    ctx.moveTo(150, 15);
+    ctx.lineTo(150, 100);
+    //ctx.lineTo(225, 140);
+    
+    ctx.moveTo(70, 70);
+    ctx.lineTo(230, 130);
+    
+    ctx.fillText("Pepsi",175,65);
+    ctx.fillText("30%",180,77);
+    
+    ctx.fillText("Coke",135,135);
+    ctx.fillText("50%",137,147);
+    
+    ctx.fillText("Sprite",105,50);
+    ctx.fillText("20%",108,62);
+    
+    
+    
+    ctx.stroke();
+}
+
+function howhist() {
+    var c = document.getElementById("howCanvas3");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    //ctx.fillText("Bar Chart",130,10);
+    
+    ctx.fillText("Frequency",15,15);
+    ctx.fillText("Class",265,182);
+    //ctx.fillText("b₀",25,130);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    
+    ctx.moveTo(35, 150);
+    ctx.lineTo(45, 150);
+    ctx.moveTo(35, 120);
+    ctx.lineTo(45, 120);
+    ctx.moveTo(35, 90);
+    ctx.lineTo(45, 90);
+    ctx.moveTo(35, 60);
+    ctx.lineTo(45, 60);
+    //ctx.moveTo(35, 30);
+    //ctx.lineTo(45, 30);
+    
+    ctx.fillText("1",25,153);
+    ctx.fillText("2",25,123);
+    ctx.fillText("3",25,93);
+    ctx.fillText("4",25,63);
+    //ctx.fillText("5",25,58);
+    //ctx.fillText("6",25,33);
+    
+    ctx.moveTo(65, 180);
+    ctx.lineTo(65, 90);
+    ctx.lineTo(120, 90);
+    ctx.lineTo(120, 180);
+    
+    ctx.moveTo(120, 180);
+    ctx.lineTo(120, 60);
+    ctx.lineTo(175, 60);
+    ctx.lineTo(175, 180);
+    
+    ctx.moveTo(175, 180);
+    ctx.lineTo(175, 90);
+    ctx.lineTo(230, 90);
+    ctx.lineTo(230, 180);
+    
+    ctx.fillText("10-19",78,193);
+    ctx.fillText("20-29",137,193);
+    ctx.fillText("30-39",192,193);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    
+    ctx.stroke();
+    
+}      
+
+function howscat() {
+    var c = document.getElementById("howCanvas4");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    //ctx.fillText("Estimated Regression Line",90,10);
+    
+    ctx.fillText("y",37,15);
+    ctx.fillText("x",265,182);
+    //ctx.fillText("ŷ",255,50);
+    //ctx.fillText("b₀",25,130);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    
+    //ctx.moveTo(60, 130);
+    //ctx.lineTo(240, 50);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    //ctx.fillRect(70,130,3,3);
+    ctx.fillRect(65,105,3,3);
+    ctx.fillRect(90,155,3,3);
+    ctx.fillRect(115,80,3,3);
+    ctx.fillRect(130,120,3,3);
+    ctx.fillRect(145,85,3,3);
+    //ctx.fillRect(160,70,3,3);
+    ctx.fillRect(175,100,3,3);
+    ctx.fillRect(185,50,3,3);
+    ctx.fillRect(205,30,3,3);
+    ctx.fillRect(220,70,3,3);
+    //ctx.fillRect(235,50,3,3);
+    
+    ctx.moveTo(35, 155);
+    ctx.lineTo(45, 155);
+    ctx.moveTo(35, 130);
+    ctx.lineTo(45, 130);
+    ctx.moveTo(35, 105);
+    ctx.lineTo(45, 105);
+    ctx.moveTo(35, 80);
+    ctx.lineTo(45, 80);
+    ctx.moveTo(35, 55);
+    ctx.lineTo(45, 55);
+    ctx.moveTo(35, 30);
+    ctx.lineTo(45, 30);
+    
+    ctx.fillText("1",25,158);
+    ctx.fillText("2",25,133);
+    ctx.fillText("3",25,108);
+    ctx.fillText("4",25,83);
+    ctx.fillText("5",25,58);
+    ctx.fillText("6",25,33);
+    
+    ctx.moveTo(65, 175);
+    ctx.lineTo(65, 185);
+    ctx.moveTo(90, 175);
+    ctx.lineTo(90, 185);
+    ctx.moveTo(115, 175);
+    ctx.lineTo(115, 185);
+    ctx.moveTo(140, 175);
+    ctx.lineTo(140, 185);
+    ctx.moveTo(165, 175);
+    ctx.lineTo(165, 185);
+    ctx.moveTo(190, 175);
+    ctx.lineTo(190, 185);
+    ctx.moveTo(215, 175);
+    ctx.lineTo(215, 185);
+    ctx.moveTo(240, 175);
+    ctx.lineTo(240, 185);
+    
+    ctx.fillText("1",62,195);
+    ctx.fillText("2",88,195);
+    ctx.fillText("3",113,195);
+    ctx.fillText("4",138,195);
+    ctx.fillText("5",163,195);
+    ctx.fillText("6",188,195);
+    ctx.fillText("7",213,195);
+    ctx.fillText("8",238,195);
+    
+    ctx.stroke();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 function showthings(){
     $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label2").hide(); $("#label3").hide();  $("#firstclass").hide();
     $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide(); $("#input1").show(); $("#label4").hide(); $("#blankx").show();
@@ -134,6 +431,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#taboutputs").show(); $("#how").hide(); 
     $("#581773186").show();
     $("#rowcol").hide(); $("#rowcol2").hide(); $("#rowcol3").hide();
     $("#trendline").hide(); $("#notrendline").hide(); 

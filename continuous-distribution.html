@@ -71,7 +71,7 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Statistics Calculators
+              Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
@@ -118,8 +118,8 @@
             Tables
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/z-distribution.html">z Distribution</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t Distribution</a>
+              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
               <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
               <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
@@ -683,6 +683,16 @@
                     catch (error) {}
                 </script>
             </div>
+
+                          <tr>
+                <td>4</td>
+                <td>.941</td>
+                <td>1.533</td>
+                <td>2.132</td>
+                <td>2.776</td>
+                <td>3.747</td>
+                <td>4.604</td>
+              </tr>
             -->
 
             <table style="width:100%">
@@ -708,7 +718,7 @@
                 <td colspan="6">Standard Normal Table</td>
               </tr>
               <tr style='border-top: thin solid'>
-                <td style='border-right: thin solid'>z</td>
+                <td>z</td>
                 <td>.00</td>
                 <td>.01</td>
                 <td>.02</td>
@@ -716,7 +726,7 @@
                 <td>.04</td>
               </tr>
               <tr style='border-top: thin solid'>
-                <td style='border-right: thin solid'>0.0</td>
+                <td>0.0</td>
                 <td>.50000</td>
                 <td>.50399</td>
                 <td>.50798</td>
@@ -724,7 +734,7 @@
                 <td>.51595</td>
               </tr>
               <tr>
-                <td style='border-right: thin solid'>0.1</td>
+                <td>0.1</td>
                 <td>.53983</td>
                 <td>.54380</td>
                 <td>.54776</td>
@@ -732,7 +742,7 @@
                 <td>.55567</td>
               </tr>
               <tr>
-                <td style='border-right: thin solid'>0.2</td>
+                <td>0.2</td>
                 <td>.57926</td>
                 <td>.58317</td>
                 <td>.58706</td>
@@ -756,7 +766,72 @@
             </div>
             <br>
             
+            <p class = "p1"> The normal probability distribution can be used to approximate probabilities for the binomial probability distribution. This may be necessary in situations where the binomial probabilities are difficult to compute. This calculation is done using the continuity correction factor. This is necessary because the normal distribution is a continuous distribution while the binomial distribution is a discrete distribution. Since the probability of a single value is zero in a continuous distribution, adding and subtracting .5 from the value and finding the probability in between solves this problem. </p>
             
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas7" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The exponential probability distribution is useful in describing the time and distance between events. The probability density function for an exponential distribution is given by $ f(x) = \frac{1}{\mu} e^{-x/\mu}$ for x>0. Probabilities for the exponential distribution are not found using the table as in the normal distribution. They involve using a formula, although a more complicated one than used in the uniform distribution. The formula for calculating probabilities in an exponential distribution is $ P(x \leq x_0) = 1 - e^{-x_0/\mu} $ </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas8" width="375" height="250"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The t-distribution is similar to the standard normal distribution. They both have a similar bell-shape and finding probabilities involve the use of a table. The main difference is that the t-distribution depends on the degrees of freedom. We have a different t-distribution for each of the degrees of freedom. Another difference is that the t table provides the area in the upper tail whereas the z table provides the area in the lower tail. So use of the t table involves matching the degrees of freedom with the area in the upper tail to get the corresponding t-value.  </p>
+            
+            <table>
+              <tr>
+                <td colspan="7">t-Distribution Table</td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td></td>
+                <td colspan="6">Area in the Upper Tail</td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td>df</td>
+                <td>.20</td>
+                <td>.10</td>
+                <td>.05</td>
+                <td>.025</td>
+                <td>.01</td>
+                <td>.005</td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td>1</td>
+                <td>1.376</td>
+                <td>3.078</td>
+                <td>6.314</td>
+                <td>12.706</td>
+                <td>31.821</td>
+                <td>63.656</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>1.061</td>
+                <td>1.886</td>
+                <td>2.920</td>
+                <td>4.303</td>
+                <td>6.965</td>
+                <td>9.925</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>.978</td>
+                <td>1.638</td>
+                <td>2.353</td>
+                <td>3.182</td>
+                <td>4.541</td>
+                <td>5.841</td>
+              </tr>
+            </table>
+            <br>
             
             
       </div>

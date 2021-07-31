@@ -83,7 +83,13 @@ ctx.scale(1.25, 1.25);
 //var ctx = canvas.getContext("2d");
 //ctx.scale(1.167, 1.167);
 
+var canvas = document.getElementById("howCanvas7");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
 
+var canvas = document.getElementById("howCanvas8");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
 
 
 
@@ -92,7 +98,8 @@ how0();
 how2(); 
 //how3(); 
 //how4(); how5(); how6();
-
+how7(); 
+how8(); 
 
 
 
@@ -652,6 +659,155 @@ function how6(){
     
     ctx.stroke(); 
 }
+
+
+
+
+
+function how7(){
+    var exp = 2.71828;
+
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("howCanvas7");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Normal Approximation of Binomial",75,10);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.fillStyle = "lightgray";
+    ctx.beginPath();
+    ctx.moveTo(100, 130);
+    ctx.lineTo(100, 70);
+    ctx.lineTo(116, 50);
+    ctx.lineTo(116, 130);
+    ctx.stroke(); 
+    ctx.fill(); 
+    
+    
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.fillText("x",285,132);
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("μ",148,145);
+    
+    ctx.moveTo(100, 135);
+    ctx.lineTo(100, 125);
+    
+    ctx.moveTo(116, 135);
+    ctx.lineTo(116, 125);
+    
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke(); 
+}
+
+
+
+
+
+
+
+function how8() {
+    var exp = 2.71828;
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 30; i++) {
+      f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
+    }
+    
+    var c = document.getElementById("howCanvas8");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    ctx.fillText("Exponential Probability Distribution",75,20);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(50, 40);
+    ctx.lineTo(50, 180);
+    ctx.lineTo(250, 180);
+    
+    
+    ctx.fillText("f(x)",45,35);
+    ctx.fillText("x",255,182);
+    
+    
+    var points = []
+    
+    for (i = 0; i < 30; i++) {
+      points[i] = {x:50 + 6.75*i, y:170 - 1700*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+   for (i = 1; i < points.length - 2; i ++)
+   {
+      var xc = (points[i].x + points[i + 1].x) / 2;
+      var yc = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+   }
+ // curve through the last two points
+ ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+    //MathJax.typeset();
+    
+}
+
+
+
+
+
+
+
+
+
+
 
 
 
