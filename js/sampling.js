@@ -852,7 +852,7 @@ function conint1(){
     
 
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = " $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value: }$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = \\boxed{"+ mu +"} \\end{align}$$ $$  \\text{Standard Error of the Mean: } $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = \\boxed{" + parseFloat(stderr.toFixed(2)) + " } $$ $$ \\text{Form: } $$ $$ \\boxed{ \\text{"+ form + "} }$$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output1").innerHTML = "$$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{"+ form + "} $$ "

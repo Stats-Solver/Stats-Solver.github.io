@@ -930,6 +930,7 @@ function tinv(p, dof) {
 }
 
 function solve() {
+    $("#explanation").show(); $("#samples").hide();
     $("#hypoutputs").show(); $("#how").hide();
     $("#581773186").show();
     if (type == "hypothesis") {
@@ -997,7 +998,7 @@ function hyptest(){
 function hyptest1(){
     if (inputtype == "values") {
         var sigma = document.getElementById("sigma").value;
-        var size = document.getElementById("size").value; var sizem1 = size - 1;
+        var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
         var xbar = document.getElementById("xbar").value;
         var stdev = document.getElementById("stdev").value;
     } else if (inputtype == "data") {
@@ -1015,7 +1016,7 @@ function hyptest1(){
         var sumeachminus2 = sum(eachminus2);
         var ansvar = sumeachminus2 / lenmin1;
         var ansstd = Math.sqrt(ansvar);
-        var size = len; var sizem1 = size - 1;
+        var size = len; var sizem1 = size - 1; var sizem2 = size - 2;
         var xbar = mn;
         var stdev = parseFloat(ansstd.toFixed(2));
         var sigma = "unknown"
@@ -1192,12 +1193,18 @@ function hyptest1(){
     }
     
     var zvalue = toFixing(parseFloat(test),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(test).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colp = zseconddec
     
     var zcrit = toFixing(zcless,1);
+    var zcrit1 = (zcrit - .1).toFixed(1);
+    var zcrit2 = (parseFloat(zcrit) + .1).toFixed(1);
     var zcritr = zcless.toFixed(2); 
     var zcritseconddec = (""+zcritr)[4];
+    var colc = zcritseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -1218,6 +1225,34 @@ function hyptest1(){
          var valstart = 5; 
          var valend = 9;
     }
+    
+    
+    
+    
+    
+    
+    if (zseconddec == 0) {
+         var colp1 = 1
+    } else if (zseconddec == 1) {
+         var colp1 = 2
+    } else if (zseconddec == 2) {
+         var colp1 = 3
+    } else if ((zseconddec == 3 || zseconddec == 4 || zseconddec == 5 || zseconddec == 6)) {
+         var colp1 = 3
+    } else if (zseconddec == 7) {
+         var colp1 = 3
+    } else if (zseconddec == 8) {
+         var colp1 = 4
+    } else if (zseconddec == 9) {
+         var colp1 = 5
+    }
+    
+    
+    
+    
+    
+    
+    
     
     if (zcritseconddec == 0 || zcritseconddec == 1 || zcritseconddec == 2) {
          var critstart = 0; 
@@ -1242,58 +1277,309 @@ function hyptest1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colp) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
     }
     
     if (test < 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colp) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colp) {
+                table3 += "<td style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colp) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     } else if (test >= 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table31 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+        }
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+        }
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            table32 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
         }
     }
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colc) {
+                table12 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    table21 = []
+    for (var r = critstart; r < critend + 1; r++){
+        if (r == colc) {
+                table21 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table21 += "<td>$" + normalcdf(parseFloat(zcrit1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
     }
     
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
-        table2 += "<td>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+        if (r == colc) {
+                table2 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+    }
+    
+    table22 = []
+    for (var r = critstart; r < critend + 1; r++){
+        if (r == colc) {
+                table22 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table22 += "<td>$" + normalcdf(parseFloat(zcrit2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+    }
+    
+    table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if (sigma == "unknown" && tail == "lower"){
+        var testtype = "<b>Lower Tail Test</b>"
+        var testsymb = "t";
+        var tailsign = "\\leq";
+        var stndsymb = "s"
+        var cvalsymb = "-t_\\alpha";
+        var pvalue = compute(test,size-1);
+        if (pvalue > .2) {
+            //var pval = ".20 \\text{ to } 1"
+        } else if (pvalue <.2 && pvalue >.1) {
+            //var pval = ".10 \\text{ to } .20"
+        } else if (pvalue <.1 && pvalue >.05) {
+            //var pval = ".05 \\text{ to } .10"
+        } else if (pvalue <.05 && pvalue >.025) {
+            //var pval = ".025 \\text{ to } .05"
+            
+        } else if (pvalue <.025 && pvalue >.01) {
+            //var pval = ".01 \\text{ to } .025"
+        } else if (pvalue <.01 && pvalue >.005) {
+            //var pval = ".005 \\text{ to } .01"
+        } else if (pvalue <.005) {
+            //var pval = "0 \\text{ to } .005"
+        } else {
+            //var pval = pvalue.toFixed(4);
+        }
+        var cless = tcless;
+    } else if (sigma == "unknown" && tail == "upper"){
+        var testtype = "<b>Upper Tail Test</b>"
+        var testsymb = "t";
+        var tailsign = "\\geq";
+        var stndsymb = "s"
+        var cvalsymb = "t_\\alpha";
+        var pvalue = 1 - compute(test,size-1);
+        if (pvalue > .2) {
+            //var pval = ".20 \\text{ to } 1"
+            table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else if (pvalue <.2 && pvalue >.1) {
+            //var pval = ".10 \\text{ to } .20"
+            table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else if (pvalue <.1 && pvalue >.05) {
+            //var pval = ".05 \\text{ to } .10"
+            table5 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else if (pvalue <.05 && pvalue >.025) {
+            //var pval = ".025 \\text{ to } .05"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else if (pvalue <.025 && pvalue >.01) {
+            //var pval = ".01 \\text{ to } .025"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else if (pvalue <.01 && pvalue >.005) {
+            //var pval = ".005 \\text{ to } .01"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else if (pvalue <.005) {
+            //var pval = "0 \\text{ to } .005"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+        } else {
+            //var pval = pvalue.toFixed(4);
+        } 
+        var cmore = tcmore;
+    } else if (sigma == "unknown" && tail == "two"){
+        var testtype = "<b>Two-Tailed Test</b>"
+        var testsymb = "t";
+        var tailsign = "=";
+        var stndsymb = "s"
+        var cvalsymb1 = "-t_{\\alpha / 2}";
+        var cvalsymb2 = "t_{\\alpha / 2}";
+        var pvalhalf = normalcdf(testtwo);
+        if (pvalhalf > .2) {
+            var pvalh = ".20 \\text{ to } 1"
+        } else if (pvalhalf <.2 && pvalhalf >.1) {
+            var pvalh = ".10 \\text{ to } .20"
+        } else if (pvalhalf <.1 && pvalhalf >.05) {
+            var pvalh = ".05 \\text{ to } .10"
+        } else if (pvalhalf <.05 && pvalhalf >.025) {
+            var pvalh = ".025 \\text{ to } .05"
+        } else if (pvalhalf <.025 && pvalhalf >.01) {
+            var pvalh = ".01 \\text{ to } .025"
+        } else if (pvalhalf <.01 && pvalhalf >.005) {
+            var pvalh = ".005 \\text{ to } .01"
+        } else if (pvalhalf <.005) {
+            var pvalh = "0 \\text{ to } .005"
+        } else {
+            var pvalh = pvalhalf.toFixed(4);
+        }     
+        var pvalue = 2 * pvalhalf;
+        if (pvalhalf > .2) {
+            var pval = ".40 \\text{ to } 1"
+        } else if (pvalhalf <.2 && pvalhalf >.1) {
+            var pval = ".20 \\text{ to } .40"
+        } else if (pvalhalf <.1 && pvalhalf >.05) {
+            var pval = ".10 \\text{ to } .20"
+        } else if (pvalhalf <.05 && pvalhalf >.025) {
+            var pval = ".05 \\text{ to } .10"
+        } else if (pvalhalf <.025 && pvalhalf >.01) {
+            var pval = ".02 \\text{ to } .05"
+        } else if (pvalhalf <.01 && pvalhalf >.005) {
+            var pval = ".01 \\text{ to } .02"
+        } else if (pvalhalf <.005) {
+            var pval = "0 \\text{ to } .01"
+        } else {
+            var pval = pvalue.toFixed(4);
+        }   
+        var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     }
     
     
     
-    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
     
-    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    if (alpha == ".1") {
+        table52 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (alpha == ".05") {
+        table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (alpha == ".01") {
+        table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+        table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    }
+    
+    
     
     
     
     if (sigma == "known") {
         //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablep = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
-        var tablec = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit+"$</td>"+table2+"</tr></table>"
+        var tablep = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table31+"</tr><tr bgcolor='lightgray'><td>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table32+"</tr></table>"
+        var tablec = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit1+"$</td>"+table21+"</tr><tr><td bgcolor='lightgray'>$"+zcrit+"$</td>"+table2+"</tr><tr><td>$"+zcrit2+"$</td>"+table22+"</tr></table>"
         } else if (sigma == "unknown") {
-            var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
-            var tablec = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+            var tablep = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
+            var tablec = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table52+"</tr><tr>"+table71+"</tr><tr>"+table7+"</tr><tr>"+table72+"</tr></table>"
     }
     
 
     if (sigma == "known") {
-        document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$   $ \\text{p-Value Approach:} $"
+        document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\boxed{"+test.toFixed(2)+"} $$   $ \\text{p-Value Approach:} $"
     } else if (sigma == "unknown") {
         if (inputtype == "values") {
-            document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+            document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\boxed{"+test.toFixed(2)+"} $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = \\boxed{"+(size-1)+"} $$   $ \\text{p-Value Approach:} $"
         } else if (inputtype == "data") {
-            document.getElementById("output1").innerHTML = " $ \\text{Sample Mean:} $ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $ \\text{Sample Standard Deviation:} $ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
+            document.getElementById("output1").innerHTML = " $ \\text{Sample Mean:} $ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = \\boxed{" + parseFloat(mn.toFixed(2)) + "} $$ $ \\text{Sample Standard Deviation:} $ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$ $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\boxed{"+test.toFixed(2)+"} $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = \\boxed{"+(size-1)+"} $$   $ \\text{p-Value Approach:} $"
         } 
     } 
     
@@ -1533,11 +1819,11 @@ function hyptest1(){
 
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:} $"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\boxed{" + pval.replace(/^0+/, '')+ "} $$ $$\\text{p-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:} $"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:} $ "
+        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\boxed{" + pval.replace(/^0+/, '')+ "} $$ $$\\text{p-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:} $ "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:} $"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh.replace(/^0+/, '')+ " = \\boxed{"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:} $"
     }
     
     
@@ -1800,17 +2086,17 @@ function hyptest1(){
     
     
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "two" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(3) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(3) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(3) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(3) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(3) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(3) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(3) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(3) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
     }
     
     

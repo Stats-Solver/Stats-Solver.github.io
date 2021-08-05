@@ -485,6 +485,7 @@ function tinv(p, dof) {
 }
 
 function solve(){
+    $("#explanation").show(); $("#samples").hide();
     $("#confoutputs").show(); $("#how").hide();
      $("#581773186").show();
     if (type == "values") {
@@ -511,7 +512,7 @@ function condata() {
     var ansstd = Math.sqrt(ansvar);
     
     var sigma = "unknown"
-    var size = len; var sizem1 = size - 1;
+    var size = len; var sizem1 = size - 1; var sizem2 = size - 2;
     var xbar = mn;
     var stdev = ansstd;
     var conlev = document.getElementById("conlev").value;
@@ -595,19 +596,49 @@ function condata() {
     
     ctx.stroke();
 
+    //table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    
+    //table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+    //table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    
+    table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
     table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    if (conlev == "90") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
     
-    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-    
-    
-    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
 
-    document.getElementById("output1").innerHTML = " $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+"   $$"
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (conlev == "95") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (conlev == "99") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    }
     
     
-    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+parseFloat(stdev.toFixed(2))+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
+    var tablet = "<table><tr>"+table41+"</tr><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
+
+    document.getElementById("output1").innerHTML = "$$ \\text{Sample Mean:} $$ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = \\boxed{" + parseFloat(mn.toFixed(2)) + "} $$ $$ \\text{Sample Standard Deviation:} $$ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$ $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = \\boxed{"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = \\boxed{"+sizem1+"}   $$"
+    
+    
+    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\boxed{"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+parseFloat(ansstd.toFixed(2))+"}{\\sqrt{"+size+"}} = \\boxed{" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$  $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+parseFloat(stdev.toFixed(2))+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
     
     
     
@@ -630,7 +661,7 @@ function conint(){
 function conint1(){
     $("#canvascontainer").show();$("#expconf").show();
     var sigma = document.getElementById("sigma").value;
-    var size = document.getElementById("size").value; var sizem1 = size - 1;
+    var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
     var xbar = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
     var conlev = document.getElementById("conlev").value;
@@ -642,9 +673,9 @@ function conint1(){
     var exp = 2.71828;
     
     if (sigma == "known") {
-        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
+        document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = \\boxed{"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ "
     } else if (sigma == "unknown") {
-        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+"   $$"
+        document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = \\boxed{"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = \\boxed{"+sizem1+"}   $$"
     } 
     
     var f = [];
@@ -722,8 +753,11 @@ function conint1(){
 
     
     var zvalue = toFixing(zalphahalf,1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zalphahalfr = zalphahalf.toFixed(2); 
     var zseconddec = (""+zalphahalfr)[3];
+    var colm = zseconddec
     
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
@@ -749,30 +783,82 @@ function conint1(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    table2 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
     }
     
     table3 = []
     for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
     }
     
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    table31 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    var tablez = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table31+"</tr></table>"
+    
+    table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
     
     table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
-    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    if (conlev == "90") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
     
-    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (conlev == "95") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (conlev == "99") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    }
     
     
-    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    
+    var tablet = "<table><tr>"+table41+"</tr><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$  "
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = \\boxed{"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = \\boxed{"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} = " + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}} = \\boxed{"+parseFloat(marginerror.toFixed(2))+"} $$  $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$"+xbar + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$  "
     } else if (sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\boxed{"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}} = \\boxed{" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
     } 
     
     MathJax.typeset();
