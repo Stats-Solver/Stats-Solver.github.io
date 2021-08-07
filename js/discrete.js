@@ -1,3 +1,8 @@
+$("#expectedtable").show();
+//$("#expectedexamples").show(); $("#standardexamples").hide(); 
+//$("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
+//$("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
+
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#variance").hide(); $("#standard").hide();
 $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
@@ -9,7 +14,8 @@ $("#equal").hide(); $("#less").hide(); $("#greater").hide();
 $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
 $("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
 
-$("#expected").show(); $("#expectedprobs").show(); $("#expectedtable").hide(); 
+$("#expected").show(); $("#expectedprobs").show(); 
+//$("#expectedtable").hide(); 
 $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
 $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
 $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
@@ -18,7 +24,9 @@ $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
 $("#expectedexamples").show(); $("#standardexamples").hide(); 
 $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
 
-$("#discreteprobs").show(); $("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").hide();
+$("#discreteprobs").hide(); 
+
+$("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").hide();
 $("#probswitch").hide(); $("#explanation").hide();
 
 $("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
@@ -65,7 +73,7 @@ function sum(input){
             }
 
 function showstuff(){
-    $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); 
+    $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); $("#discreteprobs").hide();
     $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
     $("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
     $("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
@@ -87,7 +95,7 @@ function showstuff(){
     
     
     var x = document.getElementById("stat").value;
-    if (x == "probabilities"){
+    if (x == "probability"){
         probabilities()
         $("#expectedtable").show();
         $("#expectedexamples").show(); $("#standardexamples").hide(); 
@@ -107,7 +115,8 @@ function showstuff(){
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
     } else if (x == "standard") {
         standard()
-        $("#expectedexamples").hide(); $("#standardexamples").show(); 
+        $("#expectedtable").show();
+        $("#expectedexamples").show(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
     } else if (x == "discrete") {
@@ -171,7 +180,7 @@ function stat(){
     $("#discoutputs").show(); $("#how").hide();
     $("#output").empty(); $("#myCanvas").hide(); $("#581773186").show();
     var x = document.getElementById("stat").value;
-    if (x == "probabilities"){
+    if (x == "probability"){
         compprobabilities()
     } else if (x == "expected"){
         compexpected()
@@ -201,7 +210,7 @@ function stat(){
 }
 
 function probabilities() {
-    $("#expected").show(); $("#expectedprobs").show();
+    $("#expected").show(); $("#discreteprobs").show();
     $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
     $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
     $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
@@ -594,7 +603,12 @@ function compvariance() {
 }
 
 function standard() {
-    $("#standard").show();
+    $("#standard").show(); $("#expected").show(); 
+    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+    rows = 3
 
 }
 
@@ -2321,7 +2335,7 @@ function compbinomial1() {
     
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") = {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" = \\boxed{" + parseFloat(ans.toFixed(2))  + "} \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" = \\boxed{" + parseFloat(ans.toFixed(2))  + "} \\end{align} $$ "
     MathJax.typeset();
 }
 
