@@ -282,7 +282,7 @@ There are two things we need to get the estimated regression equation: the slope
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">In simple linear regression, the starting point is the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. It provides a mathematical relationship between the dependent variable (y) and the independent variable (x). Furthermore, it can be used to predict the value of y for a given value of x. There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The formulas for the slope and intercept are derived from the least squares method: min Σ(y - ŷ)<sup>2</sup>. That is, b<sub>0</sub> and b<sub>1</sub> are chosen so that the sum of the squared difference between the actual y and the predicted y, ŷ, is minimized. </p>
+            <p class = "p1">In simple linear regression, the starting point is the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. It provides a mathematical relationship between the dependent variable (y) and the independent variable (x). Furthermore, it can be used to predict the value of y for a given value of x. There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The formulas for the slope and intercept are derived from the least squares method: min Σ(y - ŷ)<sup>2</sup>. The graph of the estimated regression equation is known as the estimated regression line.</p>
             
             <table style="width:100%" class="text-center">
               <tr>
@@ -291,6 +291,8 @@ There are two things we need to get the estimated regression equation: the slope
             </table>
 
             <!--<br><br>
+
+            That is, b<sub>0</sub> and b<sub>1</sub> are chosen so that the sum of the squared difference between the actual y and the predicted y, ŷ, is minimized. 
 
             The slope can be interpreted as the predicted change in y from a one-unit increase in x. The intercept can be interpreted as the predicted value of y when x = 0.
 
@@ -398,6 +400,8 @@ There are two things we need to get the estimated regression equation: the slope
               </tr>
             </table>
             <br> 
+
+            After the simple regression model has been fit to the data, the residuals can be analyzed to check the assumptions in regression. Residuals in regression are the difference between the actual values and predicted values of y. One way of analyzing the residuals is to plot them against the values of the independent variable x. Looking at this plot will tell you whether the residuals have a constant variance and the assumption of a linear relationship is valid. 
             -->
             
             <p class = "p1">After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted r<sup>2</sup>, provides a measure of goodness of fit for the estimated regression equation. Before we can find the r<sup>2</sup>, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.</p>
@@ -483,7 +487,7 @@ There are two things we need to get the estimated regression equation: the slope
               </tr>
             </table>
             
-            <p class = "p1">After the simple regression model has been fit to the data, the residuals can be analyzed to check the assumptions in regression. Residuals in regression are the difference between the actual values and predicted values of y. One way of analyzing the residuals is to plot them against the values of the independent variable x. Looking at this plot will tell you whether the residuals have a constant variance and the assumption of a linear relationship is valid.  </p>
+            <p class = "p1"> In a simple linear regression, there is only one independent variable (x). However, we may want to include more than one independent vartiable to improve the predictive power of our regression. This is known as multiple regression, which can be solved using our <a href="multiple-regression.html">Multiple Regression Calculator</a>. One of the most important parts of regression is testing for significance. The two tests for signficance, t test and F test, are examples of hypothesis tests. Hypothesis testing can be done using our <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>
             
             <div id="519762228" class="text-center">
                 <script type="text/javascript">

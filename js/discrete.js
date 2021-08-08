@@ -82,10 +82,10 @@ function showstuff(){
     $("#equal").hide(); $("#less").hide(); $("#greater").hide();
     $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
     $("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
-    $("#explanation").hide();
+    //$("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
-    $("#output").empty();
+    //$("#output").empty();
     
     $("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
     
@@ -531,9 +531,9 @@ function compexpected() {
     //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
     //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$\\boxed{"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ E(x) =\\mu = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -596,9 +596,9 @@ function compvariance() {
     //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
     //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$\\boxed{"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ E(x) =\\mu = \\sum x f(x) = \\boxed{"+parseFloat(mu.toFixed(2))+"} $$" + table + " $$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
     MathJax.typeset();
 }
 
@@ -664,7 +664,7 @@ function compstandard() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
 
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(ans.toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "}  $$"
     MathJax.typeset();
 }
 
@@ -2335,7 +2335,7 @@ function compbinomial1() {
     
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob + "^" + num + " (1-" + prob + ")^{(" + trials + "-" + num + ")} \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num).toFixed(2))+"\\times"+parseFloat((Math.pow((1-prob),(trials-num))).toFixed(2))+" = \\boxed{" + parseFloat(ans.toFixed(2))  + "} \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + num + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{" + trials + "! }{" + num + "! (" + trials + " - " + num + ")!} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + (1-prob).toFixed(2).replace(/^0+/, '') + "^{" + (trials-num) + "} \\\\ &= \\frac{" + numerator2 + " }{" + denominator2 + "} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')  + " \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num)).toFixed(2).replace(/^0+/, '')+"\\times"+parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')+" \\\\ &= \\boxed{" + ans.toFixed(2).replace(/^0+/, '')  + "} \\end{align} $$ "
     MathJax.typeset();
 }
 
@@ -2354,6 +2354,7 @@ function compbinomial2() {
     }
     fplus = fplus + "f("+num+")"
     
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < num; i++) {
@@ -2383,9 +2384,10 @@ function compbinomial2() {
             var denominator3 = bottomnfact
             var ansval = numerator3 / denominator3;
         }
-
         var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
+        var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+        workplus += work
+        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
         finalans += parseFloat(ans.toFixed(2))
         
     }
@@ -2418,12 +2420,19 @@ function compbinomial2() {
     }
 
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
-    
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    workplus = workplus + "$$ f("+num+") = {" + trials + " \\choose " + num + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + num + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + num + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
     finalans = finalans + parseFloat(ans.toFixed(2))
         
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2)) + "}   \\end{align} $$"
+    
+    
+    if (i == 0) {
+        document.getElementById("output").innerHTML = workplus + "$$  P(x \\leq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$"
+    } else {
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+    }
+    
     MathJax.typeset();
 }
 
@@ -2442,7 +2451,7 @@ function compbinomial4() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+numm1+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numm1; i++) {
@@ -2474,7 +2483,9 @@ function compbinomial4() {
         }
 
         var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
+        var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+        workplus += work
+        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
         finalans += parseFloat(ans.toFixed(2))
         
     }
@@ -2506,17 +2517,215 @@ function compbinomial4() {
         var ansval = numerator3 / denominator3;
     }
 
-    var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
-    
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    var ans = ansval * Math.pow(prob,numm1) * Math.pow((1-prob),(trials-numm1))
+    workplus = workplus + "$$ f("+numm1+") = {" + trials + " \\choose " + numm1 + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + numm1 + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + numm1 + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
     finalans = finalans + parseFloat(ans.toFixed(2))
-        
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2)) + "}   \\end{align} $$"
+    if (i == 0) {
+        document.getElementById("output").innerHTML = workplus + "$$ P(x < " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$"
+    } else {
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+    }
+    
+    
     MathJax.typeset();
 }
 
 function compbinomial3() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
+    document.getElementById("explanationtext").innerHTML = ""
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    var num = document.getElementById('binval').value
+    
+    var fplus = ""
+    for (i = num; i < trials; i++) {
+        fplus += "f("+i+")+"
+    }
+    fplus = fplus + "f("+trials+")"
+    
+    var workplus = ""
+    var ansplus = ""
+    var finalans = 0
+    for (i = num; i < trials; i++) {
+        var topn = trials;
+        var bottomn = i;
+        var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
+        var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
+        var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
+        if (bottomn >= topn - bottomn) {
+            denominator2 = denominator2 + bottomn + "!"
+            for (var r = 0; r < topn - bottomn; r++){
+                numerator2 += (topn - r)+"\\cdot"
+                denominator2 += "\\cdot" + (topn - bottomn - r)
+                numerator3 = numerator3 * (topn - r)
+            }
+            numerator2 = numerator2 + bottomn + "!"
+            var denominator3 = topbotfact
+            var ansval = numerator3 / denominator3;
+        } else {
+            for (var r = 0; r < bottomn; r++){
+                numerator2 += (topn - r)+"\\cdot"
+                denominator2 += (bottomn - r) + "\\cdot"
+                numerator3 = numerator3 * (topn - r)
+            }
+            numerator2 = numerator2 + (topn - bottomn) + "!"
+            denominator2 = denominator2 + (topn - bottomn) + "!"
+            var denominator3 = bottomnfact
+            var ansval = numerator3 / denominator3;
+        }
+        var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
+        var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+        workplus += work
+        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
+        finalans += parseFloat(ans.toFixed(2))
+        
+    }
+    
+    var topn = trials;
+    var bottomn = i;
+    var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
+    var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
+    var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
+    if (bottomn >= topn - bottomn) {
+        denominator2 = denominator2 + bottomn + "!"
+        for (var r = 0; r < topn - bottomn; r++){
+            numerator2 += (topn - r)+"\\cdot"
+            denominator2 += "\\cdot" + (topn - bottomn - r)
+            numerator3 = numerator3 * (topn - r)
+        }
+        numerator2 = numerator2 + bottomn + "!"
+        var denominator3 = topbotfact
+        var ansval = numerator3 / denominator3;
+    } else {
+        for (var r = 0; r < bottomn; r++){
+            numerator2 += (topn - r)+"\\cdot"
+            denominator2 += (bottomn - r) + "\\cdot"
+            numerator3 = numerator3 * (topn - r)
+        }
+        numerator2 = numerator2 + (topn - bottomn) + "!"
+        denominator2 = denominator2 + (topn - bottomn) + "!"
+        var denominator3 = bottomnfact
+        var ansval = numerator3 / denominator3;
+    }
+
+    var ans = ansval * Math.pow(prob,trials) * Math.pow((1-prob),(trials-trials))
+    workplus = workplus + "$$ f("+trials+") = {" + trials + " \\choose " + trials + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + trials + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + trials + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
+    finalans = finalans + parseFloat(ans.toFixed(2))
+        
+    
+    
+    
+    if (i == num) {
+        document.getElementById("output").innerHTML = workplus + "$$  P(x \\geq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$"
+    } else {
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+    }
+    
+    MathJax.typeset();
+}
+
+function compbinomial5() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
+    document.getElementById("explanationtext").innerHTML = ""
+    var trials = document.getElementById('trials').value
+    var prob = document.getElementById('psuccess').value
+    var num = document.getElementById('binval').value
+    var nump1 = parseFloat(num) + 1
+    
+    var fplus = ""
+    for (i = nump1; i < trials; i++) {
+        fplus += "f("+i+")+"
+    }
+    fplus = fplus + "f("+trials+")"
+    var workplus = ""
+    var ansplus = ""
+    var finalans = 0
+    for (i = nump1; i < trials; i++) {
+        var topn = trials;
+        var bottomn = i;
+        var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
+        var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
+        var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
+        if (bottomn >= topn - bottomn) {
+            denominator2 = denominator2 + bottomn + "!"
+            for (var r = 0; r < topn - bottomn; r++){
+                numerator2 += (topn - r)+"\\cdot"
+                denominator2 += "\\cdot" + (topn - bottomn - r)
+                numerator3 = numerator3 * (topn - r)
+            }
+            numerator2 = numerator2 + bottomn + "!"
+            var denominator3 = topbotfact
+            var ansval = numerator3 / denominator3;
+        } else {
+            for (var r = 0; r < bottomn; r++){
+                numerator2 += (topn - r)+"\\cdot"
+                denominator2 += (bottomn - r) + "\\cdot"
+                numerator3 = numerator3 * (topn - r)
+            }
+            numerator2 = numerator2 + (topn - bottomn) + "!"
+            denominator2 = denominator2 + (topn - bottomn) + "!"
+            var denominator3 = bottomnfact
+            var ansval = numerator3 / denominator3;
+        }
+
+        var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
+        var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+        workplus += work
+        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
+        finalans += parseFloat(ans.toFixed(2))
+        
+    }
+    
+    var topn = trials;
+    var bottomn = i;
+    var bottomnfact = factorial(bottomn); var topbotfact = factorial(topn - bottomn);
+    var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
+    var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
+    if (bottomn >= topn - bottomn) {
+        denominator2 = denominator2 + bottomn + "!"
+        for (var r = 0; r < topn - bottomn; r++){
+            numerator2 += (topn - r)+"\\cdot"
+            denominator2 += "\\cdot" + (topn - bottomn - r)
+            numerator3 = numerator3 * (topn - r)
+        }
+        numerator2 = numerator2 + bottomn + "!"
+        var denominator3 = topbotfact
+        var ansval = numerator3 / denominator3;
+    } else {
+        for (var r = 0; r < bottomn; r++){
+            numerator2 += (topn - r)+"\\cdot"
+            denominator2 += (bottomn - r) + "\\cdot"
+            numerator3 = numerator3 * (topn - r)
+        }
+        numerator2 = numerator2 + (topn - bottomn) + "!"
+        denominator2 = denominator2 + (topn - bottomn) + "!"
+        var denominator3 = bottomnfact
+        var ansval = numerator3 / denominator3;
+    }
+
+    var ans = ansval * Math.pow(prob,trials) * Math.pow((1-prob),(trials-trials))
+    workplus = workplus + "$$ f("+trials+") = {" + trials + " \\choose " + trials + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + trials + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + trials + ")} = \\boxed{"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
+    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
+    finalans = finalans + parseFloat(ans.toFixed(2))
+    
+    if (i == nump1) {
+        document.getElementById("output").innerHTML = workplus + "$$ P(x > " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$"
+    } else {
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+    }
+    
+    
+    MathJax.typeset();
+}
+
+function compbinomial31() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = ""
     document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
@@ -2603,7 +2812,8 @@ function compbinomial3() {
         finalans = finalans + parseFloat(ans.toFixed(2))
 
 
-        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$" + (trials-num) + "-" + trials
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= "+parseFloat(finalans.toFixed(2)) + "   \\end{align} $$"
+        //+ (trials-num) + "-" + trials
     } else if (trials-num >= num) {
         var fplus = ""
         for (i = 0; i < numm1; i++) {
@@ -2686,7 +2896,7 @@ function compbinomial3() {
     MathJax.typeset();
 }
 
-function compbinomial5() {
+function compbinomial51() {
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $$"
     var trials = document.getElementById('trials').value
