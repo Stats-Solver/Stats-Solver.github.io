@@ -3112,7 +3112,7 @@ function comppoisson1() {
     
     var ans = (Math.pow(ave,num)*Math.pow(exp,(-ave)))/factorial(num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave))).toFixed(2)) + "}{" + factorial(num) + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3128,22 +3128,26 @@ function comppoisson2() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+num+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < num; i++) {
         var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
+        finalans += parseFloat(ans.toFixed(4))
+        var work = " $$ f(" + i + ") = \\frac{" + ave + "^" + i + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,i) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(i) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+        workplus += work
     }
     
     var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    finalans = finalans + parseFloat(ans.toFixed(4))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans.toFixed(2)) + "} \\end{align} $$"
+    workplus = workplus + " $$ f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+    
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3160,22 +3164,26 @@ function comppoisson4() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+numm1+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numm1; i++) {
         var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
+        finalans += parseFloat(ans.toFixed(4))
+        var work = " $$ f(" + i + ") = \\frac{" + ave + "^" + i + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,i) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(i) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+        workplus += work
     }
     
     var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    finalans = finalans + parseFloat(ans.toFixed(4))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans.toFixed(2)) + "} \\end{align} $$"
+    workplus = workplus + " $$ f(" + numm1 + ") = \\frac{" + ave + "^" + numm1 + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,numm1) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(numm1) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+    
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3192,22 +3200,26 @@ function comppoisson3() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+numm1+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numm1; i++) {
         var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
+        finalans += parseFloat(ans.toFixed(4))
+        var work = " $$ f(" + i + ") = \\frac{" + ave + "^" + i + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,i) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(i) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+        workplus += work
     }
     
     var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    finalans = finalans + parseFloat(ans.toFixed(4))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - " + parseFloat(finalans.toFixed(2)) + " \\\\ &= \\boxed{" + parseFloat((1 - finalans).toFixed(2)) + "} \\end{align} $$"
+    workplus = workplus + " $$ f(" + numm1 + ") = \\frac{" + ave + "^" + numm1 + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,numm1) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(numm1) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3225,22 +3237,26 @@ function comppoisson5() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+num+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < num; i++) {
         var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
+        finalans += parseFloat(ans.toFixed(4))
+        var work = " $$ f(" + i + ") = \\frac{" + ave + "^" + i + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,i) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(i) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+        workplus += work
     }
     
     var ans = (Math.pow(ave,i)*Math.pow(exp,(-ave)))/factorial(i)
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    finalans = finalans + parseFloat(ans.toFixed(4))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - (" + fplus + ") \\\\ &= 1 - (" + ansplus + ") \\\\ &= 1 - " + parseFloat(finalans.toFixed(2)) + " \\\\ &= \\boxed{" + parseFloat((1 - finalans).toFixed(2)) + "} \\end{align} $$"
+    workplus = workplus + " $$ f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
+
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3376,7 +3392,7 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3393,7 +3409,7 @@ function comphypergeometric2() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+numsucc+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numsucc; i++) {
@@ -3479,8 +3495,10 @@ function comphypergeometric2() {
         }
 
         var ans = (ansvala*ansvalb)/ansvalc;
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
         finalans += ans
+        var work = "$$ f("+i+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+i+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+i+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
+        workplus += work
         
     }
     
@@ -3567,11 +3585,12 @@ function comphypergeometric2() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     finalans = finalans + ans
     
+    workplus = workplus + "$$ f("+numsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3589,7 +3608,7 @@ function comphypergeometric4() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+numsuccm1+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = 0; i < numsuccm1; i++) {
@@ -3675,8 +3694,10 @@ function comphypergeometric4() {
         }
 
         var ans = (ansvala*ansvalb)/ansvalc;
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
         finalans += ans
+        var work = "$$ f("+i+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+i+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+i+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
+        workplus += work
         
     }
     
@@ -3763,11 +3784,12 @@ function comphypergeometric4() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     finalans = finalans + ans
     
+    workplus = workplus + "$$ f("+numsuccm1+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsuccm1+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsuccm1+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
     MathJax.typeset();
 }
 
