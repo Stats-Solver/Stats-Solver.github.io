@@ -3392,7 +3392,7 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &=  \\dfrac{ \\left( \\dfrac{"+popsucc+"!}{"+numsucc+"!("+popsucc+"-"+numsucc+")!} \\right) \\left( \\dfrac{"+(popsize-popsucc)+"!}{"+(ntrials-numsucc)+"!("+(popsize-popsucc)+"-"+(ntrials-numsucc)+")!}\\right)}{\\dfrac{"+popsize+"!}{"+ntrials+"!("+popsize+"-"+ntrials+")!}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -3806,7 +3806,7 @@ function comphypergeometric3() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+popsucc+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = numsucc; i < popsucc; i++) {
@@ -3892,9 +3892,10 @@ function comphypergeometric3() {
         }
 
         var ans = (ansvala*ansvalb)/ansvalc;
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
         finalans += ans
-        
+        var work = "$$ f("+i+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+i+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+i+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
+        workplus += work
     }
     
     var topna = popsucc;
@@ -3980,11 +3981,13 @@ function comphypergeometric3() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     finalans = finalans + ans
     
+    workplus = workplus + "$$ f("+popsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+popsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+popsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
+
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -4002,7 +4005,7 @@ function comphypergeometric5() {
         fplus += "f("+i+")+"
     }
     fplus = fplus + "f("+popsucc+")"
-    
+    var workplus = ""
     var ansplus = ""
     var finalans = 0
     for (i = numsuccp1; i < popsucc; i++) {
@@ -4088,8 +4091,10 @@ function comphypergeometric5() {
         }
 
         var ans = (ansvala*ansvalb)/ansvalc;
-        ansplus += parseFloat(ans.toFixed(2)) + "+"
+        ansplus += parseFloat(ans).toFixed(4).replace(/^0+/, '') + "+"
         finalans += ans
+        var work = "$$ f("+i+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+i+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+i+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
+        workplus += work
         
     }
     
@@ -4176,11 +4181,12 @@ function comphypergeometric5() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    ansplus = ansplus + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + parseFloat(ans).toFixed(4).replace(/^0+/, '')
     finalans = finalans + ans
     
+    workplus = workplus + "$$ f("+popsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+popsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+popsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans.toFixed(2))+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
     MathJax.typeset();
 }
 

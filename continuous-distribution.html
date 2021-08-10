@@ -150,11 +150,12 @@
           <div id = "uniformab">
         <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Minimum Value">$ a $</td>
+            <td style="text-align: right">$\text{Minimum Value: } a $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="minval"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Maximum Value">$ b $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$\text{Maximum Value: }  b $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="maxval"></td>
             </tr>
@@ -187,7 +188,7 @@
           
           
           <div class = " text-center mt-2" id = "uniformexpected">
-            $E(x)$
+            $\text{Expected Value}$
               
               &nbsp;
               
@@ -198,7 +199,7 @@
         </div> 
           
           <div class = " text-center mt-2" id = "uniformvariance">
-            $\text{Var}(x)$
+            $\text{Variance}$
               
               &nbsp;
               
@@ -235,7 +236,7 @@
         </div> 
         
           <div class = "text-center mt-2" id="snormalarea">
-            $\text{Area to the }$<select id="areatype" class="hypinput2 probtype" onchange="switchsnormal1()">  <option value="left"> left </option> <option value="right"> right </option> </select>$\text{ of } z \text{ is } $<input class = "combperm2" type="text" id="areaval"> 
+            $\text{Area to }$<select id="areatype" class="hypinput2 probtype" onchange="switchsnormal1()">  <option value="left"> left </option> <option value="right"> right </option> </select>$\text{ of } z \text{ is } $<input class = "combperm2" type="text" id="areaval"> 
             
              &nbsp;
               
@@ -265,12 +266,13 @@
       <div class="container mb-3" id="normal">
         <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu $</td>
-            <td>$ = $</td>
+            <td style="text-align: right">$\text{Expected Value: } $</td>
+            <td>$ \mu = $</td>
             <td><input class = "combperm" type="text" id="expval"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Standard Deviation">$ \sigma $</td>
-            <td>$ = $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$\text{Standard Deviation: }$</td>
+            <td>$ \sigma = $</td>
             <td><input class = "combperm" type="text" id="stdev"></td>
             </tr>
         </table> 
@@ -337,18 +339,19 @@
           
           <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
-            <td>$ = $</td>
+            <td style="text-align: right">$\text{Number of Trials: }  $</td>
+            <td>$n = $</td>
             <td><input class = "combperm" type="text" id="trials"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Probability of Success">$ p $</td>
-            <td>$ = $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$\text{Probability of Success: } $</td>
+            <td>$p = $</td>
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
         </table>  
           
           <div class = " text-center mt-2" id = "approxmean">
-            $\mu$
+            $\text{Expected Value}$
               
               &nbsp;
               
@@ -359,7 +362,7 @@
         </div> 
           
           <div class = " text-center mt-2" id = "approxstandard">
-            $\sigma$
+            $\text{Standard Deviation}$
               
               &nbsp;
               
@@ -392,7 +395,7 @@
       <div class="container mb-3" id="exponential">
         <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu $</td>
+            <td>$\text{Expected Value: } \mu $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="expval2"></td>
             </tr>
@@ -426,7 +429,7 @@
       <div class="container mb-3" id="tdistribution"> 
           <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Degrees of Freedom">$ df $</td>
+            <td>$\text{Degrees of Freedom: } df $</td>
             <td>$ = $</td>
             <td><input class = "combperm3" type="text" id="degfree"></td>
             </tr>
@@ -485,7 +488,7 @@
       <div class="container mb-3" id="chidistribution"> 
           <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Degrees of Freedom">$ df $</td>
+            <td>$\text{Degrees of Freedom: } df $</td>
             <td>$ = $</td>
             <td><input class = "combperm3" type="text" id="degfreec"></td>
             </tr>
@@ -507,12 +510,13 @@
       <div class="container mb-3" id="fdistribution"> 
           <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Numerator Degrees of Freedom">$ \text{Num. } df $</td>
-            <td>$ = $</td>
+            <td style="text-align: right">$ \text{Numerator Degrees of Freedom}$</td>
+            <td>$= $</td>
             <td><input class = "combperm3" type="text" id="numdf"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Denominator Degrees of Freedom">$ \text{Den. } df $</td>
-            <td>$ = $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$ \text{Denominator Degrees of Freedom}$</td>
+            <td>$= $</td>
             <td><input class = "combperm3" type="text" id="dendf"></td>
             </tr>
         </table> 
@@ -552,7 +556,7 @@
                     <option value="normal">Normal Distribution</option>
                     <option value="approximation">Approximation of Binomial</option>
                     <option value="exponential">Exponential Distribution</option>
-                    <option value="tdistribution">t-Distribution</option>
+                    <option value="tdistribution">Student's t-Distribution</option>
                     <option value="chisquare">Chi-Square Distribution</option>
                     <option value="fdistribution">F-Distribution</option>
                 </select>

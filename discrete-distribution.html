@@ -529,7 +529,7 @@
 
           <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Number of Values">$ n $</td>
+            <td>$\text{Number of Values: } n $</td>
             <td>$ = $</td>
             <td><select id="uniformval" class="hypinput1 probtype" onchange="univalues()"> <option value="2" selected>2</option> <option value="3"> 3 </option> <option value="4"> 4 </option> <option value="5"> 5 </option><option value="6"> 6 </option>  </select></td>
             </tr>
@@ -625,16 +625,19 @@
             <td>$p = $</td>
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
-        </table> -->
+        </table> 
+          data-toggle="tooltip" data-placement="top" title="Number of Trials"
+         -->
           
           <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
-            <td>$ = $</td>
+            <td style="text-align: right">$\text{Number of Trials: } $</td>
+            <td>$n = $</td>
             <td><input class = "combperm" type="text" id="trials"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Probability of Success">$ p $</td>
-            <td>$ = $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$\text{Probability of Success: } $</td>
+            <td>$p = $</td>
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
         </table> 
@@ -651,7 +654,7 @@
         </div> 
           
           <div class = " text-center mt-2" id = "binomialexpected">
-            $E(x)$
+            $\text{Expected Value}$
               
               &nbsp;
               
@@ -662,7 +665,7 @@
         </div> 
           
           <div class = " text-center mt-2" id = "binomialvariance">
-            $\text{Var}(x)$
+            $\text{Variance}$
               
               &nbsp;
               
@@ -678,7 +681,7 @@
       <div class="container mb-3" id="poisson">
         <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu $</td>
+            <td>$\text{Expected Value: } \mu $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="meanocc"></td>
             </tr>
@@ -693,16 +696,18 @@
       <div class="container mb-3" id="hypergeometric">
         <table>
           <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
-            <td>$ = $</td>
+            <td style="text-align: right">$\text{Number of Trials: } $</td>
+            <td>$n = $</td>
             <td><input class = "combperm" type="text" id="ntrials"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Size of Population">$ N $</td>
-            <td>$ = $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$\text{Population Size: } $</td>
+            <td>$N  = $</td>
             <td><input class = "combperm" type="text" id="popsize"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Successes in Population">$ r $</td>
-            <td>$ = $</td>
+            </tr>
+            <tr>
+            <td style="text-align: right">$\text{Successes in Population: } $</td>
+            <td>$r  = $</td>
             <td><input class = "combperm" type="text" id="popsucc"></td>
             </tr>
         </table> 
