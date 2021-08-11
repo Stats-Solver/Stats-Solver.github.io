@@ -1184,11 +1184,11 @@ function hyptest1(){
     
     if (pvalue <= alpha) {
         if (tail == "lower") {
-            var interpret = " $$ \\text{Interpretation: Can conclude } \\mu <" + muknot + " $$ "
+            var interpret = " $$ \\text{Interpretation: Conclude } \\mu <" + muknot + " $$ "
         } else if (tail == "upper") {
-            var interpret = " $$ \\text{Interpretation: Can conclude } \\mu >" + muknot + " $$ "
+            var interpret = " $$ \\text{Interpretation: Conclude } \\mu >" + muknot + " $$ "
         } else if (tail == "two") {
-            var interpret = " $$ \\text{Interpretation: Can conclude } \\mu \\neq" + muknot + " $$ "
+            var interpret = " $$ \\text{Interpretation: Conclude } \\mu \\neq" + muknot + " $$ "
         }
     } else if (pvalue > alpha) {
         if (tail == "lower") {
@@ -2140,17 +2140,17 @@ function hyptest1(){
     
     
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(3) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(3) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(3) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(3) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     

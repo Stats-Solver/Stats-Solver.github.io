@@ -977,7 +977,7 @@ function showstuff(){
 }
 
 function stat(){
-    $("#contoutputs").show(); $("#how").hide();
+    $("#contoutputs").show(); $("#how").hide(); $("#output2").show(); $("#output0").hide();
     $("#output").empty(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
@@ -1085,7 +1085,7 @@ function compuniformexpected() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ E(x) = \\frac{a+b}{2} = \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} = \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ E(x) = \\frac{a+b}{2} = \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} = \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1097,7 +1097,7 @@ function compuniformvariance() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\dfrac{(b-a)^2}{12} = \\frac{(" + maxval + "-" + minval + ")^2}{12} = \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\dfrac{(b-a)^2}{12} = \\frac{(" + maxval + "-" + minval + ")^2}{12} = \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1177,7 +1177,7 @@ function compuniform1() {
     
     //document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{ \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} } \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} = 1/30 \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align} $$"
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -1248,7 +1248,7 @@ function compuniform2() {
     
     //document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{ \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} } \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} = 1/30 \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align} $$"
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x < "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x < "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -1316,7 +1316,7 @@ function compuniform3() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+maxval+"-"+greaterval+"=\\boxed{"+(maxval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x \\geq "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+maxval+"-"+greaterval+"=\\boxed{"+(maxval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x \\geq "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
  
     
     
@@ -1387,7 +1387,7 @@ function compuniform4() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+maxval+"-"+greaterval+"=\\boxed{"+(maxval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x > "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+maxval+"-"+greaterval+"=\\boxed{"+(maxval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x > "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
  
     
     
@@ -1454,7 +1454,7 @@ function compuniform5() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+greaterval+"-"+greaterval+"=\\boxed{"+(greaterval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x = "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= 0 \\times 1 / "+(maxval-minval)+"  \\\\ &= 0 / "+(maxval-minval)+"  \\\\ &= \\boxed{"+0+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+greaterval+"-"+greaterval+"=\\boxed{"+(greaterval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x = "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= 0 \\times 1 / "+(maxval-minval)+"  \\\\ &= 0 / "+(maxval-minval)+"  \\\\ &= \\boxed{"+0+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
  
     
     
@@ -1529,7 +1529,7 @@ function compuniform6() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" \\leq x \\leq "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" \\leq x \\leq "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1602,7 +1602,7 @@ function compuniform7() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" \\leq x < "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" \\leq x < "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1675,7 +1675,7 @@ function compuniform8() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" < x \\leq "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" < x \\leq "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1748,7 +1748,7 @@ function compuniform9() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" < x < "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" < x < "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -2385,7 +2385,7 @@ function compsnormal1() {
     
     var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} $$"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2593,7 +2593,7 @@ function compsnormal2() {
     
     var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2727,7 +2727,7 @@ function compsnormal3() {
     
     var table = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(z = "+ lessval + ") = \\boxed{0} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(z = "+ lessval + ") = \\boxed{0} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3028,7 +3028,7 @@ function compsnormal4() {
     
     var tableb = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}   & \\; P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") \\\\  &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '')  + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}   & \\; P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") \\\\  &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '')  + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3454,6 +3454,8 @@ function compnormal1() {
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
     
+    ctx.fillText("Normal Distribution",110,10);
+    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
@@ -3503,6 +3505,8 @@ function compnormal1() {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Standard Normal Distribution",90,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -3576,8 +3580,11 @@ function compnormal1() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -3601,26 +3608,78 @@ function compnormal1() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
     
-    document.getElementById("output").innerHTML = "$$ z =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =" +lessval.toFixed(2)+ " $$ $$ P(x"+ sign + lessval0 + ") = P(z"+ sign + lessval.toFixed(2) + ") $$"
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
     
-    var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = \\boxed{" +lessval.toFixed(2)+ "} $$ "
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval.toFixed(2) + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + "} $$"
+    var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(x"+ sign + lessval0 + ") = P(z"+ sign + lessval.toFixed(2) + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3657,6 +3716,8 @@ function compnormal2() {
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Normal Distribution",110,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -3744,6 +3805,8 @@ function compnormal2() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -3820,8 +3883,12 @@ function compnormal2() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
+    
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -3845,32 +3912,85 @@ function compnormal2() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
     
-    document.getElementById("output").innerHTML = "$$ z =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =" +lessval.toFixed(2)+ " $$ $$ P(x"+ sign + lessval0 + ") = P(z"+ sign + lessval.toFixed(2) + ") $$"
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
     
-    var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval.toFixed(2) + ") &= 1 - P(z \\leq" + lessval.toFixed(2) + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " = \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval))).toFixed(4)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =\\boxed{" +lessval.toFixed(2)+ "} $$ "
+    
+    var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(x"+ sign + lessval0 + ") &=  P(z"+ sign + lessval.toFixed(2) + ") \\\\ &= 1 - P(z \\leq" + lessval.toFixed(2) + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function compnormal3() {
-    $("#explanation").show(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").hide(); $("#output2").hide();
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
     document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
@@ -3964,126 +4084,7 @@ function compnormal3() {
     
     ctx.stroke();
     
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("myCanvas");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    
-    var points0 = []
-    
-    var lessvalneg = -1*lessval
-    var lessvalz2 = 30+10*lessvalneg
-    
-    for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:250 - 3.36*i, y:120 - 220*f[i]}
-		}
-    
-    // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
-    ctx.lineTo(50 + 3.36*lessvalz, 130);
-    
-    ctx.stroke();
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(50, 130);
-    ctx.lineTo(250, 130);
-    
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
-    ctx.fillText("z",255,132);
-    ctx.fillText(lessval.toFixed(2),40 + 3.36*(30+10*lessval),145);
-    
-    ctx.moveTo(50 + 3.36*(30+10*lessval), 135);
-    ctx.lineTo(50 + 3.36*(30+10*lessval), 125);
-    
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke();
-    
-    var zvalue = toFixing(parseFloat(lessval),1);
-    var zvaluer = parseFloat(lessval).toFixed(2); 
-    var zseconddec = +zvaluer.toString().split('').pop();
-    
-    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
-         var valstart = 0; 
-         var valend = 4;
-    } else if (zseconddec == 3) {
-         var valstart = 1; 
-         var valend = 5;
-    } else if (zseconddec == 4) {
-         var valstart = 2; 
-         var valend = 6;
-    } else if ((zseconddec == 5)) {
-         var valstart = 3; 
-         var valend = 7;
-    } else if (zseconddec == 6) {
-         var valstart = 4; 
-         var valend = 8;
-    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
-         var valstart = 5; 
-         var valend = 9;
-    }
-    
-    table1 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
-    }
-    
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
-    }
-    
-    document.getElementById("output").innerHTML = "$$ z =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =" +lessval.toFixed(2)+ " $$ $$ P(x = "+ lessval0 + ") = P(z = "+ lessval.toFixed(2) + ") $$"
-    
-    var table = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(z = "+ lessval.toFixed(2) + ") = \\boxed{0} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ P(x = "+ lessval0 + ") = \\boxed{0} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4117,6 +4118,8 @@ function compnormal4() {
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Normal Distribution",110,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -4202,6 +4205,8 @@ function compnormal4() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -4276,8 +4281,11 @@ function compnormal4() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvaluea = (zvalue - .1).toFixed(1);
+    var zvalueb = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -4301,26 +4309,81 @@ function compnormal4() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvaluea) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvaluea) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvaluea) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvaluea) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     }
     
-    var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    if (lessval < 0) {
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalueb) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalueb) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalueb) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalueb) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    
+    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     
     var zvalue2 = toFixing(parseFloat(greaterval),1);
+    var zvalue2a = (zvalue2 - .1).toFixed(1);
+    var zvalue2b = (parseFloat(zvalue2) + .1).toFixed(1);
     var zvaluer2 = parseFloat(greaterval).toFixed(2); 
     var zseconddec2 = +zvaluer2.toString().split('').pop();
+    var colm2 = zseconddec2
     
     if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
          var valstart2 = 0; 
@@ -4344,27 +4407,82 @@ function compnormal4() {
     
     table4 = []
     for (var r = valstart2; r < valend2 + 1; r++){
-        table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm2) {
+                table4 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    
+    
+    if (greaterval < 0) {
+        table51 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table51 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2a) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table51 += "<td>$" + normalcdf(parseFloat(zvalue2a) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table51 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table51 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2a) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table51 += "<td>$" + normalcdf(parseFloat(zvalue2a) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
     }
     
     if (greaterval < 0) {
         table5 = []
         for (var r = valstart2; r < valend2 + 1; r++){
-            table5 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm2) {
+                table5 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table5 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     } else if (greaterval >= 0) {
         table5 = []
         for (var r = valstart2; r < valend2 + 1; r++){
-            table5 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm2) {
+                table5 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table5 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    
+    if (greaterval < 0) {
+        table52 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table52 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2b) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table52 += "<td>$" + normalcdf(parseFloat(zvalue2b) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (greaterval >= 0) {
+        table52 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table52 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2b) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table52 += "<td>$" + normalcdf(parseFloat(zvalue2b) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     }
     
     
-    document.getElementById("output").innerHTML = "$$ z  =\\frac{"+lessval0+"-"+expval+"}{"+sd+"}  =" +lessval.toFixed(2)+ " $$ $$ z  =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} =" +greaterval.toFixed(2)+ " $$ $$ P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") =  P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") $$"
+    var tableb = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     
-    var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align} P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval)).toFixed(4)) + " - "+ parseFloat(normalcdf(parseFloat(lessval)).toFixed(4)) + " = \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 =\\frac{x_1-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = \\boxed{" +lessval.toFixed(2)+ "} $$ $$ z_2 =\\frac{x_2-\\mu}{\\sigma} =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} = \\boxed{" +greaterval.toFixed(2)+ "} $$ "
+    
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}  & \\;  P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") \\\\ &= P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") \\\\ &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '') + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4454,7 +4572,7 @@ function approxprobability() {
 
 
 function approxprobability1() {
-    $("#myCanvas0").show(); $("#myCanvas").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -4486,6 +4604,8 @@ function approxprobability1() {
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Normal Distribution",110,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -4571,6 +4691,8 @@ function approxprobability1() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -4655,8 +4777,11 @@ function approxprobability1() {
     
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvaluea = (zvalue - .1).toFixed(1);
+    var zvalueb = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -4680,26 +4805,81 @@ function approxprobability1() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvaluea) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvaluea) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvaluea) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvaluea) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     }
     
-    var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    if (lessval < 0) {
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalueb) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalueb) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalueb) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalueb) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    
+    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     
     var zvalue2 = toFixing(parseFloat(greaterval),1);
+    var zvalue2a = (zvalue2 - .1).toFixed(1);
+    var zvalue2b = (parseFloat(zvalue2) + .1).toFixed(1);
     var zvaluer2 = parseFloat(greaterval).toFixed(2); 
     var zseconddec2 = +zvaluer2.toString().split('').pop();
+    var colm2 = zseconddec2
     
     if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
          var valstart2 = 0; 
@@ -4723,32 +4903,89 @@ function approxprobability1() {
     
     table4 = []
     for (var r = valstart2; r < valend2 + 1; r++){
-        table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm2) {
+                table4 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    
+    
+    if (greaterval < 0) {
+        table51 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table51 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2a) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table51 += "<td>$" + normalcdf(parseFloat(zvalue2a) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table51 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table51 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2a) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table51 += "<td>$" + normalcdf(parseFloat(zvalue2a) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
     }
     
     if (greaterval < 0) {
         table5 = []
         for (var r = valstart2; r < valend2 + 1; r++){
-            table5 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm2) {
+                table5 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table5 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     } else if (greaterval >= 0) {
         table5 = []
         for (var r = valstart2; r < valend2 + 1; r++){
-            table5 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm2) {
+                table5 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table5 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     }
     
-    var tableb = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table4+"</tr><tr style='border-top: thin solid'><td>$"+zvalue2+"$</td>"+table5+"</tr></table>"
+    if (greaterval < 0) {
+        table52 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table52 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2b) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table52 += "<td>$" + normalcdf(parseFloat(zvalue2b) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (greaterval >= 0) {
+        table52 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table52 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2b) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table52 += "<td>$" + normalcdf(parseFloat(zvalue2b) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
     
-    document.getElementById("output").innerHTML = " $$ P(x=" + xval + ") = P(" + xval1 + " \\leq x \\leq " + xval2 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ $$ z = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = " + z2 + " $$"
     
-    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} P(" + z1 + " \\leq z \\leq " + z2 + ") &= P(z \\leq " + z2 + ") - P(z \\leq " + z1 + ") \\\\ &= " + prob2 + " - " + prob1 + " = \\boxed{" + ans + "} \\end{align} $$"
+    var tableb = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
+    
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" \\pm .5 = \\boxed{"+xval1+" \\text{ to } "+xval2+"} $$ "
+    
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 = \\frac{x_1-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ $$ z_2 = \\frac{x_2-\\mu}{\\sigma} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z2.toFixed(2) + "} $$"
+    
+    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & \\; \\quad P(" + xval1 + " \\leq x \\leq " + xval2 + ") \\\\ &= P(" + z1.toFixed(2) + " \\leq z \\leq " + z2.toFixed(2) + ") \\\\ &= P(z \\leq " + z2.toFixed(2) + ") - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= " + prob2.replace(/^0+/, '') + " - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function approxprobability2() {
-    $("#myCanvas0").show(); $("#myCanvas").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -4774,6 +5011,8 @@ function approxprobability2() {
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Normal Distribution",110,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -4857,6 +5096,8 @@ function approxprobability2() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -4929,8 +5170,11 @@ function approxprobability2() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -4954,33 +5198,86 @@ function approxprobability2() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
     
-    var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
     
+    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output").innerHTML = " $$ P(x \\leq " + xval + ") = P(x \\leq " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = \\boxed{"+xval1+"} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ P(z \\leq " + z1 + ") = \\boxed{" + prob1 + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
+    
+    document.getElementById("output2").innerHTML = tablea + "$$ P(x \\leq " + xval1 + ") = P(z \\leq " + z1.toFixed(2) + ") = \\boxed{" + prob1.replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function approxprobability3() {
-    $("#myCanvas0").show(); $("#myCanvas").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -5006,6 +5303,8 @@ function approxprobability3() {
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Normal Distribution",110,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -5089,6 +5388,8 @@ function approxprobability3() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -5161,8 +5462,11 @@ function approxprobability3() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -5186,33 +5490,89 @@ function approxprobability3() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
     
-    var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
+    
+    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = \\boxed{"+xval1+"} $$ "
+    
+    //$$ \\text{Applying Continuity Correction Factor:}$$ $$ P(x < " + xval + ") \\rightarrow P(x < " + xval1 + ") $$ 
     
     
-    document.getElementById("output").innerHTML = " $$ P(x < " + xval + ") = P(x < " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output").innerHTML = " $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ P(z < " + z1 + ") = \\boxed{" + prob1 + "} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ P(x < " + xval1 + ") = P(z < " + z1.toFixed(2) + ") = \\boxed{" + prob1.replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function approxprobability4() {
-    $("#myCanvas0").show(); $("#myCanvas").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -5239,6 +5599,8 @@ function approxprobability4() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Normal Distribution",110,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -5325,6 +5687,8 @@ function approxprobability4() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -5401,8 +5765,11 @@ function approxprobability4() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -5426,33 +5793,86 @@ function approxprobability4() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
     
-    var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
     
+    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output").innerHTML = " $$ P(x \\geq " + xval + ") = P(x \\geq " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = \\boxed{"+xval1+"} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z \\geq " + z1 + ") &= 1 - P(z \\leq " + z1 + ") \\\\ &= 1 - " + prob1 + " = \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = " $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
+    
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\geq " + xval1 + ") &= P(z \\geq " + z1.toFixed(2) + ") \\\\ &= 1 - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= 1 - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function approxprobability5() {
-    $("#myCanvas0").show(); $("#myCanvas").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -5479,6 +5899,8 @@ function approxprobability5() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Normal Distribution",110,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -5565,6 +5987,8 @@ function approxprobability5() {
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -5641,8 +6065,11 @@ function approxprobability5() {
     ctx.stroke();
     
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -5666,27 +6093,81 @@ function approxprobability5() {
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
     }
     
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
     
-    var tablea = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
+    
+    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = \\boxed{"+xval1+"} $$ "
     
     
-    document.getElementById("output").innerHTML = " $$ P(x > " + xval + ") = P(x > " + xval1 + ") $$ $$ z = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = " + z1 + " $$ "
+    document.getElementById("output").innerHTML = " $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(z > " + z1 + ") &= 1 - P(z < " + z1 + ") \\\\ &= 1 - " + prob1 + " = \\boxed{" + ans + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x > " + xval1 + ") &= P(z > " + z1.toFixed(2) + ") \\\\ &= 1 - P(z < " + z1.toFixed(2) + ") \\\\ &= 1 - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }

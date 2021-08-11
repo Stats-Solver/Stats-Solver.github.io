@@ -282,7 +282,7 @@ function compprob1() {
         ans = "0"
     }
     
-    document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = f(" + x + ") = \\boxed{" + ans + "} $$"
+    document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = f(" + x + ") = \\boxed{" + ans + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -328,7 +328,7 @@ function compprob2() {
         ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -374,7 +374,7 @@ function compprob3() {
         ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + ans + "}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + ans + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -427,7 +427,7 @@ function compprob4() {
         ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -480,7 +480,7 @@ function compprob5() {
         ans += parseFloat(fa[i])
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -533,7 +533,7 @@ function compexpected() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$\\boxed{"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = table + "$$ E(x) =\\mu = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ E(x) =\\mu = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -598,7 +598,7 @@ function compvariance() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>$\\boxed{"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
  
-    document.getElementById("output").innerHTML = "$$ E(x) =\\mu = \\sum x f(x) = \\boxed{"+parseFloat(mu.toFixed(2))+"} $$" + table + " $$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ E(x) =\\mu = \\sum x f(x) = \\boxed{"+parseFloat(mu.toFixed(2))+"} $$" + table + " $$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -664,7 +664,7 @@ function compstandard() {
     //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
 
-    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "}  $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2280,7 +2280,7 @@ function compbinomialexpected() {
     var trials = document.getElementById('trials').value
     var prob = document.getElementById('psuccess').value
     
-    document.getElementById("output").innerHTML = "$$ E(x) = np = (" + trials + ")(" + prob + ") = \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ E(x) = np = (" + trials + ")(" + prob + ") = \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2293,7 +2293,7 @@ function compbinomialvariance() {
     var prob = document.getElementById('psuccess').value
     var ans = trials*prob*(1-prob)
     
-    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = np(1-p) = (" + trials + ")(" + prob + ")(1-" + prob + ") = \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = np(1-p) = (" + trials + ")(" + prob + ")(1-" + prob + ") = \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2335,7 +2335,7 @@ function compbinomial1() {
     
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + num + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{" + trials + "! }{" + num + "! (" + trials + " - " + num + ")!} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + (1-prob).toFixed(2).replace(/^0+/, '') + "^{" + (trials-num) + "} \\\\ &= \\frac{" + numerator2 + " }{" + denominator2 + "} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')  + " \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num)).toFixed(2).replace(/^0+/, '')+"\\times"+parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')+" \\\\ &= \\boxed{" + ans.toFixed(2).replace(/^0+/, '')  + "} \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + num + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{" + trials + "! }{" + num + "! (" + trials + " - " + num + ")!} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + (1-prob).toFixed(2).replace(/^0+/, '') + "^{" + (trials-num) + "} \\\\ &= \\frac{" + numerator2 + " }{" + denominator2 + "} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')  + " \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num)).toFixed(2).replace(/^0+/, '')+"\\times"+parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')+" \\\\ &= \\boxed{" + ans.toFixed(2).replace(/^0+/, '')  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2428,9 +2428,9 @@ function compbinomial2() {
     
     
     if (i == 0) {
-        document.getElementById("output").innerHTML = workplus + "$$  P(x \\leq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$"
+        document.getElementById("output").innerHTML = workplus + "$$  P(x \\leq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     MathJax.typeset();
@@ -2523,9 +2523,9 @@ function compbinomial4() {
     finalans = finalans + parseFloat(ans.toFixed(2))
     
     if (i == 0) {
-        document.getElementById("output").innerHTML = workplus + "$$ P(x < " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$"
+        document.getElementById("output").innerHTML = workplus + "$$ P(x < " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     
@@ -2621,9 +2621,9 @@ function compbinomial3() {
     
     
     if (i == num) {
-        document.getElementById("output").innerHTML = workplus + "$$  P(x \\geq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$"
+        document.getElementById("output").innerHTML = workplus + "$$  P(x \\geq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     MathJax.typeset();
@@ -2716,9 +2716,9 @@ function compbinomial5() {
     finalans = finalans + parseFloat(ans.toFixed(2))
     
     if (i == nump1) {
-        document.getElementById("output").innerHTML = workplus + "$$ P(x > " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$"
+        document.getElementById("output").innerHTML = workplus + "$$ P(x > " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$"
+        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     
@@ -3112,7 +3112,7 @@ function comppoisson1() {
     
     var ans = (Math.pow(ave,num)*Math.pow(exp,(-ave)))/factorial(num)
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + num + "!} \\\\ &= \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3147,7 +3147,7 @@ function comppoisson2() {
     
     workplus = workplus + " $$ f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3183,7 +3183,7 @@ function comppoisson4() {
     
     workplus = workplus + " $$ f(" + numm1 + ") = \\frac{" + ave + "^" + numm1 + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,numm1) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(numm1) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3219,7 +3219,7 @@ function comppoisson3() {
     
     workplus = workplus + " $$ f(" + numm1 + ") = \\frac{" + ave + "^" + numm1 + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,numm1) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(numm1) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
 
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3256,7 +3256,7 @@ function comppoisson5() {
     
     workplus = workplus + " $$ f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + i + "!} = \\frac{" + Math.pow(ave,num) + "\\times " + parseFloat((Math.pow(exp,(-ave)))).toFixed(4).replace(/^0+/, '') + "}{" + factorial(num) + "} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
 
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3392,7 +3392,7 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &=  \\dfrac{ \\left( \\dfrac{"+popsucc+"!}{"+numsucc+"!("+popsucc+"-"+numsucc+")!} \\right) \\left( \\dfrac{"+(popsize-popsucc)+"!}{"+(ntrials-numsucc)+"!("+(popsize-popsucc)+"-"+(ntrials-numsucc)+")!}\\right)}{\\dfrac{"+popsize+"!}{"+ntrials+"!("+popsize+"-"+ntrials+")!}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &=  \\dfrac{ \\left( \\dfrac{"+popsucc+"!}{"+numsucc+"!("+popsucc+"-"+numsucc+")!} \\right) \\left( \\dfrac{"+(popsize-popsucc)+"!}{"+(ntrials-numsucc)+"!("+(popsize-popsucc)+"-"+(ntrials-numsucc)+")!}\\right)}{\\dfrac{"+popsize+"!}{"+ntrials+"!("+popsize+"-"+ntrials+")!}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3590,7 +3590,7 @@ function comphypergeometric2() {
     
     workplus = workplus + "$$ f("+numsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3789,7 +3789,7 @@ function comphypergeometric4() {
     
     workplus = workplus + "$$ f("+numsuccm1+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsuccm1+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsuccm1+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3987,7 +3987,7 @@ function comphypergeometric3() {
     workplus = workplus + "$$ f("+popsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+popsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+popsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
 
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -4186,7 +4186,7 @@ function comphypergeometric5() {
     
     workplus = workplus + "$$ f("+popsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+popsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+popsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} = \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$"
+    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
