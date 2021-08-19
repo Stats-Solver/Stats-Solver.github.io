@@ -5,6 +5,10 @@ $("#581773186").hide();
 
 $("#simpoutputs").hide();
 
+$(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
@@ -628,7 +632,13 @@ function slope(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_xminusx_bar)+"$</td>"+ "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$\\boxed{"+parseFloat(sum_xxbminyyb.toFixed(2))+"}$</td>"+"<td>$\\boxed{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = " $$ \\text{Sample Means:} $$ $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \=  \\frac{" + sum_x + "}{" + n_x + "} = \\boxed{" + parseFloat(mean_x.toFixed(2))+ "} \\\\ \\bar{y} &= \\frac{\\sum{y}}{n} \=  \\frac{" + sum_y + "}{" + n_y + "} = \\boxed{" + parseFloat(mean_y.toFixed(2))+ "} \\end{align} $$ <table>" + table + "</table> $$ \\text{Slope:} $$ $$ b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{"+parseFloat(sum_xxbminyyb.toFixed(2))+"}{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}= \\boxed{"+parseFloat(ansslope.toFixed(2))+"} $$ $$ \\text{Intercept:} $$ $$ b_{0} = \\bar{y} - b_{1} \\bar{x} = "+parseFloat(mean_y.toFixed(2))+" - (" +parseFloat(ansslope.toFixed(2)) + ")(" + parseFloat(mean_x.toFixed(2))+ ") = \\boxed{"+parseFloat(ansint.toFixed(2))+"} $$ $$ \\text{Regression Equation:} $$ $$ \\hat{y} = b_{0} + b_{1} x \\rightarrow \\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope +parseFloat(Math.abs(ansslope).toFixed(2))+"x} $$"
+    document.getElementById("output").innerHTML = " $$ \\text{Sample Means:} $$ $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} =  \\frac{" + sum_x + "}{" + n_x + "} = \\boxed{" + parseFloat(mean_x.toFixed(2))+ "} \\\\ \\bar{y} &= \\frac{\\sum{y}}{n} =  \\frac{" + sum_y + "}{" + n_y + "} = \\boxed{" + parseFloat(mean_y.toFixed(2))+ "} \\end{align} $$ <table>" + table + "</table> $$ \\text{Slope:} $$ $$ b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{"+parseFloat(sum_xxbminyyb.toFixed(2))+"}{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}= \\boxed{"+parseFloat(ansslope.toFixed(2))+"} $$ $$ \\text{Intercept:} $$ $$ b_{0} = \\bar{y} - b_{1} \\bar{x} = "+parseFloat(mean_y.toFixed(2))+" - (" +parseFloat(ansslope.toFixed(2)) + ")(" + parseFloat(mean_x.toFixed(2))+ ") = \\boxed{"+parseFloat(ansint.toFixed(2))+"} $$ $$ \\text{Regression Equation:} $$ $$ \\hat{y} = b_{0} + b_{1} x \\rightarrow \\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope +parseFloat(Math.abs(ansslope).toFixed(2))+"x} $$"
+    
+    // = \\frac{" + x[0] + " +  "+x[1]+" + \\cdots + "+x[n_x - 1]+"}{" + n_x + "}
+    //  = \\frac{" + y[0] + " +  "+y[1]+" + \\cdots + "+y[n_y - 1]+"}{" + n_y + "}
+    
+    
+    
     MathJax.typeset();
 }
 
