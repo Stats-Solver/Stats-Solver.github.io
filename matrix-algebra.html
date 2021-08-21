@@ -120,9 +120,9 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
               <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <!--<a class="dropdown-item" href="tables/z-distribution.html">Chi-Square Distribution</a>
-              <a class="dropdown-item" href="tables/z-distribution.html">F Distribution</a>
-              <a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
+              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
+              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
+              <!--<a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
               <a class="dropdown-item" href="tables/z-distribution.html">Poisson Probability</a> -->
             </div>
           </li>
@@ -446,16 +446,8 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
+
       
       <div class="container" id="how">
         <div id="how1" class="output" style="color: darkslategray">
@@ -467,7 +459,7 @@
             <p class = "p1"> Matrix algebra is very similar to regular algebra. The only difference is that instead of working with individual numbers, we're working with an array of numbers. This array of numbers is known as a matrix. The dimensions of a matrix are the number of rows and columns in a matrix. A matrix with dimensions m x n has m rows and n columns. The numbers inside of a matrix are known as the elements. The element aij is the number in row i and columnn j.  </p>
             
             <div class="text-center">
-            $ \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}  \end{bmatrix}$
+            $ \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn}  \end{bmatrix}$
                 </div>
             
             <br>
@@ -475,7 +467,7 @@
             <p class = "p1"> Matrix algebra is very similar to regular algebra. The only difference is that instead of working with individual numbers, we're working with an array of numbers. This array of numbers is known as a matrix. The dimensions of a matrix are the number of rows and columns in a matrix. A matrix with dimensions m x n has m rows and n columns. The numbers inside of a matrix are known as the elements. The element aij is the number in row i and columnn j.  </p>
             
             <div class="text-center">
-            $ c \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}  \end{bmatrix} $ $ = \begin{bmatrix} c \cdot a_{11} & c \cdot a_{12} & \cdots & c \cdot a_{1n} \\ c \cdot a_{21} & c \cdot a_{22} & \cdots & c \cdot a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ c \cdot a_{m1} & c \cdot a_{m2} & \cdots & c \cdot a_{mn}  \end{bmatrix}$
+            $ c \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1}  & \cdots & a_{mn}  \end{bmatrix} $ $ = \begin{bmatrix} c \cdot a_{11} & \cdots & c \cdot a_{1n} \\ \vdots & \ddots & \vdots \\ c \cdot a_{m1} & \cdots & c \cdot a_{mn}  \end{bmatrix}$
                 </div>
             
             <br>
@@ -483,10 +475,36 @@
             <p class = "p1 mb-4"> There are three main operations that are performed on matrices. They are addition, subtraction and multiplication. Matrix addition and subtraction follow intuitively from the addition and subtraction that we are used to. However, matrix multiplication is a bit more complicated.In matrix addition, the corresponding elements of each matrix are summed together. That is, the element a<sub>11</sub> is added to b<sub>11</sub> to get c<sub>11</sub> of the resulting matrix. </p>
             
             <div class="text-center">
-            $ \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}  \end{bmatrix} + \begin{bmatrix} b_{11} & b_{12} & \cdots & b_{1n} \\ b_{21} & b_{22} & \cdots & b_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ b_{m1} & b_{m2} & \cdots & b_{mn}  \end{bmatrix}$ $ = \begin{bmatrix} a_{11} + b_{11} & a_{12} + b_{12} & \cdots & a_{1n} + b_{1n} \\ a_{21} + b_{21} & a_{22} + b_{22} & \cdots & a_{2n} + b_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} + b_{m1} & a_{m2} + b_{m2} & \cdots & a_{mn} + b_{mn}  \end{bmatrix}$
+            $ \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn}  \end{bmatrix} + \begin{bmatrix} b_{11}  & \cdots & b_{1n} \\ \vdots & \ddots & \vdots \\ b_{m1} & \cdots & b_{mn}  \end{bmatrix}$ $ = \begin{bmatrix} a_{11} + b_{11} & \cdots & a_{1n} + b_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} + b_{m1} & \cdots & a_{mn} + b_{mn}  \end{bmatrix}$
                 </div>
             
             <br>
+            
+                  <!--
+
+\\ a_{21} & \cdots & a_{2n} 
+\\ c \cdot a_{21} & \cdots & c \cdot a_{2n} 
+
+\\ a_{21} & a_{22} & \cdots & a_{2n} 
+\\ b_{21} & b_{22} & \cdots & b_{2n} 
+\\ a_{21} + b_{21} & a_{22} + b_{22} & \cdots & a_{2n} + b_{2n} 
+
+            & a_{12} 
+
+
+
+        
+             & a_{12}
+             & a_{22}
+            & a_{m2}
+
+             & c \cdot a_{12}
+            & c \cdot a_{22} 
+             & c \cdot a_{m2}
+
+             & \vdots
+             & \vdots
+                    -->
             
             <p class = "p1"> There are three main operations that are performed on matrices. They are addition, subtraction and multiplication. Matrix addition and subtraction follow intuitively from the addition and subtraction that we are used to. However, matrix multiplication is a bit more complicated.In matrix addition, the corresponding elements of each matrix are summed together. That is, the element a<sub>11</sub> is added to b<sub>11</sub> to get c<sub>11</sub> of the resulting matrix. </p>
             
@@ -505,7 +523,7 @@
             <p class = "p1 mb-4"> Matrix multiplication is a bit more complicated than matrix addition and subtraction. Matrix multiplication involves taking the dot product of corresponding rows and columns. To find the element in row i and column j, take the dot product of row i in the first matrix and column j of the second matrix. The dot product is the sum of the products of the elements in row i and column j. So take the product of the first elements of row i and column j, then add it to the product of the second elemennts of row i and column j. Continue the process until the end. </p>
             
             <div class="text-center">
-            $ \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}  \end{bmatrix} \times \begin{bmatrix} b_{11} & b_{12} & \cdots & b_{1m} \\ b_{21} & b_{22} & \cdots & b_{2m} \\ \vdots & \vdots & \ddots & \vdots \\ b_{n1} & b_{n2} & \cdots & b_{nm}  \end{bmatrix} $ $ = \begin{bmatrix} a_{11} \cdot b_{11} + a_{12} \cdot b_{21} + \cdots + a_{1n} \cdot b_{n1} & \cdots \\ a_{21} \cdot b_{11} + a_{22} \cdot b_{21} + \cdots + a_{2n} \cdot b_{n1} & \cdots  \\ \vdots & \vdots \\ a_{m1} \cdot b_{11} + a_{m2} \cdot b_{21} + \cdots + a_{mn} \cdot b_{n1} & \cdots  \end{bmatrix}$
+            $ \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn}  \end{bmatrix} \times \begin{bmatrix} b_{11} & \cdots & b_{1m} \\ \vdots & \ddots & \vdots \\ b_{n1}  & \cdots & b_{nm}  \end{bmatrix} $ $ = \begin{bmatrix} a_{11} \cdot b_{11} + \cdots + a_{1n} \cdot b_{n1} & \cdots \\ \vdots & \vdots \\ a_{m1} \cdot b_{11} + \cdots + a_{mn} \cdot b_{n1} & \cdots  \end{bmatrix}$
                 </div>
             
             <br>
@@ -513,7 +531,7 @@
             <p class = "p1 mb-4"> Taking the power of a matrix is straight forward. To square a matrix, simply multiply a matrix by itself. To cube a matrix, multiply a matrix by itself three times. Note that this won't work if the matrix is not a square matrix. A square matrix is a matrix that has the same number of rows and columns.  </p>
             
             <div class="text-center">
-            $ A^2 = \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn}  \end{bmatrix} \times \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{n1} & a_{n2} & \cdots & a_{nn}  \end{bmatrix}$
+            $ A^2 = \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{n1} & \cdots & a_{nn}  \end{bmatrix} \times \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{n1} & \cdots & a_{nn}  \end{bmatrix}$
                 </div>
             
             <br>
@@ -521,7 +539,7 @@
             <p class = "p1 mb-4"> The tranpose in matrix algebra is similar to the idea of an inverse in regular algebra. When you multiply a matrix by a transpose you get the identity matrix. The identity matrix is the matrix version of the number 1 in the real number system.  </p>
             
             <div class="text-center">
-            $ \begin{bmatrix} a_{11} & a_{12} & \cdots & a_{1n} \\ a_{21} & a_{22} & \cdots & a_{2n} \\ \vdots & \vdots & \ddots & \vdots \\ a_{m1} & a_{m2} & \cdots & a_{mn}  \end{bmatrix} ^T = \begin{bmatrix} a_{11} & a_{21} & \cdots & a_{m1} \\ a_{12} & a_{22} & \cdots & a_{m2} \\ \vdots & \vdots & \ddots & \vdots \\ a_{1n} & a_{2n} & \cdots & a_{mn}  \end{bmatrix}  $
+            $ \begin{bmatrix} a_{11} & \cdots & a_{1n} \\ \vdots & \ddots & \vdots \\ a_{m1} & \cdots & a_{mn}  \end{bmatrix} ^T = \begin{bmatrix} a_{11} & \cdots & a_{m1} \\ \vdots & \ddots & \vdots \\ a_{1n} & \cdots & a_{mn}  \end{bmatrix}  $
                 </div>
             
             <br>
