@@ -188,9 +188,9 @@ function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
 } 
 
     
-    table0 = "<tr style='border-top: thin solid'><td>$\\textbf{Degrees of}$</td><td colspan='6' style='border-bottom: thin solid;'>$\\textbf{Area in the Upper Tail}$</td></tr>"
+    table0 = "<tr style='border-top: thin solid'><td>$\\textbf{Deg.}$</td><td colspan='6' style='border-bottom: thin solid;'>$\\textbf{Area in the Upper Tail}$</td></tr>"
     
-    table1 = "<tr style='border-bottom: thin solid;'><td>$\\textbf{Freedom}$</td><td>$\\mathbf{.20}$</td><td>$\\mathbf{.10}$</td><td>$\\mathbf{.05}$</td><td>$\\mathbf{.025}$</td><td>$\\mathbf{.01}$</td><td>$\\mathbf{.005}$</td></tr>"
+    table1 = "<tr style='border-bottom: thin solid;'><td>$\\textbf{of Fr.}$</td><td>$\\mathbf{.20}$</td><td>$\\mathbf{.10}$</td><td>$\\mathbf{.05}$</td><td>$\\mathbf{.025}$</td><td>$\\mathbf{.01}$</td><td>$\\mathbf{.005}$</td></tr>"
 
     table2 = []
 

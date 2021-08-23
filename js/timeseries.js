@@ -2,6 +2,8 @@ $(".description").hide(); $(".population").hide(); $(".sample").hide(); $("#expl
 
 $("#orders").hide(); $("#exponential").hide(); $("#blankspace").show(); $("#weights").hide(); $("#holt").hide(); $("#581773186").hide();
 
+$("#timeoutputs").hide();
+
 $(document).ready(function(){
   $('[data-toggle="popover"]').popover();
 });
@@ -70,6 +72,212 @@ function avg(input){
     return sum(input)/input.length
 }
 
+var canvas = document.getElementById("howCanvas");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+howplot(); howplot2()
+
+function howplot() {
+    var c = document.getElementById("howCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    ctx.fillText("Time Plot",120,10);
+    
+    ctx.fillText("y",37,15);
+    ctx.fillText("t",265,182);
+    //ctx.fillText("ŷ",255,50);
+    //ctx.fillText("b₀",25,130);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    
+    //ctx.moveTo(60, 130);
+    //ctx.lineTo(240, 50);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    //ctx.fillRect(64,105,3,3);
+    //ctx.fillRect(89,155,3,3);
+    //ctx.fillRect(114,80,3,3);
+    //ctx.fillRect(139,120,3,3);
+    //ctx.fillRect(164,85,3,3);
+    //ctx.fillRect(189,100,3,3);
+    //ctx.fillRect(214,50,3,3);
+    //ctx.fillRect(239,80,3,3);
+    
+    ctx.moveTo(65, 105);
+    ctx.lineTo(90, 155);
+    ctx.lineTo(115, 80);
+    ctx.lineTo(140, 120);
+    ctx.lineTo(165, 85);
+    ctx.lineTo(190, 100);
+    ctx.lineTo(215, 50);
+    ctx.lineTo(240, 80);
+    
+    ctx.moveTo(35, 155);
+    ctx.lineTo(45, 155);
+    ctx.moveTo(35, 130);
+    ctx.lineTo(45, 130);
+    ctx.moveTo(35, 105);
+    ctx.lineTo(45, 105);
+    ctx.moveTo(35, 80);
+    ctx.lineTo(45, 80);
+    ctx.moveTo(35, 55);
+    ctx.lineTo(45, 55);
+    ctx.moveTo(35, 30);
+    ctx.lineTo(45, 30);
+    
+    ctx.fillText("1",25,158);
+    ctx.fillText("2",25,133);
+    ctx.fillText("3",25,108);
+    ctx.fillText("4",25,83);
+    ctx.fillText("5",25,58);
+    ctx.fillText("6",25,33);
+    
+    ctx.moveTo(65, 175);
+    ctx.lineTo(65, 185);
+    ctx.moveTo(90, 175);
+    ctx.lineTo(90, 185);
+    ctx.moveTo(115, 175);
+    ctx.lineTo(115, 185);
+    ctx.moveTo(140, 175);
+    ctx.lineTo(140, 185);
+    ctx.moveTo(165, 175);
+    ctx.lineTo(165, 185);
+    ctx.moveTo(190, 175);
+    ctx.lineTo(190, 185);
+    ctx.moveTo(215, 175);
+    ctx.lineTo(215, 185);
+    ctx.moveTo(240, 175);
+    ctx.lineTo(240, 185);
+    
+    ctx.fillText("1",62,195);
+    ctx.fillText("2",88,195);
+    ctx.fillText("3",113,195);
+    ctx.fillText("4",138,195);
+    ctx.fillText("5",163,195);
+    ctx.fillText("6",188,195);
+    ctx.fillText("7",213,195);
+    ctx.fillText("8",238,195);
+    
+    ctx.stroke();
+}
+
+function howplot2() {
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 200);
+    
+    ctx.fillText("Moving Average",110,10);
+    
+    ctx.fillText("y",37,15);
+    ctx.fillText("t",265,182);
+    //ctx.fillText("ŷ",255,50);
+    //ctx.fillText("b₀",25,130);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 180);
+    ctx.lineTo(260, 180);
+    ctx.stroke();
+    
+    //ctx.moveTo(60, 130);
+    //ctx.lineTo(240, 50);
+    
+    //ctx.moveTo(33, 130);
+    //ctx.lineTo(47, 130);
+    
+    
+    ctx.strokeStyle = 'gray';
+    ctx.beginPath();
+    ctx.moveTo(65, 105);
+    ctx.lineTo(90, 155);
+    ctx.lineTo(115, 80);
+    ctx.lineTo(140, 120);
+    ctx.lineTo(165, 85);
+    ctx.lineTo(190, 100);
+    ctx.lineTo(215, 50);
+    ctx.lineTo(240, 80);
+    ctx.stroke();
+    
+    ctx.strokeStyle = 'black';
+    ctx.beginPath();
+    
+    //ctx.moveTo(65, 105);
+    ctx.lineTo(90, 113);
+    ctx.lineTo(115, 118);
+    ctx.lineTo(140, 95);
+    ctx.lineTo(165, 102);
+    ctx.lineTo(190, 78);
+    ctx.lineTo(215, 77);
+    //ctx.lineTo(240, 80);
+    ctx.stroke();
+    
+    ctx.moveTo(35, 155);
+    ctx.lineTo(45, 155);
+    ctx.moveTo(35, 130);
+    ctx.lineTo(45, 130);
+    ctx.moveTo(35, 105);
+    ctx.lineTo(45, 105);
+    ctx.moveTo(35, 80);
+    ctx.lineTo(45, 80);
+    ctx.moveTo(35, 55);
+    ctx.lineTo(45, 55);
+    ctx.moveTo(35, 30);
+    ctx.lineTo(45, 30);
+    
+    ctx.fillText("1",25,158);
+    ctx.fillText("2",25,133);
+    ctx.fillText("3",25,108);
+    ctx.fillText("4",25,83);
+    ctx.fillText("5",25,58);
+    ctx.fillText("6",25,33);
+    
+    ctx.moveTo(65, 175);
+    ctx.lineTo(65, 185);
+    ctx.moveTo(90, 175);
+    ctx.lineTo(90, 185);
+    ctx.moveTo(115, 175);
+    ctx.lineTo(115, 185);
+    ctx.moveTo(140, 175);
+    ctx.lineTo(140, 185);
+    ctx.moveTo(165, 175);
+    ctx.lineTo(165, 185);
+    ctx.moveTo(190, 175);
+    ctx.lineTo(190, 185);
+    ctx.moveTo(215, 175);
+    ctx.lineTo(215, 185);
+    ctx.moveTo(240, 175);
+    ctx.lineTo(240, 185);
+    
+    ctx.fillText("1",62,195);
+    ctx.fillText("2",88,195);
+    ctx.fillText("3",113,195);
+    ctx.fillText("4",138,195);
+    ctx.fillText("5",163,195);
+    ctx.fillText("6",188,195);
+    ctx.fillText("7",213,195);
+    ctx.fillText("8",238,195);
+    
+    ctx.stroke();
+}
+
+
 function showthings(){
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide();
@@ -104,6 +312,7 @@ function showweights(){
 }
 
 function stat(){
+    $("#timeoutputs").show(); $("#how").hide(); 
     $("#explanation").hide(); $("#581773186").show();
     $("#inputqu").hide(); $("#inputzscore").hide();
     $(".description").hide(); $(".population").hide(); $(".sample").hide();

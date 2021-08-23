@@ -58,6 +58,8 @@ $("#matrixapower").hide();
 
 var scalar = false
 
+var nummat = 2;
+
 var dima = 22; var dimb = 22
 
 function coefficients() {
@@ -80,15 +82,21 @@ function removecoefficients() {
 }
 
 function removematrix() {
-    $("#matrixbset1").hide();
-    $("#matrixbset2").hide();
-    $("#matrixapower").show();
+    if (nummat == 2) {
+        nummat = 1
+        $("#matrixbset1").hide();
+        $("#matrixbset2").hide();
+        $("#matrixapower").show();
+    }
 }
 
 function addmatrix() {
-    $("#matrixbset1").show();
-    $("#matrixbset2").show();
-    $("#matrixapower").hide();
+    if (nummat == 1) {
+        nummat = 2
+        $("#matrixbset1").show();
+        $("#matrixbset2").show();
+        $("#matrixapower").hide();
+    } 
 }
 
 
@@ -866,18 +874,76 @@ function showstuff(){
 function stat(){
     $("#discoutputs").show(); $("#how").hide();
     $("#output").empty(); $("#myCanvas").hide();
-    var x = document.getElementById("operationn").value;
-    if (x == "add"){
-        add()
-    } else if (x == "subtract"){
-        subtract()
-    } else if (x == "multiply"){
-        multiply()
-    } else if (x == "standard") {
-        compstandard()
-    } else if (x == "discrete") {
-        compdiscrete()
-    }  
+    var x = document.getElementById("operation").value; 
+    var y = document.getElementById("matrixapowerval").value;
+    if (nummat == 1) {
+        if (y == "square") {
+            square()
+        }
+    } else if (nummat == 2) {
+        if (x == "add"){
+            add()
+        } else if (x == "subtract"){
+            subtract()
+        } else if (x == "multiply"){
+            multiply()
+        } 
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function square() {
+    var a11 = parseFloat(document.getElementById('a11v').value);
+    var a12 = parseFloat(document.getElementById('a12v').value);
+    var a13 = parseFloat(document.getElementById('a13v').value);
+    var a14 = parseFloat(document.getElementById('a14v').value);
+    var a15 = parseFloat(document.getElementById('a15v').value);
+    var a21 = parseFloat(document.getElementById('a21v').value);
+    var a22 = parseFloat(document.getElementById('a22v').value);
+    var a23 = parseFloat(document.getElementById('a23v').value);
+    var a24 = parseFloat(document.getElementById('a24v').value);
+    var a25 = parseFloat(document.getElementById('a25v').value);
+    var a31 = parseFloat(document.getElementById('a31v').value);
+    var a32 = parseFloat(document.getElementById('a32v').value);
+    var a33 = parseFloat(document.getElementById('a33v').value);
+    var a34 = parseFloat(document.getElementById('a34v').value);
+    var a35 = parseFloat(document.getElementById('a35v').value);
+    var a41 = parseFloat(document.getElementById('a41v').value);
+    var a42 = parseFloat(document.getElementById('a42v').value);
+    var a43 = parseFloat(document.getElementById('a43v').value);
+    var a44 = parseFloat(document.getElementById('a44v').value);
+    var a45 = parseFloat(document.getElementById('a45v').value);
+    var a51 = parseFloat(document.getElementById('a51v').value);
+    var a52 = parseFloat(document.getElementById('a52v').value);
+    var a53 = parseFloat(document.getElementById('a53v').value);
+    var a54 = parseFloat(document.getElementById('a54v').value);
+    var a55 = parseFloat(document.getElementById('a55v').value);
+    
+        if (dima == 22) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} \\begin{bmatrix} "+a11+" & "+a12+" \\\\ "+a21+" & "+a22+" \\end{bmatrix} ^2 &= \\begin{bmatrix} "+a11+" & "+a12+" \\\\ "+a21+" & "+a22+" \\end{bmatrix} \\times \\begin{bmatrix} "+a11+" & "+a12+" \\\\ "+a21+" & "+a22+" \\end{bmatrix} \\\\ &= \\begin{bmatrix} "+a11+" \\times "+a11+" + "+a12+" \\times "+a21+" & "+a11+" \\times "+a12+" + "+a12+" \\times "+a22+" \\\\ "+a21+" \\times "+a11+" + "+a22+" \\times "+a21+" & "+a21+" \\times "+a12+" + "+a22+" \\times "+a22+" \\end{bmatrix}  \\end{align} $$"
+        } else if (dima == 33) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} \\quad \\begin{bmatrix} "+a11+" & "+a12+" & "+a13+" \\\\ "+a21+" & "+a22+" & "+a23+" \\\\ "+a31+" & "+a32+" & "+a33+"  \\end{bmatrix} + \\begin{bmatrix} "+b11+" & "+b12+" & "+b13+" \\\\ "+b21+" & "+b22+" & "+b23+" \\\\ "+b31+" & "+b32+" & "+b33+" \\end{bmatrix} &= \\begin{bmatrix} "+a11+"+"+b11+" & "+a12+"+"+b12+" & "+a13+"+"+b13+" \\\\ "+a21+"+"+b21+" & "+a22+"+"+b22+" & "+a23+"+"+b23+" \\\\ "+a31+"+"+b31+" & "+a32+"+"+b32+" & "+a33+"+"+b33+" \\end{bmatrix} \\\\ &= \\begin{bmatrix} "+(a11+b11)+" & "+(a12+b12)+" & "+(a13+b13)+" \\\\ "+(a21+b21)+" & "+(a22+b22)+" & "+(a23+b23)+" \\\\ "+(a31+b31)+" & "+(a32+b32)+" & "+(a33+b33)+" \\end{bmatrix} \\end{align} $$"
+        } else if (dima == 44) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} \\quad \\begin{bmatrix} "+a11+" & "+a12+" & "+a13+" & "+a14+" \\\\ "+a21+" & "+a22+" & "+a23+" & "+a24+" \\\\ "+a31+" & "+a32+" & "+a33+" & "+a34+" \\\\ "+a41+" & "+a42+" & "+a43+" & "+a44+"  \\end{bmatrix} + \\begin{bmatrix} "+b11+" & "+b12+" & "+b13+" & "+b14+" \\\\ "+b21+" & "+b22+" & "+b23+" & "+b24+" \\\\ "+b31+" & "+b32+" & "+b33+" & "+b34+" \\\\ "+b41+" & "+b42+" & "+b43+" & "+b44+" \\end{bmatrix} &= \\begin{bmatrix} "+a11+"+"+b11+" & "+a12+"+"+b12+" & "+a13+"+"+b13+" & "+a14+"+"+b14+" \\\\ "+a21+"+"+b21+" & "+a22+"+"+b22+" & "+a23+"+"+b23+" & "+a24+"+"+b24+" \\\\ "+a31+"+"+b31+" & "+a32+"+"+b32+" & "+a33+"+"+b33+" & "+a34+"+"+b34+" \\\\ "+a41+"+"+b41+" & "+a42+"+"+b42+" & "+a43+"+"+b43+" & "+a44+"+"+b44+"  \\end{bmatrix} \\\\ &= \\begin{bmatrix} "+(a11+b11)+" & "+(a12+b12)+" & "+(a13+b13)+" & "+(a14+b14)+" \\\\ "+(a21+b21)+" & "+(a22+b22)+" & "+(a23+b23)+" & "+(a24+b24)+" \\\\ "+(a31+b31)+" & "+(a32+b32)+" & "+(a33+b33)+" & "+(a34+b34)+" \\\\ "+(a41+b41)+" & "+(a42+b42)+" & "+(a43+b43)+" & "+(a44+b44)+" \\end{bmatrix} \\end{align} $$"
+        } else if (dima == 55) {
+            document.getElementById("output").innerHTML = "$$ \\begin{align} \\quad \\begin{bmatrix} "+a11+" & "+a12+" & "+a13+" & "+a14+" & "+a15+" \\\\ "+a21+" & "+a22+" & "+a23+" & "+a24+" & "+a25+" \\\\ "+a31+" & "+a32+" & "+a33+" & "+a34+" & "+a35+" \\\\ "+a41+" & "+a42+" & "+a43+" & "+a44+" & "+a45+"  \\end{bmatrix} + \\begin{bmatrix} "+b11+" & "+b12+" & "+b13+" & "+b14+" & "+b15+" \\\\ "+b21+" & "+b22+" & "+b23+" & "+b24+" & "+b25+" \\\\ "+b31+" & "+b32+" & "+b33+" & "+b34+" & "+b35+" \\\\ "+b41+" & "+b42+" & "+b43+" & "+b44+" & "+b45+" \\end{bmatrix} &= \\begin{bmatrix} "+a11+"+"+b11+" & "+a12+"+"+b12+" & "+a13+"+"+b13+" & "+a14+"+"+b14+" & "+a15+"+"+b15+" \\\\ "+a21+"+"+b21+" & "+a22+"+"+b22+" & "+a23+"+"+b23+" & "+a24+"+"+b24+" & "+a25+"+"+b25+" \\\\ "+a31+"+"+b31+" & "+a32+"+"+b32+" & "+a33+"+"+b33+" & "+a34+"+"+b34+" & "+a35+"+"+b35+" \\\\ "+a41+"+"+b41+" & "+a42+"+"+b42+" & "+a43+"+"+b43+" & "+a44+"+"+b44+" & "+a45+"+"+b45+"  \\end{bmatrix} \\\\ &= \\begin{bmatrix} "+(a11+b11)+" & "+(a12+b12)+" & "+(a13+b13)+" & "+(a14+b14)+" & "+(a15+b15)+" \\\\ "+(a21+b21)+" & "+(a22+b22)+" & "+(a23+b23)+" & "+(a24+b24)+" & "+(a25+b25)+" \\\\ "+(a31+b31)+" & "+(a32+b32)+" & "+(a33+b33)+" & "+(a34+b34)+" & "+(a35+b35)+" \\\\ "+(a41+b41)+" & "+(a42+b42)+" & "+(a43+b43)+" & "+(a44+b44)+" & "+(a45+b45)+" \\end{bmatrix} \\end{align} $$"
+        }
+    MathJax.typeset();
 }
 
 

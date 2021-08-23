@@ -320,7 +320,7 @@ var d2 = [...d30, ...d35, ...d40, ...d45, ...d50, ...d55, ...d60, ...d65, ...d70
     
     table0 = "<tr style='border-top: thin solid'><td>$\\textbf{Deg.}$</td><td colspan='10' style='border-bottom: thin solid;'>$\\textbf{Area in the Upper Tail}$</td></tr>"
     
-    table1 = "<tr style='border-bottom: thin solid;'><td>$\\textbf{of Frd.}$</td><td>$\\mathbf{.995}$</td><td>$\\mathbf{.99}$</td><td>$\\mathbf{.975}$</td><td>$\\mathbf{.95}$</td><td>$\\mathbf{.90}$</td><td>$\\mathbf{.10}$</td><td>$\\mathbf{.05}$</td><td>$\\mathbf{.025}$</td><td>$\\mathbf{.01}$</td><td>$\\mathbf{.005}$</td></tr>"
+    table1 = "<tr style='border-bottom: thin solid;'><td>$\\textbf{of Fr.}$</td><td>$\\mathbf{.995}$</td><td>$\\mathbf{.99}$</td><td>$\\mathbf{.975}$</td><td>$\\mathbf{.95}$</td><td>$\\mathbf{.90}$</td><td>$\\mathbf{.10}$</td><td>$\\mathbf{.05}$</td><td>$\\mathbf{.025}$</td><td>$\\mathbf{.01}$</td><td>$\\mathbf{.005}$</td></tr>"
 
     table2 = []
 

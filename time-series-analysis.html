@@ -247,6 +247,125 @@
       <hr>
           </div>
     
+      
+      <div class="container" id="how">
+        <div id="how1" class="output text-center" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            
+            <p class = "p1"> A time series is a set of observations equally spaced over time. For example, we could have an observation each day, month, quarter and so on. The starting point of analyzing a time series is to look at the time plot. In a time plot, the observations are plotted against the time in which they occured. Then consecutive observations are connected with straight lines. Time plots allow us to identify what patterns exist in the data and thus help us choose which forecasting method is appropriate. Some common patterns are trend, seasonal and cyclical. </p>
+            
+            <table class="text-center">
+            <tr>
+                <td><canvas id="howCanvas" width="375" height="250"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> Simple forecasting methods provide a benchmark for comparing our more advanced forecasting methods to. That is, if our advanced methods cannnot outperform the simple methods, they can be discarded. Two of the simple forecasting methods are the average method and the naive method. In the average method, the forecast of all future vaues is equal to the average of the historical data. In the naive method, the forecast of all future values is equal to the last observed value.</p>
+            
+            <table class="text-center">
+            <tr>
+                <td colspan="2"> $ \text{Simple Forecasting Methods} $ </td>
+              </tr>
+            <tr>
+                <td align="right">$ \text{Average Method:} $</td>
+                <td>$ \hat{y}_{T+h} = \bar{y_t} $</td>
+              </tr>
+            <tr>
+                <td align="right">$ \text{Naive Method:} $</td>
+                <td>$ \hat{y}_{T+h} = y_T $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> When there are several possible forecasting methods to choose from, we need a way of choosing between them. The way we do this is by analyzing the forecast errors, which are the difference between the actual and forecasted values. To summarize the forecast errors, we could sum them up or average them. However, this causes a problem because the negative and positive errors will cancel each other out. </p>
+            
+            <table class="text-center">
+            <tr>
+                <td colspan="2"> $ \text{Measures of Forecast Accuracy} $ </td>
+              </tr>
+            <tr>
+                <td align="right">$ \text{Mean Absolute Error:} $</td>
+                <td>$ \text{MAE} = \text{mean}(|e_t|) $</td>
+              </tr>
+            <tr>
+                <td align="right">$ \text{Mean Square Error:} $</td>
+                <td>$ \text{MSE} = \text{mean}(e_t^2) $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> Both the MAE and the MSE are scale-dependent measures of forecast accuracy. This means that the units of the data affect their values. This makes it difficult to compare forecasting methods across datasets. To solve this issue we use scale-independent measures of forecast accuracy. The mean absolute percentage error is one example of this.  </p>
+            
+            <div id="723716610" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            <br>
+            
+            <p class = "p1"> Moving averages are similar to the average method, except you're only averaging a few values at a time. In the average method, all of the historical values are being averaged. The reasoning behind this is similar to the reasoning behind exponential smoothing. That is, it is likely that the most recent values are the most relevant. Moving averages do a good job of smoothing out random fluctuations in the data. Because of this, they are used in other forecasting methods like time-series decomposition. </p>
+            
+            <table class="text-center">
+            <tr>
+                <td><canvas id="howCanvas2" width="375" height="250"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> In the average method, all values are given weight. In the naive method, all weight is given to the last observation. So the average method says that all values are equally important while the naive method says only the last value is important. We may want something in between these two extremes. Simple exponential smoothing provides this compromise. In simple exponential smoothing, all observations are given some weight but the most recent observations are given more weight. The weights decrease exponentially as we move further into the past, hence the name.  </p>
+            
+            <table class="text-center">
+            <tr>
+                <td> $ \text{Simple Exponential Smoothing} $ </td>
+              </tr>
+            <tr>
+                <td>$ \hat{y}_{T+1} = \alpha y_T + (1 - \alpha) \hat{y}_T $</td>
+              </tr>
+            <tr>
+                <td>$ \text{Smoothing Constant: } 0 \leq \alpha \leq 1$</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> While simple exponential smoothing is accurate and efficient in many circumstances, it has its limitations. Specifically, it does not perform well when there are patterns in the data such as trend. Holt's method is an extension of simple exponential smoothing for data with a trend pattern. An alternative to Holt's method is linear trend regression. Linear trend regression is simple linear regression where the independent variable, x, is replaced with the time variable, t. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                  <td>Linear Trend Regression</td>
+              </tr>
+            <tr>
+                <td>$\hat{y}_t = b_0 + b_1 t $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> Linear trend regression is an adaptation of simple linear regression. To calculate a simple linear regression, visit the <a href="simple-regression.html">Simple Regression Calculator</a>. Simple linear regression can only forecast a time-series with a linear trend pattern. Forecasting a time-series with non-linear trend or a seasonal pattern requires the use of more independent variables. This is know as multiple regression and can be done using the <a href="multiple-regression.html">Multiple Regression Calculator</a>. </p>
+            
+            <div id="519762228" class="text-center">
+                <script type="text/javascript">
+                    try {
+                        window._mNHandle.queue.push(function (){
+                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
+                        });
+                    }
+                    catch (error) {}
+                </script>
+            </div>
+            
+            
+        </div>
+      </div>
+      
+      <div id="timeoutputs">
     
       <div class="container">
         <div id="output">
@@ -262,7 +381,9 @@
     <div class="container">
         <div id="output2">
         </div>
-      </div>  
+      </div> 
+          
+          </div>
       
       <div id="581773186" class="text-center">
     <script type="text/javascript">
