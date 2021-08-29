@@ -1306,7 +1306,7 @@ function hyptest1(){
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colp) {
-                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+                table1 += "<td bgcolor='lightgray'>${\\color{NavyBlue}" + (.01*r).toFixed(2).replace(/^0+/, '') + "}$</td>";
             } else {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
@@ -1324,7 +1324,7 @@ function hyptest1(){
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colp) {
-                table3 += "<td style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+                table3 += "<td style='border: 1px solid black'>${\\color{Green}" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "}$</td>";
             } else {
                 table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
@@ -1351,7 +1351,7 @@ function hyptest1(){
         for (var r = valstart; r < valend + 1; r++){
             //table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             if (r == colp) {
-                table3 += "<td style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+                table3 += "<td style='border: 1px solid black'>${\\color{Green}" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "}$</td>";
             } else {
                 table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
@@ -1370,7 +1370,7 @@ function hyptest1(){
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
         if (r == colc) {
-                table12 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+                table12 += "<td bgcolor='lightgray'>${\\color{Orange}" + (.01*r).toFixed(2).replace(/^0+/, '') + "}$</td>";
             } else {
                 table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
@@ -1388,7 +1388,7 @@ function hyptest1(){
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
         if (r == colc) {
-                table2 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+                table2 += "<td bgcolor='lightgray' style='border: 1px solid black'>${\\color{Red}" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "}$</td>";
             } else {
                 table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
@@ -1608,8 +1608,8 @@ function hyptest1(){
     
     if (sigma == "known") {
         //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-        var tablep = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table31+"</tr><tr bgcolor='lightgray'><td>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table32+"</tr></table>"
-        var tablec = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit1+"$</td>"+table21+"</tr><tr><td bgcolor='lightgray'>$"+zcrit+"$</td>"+table2+"</tr><tr><td>$"+zcrit2+"$</td>"+table22+"</tr></table>"
+        var tablep = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table31+"</tr><tr bgcolor='lightgray'><td>${\\color{NavyBlue}"+zvalue+"}$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table32+"</tr></table>"
+        var tablec = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit1+"$</td>"+table21+"</tr><tr><td bgcolor='lightgray'>${\\color{Orange}"+zcrit+"}$</td>"+table2+"</tr><tr><td>$"+zcrit2+"$</td>"+table22+"</tr></table>"
         } else if (sigma == "unknown") {
             var tablep = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
             var tablec = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table52+"</tr><tr>"+table71+"</tr><tr>"+table7+"</tr><tr>"+table72+"</tr></table>"
@@ -1617,7 +1617,7 @@ function hyptest1(){
     
 
     if (sigma == "known") {
-        document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\boxed{"+test.toFixed(2)+"} $$   $ \\text{p-Value Approach:} $"
+        document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = {\\color{NavyBlue}"+test.toFixed(2)+"} $$   $ \\text{p-Value Approach:} $"
     } else if (sigma == "unknown") {
         if (inputtype == "values") {
             document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\boxed{"+test.toFixed(2)+"} $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = \\boxed{"+(size-1)+"} $$   $ \\text{p-Value Approach:} $"
@@ -1862,14 +1862,14 @@ function hyptest1(){
 
     
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = \\boxed{" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{Green}" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output2").innerHTML = tablep+" $$ \\begin{align} p \\text{-value} &= P("+testsymb+tailsign+test.toFixed(2)+" ) \\\\ &= 1 - P(z \\leq "+test.toFixed(2)+" ) \\\\ &= 1 - " + (1-pval).toFixed(4).replace(/^0+/, '') + " = \\boxed{" + pval.replace(/^0+/, '')+ "} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $ "
+        document.getElementById("output2").innerHTML = tablep+" $$ \\begin{align} p \\text{-value} &= P("+testsymb+tailsign+test.toFixed(2)+" ) \\\\ &= 1 - P(z \\leq "+test.toFixed(2)+" ) \\\\ &= 1 - " + (1-pval).toFixed(4).replace(/^0+/, '') + " = {\\color{Green}" + pval.replace(/^0+/, '')+ "} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $ "
     } else if (tail == "two" && sigma == "known") {
         if (test < 0) {
-            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+test.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = \\boxed{"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+test.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{Green}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
         } else {
-            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\geq "+test.toFixed(2)+" ) \\\\ &=2 \\times [1 - P("+testsymb+" \\leq "+test.toFixed(2)+" ) ] \\\\ &=2 \\times [1 - "+(1-pvalh).toFixed(4).replace(/^0+/, '')+" ] \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = \\boxed{"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\geq "+test.toFixed(2)+" ) \\\\ &=2 \\times [1 - P("+testsymb+" \\leq "+test.toFixed(2)+" ) ] \\\\ &=2 \\times [1 - "+(1-pvalh).toFixed(4).replace(/^0+/, '')+" ] \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{Green}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
         }
         
     } else if (tail == "lower" && sigma == "unknown") {
@@ -1921,7 +1921,10 @@ function hyptest1(){
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
+        
+        ctx.fillStyle = "red";
         ctx.fillText(alpha,35,105);
+        ctx.fillStyle = "black";
 
         if (sigma == "known") {
             ctx.fillText("z",285,132);
@@ -2001,7 +2004,10 @@ function hyptest1(){
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
+        
+        ctx.fillStyle = "red";
         ctx.fillText(alpha,250,105);
+        ctx.fillStyle = "black";
 
         if (sigma == "known") {
             ctx.fillText("z",285,132);
@@ -2091,8 +2097,11 @@ function hyptest1(){
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
+        
+        ctx.fillStyle = "red";
         ctx.fillText((alpha/2),30,105);
         ctx.fillText((alpha/2),245,105);
+        ctx.fillStyle = "black";
 
         if (sigma == "known") {
             ctx.fillText("z",285,132);
@@ -2140,11 +2149,11 @@ function hyptest1(){
     
     
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{Orange}" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{Orange}" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= \\boxed{" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= \\boxed{"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{Orange}" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{Orange}"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "lower" && sigma == "unknown") {
         document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = \\boxed{" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "unknown") {
