@@ -689,7 +689,7 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{NavyBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ "
+        document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
     } else if (sigma == "unknown") {
         document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = \\boxed{"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = \\boxed{"+sizem1+"}   $$"
     } 
@@ -733,6 +733,8 @@ function conint1(){
     ctx.fillText("0",148,145);
     
     ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
+    
+    ctx.fillStyle = "black";
 
     if (sigma == "known") {
         ctx.fillText("z",285,132);
@@ -800,7 +802,7 @@ function conint1(){
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
-                table1 += "<td bgcolor='lightgray'>${\\color{Red}" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "}$</td>";
+                table1 += "<td bgcolor='lightgray'>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
             } else {
                 table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
@@ -818,7 +820,7 @@ function conint1(){
     table3 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
-                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>${\\color{Green}" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "}$</td>";
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } else {
                 table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
@@ -833,7 +835,7 @@ function conint1(){
             }  
     }
     
-    var tablez = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>${\\color{Red}"+zvalue+"}$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table31+"</tr></table>"
+    var tablez = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table31+"</tr></table>"
     
     table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
     
@@ -872,7 +874,7 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - {\\color{NavyBlue}"+alphahalf.toFixed(3).replace(/^0+/, '')+"} = {\\color{Green}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = {\\color{Red}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} = " + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}} = {\\color{Orange}"+parseFloat(marginerror.toFixed(2))+"} $$  $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$"+xbar + "\\pm" + zalphahalf.toFixed(2) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm {\\color{Orange}" +parseFloat(marginerror.toFixed(2)) + "} $$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>  "
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} = " + zalphahalf.toFixed(2) + " \\frac{"+stdev+"}{\\sqrt{"+size+"}} = "+parseFloat(marginerror.toFixed(2))+" $$  $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$"+xbar + "\\pm " + zalphahalf.toFixed(2) + " \\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm " +parseFloat(marginerror.toFixed(2)) + " $$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>  "
     } else if (sigma == "unknown") {
         document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = \\boxed{"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}} = \\boxed{" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslowt.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshight.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
     } 
