@@ -852,12 +852,12 @@ function conint1(){
     
 
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = \\boxed{"+ mu +"} \\end{align}$$ $$  \\text{Standard Error:} $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = \\boxed{" + parseFloat(stderr.toFixed(2)) + " } $$ $$ \\text{Form (Shape):} $$ $$ \\boxed{ \\text{"+ form + "} }$$ "
+        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = {\\color{RoyalBlue}"+ mu +"} \\end{align}$$ $$  \\text{Standard Error:} $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "}  $$ $$ \\text{Form (Shape):} $$ $$ {\\color{RoyalBlue} \\text{"+ form + "}} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = \\boxed{"+ mu +"} \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = \\boxed{" + parseFloat(stderr.toFixed(2)) + "}  $$ $$ \\text{Form (Shape):} $$ $$ \\boxed{ \\text{"+ form + "}} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
         } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = \\boxed{"+ mu +"} \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{x} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) = \\boxed{" + parseFloat(stderr2.toFixed(2)) + "}  $$ $$ \\text{Form (Shape):} $$ $$ \\boxed{ \\text{"+ form + "}} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{x} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) = " + parseFloat(stderr2.toFixed(2)) + "  $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
         }
         
     }
@@ -887,12 +887,12 @@ function conint2(){
     }
     
     if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = \\boxed{"+ prptn +"} \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = \\boxed{" + stderr.toFixed(4).replace(/^0+/, '') + "}  $$ $$ \\text{Form (Shape):} $$ $$ \\boxed{ \\text{"+ form + "}} $$ "
+        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + stderr.toFixed(4).replace(/^0+/, '') + "  $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = \\boxed{"+ prptn +"} \\end{align}$$ $$ \\text{Standard Error:} $$ $$ \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = \\boxed{" + stderr.toFixed(4).replace(/^0+/, '') + "} $$ $$ \\text{Form (Shape):} $$ $$ \\boxed{ \\text{"+ form + "}} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$ \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + stderr.toFixed(4).replace(/^0+/, '') + " $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
         } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = \\boxed{" + stderr2.toFixed(4).replace(/^0+/, '') + "}  $$ $$ \\text{Form (Shape):} $$ $$ \\boxed{ \\text{"+ form + "}} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$ \\sigma_\\bar{p} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + stderr2.toFixed(4).replace(/^0+/, '') + "  $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
         }
         
     }

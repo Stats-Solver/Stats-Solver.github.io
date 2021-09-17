@@ -152,7 +152,7 @@
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
             <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td> 
             <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""></td>
+            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""> <span id = "muknottest">&mu;₀</span> </td>
           </tr>
           <tr>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
@@ -193,7 +193,7 @@
             <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values"  size="30"> </td>
             <td class="statistics"></td>
             <td class="statistics">
-                <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <svg onclick="switchtest()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
                   <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
                   <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
                 </svg>
@@ -201,6 +201,24 @@
           </tr>
         </table>  
         </div>
+          
+          <div id="testinput">
+          <table class = "mt-2">
+          <tr>
+            <td class="statistics">$\text{Test Statistic: }$</td>
+            <td class="statistics"><select id="teststat" class="hypinput1"> <option value="z"> z </option> <option value="t"> t </option> </select></td>
+            <td class="statistics"> = </td>
+            <td class="statistics"><input type="text" style="width:60px;" id="testvalue" class="hypinput2"></td>
+            <td class="statistics"></td>
+            <td class="statistics">
+            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            </td>
+          </tr>
+        </table> 
+          </div>
           
           <table class = "mt-2">
           <tr>
@@ -287,6 +305,16 @@
 
       <div class="container" id="how">
         <div id="how1" class="output" style="color: darkslategray">
+            <div id="455174564">
+            <script type="text/javascript">
+                try {
+                    window._mNHandle.queue.push(function (){
+                        window._mNDetails.loadTag("455174564", "300x50", "455174564");
+                    });
+                }
+                catch (error) {}
+            </script>
+        </div>
             How it Works:
             <br><br>
         </div>
@@ -301,7 +329,7 @@
               </tr>
               <tr>
                 <td>Test Statistic</td>  
-                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} {\color{NavyBlue} 1} $</td>
+                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{{\color{Black} n}}}  $</td>
                 <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
               </tr>
             </table>
@@ -337,7 +365,7 @@
             </table>
             <br>
             
-            <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$.</p>
+            <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
 
             <div id="723716610" class="text-center">
                 <script type="text/javascript">
@@ -437,6 +465,16 @@
       </div>
       
       <div id = "hypoutputs">
+        <div id="555932197" class="text-center">
+            <script type="text/javascript">
+                try {
+                    window._mNHandle.queue.push(function (){
+                        window._mNDetails.loadTag("555932197", "300x50", "555932197");
+                    });
+                }
+                catch (error) {}
+            </script>
+        </div>
 
      <div class="container">
         <div id="output1" class="output">
@@ -449,6 +487,22 @@
       
       <div class="container">
         <div id="output2" class="output">
+        </div>
+      </div>
+          
+      <div id="735385333" class="text-center">
+        <script type="text/javascript">
+            try {
+                window._mNHandle.queue.push(function (){
+                    window._mNDetails.loadTag("735385333", "300x250", "735385333");
+                });
+            }
+            catch (error) {}
+        </script>
+    </div>
+          
+        <div class="container">
+        <div id="output21" class="output">
         </div>
       </div>
       

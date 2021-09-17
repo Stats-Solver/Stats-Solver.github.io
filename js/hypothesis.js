@@ -1,7 +1,7 @@
 $("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();$("#greatert").hide(); $("#notequalt").hide();
 $("#typeexamples").hide(); $("#hypexamples").show(); $("#switchhypothesis").hide(); $("#switchtype").show();
 $("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide(); $("#581773186").hide();
-$("#hypoutputs").hide();
+$("#hypoutputs").hide(); $("#testinput").hide(); $("#muknottest").hide();
 
 
 type = "hypothesis"
@@ -59,9 +59,16 @@ function switchdata() {
     inputtype = "data"
 }
 
+function switchtest() {
+    $("#testinput").show(); $("#datainput").hide();
+    inputtype = "test"
+    $("#muknottest").show(); $("#muknot").hide();
+}
+
 function switchvalues() {
-    $("#datainput").hide(); $("#valuesinput").show();
+    $("#testinput").hide(); $("#valuesinput").show();
     inputtype = "values"
+    $("#muknottest").hide(); $("#muknot").show();
 }
 
 var canvas = document.getElementById("myCanvas1");
@@ -1001,6 +1008,7 @@ function hyptest1(){
         var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
         var xbar = document.getElementById("xbar").value;
         var stdev = document.getElementById("stdev").value;
+        var muknot = document.getElementById("muknot").value;
     } else if (inputtype == "data") {
         var str = document.getElementById("xvalues").value;
         var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
@@ -1020,11 +1028,26 @@ function hyptest1(){
         var xbar = mn;
         var stdev = parseFloat(ansstd.toFixed(2));
         var sigma = "unknown"
-    } 
+        var muknot = document.getElementById("muknot").value;
+    } else if (inputtype == "test") {
+        var teststat = document.getElementById("teststat").value;
+        var muknot = "\\mu_0"
+        if (teststat == "z") {
+            var sigma = "known"
+        } else if (teststat == "t") {
+            var sigma = "unknown"
+        }
+    }
     var tail = document.getElementById("tail").value;
-    var muknot = document.getElementById("muknot").value;
     var alpha = document.getElementById("alpha").value;
-    var test = (xbar-muknot)/(stdev/Math.sqrt(size));
+    
+    if (inputtype == "values" || inputtype == "data") {
+        var test = (xbar-muknot)/(stdev/Math.sqrt(size));
+    } else if (inputtype == "test") {
+        var test = parseFloat(document.getElementById("testvalue").value);
+    }
+    
+    
     var testtwo = -Math.abs(test);
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
@@ -1615,16 +1638,22 @@ function hyptest1(){
             var tablec = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table52+"</tr><tr>"+table71+"</tr><tr>"+table7+"</tr><tr>"+table72+"</tr></table>"
     }
     
+    if (inputtype == "values" || inputtype == "data") {
+       if (sigma == "known") {
+            document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = {\\color{NavyBlue} "+test.toFixed(2)+"} $$   $ \\text{p-Value Approach:} $"
+        } else if (sigma == "unknown") {
+            if (inputtype == "values") {
+                document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = {\\color{NavyBlue}"+test.toFixed(2)+"} $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = {\\color{NavyBlue}"+(size-1)+"} $$   $ \\text{p-Value Approach:} $"
+            } else if (inputtype == "data") {
+                document.getElementById("output1").innerHTML = " $ \\text{Sample Mean:} $ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = {\\color{NavyBlue}" + parseFloat(mn.toFixed(2)) + "} $$ $ \\text{Sample Standard Deviation:} $ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = {\\color{NavyBlue}"+parseFloat(ansstd.toFixed(2))+"} $$ $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = {\\color{NavyBlue}"+test.toFixed(2)+"} $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = {\\color{NavyBlue}"+(size-1)+"} $$   $ \\text{p-Value Approach:} $"
+            } 
+        }  
+    } else if (inputtype == "test") {
+        document.getElementById("output1").innerHTML = "$ \\text{p-Value Approach:} $"
+    }
+    
 
-    if (sigma == "known") {
-        document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = {\\color{NavyBlue} "+test.toFixed(2)+"} $$   $ \\text{p-Value Approach:} $"
-    } else if (sigma == "unknown") {
-        if (inputtype == "values") {
-            document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+test.toFixed(2)+" $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
-        } else if (inputtype == "data") {
-            document.getElementById("output1").innerHTML = " $ \\text{Sample Mean:} $ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = \\boxed{" + parseFloat(mn.toFixed(2)) + "} $$ $ \\text{Sample Standard Deviation:} $ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $ \\text{Test Statistic:} $ $$ t =\\frac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = \\boxed{"+test.toFixed(2)+"} $$ $ \\text{Degrees of Freedom:} $ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$   $ \\text{p-Value Approach:} $"
-        } 
-    } 
+    
     
     
     if (tail == "lower") {
@@ -1862,23 +1891,25 @@ function hyptest1(){
 
     
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{NavyBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{NavyBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output2").innerHTML = tablep+" $$ \\begin{align} p \\text{-value} &= P("+testsymb+tailsign+test.toFixed(2)+" ) \\\\ &= 1 - P(z \\leq "+test.toFixed(2)+" ) \\\\ &= 1 - " + (1-pval).toFixed(4).replace(/^0+/, '') + " = " + pval.replace(/^0+/, '')+ " \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $ "
+        document.getElementById("output2").innerHTML = tablep+" $$ \\begin{align} p \\text{-value} &= P("+testsymb+tailsign+test.toFixed(2)+" ) \\\\ &= 1 - P(z \\leq "+test.toFixed(2)+" ) \\\\ &= 1 - " + (1-pval).toFixed(4).replace(/^0+/, '') + " = {\\color{NavyBlue}" + pval.replace(/^0+/, '')+ "} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "two" && sigma == "known") {
         if (test < 0) {
-            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+test.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = "+pval.replace(/^0+/, '')+" \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+test.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{NavyBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
         } else {
-            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\geq "+test.toFixed(2)+" ) \\\\ &=2 \\times [1 - P("+testsymb+" \\leq "+test.toFixed(2)+" ) ] \\\\ &=2 \\times [1 - "+(1-pvalh).toFixed(4).replace(/^0+/, '')+" ] \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{Green}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\geq "+test.toFixed(2)+" ) \\\\ &=2 \\times [1 - P("+testsymb+" \\leq "+test.toFixed(2)+" ) ] \\\\ &=2 \\times [1 - "+(1-pvalh).toFixed(4).replace(/^0+/, '')+" ] \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{NavyBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
         }
         
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval.replace(/^0+/, '')+ " $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{NavyBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+" $$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval.replace(/^0+/, '')+ " $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret + " $ \\text{Critical Value Approach:} $ "
+        document.getElementById("output2").innerHTML = tablep+" $$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{NavyBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = "+pval.replace(/^0+/, '')+" \\end{align} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret + " $ \\text{Critical Value Approach:} $"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{NavyBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
     }
+    
+    document.getElementById("output21").innerHTML = " $ \\text{Critical Value Approach:} $"
     
     
     
@@ -2145,15 +2176,15 @@ function hyptest1(){
     if (tail == "lower" && sigma == "known") {
         document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{NavyBlue}" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(2) + " $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{NavyBlue}" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{NavyBlue}" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{NavyBlue}"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(3) + " $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{NavyBlue}" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(3) + " $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{NavyBlue}" + cmore.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(3) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(3) + " \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{NavyBlue}" + ctwo1.toFixed(3) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{NavyBlue}"+ctwo2.toFixed(3) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     
@@ -2833,7 +2864,17 @@ function example1(){
                 document.getElementById('sigma').value="unknown"
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
-        } 
+        } else if (inputtype == "test") {
+                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                document.getElementById("parameter2").innerHTML = "&mu;"
+                $("#less").show();
+                $("#greater").hide();
+                $("#notequal").hide();
+                document.getElementById('tail').value="lower"
+                document.getElementById('testvalue').value="-1.53"
+                document.getElementById('alpha').value=".05"
+                MathJax.typeset();
+        }  
 }
 
 function example2(){
