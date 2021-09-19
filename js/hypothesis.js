@@ -62,13 +62,13 @@ function switchdata() {
 function switchtest() {
     $("#testinput").show(); $("#datainput").hide();
     inputtype = "test"
-    $("#muknottest").show(); $("#muknot").hide();
+    //$("#muknottest").show(); $("#muknot").hide();
 }
 
 function switchvalues() {
     $("#testinput").hide(); $("#valuesinput").show();
     inputtype = "values"
-    $("#muknottest").hide(); $("#muknot").show();
+    //$("#muknottest").hide(); $("#muknot").show();
 }
 
 var canvas = document.getElementById("myCanvas1");

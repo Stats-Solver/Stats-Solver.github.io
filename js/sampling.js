@@ -92,12 +92,15 @@ function how1(){
         var points = []
         
 
+
         for (i = 0; i < 60; i++) {
+            
           points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
             }
 
             // move to the first point
            ctx.moveTo(points[0].x, points[0].y);
+    
 
            for (i = 1; i < points.length - 2; i ++)
            {
@@ -106,6 +109,9 @@ function how1(){
               ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
            }
          // curve through the last two points
+    
+
+    
          ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
 
 
@@ -804,6 +810,7 @@ function calcprob2() {
 
 
 function conint(){
+    $("#explanation").show(); $("#pointest").hide();
     $("#sampoutputs").show(); $("#how").hide();
     $("#calcprob").show(); $("#581773186").show();
     var x = document.getElementById("samplestat").value;
@@ -833,7 +840,8 @@ function popsizekind(){
 
 
 function conint1(){
-    $("#canvascontainer0").hide(); $("#output2").hide(); $("#canvascontainer").show();
+    $("#output").hide();
+    $("#canvascontainer0").hide(); $("#canvascontainer").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
@@ -851,13 +859,13 @@ function conint1(){
     }
     
 
-    if (popsize == "infinite"  || popsize == "unknown") {
+    if (popsize == "infinite") {
         document.getElementById("output1").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = {\\color{RoyalBlue}"+ mu +"} \\end{align}$$ $$  \\text{Standard Error of the Mean:} $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "}  $$ $$ \\text{Form of the Distribution:} $$ $$ {\\color{RoyalBlue} \\text{"+ form + "}} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form of the Distribution:} $$ $$  \\text{"+ form + "} $$ "
-        } else if (samptopopratio > .05) {
-            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$  \\sigma_\\bar{x} = \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) = " + parseFloat(stderr2.toFixed(2)) + "  $$ $$ \\text{Form of the Distribution:} $$ $$  \\text{"+ form + "} $$ "
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = {\\color{RoyalBlue}"+ mu +"} \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$  \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "} $$ $$ \\text{Form of the Distribution:} $$ $$ {\\color{RoyalBlue} \\text{"+ form + "}} $$ "
+        } else {
+            document.getElementById("output1").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = {\\color{RoyalBlue}"+ mu +"} \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$ \\begin{align} \\sigma_\\bar{x} &= \\sqrt{\\frac{N-n}{N-1}} \\left( \\frac{\\sigma}{\\sqrt{n}} \\right) \\\\ &= \\sqrt{\\frac{"+popsizevalue+"-"+size+"}{"+popsizevalue+"-1}} \\left( \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} \\right) \\\\ &= {\\color{RoyalBlue}" + parseFloat(stderr2.toFixed(2)) + "} \\end{align} $$ $$ \\text{Form of the Distribution:} $$ $$ {\\color{RoyalBlue} \\text{"+ form + "}} $$ "
         }
         
     }
@@ -889,10 +897,24 @@ function conint1(){
         ctx.fillText(mu,145,145);
     
         
-        ctx.fillText("σ",215,50);
-        ctx.fillText("x̄",222,55);
-        ctx.fillText("=",228,50);
-        ctx.fillText(stderr,235,50);
+        ctx.fillText("σ",220,50);
+        ctx.fillText("x̄",227,55);
+        ctx.fillText("=",233,50);
+    
+    
+        if (popsize == "infinite") {
+            ctx.fillText(stderr,240,50);
+        } else if (popsize == "finite") {
+            if (samptopopratio <= .05) {
+                ctx.fillText(stderr,240,50);
+            } else {
+                ctx.fillText(stderr2.toFixed(2),240,50);
+            }
+
+        }
+    
+    
+        
 
 
         ctx.fillText("x̄",285,132);
@@ -917,12 +939,15 @@ function conint1(){
 
 
         ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     MathJax.typeset();
 
 }
 
 function conint2(){
+    $("#output").hide();
     $("#canvascontainer0").hide(); $("#output2").hide(); $("#canvascontainer").hide(); 
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var prptn = document.getElementById("xbar").value;
@@ -942,8 +967,8 @@ function conint2(){
         var form = "Not a Normal Distribution"
     }
     
-    if (popsize == "infinite"  || popsize == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + stderr.toFixed(4).replace(/^0+/, '') + "  $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
+    if (popsize == "infinite") {
+        document.getElementById("output1").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{p}) &= p = {\\color{RoyalBlue}"+ prptn +"} \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$  \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = {\\color{RoyalBlue}" + stderr.toFixed(4).replace(/^0+/, '') + "}  $$ $$ \\text{Form of the Distribution:} $$ $$ {\\color{RoyalBlue} \\text{"+ form + "}} $$ "
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output1").innerHTML = "$$ \\text{Expected Value:}$$ $$ \\begin{align} E(\\bar{p}) &= p = "+ prptn +" \\end{align}$$ $$ \\text{Standard Error:} $$ $$ \\sigma_\\bar{p} =  \\sqrt{\\frac{"+ prptn +"(1-" + prptn + ")}{"+ size +"}} = " + stderr.toFixed(4).replace(/^0+/, '') + " $$ $$ \\text{Form (Shape):} $$ $$  \\text{"+ form + "} $$ "
@@ -960,6 +985,7 @@ function conint2(){
 
 
 function conint3(){
+    $("#output").show();
      $("#canvascontainer0").show(); $("#output2").show();  $("#canvascontainer").show();
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var mu = document.getElementById("xbar").value;
@@ -989,10 +1015,11 @@ function conint3(){
         var form = "Not a Normal Distribution"
     }
     
+    //= "+ stdev +"/\\sqrt{"+ size +"}
     
     
     if (popsize == "infinite") {
-        document.getElementById("output").innerHTML = " $$ P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") = P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Expected Value: } E(\\bar{x}) = \\mu = {\\color{RoyalBlue}"+ mu +"} $$ $$  \\text{Standard Error: } \\sigma_\\bar{x} = \\sigma / \\sqrt{n} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "}  $$ $$ \\text{Form: }  {\\color{RoyalBlue} \\text{"+ form + "}} $$ $$ P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") = P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") $$"
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form of the Distribution:} $$ $$  \\text{"+ form + "} $$ "
@@ -1022,7 +1049,7 @@ function conint3(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
-    ctx.fillText("Normal Distribution",110,10);
+    ctx.fillText("Sampling Distribution of x̄",90,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -1413,7 +1440,7 @@ function conint3(){
     
     if (popsize == "infinite") {
         document.getElementById("output1").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ \\begin{align} z_1 &= \\frac{\\bar{x}_1-\\mu}{\\sigma_\\bar{x}} = \\frac{"+lowval+"-"+mu+"}{"+stderr+"} = {\\color{RoyalBlue}"+lowvalz.toFixed(2)+"} \\\\ \\ z_2 &= \\frac{\\bar{x}_2-\\mu}{\\sigma_\\bar{x}} = \\frac{"+highval+"-"+mu+"}{"+stderr+"} = {\\color{RoyalBlue}"+highvalz.toFixed(2)+"} \\end{align} $$  "
-        document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz.toFixed(2) + " \\leq z \\leq " + highvalz.toFixed(2) + ") \\\\ &= P(z \\leq " + highvalz.toFixed(2) + ") -  P(z \\leq " + lowvalz.toFixed(2) + ") \\\\  &= "+highprob.replace(/^0+/, '')+" - "+lowprob.replace(/^0+/, '')+" \\\\  &= \\boxed{"+ans.replace(/^0+/, '')+"} \\end{align}$$ "
+        document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz.toFixed(2) + " \\leq z \\leq " + highvalz.toFixed(2) + ") \\\\ &= P(z \\leq " + highvalz.toFixed(2) + ") -  P(z \\leq " + lowvalz.toFixed(2) + ") \\\\  &= "+highprob.replace(/^0+/, '')+" - "+lowprob.replace(/^0+/, '')+" \\\\  &= \\boxed{"+ans.replace(/^0+/, '')+"} \\end{align}$$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz + " \\leq z \\leq " + highvalz + ") \\\\  &= P(z \\leq " + highvalz + ") -  P(z \\leq " + lowvalz + ")  \\end{align}$$ "
@@ -1641,6 +1668,12 @@ function conint4(){
 
     MathJax.typeset();
 }
+
+
+
+
+
+
 
 function example1(){
     $("#samplingdistributionxbar").show(); $("#samplingdistributionpbar").hide();
