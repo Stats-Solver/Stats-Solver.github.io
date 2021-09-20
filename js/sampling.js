@@ -1083,7 +1083,7 @@ function conint3(){
     
     
     if (size >= 30) {
-        var form = "Normal "
+        var form = "Normal"
     } else if (size < 30) {
         var form = "Not Normal"
     }
@@ -1094,9 +1094,17 @@ function conint3(){
     
     //$$ E(\\bar{x}) = {\\color{RoyalBlue}"+ mu +"} \\quad  \\sigma_\\bar{x} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "} \\quad \\text{Form: }  {\\color{RoyalBlue} \\text{"+ form + "}} $$
     
+    //\\begin{align} P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } \\mu) &= P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") \\\\ &= P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\end{align} 
+    
+    //$$ E(\\bar{x}) = \\mu = {\\color{RoyalBlue}"+ mu +"} $$ $$ \\sigma_\\bar{x} = \\frac{\\sigma}{\\sqrt{n}} = \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "}  $$
+    
+    //$$ \\text{Form: } {\\color{RoyalBlue} \\text{"+ form + "}} $$ 
+    
+    //$$ \\mu \\pm "+pmvalue+" = "+mu+" \\pm "+pmvalue+" = {\\color{RoyalBlue}"+lowval+"} \\text{ to } {\\color{RoyalBlue}"+highval+"} $$
+    
     
     if (popsize == "infinite") {
-        document.getElementById("output").innerHTML = " $$ P(\\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + mu + ") = P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") $$"
+        document.getElementById("output").innerHTML = "$$ E(\\bar{x}) = {\\color{RoyalBlue}"+ mu +"} \\quad \\sigma_\\bar{x} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "} \\quad \\text{Form: } {\\color{RoyalBlue} \\text{"+ form + "}} $$ $$ \\begin{align} & \\text{Probability } \\bar{x} \\text{ within } \\pm " + pmvalue + " \\text{ of } \\mu \\\\ &= P(" + mu + "-"+pmvalue+" \\leq \\bar{x} \\leq " + mu + "+"+pmvalue+") \\\\ &= P({\\color{RoyalBlue}" + lowval + "} \\leq \\bar{x} \\leq {\\color{RoyalBlue}" + highval + "}) \\end{align}  $$"
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output").innerHTML = "$$ \\text{Expected Value (Mean):}$$ $$ \\begin{align} E(\\bar{x}) &= \\mu = "+ mu +" \\end{align}$$ $$ \\text{Standard Error of the Mean:} $$ $$  \\sigma_\\bar{x} =  \\frac{"+ stdev +"}{\\sqrt{"+ size +"}} = " + parseFloat(stderr.toFixed(2)) + "  $$ $$ \\text{Form of the Distribution:} $$ $$  \\text{"+ form + "} $$ "
@@ -1516,7 +1524,7 @@ function conint3(){
 
     
     if (popsize == "infinite") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ \\begin{align} z_1 &= \\frac{\\bar{x}_1-\\mu}{\\sigma_\\bar{x}} = \\frac{"+lowval+"-"+mu+"}{"+stderr+"} = {\\color{RoyalBlue}"+lowvalz.toFixed(2)+"} \\\\ \\ z_2 &= \\frac{\\bar{x}_2-\\mu}{\\sigma_\\bar{x}} = \\frac{"+highval+"-"+mu+"}{"+stderr+"} = {\\color{RoyalBlue}"+highvalz.toFixed(2)+"} \\end{align} $$  "
+        document.getElementById("output1").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ \\begin{align} z_1 &= \\frac{\\bar{x}_1-\\mu_\\bar{x}}{\\sigma_\\bar{x}} = \\frac{"+lowval+"-"+mu+"}{"+stderr+"} = {\\color{RoyalBlue}"+lowvalz.toFixed(2)+"} \\\\ \\ z_2 &= \\frac{\\bar{x}_2-\\mu_\\bar{x}}{\\sigma_\\bar{x}} = \\frac{"+highval+"-"+mu+"}{"+stderr+"} = {\\color{RoyalBlue}"+highvalz.toFixed(2)+"} \\end{align} $$  "
         document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & P(" + lowval + " \\leq \\bar{x} \\leq " + highval + ") \\\\ &= P(" + lowvalz.toFixed(2) + " \\leq z \\leq " + highvalz.toFixed(2) + ") \\\\ &= P(z \\leq " + highvalz.toFixed(2) + ") -  P(z \\leq " + lowvalz.toFixed(2) + ") \\\\  &= "+highprob.replace(/^0+/, '')+" - "+lowprob.replace(/^0+/, '')+" \\\\  &= \\boxed{"+ans.replace(/^0+/, '')+"} \\end{align}$$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
@@ -1556,9 +1564,9 @@ function conint4(){
     var exp = 2.71828;
     
     if (size >= 30) {
-        var form = "Normal Distribution"
+        var form = "Normal "
     } else if (size < 30) {
-        var form = "Not a Normal Distribution"
+        var form = "Not Normal"
     }
     
     
@@ -1569,7 +1577,7 @@ function conint4(){
     
     
     
-    document.getElementById("output").innerHTML = "$$ P(\\bar{p} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + prptn + ") = P(" + parseFloat(lowval.toFixed(2)) + " \\leq \\bar{p} \\leq " + parseFloat(highval.toFixed(2)) + ") $$"
+    document.getElementById("output").innerHTML = "$$ E(\\bar{x}) = {\\color{RoyalBlue}"+ prptn +"} \\quad \\sigma_\\bar{p} = {\\color{RoyalBlue}" + parseFloat(stderr.toFixed(2)) + "} \\quad \\text{Form: } {\\color{RoyalBlue} \\text{"+ form + "}} $$ $$ \\begin{align} & \\text{Probability } \\bar{p} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + prptn + " \\\\ &= P("+prptn+"-"+pmvalue+" \\leq \\bar{p} \\leq "+prptn+"+"+pmvalue+") \\\\ &= P({\\color{RoyalBlue}" + parseFloat(lowval.toFixed(2)) + "} \\leq \\bar{p} \\leq {\\color{RoyalBlue}" + parseFloat(highval.toFixed(2)) + "}) \\end{align} $$"
 
         
         
@@ -1591,6 +1599,8 @@ function conint4(){
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Sampling Distribution of p̂",90,10);
     
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
@@ -1677,6 +1687,8 @@ function conint4(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
+    ctx.fillText("Standard Normal Distribution",90,10);
+    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     
@@ -1753,8 +1765,8 @@ function conint4(){
     
     
     if (popsize == "infinite") {
-        document.getElementById("output1").innerHTML = "$$ \\begin{align} z_1 &= \\frac{\\bar{p}_1-p}{\\sigma_\\bar{p}} = \\frac{"+parseFloat(lowval.toFixed(2))+"-"+prptn+"}{"+stderr.toFixed(4)+"} = "+lowvalz.toFixed(2)+" \\\\ \\ z_2  &= \\frac{\\bar{p}_2-p}{\\sigma_\\bar{p}} = \\frac{"+parseFloat(highval.toFixed(2))+"-"+prptn+"}{"+stderr.toFixed(4)+"} = "+highvalz.toFixed(2)+" \\end{align} $$ "
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} P(" + lowvalz.toFixed(2) + " \\leq z \\leq " + highvalz.toFixed(2) + ") &= P(z \\leq " + highvalz.toFixed(2) + ") -  P(z \\leq " + lowvalz.toFixed(2) + ") \\\\  &= "+highprob+" - "+lowprob+" \\\\  &= \\boxed{"+ans+"} \\end{align}$$ "
+        document.getElementById("output1").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ \\begin{align} z_1 &= \\frac{\\bar{p}_1-\\mu_\\bar{p}}{\\sigma_\\bar{p}} = \\frac{"+parseFloat(lowval.toFixed(2))+"-"+prptn+"}{"+stderr.toFixed(4).replace(/^0+/, '')+"} = {\\color{RoyalBlue}"+lowvalz.toFixed(2)+"} \\\\ \\ z_2  &= \\frac{\\bar{p}_2-\\mu_\\bar{p}}{\\sigma_\\bar{p}} = \\frac{"+parseFloat(highval.toFixed(2))+"-"+prptn+"}{"+stderr.toFixed(4).replace(/^0+/, '')+"} = {\\color{RoyalBlue}"+highvalz.toFixed(2)+"} \\end{align} $$ "
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} & P(" + parseFloat(lowval.toFixed(2)) + " \\leq \\bar{p} \\leq " + parseFloat(highval.toFixed(2)) + ") \\\\ &= P(" + lowvalz.toFixed(2) + " \\leq z \\leq " + highvalz.toFixed(2) + ") \\\\ &= P(z \\leq " + highvalz.toFixed(2) + ") -  P(z \\leq " + lowvalz.toFixed(2) + ") \\\\  &= "+highprob.replace(/^0+/, '')+" - "+lowprob.replace(/^0+/, '')+" \\\\  &= \\boxed{"+ans.replace(/^0+/, '')+"} \\end{align}$$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (popsize == "finite") {
         if (samptopopratio <= .05) {
             document.getElementById("output1").innerHTML = "$$ \\begin{align} P(\\bar{p} \\text{ within } \\pm " + pmvalue + " \\text{ of } " + prptn + ") &= P(" + parseFloat(lowval.toFixed(2)) + " \\leq \\bar{p} \\leq " + parseFloat(highval.toFixed(2)) + ") \\\\ &= P(" + parseFloat(lowvalz.toFixed(2)) + " \\leq z \\leq " + parseFloat(highvalz.toFixed(2)) + ") \\\\  &= P(z \\leq " + parseFloat(highvalz.toFixed(2)) + ") -  P(z \\leq " + parseFloat(lowvalz.toFixed(2)) + ")  \\end{align}$$ "
