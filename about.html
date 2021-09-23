@@ -113,7 +113,8 @@
           </div>
        
       <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary mb-3" style="font-size: 2em">About</h1>
+        <h1 class="page-header text-center mt-2 text-primary mb-3" style="font-size: 2em" id="abouttitle">About</h1>
+        <h1 class="page-header text-center mt-2 text-primary mb-3" style="font-size: 2em" id="meettitle">Meet Me</h1>
     </div>
       
       <!--<div class="container">
@@ -144,9 +145,20 @@
   
           
       </div>
-          
       
       
+      <!--<br><span><h6>Founder</h6></span>--> 
+      
+      <div class = "container" id = "meetme">
+      <div class="jumbotron">
+        <div class="container">
+            <img src="headshot.png" alt = "founder headshot" width="163" height="202" class="center" style="mix-blend-mode: multiply; display: block; margin-left: auto; margin-right: auto;">
+            <h5 class="text-center mt-2 text-primary">Pasha Safarzadeh</h5>
+            <p style="text-indent: 30px; text-align:justify;"> Pasha Safarzadeh holds a Bachelor's in Applied Mathematics from the University of California, Berkeley and a Master's in Economics from Claremont Graduate University. He has over a decade of experience teaching statistics, at both the undergraduate and graduate levels. He has taught at the California State Polytechnic University, Pomona, the California State University, Los Angeles and the California University of Management and Sciences. He also has experience teaching forecasting, econometrics and other related classes. </p>
+          </div>
+      </div>
+      </div>
+
       
       
       
@@ -163,8 +175,8 @@
       
           <footer id="footer text-center">
             <div class="container">
-                <!--<span class="examplelink" onclick="switchmeet()" id="meet">Meet the Founder</span>
-                  <span class="examplelink" onclick="switchabout()" id="about">About Solver</span>-->
+                <span class="examplelink" onclick="switchmeet()" id="meet">Meet Me</span>
+                  <span class="examplelink" onclick="switchabout()" id="about">About</span>
                 <hr>
             </div>
           <p> 
@@ -197,6 +209,6 @@
     })
       
       </script>
-      <!--<script src="about.js"></script>-->
+      <script src="js/about.js"></script>
   </body>
 </html>

@@ -72,12 +72,14 @@ function switchdata() {
 function switchtest() {
     $("#testinput").show(); $("#datainput").hide();
     inputtype = "test"
+    //document.getElementById("muknot").disabled = true;
     //$("#muknottest").show(); $("#muknot").hide();
 }
 
 function switchvalues() {
     $("#testinput").hide(); $("#valuesinput").show();
     inputtype = "values"
+    //document.getElementById("muknot").disabled = false;
     //$("#muknottest").hide(); $("#muknot").show();
 }
 
@@ -1046,6 +1048,8 @@ function hyptest1(){
             var sigma = "known"
         } else if (teststat == "t") {
             var sigma = "unknown"
+            var degfreeval = document.getElementById("degfreeval").value;
+            var size = parseFloat(degfreeval) + 1; var sizem1 = size - 1; var sizem2 = size - 2; 
         }
     }
     var tail = document.getElementById("tail").value;
@@ -3027,7 +3031,7 @@ function example1(){
                 $("#greater").hide();
                 $("#notequal").hide();
                 document.getElementById('tail').value="lower"
-                document.getElementById('testvalue').value="-1.53"
+                document.getElementById('testvalue').value="-1.73"
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
         }  
@@ -3088,12 +3092,12 @@ function example2(){
                 $("#degfreedom").show();
                 $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
                 document.getElementById("parameter2").innerHTML = "&mu;"
-                $("#less").show();
-                $("#greater").hide();
+                $("#less").hide();
+                $("#greater").show();
                 $("#notequal").hide();
-                document.getElementById('tail').value="lower"
-                document.getElementById('testvalue').value="1.77"
-                document.getElementById('degfreeval').value="20"
+                document.getElementById('tail').value="upper"
+                document.getElementById('testvalue').value="2.06"
+                document.getElementById('degfreeval').value="19"
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
         }
