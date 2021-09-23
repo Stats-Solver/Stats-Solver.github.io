@@ -638,8 +638,15 @@ function condata() {
     
     
     var tablet = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
+    
+    // $$ \\text{Sample Mean:} $$    =  \\frac{" + sumeach + "}{" + len + "}
+    // $$ \\text{Sample Standard Deviation:} $$ = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}}
+    // \\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}
+    //  = \\frac{\\sum{x}}{n} \\sqrt{s^2} =
+    
+    // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
 
-    document.getElementById("output1").innerHTML = "$$ \\text{Sample Mean:} $$ $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sumeach + "}{" + len + "}  = {\\color{RoyalBlue}" + parseFloat(mn.toFixed(2)) + "} $$ $$ \\text{Sample Standard Deviation:} $$ $$ \\ s = \\sqrt{\\dfrac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = {\\color{RoyalBlue}"+parseFloat(ansstd.toFixed(2))+"} $$ $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = {\\color{RoyalBlue}"+sizem1+"}   $$"
+    document.getElementById("output1").innerHTML = " $$ n = {\\color{RoyalBlue}" + size + "} \\quad \\bar{x}  = {\\color{RoyalBlue}" + parseFloat(mn.toFixed(2)) + "} \\quad \\ s =  {\\color{RoyalBlue}"+parseFloat(ansstd.toFixed(2))+"} $$  $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = {\\color{RoyalBlue}"+sizem1+"}   $$"
     
     
     document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+parseFloat(ansstd.toFixed(2))+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$  $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$" + parseFloat(xbar.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+parseFloat(stdev.toFixed(2))+"}{\\sqrt{"+size+"}}$$ $$"+parseFloat(xbar.toFixed(2)) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ "
@@ -686,12 +693,13 @@ function conint1(){
         document.getElementById("explanationtext").innerHTML = "The right side of the plus/minus sign in the confidence interval is called the margin of error."
     } 
     
-    
+    // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
+    // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
     
     if (sigma == "known") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ "
+        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ "
     } else if (sigma == "unknown") {
-        document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = {\\color{RoyalBlue}"+sizem1+"}   $$"
+        document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = {\\color{RoyalBlue}"+sizem1+"}   $$"
     } 
     
     var f = [];
@@ -897,8 +905,10 @@ function conint2(){
     document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that the population proportion is likely to be in."
     document.getElementById("formulatext").innerHTML = "$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\dfrac{\\bar{p}(1-\\bar{p})}{n}} $"
     document.getElementById("explanationtext").innerHTML = "The right side of the plus/minus sign in the confidence interval is called the margin of error."
-        
-    document.getElementById("output1").innerHTML = "$$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ "
+    
+    // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
+    
+    document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ "
 
     
     var f = [];
@@ -1063,6 +1073,7 @@ function example1() {
         example11()
     } else if (type == "data") {
         document.getElementById("xvalues").value = "54, 46, 51, 42, 47"
+        document.getElementById('conlev').value=95
     }
 }
 
@@ -1071,6 +1082,7 @@ function example2() {
         example22()
     } else if (type == "data") {
         document.getElementById("xvalues").value = "7, 11, 14, 9, 15, 5, 6, 12"
+        document.getElementById('conlev').value=90
     }
 }
 
