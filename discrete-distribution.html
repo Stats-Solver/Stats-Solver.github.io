@@ -730,13 +730,13 @@
                     <option value="expected">Expected Value</option>
                     <option value="variance">Variance</option>
                     <option value="standard">Standard Deviation</option>
-                    <!--<option value="discrete">Table Distribution</option>-->
-                    <option value="binomial">Binomial Distribution</option>
-                    <option value="poisson">Poisson Distribution</option>
-                    <option value="hypergeometric">Hypergeometric Distribution</option>
+                    <!--<option value="validity">Validity</option>-->
                     <option value="frequency">Frequency Distribution</option>
                     <option value="uniform">Discrete Uniform Distribution</option>
                     <option value="formula">Formula Distribution</option>
+                    <option value="binomial">Binomial Distribution</option>
+                    <option value="poisson">Poisson Distribution</option>
+                    <option value="hypergeometric">Hypergeometric Distribution</option>
                 </select>
                 </div>
                 <div class="col-4 col-md-2">
@@ -902,7 +902,7 @@
                 <td>Requirements for Probability Function </td>
               </tr>
               <tr>
-                <td>$ f(x) \geq 0 $ </td>
+                <td>$ f(x) \geq {\color{Black}0} $ </td>
               </tr>
                 <tr>
                 <td>$ \sum f(x) = 1 $ </td>
@@ -988,7 +988,7 @@
                 <td>Hypergeometric Probability Function </td>
               </tr>
               <tr>
-                <td>$ f(x) = \dfrac{{r \choose x}{N-r \choose n-x}}{{N \choose n}} $ </td>
+                <td>$ f(x) = \dfrac{{r \choose x}{N-r \choose n-\cancel{x}}}{{N \choose n}} $ </td>
               </tr>
             </table>
             <br>
