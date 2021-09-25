@@ -519,7 +519,7 @@ function compexpected() {
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
 
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 6px 12px;'>$x$</td><td style = 'padding: 6px 12px;'>$f(x)$</td><td style = 'padding: 6px 12px;'>$xf(x)$</td></tr>"
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var ans = 0
@@ -575,7 +575,7 @@ function compvariance() {
     var f10 = document.getElementById('f10').value
     var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
 
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 6px 12px;'>$x$</td><td style = 'padding: 6px 12px;'>$f(x)$</td><td style = 'padding: 6px 12px;'>$x-\\mu$</td><td style = 'padding: 6px 12px;'>$(x-\\mu)^2$</td><td style = 'padding: 6px 12px;'>$(x-\\mu)^2f(x)$</td></tr>"
     
     
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
@@ -602,7 +602,7 @@ function compvariance() {
     
     //  = \\sum x f(x) E(x) = = \\sigma^2
  
-    document.getElementById("output").innerHTML = "$$ \\text{Expected Value: } \\mu = {\\color{RoyalBlue}"+parseFloat(mu.toFixed(2))+"} $$" + table + " $$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ E(x) = \\mu = {\\color{RoyalBlue}"+parseFloat(mu.toFixed(2))+"} $$" + table + " $$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -669,8 +669,9 @@ function compstandard() {
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
     
     // $$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$  \\sigma^2 \\text{Var}(x)
+    // $$ \\text{Var}(x) = \\sigma^2 = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ 
 
-    document.getElementById("output").innerHTML = "$$ \\text{Variance: } \\sigma^2 = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2238,7 +2239,9 @@ function compbinomial() {
         compbinomialexpected()
     } else if (binomialtype == "variance") {
         compbinomialvariance()
-    } else {
+    } else if (binomialtype == "standard") {
+        compbinomialstandard()
+    }  else {
         compbinomialprob()
     }
 }
@@ -2284,9 +2287,9 @@ function compbinomialexpected() {
     document.getElementById("formulatext").innerHTML = "$ E(x) = np $"
     document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
+    var prob = parseFloat(document.getElementById('psuccess').value)
     
-    document.getElementById("output").innerHTML = "$$ E(x) = np = (" + trials + ")(" + prob + ") = \\boxed{" + parseFloat((trials*prob).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ E(x) = np  = " + trials + "(" + prob.toFixed(4).replace(/^0+|0+$/g, "") + ") = \\boxed{" + (trials*prob).toFixed(4).replace(/^0+|0+$/g, "") + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2296,10 +2299,24 @@ function compbinomialvariance() {
     document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = np(1-p) $"
     document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
+    var prob = parseFloat(document.getElementById('psuccess').value)
     var ans = trials*prob*(1-prob)
     
-    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = np(1-p) = (" + trials + ")(" + prob + ")(1-" + prob + ") = \\boxed{" + parseFloat((trials*prob*(1-prob)).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= np(1-p) \\\\ &= " + trials + "(" + prob.toFixed(4).replace(/^0+|0+$/g, "") + ")(1-" + prob.toFixed(4).replace(/^0+|0+$/g, "") + ") \\\\ &= \\boxed{" + (trials*prob*(1-prob)).toFixed(4).replace(/^0+|0+$/g, "") + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+
+function compbinomialstandard() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = ""
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = np(1-p) $"
+    document.getElementById("explanationtext").innerHTML = ""
+    var trials = document.getElementById('trials').value
+    var prob = parseFloat(document.getElementById('psuccess').value)
+    var variance = trials*prob*(1-prob)
+    var ans = Math.sqrt(variance)
+    
+    document.getElementById("output").innerHTML = "$$ \\sigma = \\sqrt{\\sigma^2}  = \\sqrt{"+variance.toFixed(4).replace(/^0+|0+$/g, "")+"} = \\boxed{"+ans.toFixed(4).replace(/^0+|0+$/g, "")+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2309,7 +2326,7 @@ function compbinomial1() {
     document.getElementById("formulatext").innerHTML = "$ f(x) = {n \\choose x} p^x (1-p)^{(n-x)} $"
     document.getElementById("explanationtext").innerHTML = ""
     var trials = document.getElementById('trials').value
-    var prob = document.getElementById('psuccess').value
+    var prob = parseFloat(document.getElementById('psuccess').value)
     var num = document.getElementById('binval').value
     
     var topn = trials;
@@ -2341,7 +2358,7 @@ function compbinomial1() {
     
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + num + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{" + trials + "! }{" + num + "! (" + trials + " - " + num + ")!} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + (1-prob).toFixed(2).replace(/^0+/, '') + "^{" + (trials-num) + "} \\\\ &= \\frac{" + numerator2 + " }{" + denominator2 + "} \\times " + Math.pow(prob,num).toFixed(2).replace(/^0+/, '') + " \\times " + parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')  + " \\\\ &= "+parseFloat(ansval.toFixed(2))+"\\times"+parseFloat(Math.pow(prob,num)).toFixed(2).replace(/^0+/, '')+"\\times"+parseFloat((Math.pow((1-prob),(trials-num)))).toFixed(2).replace(/^0+/, '')+" \\\\ &= \\boxed{" + ans.toFixed(2).replace(/^0+/, '')  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + num + ") &= f(" + num + ") \\\\ &= {" + trials + " \\choose " + num + "} " + prob.toFixed(4).replace(/^0+|0+$/g, "") + "^" + num + " (1-" + prob.toFixed(4).replace(/^0+|0+$/g, "") + ")^{(" + trials + "-" + num + ")} \\\\ &= \\frac{" + trials + "! }{" + num + "! (" + trials + " - " + num + ")!} ( " + Math.pow(prob,num).toFixed(4).replace(/^0+|0+$/g, "") + " )( " + (1-prob).toFixed(4).replace(/^0+|0+$/g, "") + ")^{" + (trials-num) + "} \\\\ &= \\frac{" + numerator2 + " }{" + denominator2 + "} ( " + Math.pow(prob,num).toFixed(4).replace(/^0+|0+$/g, "") + ") ( " + Math.pow((1-prob),(trials-num)).toFixed(4).replace(/^0+|0+$/g, "")  + ") \\\\ &= "+parseFloat(ansval.toFixed(2))+"("+(Math.pow(prob,num)*Math.pow(1-prob,trials-num)).toFixed(4).replace(/^0+|0+$/g, "")+") \\\\ &= \\boxed{" + ans.toFixed(4).replace(/^0+|0+$/g, "")  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2393,8 +2410,8 @@ function compbinomial2() {
         var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
         var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
         workplus += work
-        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += ans.toFixed(4).replace(/^0+|0+$/g, "") + "+"
+        finalans += parseFloat(ans.toFixed(4))
         
     }
     
@@ -2427,16 +2444,16 @@ function compbinomial2() {
 
     var ans = ansval * Math.pow(prob,num) * Math.pow((1-prob),(trials-num))
     workplus = workplus + "$$ f("+num+") = {" + trials + " \\choose " + num + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + num + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + num + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
-    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + ans.toFixed(4).replace(/^0+|0+$/g, "")
+    finalans = finalans + parseFloat(ans.toFixed(4))
         
     
     
     
     if (i == 0) {
-        document.getElementById("output").innerHTML = workplus + "$$  P(x \\leq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$  P(x \\leq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     MathJax.typeset();
@@ -2491,8 +2508,8 @@ function compbinomial4() {
         var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
         var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
         workplus += work
-        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += ans.toFixed(4).replace(/^0+|0+$/g, "") + "+"
+        finalans += parseFloat(ans.toFixed(4))
         
     }
     
@@ -2525,13 +2542,13 @@ function compbinomial4() {
 
     var ans = ansval * Math.pow(prob,numm1) * Math.pow((1-prob),(trials-numm1))
     workplus = workplus + "$$ f("+numm1+") = {" + trials + " \\choose " + numm1 + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + numm1 + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + numm1 + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
-    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + ans.toFixed(4).replace(/^0+|0+$/g, "")
+    finalans = finalans + parseFloat(ans.toFixed(4))
     
     if (i == 0) {
-        document.getElementById("output").innerHTML = workplus + "$$ P(x < " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ P(x < " + num + ") =  " + fplus + " = \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     
@@ -2586,8 +2603,8 @@ function compbinomial3() {
         var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
         var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
         workplus += work
-        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += ans.toFixed(4).replace(/^0+|0+$/g, "") + "+"
+        finalans += parseFloat(ans.toFixed(4))
         
     }
     
@@ -2620,16 +2637,16 @@ function compbinomial3() {
 
     var ans = ansval * Math.pow(prob,trials) * Math.pow((1-prob),(trials-trials))
     workplus = workplus + "$$ f("+trials+") = {" + trials + " \\choose " + trials + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + trials + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + trials + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
-    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + ans.toFixed(4).replace(/^0+|0+$/g, "")
+    finalans = finalans + parseFloat(ans.toFixed(4))
         
     
     
     
     if (i == num) {
-        document.getElementById("output").innerHTML = workplus + "$$  P(x \\geq " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}    $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$  P(x \\geq " + num + ") =  " + fplus + " = \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}    $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     MathJax.typeset();
@@ -2684,8 +2701,8 @@ function compbinomial5() {
         var ans = ansval * Math.pow(prob,i) * Math.pow((1-prob),(trials-i))
         var work = "$$ f("+i+") = {" + trials + " \\choose " + i + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + i + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + i + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
         workplus += work
-        ansplus += parseFloat(ans).toFixed(2).replace(/^0+/, '') + "+"
-        finalans += parseFloat(ans.toFixed(2))
+        ansplus += ans.toFixed(4).replace(/^0+|0+$/g, "") + "+"
+        finalans += parseFloat(ans.toFixed(4))
         
     }
     
@@ -2718,13 +2735,13 @@ function compbinomial5() {
 
     var ans = ansval * Math.pow(prob,trials) * Math.pow((1-prob),(trials-trials))
     workplus = workplus + "$$ f("+trials+") = {" + trials + " \\choose " + trials + "} " + parseFloat(prob).toFixed(2).replace(/^0+/, '') + "^" + trials + " (1-" + parseFloat(prob).toFixed(2).replace(/^0+/, '') + ")^{(" + trials + "-" + trials + ")} = {\\color{RoyalBlue}"+parseFloat(ans).toFixed(2).replace(/^0+/, '')+"} $$"
-    ansplus = ansplus + parseFloat(ans).toFixed(2).replace(/^0+/, '')
-    finalans = finalans + parseFloat(ans.toFixed(2))
+    ansplus = ansplus + ans.toFixed(4).replace(/^0+|0+$/g, "")
+    finalans = finalans + parseFloat(ans.toFixed(4))
     
     if (i == nump1) {
-        document.getElementById("output").innerHTML = workplus + "$$ P(x > " + num + ") =  " + fplus + " = \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ P(x > " + num + ") =  " + fplus + " = \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(2).replace(/^0+/, '') + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &=  " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{"+finalans.toFixed(4).replace(/^0+|0+$/g, "") + "}   \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     
     
