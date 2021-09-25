@@ -3188,7 +3188,7 @@ function comppoisson2() {
     
     workplus = workplus + " $$ f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + i + "!} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3227,7 +3227,7 @@ function comppoisson4() {
     
     workplus = workplus + " $$ f(" + numm1 + ") = \\frac{" + ave + "^" + numm1 + " e^{-" + ave + "}}{" + i + "!} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < " + num + ") &= " + fplus + " \\\\ &= " + ansplus + " \\\\ &= \\boxed{" + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3266,7 +3266,7 @@ function comppoisson3() {
     
     workplus = workplus + " $$ f(" + numm1 + ") = \\frac{" + ave + "^" + numm1 + " e^{-" + ave + "}}{" + i + "!} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
 
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq " + num + ") &= 1 - P(x < " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3306,7 +3306,7 @@ function comppoisson5() {
     
     workplus = workplus + " $$ f(" + num + ") = \\frac{" + ave + "^" + num + " e^{-" + ave + "}}{" + i + "!} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$ "
 
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > " + num + ") &= 1 - P(x \\leq " + num + ") \\\\ &= 1 - [" + fplus + "] \\\\ &= 1 - [" + ansplus + "] \\\\ &= 1 - " + parseFloat(finalans).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{" + parseFloat((1 - finalans)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
