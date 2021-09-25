@@ -632,7 +632,17 @@ function slope(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_xminusx_bar)+"$</td>"+ "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$ {\\color{NavyBlue}"+parseFloat(sum_xxbminyyb.toFixed(2))+"}$</td>"+"<td>$ {\\color{NavyBlue}"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\text{Sample Means:} $$ $$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} =  \\frac{" + sum_x + "}{" + n_x + "} = " + parseFloat(mean_x.toFixed(2))+ " \\\\ \\bar{y} &= \\frac{\\sum{y}}{n} =  \\frac{" + sum_y + "}{" + n_y + "} =  " + parseFloat(mean_y.toFixed(2))+ " \\end{align} $$ <table>" + table + "</table> $$ \\text{Slope:} $$ $$ b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{ "+parseFloat(sum_xxbminyyb.toFixed(2))+"}{ "+parseFloat(sum_xminusx_bar2.toFixed(2))+"}=  {\\color{NavyBlue}"+parseFloat(ansslope.toFixed(2))+"} $$ $$ \\text{Intercept:} $$ $$ b_{0} = \\bar{y} - b_{1} \\bar{x} = { "+parseFloat(mean_y.toFixed(2))+"} - (" +parseFloat(ansslope.toFixed(2)) + ")( " + parseFloat(mean_x.toFixed(2))+ ") = {\\color{NavyBlue}"+parseFloat(ansint.toFixed(2))+"} $$ $$ \\text{Regression Equation:} $$ $$ \\hat{y} = b_{0} + b_{1} x \\rightarrow \\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope + parseFloat(Math.abs(ansslope).toFixed(2))+"x} $$ "
+    
+    
+    // $$ \\text{Sample Means:} $$
+    //\\begin{align}  &= \\frac{\\sum{x}}{n} =  \\frac{" + sum_x + "}{" + n_x + "} = \\\\
+    //&= \\frac{\\sum{y}}{n} =  \\frac{" + sum_y + "}{" + n_y + "} \\end{align}
+    //$$ \\text{Slope:} $$
+    //$$ \\text{Intercept:} $$
+    //$$ \\text{Regression Equation:} $$
+    
+    
+    document.getElementById("output").innerHTML = " $$  \\bar{x} = " + parseFloat(mean_x.toFixed(2))+ " \\quad \\quad  \\bar{y} =  " + parseFloat(mean_y.toFixed(2))+ "  $$ <table>" + table + "</table>  $$ b_{1} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{\\sum(x - \\bar{x})^2} = \\frac{ "+parseFloat(sum_xxbminyyb.toFixed(2))+"}{ "+parseFloat(sum_xminusx_bar2.toFixed(2))+"}=  {\\color{NavyBlue}"+parseFloat(ansslope.toFixed(2))+"} $$  $$ b_{0} = \\bar{y} - b_{1} \\bar{x} = { "+parseFloat(mean_y.toFixed(2))+"} - (" +parseFloat(ansslope.toFixed(2)) + ")( " + parseFloat(mean_x.toFixed(2))+ ") = {\\color{NavyBlue}"+parseFloat(ansint.toFixed(2))+"} $$  $$ \\hat{y} = b_{0} + b_{1} x \\rightarrow \\boxed{ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope + parseFloat(Math.abs(ansslope).toFixed(2))+"x} $$ "
     
     // = \\frac{" + x[0] + " +  "+x[1]+" + \\cdots + "+x[n_x - 1]+"}{" + n_x + "}
     //  = \\frac{" + y[0] + " +  "+y[1]+" + \\cdots + "+y[n_y - 1]+"}{" + n_y + "}
@@ -893,8 +903,8 @@ function sse(){
         table += "<td>$" + parseFloat(yminusyhat2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+Math.round(sum_yminusyhat)+"$</td>" +"<td>$"+parseFloat(sum_yminusyhat2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = out+" <table>" + table + "</table>$$  \\text{SSE} = \\sum(y - \\hat{y})^2 = \\boxed{"+parseFloat(anssse.toFixed(2))+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+Math.round(sum_yminusyhat)+"$</td>" +"<td>${\\color{RoyalBlue}"+parseFloat(sum_yminusyhat2.toFixed(2))+"}$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "$$ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope + parseFloat(Math.abs(ansslope).toFixed(2))+"x $$ <table>" + table + "</table>$$  \\text{SSE} = \\sum(y - \\hat{y})^2 = \\boxed{"+parseFloat(anssse.toFixed(2))+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -961,7 +971,10 @@ function sst(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$"+parseFloat(sum_yminusy_bar2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\text{Sample Mean:} $$ $$ \\bar{y} = \\frac{\\sum{y}}{n} =  \\frac{" + sum_y + "}{" + n_y + "} =  " + parseFloat(mean_y.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\text{SST} = \\sum(y - \\bar{y})^2 = \\boxed{"+parseFloat(anssst.toFixed(2))+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    
+    //$$ \\text{Sample Mean:} $$ = \\frac{\\sum{y}}{n} =  \\frac{" + sum_y + "}{" + n_y + "} 
+    
+    document.getElementById("output").innerHTML = " $$ \\bar{y} =  " + parseFloat(mean_y.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\text{SST} = \\sum(y - \\bar{y})^2 = \\boxed{"+parseFloat(anssst.toFixed(2))+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1076,7 +1089,8 @@ function rsquared(){
     var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
     var ansrsqu = ansssr / anssst;
     var ansrsquper = ansrsqu.toFixed(2) * 100;
-    var interpret = "$$ \\text{Interpretation: }" + parseFloat(ansrsquper.toFixed(0)) + "\\% \\text{ of the variation in } y $$ $$ \\text{is explained by the regression equation.} $$"
+    //$$ \\text{is explained by the regression equation.} $$" \\text{Interpretation: }
+    var interpret = "$$ " + parseFloat(ansrsquper.toFixed(0)) + "\\% \\text{ of the Variation is Explained} $$" 
     document.getElementById("output").innerHTML = "$$ r^2 = \\frac{\\text{SSR}}{\\text{SST}} = \\frac{"+parseFloat(ansssr.toFixed(2))+"}{" +parseFloat(anssst.toFixed(2)) +"} = \\boxed{"+parseFloat(ansrsqu.toFixed(2))+"}  $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }

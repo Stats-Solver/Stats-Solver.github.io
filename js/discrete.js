@@ -235,6 +235,9 @@ function compprobabilities() {
 
 function compprob1() {
     $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
+    document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
+    document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -288,6 +291,9 @@ function compprob1() {
 
 function compprob2() {
     $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
+    document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
+    document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -334,6 +340,9 @@ function compprob2() {
 
 function compprob3() {
     $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
+    document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
+    document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -380,6 +389,9 @@ function compprob3() {
 
 function compprob4() {
     $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
+    document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
+    document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -433,6 +445,9 @@ function compprob4() {
 
 function compprob5() {
     $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
+    document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
+    document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
     var x = document.getElementById('probval').value
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -495,7 +510,7 @@ function expected() {
 
 function compexpected() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
+    document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
     document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
     var x1 = document.getElementById('x1').value
@@ -519,7 +534,7 @@ function compexpected() {
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
 
-    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 6px 12px;'>$x$</td><td style = 'padding: 6px 12px;'>$f(x)$</td><td style = 'padding: 6px 12px;'>$xf(x)$</td></tr>"
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var ans = 0
@@ -550,8 +565,8 @@ function variance() {
 
 function compvariance() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 $"
+    document.getElementById("descriptiontext").innerHTML = "The variance measures the variability of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = \\sum (x-\\mu)^2 f(x) $"
     document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
@@ -575,7 +590,7 @@ function compvariance() {
     var f10 = document.getElementById('f10').value
     var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
 
-    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 6px 12px;'>$x$</td><td style = 'padding: 6px 12px;'>$f(x)$</td><td style = 'padding: 6px 12px;'>$x-\\mu$</td><td style = 'padding: 6px 12px;'>$(x-\\mu)^2$</td><td style = 'padding: 6px 12px;'>$(x-\\mu)^2f(x)$</td></tr>"
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$x-\\mu$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2f(x)$</td></tr>"
     
     
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
@@ -602,7 +617,7 @@ function compvariance() {
     
     //  = \\sum x f(x) E(x) = = \\sigma^2
  
-    document.getElementById("output").innerHTML = "$$ E(x) = \\mu = {\\color{RoyalBlue}"+parseFloat(mu.toFixed(2))+"} $$" + table + " $$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ E(x) = \\mu = "+parseFloat(mu.toFixed(2))+" $$" + table + " $$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -618,8 +633,8 @@ function standard() {
 
 function compstandard() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The standard deviation of a random variable measures the variability in the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$$ \\sigma = \\sqrt{Var(x)} $$"
+    document.getElementById("descriptiontext").innerHTML = "The standard deviation measures the variability of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ \\sigma = \\sqrt{\\sigma^2} $"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the random variable."
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
