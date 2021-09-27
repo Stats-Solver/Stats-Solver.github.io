@@ -167,6 +167,18 @@
                 <option value="regression">Regression</option>
             </select>
         </div>
+       <!-- <div class="col-4 col-md-2 mb-3" id="standerr">
+            <select class="form-control" id="standarderrorval">
+                <option value="estimate">Estimate</option>
+                <option value="slope">Slope</option>
+            </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="sigtests">
+            <select class="form-control" id="sigval">
+                <option value="ttest">t-Test</option>
+                <option value="ftest">F-Test</option>
+            </select>
+        </div>-->
         <div class="col-4 col-md-2 mb-3" id="xpval">      
         $x_p=$ <input type="text" style="width:50px;" id="xpvalue" class="hypinput2">
         </div>  	
@@ -203,9 +215,9 @@
                 <option value="rsquared">Coefficient of Determination</option>
                 <option value="correlation">Correlation Coefficient</option>
                 <option value="meansqu">Mean Square</option>
-                <option value="see">Standard Error of Estimate</option>
-                <option value="tstat">t-Test for Significance</option>
-                <option value="fstat">F-Test for Significance</option>
+                <option value="standard">Standard Error</option>
+                <option value="significance">Test for Significance</option>
+                <!--<option value="fstat">F-Test for Significance</option>-->
                 <option value="confinterval">Confidence Interval</option>
                 <option value="predinterval">Prediction Interval</option>
                 <option value="resplot">Residual Plot</option>
@@ -439,7 +451,7 @@ There are two things we need to get the estimated regression equation: the slope
             
             <p class = "p1">The sample correlation coefficient can be calculated using the coefficient of determination, indicating a close relationship between regression and correlation. Regression can be thought of as a stronger version of regression. While correlation tells us the sign and strength of a relationship, regression quantifies the relationship to facilitate prediction. To get the sample correlation coefficient, simply take the square root of the coefficient of determination, with the sign being the same sign as the slope.</p>
 
-            <div id="723716610" class="text-center">
+            <!--<div id="723716610" class="text-center">
                 <script type="text/javascript">
                     try {
                         window._mNHandle.queue.push(function (){
@@ -448,7 +460,7 @@ There are two things we need to get the estimated regression equation: the slope
                     }
                     catch (error) {}
                 </script>
-            </div>
+            </div> -->
             <br>
             
             <p class = "p1">The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. There are two ways of testing for significance, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. </p>
@@ -489,7 +501,7 @@ There are two things we need to get the estimated regression equation: the slope
             
             <p class = "p1"> In a simple linear regression, there is only one independent variable (x). However, we may want to include more than one independent vartiable to improve the predictive power of our regression. This is known as multiple regression, which can be solved using our <a href="multiple-regression.html">Multiple Regression Calculator</a>. One of the most important parts of regression is testing for significance. The two tests for signficance, t test and F test, are examples of hypothesis tests. Hypothesis testing can be done using our <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>
             
-            <div id="519762228" class="text-center">
+           <!-- <div id="519762228" class="text-center">
                 <script type="text/javascript">
                     try {
                         window._mNHandle.queue.push(function (){
@@ -498,7 +510,7 @@ There are two things we need to get the estimated regression equation: the slope
                     }
                     catch (error) {}
                 </script>
-            </div>
+            </div>-->
             
             
             
@@ -637,7 +649,7 @@ There are two things we need to get the estimated regression equation: the slope
           <p>$\text{Predict } y \text{ when } x = $ <span><input type="text" id="predicty" class="form-control" ></span></p>
           </div>-->
       
-          <div id="581773186" class="text-center">
+        <!--  <div id="581773186" class="text-center">
         <script type="text/javascript">
             try {
                 window._mNHandle.queue.push(function (){
@@ -646,7 +658,7 @@ There are two things we need to get the estimated regression equation: the slope
             }
             catch (error) {}
         </script>
-    </div>
+    </div> -->
 
       
           <footer id="footer">

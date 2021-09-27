@@ -3,6 +3,8 @@ $("#xval").hide(); $("#prediction").hide(); $("#prediction2").hide(); $("#altern
 $("#correlation").hide(); $("#correlation2").hide(); $("#xpval").hide(); $("#level").hide(); $("#residtype").hide(); $("#charts").hide();
 $("#581773186").hide();
 
+$("#sigtests").hide(); $("#standerr").hide();
+
 $("#simpoutputs").hide();
 
 $(function () {
@@ -493,6 +495,7 @@ function avg(input){
 }
 
 function showthings(){
+    $("#sigtests").hide(); $("#standerr").hide();
     $("#xval").hide(); $("#blanky").show(); $("#sumsquares").hide(); $("#meansquares").hide(); 
     $("#xpval").hide(); $("#level").hide(); $("#blankx").show(); $("#residtype").hide();
     var x = document.getElementById("stat").value;
@@ -500,8 +503,12 @@ function showthings(){
         $("#xval").show(); $("#blanky").hide();
     } else if (x == "sumsqu") {
         $("#sumsquares").show(); $("#blanky").hide();
-    } else if (x == "meansqu") {
+    } else if (x == "standard") {
+        $("#standerr").show(); $("#blanky").hide();
+    }  else if (x == "meansqu") {
         $("#meansquares").show(); $("#blanky").hide();
+    } else if (x == "significance") {
+        $("#sigtests").show(); $("#blanky").hide();
     } else if (x == "confinterval" || x == "predinterval") {
         $("#xpval").show(); $("#blanky").hide(); $("#level").show(); $("#blankx").hide();
     } else if (x == "resplot" || x == "standardized") {
@@ -544,15 +551,15 @@ function stat(){
         see()
     } else if (x == "ses") {
         ses()
-    } else if (x == "standarderror") {
-        standarderror()
+    } else if (x == "standard") {
+        calcstandarderror()
     } else if (x == "tstat") {
         tstat()
         $("#output2").show(); $("#myCanvas").show();
     } else if (x == "msr") {
         msr()
-    } else if (x == "fstat") {
-        fstat()
+    } else if (x == "significance") {
+        calcsignificance()
     } else if (x == "confinterval") {
         confinterval()
     } else if (x == "predinterval") {
@@ -814,7 +821,7 @@ function prediction(){
     } 
     
     
-    document.getElementById("output").innerHTML = " $$ \\hat{y} = b_0 + b_1 x = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = " $$ \\hat{y} = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" x = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -970,7 +977,7 @@ function sst(){
         table += "<td>$" + parseFloat(yminusy_bar2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>$"+parseFloat(sum_yminusy_bar2.toFixed(2))+"$</td>"+ "</tr>";
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sum_yminusy_bar)+"$</td>" +"<td>${\\color{RoyalBlue}"+parseFloat(sum_yminusy_bar2.toFixed(2))+"}$</td>"+ "</tr>";
     
     //$$ \\text{Sample Mean:} $$ = \\frac{\\sum{y}}{n} =  \\frac{" + sum_y + "}{" + n_y + "} 
     
@@ -1091,12 +1098,12 @@ function rsquared(){
     var ansrsquper = ansrsqu.toFixed(2) * 100;
     //$$ \\text{is explained by the regression equation.} $$" \\text{Interpretation: }
     var interpret = "$$ " + parseFloat(ansrsquper.toFixed(0)) + "\\% \\text{ of the Variation is Explained} $$" 
-    document.getElementById("output").innerHTML = "$$ r^2 = \\frac{\\text{SSR}}{\\text{SST}} = \\frac{"+parseFloat(ansssr.toFixed(2))+"}{" +parseFloat(anssst.toFixed(2)) +"} = \\boxed{"+parseFloat(ansrsqu.toFixed(2))+"}  $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ r^2 = \\frac{\\text{SSR}}{\\text{SST}} = \\frac{"+parseFloat(ansssr.toFixed(2))+"}{" +parseFloat(anssst.toFixed(2)) +"} = \\boxed{"+ansrsqu.toFixed(2).replace(/^0+/, '')+"}  $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
 function correlation(){
-    $("#explanation").show(); $("#output2").show(); $("#correlation").hide(); $("#correlation2").show();
+    $("#explanation").show(); $("#output2").hide(); $("#correlation").hide(); $("#correlation2").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationship between the dependent and independent variables."
     document.getElementById("formulatext").innerHTML = "$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
@@ -1181,7 +1188,7 @@ function correlation(){
         var intinside = "<u>no"
     }
     var interpret = "<b>Interpretation:</b> There is "+ intinside +" linear relationship</u> between x and y."
-    document.getElementById("output").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} = "+signslope+" \\sqrt{" +ansrsqu.toFixed(2) +"} = \\boxed{"+anscorcoef.toFixed(2)+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ r_{xy} = (\\text{sign of } b_1) \\sqrt{r^2} = "+signslope+" \\sqrt{" +ansrsqu.toFixed(2).replace(/^0+/, '') +"} = \\boxed{"+anscorcoef.toFixed(2).replace(/^0+/, '')+"} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1270,6 +1277,67 @@ function mse(){
     MathJax.typeset();
 }
 
+function msr(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
+    document.getElementById("formulatext").innerHTML = "$ \\text{MSR} = \\dfrac{\\text{SSR}}{1} $"
+    document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
+    var str_x = document.getElementById("valuesx").value;
+    var str_y = document.getElementById("valuesy").value;
+    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var y = str_y.split(",").map(Number); var n_y = y.length;
+    var sum_x = sum(x); var sum_y = sum(y);
+    var mean_x = avg(x); var mean_y = avg(y);
+    var xminusx_bar = x.map( function(value) {
+        return value - mean_x;
+    } );
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var xxbminyyb = [];
+    for(var i = 0; i < n_x; i++){
+        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
+    }
+    var xminusx_bar2 = xminusx_bar.map( function(value) {
+        return value * value;
+    } );
+    var yminusy_bar2 = yminusy_bar.map( function(value) {
+        return value * value;
+    } );
+    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
+    var sum_xxbminyyb = sum(xxbminyyb);
+    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
+    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
+    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
+    var yhat=[]; var yminusyhat=[];
+    for(var i = 0; i < n_x; i++){
+        yhat[i] = ansint + ansslope * x[i]
+    }
+    for(var i = 0; i < n_x; i++){
+        yminusyhat[i] = y[i] - yhat[i]
+    }
+    var yminusyhat2 = yminusyhat.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
+    var anssse = sum_yminusyhat2;
+    var yminusy_bar = y.map( function(value) {
+        return value - mean_y;
+    } );
+    var yminusy_bar2 = y.map( function(value) {
+        return value * value;
+    } );
+    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
+    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
+    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
+    var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
+    var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
+    var anststat = ansslope / ansses;
+    var ansmsr = ansssr;
+    document.getElementById("output").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{1} = \\frac{\\text{"+parseFloat(ansssr.toFixed(2))+"}}{1} = \\boxed{"+parseFloat(ansmsr.toFixed(2))+"} $$"
+    MathJax.typeset();
+}
+
 function standarderror() {
     $("#standarderror").show(); 
 }
@@ -1342,14 +1410,23 @@ function see(){
     MathJax.typeset();
 }
 
-function tstat(){
-    $("#explanation").show();
+function calcsignificance() {
+    var val = document.getElementById("sigval").value;
+    if (val=="ttest") {
+        ttest()
+    } else if (val=="ftest") {
+        ftest()
+    }
+}
+
+function ttest(){
+    $("#explanation").show(); $("#output2").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
     document.getElementById("formulatext").innerHTML = "$ t = \\dfrac{b_1}{s_{b_1}} $"
     document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
-    var x = str_x.split(",").map(Number); var n_x = x.length; var size = n_x; var sizem1 = size - 1;
+    var x = str_x.split(",").map(Number); var n_x = x.length; var size = n_x; var sizem1 = size - 1;  var sizem2 = size - 2;
     var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
     var mean_x = avg(x); var mean_y = avg(y);
@@ -1486,25 +1563,77 @@ function tstat(){
 
         ctx.stroke();
     
+        table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
     
-        var testsymb = "t";
-        var tailsign = "=";
-        var stndsymb = "s"
-        var pvalhalf = normalcdf(testtwo)
+        table4 = "<td></td><td colspan='6' style='border-bottom: thin solid'>$\\text{Area in Upper Tail}$</td>"
+    
+    
+        var cvalsymb1 = "-t_{\\alpha / 2}";
+        var cvalsymb2 = "t_{\\alpha / 2}";
+        var pvalhalf = normalcdf(test);
         if (pvalhalf > .2) {
             var pvalh = ".20 \\text{ to } 1"
+            table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.2 && pvalhalf >.1) {
             var pvalh = ".10 \\text{ to } .20"
+            table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.1 && pvalhalf >.05) {
             var pvalh = ".05 \\text{ to } .10"
+            table5 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.05 && pvalhalf >.025) {
             var pvalh = ".025 \\text{ to } .05"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.025 && pvalhalf >.01) {
             var pvalh = ".01 \\text{ to } .025"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.01 && pvalhalf >.005) {
             var pvalh = ".005 \\text{ to } .01"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.005) {
             var pvalh = "0 \\text{ to } .005"
+            table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+            table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+            table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+            table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else {
             var pvalh = pvalhalf.toFixed(4);
         }     
@@ -1526,100 +1655,33 @@ function tstat(){
         } else {
             var pval = pvalue.toFixed(4);
         }   
+        //var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     
     
     
     
-    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    var tablep = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
     
-    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
-    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    //$$ s_{b_1} = \\frac{s}{\\sqrt{\\sum(x-\\bar{x})^2}} = \\frac{"+parseFloat(anssee.toFixed(2))+"}{\\sqrt{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}} = " + parseFloat(ansses.toFixed(2)) +" $$
     
     
+    document.getElementById("output").innerHTML = "$$ \\text{Test Statistic:} $$ $$ t = \\frac{b_1}{s_{b_1}} = \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} = {\\color{RoyalBlue}" + anststat.toFixed(2) +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+" - 1 = {\\color{RoyalBlue}"+(size-1)+"} $$ $ \\text{p-Value Approach:} $ "
     
-    
-    var tablep = "<table><tr style='border-top: thin solid; border-bottom: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
-    
-    document.getElementById("output").innerHTML = "$$ s_{b_1} = \\frac{s}{\\sqrt{\\sum(x-\\bar{x})^2}} = \\frac{"+parseFloat(anssee.toFixed(2))+"}{\\sqrt{"+parseFloat(sum_xminusx_bar2.toFixed(2))+"}} = " + parseFloat(ansses.toFixed(2)) +" $$ $$ t = \\frac{b_1}{s_{b_1}} = \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} = " + anststat.toFixed(2) +" $$ $$ df = n - 1 = "+size+" - 1 = "+(size-1)+" $$ "
-    
-    document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ "
+    document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P(t \\geq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}=+pval+pinequ+\\alpha = +alpha+$$ $$ \\text{Conclusion: } \\boxed{ + concl +} $$"
     
     
     //document.getElementById("output").innerHTML = "$$ \\begin{align} t &= \\frac{b_1}{s_{b_1}} \\\\ &= \\frac{"+ansslope.toFixed(2)+"}{"+ansses.toFixed(2)+"} \\\\ &= \\boxed{" + anststat.toFixed(2) +"} \\end{align} $$ $$ \\begin{align} \\text{p-value}&=2*P(t \\leq "+anststatneg.toFixed(2)+" ) \\\\ &= 2*" + zptwo.toFixed(4)+ " = "+zptwo2.toFixed(4)+" \\end{align} $$ $$\\text{p-value}="+zptwo2.toFixed(4)+"\\leq \\alpha = .05 $$ $$ \\textbf{Conclusion:} \\text{ There is a significant linear relationship between x and y} $$"
     MathJax.typeset();
 }
 
-function msr(){
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The correlation coefficient meausures the strength and direction of the linear relationshhip between the dependent and independent variables."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSR} = \\dfrac{\\text{SSR}}{1} $"
-    document.getElementById("explanationtext").innerHTML = "An alternative formulation of the correlation coefficient that uses the coefficient of determination."
-    var str_x = document.getElementById("valuesx").value;
-    var str_y = document.getElementById("valuesy").value;
-    var x = str_x.split(",").map(Number); var n_x = x.length;
-    var y = str_y.split(",").map(Number); var n_y = y.length;
-    var sum_x = sum(x); var sum_y = sum(y);
-    var mean_x = avg(x); var mean_y = avg(y);
-    var xminusx_bar = x.map( function(value) {
-        return value - mean_x;
-    } );
-    var yminusy_bar = y.map( function(value) {
-        return value - mean_y;
-    } );
-    var xxbminyyb = [];
-    for(var i = 0; i < n_x; i++){
-        xxbminyyb[i] = xminusx_bar[i] * yminusy_bar[i]
-    }
-    var xminusx_bar2 = xminusx_bar.map( function(value) {
-        return value * value;
-    } );
-    var yminusy_bar2 = yminusy_bar.map( function(value) {
-        return value * value;
-    } );
-    var sum_xminusx_bar = sum(xminusx_bar); var sum_yminusy_bar = sum(yminusy_bar);
-    var sum_xxbminyyb = sum(xxbminyyb);
-    var sum_xminusx_bar2 = sum(xminusx_bar2); var sum_yminusy_bar2 = sum(yminusy_bar2)
-    var ansvar_x = sum_xminusx_bar / (n_x - 1); var ansvar_y = sum_yminusy_bar2 / (n_y - 1);
-    var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
-    var yhat=[]; var yminusyhat=[];
-    for(var i = 0; i < n_x; i++){
-        yhat[i] = ansint + ansslope * x[i]
-    }
-    for(var i = 0; i < n_x; i++){
-        yminusyhat[i] = y[i] - yhat[i]
-    }
-    var yminusyhat2 = yminusyhat.map( function(value) {
-        return value * value;
-    } );
-    var sum_yminusyhat = sum(yminusyhat); var sum_yminusyhat2 = sum(yminusyhat2);
-    var anssse = sum_yminusyhat2;
-    var yminusy_bar = y.map( function(value) {
-        return value - mean_y;
-    } );
-    var yminusy_bar2 = y.map( function(value) {
-        return value * value;
-    } );
-    var sum_yminusy_bar = sum(yminusy_bar); var sum_yminusy_bar2 = sum(yminusy_bar2);
-    var anssst = sum_yminusy_bar2; var ansssr = anssst - anssse;
-    var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
-    var ansmse = anssse / (n_x - 2); var anssee = Math.sqrt(ansmse);
-    var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
-    var anststat = ansslope / ansses;
-    var ansmsr = ansssr;
-    document.getElementById("output").innerHTML = "$$ \\text{MSR} = \\frac{\\text{SSR}}{1} = \\frac{\\text{"+parseFloat(ansssr.toFixed(2))+"}}{1} = \\boxed{"+parseFloat(ansmsr.toFixed(2))+"} $$"
-    MathJax.typeset();
-}
-
-function fstat(){
+function ftest(){
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$ F = \\dfrac{MSR}{MSE} $ "
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
-    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var x = str_x.split(",").map(Number); var n_x = x.length; var size = n_x; var sizem1 = size - 1;
     var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
     var mean_x = avg(x); var mean_y = avg(y);
@@ -1669,7 +1731,7 @@ function fstat(){
     var ansses = anssee / Math.sqrt(sum_xminusx_bar2);
     var anststat = ansslope / ansses; var ansmsr = ansssr;
     var ansfstat = ansmsr / ansmse;
-    document.getElementById("output").innerHTML = "$$ F = \\frac{\\text{MSR}}{\\text{MSE}} = \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} = "+ ansfstat.toFixed(2) + " $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Test Statistic:} $$ $$ F = \\frac{\\text{MSR}}{\\text{MSE}} = \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} = {\\color{RoyalBlue}"+ ansfstat.toFixed(2) + "} $$ $$ \\text{Degrees of Freedom:} $$ $$ \\text{Numerator } df = \\text{number of } x \\text{'s} = {\\color{RoyalBlue} 1 } $$ $$ \\text{Denominator } df = n - 2 = "+size+" - 2 = {\\color{RoyalBlue}"+(size-2)+"} $$"
     MathJax.typeset();
 }
 
