@@ -3442,7 +3442,9 @@ function comphypergeometric1() {
     
     var ans = (ansvala*ansvalb)/ansvalc;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &=  \\dfrac{ \\left( \\dfrac{"+popsucc+"!}{"+numsucc+"!("+popsucc+"-"+numsucc+")!} \\right) \\left( \\dfrac{"+(popsize-popsucc)+"!}{"+(ntrials-numsucc)+"!("+(popsize-popsucc)+"-"+(ntrials-numsucc)+")!}\\right)}{\\dfrac{"+popsize+"!}{"+ntrials+"!("+popsize+"-"+ntrials+")!}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    // \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}}
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x="+numsucc+") &=  f("+numsucc+") \\\\ &= \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+(popsize-popsucc)+" \\choose "+(ntrials-numsucc)+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} \\\\ &=  \\dfrac{ \\left( \\dfrac{"+popsucc+"!}{"+numsucc+"!("+popsucc+"-"+numsucc+")!} \\right) \\left( \\dfrac{"+(popsize-popsucc)+"!}{"+(ntrials-numsucc)+"!("+(popsize-popsucc)+"-"+(ntrials-numsucc)+")!}\\right)}{\\dfrac{"+popsize+"!}{"+ntrials+"!("+popsize+"-"+ntrials+")!}} \\\\ &= \\frac{("+(factorial(topna)/(factorial(bottomna)*factorial(topna-bottomna)))+")("+(factorial(topnb)/(factorial(bottomnb)*factorial(topnb-bottomnb)))+")}{"+(factorial(topnc)/(factorial(bottomnc)*factorial(topnc-bottomnc)))+"} \\\\ &= \\boxed{" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3643,7 +3645,7 @@ function comphypergeometric2() {
     
     workplus = workplus + "$$ f("+numsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3846,7 +3848,7 @@ function comphypergeometric4() {
     
     workplus = workplus + "$$ f("+numsuccm1+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+numsuccm1+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+numsuccm1+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x < "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -4048,7 +4050,7 @@ function comphypergeometric3() {
     workplus = workplus + "$$ f("+popsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+popsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+popsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
 
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -4251,7 +4253,7 @@ function comphypergeometric5() {
     
     workplus = workplus + "$$ f("+popsucc+") = \\frac{\\displaystyle{"+popsucc+" \\choose "+popsucc+"}{"+popsize+"-"+popsucc+" \\choose "+ntrials+"-"+popsucc+"}}{\\displaystyle{"+popsize+" \\choose "+ntrials+"}} = {\\color{RoyalBlue}" + parseFloat(ans).toFixed(4).replace(/^0+/, '') + "} $$"
     
-    document.getElementById("output").innerHTML = workplus + "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x > "+numsucc+") &= "+fplus+" \\\\ &= "+ansplus+" \\\\ &= \\boxed{"+parseFloat(finalans).toFixed(4).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
