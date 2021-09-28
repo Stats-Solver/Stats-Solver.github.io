@@ -91,41 +91,6 @@
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Practice
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="practice/table-and-graph.html">Table and Graph</a>
-              <a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
-              <a class="dropdown-item" href="practice/basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="practice/discrete-distribution.html">Discrete Distribution</a>
-              <a class="dropdown-item" href="practice/continuous-distribution.html">Continuous Distribution</a>
-              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
-              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-population.html">Two Population</a>
-              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
-              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>
-              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
-              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
-              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-              <!--<a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
-              <a class="dropdown-item" href="tables/z-distribution.html">Poisson Probability</a> 
-            </div>
-          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -798,128 +763,16 @@
       <hr>
           </div>
       
+ 
       
       
       
-      
-    
-     <!--
       <div class="container" id="how">
-        <div id="how1" class="output" style="color: darkslategray">
+       <div id="how1" class="output" style="color: darkslategray">
             How it Works:
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            For a discrete probability distribution, probability is provided by the probability function, written f(x). Discrete probability distributions are often given as a table, with the values of the discrete random variable, x, in the first column and the values of f(x) in the second column. The expected value and variance of a discrete random variable are given by the formulas below. These can be easily calculated by addinng colums to the table. For the expected value, we simply add a third column to our table which is a product of the first two, xf(x). A similar procedure can be used to calculate the variance.
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td>Expected Value</td>
-                <td>Variance</td>
-              </tr>
-            <tr>
-                <td>$E(x) = \sum x f(x)$</td>
-                <td>$Var(x) = \sum (x-\mu)^2 f(x)$</td>
-              </tr>
-            </table>
-            <br>
-            The simplest discrete probability distribution is the discrete uniform probability distribution. Here, the probability function is given by $f(x) = \frac{1}{n}$ where $n$ is the number of possible values that $x$ may take. An example of a discrete uniform probability distribution is the experiment of rolling a 6-sided die, where $x$ is ther number showing on the die. Here, there are 6 possible values for $x$, 1 through 6. So the probabity function is given by $f(x) = 1/6$, mean the probability of x taking each value between 1 and 6 is 1/6. So f(1) = 1/6, f(2) = 1/6 and so on.   
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td>Discrete Uniform Distribution</td>
-              </tr>
-            <tr>
-                <td>$f(x) = \dfrac{1}{n}$</td>
-              </tr>
-            </table>
-            <br>
-            The binomial probability distribution is used when an experiment is repeated several times and there are two possible outcomes each time. So, for example, tossing a coin three times is considered a binomial experiment. Then the probability function is given by $f(x) = (nx)p^x(1-p)^{(n-x)}$ where $ (nx) = \frac{N!}{n!(N-n)!}$. Furthermore, the expected value and variance are givewn by $E(x)=np$ and $Var(x)=np(1-p)$.
-            <br><br>
-            <div id="723716610" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>
-            <br>
-            The poisson probability distribution is used when the experiment involves time or space. For example, the number of sales made in an hour or the number of bicyclists on a one mile stretch of road. The probability function is given by $f(x) = \frac{\mu^x e^{-\mu}}{x!} $.
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td>Poisson Distribution</td>
-              </tr>
-            <tr>
-                <td>$f(x) = \frac{\mu^x e^{-\mu}}{x!} $</td>
-              </tr>
-            </table>
-            <br>
-            The hypergeometric probability distribution is similar to the binomial distribution, except the trials aren't independent. The probability function is given by $f(x) = (nx)p^x(1-p)^{(n-x)}$.
-            
-      </div>
-      </div> 
-
-        <p class = "p1"> The hypergeometric probability distribution is similar to the binomial probability distribution. The difference is that in the hypergeometric probability distribution the trials are not independent and the probability of success changes from trial to trial. </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td>Hypergeometric Probability Function </td>
-              </tr>
-              <tr>
-                <td>$ f(x) = \dfrac{{n \choose x}{N-r \choose n-x}}{{N \choose n}} $ </td>
-              </tr>
-              <tr>
-                <td>$ N $ = number of elements in population   </td>
-              </tr>
-              <tr>
-                <td>$ r $ = number of successes in population   </td>
-              </tr>
-            </table>
-            <br>
-
-                      <tr>
-                <td>$ \mu $ = mean number of occurences </td>
-              </tr>
-      -->
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      <div class="container" id="how">
-       <!-- <div id="how1" class="output" style="color: darkslategray">
-            How it Works:
-            <br><br>
-        </div> -->
-        <div id="how2" class="how" style="color: darkslategray">
-              <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                     crossorigin="anonymous"></script>
-                <!-- Square2 -->
-                <ins class="adsbygoogle"
-                     style="display:block"
-                     data-ad-client="ca-pub-3595688914204816"
-                     data-ad-slot="8840542382"
-                     data-ad-format="auto"
-                     data-full-width-responsive="true"></ins>
-                <script>
-                     (adsbygoogle = window.adsbygoogle || []).push({});
-                </script> 
-            <br>
             
             
             <p class = "p1"> A discrete probability distribution is the probability distribution for a discrete random variable. A discrete random variable takes whole number values such 0, 1, 2 and so on while a continuous random variable can take any value inside of an interval. Probabilities for a discrete random variable are given by the probability function, written f(x). There are two requirements for the probability function. The first is that the value of each f(x) is at least zero. The second requirement is that the values of f(x) sum to one. </p>
@@ -985,17 +838,6 @@
             
             <br>
             
-           <!-- <div id="723716610" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>-->
-            
             <p class = "p1"> The binomial probability distribution is associated with a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p). </p>
             
             <table style="width:100%">
@@ -1037,16 +879,6 @@
             
             <p class = "p1"> Discrete probability distributions are probability distributions for discrete random variables. A closely related topic in statistics is continuous probability distributions. Continuous distributions are probability distributions for continuous random variables. Probabilities for continuous probability distributions can be found using the <a href = "continuous-distribution.html">Continuous Distribution Calculator</a>. The most common of the continuous probability distributions is normal probability distribution. Probabilities in general can be found using the <a href = "basic-probability.html">Basic Probabality Calculator</a>. </p>
             
-           <!-- <div id="519762228" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>-->
             
         </div>
       </div>
@@ -1081,17 +913,17 @@
           <div class="text-center">
           
           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Square3 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8390553036"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
+                     crossorigin="anonymous"></script>
+                <!-- Square2 -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-3595688914204816"
+                     data-ad-slot="8840542382"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                     (adsbygoogle = window.adsbygoogle || []).push({});
+                </script> 
               </div>
           <br>
           
