@@ -178,7 +178,8 @@ function showstuff(){
 
 function stat(){
     $("#discoutputs").show(); $("#how").hide();
-    $("#output").empty(); $("#myCanvas").hide(); $("#581773186").show();
+    $("#output").empty(); $("#myCanvas").hide(); 
+    //$("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "probability"){
         compprobabilities()
