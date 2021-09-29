@@ -91,41 +91,6 @@
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Practice
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="practice/table-and-graph.html">Table and Graph</a>
-              <a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
-              <a class="dropdown-item" href="practice/basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="practice/discrete-distribution.html">Discrete Distribution</a>
-              <a class="dropdown-item" href="practice/continuous-distribution.html">Continuous Distribution</a>
-              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
-              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-population.html">Two Population</a>
-              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
-              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>
-              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
-              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
-              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> 
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-              <!--<a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
-              <a class="dropdown-item" href="tables/z-distribution.html">Poisson Probability</a> 
-            </div>
-          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -610,94 +575,7 @@
         </div>
         <div id="how2" class="how" style="color: darkslategray">
             <p class = "p1">For a continuous probability distribution, probability is calculated by taking the area under the graph of the probability density function, written f(x). For the uniform probability distribution, the probability density function is given by f(x)=$\begin{cases} \frac{1}{b-a} \quad \text{for } a \leq x \leq b \\ 0 \qquad \, \text{elsewhere} \end{cases}$. The graph of this function is simply a rectangle, as shown below. Then the area under the graph of f(x) over some interval is also going to be a rectangle, which can easily be calculated as length$\times$width. Furthermore, the expected value and variance for a uniformly distributed random variable are given by E(x)=$\frac{a+b}{2}$ and Var(x) = $\frac{(b-a)^2}{12}$, respectively. </p>
-            <!--
-            In some cases, the area can be found using a simple calculation, as in the uniform probability distriution. In other cases, f(x) is more complicated and it requires a table to get the area under the graph, as is typically done for the normal probability distribution. Sometimes the area is found using a formula, as in the exponential probaility distribution.
-            <br><br>
-            <table style="width:100%">
-            <tr>
-            <td>Probability = area under the graph of $f(x)$ </td>
-            </tr>
-            </table>
-            <br>
-            Furthermore, the expected value and variance for a uniform probability distribution are given by $E(x)=\frac{a+b}{2}$ and $Var(x) = \frac{(b-a)^2}{12}$, respectively.
-
-            So, for example, if x is uniformly distributed between 10 and 50, we have $f(x)=\begin{cases} \frac{1}{50-10} = \frac{1}{40} \quad \text{for } a \leq x \leq b \\ 0 \qquad \qquad \quad \; \text{elsewhere} \end{cases} $. Then the probability that x will be between, say, 10 and 30 will be length $\times$ width  = 20 $\times$ 1/40 = 20/40 = .50.
-            <canvas id="howCanvas1" width="300" height="150"></canvas>
-            <canvas id="howCanvas3" width="300" height="150"></canvas>
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas4" width="300" height="150"></canvas><canvas id="howCanvas5" width="300" height="150"></canvas><canvas id="howCanvas6" width="300" height="150"></canvas></td>
-              </tr>
-            </table>
-             As examples of the three different types  type of probability, we will calculate $P(z \leq -1.25)$, $P(-1.25 \leq z \leq 0.86)$ and $P(z \geq 0.86)$.
-            So $P(z \leq -1.25)$ can be found by taking the area to the left of -1.25. The second type can be found by taking the area under the z distribution between the two z-values. So $P(-1.25 \leq z \leq 0.86)$ can be found by taking the area between -1.25 and 0.86. The third type will be the area under the z distribution to the right of the z-value.
-            Since area is calculated by taking the area under the graph, the first type of probability can be found by taking the area under the z distribution to the left of the z-value. So $P(z \leq -1.25)$ can be found by taking the area to the left of -1.25. The second type can be found by taking the area under the z distribution between the two z-values. So $P(-1.25 \leq z \leq 0.86)$ can be found by taking the area between -1.25 and 0.86. The third type will be the area under the z distribution to the right of the z-value.
-            <br><br>
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas4" width="300" height="150"></canvas><canvas id="howCanvas5" width="300" height="150"></canvas><canvas id="howCanvas6" width="300" height="150"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            <canvas id="howCanvas3" width="375" height="188"></canvas>
-
-            These probabilities all involve the use of the standard normal table (or z-table), a portion of which is shown below. The z-table gives the area under the z distribution to the left of different z-values. So the first type of probability, the probability that z will be less than or equal to a value, can be found simply by looking up the z-value in the table.
-
-            <p class = "p1">As an example, suppose x is uniformly distributed between 10 and 50. Then a=10, b=50 and our probability density function is $f(x)=\begin{cases} \frac{1}{50-10} = \frac{1}{40} \quad \text{for } 10 \leq x \leq 50 \\ 0 \quad \qquad \qquad \, \text{elsewhere} \end{cases}$. Then the probability that x will be between 10 and 30 is P(10≤x≤30) = (30-10) $\times$ 1/40 = 20/40 = 0.50. The expected value and variance will be E(x) = $\frac{10+50}{2}$ = $\frac{60}{2}$ = 30 and Var(x) = $\frac{(50-10)^2}{12}$ = $\frac{1600}{12}$ = 133.33. The standard deviation will be the square root of the variance. So σ = $\sqrt{133.33}$ = 11.55. </p>
             
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas1" width="375" height="188"></canvas></td>
-              </tr>
-            </table>
-            <br>
-
-            <p class = "p1">Since probability is calculated by taking the area under the graph, the first type of probability can be found by taking the area under the z distribution to the left of the z-value. This area is provided in the standard normal table (or z-table). The second type can be found by taking the area under the z distribution between the two z-values. Since the z-table only gives the area to the left, we have to subtract the areas to the left of each z-value to get the area in the middle. The third type will be the area under the z distribution to the right of the z-value. Since the total area under the curve is 1, we can subtract the area to the left from 1 to get the area to the right. </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas4" width="350" height="175"></canvas><canvas id="howCanvas5" width="350" height="175"></canvas><canvas id="howCanvas6" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">For example, the probability that z will be less than or equal to -1.25, P(z ≤ -1.25), can be found by looking up -1.25 in the z-table. So matching up -1.2 with .05 in the table below, we find that P(z ≤ -1.25) = .5. Given that the z-table provides the area to the left of z-values, the second and third type of probability are more complicated. The second type, the probability that z is between two values, can be found by subtracting the area to the left of the smaller z-value from the area to the left of the large z-value. So P(-1.25 ≤ z ≤ 0.86) = P(z ≤ 0.86) - P(z ≤ -1.25). The third type, the probability that z will be greater than a value, can be calculated by subtracting the area to the left of the z-value from 1. So P(z ≥ 0.86) = 1 - P(z ≤ 0.86).</p>
-
-            
-            
-            <table style="width:100%">
-              <tr>
-                <td>Converting to Standard Normal</td>
-              </tr>
-            <tr>
-                <td>$z=\dfrac{x-\mu}{\sigma}$</td>
-              </tr>
-            </table>
-            <br>
-
-            <p class = "p1"> As an example, consider a normal distribution with a mean of 40 and a standard deviation of 3. Suppose we want to find the probability that x will be less than or equal to 35. The first step is to convert 35 to standard normal, using the formula above: z = $\frac{35-40}{3}$ = -1.67. Then the probability that x will be less than or equal to 35 will be equal to the probability that z will be less than or equal to -1.67.  </p>
-            
-            <div id="519762228" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>
-
-                          <tr>
-                <td>4</td>
-                <td>.941</td>
-                <td>1.533</td>
-                <td>2.132</td>
-                <td>2.776</td>
-                <td>3.747</td>
-                <td>4.604</td>
-              </tr>
-            -->
 
             <table style="width:100%">
               <tr>
@@ -758,16 +636,19 @@
             
             <p class = "p1">Now that we know how to calculate probabilities for the z-distribution, we can calculate probabilities for any normal distribution. We can do this by converting from normal to standard normal, using the formula $z=\frac{x-\mu}{\sigma}$. So, given a problem to calculate probability for a normal distribution, we start by converting the values to z-values. Then, depending on the type of z distribution probability type it is, we rewrite the problem so it's in terms of the probability that z less than or equal to a value. Then we use the z-table to find those probabilities and compute our answer. </p>
 
-          <!--  <div id="723716610" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("723716610", "300x250", "723716610");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>-->
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Square1 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="6232876137"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            
             <br>
             
             <p class = "p1"> The normal probability distribution can be used to approximate probabilities for the binomial probability distribution. This may be necessary in situations where the binomial probabilities are difficult to compute. This calculation is done using the continuity correction factor. This is necessary because the normal distribution is a continuous distribution while the binomial distribution is a discrete distribution. Since the probability of a single value is zero in a continuous distribution, adding and subtracting .5 from the value and finding the probability in between solves this problem. </p>
@@ -838,17 +719,7 @@
             <br>
             
             <p class = "p1"> Continuous probability distributions are probability distributions for continuous random variables. A closely related topic in statistics is discrete probability distributions. Discrete distributions are probability distributions for discrete random variables. Probabilities for discrete probability distributions can be found using the <a href = "discrete-distribution.html">Discrete Distribution Calculator</a>. The most important continuous probability distributions is the normal probability distribution. It is used extensively in statistical inference, such as sampling distributions. Sampling distributions can be solved using the <a href = "sampling-distribution.html">Sampling Distribution Calculator</a>. </p>
-            
-          <!--  <div id="519762228" class="text-center">
-                <script type="text/javascript">
-                    try {
-                        window._mNHandle.queue.push(function (){
-                            window._mNDetails.loadTag("519762228", "300x250", "519762228");
-                        });
-                    }
-                    catch (error) {}
-                </script>
-            </div>-->
+       
             
             
       </div>
@@ -881,22 +752,20 @@
       </div>
       </div>
       
-   <!--   <div id="581773186" class="text-center">
-            <script type="text/javascript">
-                try {
-                    window._mNHandle.queue.push(function (){
-                        window._mNDetails.loadTag("581773186", "300x250", "581773186");
-                    });
-                }
-                catch (error) {}
-            </script>
-        </div>-->
-      
-      <!--<div class="container text-center">
-        <div id="expconf" class="explanation">
-            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
+      <div class="text-center mt-2 mb-2">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+             crossorigin="anonymous"></script>
+        <!-- Square2 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3595688914204816"
+             data-ad-slot="8840542382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script> 
         </div>
-      </div>-->
       
               
       
