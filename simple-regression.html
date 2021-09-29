@@ -12,6 +12,7 @@
       <link rel="stylesheet" type="text/css" href="/css/style.css">
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/simpstyle.css">
 
     <title>Simple Linear Regression Calculator with Steps - Stats Solver</title>
       
@@ -133,7 +134,7 @@
                 <option value="regression">Regression</option>
             </select>
         </div>
-       <!-- <div class="col-4 col-md-2 mb-3" id="standerr">
+        <div class="col-4 col-md-2 mb-3" id="standerr">
             <select class="form-control" id="standarderrorval">
                 <option value="estimate">Estimate</option>
                 <option value="slope">Slope</option>
@@ -144,7 +145,7 @@
                 <option value="ttest">t-Test</option>
                 <option value="ftest">F-Test</option>
             </select>
-        </div>-->
+        </div>
         <div class="col-4 col-md-2 mb-3" id="xpval">      
         $x_p=$ <input type="text" style="width:50px;" id="xpvalue" class="hypinput2">
         </div>  	
@@ -342,12 +343,16 @@
       </div>
       
       <div class="container">
-        <div id="output2" class="output">
+        <div id="output2" class="output text-center">
         </div>
       </div>
       
       <div class="container container2 text-center">
       <div id="charts" style="width: 500px; height: 300px;"></div>
+      </div>
+          
+      <div class="container text-center">
+      <canvas id="myCanvas2" width="375" height="188" ></canvas>
       </div>
           
       <div class="container text-center">

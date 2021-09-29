@@ -948,6 +948,10 @@ function tinv(p, dof) {
 	
 }
 
+
+
+
+
 function solve() {
     $("#explanation").show(); $("#samples").hide();
     $("#hypoutputs").show(); $("#how").hide();
@@ -1620,7 +1624,7 @@ function hyptest1(){
         var stndsymb = "s"
         var cvalsymb1 = "-t_{\\alpha / 2}";
         var cvalsymb2 = "t_{\\alpha / 2}";
-        var pvalhalf = normalcdf(testtwo);
+        var pvalhalf = compute(testtwo,size-1);
         if (pvalhalf > .2) {
             var pvalh = ".20 \\text{ to } 1"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
@@ -2058,11 +2062,11 @@ function hyptest1(){
         }
         
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
+        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+" $$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
+        document.getElementById("output2").innerHTML = tablep+" $$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ ( \\text{Note: Exact value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ "  + interpret
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ "  + interpret
     }
     
     document.getElementById("output21").innerHTML = " $ \\text{Critical Value Approach:} $"
