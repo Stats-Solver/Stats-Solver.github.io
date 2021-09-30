@@ -1954,7 +1954,7 @@ function ftest(){
     
     var f = [];
         var i;
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 22; i++) {
           var j = (i-30)/10
           f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
         }
@@ -1967,8 +1967,8 @@ function ftest(){
         ctx.beginPath();
         ctx.moveTo(190, 130);
         ctx.lineTo(190, 106);
-        ctx.quadraticCurveTo(210, 120, 259, 126);
-        ctx.lineTo(259, 130);
+        ctx.quadraticCurveTo(210, 120, 270, 127);
+        ctx.lineTo(270, 130);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
@@ -1988,15 +1988,14 @@ function ftest(){
         ctx.stroke();
 
         ctx.fillText("F",285,132);
-        ctx.fillText("F",185,145);
-        ctx.fillText("α",190,146);
+        ctx.fillText(parseFloat(ansfstat.toFixed(2)),185,145);
 
-        ctx.fillText(".05",210,110);
+        ctx.fillText("p-value",210,110);
 
 
         var points = []
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 22; i++) {
           points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
             }
 
@@ -2020,7 +2019,7 @@ function ftest(){
     
     var f = [];
         var i;
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 22; i++) {
           var j = (i-30)/10
           f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
         }
@@ -2033,8 +2032,8 @@ function ftest(){
         ctx.beginPath();
         ctx.moveTo(190, 130);
         ctx.lineTo(190, 106);
-        ctx.quadraticCurveTo(210, 120, 259, 126);
-        ctx.lineTo(259, 130);
+        ctx.quadraticCurveTo(210, 120, 270, 127);
+        ctx.lineTo(270, 130);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
@@ -2062,7 +2061,7 @@ function ftest(){
 
         var points = []
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 22; i++) {
           points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
             }
 
@@ -2097,19 +2096,19 @@ function ftest(){
     //<td>$"+ row3[4] +"$</td><td>$"+ row3[5] +"$</td>
     //<td>$"+ row4[4] +"$</td><td>$"+ row4[5] +"$</td>
     
-    var table0 = "<td colspan='5'>$ \\text{F-Distribution Table} $</td>"
+    var table0 = "<td colspan='6'>$ \\text{F-Distribution Table} $</td>"
     
-    var table1 = "<td>$ \\text{Den} $</td><td>$\\text{Upper}$</td></td><td style='border-bottom: thin solid;' colspan='3'>$\\text{Numerator } df$</td>"
+    var table1 = "<td>$ \\text{Den} $</td><td>$\\text{Upper}$</td></td><td style='border-bottom: thin solid;' colspan='4'>$\\text{Numerator } df$</td>"
     
-    var table2 = "<td>$df$</td><td>$\\text{Area}$</td><td bgcolor='lightgray'>$"+ numdf +"$</td><td>$2$</td><td>$3$</td>"
+    var table2 = "<td>$df$</td><td>$\\text{Area}$</td><td bgcolor='lightgray'>$"+ numdf +"$</td><td>$2$</td><td>$3$</td><td>$4$</td>"
     
-    var table3 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
+    var table3 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td>"
     
-    var table4 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td>"
+    var table4 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td><td bgcolor='lightgray'>$"+ row2[4] +"$</td>"
         
-    var table5 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
+    var table5 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td>"
     
-    var table6 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
+    var table6 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td>"
     
     var tablec = "<table><tr>"+table0+"</tr><tr style='border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
 
@@ -2120,65 +2119,65 @@ function ftest(){
         var pvalue = ".10 \\text{ to } 1"
         var psign = ">"
         var fsign = "<"
-        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td><td bgcolor='lightgray'>$"+ row1[4] +"$</td>"
     
-        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td>"
+        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td><td>$"+ row2[4] +"$</td>"
         
-        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
+        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td>"
     
-        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
+        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td>"
     } else if (ansfstat > row1[numdf] && ansfstat < row2[numdf]) {
         var concl = "$$ \\text{Conclusion: Do Not Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{No Significant Relationship}} $$"
         var pvalue = ".05 \\text{ to } .10"
         var psign = ">"
         var fsign = "<"
-        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td><td bgcolor='lightgray'>$"+ row1[4] +"$</td>"
     
-        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td>"
+        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td><td bgcolor='lightgray'>$"+ row2[4] +"$</td>"
         
-        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
+        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td>"
     
-        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
+        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td>"
     } else if (ansfstat > row2[numdf] && ansfstat < row3[numdf]) {
         var concl = "$$ \\text{Conclusion: Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{Significant Relationship}} $$"
         var pvalue = ".025 \\text{ to } .05"
         var psign = "\\leq"
         var fsign = "\\geq"
-        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td>"
     
-        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td>"
+        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td><td bgcolor='lightgray'>$"+ row2[4] +"$</td>"
         
-        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td>"
+        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td><td bgcolor='lightgray'>$"+ row3[4] +"$</td>"
     
-        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
+        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td>"
     } else if (ansfstat > row3[numdf] && ansfstat < row4[numdf]) {
         var concl = "$$ \\text{Conclusion: Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{Significant Relationship}} $$"
         var pvalue = ".01 \\text{ to } .025"
         var psign = "\\leq"
         var fsign = "\\geq"
-        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td>"
     
-        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td>"
+        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td><td>$"+ row2[4] +"$</td>"
         
-        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td>"
+        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td><td bgcolor='lightgray'>$"+ row3[4] +"$</td>"
     
-        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td>"
+        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td><td bgcolor='lightgray'>$"+ row4[4] +"$</td>"
     }  else if (ansfstat > row4[numdf]) {
         var concl = "$$ \\text{Conclusion: Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{Significant Relationship}} $$"
         var pvalue = "0 \\text{ to } .01"
         var psign = "\\leq"
         var fsign = "\\geq"
-        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td>"
     
-        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td>"
+        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td><td>$"+ row2[4] +"$</td>"
         
-        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
+        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td>"
     
-        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-top: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td>"
+        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-top: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td><td bgcolor='lightgray'>$"+ row4[4] +"$</td>"
     }
     
     var tablep = "<table><tr>"+table0+"</tr><tr style='border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table31+"</tr><tr>"+table41+"</tr><tr>"+table51+"</tr><tr>"+table61+"</tr></table>"
@@ -2190,21 +2189,21 @@ function ftest(){
     
     var pexact = 1 - computef(ansfstat,1,size-2)
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{ANOVA Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$\\text{Source}$</td><td>$\\text{SS}$</td><td>$df$</td><td>$\\text{MS}$</td><td>$F$</td><td>$p\\text{-value}$</td></tr><tr><td>$\\text{Regr.}$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$1$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$"+parseFloat(ansfstat.toFixed(2))+"$</td><td>$"+parseFloat(pexact.toFixed(2))+"$</td></tr><tr><td>$\\text{Error}$</td><td>$"+parseFloat(anssse.toFixed(2))+"$</td><td>$"+(size-2)+"$</td><td>$"+parseFloat(ansmse.toFixed(2))+"$</td></tr><tr><td>$\\text{Total}$</td><td>$"+parseFloat(anssst.toFixed(2))+"$</td><td>$"+(size-1)+"$</td></tr></table>"
+    var tablea = "<table><tr><td colspan='6'>$\\text{ANOVA Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$\\text{Source}$</td><td>$\\text{SS}$</td><td>$df$</td><td>$\\text{MS}$</td><td>$F$</td><td>$p\\text{-value}$</td></tr><tr><td>$\\text{Regression}$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$1$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$"+parseFloat(ansfstat.toFixed(2))+"$</td><td>$"+parseFloat(pexact.toFixed(4))+"$</td></tr><tr><td>$\\text{Error}$</td><td>$"+parseFloat(anssse.toFixed(2))+"$</td><td>$"+(size-2)+"$</td><td>$"+parseFloat(ansmse.toFixed(2))+"$</td></tr><tr><td>$\\text{Total}$</td><td>$"+parseFloat(anssst.toFixed(2))+"$</td><td>$"+(size-1)+"$</td></tr></table>"
     
 
     
     document.getElementById("output").innerHTML = "$$ \\text{Test Statistic:} $$ $$ F = \\frac{\\text{MSR}}{\\text{MSE}} = \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} = {\\color{RoyalBlue}"+ ansfstat.toFixed(2) + "} $$ $$ \\text{Degrees of Freedom:} $$ $$ \\begin{align} \\text{Numerator } df &= \\text{number of } x \\text{'s} = {\\color{RoyalBlue} 1 } \\\\ \\text{Denominator } df &= n - 2 = "+size+" - 2 = {\\color{RoyalBlue}"+(size-2)+"} \\end{align} $$ $ \\text{p-Value Approach:} $ "
     
-    document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} =  P(F \\geq "+ansfstat.toFixed(2)+" ) = {\\color{RoyalBlue} "+pvalue+"} $$ $$ (\\text{Note: Exact } p \\text{-value is } "+parseFloat(pexact.toFixed(2))+") $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value} = "+pvalue+psign+" \\alpha = .05 $$" + concl + interpret + "$ \\text{Critical Value Approach:} $ "
+    document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} =  P(F \\geq "+ansfstat.toFixed(2)+" ) = {\\color{RoyalBlue} "+pvalue+"} $$ $$ (\\text{Note: Exact } p \\text{-value is } "+parseFloat(pexact.toFixed(4))+") $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value} = "+pvalue+psign+" \\alpha = .05 $$" + concl + interpret + "$ \\text{Critical Value Approach:} $ "
     
-    document.getElementById("output3").innerHTML = tablec +"$$ \\text{Critical Value: } F_\\alpha = "+row2[numdf]+" $$ $$ \\text{Rejection Rule: } \\text{Reject } H_0 \\text{ if } F \\geq F_\\alpha $$ $$ F = "+ ansfstat.toFixed(2) + fsign+" F_\\alpha = "+row2[numdf]+"  $$" + concl + interpret + tablea + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>  "
+    document.getElementById("output3").innerHTML = tablec +"$$ \\text{Critical Value: } F_\\alpha = "+row2[numdf]+" $$ $$ \\text{Rejection Rule: } \\text{Reject } H_0 \\text{ if } F \\geq F_\\alpha $$ $$ F = "+ ansfstat.toFixed(2) + fsign+" F_\\alpha = "+row2[numdf]+"  $$" + concl + interpret + tablea + "<br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>  "
     
     MathJax.typeset();
 }
 
 function confinterval() {
-    $("#explanation").show();
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     document.getElementById("descriptiontext").innerHTML = "The confidence interval provides an interval estimate for the expected value of y."
     document.getElementById("formulatext").innerHTML = "$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $ "
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
@@ -2239,8 +2238,9 @@ function confinterval() {
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
     var ans = ansint + ansslope * xvalue
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
-    var size = n_x; var sizem1 = size - 2
-    var talphahalf = tinv(alphahalf,sizem1);
+    var size = n_x; var sizem1 = size - 1;  var sizem2 = size - 2; var sizem3 = size - 3;
+    var talphahalf = tinv(alphahalf,sizem2);
+    var exp = 2.71828;
     
     if (ansslope >= 0) {
         var signslope = "+"
@@ -2275,22 +2275,120 @@ function confinterval() {
     var ansans = anssee * Math.sqrt(1/n_x + ((xvalue-mean_x)^2)/sum_xminusx_bar2)
     var marginerror = talphahalf * ansans
     var anslow = ans - marginerror; var anshigh = (parseFloat(ans)+marginerror);
+
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))));
+    }
     
-    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
     
-    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 100);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(279, 130);
+    ctx.lineTo(279, 118);
+    ctx.quadraticCurveTo(260, 120, 230, 100);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
     
-    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
     
     
-    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+
     
-    document.getElementById("output").innerHTML = "$$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = " + parseFloat(ans.toFixed(2)) + " $$ $$ \\begin{align} s_{\\hat{y}_p} &= s \\sqrt{ \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{ \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}}  = " + parseFloat(ansans.toFixed(2)) + " \\end{align} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = n - 2 = "+size+ " - 2 = "+sizem1+"   $$" + tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$"
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
+
+
+    ctx.fillText("t",285,132);
+    ctx.fillText("t",228,145);
+    ctx.fillText("α/2",232,147);
+    //ctx.fillText("df = "+sizem1,220,40); 
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+
+    
+    table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table4 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (conlev == "90") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem3 +"$</td><td>$"+tinv(.20,sizem3).toFixed(3)+"$</td><td>$"+tinv(.10,sizem3).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem3).toFixed(3)+"$</td><td>$"+tinv(.025,sizem3).toFixed(3)+"$</td><td>$"+tinv(.01,sizem3).toFixed(3)+"$</td><td>$"+tinv(.005,sizem3).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    } else if (conlev == "95") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem3 +"$</td><td>$"+tinv(.20,sizem3).toFixed(3)+"$</td><td>$"+tinv(.10,sizem3).toFixed(3)+"$</td><td>$"+tinv(.05,sizem3).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem3).toFixed(3)+"$</td><td>$"+tinv(.01,sizem3).toFixed(3)+"$</td><td>$"+tinv(.005,sizem3).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    } else if (conlev == "99") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem3 +"$</td><td>$"+tinv(.20,sizem3).toFixed(3)+"$</td><td>$"+tinv(.10,sizem3).toFixed(3)+"$</td><td>$"+tinv(.05,sizem3).toFixed(3)+"$</td><td>$"+tinv(.025,sizem3).toFixed(3)+"$</td><td>$"+tinv(.01,sizem3).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem3).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    }
+
+    var tablet = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
+    
+    document.getElementById("output").innerHTML = "$$ \\text{Point Estimate:} $$ $$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} s_{\\hat{y}_p} &= s \\sqrt{ \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{ \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}}  = {\\color{RoyalBlue}" + parseFloat(ansans.toFixed(2)) + "} \\end{align} $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 2 = "+size+ " - 2 = {\\color{RoyalBlue}"+sizem2+"} $$"
+    
+    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq E(y_p) \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
+        
     MathJax.typeset();
 }
 
 function predinterval() {
-    $("#explanation").show();
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     document.getElementById("descriptiontext").innerHTML = "The estimated regression equation is used to predict the dependent variable (y) for a given value of the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $ "
     document.getElementById("explanationtext").innerHTML = "The estimated regression equation is found by plugging in the values of the slope and intercept into the formula."
@@ -2325,8 +2423,9 @@ function predinterval() {
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
     var ans = ansint + ansslope * xvalue
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
-    var size = n_x; var sizem1 = size - 2
-    var talphahalf = tinv(alphahalf,sizem1);
+    var size = n_x; var sizem1 = size - 1;  var sizem2 = size - 2; var sizem3 = size - 3;
+    var talphahalf = tinv(alphahalf,sizem2);
+    var exp = 2.71828;
     
     if (ansslope >= 0) {
         var signslope = "+"
@@ -2362,16 +2461,113 @@ function predinterval() {
     var marginerror = talphahalf * ansans
     var anslow = ans - marginerror; var anshigh = (parseFloat(ans)+marginerror);
     
-    table4 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))));
+    }
     
-    table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
     
-    table6 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 100);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(279, 130);
+    ctx.lineTo(279, 118);
+    ctx.quadraticCurveTo(260, 120, 230, 100);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
     
     
-    var tablet = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+
     
-    document.getElementById("output").innerHTML = "$$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = " + parseFloat(ans.toFixed(2)) + " $$ $$ \\begin{align} s_{\\text{ind}} &= s \\sqrt{1 + \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{1 + \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}} = " + parseFloat(ansans.toFixed(2)) + " \\end{align} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ df = "+size+ " - 2 = "+sizem1+"   $$" + tablet + "$$ t_{\\alpha/2} = "+talphahalf.toFixed(3)+" $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$"
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
+
+
+    ctx.fillText("t",285,132);
+    ctx.fillText("t",228,145);
+    ctx.fillText("α/2",232,147);
+    //ctx.fillText("df = "+sizem1,220,40); 
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table4 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (conlev == "90") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem3 +"$</td><td>$"+tinv(.20,sizem3).toFixed(3)+"$</td><td>$"+tinv(.10,sizem3).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem3).toFixed(3)+"$</td><td>$"+tinv(.025,sizem3).toFixed(3)+"$</td><td>$"+tinv(.01,sizem3).toFixed(3)+"$</td><td>$"+tinv(.005,sizem3).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    } else if (conlev == "95") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem3 +"$</td><td>$"+tinv(.20,sizem3).toFixed(3)+"$</td><td>$"+tinv(.10,sizem3).toFixed(3)+"$</td><td>$"+tinv(.05,sizem3).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem3).toFixed(3)+"$</td><td>$"+tinv(.01,sizem3).toFixed(3)+"$</td><td>$"+tinv(.005,sizem3).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    } else if (conlev == "99") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem3 +"$</td><td>$"+tinv(.20,sizem3).toFixed(3)+"$</td><td>$"+tinv(.10,sizem3).toFixed(3)+"$</td><td>$"+tinv(.05,sizem3).toFixed(3)+"$</td><td>$"+tinv(.025,sizem3).toFixed(3)+"$</td><td>$"+tinv(.01,sizem3).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem3).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ sizem1 +"$</td><td>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+    }
+    
+    var tablet = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
+    
+    document.getElementById("output").innerHTML = "$$ \\text{Point Estimate:} $$ $$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} s_{\\text{ind}} &= s \\sqrt{1 + \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{1 + \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}} = {\\color{RoyalBlue}" + parseFloat(ansans.toFixed(2)) + "} \\end{align} $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 2 = "+size+ " - 2 = {\\color{RoyalBlue}"+sizem2+"}   $$"
+    
+    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ " + conlev + "\\% \\text{ Prediction Interval:} $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\hat{y}_p \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    
     MathJax.typeset();
 }
 
