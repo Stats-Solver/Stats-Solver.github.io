@@ -1609,9 +1609,6 @@ function ttest(){
 
         ctx.stroke();
     
-
-    
-    
       var f = [];
         var i;
         for (i = 0; i < 60; i++) {
@@ -1697,10 +1694,7 @@ function ttest(){
 
 
         ctx.stroke();
-    
-
-    
-    
+   
         table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
     
         table4 = "<td></td><td colspan='6' style='border-bottom: thin solid'>$\\text{Area in Upper Tail}$</td>"
@@ -1795,9 +1789,7 @@ function ttest(){
         }   
         //var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     
-    
-    
-    
+
     table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
 
     table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
@@ -1924,10 +1916,6 @@ function ftest(){
     var exp = 2.71828;
     var numdf = 1; var dendf = size - 2
     
-    
-    
-    
-    
     var f = [];
         var i;
         for (i = 0; i < 21; i++) {
@@ -1994,9 +1982,6 @@ function ftest(){
 
         ctx.stroke();
     
-    
-    
-    
     var f = [];
         var i;
         for (i = 0; i < 21; i++) {
@@ -2062,9 +2047,7 @@ function ftest(){
 
 
         ctx.stroke();
-    
-    
-    
+
     row = fdist05[dendf]
     
     row1 = fdist10[dendf]
@@ -2159,11 +2142,22 @@ function ftest(){
     
     
     
+    // <tr><td>$\\text{Source of}$</td><td>$\\text{Sum of}$</td><td>$\\text{Degrees of}$</td><td>$\\text{Mean}$</td><td></td><td></td></tr>
+    
+    
+    var tablea = "<table><tr><td colspan='6'>$\\text{ANOVA Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$\\text{Source}$</td><td>$\\text{SS}$</td><td>$df$</td><td>$\\text{MS}$</td><td>$F$</td><td>$p\\text{-value}$</td></tr><tr><td>$\\text{Reg}$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$1$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$"+parseFloat(ansfstat.toFixed(2))+"$</td><td>$"+pvalue+"$</td></tr><tr><td>$\\text{Err}$</td><td>$"+parseFloat(anssse.toFixed(2))+"$</td><td>$"+(size-2)+"$</td><td>$"+parseFloat(ansmse.toFixed(2))+"$</td></tr><tr><td>$\\text{Tot}$</td><td>$"+parseFloat(anssst.toFixed(2))+"$</td><td>$"+(size-1)+"$</td></tr></table>"
+    
+    
+    
+    
+    
+    
+    
     document.getElementById("output").innerHTML = "$$ \\text{Test Statistic:} $$ $$ F = \\frac{\\text{MSR}}{\\text{MSE}} = \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} = {\\color{RoyalBlue}"+ ansfstat.toFixed(2) + "} $$ $$ \\text{Degrees of Freedom:} $$ $$ \\begin{align} \\text{Numerator } df &= \\text{number of } x \\text{'s} = {\\color{RoyalBlue} 1 } \\\\ \\text{Denominator } df &= n - 2 = "+size+" - 2 = {\\color{RoyalBlue}"+(size-2)+"} \\end{align} $$ $ \\text{p-Value Approach:} $ "
     
     document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} =  P(F \\geq "+ansfstat.toFixed(2)+" ) = {\\color{RoyalBlue} "+pvalue+"} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value} = "+pvalue+psign+" \\alpha = .05 $$" + concl + interpret + "$ \\text{Critical Value Approach:} $ "
     
-    document.getElementById("output3").innerHTML = tablec +"$$ \\text{Critical Value: } F_\\alpha = "+row2[numdf]+" $$ $$ \\text{Rejection Rule: } \\text{Reject } H_0 \\text{ if } F \\geq F_\\alpha $$ $$ F = "+ ansfstat.toFixed(2) + fsign+" F_\\alpha = "+row2[numdf]+"  $$" + concl + interpret + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>  "
+    document.getElementById("output3").innerHTML = tablec +"$$ \\text{Critical Value: } F_\\alpha = "+row2[numdf]+" $$ $$ \\text{Rejection Rule: } \\text{Reject } H_0 \\text{ if } F \\geq F_\\alpha $$ $$ F = "+ ansfstat.toFixed(2) + fsign+" F_\\alpha = "+row2[numdf]+"  $$" + concl + interpret + tablea + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>  "
     
     MathJax.typeset();
 }
