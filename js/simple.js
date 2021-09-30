@@ -269,6 +269,42 @@ function compute(X,df) {
     return tcdf;
 }
 
+function Betacdf(Z,A,B) {
+    var S;
+    var BT;
+    var Bcdf;
+	with (Math) {
+		S=A+B;
+		BT=exp(LogGamma(S)-LogGamma(B)-LogGamma(A)+A*log(Z)+B*log(1-Z));
+		if (Z<(A+1)/(S+2)) {
+			Bcdf=BT*Betinc(Z,A,B)
+		} else {
+			Bcdf=1-BT*Betinc(1-Z,B,A)
+		}
+	}
+	return Bcdf
+}
+
+function computef(X,f1,f2) {
+	if (f1<=0) {
+		alert("Numerator degrees of freedom must be positive")
+	} else if (f2<=0) {
+		alert("Denominator degrees of freedom must be positive") 
+	} else if (X<=0) {
+		Fcdf=0
+	} else {
+		Z=X/(X+f2/f1);
+		Fcdf=Betacdf(Z,f1/2,f2/2);
+	}
+	Fcdf=Math.round(Fcdf*100000)/100000;
+    return Fcdf;
+}
+
+
+
+
+
+
 function ibetainv(p, a, b) {
 		var EPS = 1e-8,
 			a1 = a - 1,
@@ -2055,21 +2091,28 @@ function ftest(){
     row3 = fdist025[dendf]
     row4 = fdist01[dendf]
     
-    var table0 = "<td colspan='7'>$ \\text{F-Distribution Table} $</td>"
+    //<td>$4$</td><td>$5$</td>
+    //<td>$"+ row1[4] +"$</td><td>$"+ row1[5] +"$</td>
+    //<td bgcolor='lightgray'>$"+ row2[4] +"$</td><td bgcolor='lightgray'>$"+ row2[5] +"$</td>
+    //<td>$"+ row3[4] +"$</td><td>$"+ row3[5] +"$</td>
+    //<td>$"+ row4[4] +"$</td><td>$"+ row4[5] +"$</td>
     
-    var table1 = "<td>$ \\text{Den} $</td><td>$\\text{Upper}$</td></td><td style='border-bottom: thin solid;' colspan='5'>$\\text{Numerator } df$</td>"
+    var table0 = "<td colspan='5'>$ \\text{F-Distribution Table} $</td>"
     
-    var table2 = "<td>$df$</td><td>$\\text{Area}$</td><td bgcolor='lightgray'>$"+ numdf +"$</td><td>$2$</td><td>$3$</td><td>$4$</td><td>$5$</td>"
+    var table1 = "<td>$ \\text{Den} $</td><td>$\\text{Upper}$</td></td><td style='border-bottom: thin solid;' colspan='3'>$\\text{Numerator } df$</td>"
     
-    var table3 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td><td>$"+ row1[5] +"$</td>"
+    var table2 = "<td>$df$</td><td>$\\text{Area}$</td><td bgcolor='lightgray'>$"+ numdf +"$</td><td>$2$</td><td>$3$</td>"
     
-    var table4 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td><td bgcolor='lightgray'>$"+ row2[4] +"$</td><td bgcolor='lightgray'>$"+ row2[5] +"$</td>"
+    var table3 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
+    
+    var table4 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td>"
         
-    var table5 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td><td>$"+ row3[5] +"$</td>"
+    var table5 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
     
-    var table6 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td><td>$"+ row4[5] +"$</td>"
+    var table6 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
     
     var tablec = "<table><tr>"+table0+"</tr><tr style='border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+
     
     if (ansfstat < row1[numdf]) {
         var concl = "$$ \\text{Conclusion: Do Not Reject } H_0 $$"
@@ -2077,65 +2120,65 @@ function ftest(){
         var pvalue = ".10 \\text{ to } 1"
         var psign = ">"
         var fsign = "<"
-        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td><td bgcolor='lightgray'>$"+ row1[4] +"$</td><td bgcolor='lightgray'>$"+ row1[5] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td>"
     
-        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td><td>$"+ row2[4] +"$</td><td>$"+ row2[5] +"$</td>"
+        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td>"
         
-        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td><td>$"+ row3[5] +"$</td>"
+        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
     
-        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td><td>$"+ row4[5] +"$</td>"
+        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
     } else if (ansfstat > row1[numdf] && ansfstat < row2[numdf]) {
         var concl = "$$ \\text{Conclusion: Do Not Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{No Significant Relationship}} $$"
         var pvalue = ".05 \\text{ to } .10"
         var psign = ">"
         var fsign = "<"
-        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td><td bgcolor='lightgray'>$"+ row1[4] +"$</td><td bgcolor='lightgray'>$"+ row1[5] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row1[numdf] +"$</td><td bgcolor='lightgray'>$"+ row1[2] +"$</td><td bgcolor='lightgray'>$"+ row1[3] +"$</td>"
     
-        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td><td bgcolor='lightgray'>$"+ row2[4] +"$</td><td bgcolor='lightgray'>$"+ row2[5] +"$</td>"
+        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td>"
         
-        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td><td>$"+ row3[5] +"$</td>"
+        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
     
-        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td><td>$"+ row4[5] +"$</td>"
+        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
     } else if (ansfstat > row2[numdf] && ansfstat < row3[numdf]) {
         var concl = "$$ \\text{Conclusion: Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{Significant Relationship}} $$"
         var pvalue = ".025 \\text{ to } .05"
         var psign = "\\leq"
         var fsign = "\\geq"
-        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td><td>$"+ row1[5] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
     
-        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td><td bgcolor='lightgray'>$"+ row2[4] +"$</td><td bgcolor='lightgray'>$"+ row2[5] +"$</td>"
+        var table41 = "<td></td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row2[numdf] +"$</td><td bgcolor='lightgray'>$"+ row2[2] +"$</td><td bgcolor='lightgray'>$"+ row2[3] +"$</td>"
         
-        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td><td bgcolor='lightgray'>$"+ row3[4] +"$</td><td bgcolor='lightgray'>$"+ row3[5] +"$</td>"
+        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td>"
     
-        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td><td>$"+ row4[4] +"$</td><td>$"+ row4[5] +"$</td>"
+        var table61 = "<td></td><td>$.01$</td><td bgcolor='lightgray'>$"+ row4[numdf] +"$</td><td>$"+ row4[2] +"$</td><td>$"+ row4[3] +"$</td>"
     } else if (ansfstat > row3[numdf] && ansfstat < row4[numdf]) {
         var concl = "$$ \\text{Conclusion: Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{Significant Relationship}} $$"
         var pvalue = ".01 \\text{ to } .025"
         var psign = "\\leq"
         var fsign = "\\geq"
-        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td><td>$"+ row1[5] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
     
-        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td><td>$"+ row2[4] +"$</td><td>$"+ row2[5] +"$</td>"
+        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td>"
         
-        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td><td bgcolor='lightgray'>$"+ row3[4] +"$</td><td bgcolor='lightgray'>$"+ row3[5] +"$</td>"
+        var table51 = "<td></td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray' style='border-top: thin solid; border-left: thin solid; border-right: thin solid'>$"+ row3[numdf] +"$</td><td bgcolor='lightgray'>$"+ row3[2] +"$</td><td bgcolor='lightgray'>$"+ row3[3] +"$</td>"
     
-        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td><td bgcolor='lightgray'>$"+ row4[4] +"$</td><td bgcolor='lightgray'>$"+ row4[5] +"$</td>"
+        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td>"
     }  else if (ansfstat > row4[numdf]) {
         var concl = "$$ \\text{Conclusion: Reject } H_0 $$"
         var interpret = "$$ \\boxed{\\text{Significant Relationship}} $$"
         var pvalue = "0 \\text{ to } .01"
         var psign = "\\leq"
         var fsign = "\\geq"
-        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td><td>$"+ row1[4] +"$</td><td>$"+ row1[5] +"$</td>"
+        var table31 = "<td>$"+ dendf +"$</td><td>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdf] +"$</td><td>$"+ row1[2] +"$</td><td>$"+ row1[3] +"$</td>"
     
-        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td><td>$"+ row2[4] +"$</td><td>$"+ row2[5] +"$</td>"
+        var table41 = "<td></td><td>$.05$</td><td bgcolor='lightgray'>$"+ row2[numdf] +"$</td><td>$"+ row2[2] +"$</td><td>$"+ row2[3] +"$</td>"
         
-        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td><td>$"+ row3[4] +"$</td><td>$"+ row3[5] +"$</td>"
+        var table51 = "<td></td><td>$.025$</td><td bgcolor='lightgray'>$"+ row3[numdf] +"$</td><td>$"+ row3[2] +"$</td><td>$"+ row3[3] +"$</td>"
     
-        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-top: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td><td bgcolor='lightgray'>$"+ row4[4] +"$</td><td bgcolor='lightgray'>$"+ row4[5] +"$</td>"
+        var table61 = "<td></td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray' style='border-left: thin solid; border-top: thin solid; border-right: thin solid'>$"+ row4[numdf] +"$</td><td bgcolor='lightgray'>$"+ row4[2] +"$</td><td bgcolor='lightgray'>$"+ row4[3] +"$</td>"
     }
     
     var tablep = "<table><tr>"+table0+"</tr><tr style='border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table31+"</tr><tr>"+table41+"</tr><tr>"+table51+"</tr><tr>"+table61+"</tr></table>"
@@ -2145,17 +2188,15 @@ function ftest(){
     // <tr><td>$\\text{Source of}$</td><td>$\\text{Sum of}$</td><td>$\\text{Degrees of}$</td><td>$\\text{Mean}$</td><td></td><td></td></tr>
     
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{ANOVA Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$\\text{Source}$</td><td>$\\text{SS}$</td><td>$df$</td><td>$\\text{MS}$</td><td>$F$</td><td>$p\\text{-value}$</td></tr><tr><td>$\\text{Reg}$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$1$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$"+parseFloat(ansfstat.toFixed(2))+"$</td><td>$"+pvalue+"$</td></tr><tr><td>$\\text{Err}$</td><td>$"+parseFloat(anssse.toFixed(2))+"$</td><td>$"+(size-2)+"$</td><td>$"+parseFloat(ansmse.toFixed(2))+"$</td></tr><tr><td>$\\text{Tot}$</td><td>$"+parseFloat(anssst.toFixed(2))+"$</td><td>$"+(size-1)+"$</td></tr></table>"
+    var pexact = 1 - computef(ansfstat,1,size-2)
     
+    var tablea = "<table><tr><td colspan='6'>$\\text{ANOVA Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$\\text{Source}$</td><td>$\\text{SS}$</td><td>$df$</td><td>$\\text{MS}$</td><td>$F$</td><td>$p\\text{-value}$</td></tr><tr><td>$\\text{Regr.}$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$1$</td><td>$"+parseFloat(ansssr.toFixed(2))+"$</td><td>$"+parseFloat(ansfstat.toFixed(2))+"$</td><td>$"+parseFloat(pexact.toFixed(2))+"$</td></tr><tr><td>$\\text{Error}$</td><td>$"+parseFloat(anssse.toFixed(2))+"$</td><td>$"+(size-2)+"$</td><td>$"+parseFloat(ansmse.toFixed(2))+"$</td></tr><tr><td>$\\text{Total}$</td><td>$"+parseFloat(anssst.toFixed(2))+"$</td><td>$"+(size-1)+"$</td></tr></table>"
     
-    
-    
-    
-    
+
     
     document.getElementById("output").innerHTML = "$$ \\text{Test Statistic:} $$ $$ F = \\frac{\\text{MSR}}{\\text{MSE}} = \\frac{"+ansmsr.toFixed(2)+"}{"+ansmse.toFixed(2)+"} = {\\color{RoyalBlue}"+ ansfstat.toFixed(2) + "} $$ $$ \\text{Degrees of Freedom:} $$ $$ \\begin{align} \\text{Numerator } df &= \\text{number of } x \\text{'s} = {\\color{RoyalBlue} 1 } \\\\ \\text{Denominator } df &= n - 2 = "+size+" - 2 = {\\color{RoyalBlue}"+(size-2)+"} \\end{align} $$ $ \\text{p-Value Approach:} $ "
     
-    document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} =  P(F \\geq "+ansfstat.toFixed(2)+" ) = {\\color{RoyalBlue} "+pvalue+"} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value} = "+pvalue+psign+" \\alpha = .05 $$" + concl + interpret + "$ \\text{Critical Value Approach:} $ "
+    document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} =  P(F \\geq "+ansfstat.toFixed(2)+" ) = {\\color{RoyalBlue} "+pvalue+"} $$ $$ (\\text{Note: Exact } p \\text{-value is } "+parseFloat(pexact.toFixed(2))+") $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value} = "+pvalue+psign+" \\alpha = .05 $$" + concl + interpret + "$ \\text{Critical Value Approach:} $ "
     
     document.getElementById("output3").innerHTML = tablec +"$$ \\text{Critical Value: } F_\\alpha = "+row2[numdf]+" $$ $$ \\text{Rejection Rule: } \\text{Reject } H_0 \\text{ if } F \\geq F_\\alpha $$ $$ F = "+ ansfstat.toFixed(2) + fsign+" F_\\alpha = "+row2[numdf]+"  $$" + concl + interpret + tablea + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>  "
     
