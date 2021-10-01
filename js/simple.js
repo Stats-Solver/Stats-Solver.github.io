@@ -694,16 +694,7 @@ function slope(){
     
     MathJax.typeset();
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
     
     //var str = document.getElementById("values1").value;
     //var str2 = document.getElementById("values2").value;
@@ -787,8 +778,6 @@ function slope(){
         chart.draw(data, options);
     
 
-    
-    
       }
 }
 
@@ -1967,8 +1956,8 @@ function ftest(){
         ctx.beginPath();
         ctx.moveTo(190, 130);
         ctx.lineTo(190, 106);
-        ctx.quadraticCurveTo(210, 120, 270, 127);
-        ctx.lineTo(270, 130);
+        ctx.quadraticCurveTo(210, 120, 271, 127);
+        ctx.lineTo(271, 130);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
@@ -2032,8 +2021,8 @@ function ftest(){
         ctx.beginPath();
         ctx.moveTo(190, 130);
         ctx.lineTo(190, 106);
-        ctx.quadraticCurveTo(210, 120, 270, 127);
-        ctx.lineTo(270, 130);
+        ctx.quadraticCurveTo(210, 120, 271, 127);
+        ctx.lineTo(271, 130);
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
@@ -2566,7 +2555,7 @@ function predinterval() {
     
     document.getElementById("output").innerHTML = "$$ \\text{Point Estimate:} $$ $$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} s_{\\text{ind}} &= s \\sqrt{1 + \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{1 + \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}} = {\\color{RoyalBlue}" + parseFloat(ansans.toFixed(2)) + "} \\end{align} $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 2 = "+size+ " - 2 = {\\color{RoyalBlue}"+sizem2+"}   $$"
     
-    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ " + conlev + "\\% \\text{ Prediction Interval:} $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\hat{y}_p \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ " + conlev + "\\% \\text{ Prediction Interval:} $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\text{ind}} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\hat{y}_p \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2581,7 +2570,7 @@ function resplot() {
 }
 
 function resplotx(){
-    $("#explanation").show(); $("#charts").show();
+    $("#explanation").show(); $("#charts").show(); $("#output3").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$ \\text{Residual} = y - \\hat{y}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
@@ -2614,24 +2603,32 @@ function resplotx(){
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
     var interpret = ""
     if (ansslope > 0){
+        var signslope = "+"
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>increase by "+parseFloat(ansslope.toFixed(2))+" units </u>on average."
     } else if (ansslope < 0){
+        var signslope = "-"
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>decrease by "+parseFloat(Math.abs(ansslope.toFixed(2)))+" units</u> on average."
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$\\text{Residuals } (y - \\hat{y})$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$ y - \\hat{y} $" + "</td>" + "</tr>";
     var rows = n_x; var cols = 6; var residuals = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + x[r] + "$</td>";
         table += "<td>$" + y[r] + "$</td>";
         table += "<td>$" + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2))  + " $</td>";
-        table += "<td>$" + y[r] + " - " + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2)) + " = " + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
+        table += "<td>$" + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
         table += "</tr>";
         residuals[r] = parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))
     }
-    document.getElementById("output").innerHTML = table + "</table>"
+    
+    //" + y[r] + " - " + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2)) + " = 
+    
+    
+    document.getElementById("output").innerHTML = "$$ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope + parseFloat(Math.abs(ansslope).toFixed(2))+"x $$"+table + "</table>"
+    
+    document.getElementById("output3").innerHTML = "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -2704,6 +2701,7 @@ function resplotx(){
         ]);
 
         var options = {
+          title: 'Residual Plot Against x',
           hAxis: {title: 'x'},
           vAxis: {title: 'y-ŷ'},
           legend: 'none'
@@ -2717,7 +2715,7 @@ function resplotx(){
 }
 
 function resploty(){
-    $("#explanation").show(); $("#charts").show();
+    $("#explanation").show(); $("#charts").show(); $("#output3").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$\\text{Residual} = y - \\hat{y}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
@@ -2750,25 +2748,32 @@ function resploty(){
     var ansslope = sum_xxbminyyb / sum_xminusx_bar2; var ansint = mean_y - ansslope * mean_x;
     var interpret = ""
     if (ansslope > 0){
+        var signslope = "+"
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>increase by "+parseFloat(ansslope.toFixed(2))+" units </u>on average."
     } else if (ansslope < 0){
+        var signslope = "-"
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is predicted to <u>decrease by "+parseFloat(Math.abs(ansslope.toFixed(2)))+" units</u> on average."
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$\\text{Residuals } (y - \\hat{y})$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$ y - \\hat{y} $" + "</td>" + "</tr>";
     var rows = n_x; var cols = 6; var residuals = []; var predictedy = [];
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + x[r] + "$</td>";
         table += "<td>$" + y[r] + "$</td>";
         table += "<td>$" + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2))  + " $</td>";
-        table += "<td>$" + y[r] + " - " + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2)) + " = " + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
+        table += "<td>$" + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
         table += "</tr>";
         residuals[r] = parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))
         predictedy[r] = parseFloat(((parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))
     }
-    document.getElementById("output").innerHTML = table + "</table>"
+    
+    //" + y[r] + " - " + parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2)) + " = 
+    
+    document.getElementById("output").innerHTML = "$$ \\hat{y} = "+parseFloat(ansint.toFixed(2)) + signslope + parseFloat(Math.abs(ansslope).toFixed(2))+"x $$"+table + "</table>"
+    
+    document.getElementById("output3").innerHTML = "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -2840,6 +2845,7 @@ function resploty(){
         ]);
 
         var options = {
+          title: 'Residual Plot Against ŷ',
           hAxis: {title: 'ŷ'},
           vAxis: {title: 'y-ŷ'},
           legend: 'none'
@@ -2862,13 +2868,13 @@ function standardized() {
 }
 
 function standardizedx(){
-    $("#explanation").show(); $("#charts").show();
+    $("#explanation").show(); $("#charts").show(); $("#output3").show();
     document.getElementById("descriptiontext").innerHTML = "The slope of the estimated regression equation is the predicted increase in the dependent variable (y) that results from a one-unit increase in the independent variable (x)."
     document.getElementById("formulatext").innerHTML = "$\\text{Standardized Residual} = \\dfrac{y - \\hat{y}}{s_{y - \\hat{y}}}$"
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
-    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var x = str_x.split(",").map(Number); var n_x = x.length; var size = n_x
     var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
     var mean_x = avg(x); var mean_y = avg(y);
@@ -2926,19 +2932,28 @@ function standardizedx(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "<br>$x$" + "</td>" + "<td>" + "<br>$s_{y - \\hat{y}}$" + "</td>" + "<td>" + "<br>$y - \\hat{y}$" + "</td>"+ "<td>" + "$\\text{Standardized}$<br>$\\text{Residuals}$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
     var rows = n_x; var cols = 6; var residuals = []; var standres = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + (x[r]-mean_x) + "$</td>";
+        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x) + "$</td>";
+        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2 + "$</td>";
+        table += "<td>$" + parseFloat((1/size + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2)) + " $</td>";
         table += "<td>$" + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
-        table += "<td>$ \\dfrac{"+parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))+"}{"+parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2))+"} = " + parseFloat(((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r]))/(anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2)))).toFixed(2))  + " $</td>";
+        table += "<td>$ " + parseFloat(((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r]))/(anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2)))).toFixed(2))  + " $</td>";
         table += "</tr>";
         residuals[r] = parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))
         standres[r] = parseFloat(((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r]))/(anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2)))).toFixed(2))
     }
-    document.getElementById("output").innerHTML = table + "</table>"
+    
+    //\\dfrac{"+parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))+"}{"+parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2))+"} = 
+    
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = "+parseFloat(mean_x.toFixed(2))+" $$" + table + "</table>"
+    
+    document.getElementById("output3").innerHTML = "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -3011,6 +3026,7 @@ function standardizedx(){
         ]);
 
         var options = {
+          title: 'Standardized Residual Plot Against x',
           hAxis: {title: 'x'},
           vAxis: {title: 'Standardized Residuals'},
           legend: 'none'
@@ -3030,7 +3046,7 @@ function standardizedy(){
     document.getElementById("explanationtext").innerHTML = "The formula for the slope is a result of the least squares method."
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
-    var x = str_x.split(",").map(Number); var n_x = x.length;
+    var x = str_x.split(",").map(Number); var n_x = x.length; var size = n_x
     var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
     var mean_x = avg(x); var mean_y = avg(y);
@@ -3088,19 +3104,25 @@ function standardizedy(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "<br>$x$" + "</td>" + "<td>" + "<br>$s_{y - \\hat{y}}$" + "</td>" + "<td>" + "<br>$y - \\hat{y}$" + "</td>"+ "<td>" + "$\\text{Standardized}$<br>$\\text{Residuals}$" + "</td>" + "</tr>";
+    var table = "<table style='margin-bottom:15px'><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
     var rows = n_x; var cols = 6; var predictedy = []; var standres = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + x[r] + "$</td>";
+        table += "<td>$" + (x[r]-mean_x) + "$</td>";
+        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x) + "$</td>";
+        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2 + "$</td>";
+        table += "<td>$" + parseFloat((1/size + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2)) + " $</td>";
         table += "<td>$" + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
-        table += "<td>$ \\dfrac{"+parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))+"}{"+parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2))+"} = " + parseFloat(((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r]))/(anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2)))).toFixed(2))  + " $</td>";
+        table += "<td>$" + parseFloat(((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r]))/(anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2)))).toFixed(2))  + " $</td>";
         table += "</tr>";
         predictedy[r] = parseFloat((parseFloat(ansint)+parseFloat(ansslope)*x[r]).toFixed(2))
         standres[r] = parseFloat(((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r]))/(anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2)))).toFixed(2))
     }
-    document.getElementById("output").innerHTML = table + "</table>"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = "+parseFloat(mean_x.toFixed(2))+" $$" + table + "</table>"
+    
+    document.getElementById("output3").innerHTML = "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -3173,6 +3195,7 @@ function standardizedy(){
         ]);
 
         var options = {
+          title: 'Standardized Residual Plot Against ŷ',
           hAxis: {title: 'ŷ'},
           vAxis: {title: 'Standardized Residuals'},
           legend: 'none'
@@ -3582,16 +3605,20 @@ function leverage(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$x - \\bar{x}$" + "</td>" +"<td>" + "$(x - \\bar{x})^2$" + "</td>"+"<td>" + "$\\text{Leverage }(h)$" + "</td>" + "</tr>";
+    var table = "<table><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x - \\bar{x}$</td><td><br>$(x - \\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$ h $</td></tr>";
     var rows = n_x; var cols = 6; var residuals = []; var standres = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + x[r] + "$</td>";
         table += "<td>$" + parseFloat(xminusx_bar[r].toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat(xminusx_bar2[r].toFixed(2)) + "$</td>";
-        table += "<td>$ \\dfrac{1}{"+n_x+"}+\\dfrac{"+parseFloat(xminusx_bar[r].toFixed(2))+"}{"+parseFloat(xminusx_bar2[r].toFixed(2))+"}=" + parseFloat((1/n_x + xminusx_bar2[r]/sum_xminusx_bar2).toFixed(2)) + " $</td>";
+        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2 + "$</td>";
+        table += "<td>$" + parseFloat((1/n_x + xminusx_bar2[r]/sum_xminusx_bar2).toFixed(2)) + " $</td>";
     }
-    document.getElementById("output").innerHTML = table + "</table>"
+    
+    //\\dfrac{1}{"+n_x+"}+\\dfrac{"+parseFloat(xminusx_bar[r].toFixed(2))+"}{"+parseFloat(xminusx_bar2[r].toFixed(2))+"}=
+    
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = "+parseFloat(mean_x.toFixed(2))+" $$" + table + "</table> <br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 
