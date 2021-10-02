@@ -47,14 +47,6 @@
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
       
       
-      <script type="text/javascript">
-    window._mNHandle = window._mNHandle || {};
-    window._mNHandle.queue = window._mNHandle.queue || [];
-    medianet_versionId = "3121199";
-</script>
-<script src="https://contextual.media.net/dmedianet.js?cid=8CU4R757V" async="async"></script>
-      
-      
   </head>
   <body>
       <div class="container">
@@ -89,41 +81,6 @@
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Practice
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="practice/table-and-graph.html">Table and Graph</a>
-              <a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
-              <a class="dropdown-item" href="practice/basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="practice/discrete-distribution.html">Discrete Distribution</a>
-              <a class="dropdown-item" href="practice/continuous-distribution.html">Continuous Distribution</a>
-              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
-              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="two-population.html">Two Population</a>
-              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
-              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
-              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>
-              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
-              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
-              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> 
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-              <!--<a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
-              <a class="dropdown-item" href="tables/z-distribution.html">Poisson Probability</a> 
-            </div>
-          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -146,8 +103,13 @@
       
       <div id = "confidence">
       <div class="container">
-        <div class = "container" id = "confidencetitle">
-            <h5 class="text-center text-primary mb-3">Confidence Interval</h5>
+        <div class = "container" id = "confidencetitle" style="text-align: center">
+            <h5 class="text-center text-primary mb-3" style="display:inline-block">Confidence Interval </h5>
+            <svg  style="display:inline-block" onclick="switchhypothesis()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            
         </div>
           
           
@@ -236,8 +198,12 @@
       
       <div id = "hypothesis">
       <div class="container">
-        <div class = "container" id = "hypothesistitle">
-            <h5 class="text-center text-primary mb-3">Hypothesis Testing</h5>
+        <div class = "container" id = "hypothesistitle" style="text-align: center">
+            <h5 style="display: inline-block" class="text-center text-primary mb-3">Hypothesis Testing</h5>
+            <svg style="display: inline-block" style="display:inline-block" onclick="switchconfidence()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
         </div>
         <table id = "nullalternative">
           <tr>
@@ -369,6 +335,18 @@
       
       
       
+      <div class="text-center mt-2 mb-2">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+             crossorigin="anonymous"></script>
+        <!-- Big Banner 1 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:320px;height:100px"
+             data-ad-client="ca-pub-3595688914204816"
+             data-ad-slot="8476368859"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        </div>
       
       
       
@@ -376,20 +354,113 @@
       
       
       
-      
-    <!-- <div class="container" id="how">
+    <div class="container" id="how">
+        
         <div id="how1" class="output" style="color: darkslategray">
             How it Works:
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">While confidence intervals and hypothesis tests of one population mean might be more familiar to most, it is sometimes necessary to do inference for two population means. In the case of two populations, we are interested in doing confidence intervals and hypothesis testing about the difference between the two population means.</p>
-
+            <p class = "p1">While confidence intervals and hypothesis tests of one population mean might be more familiar to most, it is sometimes necessary to do inference for two population means. In the case of two populations, we are interested in doing confidence intervals and hypothesis testing about the difference between the two population means. A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate of the difference between two population means is simply the difference between two sample means. </p>
             
+            <table style="width:100%">
+              <tr>
+                <td>Point Estimate</td>
+                <td>Standard Error</td>
+              </tr>
+              <tr>
+                <td>$ \bar{x}_1 - \bar{x}_2 $</td>
+                <td>$ \sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}  $</td>
+              </tr>
+            </table>
+            <br>
             
+            <p class = "p1"> The formula for the margin of error depends on whether the population standard deviations are known or unknown. If the population standard deviations are known, then they are used in the formula. If they are unknown, then the sample standard deviations are used in their place. To change from $\sigma$ known to $\sigma$ unknown, click on $\boxed{σ}$ and select $\boxed{s}$ in the Two Population Calculator.</p>
+            
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>$\sigma$ Known</td>
+                <td>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Margin of Error</td>  
+                <td>$ z_{\alpha/2} \sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{{\color{Black}n_2}}}  $</td>
+                <td>$ t_{\alpha/2} \sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> While the formulas for the margin of error in the two population case are similar to those in the one population case, the formula for the degrees of freedom is quite a bit more complicated. Although this formula does seem intimidating at first sight, there is a shortcut to get the answer faster. Notice that the terms $\frac{s_1^2}{n_1}$ and $\frac{s_2^2}{n_2}$ each repeat twice. The terms are actually computed previously when finding the margin of error so they don't need to be calculated again.   </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Degrees of Freedom </td>
+              </tr>
+              <tr>
+                <td>$ df = \frac{\left(\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}\right)^2}{\dfrac{1}{n_1-1}\left(\dfrac{s_1^2}{n_1}\right)^2 + \dfrac{1}{n_2-1}\left(\dfrac{s_2^2}{n_2}\right)^2} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> There is an alternative formula for computing the degrees of freedom in the two population case. It's simply df = n1 + n2 - 2. This is a simple extension of the formula for the one population case. In the one population case the degrees of freedom is given by df = n - 1. If we add up the degrees of freedom for the two samples we would get df = (n1 - 1) + (n2 - 1) = n1 + n2 - 2. This formula gives a pretty good approximation of the more complicated formula above.  </p>
+            
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Square1 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="6232876137"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            
+            <br>
+            
+            <p class = "p1"> Just like in hypothesis tests about a single population mean, there are lower-tail, upper-tail and two tailed tests. However, the null and alternative are slightly different. First of all, instead of having mu on the left side of the equality, we have $\mu_1 - \mu_2$. On the right side of the equality, we don't have $\mu_0$, the hypothesized value of the population mean. Instead we have $D_0$, the hypothesized difference between the population means. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively. </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td>$H_0 \colon \mu_1 - \mu_2 \geq D_0$</td>
+                <td>$H_0 \colon \mu_1 - \mu_2 \leq D_0$</td>
+                <td>$H_0 \colon \mu_1 - \mu_2 = D_0$</td>
+              </tr>
+              <tr>
+                <td>$H_a \colon \mu_1 - \mu_2 < D_0$</td>
+                <td>$H_a \colon \mu_1 - \mu_2 > D_0$</td>
+                <td>$H_a \colon \mu_1 - \mu_2 \neq D_0$</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> Again, hypothesis testing for a single population mean is very similar to hypothesis testing for two population means. For a single population mean, the test statistics is the difference between mu and mu0 dividied by the standard error. For two population means, the test statistic is the difference between $\bar{x}_1 - \bar{x}_2$ and $D_0$ divided by the standard error. The procedure after computing the test statistic is identical to the one population case. That is, you proceed with the p-value approach or critical value approach in the same exact way. </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>$\sigma$ Known</td>
+                <td>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Test Statistic</td>  
+                <td>$ z = \dfrac{(\bar{x}_1 - \bar{x}_2)-D_0}{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}} $</td>
+                <td>$ t = \dfrac{(\bar{x}_1 - \bar{x}_2)-D_0}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The calculator above computes confidence intervals and hypothesis tests for two population mean. For confidence intervals about a single population mean, visit the <a href="confidence-interval.html">Confidence Interval Calculator</a>. For hypothesis tests about a single population mean, visit the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>.  </p>
             
         </div>
-      </div>-->
+      </div>
       
       
       
@@ -412,7 +483,7 @@
       
       
       
-      
+      <div id="twoouputs">
       
      <div class="container">
         <div id="output1" class="output">
@@ -451,21 +522,29 @@
         </div>
       </div>
       
-     <!-- <div id="581773186" class="text-center">
-    <script type="text/javascript">
-        try {
-            window._mNHandle.queue.push(function (){
-                window._mNDetails.loadTag("581773186", "300x250", "581773186");
-            });
-        }
-        catch (error) {}
-    </script>
-</div> -->
+      </div>
+      
+      <div class="text-center mt-2 mb-2">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+             crossorigin="anonymous"></script>
+        <!-- Square2 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3595688914204816"
+             data-ad-slot="8840542382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script> 
+        </div>
+      
+    
       
           <footer id="footer">
               <div class="container">
-                  <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Hypothesis Testing</span>
-                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Confidence Intervals</span>
+                  <!-- <span class="examplelink" onclick="switchhypothesis()" id="switchhypothesis">Hypothesis Testing</span>
+                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Confidence Intervals</span> -->
                 <hr>
             </div>
           <p> 

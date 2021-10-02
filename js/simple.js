@@ -2611,7 +2611,7 @@ function resplotx(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$ y - \\hat{y} $" + "</td>" + "</tr>";
+    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$ y - \\hat{y} $" + "</td>" + "</tr>";
     var rows = n_x; var cols = 6; var residuals = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
@@ -2701,7 +2701,6 @@ function resplotx(){
         ]);
 
         var options = {
-          title: 'Residual Plot Against x',
           hAxis: {title: 'x'},
           vAxis: {title: 'y-ŷ'},
           legend: 'none'
@@ -2756,7 +2755,7 @@ function resploty(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$ y - \\hat{y} $" + "</td>" + "</tr>";
+    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$x$" + "</td>"+ "<td>" + "$y$" + "</td>" + "<td>" + "$\\hat{y}$" + "</td>" + "<td>" + "$ y - \\hat{y} $" + "</td>" + "</tr>";
     var rows = n_x; var cols = 6; var residuals = []; var predictedy = [];
     for (var r = 0; r < rows; r++){
         table += "<tr>";
@@ -2845,7 +2844,6 @@ function resploty(){
         ]);
 
         var options = {
-          title: 'Residual Plot Against ŷ',
           hAxis: {title: 'ŷ'},
           vAxis: {title: 'y-ŷ'},
           legend: 'none'
@@ -2932,7 +2930,7 @@ function standardizedx(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
+    var table = "<table><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
     var rows = n_x; var cols = 6; var residuals = []; var standres = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
@@ -3026,7 +3024,6 @@ function standardizedx(){
         ]);
 
         var options = {
-          title: 'Standardized Residual Plot Against x',
           hAxis: {title: 'x'},
           vAxis: {title: 'Standardized Residuals'},
           legend: 'none'
@@ -3104,7 +3101,7 @@ function standardizedy(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table style='margin-bottom:15px'><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
+    var table = "<table><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
     var rows = n_x; var cols = 6; var predictedy = []; var standres = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
@@ -3195,7 +3192,6 @@ function standardizedy(){
         ]);
 
         var options = {
-          title: 'Standardized Residual Plot Against ŷ',
           hAxis: {title: 'ŷ'},
           vAxis: {title: 'Standardized Residuals'},
           legend: 'none'
