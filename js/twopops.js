@@ -4,7 +4,9 @@ $("#proportionzero").hide();$("#hypothesis").hide();$("#datainput").hide(); $("#
 $("#datainput2").hide(); $("#valuesinput2").show(); inputtype = "values"; inputtype2 = "values"
 $("#matchedmu").hide(); $("#matchedmu2").hide();  $("#matchedinput").hide(); $("#581773186").hide();
 
-$("#twoouputs").hide(); 
+
+
+$("#twoouputs").hide(); $("#matchedsamples").hide(); 
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()

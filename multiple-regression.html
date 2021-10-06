@@ -405,7 +405,17 @@
       
       
       
-      
+      <!-- 
+            <table class="text-center">
+                <tr style = "text-align: left">
+                <td>Least Squares Method</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td> min $ \sum (y - \hat{y})^2 $</td>
+              </tr>
+            </table>
+            <br>
+        -->
       
       
       
@@ -416,27 +426,137 @@
       <hr>
           </div>
       
-      <div class="container">
+      <div class="container" id="how">
+        
+        <div id="how1" class="output" style="color: darkslategray">
+            <div class="text-center mt-2 mb-2">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Big Banner 1 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:320px;height:100px"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="8476368859"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            </div>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            <p class = "p1"> The difference between a multiple regression and a simple linear regression is that in a multiple regression there are more than one independent variable (x). Although it's not stated in its name, there is still a linear relationship between the dependent (y) and independent variables in multiple regression. Generally speaking, there are a total of $p$ independent variables in multiple regression. Here, $p$ can take any value greater than one. If $p$ is equal to one, then it is just a simple linear regression. The estimated multiple regression equation is given below.</p>
+            
+            <table class="text-center">
+                <tr style = "text-align: left">
+                <td>Estimated Regression Equation</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td>$ \hat{y} = b_0 + b_1 x_1 + b_2 x_2 + \cdots + b_p x_p $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> As in simple linear regression, the coefficient in multiple regression are found using the least squared method. That is, the coefficients are chosen such that the sum of the square of the residuals are minimized. The difference is that the formulas for the coefficients can be expressed using algebra in simple linear regression. In multiple regression, the formulas for the coefficients require the use of more advanced math, specifically matrix algebra. Because of this, calculation by hand of coefficients in multiple regression is usually avoided and the focus is on the interpretation of the coefficients. </p>
+            
+            <table class="text-center">
+              <tr>
+                <td>Sum of Squares Relationship</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td>$ \text{SST} = \text{SSR} + \text{SSE} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The coefficient of determination, or r-squared, in multiple regression is computed in the same way as it is in simple linear regression. However, there is a problem in using it in multiple regression. That problem is that the r-squared naturally increases as you add more independent variables, even if those independent variables aren't relevant. To solve this problem, the adjusted coefficient of determination is preferred in multiple regression. The formula for the adjusted r-squared is given below. </p>
+            
+            <table class="text-center">
+                <tr style = "text-align: left">
+                <td>Adjusted Coefficient of Determination</td>
+              </tr>
+              <tr style = "text-align: left">
+                <td> $ R_a^2 = 1 - (1 - R^2) \dfrac{n-1}{n-p-1} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The interpretation of the coefficient of determination is the same as it is in simple linear regression. That is, the first step is to convert it from a decimal to a percentage by multiplying by 100%. Then its the percentage of variability in the dependent variable explained by the estimated regression equation. In the case of multiple regression, you'd want to use the adjusted r-squared instead of the regular r-squared. The interpretation of the slope coefficients are that they give the predicted changed in the dependent variable corresponding to a one-unit increase in the independent variable, holding the other independent variables constant. </p>
+            
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Square1 -->
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="6232876137"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            
+            <br>
+            
+            <p class = "p1"> As in simple linear regression, testing for significance for multiple regression involves either the use of the F-test or t-test. However, while the two tests are the same in simple regression, they are different in multiple regression. In multiple regression, the F-test is a simultaneous test for significance for all the independent variables. If the null hypothesis in the F-test is rejected, then at least one of the independent variables is significant. If the null hypothesis is not rejected, then none of the independent variables are significant. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>F Test</td>
+              </tr>
+            <tr>
+                <td> $ H_0 \colon \beta_1 = \beta_2 = \cdots = \beta_p = 0 $ <br> $ H_a \colon $ One or more of the $\beta_i \neq 0$  </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> If the F test passes (i.e., null hypothesis is rejected) in multiple regression, then we can proceed to do t tests. Once we know that at least one of the independent variables are significant, the t-tests can be used to determine which ones are significant. So the t-tests are performed on each individual independent variable. Rejecting the null hypothesis in a t-test means that the independent variable is significant. So while the two tests of significance are subsitutes in simple regression, they complement each other in multiple regression. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>t Tests</td>
+              </tr>
+            <tr>
+                <td> $ H_0: \beta_i = 0 $ <br> $ H_a: \beta_i \neq 0 $ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> One of the obstacles commonly reached in multiple regression is running into categorical (or qualitative) data. Categorical data is data that does not involve numbers, such as gender or country. The problem with using categorical data in regression is that the least squares method requires numerical data to compute the estimated coefficients. This issues is resolved in multiple regression through the use of dummy variables. A dummy variable takes the value one for one category and zero for the other category. When there are more than two categories, more than one dummy variable is used. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td> Dummy Variable</td>
+              </tr>
+            <tr>
+                <td> $ x_i = \begin{cases} 1 \text{ if category 1} \\ 0 \text{ if category 2} \end{cases} $ </td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> While a multiple regression can provide great predictive power, oftentimes a simple linear regression is enough. To compute a simple linear regression and the associated statistics, visit the <a href="simple-regression.html">Simple Regression Calculator</a>. The F test and t test in multiple regression are two examples of hypothesis tests. To perform hypothesis tests, visit the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>
+           
+            
+        </div>
+      </div>
+      
+      <div class="container" id="multoutputs">
         <div id="output">
         </div>
       </div>
       
-      <!--<div class="container text-center form-inline" id="predict"> 
-          <p>$\text{Predict } y \text{ when } x = $ <span><input type="text" id="predicty" class="form-control" ></span></p>
-          </div>-->
-      
-      
-      
-     <!-- <div id="581773186" class="text-center">
-    <script type="text/javascript">
-        try {
-            window._mNHandle.queue.push(function (){
-                window._mNDetails.loadTag("581773186", "300x250", "581773186");
-            });
-        }
-        catch (error) {}
-    </script>
-</div>-->
+      <div class="text-center mt-2 mb-2">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+             crossorigin="anonymous"></script>
+        <!-- Square2 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3595688914204816"
+             data-ad-slot="8840542382"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script> 
+        </div>
       
           <footer id="footer">
             <div class="container">

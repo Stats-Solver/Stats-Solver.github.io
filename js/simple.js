@@ -544,9 +544,10 @@ function showthings(){
     } else if (x == "significance") {
         $("#sigtests").show(); $("#blanky").hide();
     } else if (x == "confinterval" || x == "predinterval") {
-        $("#xpval").show(); $("#blanky").hide(); $("#level").show(); $("#blankx").hide();
+        $("#xpval").show(); $("#blanky").hide(); 
+        //$("#level").show(); $("#blankx").hide();
     } else if (x == "resplot" || x == "standardized") {
-        $("#residtype").show(); $("#blanky").hide();
+        //$("#residtype").show(); $("#blanky").hide();
     } 
 }
 
@@ -2199,7 +2200,8 @@ function confinterval() {
     var xvalue = document.getElementById("xpvalue").value;
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
-    var conlev = document.getElementById("conlev").value;
+    var conlev = "95"
+    //document.getElementById("conlev").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
     var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
@@ -2384,7 +2386,8 @@ function predinterval() {
     var xvalue = document.getElementById("xpvalue").value;
     var str_x = document.getElementById("valuesx").value;
     var str_y = document.getElementById("valuesy").value;
-    var conlev = document.getElementById("conlev").value;
+    var conlev = "95"
+    //document.getElementById("conlev").value;
     var x = str_x.split(",").map(Number); var n_x = x.length;
     var y = str_y.split(",").map(Number); var n_y = y.length;
     var sum_x = sum(x); var sum_y = sum(y);
@@ -2561,6 +2564,10 @@ function predinterval() {
 }
 
 function resplot() {
+    resplotx()
+}
+
+function resplot2() {
     var x = document.getElementById("residtypeval").value
     if (x == "againstx") {
         resplotx()
@@ -2701,6 +2708,7 @@ function resplotx(){
         ]);
 
         var options = {
+          title: 'Residual Plot Against x',
           hAxis: {title: 'x'},
           vAxis: {title: 'y-ŷ'},
           legend: 'none'
@@ -2857,6 +2865,10 @@ function resploty(){
 }
 
 function standardized() {
+    standardizedx()
+}
+
+function standardized2() {
     var x = document.getElementById("residtypeval").value
     if (x == "againstx") {
         standardizedx()
@@ -2930,14 +2942,18 @@ function standardizedx(){
     } else {
         var interpret = "<b>Interpretation:</b> For every one-unit increase in x, y is neither predicted to <u>increase nor decrease</u> on average."
     }
-    var table = "<table><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
+    var table = "<table><tr style='border-bottom: thin solid'><td><br>$x$</td><td><br>$h$</td><td><br>$s_{y - \\hat{y}}$</td><td><br>$y - \\hat{y}$</td><td>$\\text{Standardized}$<br>$\\text{Residuals}$</td></tr>";
+    
+    //<td><br>$x-\\bar{x}$</td><td><br>$(x-\\bar{x})^2$</td><td>$\\dfrac{(x-\\bar{x})^2}{\\sum (x-\\bar{x})^2}$</td>
+    //table += "<td>$" + (x[r]-mean_x) + "$</td>";
+    //   table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x) + "$</td>";
+    //   table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2 + "$</td>";
+    
     var rows = n_x; var cols = 6; var residuals = []; var standres = []
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + x[r] + "$</td>";
-        table += "<td>$" + (x[r]-mean_x) + "$</td>";
-        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x) + "$</td>";
-        table += "<td>$" + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2 + "$</td>";
+        
         table += "<td>$" + parseFloat((1/size + (x[r]-mean_x)*(x[r]-mean_x)/sum_xminusx_bar2).toFixed(2)) + "$</td>";
         table += "<td>$" + parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2)) + " $</td>";
         table += "<td>$" + parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))  + " $</td>";
@@ -2949,7 +2965,7 @@ function standardizedx(){
     
     //\\dfrac{"+parseFloat((y[r] - (parseFloat(ansint)+parseFloat(ansslope)*x[r])).toFixed(2))+"}{"+parseFloat((anssee * Math.sqrt(1-(1/n_x + xminusx_bar2[r]/sum_xminusx_bar2))).toFixed(2))+"} = 
     
-    document.getElementById("output").innerHTML = "$$ \\bar{x} = "+parseFloat(mean_x.toFixed(2))+" $$" + table + "</table>"
+    document.getElementById("output").innerHTML = table + "</table>"
     
     document.getElementById("output3").innerHTML = "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
@@ -3024,6 +3040,7 @@ function standardizedx(){
         ]);
 
         var options = {
+          title: 'Standardized Residual Plot Against x',
           hAxis: {title: 'x'},
           vAxis: {title: 'Standardized Residuals'},
           legend: 'none'

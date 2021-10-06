@@ -5,6 +5,10 @@ $("#xvalues").hide(); $("#msrmse").hide(); $("#sb1sb4").hide(); $("#581773186").
 
 $("#switchvalues").hide(); $("#switchdata").show(); $("#valuesinput").show(); $("#datainput").hide();
 
+$("#sumsquares").hide();
+
+$("#multoutputs").hide();
+
 function switchdata() {
     $("#datainput").show(); $("#valuesinput").hide();
     type = "data"
@@ -110,6 +114,7 @@ function showthings(){
 }
 
 function stat(){
+    $("#multoutputs").show(); $("#how").hide();
     $("#581773186").show();
     $("#output").empty(); $("#explanation").hide(); 
     $("#meansquare").hide(); $("#standarderror").hide();

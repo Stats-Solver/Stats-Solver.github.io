@@ -294,14 +294,14 @@
         </table> 
         </div>
           
-          <table class = "mt-2">
+          <table class = "mt-2 mb-2">
           <tr>
             <td>$\text{Level of Significance:}$</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$ = <select id="alphah" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
           </tr> 
         </table>
           
-          <table class = "mt-1">
+          <table class = "mt-1" id = "matchedsamples">
           <tr>
             <td class="statistics"><input type="checkbox" id="matched" name="vehicle1" value="Bike" onchange = "matched()"> <label for="matched">$\text{Matched Samples}$</label></td>
           </tr> 
@@ -333,6 +333,8 @@
 
       
       
+      <!--While confidence intervals and hypothesis tests of one population mean might be more familiar to most, it is sometimes necessary to do inference for two population means. In the case of two populations, we are interested in doing confidence intervals and hypothesis testing about the difference between the two population means. A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate of the difference between two population means is simply the difference between two sample means.-->
+      
     <div class="container" id="how">
         
         <div id="how1" class="output" style="color: darkslategray">
@@ -350,7 +352,7 @@
             </div>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">While confidence intervals and hypothesis tests of one population mean might be more familiar to most, it is sometimes necessary to do inference for two population means. In the case of two populations, we are interested in doing confidence intervals and hypothesis testing about the difference between the two population means. A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate of the difference between two population means is simply the difference between two sample means. </p>
+            <p class = "p1"> When computing confidence intervals for two population means, we are interested in the difference between the population means ($ \mu_1 - \mu_2 $). A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate of the difference between two population means is simply the difference between two sample means ($ \bar{x}_1 - \bar{x}_2 $). The standard error of $ \bar{x}_1 - \bar{x}_2 $, which is used in computing the margin of error, is given by the formula below. </p>
             
             <table style="width:100%">
               <tr>
@@ -364,7 +366,7 @@
             </table>
             <br>
             
-            <p class = "p1"> The formula for the margin of error depends on whether the population standard deviations are known or unknown. If the population standard deviations are known, then they are used in the formula. If they are unknown, then the sample standard deviations are used in their place. To change from $\sigma$ known to $\sigma$ unknown, click on $\boxed{σ}$ and select $\boxed{s}$ in the Two Population Calculator.</p>
+            <p class = "p1"> The formula for the margin of error depends on whether the population standard deviations ($\sigma_1$ and $\sigma_2$) are known or unknown. If the population standard deviations are known, then they are used in the formula. If they are unknown, then the sample standard deviations ($s_1$ and $s_2$)are used in their place. To change from $\sigma$ known to $\sigma$ unknown, click on $\boxed{σ}$ and select $\boxed{s}$ in the Two Population Calculator.</p>
             
             <table style="width:100%">
               <tr>
@@ -415,31 +417,32 @@
               <tr>
                 <td>Lower Tail Test</td>
                 <td>Upper Tail Test</td>
-                <td>Two-Tailed Test</td>
               </tr>
               <tr>
                 <td>$H_0 \colon \mu_1 - \mu_2 \geq D_0$</td>
                 <td>$H_0 \colon \mu_1 - \mu_2 \leq D_0$</td>
-                <td>$H_0 \colon \mu_1 - \mu_2 = D_0$</td>
               </tr>
               <tr>
                 <td>$H_a \colon \mu_1 - \mu_2 < D_0$</td>
                 <td>$H_a \colon \mu_1 - \mu_2 > D_0$</td>
-                <td>$H_a \colon \mu_1 - \mu_2 \neq D_0$</td>
               </tr>
             </table>
             <br>
+            
+            <!--       
+            <td>Two-Tailed Test</td>         <td>$H_0 \colon \mu_1 - \mu_2 = D_0$</td> <td>$H_a \colon \mu_1 - \mu_2 \neq D_0$</td> 
+                            <td></td> <td>Test Statistic</td> 
+
+            -->
             
             <p class = "p1"> Again, hypothesis testing for a single population mean is very similar to hypothesis testing for two population means. For a single population mean, the test statistics is the difference between mu and mu0 dividied by the standard error. For two population means, the test statistic is the difference between $\bar{x}_1 - \bar{x}_2$ and $D_0$ divided by the standard error. The procedure after computing the test statistic is identical to the one population case. That is, you proceed with the p-value approach or critical value approach in the same exact way. </p>
             
             <table style="width:100%">
               <tr>
-                <td></td>
                 <td>$\sigma$ Known</td>
                 <td>$\sigma$ Unknown</td>
               </tr>
-              <tr>
-                <td>Test Statistic</td>  
+              <tr> 
                 <td>$ z = \dfrac{(\bar{x}_1 - \bar{x}_2)-D_0}{\sqrt{\dfrac{\sigma_1^2}{n_1}+\dfrac{\sigma_2^2}{n_2}}} $</td>
                 <td>$ t = \dfrac{(\bar{x}_1 - \bar{x}_2)-D_0}{\sqrt{\dfrac{s_1^2}{n_1}+\dfrac{s_2^2}{n_2}}} $</td>
               </tr>
