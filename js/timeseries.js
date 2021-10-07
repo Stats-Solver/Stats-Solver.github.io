@@ -318,7 +318,7 @@ function stat(){
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
     $("#output").empty();
     var x = document.getElementById("method").value;
-    var y = document.getElementById("stat").value;
+    //var y = document.getElementById("stat").value;
     var z = document.getElementById("order").value;
     if (x == "naive") {
         naive()
@@ -442,10 +442,11 @@ function naive() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table><tr style='border-bottom: thin solid'><td>$t$</td><td>$Y_t$</td><td>$ F_t$</td><td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ \\%e_t $</td><td>$ | \\%e_t | $</td></tr>";
+    var table = "<table><tr style='border-bottom: thin solid'><td>$t$</td><td>$Y_t$</td><td>$ F_t$</td><td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td></tr>";
     table = table + "<tr><td>$1$</td><td>$" + values[0] + "$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td></tr>"
     var tae = 0
     var tse = 0
+    var tape = 0
     for (var r = 1; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
@@ -454,12 +455,14 @@ function naive() {
         table += "<td>$" + (values[r]-values[r-1]) + "$</td>";
         table += "<td>$" + Math.abs((values[r]-values[r-1])) + "$</td>";
         table += "<td>$" + Math.pow((values[r]-values[r-1]),2) + "$</td>";
+        table += "<td>$" + parseFloat((100*Math.abs((values[r]-values[r-1]))/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
         tae += Math.abs((values[r]-values[r-1]))
         tse += Math.pow((values[r]-values[r-1]),2)
+        tape += parseFloat((100*Math.abs((values[r]-values[r-1]))/values[r]).toFixed(2))
     }
-    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$"+tae+"$</td><td>$"+tse+"$</td></tr></table>";
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + "  $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(| \\% e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 

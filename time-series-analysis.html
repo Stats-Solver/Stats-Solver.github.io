@@ -116,8 +116,8 @@
             </select>
         </div> 
              
-              <div class="col-4 col-md-2 mb-3" id = "blankspace">
-        </div>
+          <!--    <div class="col-4 col-md-2 mb-3" id = "blankspace">
+        </div> -->
               
             <div class="col-4 col-md-2 mb-3" id = "orders">
             <select id="order" class="form-control" onchange="showweights()">
@@ -135,6 +135,10 @@
           </tr>
         </table>
               </div>
+              
+              <div class="col-4 col-md-2 inputWrapper">
+            <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+        </div> 
               
               </div>
         </div>
@@ -169,6 +173,7 @@
               </div>
         </div>
       
+      <!--
       <div class="container center">
           <div class="row justify-content-center">
         <div class="col-8 col-md-3 mb-2">
@@ -185,7 +190,7 @@
             <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
         </div> 
               </div>
-        </div>
+        </div>-->
       
 
 
@@ -242,7 +247,7 @@
               </tr>
             <tr>
                 <td align="right">$ \text{Average Method:} $</td>
-                <td>$ F_{t+1} = \bar{Y} $</td>
+                <td>$ F_{t+1} = \bar{{\color{Black}Y}} $</td>
               </tr>
             <tr>
                 <td align="right">$ \text{Naive Method:} $</td>
