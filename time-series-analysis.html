@@ -104,13 +104,14 @@
           <div class="row justify-content-center">
         <div class="col-8 col-md-3 mb-3">
             <select id="method" class="form-control" onchange="showthings()">
-                <option value="choose">Method</option>
+                <option value="choose">Choose One</option>
+                <option value="plot">Time Plot</option>
                 <option value="naive">Naive Method</option>
                 <option value="average">Average Method</option>
                 <option value="moving">Moving Average</option>
-                <option value="weighted">Weighted Moving Average</option>
-                <option value="exponential">Simple Exponential Smoothing</option>
-                <option value="linear">Linear Trend Regression</option>
+                <option value="weighted">Weighted MA</option>
+                <option value="exponential">Exponential Smoothing</option>
+                <option value="linear">Trend Regression</option>
                 <option value="holts">Holt's Method</option>
             </select>
         </div> 
@@ -207,10 +208,10 @@
       
       <div class="container" id="how">
         <div id="how1" class="output text-center" style="color: darkslategray">
-            <div class="text-center mt-2 mb-2">
+            <!--<div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
                  crossorigin="anonymous"></script>
-            <!-- Big Banner 1 -->
+             Big Banner 1 
             <ins class="adsbygoogle"
                  style="display:inline-block;width:320px;height:100px"
                  data-ad-client="ca-pub-3595688914204816"
@@ -218,7 +219,9 @@
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
-            </div>
+            </div>-->
+            How it Works:
+            <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
             
@@ -235,15 +238,15 @@
             
             <table class="text-center">
             <tr>
-                <td colspan="2"> $ \text{Simple Forecasting Methods} $ </td>
+                <td colspan="2"> $ \text{Simple Methods} $ </td>
               </tr>
             <tr>
                 <td align="right">$ \text{Average Method:} $</td>
-                <td>$ \hat{y}_{T+h} = \bar{y_t} $</td>
+                <td>$ F_{t+1} = \bar{Y} $</td>
               </tr>
             <tr>
                 <td align="right">$ \text{Naive Method:} $</td>
-                <td>$ \hat{y}_{T+h} = y_T $</td>
+                <td>$ F_{t+1} = Y_t $</td>
               </tr>
             </table>
             <br>
@@ -252,7 +255,7 @@
             
             <table class="text-center">
             <tr>
-                <td colspan="2"> $ \text{Measures of Forecast Accuracy} $ </td>
+                <td colspan="2"> $ \text{Measures of Accuracy} $ </td>
               </tr>
             <tr>
                 <td align="right">$ \text{Mean Absolute Error:} $</td>
@@ -298,10 +301,7 @@
                 <td> $ \text{Simple Exponential Smoothing} $ </td>
               </tr>
             <tr>
-                <td>$ \hat{y}_{T+1} = \alpha y_T + (1 - \alpha) \hat{y}_T $</td>
-              </tr>
-            <tr>
-                <td>$ \text{Smoothing Constant: } 0 \leq \alpha \leq 1$</td>
+                <td>$ F_{t+1} = \alpha Y_t + (1 - \alpha) F_t $</td>
               </tr>
             </table>
             <br>
@@ -310,10 +310,10 @@
             
             <table style="width:100%" class="text-center">
               <tr>
-                  <td>Linear Trend Regression</td>
+                  <td> $ \text{Linear Trend Regression} $</td>
               </tr>
             <tr>
-                <td>$\hat{y}_t = b_0 + b_1 t $</td>
+                <td>$ T_t = b_0 + b_1 t $</td>
               </tr>
             </table>
             <br>

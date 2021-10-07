@@ -320,8 +320,8 @@ function stat(){
     var x = document.getElementById("method").value;
     var y = document.getElementById("stat").value;
     var z = document.getElementById("order").value;
-    if (x == "naive" && y == "forecast") {
-        naiveforecast()
+    if (x == "naive") {
+        naive()
     } else if (x == "naive" && y == "error") {
         naiveerror()
     } else if (x == "naive" && y == "mae") {
@@ -434,7 +434,7 @@ function stat(){
    
 }
 
-function naiveforecast() {
+function naive() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In the naive method, the forecast of any period is equal to the actual value in the previous period."
     document.getElementById("formulatext").innerHTML = "$F_{t+1} = Y_t$"
@@ -442,16 +442,24 @@ function naiveforecast() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+ "<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    var table = "<table><tr style='border-bottom: thin solid'><td>$t$</td><td>$Y_t$</td><td>$ F_t$</td><td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ \\%e_t $</td><td>$ | \\%e_t | $</td></tr>";
+    table = table + "<tr><td>$1$</td><td>$" + values[0] + "$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td></tr>"
+    var tae = 0
+    var tse = 0
     for (var r = 1; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ Y_" + r + " = " +values[r-1] + "$</td>";
+        table += "<td>$ " +values[r-1] + "$</td>";
+        table += "<td>$" + (values[r]-values[r-1]) + "$</td>";
+        table += "<td>$" + Math.abs((values[r]-values[r-1])) + "$</td>";
+        table += "<td>$" + Math.pow((values[r]-values[r-1]),2) + "$</td>";
         table += "</tr>";
+        tae += Math.abs((values[r]-values[r-1]))
+        tse += Math.pow((values[r]-values[r-1]),2)
     }
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = \\boxed{" + values[rows-1]+ "} $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$"+tae+"$</td><td>$"+tse+"$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + "  $$"
     MathJax.typeset();
 }
 
