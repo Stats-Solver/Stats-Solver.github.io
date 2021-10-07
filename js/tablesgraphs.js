@@ -7,6 +7,8 @@ $("#trendline").hide(); $("#notrendline").hide(); $("#581773186").hide();
 
 $("#taboutputs").hide();
 
+$("#frequency").hide();
+
 $('.popover-dismiss').popover({
   trigger: 'focus'
 })
@@ -379,6 +381,7 @@ function howscat() {
 
 
 function showthings(){
+    $("#frequency").hide();
     $("#cumulative").hide(); $("#input2").hide(); $("#label1").show(); $("#label2").hide(); $("#label3").hide();  $("#firstclass").hide();
     $("#firstclasscross").hide(); $("#firstclassx").hide(); $("#firstclassy").hide(); $("#input1").show(); $("#label4").hide(); $("#blankx").show();
     var str = document.getElementById("values").value;

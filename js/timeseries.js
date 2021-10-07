@@ -461,7 +461,10 @@ function naive() {
         tape += parseFloat((100*Math.abs((values[r]-values[r-1]))/values[r]).toFixed(2))
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape+"}$</td></tr></table>";
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(| \\% e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\frac{\\sum |e_t|}{" + (rows-1) + "} = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\frac{\\sum e_t^2}{" + (rows-1) + "} = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\frac{\\sum |\\% e_t|}{" + (rows-1) + "} = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    
+    // = \\text{mean}(| \\% e_t|)  = \\text{mean}(|e_t|)  = \\text{mean}(e_t^2)
+    
     MathJax.typeset();
 }
 
@@ -500,7 +503,10 @@ function average() {
     sums = sums + "+" + values[r-1]
     sumsvalue = sumsvalue + values[r-1]
     table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>${\\color{RoyalBlue}"+sumsvalue+"}$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sumsvalue + "}{" + rows + "} = " + parseFloat((sumsvalue/rows).toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(| \\% e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sumsvalue + "}{" + rows + "} = " + parseFloat((sumsvalue/rows).toFixed(2)) + " $$ $$ \\text{MAE} = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    
+    // = \\text{mean}(e_t^2) = \\text{mean}(| \\% e_t|) = \\text{mean}(|e_t|)
+    
     MathJax.typeset();
 }
 
