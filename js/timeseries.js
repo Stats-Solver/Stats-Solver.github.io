@@ -279,6 +279,7 @@ function howplot2() {
 
 
 function showthings(){
+    $("#blankspace0").show();
     $("#inputqu").hide();$("#slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); $("#label2").hide();  $("#inputz").hide();
     $("#chebyshev").hide(); $("#label3").hide(); $("#values").show();  $("#label1").show(); $("#weights").hide();
     $("#orders").hide(); $("#exponential").hide();  $("#blankspace").show(); $("#weights").hide(); $("#holt").hide();
@@ -288,7 +289,7 @@ function showthings(){
     } else if (x == "weighted") {
         $("#orders").show(); $("#blankspace").hide();
     } else if (x == "exponential") {
-        $("#exponential").show(); $("#blankspace").hide();
+        $("#exponential").show(); $("#blankspace").hide(); $("#blankspace0").hide();
     } else if (x == "holts") {
         $("#exponential").show(); $("#blankspace").hide(); $("#holt").show();
     } 
@@ -312,6 +313,7 @@ function showweights(){
 }
 
 function stat(){
+    $("#charts").hide(); $("#output2").hide();
     $("#timeoutputs").show(); $("#how").hide(); 
     $("#explanation").hide(); $("#581773186").show();
     $("#inputqu").hide(); $("#inputzscore").hide();
@@ -320,27 +322,13 @@ function stat(){
     var x = document.getElementById("method").value;
     //var y = document.getElementById("stat").value;
     var z = document.getElementById("order").value;
-    if (x == "naive") {
+    if (x == "timeplot") {
+        timeplot()
+    } else if (x == "naive") {
         naive()
-    } else if (x == "naive" && y == "error") {
-        naiveerror()
-    } else if (x == "naive" && y == "mae") {
-        naivemae()
-    } else if (x == "naive" && y == "mse") {
-        naivemse()
-    } else if (x == "naive" && y == "mape") {
-        naivemape()
-    } else if (x == "average" && y == "forecast") {
-        averageforecast()
-    } else if (x == "average" && y == "error") {
-        averageerror()
-    } else if (x == "average" && y == "mae") {
-        averagemae()
-    } else if (x == "average" && y == "mse") {
-        averagemse()
-    } else if (x == "average" && y == "mape") {
-        averagemape()
-    } else if (x == "moving" && y == "forecast" && z == "2") {
+    } else if (x == "average") {
+        average()
+    } else if (x == "moving" && z == "2") {
         movingforecast2()
     } else if (x == "moving" && y == "error" && z == "2") {
         movingerror2()
@@ -390,48 +378,59 @@ function stat(){
         weightedmse3()
     } else if (x == "weighted" && y == "mape" && z == "3") {
         weightedmape3()
-    } else if (x == "weighted" && y == "forecast" && z == "4") {
+    } else if (x == "weighted" && z == "4") {
         weightedforecast4()
-    } else if (x == "weighted" && y == "error" && z == "4") {
-        weightederror4()
-    } else if (x == "weighted" && y == "mae" && z == "4") {
-        weightedmae4()
-    } else if (x == "weighted" && y == "mse" && z == "4") {
-        weightedmse4()
-    } else if (x == "weighted" && y == "mape" && z == "4") {
-        weightedmape4()
-    } else if (x == "exponential" && y == "forecast") {
+    } else if (x == "exponential") {
         exponentialforecast()
-    } else if (x == "exponential" && y == "error") {
-        exponentialerror()
-    } else if (x == "exponential" && y == "mae") {
-        exponentialmae()
-    } else if (x == "exponential" && y == "mse") {
-        exponentialmse()
-    } else if (x == "exponential" && y == "mape") {
-        exponentialmape()
-    } else if (x == "linear" && y == "forecast") {
+    } else if (x == "linear") {
         linearforecast()
-    } else if (x == "linear" && y == "error") {
-        linearerror()
-    } else if (x == "linear" && y == "mae") {
-        linearmae()
-    } else if (x == "linear" && y == "mse") {
-        linearmse()
-    } else if (x == "linear" && y == "mape") {
-        linearmape()
-    } else if (x == "holts" && y == "forecast") {
+    } else if (x == "holts") {
         holtforecast()
-    } else if (x == "holts" && y == "error") {
-        holterror()
-    } else if (x == "holts" && y == "mae") {
-        holtmae()
-    } else if (x == "holts" && y == "mse") {
-        holtmse()
-    } else if (x == "holts" && y == "mape") {
-        holtmape()
-    } 
+    }
    
+}
+
+function timeplot() {
+    $("#explanation").show(); $("#charts").show(); $("#output2").show();
+    document.getElementById("explanationtext").innerHTML = "In a scatter diagram, a point is drawn on the graph for each pair of x and y values."
+    var str2 = document.getElementById("values").value;
+    var each2 = str2.split(",")
+    var Y = each2.map(function(v) {
+  		return parseInt(v, 10);
+    });
+    
+    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    
+    google.charts.load('current', {packages: ['corechart', 'line']});
+    google.charts.setOnLoadCallback(drawBasic);
+
+    function drawBasic() {
+
+          var data = new google.visualization.DataTable();
+          data.addColumn('number', 'X');
+          data.addColumn('number', 'Y');
+
+          data.addRows([
+            [1, Y[0]], [2, Y[1]], [3, Y[2]], [4, Y[3]], [5, Y[4]], [6, Y[5]], [7, Y[6]], [8, Y[7]], [9, Y[8]], [10, Y[9]],
+            [11, Y[10]], [12, Y[11]], [13, Y[12]], [14, Y[13]], [15, Y[14]], [16, Y[15]], [17, Y[16]], [18, Y[17]], [19, Y[18]], [20, Y[19]],
+            [21, Y[20]], [22, Y[21]], [23, Y[22]], [24, Y[23]], [25, Y[24]], [26, Y[25]], [27, Y[26]], [28, Y[27]], [29, Y[28]], [30, Y[29]],
+            [31, Y[30]], [32, Y[31]], [33, Y[32]], [34, Y[33]], [35, Y[34]], [36, Y[35]], [37, Y[36]], [38, Y[37]], [39, Y[38]], [40, Y[39]],
+            [41, Y[40]], [42, Y[41]], [43, Y[42]], [44, Y[43]], [45, Y[44]], [46, Y[45]], [47, Y[46]], [48, Y[47]], [49, Y[48]], [50, Y[49]]
+          ]);
+
+          var options = {
+            hAxis: {
+              title: 'Time'
+            },
+            vAxis: {
+              title: 'Value'
+            }
+          };
+
+          var chart = new google.visualization.LineChart(document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
 }
 
 function naive() {
@@ -443,7 +442,7 @@ function naive() {
     var values = str.split(",").map(Number);
     var rows = values.length;
     var table = "<table><tr style='border-bottom: thin solid'><td>$t$</td><td>$Y_t$</td><td>$ F_t$</td><td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td></tr>";
-    table = table + "<tr><td>$1$</td><td>$" + values[0] + "$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td></tr>"
+    table = table + "<tr><td>$1$</td><td>$" + values[0] + "$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td></tr>"
     var tae = 0
     var tse = 0
     var tape = 0
@@ -466,107 +465,7 @@ function naive() {
     MathJax.typeset();
 }
 
-function naiveerror() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
-    document.getElementById("formulatext").innerHTML = "$e_t = Y_t - F_t$"
-    document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + values[r-1] + "$</td>";
-        table += "<td>$" + values[r] +" - "+ values[r-1] +" = " + (values[r]-values[r-1]) + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = table
-    MathJax.typeset();
-} 
-
-function naivemae() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var total = 0
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + values[r-1] + "$</td>";
-        table += "<td>$" + (values[r]-values[r-1]) + "$</td>";
-        table += "<td>$|" + (values[r]-values[r-1]) +"| = " + Math.abs((values[r]-values[r-1])) + "$</td>";
-        table += "</tr>";
-        total += Math.abs((values[r]-values[r-1]))
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+total+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\frac{\\sum{|e_t|}}{t} = \\frac{" + total + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "}  $$"
-    MathJax.typeset();
-} 
-
-function naivemse() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{Error}^2$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var total = 0
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + values[r-1] + "$</td>";
-        table += "<td>$" + (values[r]-values[r-1]) + "$</td>";
-        table += "<td>$(" + (values[r]-values[r-1]) +")^2 = " + Math.pow((values[r]-values[r-1]),2) + "$</td>";
-        table += "</tr>";
-        total += Math.pow((values[r]-values[r-1]),2)
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+total+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\dfrac{" + total + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function naivemape() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|%Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var total = 0
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + values[r-1] + "$</td>";
-        table += "<td>$" + (values[r]-values[r-1]) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + (values[r]-values[r-1]) +"}{" + values[r] + "}\\times 100 \\biggr|  = " + parseFloat((100*Math.abs((values[r]-values[r-1]))/values[r]).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += 100*Math.abs((values[r]-values[r-1]))/values[r]
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\dfrac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
-    MathJax.typeset();
-} 
-
-function averageforecast() {
+function average() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In the average method, the forecast of a period is equal to the average of the actual values in all previous periods."
     document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\dfrac{\\sum{Y_t}}{t}$"
@@ -574,23 +473,34 @@ function averageforecast() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "</tr>"
+    var table = "<table><tr style='border-bottom: thin solid'><td>$t$</td><td>$Y_t$</td><td>$ F_t$</td><td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td></tr>";
+    table = table + "<tr><td>$1$</td><td>$" + values[0] + "$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>$-$</td></tr>"
+    table = table + "<tr><td>$2$</td><td>$" + values[1] + "$</td><td>$" + values[0] + "$</td><td>$" + (values[1]-values[0]) + "$</td><td>$" + Math.abs(values[1]-values[0]) + "$</td><td>$" + Math.pow(values[1]-values[0],2) + "$</td><td>$" + parseFloat((100*Math.abs(values[1]-values[0])/values[1]).toFixed(2)) + "$</td></tr>"
     var sums = values[0]
     var sumsvalue = values[0]
+    var tae = Math.abs(values[1]-values[0])
+    var tse = Math.pow(values[1]-values[0],2) 
+    var tape = parseFloat((100*Math.abs(values[1]-values[0])/values[1]).toFixed(2))
     for (var r = 2; r < rows; r++){
         sums += "+" + values[r-1]
         sumsvalue += values[r-1]
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\dfrac{" + sums + "}{" + r + "} = " + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$</td>";
+        table += "<td>$" + Math.abs(parseFloat((values[r]-sumsvalue/r).toFixed(2))) + "$</td>";
+        table += "<td>$" + parseFloat(Math.pow((values[r]-sumsvalue/r),2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((100*Math.abs(values[r]-sumsvalue/r)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
+        tae += Math.abs(parseFloat((values[r]-sumsvalue/r).toFixed(2)))
+        tse += parseFloat(Math.pow((values[r]-sumsvalue/r),2).toFixed(2))
+        tape += parseFloat((100*Math.abs(values[r]-sumsvalue/r)/values[r]).toFixed(2))
     }
     sums = sums + "+" + values[r-1]
     sumsvalue = sumsvalue + values[r-1]
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + rows + "} = \\boxed{" + parseFloat((sumsvalue/rows).toFixed(2)) + "} $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>${\\color{RoyalBlue}"+sumsvalue+"}$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sumsvalue + "}{" + rows + "} = " + parseFloat((sumsvalue/rows).toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(| \\% e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 

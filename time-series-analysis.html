@@ -97,6 +97,13 @@
         </div>
         <div class="col-4 col-md-2 mb-3" id = "blankspace0">
         </div>
+            <div class="col-4 col-md-2 mb-3" id = "exponential">
+              <table id="statistics">
+          <tr>
+            <td class="statistics">$\alpha = $ <input type="text" style="width:35px;" id="alpha" class="hypinput2"></td>
+          </tr>
+        </table>
+              </div>
               </div>
     </div>
       
@@ -105,7 +112,7 @@
         <div class="col-8 col-md-3 mb-3">
             <select id="method" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
-                <option value="plot">Time Plot</option>
+                <option value="timeplot">Time Plot</option>
                 <option value="naive">Naive Method</option>
                 <option value="average">Average Method</option>
                 <option value="moving">Moving Average</option>
@@ -128,13 +135,7 @@
             </select>
         </div>
               
-        <div class="col-4 col-md-2 mb-3" id = "exponential">
-              <table id="statistics">
-          <tr>
-            <td class="statistics">$\alpha = $ <input type="text" style="width:35px;" id="alpha" class="hypinput2"></td>
-          </tr>
-        </table>
-              </div>
+        
               
               <div class="col-4 col-md-2 inputWrapper">
             <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
@@ -256,28 +257,32 @@
             </table>
             <br>
             
-            <p class = "p1"> When there are several possible forecasting methods to choose from, we need a way of choosing between them. The way we do this is by analyzing the forecast errors, which are the difference between the actual and forecasted values. To summarize the forecast errors, we could sum them up or average them. However, this causes a problem because the negative and positive errors will cancel each other out. </p>
+            <p class = "p1"> When there are several possible forecasting methods to choose from, we need a way of choosing between them. The way we do this is by analyzing the forecast errors, which are the difference between the actual and forecasted values. To summarize the forecast errors, we could sum them up or average them. However, this causes a problem because the negative and positive errors will cancel each other out. The three measures of forecast accuracy are the Mean Absolute Error, Mean Square Error and Mean Absolute Percentage Error. </p>
             
             <table class="text-center">
             <tr>
-                <td colspan="2"> $ \text{Measures of Accuracy} $ </td>
+                <td> $ \text{Measures of Accuracy} $ </td>
               </tr>
             <tr>
-                <td align="right">$ \text{Mean Absolute Error:} $</td>
                 <td>$ \text{MAE} = \text{mean}(|e_t|) $</td>
               </tr>
             <tr>
-                <td align="right">$ \text{Mean Square Error:} $</td>
                 <td>$ \text{MSE} = \text{mean}(e_t^2) $</td>
+              </tr>
+                <tr>
+                <td>$ \text{MAPE} = \text{mean}(|\%e_t|) $</td>
               </tr>
             </table>
             <br>
             
-            <p class = "p1"> Both the MAE and the MSE are scale-dependent measures of forecast accuracy. This means that the units of the data affect their values. This makes it difficult to compare forecasting methods across datasets. To solve this issue we use scale-independent measures of forecast accuracy. The mean absolute percentage error is one example of this.  </p>
+            <p class = "p1"> Both the MAE and the MSE are scale-dependent measures of forecast accuracy. This means that the units of the data affect their values. This makes it difficult to compare forecasting methods across datasets. To solve this issue we use scale-independent measures of forecast accuracy. The mean absolute percentage error is one example of this. The percentage error is calculated by dividing the error by the actual value and multiplying by 100 percent.  </p>
             
-           <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+          <!-- 
+            <td align="right">$ \text{Mean Absolute Error:} $</td>
+            <td align="right">$ \text{Mean Square Error:} $</td>
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
                  crossorigin="anonymous"></script>
-            <!-- Square1 -->
+             Square1 
             <ins class="adsbygoogle"
                  style="display:block"
                  data-ad-client="ca-pub-3595688914204816"
@@ -286,9 +291,21 @@
                  data-full-width-responsive="true"></ins>
             <script>
                  (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
+            </script>-->
             
-            <br>
+            
+            <div class="text-center mt-2 mb-2">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Big Rectangle 2 -->
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="3611905049"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            </div>
             
             <p class = "p1"> Moving averages are similar to the average method, except you're only averaging a few values at a time. In the average method, all of the historical values are being averaged. The reasoning behind this is similar to the reasoning behind exponential smoothing. That is, it is likely that the most recent values are the most relevant. Moving averages do a good job of smoothing out random fluctuations in the data. Because of this, they are used in other forecasting methods like time-series decomposition. </p>
             
@@ -338,22 +355,24 @@
       </div>
       
       
+      <div class="container container2 text-center">
+      <div id="charts" style="width: 500px; height: 300px;"></div>
+          </div>
       
-      
-      
-     
-    
+
     <div class="container">
-        <div id="output2">
+        <div id="output2" class="text-center">
         </div>
       </div> 
           
+          
+          
           </div>
       
-      <div class="text-center mt-2 mb-2">
+    <!--  <div class="text-center mt-2 mb-2">
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
              crossorigin="anonymous"></script>
-        <!-- Square2 -->
+         Square2 
         <ins class="adsbygoogle"
              style="display:block"
              data-ad-client="ca-pub-3595688914204816"
@@ -363,6 +382,19 @@
         <script>
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script> 
+        </div>-->
+      
+      <div class="text-center mt-2 mb-2">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+             crossorigin="anonymous"></script>
+        <!-- Big Rectangle 1 -->
+        <ins class="adsbygoogle"
+             style="display:inline-block;width:300px;height:250px"
+             data-ad-client="ca-pub-3595688914204816"
+             data-ad-slot="8756420514"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
         </div>
     
       
@@ -434,7 +466,7 @@
             };
         </script> 
  
-      
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       
       <script src="/js/timeseriesm.js"></script>
   </body>
