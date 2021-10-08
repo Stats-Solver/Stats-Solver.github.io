@@ -285,7 +285,7 @@ function showthings(){
     $("#orders").hide(); $("#exponential").hide();  $("#blankspace").show(); $("#weights").hide(); $("#holt").hide();
     var x = document.getElementById("method").value;
     if (x == "moving") {
-        $("#orders").show(); $("#blankspace").hide();
+        $("#orders").show(); $("#blankspace").hide(); $("#blankspace0").hide();
     } else if (x == "weighted") {
         $("#orders").show(); $("#blankspace").hide();
     } else if (x == "exponential") {
@@ -329,35 +329,11 @@ function stat(){
     } else if (x == "average") {
         average()
     } else if (x == "moving" && z == "2") {
-        movingforecast2()
-    } else if (x == "moving" && y == "error" && z == "2") {
-        movingerror2()
-    } else if (x == "moving" && y == "mae" && z == "2") {
-        movingmae2()
-    } else if (x == "moving" && y == "mse" && z == "2") {
-        movingmse2()
-    } else if (x == "moving" && y == "mape" && z == "2") {
-        movingmape2()
-    } else if (x == "moving" && y == "forecast" && z == "3") {
-        movingforecast3()
-    } else if (x == "moving" && y == "error" && z == "3") {
-        movingerror3()
-    } else if (x == "moving" && y == "mae" && z == "3") {
-        movingmae3()
-    } else if (x == "moving" && y == "mse" && z == "3") {
-        movingmse3()
-    } else if (x == "moving" && y == "mape" && z == "3") {
-        movingmape3()
-    } else if (x == "moving" && y == "forecast" && z == "4") {
-        movingforecast4()
-    } else if (x == "moving" && y == "error" && z == "4") {
-        movingerror4()
-    } else if (x == "moving" && y == "mae" && z == "4") {
-        movingmae4()
-    } else if (x == "moving" && y == "mse" && z == "4") {
-        movingmse4()
-    } else if (x == "moving" && y == "mape" && z == "4") {
-        movingmape4()
+        moving2()
+    } else if (x == "moving" && z == "3") {
+        moving3()
+    } else if (x == "moving" && z == "4") {
+        moving4()
     } else if (x == "weighted" && y == "forecast" && z == "2") {
         weightedforecast2()
     } else if (x == "weighted" && y == "error" && z == "2") {
@@ -381,9 +357,9 @@ function stat(){
     } else if (x == "weighted" && z == "4") {
         weightedforecast4()
     } else if (x == "exponential") {
-        exponentialforecast()
+        exponential()
     } else if (x == "linear") {
-        linearforecast()
+        linear()
     } else if (x == "holts") {
         holtforecast()
     }
@@ -461,7 +437,7 @@ function naive() {
         tape += parseFloat((100*Math.abs((values[r]-values[r-1]))/values[r]).toFixed(2))
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape+"}$</td></tr></table>";
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\frac{\\sum |e_t|}{" + (rows-1) + "} = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\frac{\\sum e_t^2}{" + (rows-1) + "} = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\frac{\\sum |\\% e_t|}{" + (rows-1) + "} = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = Y_" + rows + " = " + values[rows-1]+ " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(|\\%e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     // = \\text{mean}(| \\% e_t|)  = \\text{mean}(|e_t|)  = \\text{mean}(e_t^2)
     
@@ -503,122 +479,14 @@ function average() {
     sums = sums + "+" + values[r-1]
     sumsvalue = sumsvalue + values[r-1]
     table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>${\\color{RoyalBlue}"+sumsvalue+"}$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sumsvalue + "}{" + rows + "} = " + parseFloat((sumsvalue/rows).toFixed(2)) + " $$ $$ \\text{MAE} = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sumsvalue + "}{" + rows + "} = " + parseFloat((sumsvalue/rows).toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(|\\%e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     // = \\text{mean}(e_t^2) = \\text{mean}(| \\% e_t|) = \\text{mean}(|e_t|)
     
     MathJax.typeset();
 }
 
-function averageerror() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
-    document.getElementById("formulatext").innerHTML = "$e_t = Y_t - F_t$"
-    document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$" + values[r] +" - "+ parseFloat((sumsvalue/r).toFixed(2)) +" = " + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        sumsvalue += values[r]
-    }
-    document.getElementById("output").innerHTML = table
-    MathJax.typeset();
-} 
-
-function averagemae() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$|" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +"| = " + Math.abs(parseFloat((values[r]-sumsvalue/r).toFixed(2))) + "$</td>";
-        table += "</tr>";
-        total += Math.abs(values[r]-sumsvalue/r)
-        sumsvalue += values[r]
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function averagemse() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{Error}^2$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$(" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +")^2 = " + parseFloat(Math.pow((values[r]-sumsvalue/r),2).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += Math.pow(values[r]-sumsvalue/r,2)
-        sumsvalue += values[r]
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function averagemape() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|%Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 1; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/r).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/r)/values[r]).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += 100*Math.abs(values[r]-sumsvalue/r)/values[r]
-        sumsvalue += values[r]
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
-    MathJax.typeset();
-} 
-
-function movingforecast2() {
+function moving2() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order two, the forecast is equal to the average of the previous two actual values."
     document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\dfrac{Y_{t-1}+Y_t}{2}$"
@@ -626,139 +494,38 @@ function movingforecast2() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td></tr>";
+    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var sums = values[0]
     var sumsvalue = values[0]
+    var tae = 0
+    var tse = 0
+    var tape = 0
     for (var r = 2; r < rows; r++){
         sums = values[r-2] + "+" + values[r-1]
         sumsvalue = values[r-2] + values[r-1]
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\dfrac{" + sums + "}{" + 2 + "} = " + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) + "$</td>";
+        table += "<td>$" + Math.abs(parseFloat((values[r]-sumsvalue/2).toFixed(2))) + "$</td>";
+        table += "<td>$" + parseFloat(Math.pow((values[r]-sumsvalue/2),2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((100*Math.abs(values[r]-sumsvalue/2)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
+        tae += Math.abs(parseFloat((values[r]-sumsvalue/2).toFixed(2)))
+        tse += parseFloat(Math.pow((values[r]-sumsvalue/2),2).toFixed(2))
+        tape += parseFloat((100*Math.abs(values[r]-sumsvalue/2)/values[r]).toFixed(2))
     }
     sums = values[r-2] + "+" + values[r-1]
     sumsvalue = values[r-2] + values[r-1]
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + 2 + "} = \\boxed{" + parseFloat((sumsvalue/2).toFixed(2)) + "} $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + 2 + "} = " + parseFloat((sumsvalue/2).toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-2) + "} = " + parseFloat((tae/(rows-2)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-2) + "} = " + parseFloat((tse/(rows-2)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(|\\%e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-2) + "} = " + parseFloat((tape/(rows-2)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
-function movingerror2() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
-    document.getElementById("formulatext").innerHTML = "$e_t = Y_t - F_t$"
-    document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    for (var r = 2; r < rows; r++){
-        sumsvalue = values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$" + values[r] +" - "+ parseFloat((sumsvalue/2).toFixed(2)) +" = " + parseFloat((values[r]-sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = table
-    MathJax.typeset();
-} 
-
-function movingmae2() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 2; r < rows; r++){
-        sumsvalue = values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$|" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) +"| = " + Math.abs(parseFloat((values[r]-sumsvalue/2).toFixed(2))) + "$</td>";
-        table += "</tr>";
-        total += Math.abs(values[r]-sumsvalue/2)
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function movingmse2() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{Error}^2$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 2; r < rows; r++){
-        sumsvalue = values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$(" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) +")^2 = " + parseFloat(Math.pow((values[r]-sumsvalue/2),2).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += Math.pow(values[r]-sumsvalue/2,2)
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function movingmape2() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|%Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 2; r < rows; r++){
-        sumsvalue = values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/2).toFixed(2)) +"}{" + values[r] + "}  \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/2)/values[r]).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += 100*Math.abs(values[r]-sumsvalue/2)/values[r]
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-2) + "} = \\boxed{" + parseFloat((total/(rows-2)).toFixed(2)) + " \\% } $$"
-    MathJax.typeset();
-} 
-
-function movingforecast3() {
+function moving3() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order three, the forecast is equal to the average of the previous three actual values."
     document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\dfrac{Y_{t-2}+Y_{t-1}+Y_t}{3}$"
@@ -766,144 +533,39 @@ function movingforecast3() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td></tr>";
+    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var sums = values[0]
     var sumsvalue = values[0]
+    var tae = 0
+    var tse = 0
+    var tape = 0
     for (var r = 3; r < rows; r++){
         sums = values[r-3] + "+" + values[r-2] + "+" + values[r-1]
         sumsvalue = values[r-3] + values[r-2] + values[r-1]
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\dfrac{" + sums + "}{" + 3 + "} = " + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
+        table += "<td>$" + Math.abs(parseFloat((values[r]-sumsvalue/3).toFixed(2))) + "$</td>";
+        table += "<td>$" + parseFloat(Math.pow((values[r]-sumsvalue/3),2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((100*Math.abs(values[r]-sumsvalue/3)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
+        tae += Math.abs(parseFloat((values[r]-sumsvalue/3).toFixed(2)))
+        tse += parseFloat(Math.pow((values[r]-sumsvalue/3),2).toFixed(2))
+        tape += parseFloat((100*Math.abs(values[r]-sumsvalue/3)/values[r]).toFixed(2))
     }
     sums = values[r-3] + "+" + values[r-2] + "+" + values[r-1]
     sumsvalue = values[r-3] + values[r-2] + values[r-1]
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + 3 + "} = \\boxed{" + parseFloat((sumsvalue/3).toFixed(2)) + "} $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + 3 + "} = " + parseFloat((sumsvalue/3).toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-3) + "} = " + parseFloat((tae/(rows-3)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-3) + "} = " + parseFloat((tse/(rows-3)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(|\\%e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-3) + "} = " + parseFloat((tape/(rows-3)).toFixed(2)) + "\\%  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
-function movingerror3() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
-    document.getElementById("formulatext").innerHTML = "$e_t = Y_t - F_t$"
-    document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    for (var r = 3; r < rows; r++){
-        sumsvalue = values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$" + values[r] +" - "+ parseFloat((sumsvalue/3).toFixed(2)) +" = " + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = table
-    MathJax.typeset();
-} 
-
-function movingmae3() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 3; r < rows; r++){
-        sumsvalue = values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$|" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) +"| = " + Math.abs(parseFloat((values[r]-sumsvalue/3).toFixed(2))) + "$</td>";
-        table += "</tr>";
-        total += Math.abs(values[r]-sumsvalue/3)
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function movingmse3() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{Error}^2$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 3; r < rows; r++){
-        sumsvalue = values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$(" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) +")^2 = " + parseFloat(Math.pow((values[r]-sumsvalue/3),2).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += Math.pow(values[r]-sumsvalue/3,2)
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function movingmape3() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|%Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 3; r < rows; r++){
-        sumsvalue = values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/3)/values[r]).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += 100*Math.abs(values[r]-sumsvalue/3)/values[r]
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-3) + "} = \\boxed{" + parseFloat((total/(rows-3)).toFixed(2)) + " \\% } $$"
-    MathJax.typeset();
-} 
-
-function movingforecast4() {
+function moving4() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "In a moving average of order four, the forecast is equal to the average of the previous four actual values."
     document.getElementById("formulatext").innerHTML = "$F_{t+1} = \\dfrac{Y_{t-3}+Y_{t-2}+Y_{t-1}+Y_t}{4}$"
@@ -911,147 +573,130 @@ function movingforecast4() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$4$" + "</td>"+ "<td>$" + values[3] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td></tr>";
+    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$4$" + "</td>"+ "<td>$" + values[3] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
     var sums = values[0]
     var sumsvalue = values[0]
+    var tae = 0
+    var tse = 0
+    var tape = 0
     for (var r = 4; r < rows; r++){
         sums = values[r-4] + "+" +values[r-3] + "+" + values[r-2] + "+" + values[r-1]
         sumsvalue = values[r-4] + values[r-3] + values[r-2] + values[r-1]
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ \\dfrac{" + sums + "}{" + 4 + "} = " + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((values[r]-sumsvalue/3).toFixed(2)) + "$</td>";
+        table += "<td>$" + Math.abs(parseFloat((values[r]-sumsvalue/4).toFixed(2))) + "$</td>";
+        table += "<td>$" + parseFloat(Math.pow((values[r]-sumsvalue/4),2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((100*Math.abs(values[r]-sumsvalue/4)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
+        tae += Math.abs(parseFloat((values[r]-sumsvalue/4).toFixed(2)))
+        tse += parseFloat(Math.pow((values[r]-sumsvalue/4),2).toFixed(2))
+        tape += parseFloat((100*Math.abs(values[r]-sumsvalue/4)/values[r]).toFixed(2))
     }
     sums = values[r-4] + "+" + values[r-3] + "+" + values[r-2] + "+" + values[r-1]
     sumsvalue = values[r-4] + values[r-3] + values[r-2] + values[r-1]
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + 4 + "} = \\boxed{" + parseFloat((sumsvalue/4).toFixed(2)) + "} $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae+"}$</td><td>${\\color{RoyalBlue}"+tse+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = \\frac{" + sums + "}{" + 4 + "} = " + parseFloat((sumsvalue/4).toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae + "}{" + (rows-4) + "} = " + parseFloat((tae/(rows-4)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse + "}{" + (rows-4) + "} = " + parseFloat((tse/(rows-4)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(|\\%e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-4) + "} = " + parseFloat((tape/(rows-4)).toFixed(2)) + "\\%  $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
-function movingerror4() {
+function exponential() {
     $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
-    document.getElementById("formulatext").innerHTML = "$e_t = Y_t - F_t$"
-    document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
+    document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
+    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
+    document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
+    var alpha = document.getElementById("alpha").value; 
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$4$" + "</td>"+ "<td>$" + values[3] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    for (var r = 4; r < rows; r++){
-        sumsvalue = values[r-4] + values[r-3] + values[r-2] + values[r-1]
+    var table = "<table >"+ "<tr>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>$ e_t $</td><td>$ |e_t|$</td><td>$ e_t^2$</td><td>$ | \\%e_t | $</td> </tr>";
+    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
+    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "<td>$" + parseFloat((values[1]-values[0]).toFixed(2)) + "$</td>" + "<td>$" + Math.abs(parseFloat((values[1]-values[0]).toFixed(2))) + "$</td>" + "<td>$" + parseFloat(Math.pow((values[1]-values[0]),2).toFixed(2)) + "$</td>" + "<td>$" + parseFloat((100*Math.abs(values[1]-values[0])/values[1]).toFixed(2)) + "$</td>" + "</tr>"
+    var forecast = values[0]
+    var ans = alpha*values[1] + (1-alpha)*forecast
+    var tae = 0
+    var tse = 0
+    var tape = 0
+    for (var r = 2; r < rows; r++){
         table += "<tr>";
         table += "<td>$" + (r+1) + "$</td>";
         table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$" + values[r] +" - "+ parseFloat((sumsvalue/4).toFixed(2)) +" = " + parseFloat((values[r]-sumsvalue/4).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat(ans.toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((values[r]-ans).toFixed(2)) + "$</td>";
+        table += "<td>$" + Math.abs(parseFloat((values[r]-ans).toFixed(2))) + "$</td>";
+        table += "<td>$" + parseFloat(Math.pow((values[r]-ans),2).toFixed(2)) + "$</td>";
+        table += "<td>$" + parseFloat((100*Math.abs(values[r]-ans)/values[r]).toFixed(2)) + "$</td>";
         table += "</tr>";
+        forecast = alpha*values[r-1] + (1-alpha)*forecast
+        ans = alpha*values[r] + (1-alpha)*forecast
+        tae += Math.abs(parseFloat((values[r]-ans).toFixed(2)))
+        tse += parseFloat(Math.pow((values[r]-ans),2).toFixed(2))
+        tape += parseFloat((100*Math.abs(values[r]-ans)/values[r]).toFixed(2))
     }
-    document.getElementById("output").innerHTML = table
+    table = table + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tae.toFixed(2)+"}$</td><td>${\\color{RoyalBlue}"+tse.toFixed(2)+"}$</td><td>${\\color{RoyalBlue}"+tape.toFixed(2)+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + alpha + "(" + values[r-1] + ") + " + (1 - alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = " + parseFloat(ans.toFixed(2)) + " $$ $$ \\text{MAE} = \\text{mean}(|e_t|) = \\frac{" + tae.toFixed(2) + "}{" + (rows-1) + "} = " + parseFloat((tae/(rows-1)).toFixed(2)) + " $$ $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse.toFixed(2) + "}{" + (rows-1) + "} = " + parseFloat((tse/(rows-1)).toFixed(2)) + " $$ $$ \\text{MAPE} = \\text{mean}(|\\%e_t|) = \\dfrac{" + parseFloat(tape.toFixed(2)) + "}{" + (rows-1) + "} = " + parseFloat((tape/(rows-1)).toFixed(2)) + "\\%  $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
-} 
+}
 
-function movingmae4() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
+function linear() {
     var str = document.getElementById("values").value;
     var values = str.split(",").map(Number);
     var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$4$" + "</td>"+ "<td>$" + values[3] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 4; r < rows; r++){
-        sumsvalue = values[r-4] + values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$|" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) +"| = " + Math.abs(parseFloat((values[r]-sumsvalue/4).toFixed(2))) + "$</td>";
-        table += "</tr>";
-        total += Math.abs(values[r]-sumsvalue/4)
+    var ybar = avg(values)
+    var t = 0
+    var tbar = 0
+    for (var s = 0; s < rows+1; s++){
+        t += s
+        tbar = t/s
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
+    
+    var table1 = "<table>" + "<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$t - \\bar{t}$" + "</td>" + "<td>" + "$Y_t - \\bar{Y}$" + "</td>"+ "<td>" + "$(t - \\bar{t})(Y_t - \\bar{Y})$" + "</td>" +"<td>" + "$(t - \\bar{t})^2$" + "</td>"+ "</tr>";
 
-function movingmse4() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{Error}^2$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$4$" + "</td>"+ "<td>$" + values[3] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 4; r < rows; r++){
-        sumsvalue = values[r-4] + values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$(" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) +")^2 = " + parseFloat(Math.pow((values[r]-sumsvalue/4),2).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += Math.pow(values[r]-sumsvalue/4,2)
+    var total1 = 0
+    var total2 = 0
+    for (var r = 0; r < rows; r++){
+        table1 += "<tr>";
+        table1 += "<td>$" + (r+1) + "$</td>";
+        table1 += "<td>$" + values[r] + "$</td>";
+        table1 += "<td>$" + (r+1-tbar) + "$</td>";
+        table1 += "<td>$" + parseFloat((values[r]-ybar).toFixed(2)) + "$</td>";
+        table1 += "<td>$" + parseFloat(((r-tbar)*(values[r]-ybar)).toFixed(2)) + "$</td>";
+        table1 += "<td>$" + parseFloat(((r-tbar)*(r-tbar)).toFixed(2)) + "$</td>";
+        table1 += "</tr>";
+        total1 += (r-tbar)*(values[r]-ybar)
+        total2 += (r-tbar)*(r-tbar)
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function movingmape4() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|%Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$3$" + "</td>"+ "<td>$" + values[2] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$4$" + "</td>"+ "<td>$" + values[3] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    var sumsvalue = values[0]
-    var total = 0
-    for (var r = 4; r < rows; r++){
-        sumsvalue = values[r-4] + values[r-3] + values[r-2] + values[r-1]
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat((sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat((values[r]-sumsvalue/4).toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat((100*Math.abs(values[r]-sumsvalue/4)/values[r]).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += 100*Math.abs(values[r]-sumsvalue/4)/values[r]
+    
+    var b1 = parseFloat((total1/total2).toFixed(2))
+    var b0 = parseFloat((ybar - b1*tbar).toFixed(2))
+    
+    table1 = table1 + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$0$</td>"+ "<td>$0$</td>" +"<td>$"+parseFloat(total1.toFixed(2))+"$</td>"+"<td>$"+parseFloat(total2.toFixed(2))+"$</td>"+ "</tr>" + "</table>"
+    
+    var table2 = "<table>"+ "<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$T_t$" + "</td>" + "<td>$ e_t $</td><td>$ e_t^2$</td></tr>";
+    var forecast = 0
+    var tse = 0
+    for (var r = 0; r < rows; r++){
+        forecast = b0 + b1*(r+1)
+        table2 += "<tr>";
+        table2 += "<td>$" + (r+1) + "$</td>";
+        table2 += "<td>$" + values[r] + "$</td>";
+        table2 += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
+        table2 += "<td>$" + parseFloat((values[r]-forecast).toFixed(2)) + "$</td>";
+        table2 += "<td>$" + parseFloat(Math.pow((values[r]-forecast),2).toFixed(2)) + "$</td>";
+        table2 += "</tr>";
+        tse += parseFloat(Math.pow((values[r]-forecast),2).toFixed(2))
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + " \\% } $$"
+    var ans = b0 + b1*(rows+1)
+    table2 = table2 + "<tr style='border-top: thin solid'><td>$\\Sigma$</td><td>$-$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+tse.toFixed(2)+"}$</td></tr></table>";
+    document.getElementById("output").innerHTML = table1 + "$$ b_1 = \\frac{" + parseFloat(total1.toFixed(2)) + "}{" + parseFloat(total2.toFixed(2)) + "} = " + parseFloat(b1.toFixed(2)) + "$$ $$ b_0 = " + parseFloat(ybar.toFixed(2)) + " - " + parseFloat(b1.toFixed(2)) + "(" + tbar + ") = " + parseFloat(b0.toFixed(2)) + " $$ $$ F_t = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + "t $$" + table2 + "</table> $$ F_"+(rows+1)+" = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (rows+1) + ") = " + parseFloat(ans.toFixed(2)) + " $$  $$ \\text{MSE} = \\text{mean}(e_t^2) = \\dfrac{" + tse.toFixed(2) + "}{" + rows + "} = " + parseFloat((tse/rows).toFixed(2)) + " $$  <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
-} 
+}
 
 function weightedforecast2() {
     $("#explanation").show();
@@ -1532,214 +1177,6 @@ function weightedmape4() {
     document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-4) + "} = \\boxed{" + parseFloat((total/(rows-4)).toFixed(2)) + " \\% } $$"
     MathJax.typeset();
 } 
-
-function exponentialforecast() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "In simple exponential smoothing, the forecast is equal to a weighted average of the most recent actual value and the most recent forecast."
-    document.getElementById("formulatext").innerHTML = "$$F_{t+1} = \\alpha Y_t + (1-\\alpha) F_t $$"
-    document.getElementById("explanationtext").innerHTML = "Simple exponential smoothing is equivalent to taking a weighted average of all previous actual values, where the weights decrease exponentially as you move further into the past."
-    var alpha = document.getElementById("alpha").value; 
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table = "<table >"+ "<tr>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$ Y_1 = " + values[0] + "$</td>" + "</tr>"
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    for (var r = 2; r < rows; r++){
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ " + alpha + "(" + values[r-1] + ") + " + (1 - alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = " + parseFloat(ans.toFixed(2)) + "$</td>";
-        table += "</tr>";
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
-        ans = alpha*values[r] + (1-alpha)*forecast
-    }
-    document.getElementById("output").innerHTML = table + "</table> $$ F_" + (rows+1) + " = " + alpha + "(" + values[r-1] + ") + " + (1 - alpha) + "(" + parseFloat(forecast.toFixed(2)) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
-    MathJax.typeset();
-}
-
-function exponentialerror() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The forecast error is the difference between the actual value and the forecast value."
-    document.getElementById("formulatext").innerHTML = "$e_t = Y_t - F_t$"
-    document.getElementById("explanationtext").innerHTML = "The forecast error measures the amount of error in using the method to forecast a certain period."
-    var alpha = document.getElementById("alpha").value;
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table style='margin-bottom:15px'>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$\\text{Error } (e_t) $" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "<td>$ "+values[1]+"-"+values[0]+" = " + (values[1]-values[0]) + "$</td>" + "</tr>"
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
-        error = values[r]-forecast
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$ " + parseFloat(ans.toFixed(2)) + "$</td>";
-        table += "<td>$" + values[r] +" - "+ parseFloat(forecast.toFixed(2)) +" = " + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "</tr>";
-    }
-    document.getElementById("output").innerHTML = table
-    MathJax.typeset();
-} 
-
-function exponentialmae() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean absolute error is both easy to calculate and to interpret."
-    var alpha = document.getElementById("alpha").value;
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "<td>$" + (values[1]-values[0]) + "$</td>"+ "<td>$|" + (values[1]-values[0]) + "| = " + Math.abs((values[1]-values[0]))  + "$</td>" + "</tr>"
-    var total = Math.abs(values[1]-values[0])
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    var abserror = Math.abs(error)
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
-        error = values[r]-forecast
-        abserror = Math.abs(error)
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "<td>$|" + parseFloat(error.toFixed(2)) +"| = " + parseFloat(abserror.toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += abserror
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAE} = \\dfrac{\\sum{|e_t|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function exponentialmse() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean squared error is a scale-dependent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "The mean square error is the more commonly used scale-dependent measure of forecast accuracy."
-    var alpha = document.getElementById("alpha").value;
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{Error}^2$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "<td>$" + (values[1]-values[0]) + "$</td>"+ "<td>$("+ (values[1]-values[0]) + ")^2 = " + Math.pow((values[1]-values[0]),2) + "$</td>" + "</tr>"
-    var total = Math.pow((values[1]-values[0]),2)
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
-        error = values[r]-forecast
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "<td>$(" + parseFloat(error.toFixed(2)) +")^2 = " + parseFloat(Math.pow(error,2).toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += Math.pow(error,2)
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MSE} = \\dfrac{\\sum{e_t^2}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "} $$"
-    MathJax.typeset();
-} 
-
-function exponentialmape() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The mean absolute percentage error is a scale-independent measure of forecast accuracy."
-    document.getElementById("formulatext").innerHTML = "$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} $"
-    document.getElementById("explanationtext").innerHTML = "Since the mean absolute percentage error is scale-independent, it is useful in comparing error across data sets with different scales."
-    var alpha = document.getElementById("alpha").value;
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var table =  "<table>"+"<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$F_t$" + "</td>" + "<td>" + "$e_t$" + "</td>"+ "<td>" + "$\\text{|%Error|}$" + "</td>" + "</tr>";
-    table = table + "<tr>" + "<td>" + "$1$" + "</td>"+ "<td>$" + values[0] + "$</td>" + "<td>" + "$-$" + "</td>" + "<td>" + "$-$" + "</td>"+ "<td>" + "$-$" + "</td>" + "</tr>"
-    table = table + "<tr>" + "<td>" + "$2$" + "</td>"+ "<td>$" + values[1] + "$</td>" + "<td>$" + values[0] + "$</td>" + "<td>$" + (values[1]-values[0]) + "$</td>"+ "<td> $ \\biggl| \\dfrac{" + (values[1]-values[0]) + "}{" + values[1] + "} \\biggr| \\times 100 = " + parseFloat((100*Math.abs((values[1]-values[0])/values[1])).toFixed(2)) + "$ </td>" + "</tr>"
-    var total = 0
-    var forecast = values[0]
-    var ans = alpha*values[1] + (1-alpha)*forecast
-    var error = values[1] - forecast
-    var aperror = 100*Math.abs(error/values[1])
-    for (var r = 2; r < rows; r++){
-        forecast = alpha*values[r-1] + (1-alpha)*forecast
-        error = values[r]-forecast
-        aperror = 100*Math.abs(error/values[r])
-        table += "<tr>";
-        table += "<td>$" + (r+1) + "$</td>";
-        table += "<td>$" + values[r] + "$</td>";
-        table += "<td>$" + parseFloat(forecast.toFixed(2)) + "$</td>";
-        table += "<td>$" + parseFloat(error.toFixed(2)) + "$</td>";
-        table += "<td>$ \\biggl| \\dfrac{" + parseFloat(error.toFixed(2)) +"}{" + values[r] + "} \\times 100 \\biggr| = " + parseFloat(aperror.toFixed(2)) + "$</td>";
-        table += "</tr>";
-        total += aperror
-    }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>"+"$-$"+"</td>"+ "<td>$"+"-"+"$</td>" +"<td>$"+parseFloat(total.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = table + " $$ \\text{MAPE} = \\dfrac{\\sum{\\biggl|\\dfrac{e_t}{Y_t} \\times 100 \\biggr|}}{t} = \\frac{" + parseFloat(total.toFixed(2)) + "}{" + (rows-1) + "} = \\boxed{" + parseFloat((total/(rows-1)).toFixed(2)) + "\\%} $$"
-    MathJax.typeset();
-} 
-
-function linearforecast() {
-    var str = document.getElementById("values").value;
-    var values = str.split(",").map(Number);
-    var rows = values.length;
-    var ybar = avg(values)
-    var t = 0
-    var tbar = 0
-    for (var s = 0; s < rows+1; s++){
-        t += s
-        tbar = t/s
-    }
-    
-    var table1 = "<table>" + "<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$t - \\bar{t}$" + "</td>" + "<td>" + "$Y_t - \\bar{Y}$" + "</td>"+ "<td>" + "$(t - \\bar{t})(Y_t - \\bar{Y})$" + "</td>" +"<td>" + "$(t - \\bar{t})^2$" + "</td>"+ "</tr>";
-
-    var total1 = 0
-    var total2 = 0
-    for (var r = 0; r < rows; r++){
-        table1 += "<tr>";
-        table1 += "<td>$" + (r+1) + "$</td>";
-        table1 += "<td>$" + values[r] + "$</td>";
-        table1 += "<td>$" + (r+1-tbar) + "$</td>";
-        table1 += "<td>$" + parseFloat((values[r]-ybar).toFixed(2)) + "$</td>";
-        table1 += "<td>$" + parseFloat(((r-tbar)*(values[r]-ybar)).toFixed(2)) + "$</td>";
-        table1 += "<td>$" + parseFloat(((r-tbar)*(r-tbar)).toFixed(2)) + "$</td>";
-        table1 += "</tr>";
-        total1 += (r-tbar)*(values[r]-ybar)
-        total2 += (r-tbar)*(r-tbar)
-    }
-    
-    var b1 = parseFloat((total1/total2).toFixed(2))
-    var b0 = parseFloat((ybar - b1*tbar).toFixed(2))
-    
-    table1 = table1 + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$0$</td>"+ "<td>$0$</td>" +"<td>$"+parseFloat(total1.toFixed(2))+"$</td>"+"<td>$"+parseFloat(total2.toFixed(2))+"$</td>"+ "</tr>" + "</table>"
-    
-    var table2 = "<table>"+ "<tr style='border-bottom: thin solid'>" + "<td>" + "$t$" + "</td>"+ "<td>" + "$Y_t$" + "</td>" + "<td>" + "$\\text{Forecast } (F_t)$" + "</td>" + "</tr>";
-    var forecast = 0
-    for (var r = 0; r < rows; r++){
-        forecast = b0 + b1*(r+1)
-        table2 += "<tr>";
-        table2 += "<td>$" + (r+1) + "$</td>";
-        table2 += "<td>$" + values[r] + "$</td>";
-        table2 += "<td>$ " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (r+1) + ") = " + parseFloat(forecast.toFixed(2)) + "$</td>";
-        table2 += "</tr>";
-    }
-    var ans = b0 + b1*(rows+1)
-    document.getElementById("output").innerHTML = table1 + "$$ b_1 = \\frac{" + parseFloat(total1.toFixed(2)) + "}{" + parseFloat(total2.toFixed(2)) + "} = " + parseFloat(b1.toFixed(2)) + "$$ $$ b_0 = " + parseFloat(ybar.toFixed(2)) + " - " + parseFloat(b1.toFixed(2)) + "(" + tbar + ") = " + parseFloat(b0.toFixed(2)) + " $$ $$ F_t = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + "t $$" + table2 + "</table> $$ F_"+(rows+1)+" = " + parseFloat(b0.toFixed(2)) + " + " + parseFloat(b1.toFixed(2)) + " (" + (rows+1) + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
-    MathJax.typeset();
-}
 
 function linearerror() {
     $("#explanation").show();

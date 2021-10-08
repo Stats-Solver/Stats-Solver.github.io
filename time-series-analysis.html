@@ -97,6 +97,14 @@
         </div>
         <div class="col-4 col-md-2 mb-3" id = "blankspace0">
         </div>
+              <div class="col-4 col-md-2 mb-3" id = "orders">
+            <select id="order" class="form-control" onchange="showweights()">
+                <option value="choose">Order</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>
+        </div>
             <div class="col-4 col-md-2 mb-3" id = "exponential">
               <table id="statistics">
           <tr>
@@ -116,24 +124,17 @@
                 <option value="naive">Naive Method</option>
                 <option value="average">Average Method</option>
                 <option value="moving">Moving Average</option>
-                <option value="weighted">Weighted MA</option>
+                <!--<option value="weighted">Weighted MA</option>-->
                 <option value="exponential">Exponential Smoothing</option>
                 <option value="linear">Trend Regression</option>
-                <option value="holts">Holt's Method</option>
+                <!--<option value="holts">Holt's Method</option>-->
             </select>
         </div> 
              
           <!--    <div class="col-4 col-md-2 mb-3" id = "blankspace">
         </div> -->
               
-            <div class="col-4 col-md-2 mb-3" id = "orders">
-            <select id="order" class="form-control" onchange="showweights()">
-                <option value="choose">Order</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-                <option value="4">4</option>
-            </select>
-        </div>
+            
               
         
               
