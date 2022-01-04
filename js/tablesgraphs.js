@@ -512,7 +512,7 @@ function frequencyqual(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -568,7 +568,7 @@ function frequencyquant(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -599,15 +599,18 @@ function relativequal(){
     var relfreq = counts.map( function(value) {
         return value / tot;
     } );
+    
+    // + counts[r]+ "/" + tot + "="
+    
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
         table += "<td>$" + counts[r] + "$</td>";
-        table += "<td>$" + counts[r]+ "/" + tot + "=" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td>$1$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -663,15 +666,17 @@ function relativequant(){
         return value / tot;
     } );
     
+    //  + quants[r]+ "/" + tot + "="
+    
     for (var r = 0; r < end; r++){
         table += "<tr>";
         table += "<td>$" + classlimits[r] + "$</td>";
         table += "<td>$" + quants[r] + "$</td>";
-        table += "<td>$" + quants[r]+ "/" + tot + "=" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$"+ tot +"$</td><td>$1$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -705,15 +710,18 @@ function percentqual(){
     var perfreq = relfreq.map( function(value) {
         return value * 100;
     } );
+    
+    //  + parseFloat(relfreq[r].toFixed(3)) + "\\times 100 = "
+    
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td>$\\text{" + eachonesort[r] + "}$</td>";
         table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "$</td>";
-        table += "<td>$" + parseFloat(relfreq[r].toFixed(3)) + "\\times 100 = "+ parseFloat(perfreq[r].toFixed(1)) + "$</td>";
+        table += "<td>$"+ parseFloat(perfreq[r].toFixed(1)) + "$</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -776,15 +784,17 @@ function percentquant(){
         return value * 100;
     } );
     
+    //  + parseFloat(rel[r].toFixed(3)) + "\\times 100 = "
+    
     for (var r = 0; r < end; r++){
         table += "<tr>";
         table += "<td>$" + classlimits[r] + "$</td>";
         table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
-        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "\\times 100 = "+ parseFloat(per[r].toFixed(1)) + "$</td>";
+        table += "<td>$"+ parseFloat(per[r].toFixed(1)) + "$</td>";
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\text{Total}$</td><td>$1$</td><td>$100$</td></tr>";
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2299,7 +2309,73 @@ function cumfrequency(){
     }
 }
 
-
+function cumfrequency2(){
+    $("#explanation").show(); $("#firstclass").show();
+    document.getElementById("descriptiontext").innerHTML = "A frequency distribution is a table showing the number of items in each class."
+    document.getElementById("formulatext").innerHTML = "The frequency of a class is the number of items in that class."
+    document.getElementById("explanationtext").innerHTML = "The sum of the frequencies is always equal to the sample size (n)."
+    $("#desfrequency").show(); $("#expfrequency").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    
+    var table = "<tr style='border-bottom: thin solid'><td><br>$\\text{Class}$</td><td><br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$ <br> $\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "</tr>";
+    }
+    
+    var prev = quants[0]
+    
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + quants[r] + "$</td>";
+        table += "<td>$" + (quants[r]+prev) + "$</td>";
+        table += "</tr>";
+        prev += quants[r]
+    }
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
 
 function cumrelative(){
     var str = document.getElementById("values").value;
@@ -2312,6 +2388,82 @@ function cumrelative(){
     }
 }
 
+function cumrelative2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A relative frequency distribution is a table showing the proportion of items in each class."
+    document.getElementById("formulatext").innerHTML = "$\\text{Relative Frequency} = \\dfrac{\\text{Frequency}}{n}$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the relative frequencies is always equal to 1."
+    $("#desrelative").show(); $("#exprelative").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Relative}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Relative}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    //  + quants[r]+ "/" + tot + "="
+    
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "</tr>";
+    }
+    
+    var prev = parseFloat(rel[0].toFixed(3))
+    
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$" + parseFloat(rel[r].toFixed(3)) + "$</td>";
+        table += "<td>$" + (parseFloat(rel[r].toFixed(3))+prev) + "$</td>";
+        table += "</tr>";
+        prev += parseFloat(rel[r].toFixed(3))
+    }
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
 
 
 function cumpercent(){
@@ -2323,6 +2475,90 @@ function cumpercent(){
     } else {
         cumpercent2()()
     }
+}
+
+function cumpercent2(){
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "A percent frequency distribution is a table showing the percentage of items in each class."
+    document.getElementById("formulatext").innerHTML = "$\\text{Percent Frequency} = \\text{Relative Frequency} \\times 100$"
+    document.getElementById("explanationtext").innerHTML = "The sum of the percent frequencies is always equal to 100."
+    $("#despercent").show();
+    var str = document.getElementById("values").value;
+    var each0 = str.replace(/\s/g, ''); var each = each0.split(",");
+    var eachonesort = sortrem(each); var len = eachonesort.length;
+    var counts = countem(each)
+    var table = "<tr style='border-bottom: thin solid'><td><br><br>$\\text{Class}$</td><td><br>$\\text{Percent}$<br>$\\text{Frequency}$</td><td>$\\text{Cumulative}$<br>$\\text{Percent}$<br>$\\text{Frequency}$</td></tr>";
+    var rows = len; var cols = 2;
+    var tot = sum(counts);
+    var relfreq = counts.map( function(value) {
+        return value / tot;
+    } );
+    var perfreq = relfreq.map( function(value) {
+        return value * 100;
+    } );
+    
+    var lower = document.getElementById("lower").value
+    var upper = document.getElementById("upper").value
+    
+    var maxvalue = Math.max.apply(Math, each);
+    var minvalue = Math.min.apply(Math, each);
+    
+    var classwidth = upper - lower + 1;
+    
+    var value1 = parseFloat(lower);
+    var value2 = parseFloat(upper);
+    var classlimits = [];
+    var limits1 = [];
+    var limits2 = [];
+    
+    var i = 0
+    while (maxvalue > value2 - classwidth) {
+        classlimits[i] = value1 + "-" + value2
+        limits1[i] = value1;
+        limits2[i] = value2;
+        value1 += classwidth;
+        value2 += classwidth;
+        i += 1
+    }
+    
+    var end = i;
+    
+    var quants = [];
+    for (var i=0; i<end; i++) {
+        quants[i] = each.filter(inRange, [limits1[i], limits2[i]]).length
+    }
+    
+    var rel = quants.map( function(value) {
+        return value / tot;
+    } );
+    
+    var per = rel.map( function(value) {
+        return value * 100;
+    } );
+    
+    //  + parseFloat(rel[r].toFixed(3)) + "\\times 100 = "
+    
+    for (var r = 0; r < 1; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$"+ parseFloat(per[r].toFixed(1)) + "$</td>";
+        table += "<td>$"+ parseFloat(per[r].toFixed(1)) + "$</td>";
+        table += "</tr>";
+    }
+    
+    var prev = parseFloat(per[0].toFixed(1))
+    
+    for (var r = 1; r < end; r++){
+        table += "<tr>";
+        table += "<td>$" + classlimits[r] + "$</td>";
+        table += "<td>$"+ parseFloat(per[r].toFixed(1)) + "$</td>";
+        table += "<td>$"+ (parseFloat(per[r].toFixed(1))+prev) + "$</td>";
+        table += "</tr>";
+        prev += parseFloat(per[r].toFixed(1))
+    }
+    
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
 }
 
 
@@ -2468,7 +2704,7 @@ function calccross1(){
     table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>" +" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2672,7 +2908,7 @@ function calccross2(){
     table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2921,7 +3157,7 @@ function calccross3(){
     table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3091,7 +3327,7 @@ function calccross4(){
     table = table + "<td style='border-left: thin solid'>$" + totot + "$</td>" + "</tr>";
     
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3247,6 +3483,8 @@ function calcrow1(){
     var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
     var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
     
+    // \\dfrac{ + x[t+h] + "}{" + rowtot + "} \\times 100 = "
+    
     for (var r = 0; r < rows; r++){
         var rowtot = 0
         table += "<tr>";
@@ -3255,7 +3493,7 @@ function calcrow1(){
             rowtot += x[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + x[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat(((x[t+h]/rowtot)*100).toFixed(2)) + " $</td>"; 
+            table += "<td>$ " + parseFloat(((x[t+h]/rowtot)*100).toFixed(2)) + " $</td>"; 
         }
         table += "<td style='border-left: thin solid'>$ 100 $</td></tr>"; 
         coltot0 += x[h]; coltot1 += x[h+1]; coltot2 += x[h+2]; coltot3 += x[h+3]; coltot4 += x[h+4];
@@ -3265,7 +3503,7 @@ function calcrow1(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3480,6 +3718,8 @@ function calcrow2(){
     var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
     var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
     
+    // \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         var rowtot = 0
         table += "<tr>";
@@ -3488,7 +3728,7 @@ function calcrow2(){
             rowtot += quants[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
+            table += "<td>$ " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
         }
         table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
         coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
@@ -3498,7 +3738,7 @@ function calcrow2(){
 
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3757,6 +3997,8 @@ function calcrow3(){
     var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
     var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
     
+    // \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         var rowtot = 0
         table += "<tr>";
@@ -3765,7 +4007,7 @@ function calcrow3(){
             rowtot += quants[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
+            table += "<td>$ " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + "$</td>";
         }
         table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
         coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
@@ -3776,7 +4018,7 @@ function calcrow3(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3960,6 +4202,8 @@ function calcrow4(){
     var coltot0 = 0; var coltot1 = 0; var coltot2 = 0; var coltot3 = 0; var coltot4 = 0;
     var coltot5 = 0; var coltot6 = 0; var coltot7 = 0; var coltot8 = 0; var coltot9 = 0;
     
+    // \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         var rowtot = 0
         table += "<tr>";
@@ -3968,7 +4212,7 @@ function calcrow4(){
             rowtot += quants[t+h] 
         }
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + rowtot + "} \\times 100 = " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + " $</td>";
+            table += "<td>$ " + parseFloat((100*quants[t+h]/rowtot).toFixed(2)) + " $</td>";
         }
         table += "<td style='border-left: thin solid'>$100$</td></tr>"; 
         coltot0 += quants[h]; coltot1 += quants[h+1]; coltot2 += quants[h+2]; coltot3 += quants[h+3]; coltot4 += quants[h+4];
@@ -3979,7 +4223,7 @@ function calcrow4(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4138,11 +4382,13 @@ function calccol1(){
     
     var h = 0
     
+    // \\dfrac{" + x[t+h] + "}{" + coltot[t] + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + x[t+h] + "}{" + coltot[t] + "} \\times 100 = " + parseFloat((x[t+h]*100/coltot[t]).toFixed(2)) + " $</td>";
+            table += "<td>$ " + parseFloat((x[t+h]*100/coltot[t]).toFixed(2)) + " $</td>";
         }
         table += "</tr>"; 
         h += len2
@@ -4162,7 +4408,7 @@ function calccol1(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4388,11 +4634,13 @@ function calccol2(){
     
     var h = 0
     
+    // \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$\\text{" + eachonesort[r] + "}$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = " +parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
+            table += "<td>$ " +parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
         }
         table += "</tr>"; 
         h += cols
@@ -4412,7 +4660,7 @@ function calccol2(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4682,11 +4930,13 @@ function calccol3(){
     
     var h = 0
     
+    //\\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$" + classlimits[r] + "$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + " $</td>";
+            table += "<td>$ " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + " $</td>";
         }
         table += "</tr>"; 
         h += cols
@@ -4707,7 +4957,7 @@ function calccol3(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4902,11 +5152,13 @@ function calccol4(){
     
     var h = 0
     
+    // \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = 
+    
     for (var r = 0; r < rows; r++){
         table += "<tr>";
         table += "<td style='border-right: thin solid'>$" + classlimitsx[r] + "$</td>";
         for (var t = 0; t < cols; t++){
-            table += "<td>$ \\dfrac{" + quants[t+h] + "}{" + coltot[t] + "} \\times 100 = " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
+            table += "<td>$ " + parseFloat((100*quants[t+h]/coltot[t]).toFixed(2)) + "$</td>";
         }
         table += "</tr>"; 
         h += cols
@@ -4926,7 +5178,7 @@ function calccol4(){
     
     //document.getElementById("output").innerHTML = "<table>" + table0 + "</table><br>" + "<table>" + table + "</table>"
     
-    document.getElementById("output").innerHTML = "<table>" + table + "</table>"
+    document.getElementById("output").innerHTML = "<table>" + table + "</table> <br>"+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }

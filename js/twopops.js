@@ -4,9 +4,11 @@ $("#proportionzero").hide();$("#hypothesis").hide();$("#datainput").hide(); $("#
 $("#datainput2").hide(); $("#valuesinput2").show(); inputtype = "values"; inputtype2 = "values"
 $("#matchedmu").hide(); $("#matchedmu2").hide();  $("#matchedinput").hide(); $("#581773186").hide();
 
-
-
 $("#twoouputs").hide(); $("#matchedsamples").hide(); 
+
+$("#equalvariance").hide(); 
+
+equalvar = "no"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -98,8 +100,10 @@ function stdev() {
     var x = document.getElementById("sigma").value;
     if (x == "known"){
         document.getElementById("standdev2").innerHTML = "&sigma;₂";
+        $("#equalvariance").hide(); 
     } else if (x == "unknown"){
         document.getElementById("standdev2").innerHTML = "s₂";
+        $("#equalvariance").show(); 
     }
 }
 
@@ -433,18 +437,278 @@ function tinv(p, dof) {
 	
 }
 
+function equalvariance() {
+    if (document.getElementById('equalv').checked) {
+      equalvar = "yes"
+  } else {
+      equalvar = "no"
+  }
+}
+
 function conint(){
     $("#twoouputs").show(); $("#how").hide();
     $("#581773186").show();
     $("#myCanvas2").hide(); $("#output3").hide();
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
-        conint1()
+        if (equalvar == "no") {
+            conint1()
+        } else if (equalvar == "yes") {
+            coninte()
+        }
+        
     } else if (x == "proportion"){
         conint2()
     } 
 }
 
+function coninte(){
+    $("#canvascontainer").show();
+    if (inputtype == "values") {
+        var sigma = document.getElementById("sigma").value;
+        var size1 = document.getElementById("size1").value; var size1m1 = size1 - 1;
+        var size2 = document.getElementById("size2").value; var size2m1 = size2 - 1;
+        var xbar1 = document.getElementById("xbar1").value;
+        var xbar2 = document.getElementById("xbar2").value;
+        var stdev1 = document.getElementById("stdev1").value;
+        var stdev2 = document.getElementById("stdev2").value;
+    } else if (inputtype == "data") {
+        var str = document.getElementById("x1values").value;
+        var str2 = document.getElementById("x2values").value;
+        var each = str.split(",").map(Number); var len = each.length; var lenmin1 = len - 1;
+        var each2 = str2.split(",").map(Number); var len2 = each.length; var len2min1 = len - 1;
+        var sumeach = sum(each); var sumeach2 = sum(each2);
+        var mn = avg(each); var mn2 = avg(each2);
+        var eachminus = each.map( function(value) {
+            return value - mn;
+        } );
+        var eachminus2 = eachminus.map( function(value) {
+            return value * value;
+        } );
+        var each2minus = each2.map( function(value) {
+            return value - mn;
+        } );
+        var each2minus2 = each2minus.map( function(value) {
+            return value * value;
+        } );
+        var sumeachminus = sum(eachminus); var sumeach2minus = sum(each2minus);
+        var sumeachminus2 = sum(eachminus2); var sumeach2minus2 = sum(each2minus2);
+        var ansvar = sumeachminus2 / lenmin1; var ansvar2 = sumeach2minus2 / len2min1;
+        var ansstd = Math.sqrt(ansvar); var ansstd2 = Math.sqrt(ansvar2);
+        var size1 = len; var sizem1 = size1 - 1; var size2 = len2; var size2m1 = size2 - 1;
+        var xbar1 = mn; var xbar2 = mn2;
+        var stdev1 = parseFloat(ansstd.toFixed(2)); var stdev2 = parseFloat(ansstd2.toFixed(2));
+        var sigma = "unknown"
+    } 
+    var conlev = document.getElementById("conlev").value;
+    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
+    var zalphahalf = NormSInv(1 - alphahalf);
+    var marginerror = zalphahalf * Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2)); 
+    var anslow = (xbar1-xbar2) - marginerror; var anshigh = (parseFloat(xbar1-xbar2)+marginerror);
+    
+    var degreesfreedom = parseFloat(size1) + parseFloat(size2) - 2
+    var degreesfreedomf = degreesfreedom
+    
+    var sizem1 = degreesfreedomf; var sizem2 = degreesfreedomf - 1; var size = degreesfreedomf + 1
+    
+    var talphahalf = tinv(alphahalf,degreesfreedomf);
+    var marginerrort = talphahalf * Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2));
+    var anslowt = (xbar1-xbar2) - marginerrort; var anshight = (parseFloat(xbar1-xbar2)+marginerrort)
+    var exp = 2.71828;
+    
+        if (inputtype == "values") {
+            document.getElementById("output1").innerHTML = "$$ \\text{Point Estimate:} $$ $$ \\bar{x}_1 - \\bar{x}_2 = "+xbar1+" - "+xbar2+" = {\\color{RoyalBlue}"+(xbar1-xbar2)+"} $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ $$ \\text{Degrees of Freedom:} $$ $$ df = n_1 + n_2 - 2 = "+size1+" + "+size2+" - 2 = {\\color{RoyalBlue}"+degreesfreedom+"} $$ $$ \\text{Pooled Sample Standard Deviation:} $$ $$ \\begin{align} s_p &= \\sqrt{ \\dfrac{(n_1 - 1)s_1^2+(n_2 - 1)s_2^2}{n_1 + n_2 - 2} } \\\\ &= \\sqrt{ \\dfrac{("+size1+" - 1)"+stdev1+"^2+("+size2+" - 1)"+stdev2+"^2}{"+size1+" + "+size2+" - 2} } \\end{align} $$ "
+        } else if (inputtype == "data") {
+            document.getElementById("output1").innerHTML = "$$ \\bar{x}_1 = \\frac{\\sum{x_1}}{n_1} =  \\frac{" + sumeach + "}{" + len + "}  = " + parseFloat(mn.toFixed(2)) + " $$ $$ \\bar{x}_2 = \\frac{\\sum{x_2}}{n_2} =  \\frac{" + sumeach2 + "}{" + len2 + "}  = " + parseFloat(mn2.toFixed(2)) + " $$ $$ \\ s_1 = \\sqrt{\\dfrac{\\sum{(x_1-\\bar{x}_1)^2}}{n_1-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" $$ $$ \\ s_2 = \\sqrt{\\dfrac{\\sum{(x_2-\\bar{x}_2)^2}}{n_2-1}} = \\sqrt{\\dfrac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len2+"-1}} = "+parseFloat(ansstd2.toFixed(2))+" $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ $$ \\begin{align} df &= \\frac{\\left(\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}\\right)^2}{\\dfrac{1}{n_1-1}\\left(\\dfrac{s_1^2}{n_1}\\right)^2 + \\dfrac{1}{n_2-1}\\left(\\dfrac{s_2^2}{n_2}\\right)^2} \\\\ &= \\frac{\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}+\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2}{\\dfrac{1}{"+size1+"-1}\\left(\\dfrac{"+stdev1+"^2}{"+size1+"}\\right)^2 + \\dfrac{1}{"+size2+"-1}\\left(\\dfrac{"+stdev2+"^2}{"+size2+"}\\right)^2} \\\\ &= " + parseFloat(degreesfreedom.toFixed(2)) + " \\rightarrow " + Math.floor(degreesfreedom) + "\\end{align} $$ "
+        } 
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(230, 100);
+    ctx.lineTo(230, 130);
+    ctx.lineTo(279, 130);
+    ctx.lineTo(279, 118);
+    ctx.quadraticCurveTo(260, 120, 230, 100);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    
+    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
+
+    if (sigma == "known") {
+        ctx.fillText("z",285,132);
+        ctx.fillText("z",228,145);
+        ctx.fillText("α/2",234,147);
+    } else if (sigma == "unknown") {
+        ctx.fillText("t",285,132);
+        ctx.fillText("t",228,145);
+        ctx.fillText("α/2",232,147);
+        //ctx.fillText("df = "+sizem1,220,40); 
+    }
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    var zvalue = toFixing(zalphahalf,1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
+    var zalphahalfr = zalphahalf.toFixed(2); 
+    var zseconddec = (""+zalphahalfr)[3];
+    var colm = zseconddec
+    
+    
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    
+    
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    table2 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+    }
+    
+    table3 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+    }
+    
+    table31 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    var tablez = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table31+"</tr></table>"
+    
+    table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table4 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (conlev == "90") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (conlev == "95") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (conlev == "99") {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    }
+    
+    
+    
+    
+    var tablet = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
+    
+    
+    if (sigma == "known") {
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = {\\color{RoyalBlue}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = {\\color{RoyalBlue}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$ z_{\\alpha/2} \\sqrt{\\dfrac{\\sigma_1^2}{n_1}+\\dfrac{\\sigma_2^2}{n_2}} = " + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}} = {\\color{RoyalBlue}" +marginerror.toFixed(2) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm z_{\\alpha/2} \\sqrt{\\dfrac{\\sigma_1^2}{n_1}+\\dfrac{\\sigma_2^2}{n_2}} $$ $$"+ (xbar1-xbar2) + "\\pm" +marginerror.toFixed(2) + "$$ $$ \\boxed{" + anslow.toFixed(2) + "\\text{ to }" + anshigh.toFixed(2) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\mu_1 - \\mu_2 \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    } else if (sigma == "unknown") {
+        document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\sqrt{\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}} = " + talphahalf.toFixed(3) + "\\sqrt{\\frac{"+stdev1+"^2}{"+size1+"}+\\frac{"+stdev2+"^2}{"+size2+"}} = {\\color{RoyalBlue}" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x}_1 - \\bar{x}_2 \\pm t_{\\alpha/2} \\sqrt{\\dfrac{s_1^2}{n_1}+\\dfrac{s_2^2}{n_2}} $$ $$"+parseFloat((xbar1-xbar2).toFixed(2)) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$  $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslowt.toFixed(2))+" \\leq \\mu_1 - \\mu_2 \\leq "+parseFloat(anshight.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    } 
+    
+    MathJax.typeset();
+}
 
 function conint1(){
     $("#canvascontainer").show();
@@ -2183,6 +2447,7 @@ function hyptest2(){
 
 function example1(){
     if (inputtype == "values") {
+        $("#equalvariance").hide();
         document.getElementById("samplestat").value = "mean"
         $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
         $("#sd11").show(); $("#sd22").show(); $("#sd33").show();
@@ -2204,6 +2469,7 @@ function example1(){
 
 function example2(){
     if (inputtype == "values") {
+        $("#equalvariance").show();
         document.getElementById("samplestat").value = "mean"
         $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
         $("#sd11").show(); $("#sd22").show(); $("#sd33").show();

@@ -1019,6 +1019,7 @@ function hyptest(){
 }
 
 function hyptest1(){
+    $("#output21").show();
     if (inputtype == "values") {
         var sigma = document.getElementById("sigma").value;
         var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
@@ -2354,6 +2355,7 @@ function hyptest1(){
 }
 
 function hyptest2(){
+    $("#output21").hide();
     var tail = document.getElementById("tail").value;
     var pknot = document.getElementById("muknot").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
@@ -2366,6 +2368,10 @@ function hyptest2(){
     var zcless = NormSInv(alpha); var zcmore = Math.abs(NormSInv(alpha))
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
     var exp = 2.71828;
+    
+    document.getElementById("descriptiontext").innerHTML = "A hypothesis test is used to determine whether the population proportion is less than, greater than or different than some value."
+    document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} $"
+    document.getElementById("explanationtext").innerHTML = "Rejecting the null hypothesis means accepting the alternative hypothesis."
 
     if (tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
@@ -2431,12 +2437,29 @@ function hyptest2(){
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }
     
-    var zvalue = toFixing(test,1);
-    var zvaluer = test.toFixed(2); 
-    var zseconddec = (""+zvaluer)[4];
-    var zcrit = toFixing(zcless,1);
-    var zcritr = zcless.toFixed(2); 
-    var zcritseconddec = (""+zcritr)[4];
+    var zvalue = toFixing(parseFloat(test),1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
+    var zvaluer = parseFloat(test).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    var colp = zseconddec
+    
+    if (tail == "lower" || tail == "upper") {
+        var zcrit = toFixing(zcless,1);
+        var zcrit1 = (zcrit - .1).toFixed(1);
+        var zcrit2 = (parseFloat(zcrit) + .1).toFixed(1);
+        var zcritr = zcless.toFixed(2); 
+        var zcritseconddec = (""+zcritr)[4];
+        var colc = zcritseconddec  
+    } else if (tail == "two") {
+        var zcrit = toFixing(zctwo1,1);
+        var zcrit1 = (zcrit - .1).toFixed(1);
+        var zcrit2 = (parseFloat(zcrit) + .1).toFixed(1);
+        var zcritr = zctwo1.toFixed(2); 
+        var zcritseconddec = (""+zcritr)[4];
+        var colc = zcritseconddec 
+    }
+        
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -2457,6 +2480,34 @@ function hyptest2(){
          var valstart = 5; 
          var valend = 9;
     }
+    
+    
+    
+    
+    
+    
+    if (zseconddec == 0) {
+         var colp1 = 1
+    } else if (zseconddec == 1) {
+         var colp1 = 2
+    } else if (zseconddec == 2) {
+         var colp1 = 3
+    } else if ((zseconddec == 3 || zseconddec == 4 || zseconddec == 5 || zseconddec == 6)) {
+         var colp1 = 3
+    } else if (zseconddec == 7) {
+         var colp1 = 3
+    } else if (zseconddec == 8) {
+         var colp1 = 4
+    } else if (zseconddec == 9) {
+         var colp1 = 5
+    }
+    
+    
+    
+    
+    
+    
+    
     
     if (zcritseconddec == 0 || zcritseconddec == 1 || zcritseconddec == 2) {
          var critstart = 0; 
@@ -2481,29 +2532,109 @@ function hyptest2(){
     
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colp) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
     }
     
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+    if (test < 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colp) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colp) {
+                table3 += "<td style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colp) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (test >= 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            //table31 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colp) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            //table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colp) {
+                table3 += "<td style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            //table32 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colp) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
     }
     
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
-        table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colc) {
+                table12 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    
+    table21 = []
+    for (var r = critstart; r < critend + 1; r++){
+        if (r == colc) {
+                table21 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table21 += "<td>$" + normalcdf(parseFloat(zcrit1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
     }
     
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
-        table2 += "<td>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+        if (r == colc) {
+                table2 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+    }
+    
+    table22 = []
+    for (var r = critstart; r < critend + 1; r++){
+        if (r == colc) {
+                table22 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table22 += "<td>$" + normalcdf(parseFloat(zcrit2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
     }
  
 
-    var tablep = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
-    var tablec = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit+"$</td>"+table2+"</tr></table>"
+    var tablep = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table31+"</tr><tr bgcolor='lightgray'><td>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table32+"</tr></table>"
+    var tablec = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit1+"$</td>"+table21+"</tr><tr><td bgcolor='lightgray'>$"+zcrit+"$</td>"+table2+"</tr><tr><td>$"+zcrit2+"$</td>"+table22+"</tr></table>"
 
-    document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} =\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} = "+test.toFixed(2)+"  $$ $ \\text{p-Value Approach:}$"
+    document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ \\begin{align} z &= \\frac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} =\\dfrac{"+pbar+"-"+pknot+"}{\\sqrt{\\dfrac{"+pknot+"(1-"+pknot+")}{ "+size+"}}} \\\\ &= {\\color{RoyalBlue}"+test.toFixed(2)+"} \\end{align}  $$ $ \\text{p-Value Approach:}$"
 
     if (tail == "lower") {
         
@@ -2725,11 +2856,11 @@ function hyptest2(){
     }
     
     if (tail == "lower") {
-        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ "$$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$"
+        document.getElementById("output2").innerHTML = tablep+ "$$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$"
     } else if (tail == "upper") {
-        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = " + pval+ " $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$ "
+        document.getElementById("output2").innerHTML = tablep+" $$\\text{p-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval+ "} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ $ \\text{Critical Value Approach:}$ "
     } else if (tail == "two") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2*P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2*" + pvalh+ " = "+pval+" \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:}$"
+        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} \\text{p-value}&=2 \\times P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh+ " = {\\color{RoyalBlue}"+pval+"} \\end{align} $$ $$\\text{p-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ $ \\text{Critical Value Approach:}$"
     }
 
     if (tail == "lower") {
@@ -2967,11 +3098,11 @@ function hyptest2(){
 
     
     if (tail == "lower") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = " + cless.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = " + cmore.toFixed(2) + " $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= " + ctwo1.toFixed(2) + " \\\\ \\text{ and } "+cvalsymb2+" &= "+ctwo2.toFixed(2) + " \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
 
     MathJax.typeset();

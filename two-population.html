@@ -103,16 +103,28 @@
       
       <div id = "confidence">
       <div class="container">
-        <div class = "container" id = "confidencetitle" style="text-align: center">
+        
+          <div class = "container" id = "confidencetitle" style="text-align: center">
             <h5 class="text-center text-primary mb-3" style="display:inline-block">Confidence Interval </h5>
             <svg  style="display:inline-block" onclick="switchhypothesis()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
             
+           
         </div>
-          
-          
+         <!-- <table class = "mt-2 mb-3">
+          <tr>
+            <td class="statistics"><span class="text-center text-primary mb-3" style="font-size: 20px;">Confidence Interval</span></td>
+            <td class="statistics">
+            <svg  style="display:inline-block" onclick="switchhypothesis()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+            </td>
+          </tr>
+        </table>-->
+                    
           <div id="valuesinput">
         <table class = "mt-2;">
           <tr>
@@ -177,6 +189,12 @@
           $\text{Confidence Level:}$
             <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
         </div>
+          
+          <table class = "mt-2" id = "equalvariance">
+          <tr>
+            <td class="statistics"><input type="checkbox" id="equalv" name="vehicle1" value="Bike" onchange = "equalvariance()"> <label for="equalv">$\text{Equal Variance}$</label></td>
+          </tr> 
+        </table>
       
          
           <div class="container center">
@@ -397,7 +415,7 @@
             </table>
             <br>
             
-            <p class = "p1"> There is an alternative formula for computing the degrees of freedom in the two population case. It's simply df = n1 + n2 - 2. This is a simple extension of the formula for the one population case. In the one population case the degrees of freedom is given by df = n - 1. If we add up the degrees of freedom for the two samples we would get df = (n1 - 1) + (n2 - 1) = n1 + n2 - 2. This formula gives a pretty good approximation of the more complicated formula above.  </p>
+            <p class = "p1"> If the two population variances are assumed to be equal, an alternative formula for computing the degrees of freedom is used. It's simply df = n1 + n2 - 2. This is a simple extension of the formula for the one population case. In the one population case the degrees of freedom is given by df = n - 1. If we add up the degrees of freedom for the two samples we would get df = (n1 - 1) + (n2 - 1) = n1 + n2 - 2. This formula gives a pretty good approximation of the more complicated formula above.  </p>
             
            <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
                  crossorigin="anonymous"></script>
@@ -464,7 +482,7 @@
             </table>
             <br>
             
-            <p class = "p1"> The calculator above computes confidence intervals and hypothesis tests for two population mean. For confidence intervals about a single population mean, visit the <a href="confidence-interval.html">Confidence Interval Calculator</a>. For hypothesis tests about a single population mean, visit the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>.  </p>
+            <p class = "p1"> The calculator above computes confidence intervals and hypothesis tests for the difference between two population means. The simpler version of this is confidence intervals and hypothesis tests for a single population mean. For confidence intervals about a single population mean, visit the <a href="confidence-interval.html">Confidence Interval Calculator</a>. For hypothesis tests about a single population mean, visit the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>.  </p>
             
         </div>
       </div>
