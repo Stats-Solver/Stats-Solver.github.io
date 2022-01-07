@@ -507,7 +507,7 @@ function meansam(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= " $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML+= " $$ \\bar{x} = \\frac{\\sum{x}}{n} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -524,7 +524,7 @@ function meanpop(){
     for (let i=1; i<len; i++){
         adds += "+" + each[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\mu = \\frac{\\sum{x}}{N} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML+= "$$ \\mu = \\frac{\\sum{x}}{N} =  \\frac{" + sum(each) + "}{" + len + "} = \\boxed{" + parseFloat(avgeach.toFixed(2)) + "} $$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -553,7 +553,7 @@ function calcweighted(){
         adds3value += each2[i] * each[i]
         adds2value += each2[i]
     }
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + adds2 + "} \\\\ &=  \\frac{" + adds3value + "}{" + adds2value + "} = \\boxed{" + parseFloat((adds3value/adds2value).toFixed(2)) + "} \\end{align}$$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_w &= \\frac{\\sum{wx}}{\\sum{w}} \\\\ &= \\frac{" + adds3 + "}{" + adds2 + "} \\\\ &=  \\frac{" + adds3value + "}{" + adds2value + "} = \\boxed{" + parseFloat((adds3value/adds2value).toFixed(2)) + "} \\end{align}$$"  + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -573,7 +573,7 @@ function geometric(){
         prod = prod * each[i]
     }
     var ans = Math.pow(prod, 1/len);
-    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_g &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML+= "$$ \\begin{align} \\bar{x}_g &= \\sqrt[n]{(x_1)(x_2) \\cdots (x_n)} \\\\ &=  \\sqrt[" + len + "]{" + prod + "} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"  + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -623,7 +623,7 @@ function groupedmean(){
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$-$</td><td>$"+parseFloat(total.toFixed(2))+"$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
     
-    document.getElementById("output").innerHTML = table + "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"}  = \\boxed{" + parseFloat((ans/total).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = table + "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"}  = \\boxed{" + parseFloat((ans/total).toFixed(2)) + "} $$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -641,10 +641,17 @@ function median(){
     var valm = each[mid]; var valr = each[midr]; var vall = each[midl];
     var sumlr = vall + valr; var avelr = (vall + valr)/2;
     if (len % 2 != 0){
-         document.getElementById("output").innerHTML = " $$ "+eachsort+"$$ $$\\text{Median} = \\boxed{" + valm + "} $$"
+         var firsthalf = eachsort.slice(0,mid)
+         var secondhalf = eachsort.slice(mid + 1) 
+    }else{
+        var firsthalf = eachsort.slice(0,midl)
+        var secondhalf = eachsort.slice(midr + 1)
+    }
+    if (len % 2 != 0){
+         document.getElementById("output").innerHTML = " $$ \\text{Ordered Data:} $$ $$ " + firsthalf + ", {\\color{RoyalBlue}" + valm + "}," + secondhalf + "$$  $$\\text{Median} = \\boxed{" + valm + "} $$"  + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ " + firsthalf + ", {\\color{RoyalBlue}" + vall + "}, {\\color{RoyalBlue}" + valr + "}," + secondhalf + "$$ $$\\text{Median} = " + "\\frac{" + vall  + "+" + valr + "}{2} = \\boxed{" + avelr + "} $$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -696,12 +703,12 @@ function mode(){
     
    
     if (each.length == themodes.length) {
-        document.getElementById("output").innerHTML = "$$\\boxed{\\text{No Mode}}$$"
+        document.getElementById("output").innerHTML = "$$ \\text{Each value only occurs once.} $$ $$\\boxed{\\text{No Mode}}$$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (themodes.length == 1) {
-        document.getElementById("output").innerHTML = "$$\\text{Mode} = \\boxed{" + themodes + "}$$"
+        document.getElementById("output").innerHTML = "$$\\text{Mode} = \\boxed{" + themodes + "}$$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     else {
-        document.getElementById("output").innerHTML = "$$\\text{Modes} = \\boxed{" + themodes + "}$$"
+        document.getElementById("output").innerHTML = "$$\\text{Modes} = \\boxed{" + themodes + "}$$" + " <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 
@@ -748,11 +755,16 @@ function calcper(){
     } else {
         var suff = "th"
     }
+    
+    //$$ \\text{Average the values in positions } "+indxval+" \\text{ and } "+indxvalplus1+". $$
+    //$$ \\text{Round the index up to } "+indxrnd+". $$ $$ \\text{Take the value in position } "+indxrnd+". $$
+    
+    
     if (indxint){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$  $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -798,11 +810,15 @@ function calcquart(){
     } else {
         var quartnum = ""
     }
+    
+    // $$ \\text{Average the values in positions } "+indxval+" \\text{ and } "+indxvalplus1+". $$
+    //$$ \\text{Round the index up to } "+indxrnd+". $$ $$ \\text{Take the value in position } "+indxrnd+". $$
+    
     if (indxint){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ "+quartnum+" = \\boxed{" + answr + "} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ "+quartnum+" = \\boxed{" + answr + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -816,7 +832,7 @@ function range(){
     var each = str.split(",").map(Number);
     var largest = Math.max.apply(null,each); var smallest = Math.min.apply(null,each)
     var rng = largest - smallest
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest Value} - \\text{Smallest Value} \\\\ &= "+largest+" - "+smallest+ " = \\boxed{" + rng + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ " \\\\ &= \\boxed{" + rng + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -901,8 +917,8 @@ function variancesam(){
         table += "<td>$" + parseFloat(eachminus2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum{x}}{n} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(ansvar.toFixed(2))+"}  $$"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$ {\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(ansvar.toFixed(2))+"}  $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -936,8 +952,8 @@ function variancepop(){
         table += "<td>$" + parseFloat(eachminus2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\mu = \\frac{\\sum{x}}{N} \=  \\frac{" + sumeach + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$"
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>${\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>" + "</tr>";
+    document.getElementById("output").innerHTML = "$$ \\mu = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -994,7 +1010,7 @@ function groupedvariance(){
     }
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$-$</td><td>$"+total+"$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(varans.toFixed(2))+"$</td></tr></table>"
     
-    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"} = " + parseFloat((ans/total).toFixed(2)) + " $$" + table + "$$ s^2 = \\frac{\\sum f (M-\\bar{x})^2}{n-1} = \\frac{"+parseFloat(varans.toFixed(2))+"}{"+(total-1)+"}  = \\boxed{" + parseFloat((varans/(total-1)).toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = \\frac{\\sum f M}{n} = \\frac{"+parseFloat(ans.toFixed(2))+"}{"+total+"} = " + parseFloat((ans/total).toFixed(2)) + " $$" + table + "$$ s^2 = \\frac{\\sum f (M-\\bar{x})^2}{n-1} = \\frac{"+parseFloat(varans.toFixed(2))+"}{"+(total-1)+"}  = \\boxed{" + parseFloat((varans/(total-1)).toFixed(2)) + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1159,7 +1175,7 @@ function cv(){
     var ansstd = Math.sqrt(ansvar);
     var stdmn = ansstd / mn;
     var anscv = (ansstd / mn) * 100
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% \\\\ &= \\left(\\frac{"+parseFloat(ansstd.toFixed(2))+"}{"+parseFloat(mn.toFixed(2))+"} \\times 100 \\right)\\% = \\boxed{"+parseFloat(anscv.toFixed(2))+"\\%} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% \\\\ &= \\left(\\frac{"+parseFloat(ansstd.toFixed(2))+"}{"+parseFloat(mn.toFixed(2))+"} \\times 100 \\right)\\% \\\\ &= \\boxed{"+parseFloat(anscv.toFixed(2))+"\\%} \\end{align} $$"
     MathJax.typeset()
 }
 
