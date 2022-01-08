@@ -810,10 +810,10 @@ function calcper(){
     
     
     if (indxint){
-        document.getElementById("output").innerHTML =  "$$ \\text{Ordered Data:} $$ "+table+" $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Average values in positions } "+indxval+" \\text{ and } "+indxvalplus1+". $$  $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML =  "$$ \\text{Ordered Data:} $$ "+table+" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Average values in positions } "+indxval+" \\text{ and } "+indxvalplus1+". $$  $$ \\text{"+val+suff+" Percentile} = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ "+table +" $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Round up to take value in position } "+indxrnd+". $$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ "+table +" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Round up to take value in position } "+indxrnd+". $$ $$ \\text{"+val+suff+" Percentile} = \\boxed{" + answr + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -915,10 +915,10 @@ function calcquart(){
     }
     
     if (indxint){
-        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Average values in positions } "+indxval+" \\text{ and } "+indxvalplus1+". $$ $$ "+quartnum+" = " + "\\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Average values in positions } "+indxval+" \\text{ and } "+indxvalplus1+". $$ $$ "+quartnum+" = \\frac{" + valindx  + "+" + valindxplus1 + "}{2} = \\boxed{" + valavg + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
    
     }else{
-        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Round up to take value in position } "+indxrnd+". $$ $$ "+ quartnum+" = \\boxed{" + answr + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = " + "\\left(\\frac{" + val + "}{100}\\right)" + len + "=" + parseFloat(indxval.toFixed(2)) + "$$ $$ \\text{Round up to take value in position } "+indxrnd+". $$ $$ "+ quartnum+" = \\boxed{" + answr + "} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -948,23 +948,75 @@ function iqr(){
     var str = document.getElementById("values").value;
     var each = str.split(",").map(Number);var len = each.length;
     var eachsort = each.sort();
-    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25);
-    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75);
+    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25); var indxval25plus1 = indxval25 + 1
+    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75); var indxval75plus1 = indxval75 + 1
     var val25indx = eachsort[indxval25-1]; var val25indxplus1 = eachsort[indxval25]; var val25avg = (val25indx + val25indxplus1) / 2;
     var val75indx = eachsort[indxval75-1]; var val75indxplus1 = eachsort[indxval75]; var val75avg = (val75indx + val75indxplus1) / 2;
     var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
     var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
     var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
 
+    
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow  Q_1 = " + val25avg + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow  Q_3 = " + val75avg + "$$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+val25avg+" = \\boxed{"+ansiqr1+"} $$"
+        var table = "<table><tr><td>$\\text{Position:}$</td>"
+
+        for (var r = 1; r < len + 1; r++){
+            if (r == indxval25 || r == indxval25plus1 || r == indxval75 || r == indxval75plus1) {
+                table += "<td>${\\color{RoyalBlue}" + r + "}$</td>";
+            } else {
+                table += "<td>$" + r + "$</td>";
+            }
+        }
+
+        table += "</tr><tr><td>$\\text{Value:}$</td>"
+
+        for (var r = 0; r < len; r++){
+            if (r == indxval25 - 1 || r == indxval25plus1 - 1 || r == indxval75 - 1 || r == indxval75plus1 - 1) {
+                table += "<td>${\\color{RoyalBlue}" + eachsort[r] + "}$</td>";
+            } else {
+                table += "<td>$" + eachsort[r] + "$</td>";
+            }
+        }
+
+        table += "</tr></table>"
     } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} $$"
+        
     } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+answr25+" = \\boxed{"+ansiqr3+"}  $$"
+        
+    } else{
+        var table = "<table><tr><td>$\\text{Position:}$</td>"
+
+        for (var r = 1; r < len + 1; r++){
+            if (r == indxrnd25 || r == indxrnd75) {
+                table += "<td>${\\color{RoyalBlue}" + r + "}$</td>";
+            } else {
+                table += "<td>$" + r + "$</td>";
+            }
+            
+        }
+
+        table += "</tr><tr><td>$\\text{Value:}$</td>"
+
+        for (var r = 0; r < len; r++){
+            if (r == indxrnd25 - 1 || r == indxrnd75 - 1) {
+                table += "<td>${\\color{RoyalBlue}" + eachsort[r] + "}$</td>";
+            } else {
+                table += "<td>$" + eachsort[r] + "$</td>";
+            }
+        }
+
+        table += "</tr></table>"
     }
-    else{
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+answr25+" = \\boxed{"+ansiqr4+"}  $$"
+
+
+    if (indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+"$$ \\text{Index: }  i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval25+" \\text{ and } "+indxval25plus1+". $$ $$  Q_1 = \\frac{" + val25indx  + "+" + val25indxplus1 + "}{2} = {\\color{RoyalBlue}" + val25avg + "} $$ $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval75+" \\text{ and } "+indxval75plus1+". $$ $$  Q_3 = \\frac{" + val75indx  + "+" + val75indxplus1 + "}{2} = {\\color{RoyalBlue}" + val75avg + "}$$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+val25avg+" = \\boxed{"+ansiqr1+"} $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (indxint25 && !indxint75){
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (!indxint25 && indxint75){
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+answr25+" = \\boxed{"+ansiqr3+"}  $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else{
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd25+". $$ $$ Q_1 = {\\color{RoyalBlue}"+answr25+"} $$ $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd75+". $$ $$ Q_3 = {\\color{RoyalBlue}"+answr75+"} $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+answr25+" = \\boxed{"+ansiqr4+"}  $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
 
     MathJax.typeset();
