@@ -1331,7 +1331,7 @@ function cv(){
     var ansstd = Math.sqrt(ansvar);
     var stdmn = ansstd / mn;
     var anscv = (ansstd / mn) * 100
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% \\\\ &= \\left(\\frac{"+parseFloat(ansstd.toFixed(2))+"}{"+parseFloat(mn.toFixed(2))+"} \\times 100 \\right)\\% \\\\ &= \\boxed{"+parseFloat(anscv.toFixed(2))+"\\%} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{CV} &= \\left(\\frac{s}{\\bar{x}} \\times 100 \\right)\\% \\\\ &= \\left(\\frac{"+parseFloat(ansstd.toFixed(2))+"}{"+parseFloat(mn.toFixed(2))+"} \\times 100 \\right)\\% \\\\ &= \\boxed{"+parseFloat(anscv.toFixed(2))+"\\%} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset()
 }
 
@@ -1390,10 +1390,10 @@ function calcz(){
     var zscrs = "";
     
     for (let r=0; r<len; r++){
-        zscrs += "z &= \\frac{"+ each[r] +" - "+parseFloat(mn.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"} = "+parseFloat(((each[r]-mn)/ansstd).toFixed(2))+" \\\\"
+        zscrs += "z_"+(r+1)+" &= \\frac{x_"+(r+1)+"-\\bar{x}}{s} = \\frac{"+ each[r] +" - "+parseFloat(mn.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"} = \\boxed{"+parseFloat(((each[r]-mn)/ansstd).toFixed(2))+"} \\\\"
     }
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align}  " + zscrs + " \\end{align}  $$"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = {\\color{RoyalBlue}"+mn+"} \\quad s = {\\color{RoyalBlue}"+ansstd.toFixed(2)+"}  $$ $$ \\begin{align}  " + zscrs + " \\end{align}  $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset()
 }
 
@@ -1414,12 +1414,12 @@ function calcchebyshev(){
     var zminans = parseFloat(((min-mn)/std).toFixed(2))
     var zmaxans = parseFloat(((max-mn)/std).toFixed(2))
     
-    var zmin = "z = \\frac{"+min+" - "+mn+"}{"+std+"} = "+zminans
-    var zmax = "z = \\frac{"+max+" - "+mn+"}{"+std+"} = "+zmaxans
+    var zmin = "z = \\frac{x - \\bar{x}}{s} = \\frac{"+min+" - "+mn+"}{"+std+"} = {\\color{RoyalBlue}"+zminans+"}"
+    var zmax = "z = \\frac{x - \\bar{x}}{s} = \\frac{"+max+" - "+mn+"}{"+std+"} = {\\color{RoyalBlue}"+zmaxans+"}"
     
     
     if (Math.abs(zminans) == zmaxans) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 = 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &= "+parseFloat((Math.pow(zmaxans,2)-1).toFixed(2))+"/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" ="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+" \\end{align} $$ $$ \\text{At Least } "+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%  \\text{ of the Values} $$"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\begin{align} 1-1/z^2 &= 1-1/"+zmaxans+"^2 \\\\ &= 1-1/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &= "+parseFloat((Math.pow(zmaxans,2)-1).toFixed(2))+"/"+parseFloat((Math.pow(zmaxans,2)).toFixed(2))+" \\\\ &="+parseFloat((1-1/Math.pow(zmaxans,2)).toFixed(2))+" \\end{align} $$ $$ \\text{At Least } "+parseFloat(((1-1/Math.pow(zmaxans,2))*100).toFixed(0))+"\\%  \\text{ of the Values} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
         document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
     }
@@ -1445,16 +1445,16 @@ function calcempirical(){
     var zminans = parseFloat(((min-mn)/std).toFixed(2))
     var zmaxans = parseFloat(((max-mn)/std).toFixed(2))
     
-    var zmin = "z = \\frac{"+min+" - "+mn+"}{"+std+"} = "+zminans
-    var zmax = "z = \\frac{"+max+" - "+mn+"}{"+std+"} = "+zmaxans
+    var zmin = "z = \\frac{x - \\bar{x}}{s} = \\frac{"+min+" - "+mn+"}{"+std+"} = "+zminans
+    var zmax = "z = \\frac{x - \\bar{x}}{s} = \\frac{"+max+" - "+mn+"}{"+std+"} = "+zmaxans
     
     
     if (Math.abs(zminans) == zmaxans && zmaxans==1) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ \\text{Approximately } 68 \\% \\text{ of the Values} $$"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ \\text{Approximately } 68 \\% \\text{ of the Values} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (Math.abs(zminans) == zmaxans && zmaxans==2) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\text{Approximately } 95 \\% \\text{ of the Values} $$"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\text{Approximately } 95 \\% \\text{ of the Values} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (Math.abs(zminans) == zmaxans && zmaxans==3) {
-        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\text{Almost All of the Values} $$"
+        document.getElementById("output").innerHTML = "$$"+zmin+"$$ $$"+zmax+"$$ $$ \\text{Almost All of the Values} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
         document.getElementById("output").innerHTML = "Minimum and maximum values must be the same number of standard deviations from the mean.<br><br>"
     }
@@ -1485,24 +1485,39 @@ function fivenumber(){
         var medianans = avelr
     }
     
-    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25);
-    var indxval50 = (50/100)*len;
-    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75);
+    var indxval25 = (25/100)*len; var indxrnd25 = Math.ceil(indxval25); var indxval25plus1 = indxval25 + 1;
+    var indxval50 = (50/100)*len; var indxrnd50 = Math.ceil(indxval50); var indxval50plus1 = indxval50 + 1;
+    var indxval75 = (75/100)*len; var indxrnd75 = Math.ceil(indxval75); var indxval75plus1 = indxval75 + 1;
     var val25indx = eachsort[indxval25-1]; var val25indxplus1 = eachsort[indxval25]; var val25avg = (val25indx + val25indxplus1) / 2;
+    var val50indx = eachsort[indxval50-1]; var val50indxplus1 = eachsort[indxval50]; var val50avg = (val50indx + val50indxplus1) / 2;
     var val75indx = eachsort[indxval75-1]; var val75indxplus1 = eachsort[indxval75]; var val75avg = (val75indx + val75indxplus1) / 2;
     var indxint25 = Number.isInteger(indxval25); var indxint75 = Number.isInteger(indxval75);
     var answr25 = eachsort[indxrnd25-1]; var answr75 = eachsort[indxrnd75-1];
     var ansiqr1 = val75avg - val25avg; var ansiqr2 = answr75 - val25avg; var ansiqr3 = val75avg - answr25; var ansiqr4 = answr75 - answr25;
+    
+    var table = "<table><tr><td>$\\text{Position:}$</td>"
+
+    for (var r = 1; r < len + 1; r++){
+        table += "<td>$" + r + "$</td>";
+    }
+
+    table += "</tr><tr><td>$\\text{Value:}$</td>"
+
+    for (var r = 0; r < len; r++){
+        table += "<td>$" + eachsort[r] + "$</td>";
+    }
+
+    table += "</tr></table>"
 
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow  Q_1 = " + val25avg + " $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow  Q_3 = " + val75avg + "$$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  " + table + " $$ \\text{Minimum} = {\\color{RoyalBlue}"+smallest+"} $$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval25+" \\text{ and } "+indxval25plus1+". $$ $$  Q_1 = \\frac{" + val25indx  + "+" + val25indxplus1 + "}{2} = {\\color{RoyalBlue}" + val25avg + "} $$ $$ \\text{Index: } i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval50+" \\text{ and } "+indxval50plus1+". $$ $$ \\text{Median} = \\frac{" + val50indx  + "+" + val50indxplus1 + "}{2} = {\\color{RoyalBlue}" + medianans + "} $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval75+" \\text{ and } "+indxval75plus1+". $$ $$  Q_3 = \\frac{" + val75indx  + "+" + val75indxplus1 + "}{2} = {\\color{RoyalBlue}" + val75avg + "} $$ $$ \\text{Maximum} = {\\color{RoyalBlue}"+largest+"} $$ $$ \\boxed{"+smallest+", "+val25avg+", "+medianans+", "+val75avg+", "+largest+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (indxint25 && !indxint75){
         document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+val25avg+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
     } else if (!indxint25 && indxint75){
         document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+val75avg+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
     }
     else{
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " \\rightarrow  Q_2 = " + medianans + " $$ $$ i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\begin{align} \\text{Minimum} &= "+smallest+" \\\\ \\text{1st Quartile} &= "+answr25+" \\\\ \\text{Median} &= "+medianans+" \\\\ \\text{3rd Quartile} &= "+answr75+" \\\\ \\text{Maximum} &= "+largest+" \\end{align} $$"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  " + table + " $$ \\text{Minimum} = {\\color{RoyalBlue}"+smallest+"} $$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd25+". $$ $$ Q_1 = {\\color{RoyalBlue}"+answr25+"} $$ $$ \\text{Index: } i = " + "\\left(\\frac{50}{100}\\right)" + len + "=" + parseFloat(indxval50.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd50+". $$ $$ \\text{Median} = {\\color{RoyalBlue}" + medianans + "} $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd75+". $$ $$ Q_3 = {\\color{RoyalBlue}"+answr75+"} $$ $$ \\text{Maximum} = {\\color{RoyalBlue}"+largest+"} $$ $$ \\boxed{"+smallest+", "+answr25+", "+medianans+", "+answr75+", "+largest+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
 
     MathJax.typeset();
@@ -1570,8 +1585,8 @@ function calccov(){
         table += "<td>$" + parseFloat(eacheach2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML =  "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \=  \\frac{" + sum(each) + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " \\\\ \\bar{y} &= \\frac{\\sum{y}}{n} \=  \\frac{" + sum(each2) + "}{" + len2 + "} = " + parseFloat(mn2.toFixed(2))+ " \\end{align} $$ <table>" + table + "</table> $$ s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(anscov.toFixed(2))+"} $$" + interpret
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>${\\color{RoyalBlue}"+parseFloat(sumeacheach2.toFixed(2))+"}$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML =  "$$  \\bar{x} = " + parseFloat(mn.toFixed(2))+ " \\quad \\bar{y} = " + parseFloat(mn2.toFixed(2))+ " $$ <table>" + table + "</table> $$ s_{xy} = \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(anscov.toFixed(2))+"} $$" + interpret + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1632,8 +1647,8 @@ function calccovpop(){
         table += "<td>$" + parseFloat(eacheach2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>"+ "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\mu_x &= \\frac{\\sum{x}}{N} \=  \\frac{" + sum(each) + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " \\\\ \\mu_y &= \\frac{\\sum{y}}{N} \=  \\frac{" + sum(each2) + "}{" + len2 + "} = " + parseFloat(mn2.toFixed(2))+ " \\end{align} $$ <table>" + table + "</table> $$ \\sigma_{xy} = \\frac{\\sum(x - \\mu_x)(y - \\mu_y)}{N} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"} = \\boxed{"+parseFloat(anscov.toFixed(2))+"}  $$" + interpret
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>" +"<td>${\\color{RoyalBlue}"+parseFloat(sumeacheach2.toFixed(2))+"}$</td>"+ "</tr>";
+    document.getElementById("output").innerHTML = "$$ \\mu_x = " + parseFloat(mn.toFixed(2))+ " \\quad \\mu_y = " + parseFloat(mn2.toFixed(2))+ " $$ <table>" + table + "</table> $$ \\sigma_{xy} = \\frac{\\sum(x - \\mu_x)(y - \\mu_y)}{N} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"} = \\boxed{"+parseFloat(anscov.toFixed(2))+"}  $$" + interpret + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1717,8 +1732,8 @@ function calccor(){
         table += "<td>$" + parseFloat(each2minus2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>"+ "<td>$" +parseFloat(sumeacheach2.toFixed(2))+"$</td>" +"<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>"+"<td>$"+parseFloat(sumeach2minus2.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\bar{x} &= \\frac{\\sum{x}}{n} \=  \\frac{" + sum(each) + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " \\\\ \\bar{y} &= \\frac{\\sum{y}}{n} \=  \\frac{" + sum(each2) + "}{" + len2 + "} = " + parseFloat(mn2.toFixed(2))+ " \\end{align} $$ <table>" + table + "</table> $$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = "+parseFloat(ansstd.toFixed(2))+" \\\\  s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len+"-1}} = "+ parseFloat(ansstd2.toFixed(2)) +" \\\\ s_{xy} &= \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1} = "+parseFloat(anscov.toFixed(2))+" \\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} = \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"} \\end{align} $$" + interpret
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>"+ "<td>${\\color{RoyalBlue}" +parseFloat(sumeacheach2.toFixed(2))+"}$</td>" +"<td>${\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>"+"<td>${\\color{RoyalBlue}"+parseFloat(sumeach2minus2.toFixed(2))+"}$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = " + parseFloat(mn.toFixed(2))+ " \\quad \\bar{y} = " + parseFloat(mn2.toFixed(2))+ " $$ <table>" + table + "</table> $$ \\begin{align} s_x &= \\sqrt{\\frac{\\sum{(x-\\bar{x})^2}}{n-1}} = \\sqrt{\\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}} = {\\color{RoyalBlue}"+parseFloat(ansstd.toFixed(2))+"} \\\\  s_y &= \\sqrt{\\frac{\\sum{(y-\\bar{y})^2}}{n-1}} = \\sqrt{\\frac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len+"-1}} = {\\color{RoyalBlue}"+ parseFloat(ansstd2.toFixed(2)) +"} \\\\ s_{xy} &= \\frac{\\sum(x - \\bar{x})(y - \\bar{y})}{n-1} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"-1} = {\\color{RoyalBlue}"+parseFloat(anscov.toFixed(2))+"} \\\\ r_{xy} &= \\frac{s_{xy}}{s_x s_y} = \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} = \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"} \\end{align} $$" + interpret + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1797,8 +1812,8 @@ function calccorpop(){
         table += "<td>$" + parseFloat(each2minus2[r].toFixed(2)) + "$</td>";
         table += "</tr>";
     }
-    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>"+"<td>$"+parseFloat(sumeacheach2.toFixed(2))+"$</td>" +"<td>$"+parseFloat(sumeachminus2.toFixed(2))+"$</td>"+"<td>$"+parseFloat(sumeach2minus2.toFixed(2))+"$</td>"+ "</tr>"+ "</table>";
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\mu_x &= \\frac{\\sum{x}}{N} \=  \\frac{" + sum(each) + "}{" + len + "} = " + parseFloat(mn.toFixed(2))+ " \\\\ \\mu_y &= \\frac{\\sum{y}}{N} \=  \\frac{" + sum(each2) + "}{" + len2 + "} = " + parseFloat(mn2.toFixed(2))+ " \\end{align} $$ <table>" + table + "</table> $$ \\begin{align} \\sigma_x &= \\sqrt{\\frac{\\sum{(x-\\mu_x)^2}}{N}} = \\sqrt{\\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}} = "+parseFloat(ansstd.toFixed(2))+" \\\\  \\sigma_y &= \\sqrt{\\frac{\\sum{(y-\\mu_y)^2}}{N}} = \\sqrt{\\frac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len+"}} = "+ parseFloat(ansstd2.toFixed(2)) +" \\\\ \\sigma_{xy} &= \\frac{\\sum(x - \\mu_x)(y - \\mu_y)}{N} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"} = "+parseFloat(anscov.toFixed(2))+" \\\\ \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} = \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} = \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"} \\end{align} $$" + interpret
+    table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>"+"$-$"+"</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>"+ "<td>$"+Math.round(sumeach2minus)+"$</td>"+"<td>${\\color{RoyalBlue}"+parseFloat(sumeacheach2.toFixed(2))+"}$</td>" +"<td>${\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>"+"<td>${\\color{RoyalBlue}"+parseFloat(sumeach2minus2.toFixed(2))+"}$</td>"+ "</tr>"+ "</table>";
+    document.getElementById("output").innerHTML = "$$ \\mu_x = " + parseFloat(mn.toFixed(2))+ " \\quad \\mu_y = " + parseFloat(mn2.toFixed(2))+ " $$ <table>" + table + "</table> $$ \\begin{align} \\sigma_x &= \\sqrt{\\frac{\\sum{(x-\\mu_x)^2}}{N}} = \\sqrt{\\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}} = {\\color{RoyalBlue}"+parseFloat(ansstd.toFixed(2))+"} \\\\  \\sigma_y &= \\sqrt{\\frac{\\sum{(y-\\mu_y)^2}}{N}} = \\sqrt{\\frac{"+parseFloat(sumeach2minus2.toFixed(2))+"}{"+len+"}} = {\\color{RoyalBlue}"+ parseFloat(ansstd2.toFixed(2)) +"} \\\\ \\sigma_{xy} &= \\frac{\\sum(x - \\mu_x)(y - \\mu_y)}{N} = \\frac{"+parseFloat(sumeacheach2.toFixed(2))+"}{"+len+"} = {\\color{RoyalBlue}"+parseFloat(anscov.toFixed(2))+"} \\\\ \\rho_{xy} &= \\frac{\\sigma_{xy}}{\\sigma_x \\sigma_y} = \\frac{"+parseFloat(anscov.toFixed(2))+"}{"+parseFloat(ansstd.toFixed(2))+"\\times"+parseFloat(ansstd2.toFixed(2))+"} = \\boxed{"+ parseFloat((anscov / (ansstd * ansstd2)).toFixed(2)) +"} \\end{align} $$" + interpret + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
