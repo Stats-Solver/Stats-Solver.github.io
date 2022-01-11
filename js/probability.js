@@ -31,14 +31,6 @@ function factorial(n) {
 }
 
 
-
-
-
-
-
-
-
-
 var canvas = document.getElementById("howCanvas1");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.33, 1.33);
@@ -58,9 +50,6 @@ ctx.scale(1.33, 1.33);
 how1(); how2(); how3(); 
 
 //how4();
-
-
-
 
 function how1(){
     var c = document.getElementById("howCanvas1");
@@ -512,7 +501,7 @@ function compsamplespace() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ S = \\{ \\text{(H,H,H), (H,H,T), (H,T,H), (H,T,T),}$$ $$ \\qquad \\text{(T,H,H), (T,H,T), (T,T,H), (T,T,T)} \\} $$"
+        document.getElementById("output").innerHTML = "$$ S = $$ $$ \\{ \\text{(H,H,H), (H,H,T), (H,T,H), (H,T,T),}$$ $$ \\text{(T,H,H), (T,H,T), (T,T,H), (T,T,T)} \\} $$"
     } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
@@ -532,32 +521,15 @@ function compsamplespace() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ S = \\{ (1,1), (1,2), (1,3), (1,4), (1,5), (1,6),$$  $$ \\qquad (2,1), (2,2), (2,3), (2,4), (2,5), (2,6),$$ $$ \\qquad (3,1), (3,2), (3,3), (3,4), (3,5), (3,6),$$ $$ \\qquad (4,1), (4,2), (4,3), (4,4), (4,5), (4,6),$$ $$ \\qquad (5,1), (5,2), (5,3), (5,4), (5,5), (5,6),$$ $$ \\qquad (6,1), (6,2), (6,3), (6,4), (6,5), (6,6) \\} $$"
+        document.getElementById("output").innerHTML = "$$ S = $$ $$ \\{ (1,1), (1,2), (1,3), (1,4), (1,5), (1,6),$$  $$ (2,1), (2,2), (2,3), (2,4), (2,5), (2,6),$$ $$ (3,1), (3,2), (3,3), (3,4), (3,5), (3,6),$$ $$ (4,1), (4,2), (4,3), (4,4), (4,5), (4,6),$$ $$ (5,1), (5,2), (5,3), (5,4), (5,5), (5,6),$$ $$ (6,1), (6,2), (6,3), (6,4), (6,5), (6,6) \\} $$"
     } else if (type == "deck") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ S = \\{ \\text{2H, 3H, 4H, 5H, 6H, 7H, 8H,} $$ $$ \\qquad \\text{9H, 10H, JH, QH, KH, AH,} $$ $$ \\qquad \\ \\ \\text{2D, 3D, 4D, 5D, 6D, 7D, 8D,} $$ $$ \\qquad \\text{ 9D, 10D, JD, QD, KD, AD,} $$ $$ \\quad \\ \\text{2S, 3S, 4S, 5S, 6S, 7S, 8S,} $$ $$ \\quad \\text{9S, 10S, JS, QS, KS, AS,} $$ $$ \\qquad \\ \\ \\text{2C, 3C, 4C, 5C, 6C, 7C, 8C,} $$ $$ \\qquad \\ \\text{9C, 10C, JC, QC, KC, AC} \\} $$"
+        document.getElementById("output").innerHTML = "$ S = $  <table><tr><td>$\\{$</td><td>$\\text{2H,}$</td><td>$\\text{3H,}$</td><td>$\\text{4H,}$</td><td>$\\text{5H,}$</td><td>$\\text{6H,}$</td><td>$\\text{7H,}$</td><td>$\\text{8H,}$</td><td>$\\text{9H,}$</td><td>$\\text{10H,}$</td><td>$\\text{JH,}$</td><td>$\\text{QH,}$</td><td>$\\text{KH,}$</td><td>$\\text{AH,}$</td><td></td></tr><tr><td></td><td>$\\text{2D,}$</td><td>$\\text{3D,}$</td><td>$\\text{4D,}$</td><td>$\\text{5D,}$</td><td>$\\text{6D,}$</td><td>$\\text{7D,}$</td><td>$\\text{8D,}$</td><td>$\\text{9D,}$</td><td>$\\text{10D,}$</td><td>$\\text{JD,}$</td><td>$\\text{QD,}$</td><td>$\\text{KD,}$</td><td>$\\text{AD,}$</td><td></td></tr><tr><td></td><td>$\\text{2S,}$</td><td>$\\text{3S,}$</td><td>$\\text{4S,}$</td><td>$\\text{5S,}$</td><td>$\\text{6S,}$</td><td>$\\text{7S,}$</td><td>$\\text{8S,}$</td><td>$\\text{9S,}$</td><td>$\\text{10S,}$</td><td>$\\text{JS,}$</td><td>$\\text{QS,}$</td><td>$\\text{KS,}$</td><td>$\\text{AS,}$</td><td></td></tr><tr><td></td><td>$\\text{2C,}$</td><td>$\\text{3C,}$</td><td>$\\text{4C,}$</td><td>$\\text{5C,}$</td><td>$\\text{6C,}$</td><td>$\\text{7C,}$</td><td>$\\text{8C,}$</td><td>$\\text{9C,}$</td><td>$\\text{10C,}$</td><td>$\\text{JC,}$</td><td>$\\text{QC,}$</td><td>$\\text{KC,}$</td><td>$\\text{AC}$</td><td>$ \\} $</td></tr></table>" + "<br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function showevents() {
     var x = document.getElementById("stat").value;
@@ -599,16 +571,6 @@ function showevents() {
     }
 }
 
-
-
-
-
-
-
-
-
-
-
 function compprobout() {
     document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
     document.getElementById("formulatext").innerHTML = "$$ \\text{Number of Outcomes} = (n_1)(n_2)\\cdots(n_k) $$ "
@@ -644,18 +606,6 @@ function compprobout() {
     }
     MathJax.typeset();
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function probability() {
@@ -970,13 +920,13 @@ function compcomb() {
     var numerator2 = ""; var numerator3 = 1; var denominator3 = ""; 
     var denominator = bottomn + "!" + (topn - bottomn) + "!"; var denominator2 = ""
     if (bottomn >= topn - bottomn) {
-        denominator2 = denominator2 + bottomn + "!"
+        denominator2 = denominator2 + "\\cancel{" + bottomn + "!}"
         for (var r = 0; r < topn - bottomn; r++){
             numerator2 += (topn - r)+"\\cdot"
             denominator2 += "\\cdot" + (topn - bottomn - r)
             numerator3 = numerator3 * (topn - r)
         }
-        numerator2 = numerator2 + bottomn + "!"
+        numerator2 = numerator2 + "\\cancel{"+ bottomn + "!}"
         var denominator3 = topbotfact
         var ansval = numerator3 / denominator3;
     } else {
@@ -985,8 +935,8 @@ function compcomb() {
             denominator2 += (bottomn - r) + "\\cdot"
             numerator3 = numerator3 * (topn - r)
         }
-        numerator2 = numerator2 + (topn - bottomn) + "!"
-        denominator2 = denominator2 + (topn - bottomn) + "!"
+        numerator2 = numerator2 + "\\cancel{" + (topn - bottomn) + "!}"
+        denominator2 = denominator2 + "\\cancel{" + (topn - bottomn) + "!}"
         var denominator3 = bottomnfact
         var ansval = numerator3 / denominator3;
     }
@@ -994,39 +944,39 @@ function compcomb() {
     var table = ""
     
     if (topn == 3 && bottomn == 1) {
-        table = "$$ \\text{Objects: A, B, C} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td></tr></table> <br>"
     } else if (topn == 3 && bottomn == 2) {
-        table = "$$ \\text{Objects: A, B, C} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{BC} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{BC} $</td></tr></table> <br>"
     } else if (topn == 3 && bottomn == 3) {
-        table = "$$ \\text{Objects: A, B, C} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td></tr></table>"
     } else if (topn == 4 && bottomn == 1) {
-        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td></tr></table> <br>"
     }  else if (topn == 4 && bottomn == 2) {
-        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BC} $</td><td style='padding: 0 10px;'>$ \\text{BD} $</td><td style='padding: 0 10px;'>$ \\text{CD} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BC} $</td><td style='padding: 0 10px;'>$ \\text{BD} $</td><td style='padding: 0 10px;'>$ \\text{CD} $</td></tr></table> <br>"
     } else if (topn == 4 && bottomn == 3) {
-        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td><td style='padding: 0 10px;'>$ \\text{BCD} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td><td style='padding: 0 10px;'>$ \\text{BCD} $</td></tr></table> <br>"
     } else if (topn == 4 && bottomn == 4) {
-        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td>$ \\text{ABCD} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td>$ \\text{ABCD} $</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 1) {
-        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td>$ \\text{A} $</td><td>$ \\text{B} $</td><td>$ \\text{C} $</td><td>$ \\text{D} $</td><td>$ \\text{E} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td>$ \\text{A} $</td><td>$ \\text{B} $</td><td>$ \\text{C} $</td><td>$ \\text{D} $</td><td>$ \\text{E} $</td></tr></table> <br>"
     }  else if (topn == 5 && bottomn == 2) {
-        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{AE} $</td><td style='padding: 0 10px;'>$ \\text{BC} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BD} $</td><td style='padding: 0 10px;'>$ \\text{BE} $</td><td style='padding: 0 10px;'>$ \\text{CD} $</td><td style='padding: 0 10px;'>$ \\text{CE} $</td><td style='padding: 0 10px;'>$ \\text{DE} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{AE} $</td><td style='padding: 0 10px;'>$ \\text{BC} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BD} $</td><td style='padding: 0 10px;'>$ \\text{BE} $</td><td style='padding: 0 10px;'>$ \\text{CD} $</td><td style='padding: 0 10px;'>$ \\text{CE} $</td><td style='padding: 0 10px;'>$ \\text{DE} $</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 3) {
-        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td><td style='padding: 0 10px;'>$ \\text{ACE} $</td></tr><tr><td>$ \\text{ADE} $</td><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BDE} $</td><td>$ \\text{CDE} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td><td style='padding: 0 10px;'>$ \\text{ACE} $</td></tr><tr><td>$ \\text{ADE} $</td><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BDE} $</td><td>$ \\text{CDE} $</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 4) {
-        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ACDE} $</td><td style='padding: 0 10px;'>$ \\text{BCDE} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ACDE} $</td><td style='padding: 0 10px;'>$ \\text{BCDE} $</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 5) {
-        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td>$ \\text{ABCDE} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td>$ \\text{ABCDE} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 1) {
-        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td><td style='padding: 0 10px;'>$ \\text{E} $</td><td style='padding: 0 10px;'>$ \\text{F} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td><td style='padding: 0 10px;'>$ \\text{E} $</td><td style='padding: 0 10px;'>$ \\text{F} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 2) {
-        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{AE} $</td><td style='padding: 0 10px;'>$ \\text{AF} $</td></tr><tr><td>$ \\text{BC} $</td><td>$ \\text{BD} $</td><td>$ \\text{BE} $</td><td>$ \\text{BF} $</td><td>$ \\text{CD} $</td></tr><tr><td>$ \\text{CE} $</td><td>$ \\text{CF} $</td><td>$ \\text{DE} $</td><td>$ \\text{DF} $</td><td>$ \\text{EF} $</td></tr></table>"
+        table = " $ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{AE} $</td><td style='padding: 0 10px;'>$ \\text{AF} $</td></tr><tr><td>$ \\text{BC} $</td><td>$ \\text{BD} $</td><td>$ \\text{BE} $</td><td>$ \\text{BF} $</td><td>$ \\text{CD} $</td></tr><tr><td>$ \\text{CE} $</td><td>$ \\text{CF} $</td><td>$ \\text{DE} $</td><td>$ \\text{DF} $</td><td>$ \\text{EF} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 3) {
-        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ABF} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td></tr><tr><td>$ \\text{ACE} $</td><td>$ \\text{ACF} $</td><td>$ \\text{ADE} $</td><td>$ \\text{ADF} $</td><td>$ \\text{AEF} $</td></tr><tr><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BCF} $</td><td>$ \\text{BDE} $</td><td>$ \\text{BDF} $</td></tr><tr><td>$ \\text{BEF} $</td><td>$ \\text{CDE} $</td><td>$ \\text{CDF} $</td><td>$ \\text{CEF} $</td><td>$ \\text{DEF} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ABF} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td></tr><tr><td>$ \\text{ACE} $</td><td>$ \\text{ACF} $</td><td>$ \\text{ADE} $</td><td>$ \\text{ADF} $</td><td>$ \\text{AEF} $</td></tr><tr><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BCF} $</td><td>$ \\text{BDE} $</td><td>$ \\text{BDF} $</td></tr><tr><td>$ \\text{BEF} $</td><td>$ \\text{CDE} $</td><td>$ \\text{CDF} $</td><td>$ \\text{CEF} $</td><td>$ \\text{DEF} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 4) {
-        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABCF} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ABDF} $</td></tr><tr><td>$ \\text{ABEF} $</td><td>$ \\text{ACDE} $</td><td>$ \\text{ACDF} $</td><td>$ \\text{ACEF} $</td><td>$ \\text{ADEF} $</td></tr><tr><td>$ \\text{BCDE} $</td><td>$ \\text{BCDF} $</td><td>$ \\text{BCEF} $</td><td>$ \\text{BDEF} $</td><td>$ \\text{CDEF} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABCF} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ABDF} $</td></tr><tr><td>$ \\text{ABEF} $</td><td>$ \\text{ACDE} $</td><td>$ \\text{ACDF} $</td><td>$ \\text{ACEF} $</td><td>$ \\text{ADEF} $</td></tr><tr><td>$ \\text{BCDE} $</td><td>$ \\text{BCDF} $</td><td>$ \\text{BCEF} $</td><td>$ \\text{BDEF} $</td><td>$ \\text{CDEF} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 5) {
-        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCDE} $</td><td style='padding: 0 10px;'>$ \\text{ABCDF} $</td><td style='padding: 0 10px;'>$ \\text{ABCEF} $</td></tr><tr><td>$ \\text{ABDEC} $</td><td>$ \\text{ABDEF} $</td><td>$ \\text{BCDEF} $</td></tr></table>"
+        table = "$ \\text{Combinations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCDE} $</td><td style='padding: 0 10px;'>$ \\text{ABCDF} $</td><td style='padding: 0 10px;'>$ \\text{ABCEF} $</td></tr><tr><td>$ \\text{ABDEC} $</td><td>$ \\text{ABDEF} $</td><td>$ \\text{BCDEF} $</td></tr></table> <br>"
     }
     
     document.getElementById("output").innerHTML = "$$ \\begin{align} C^{"+topn+"}_{"+bottomn+"} &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!} \\\\ &=\\frac{"+numerator2+"}{"+denominator2+"} \\\\ &=\\frac{"+numerator3+"}{"+denominator3+"} \\\\ &= \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} \\end{align} $$" + table + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
@@ -1053,12 +1003,12 @@ function compperm() {
         numerator2 += (topn - r)+"\\cdot"
         numerator3 = numerator3 * (topn - r)
     }
-    numerator2 = numerator2 + (topn - bottomn) + "!"
-    var denominator2 = (topn - bottomn) + "!"
+    numerator2 = numerator2 + "\\cancel{" +  (topn - bottomn) + "!}"
+    var denominator2 = "\\cancel{" + (topn - bottomn) + "!}"
     var denominator3 = bottomnfact
     var ansval = numerator3;
     
-    document.getElementById("output").innerHTML = "$$ P^{"+topn+"}_{"+bottomn+"} =\\frac{"+topn+"!}{"+denominator+"} =\\frac{"+numerator2+"}{"+denominator2+"} = \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P^{"+topn+"}_{"+bottomn+"} &= \\frac{"+topn+"!}{("+topn+"-"+bottomn+")!} \\\\ &= \\frac{"+numerator2+"}{"+denominator2+"} \\\\ &= \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1074,7 +1024,7 @@ function compcomp() {
     
     var probac = document.getElementById("probcomp").value;
     
-    document.getElementById("output").innerHTML = "$$ P(A) = 1 - P(A^c) = 1 - " + probac + " = \\boxed{" + (1-probac).toFixed(2) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + " \\\\ &= \\boxed{" + (1-probac).toFixed(2) + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1111,7 +1061,7 @@ function compunion1() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb) - parseFloat(probaib);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\ &= " + proba + "+" + probb + "-" + probaib + " = \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) - P(A \\cap B) \\\\ &= " + proba + "+" + probb + "-" + probaib + " \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1124,7 +1074,7 @@ function compunion2() {
     var probb = document.getElementById("probb").value;
     var probaib = document.getElementById("probaib").value;
     var ans = parseFloat(proba) + parseFloat(probb)
-    document.getElementById("output").innerHTML = "$$ P(A \\cup B) = P(A) + P(B) = " + proba + "+" + probb + " = \\boxed{" + parseFloat(ans.toFixed(2)) + "}  $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cup B) &= P(A) + P(B) \\\\ &= " + proba + "+" + probb + " \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1168,7 +1118,7 @@ function compintersection1() {
     var iproba = document.getElementById("iproba").value;
     var iprobb = document.getElementById("iprobb").value;
     var ans = parseFloat(iproba) * parseFloat(iprobb);
-    document.getElementById("output").innerHTML = "$$ P(A \\cap B) = P(B) P(A \\mid B) = " + iprobb + "(" + iproba + ") = " + parseFloat(ans.toFixed(2)) + " $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(B) P(A \\mid B) \\\\ &= " + iprobb + "(" + iproba + ") \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1180,7 +1130,7 @@ function compintersection2() {
     var iproba = document.getElementById("iproba").value;
     var iprobb = document.getElementById("iprobb").value;
     var ans = parseFloat(iproba) * parseFloat(iprobb);
-    document.getElementById("output").innerHTML = "$$ P(A \\cap B) = P(A) P(B \\mid A) = " + iproba + "(" + iprobb + ") = " + parseFloat(ans.toFixed(2)) + " $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B \\mid A) \\\\ &= " + iproba + "(" + iprobb + ") \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1192,7 +1142,7 @@ function compintersection3() {
     var iproba = document.getElementById("iproba").value;
     var iprobb = document.getElementById("iprobb").value;
     var ans = parseFloat(iproba) * parseFloat(iprobb);
-    document.getElementById("output").innerHTML = "$$ P(A \\cap B) = P(A) P(B) = " + iproba + "(" + iprobb + ") = " + parseFloat(ans.toFixed(2)) + " $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\cap B) &= P(A) P(B) \\\\ &= " + iproba + "(" + iprobb + ") \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1249,7 +1199,7 @@ function compconditional1() {
     var probb = document.getElementById("probb3").value;
     var probi = document.getElementById("probaib2").value;
     var ans = parseFloat(probi) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ P(A \\mid B) = \\frac{P(A \\cap B)}{P(B)} = \\frac{" + probi + "}{" + probb + "} = \\boxed{" + ans.toFixed(2) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= \\frac{P(A \\cap B)}{P(B)} \\\\ &= \\frac{" + probi + "}{" + probb + "} = \\boxed{" + ans.toFixed(2) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1261,7 +1211,7 @@ function compconditional2() {
     var proba = document.getElementById("probb3").value;
     var probi = document.getElementById("probaib2").value;
     var ans = parseFloat(probi) / parseFloat(proba);
-    document.getElementById("output").innerHTML = "$$ P(B \\mid A) = \\frac{P(A \\cap B)}{P(A)} = \\frac{" + probi + "}{" + proba + "} = \\boxed{" + ans.toFixed(2) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(B \\mid A) &= \\frac{P(A \\cap B)}{P(A)} \\\\ &= \\frac{" + probi + "}{" + proba + "} \\\\ &= \\boxed{" + ans.toFixed(2) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1273,7 +1223,7 @@ function compconditional3() {
     var probb = document.getElementById("probb3").value;
     var probi = document.getElementById("probaib2").value;
     var ans = parseFloat(probaib) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ P(B \\mid A) = P(B) = \\boxed{" + probb + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(B \\mid A) &= P(B) \\\\ &= \\boxed{" + probb + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1285,7 +1235,7 @@ function compconditional4() {
     var proba = document.getElementById("probb3").value;
     var probi = document.getElementById("probaib2").value;
     var ans = parseFloat(probaib) / parseFloat(probb);
-    document.getElementById("output").innerHTML = "$$ P(A \\mid B) = P(A) = \\boxed{" + proba + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A \\mid B) &= P(A) \\\\ &= \\boxed{" + proba + "} \\end{align} $$"
     MathJax.typeset();
 }
 
@@ -1304,7 +1254,7 @@ function compbayes() {
     var probbgiva2 = document.getElementById("probbgiva2").value;
     var ans1 = (proba1 * probbgiva1) / (proba1 * probbgiva1 + proba2 * probbgiva2);
     var ans2 = (proba2 * probbgiva2) / (proba1 * probbgiva1 + proba2 * probbgiva2);
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A_1 \\mid B) &= \\frac{P(A_1)P(B \\mid A_1)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} \\\\ &= \\frac{" + proba1 + "(" + probbgiva1 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} = \\boxed{" + ans1.toFixed(2) + "} \\end{align} $$ $$ \\begin{align} P(A_2 \\mid B) &= \\frac{P(A_2)P(B \\mid A_2)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} \\\\ &= \\frac{" + proba2 + "(" + probbgiva2 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} = \\boxed{" + ans2.toFixed(2) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} & P(A_1 \\mid B) \\\\ &= \\frac{P(A_1)P(B \\mid A_1)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} \\\\ &= \\frac{" + proba1 + "(" + probbgiva1 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= \\boxed{" + ans1.toFixed(2) + "} \\end{align} $$ $$ \\begin{align} & P(A_2 \\mid B) \\\\ &= \\frac{P(A_2)P(B \\mid A_2)}{P(A_1)P(B \\mid A_1) + P(A_2)P(B \\mid A_2)} \\\\ &= \\frac{" + proba2 + "(" + probbgiva2 + ")}{" + proba1 + "(" + probbgiva1 + ") + " + proba2 + "(" + probbgiva2 + ")} \\\\ &= \\boxed{" + ans2.toFixed(2) + "} \\end{align} $$"
     MathJax.typeset();
 }
 
