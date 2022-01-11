@@ -138,7 +138,7 @@
       <div class="container mb-3" id="experiments">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
-                <select id="exptype" class="form-control" onchange="showevents()">
+                <select id="exptype" class="form-control" onchange="showevents()" style="text-align: left">
                     <option value="choose">Experiment</option>
                     <option value="coin1">Tossing a Coin</option>
                     <option value="coin2">Tossing 2 Coins</option>
@@ -151,10 +151,10 @@
                 </select>
                 </div>
             <div class="col-4 col-md-2" id = "times">
-                <select id="exptimes" class="form-control" onchange="">
+                <select id="exptimes" class="form-control" onchange="" style="text-align: left">
                     <option value="choose">Times</option>
                 </select>
-                <select id="exptimes1" class="form-control" onchange="">
+                <select id="exptimes1" class="form-control" onchange="" style="text-align: left">
                     <option value="choose">Times</option>
                     <option value="one">1</option>
                     <option value="two">2</option>
@@ -162,12 +162,12 @@
                     <option value="four">4</option>
                     <option value="five">5</option>
                 </select>
-                <select id="exptimes2" class="form-control" onchange="">
+                <select id="exptimes2" class="form-control" onchange="" style="text-align: left">
                     <option value="choose">Times</option>
                     <option value="one">1</option>
                     <option value="two">2</option>
                 </select>
-                <select id="exptimes3" class="form-control" onchange="">
+                <select id="exptimes3" class="form-control" onchange="" style="text-align: left">
                     <option value="choose">Times</option>
                     <option value="one">1</option>
                 </select>
@@ -176,25 +176,25 @@
                 </div>
             
             <div class="col-4 col-md-2" id = "events">
-                <select id="eventsnone" class="form-control" onchange="">
+                <select id="eventsnone" class="form-control" onchange="" style="text-align: left">
                 </select>
-                <select id="eventscoin1" class="form-control" onchange="">
+                <select id="eventscoin1" class="form-control" onchange="" style="text-align: left">
                     <option value="head">Head</option>
                     <option value="tail">Tail</option>
                 </select>
-                <select id="eventscoin2" class="form-control" onchange="">
+                <select id="eventscoin2" class="form-control" onchange="" style="text-align: left">
                     <option value="ex1head">1 Head</option>
                     <option value="ex1tail">1 Tail</option>
                     <option value="at1head">≥1 Head</option>
                     <option value="at1tail">≥1 Tail</option>
                 </select>
-                <select id="eventscoin3" class="form-control" onchange="">
+                <select id="eventscoin3" class="form-control" onchange="" style="text-align: left">
                     <option value="ex1head">1 Head</option>
                     <option value="ex1tail">1 Tail</option>
                     <option value="ex2head">2 Heads</option>
                     <option value="ex2tail">2 Tails</option>
                 </select>
-                <select id="eventsdice1" class="form-control" onchange="">
+                <select id="eventsdice1" class="form-control" onchange="" style="text-align: left">
                     <option value="even">Even</option>
                     <option value="odd">Odd</option>
                     <option value="at2">≥2</option>
@@ -202,7 +202,7 @@
                     <option value="at4">≥4</option>
                     <option value="at5">≥5</option>
                 </select>
-                <select id="eventsdice2" class="form-control" onchange="">
+                <select id="eventsdice2" class="form-control" onchange="" style="text-align: left">
                     <option value="sum3">Sum=3</option>
                     <option value="sum4">Sum=4</option>
                     <option value="sum5">Sum=5</option>
@@ -211,7 +211,7 @@
                     <option value="sum11">Sum=11</option>
 
                 </select>
-                <select id="eventsdeck" class="form-control" onchange="">
+                <select id="eventsdeck" class="form-control" onchange="" style="text-align: left">
                     <option value="Jack">Jack</option>
                     <option value="Queen">Queen</option>
                     <option value="King">King</option>
@@ -443,16 +443,16 @@
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
-                <select id="stat" class="form-control" onchange="showstuff()">
+                <select id="stat" class="form-control" onchange="showstuff()" style="text-align: left">
                     <option value="choose">Choose One</option>
                     <option value="samplespace">Sample Space</option>
-                    <option value="outcomes">Number of Outcomes</option>
                     <!--<option value="tree">Tree Diagram</option>-->
                     <option value="combinations">Combinations</option>
                     <option value="permutations">Permutations</option>
-                    <option value="probout">Probability of Outcome</option>
+                    <!--<option value="probout">Probability of Outcome</option>-->
+                    <option value="outcomes">Outcomes</option>
                     <option value="events">Events</option>
-                    <option value="probability">Probability of Event</option>
+                    <!--<option value="probability">Probability of Event</option>-->
                     <option value="complement">Complement</option>
                     <option value="union">Union</option>
                     <!--<option value="jointprob">Joint Probability Table</option>-->
@@ -680,7 +680,7 @@
       
       <div id = "proboutputs">
      <div class="container">
-        <div id="output">
+        <div id="output" class="output">
         </div>
       </div>
       </div>

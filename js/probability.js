@@ -991,7 +991,45 @@ function compcomb() {
         var ansval = numerator3 / denominator3;
     }
     
-    document.getElementById("output").innerHTML = "$$ C^{"+topn+"}_{"+bottomn+"}=\\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!}  =\\frac{"+numerator2+"}{"+denominator2+"} =\\frac{"+numerator3+"}{"+denominator3+"} = \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} $$"
+    var table = ""
+    
+    if (topn == 3 && bottomn == 1) {
+        table = "$$ \\text{Objects: A, B, C} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td></tr></table>"
+    } else if (topn == 3 && bottomn == 2) {
+        table = "$$ \\text{Objects: A, B, C} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{BC} $</td></tr></table>"
+    } else if (topn == 3 && bottomn == 3) {
+        table = "$$ \\text{Objects: A, B, C} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td></tr></table>"
+    } else if (topn == 4 && bottomn == 1) {
+        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td></tr></table>"
+    }  else if (topn == 4 && bottomn == 2) {
+        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BC} $</td><td style='padding: 0 10px;'>$ \\text{BD} $</td><td style='padding: 0 10px;'>$ \\text{CD} $</td></tr></table>"
+    } else if (topn == 4 && bottomn == 3) {
+        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td><td style='padding: 0 10px;'>$ \\text{BCD} $</td></tr></table>"
+    } else if (topn == 4 && bottomn == 4) {
+        table = "$$ \\text{Objects: A, B, C, D} $$ $$ \\text{Combinations:} $$"+"<table><tr><td>$ \\text{ABCD} $</td></tr></table>"
+    } else if (topn == 5 && bottomn == 1) {
+        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td>$ \\text{A} $</td><td>$ \\text{B} $</td><td>$ \\text{C} $</td><td>$ \\text{D} $</td><td>$ \\text{E} $</td></tr></table>"
+    }  else if (topn == 5 && bottomn == 2) {
+        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{AE} $</td><td style='padding: 0 10px;'>$ \\text{BC} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BD} $</td><td style='padding: 0 10px;'>$ \\text{BE} $</td><td style='padding: 0 10px;'>$ \\text{CD} $</td><td style='padding: 0 10px;'>$ \\text{CE} $</td><td style='padding: 0 10px;'>$ \\text{DE} $</td></tr></table>"
+    } else if (topn == 5 && bottomn == 3) {
+        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td><td style='padding: 0 10px;'>$ \\text{ACE} $</td></tr><tr><td>$ \\text{ADE} $</td><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BDE} $</td><td>$ \\text{CDE} $</td></tr></table>"
+    } else if (topn == 5 && bottomn == 4) {
+        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ACDE} $</td><td style='padding: 0 10px;'>$ \\text{BCDE} $</td></tr></table>"
+    } else if (topn == 5 && bottomn == 5) {
+        table = "$$ \\text{Objects: A, B, C, D, E} $$ $$ \\text{Combinations:} $$"+"<table><tr><td>$ \\text{ABCDE} $</td></tr></table>"
+    } else if (topn == 6 && bottomn == 1) {
+        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td><td style='padding: 0 10px;'>$ \\text{E} $</td><td style='padding: 0 10px;'>$ \\text{F} $</td></tr></table>"
+    } else if (topn == 6 && bottomn == 2) {
+        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{AE} $</td><td style='padding: 0 10px;'>$ \\text{AF} $</td></tr><tr><td>$ \\text{BC} $</td><td>$ \\text{BD} $</td><td>$ \\text{BE} $</td><td>$ \\text{BF} $</td><td>$ \\text{CD} $</td></tr><tr><td>$ \\text{CE} $</td><td>$ \\text{CF} $</td><td>$ \\text{DE} $</td><td>$ \\text{DF} $</td><td>$ \\text{EF} $</td></tr></table>"
+    } else if (topn == 6 && bottomn == 3) {
+        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ABF} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td></tr><tr><td>$ \\text{ACE} $</td><td>$ \\text{ACF} $</td><td>$ \\text{ADE} $</td><td>$ \\text{ADF} $</td><td>$ \\text{AEF} $</td></tr><tr><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BCF} $</td><td>$ \\text{BDE} $</td><td>$ \\text{BDF} $</td></tr><tr><td>$ \\text{BEF} $</td><td>$ \\text{CDE} $</td><td>$ \\text{CDF} $</td><td>$ \\text{CEF} $</td><td>$ \\text{DEF} $</td></tr></table>"
+    } else if (topn == 6 && bottomn == 4) {
+        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABCF} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ABDF} $</td></tr><tr><td>$ \\text{ABEF} $</td><td>$ \\text{ACDE} $</td><td>$ \\text{ACDF} $</td><td>$ \\text{ACEF} $</td><td>$ \\text{ADEF} $</td></tr><tr><td>$ \\text{BCDE} $</td><td>$ \\text{BCDF} $</td><td>$ \\text{BCEF} $</td><td>$ \\text{BDEF} $</td><td>$ \\text{CDEF} $</td></tr></table>"
+    } else if (topn == 6 && bottomn == 5) {
+        table = "$$ \\text{Objects: A, B, C, D, E, F} $$ $$ \\text{Combinations:} $$"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCDE} $</td><td style='padding: 0 10px;'>$ \\text{ABCDF} $</td><td style='padding: 0 10px;'>$ \\text{ABCEF} $</td></tr><tr><td>$ \\text{ABDEC} $</td><td>$ \\text{ABDEF} $</td><td>$ \\text{BCDEF} $</td></tr></table>"
+    }
+    
+    document.getElementById("output").innerHTML = "$$ \\begin{align} C^{"+topn+"}_{"+bottomn+"} &= \\frac{"+topn+"!}{"+bottomn+"!("+topn+"-"+bottomn+")!} \\\\ &=\\frac{"+numerator2+"}{"+denominator2+"} \\\\ &=\\frac{"+numerator3+"}{"+denominator3+"} \\\\ &= \\boxed{"+ parseFloat(ansval.toFixed(2)) + "} \\end{align} $$" + table + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
