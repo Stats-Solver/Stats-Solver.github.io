@@ -441,17 +441,17 @@ function compsamplespace() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ S = \\{ \\text{Head, Tail} \\}$$"
+        document.getElementById("output").innerHTML = "$$ S = \\{ \\text{Head, Tail} \\}$$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ S = \\{ \\text{(H,H), (H,T), (T,H), (T,T)} \\}$$"
+        document.getElementById("output").innerHTML = "$$ S = \\{ \\text{(H,H), (H,T), (T,H), (T,T)} \\}$$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ S = $ <table><tr><td>$ \\{ \\text{(H,H,H),}$</td><td>$\\text{(H,H,T),}$</td><td>$\\text{(H,T,H),}$</td><td>$\\text{(H,T,T),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(T,H,H),}$</td><td>$\\text{(T,H,T),}$</td><td>$\\text{(T,T,H),}$</td><td>$\\text{(T,T,T)} \\}$</td></tr></table>"
+        document.getElementById("output").innerHTML = "$ S = $ <table><tr><td>$ \\{ \\text{(H,H,H),}$</td><td>$\\text{(H,H,T),}$</td><td>$\\text{(H,T,H),}$</td><td>$\\text{(H,T,T),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(T,H,H),}$</td><td>$\\text{(T,H,T),}$</td><td>$\\text{(T,T,H),}$</td><td>$\\text{(T,T,T)} \\}$</td></tr></table>" + "<br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
@@ -466,7 +466,7 @@ function compsamplespace() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ S = \\{ 1, 2, 3, 4, 5, 6 \\} $$"
+        document.getElementById("output").innerHTML = "$$ S = \\{ 1, 2, 3, 4, 5, 6 \\} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
@@ -528,20 +528,38 @@ function compoutcomes() {
     var type = document.getElementById("exptype").value;
     
     if (type == "coin1") {
+        var samplespace = "$$ \\text{Sample Space:} $$ $$ S = \\{ \\text{Head, Tail} \\}$$"
+    } else if (type == "coin2") {
+        var samplespace = "$$ \\text{Sample Space:} $$ $$ S = \\{ \\text{(H,H), (H,T), (T,H), (T,T)} \\}$$"
+    } else if (type == "coin3") {
+        var samplespace = "$$ \\text{Sample Space:} $$ $ S = $ <table><tr><td>$ \\{ \\text{(H,H,H),}$</td><td>$\\text{(H,H,T),}$</td><td>$\\text{(H,T,H),}$</td><td>$\\text{(H,T,T),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(T,H,H),}$</td><td>$\\text{(T,H,T),}$</td><td>$\\text{(T,T,H),}$</td><td>$\\text{(T,T,T)} \\}$</td></tr></table>"
+    } else if (type == "coin4") {
+        var samplespace = " $$ \\{ \\text{(H,H,H,H), (H,H,H,T), (H,H,T,H), (H,T,H,H),}$$ $$\\text{(T,H,H,H), (H,H,T,T), (H,T,H,T), (H,T,T,H),} $$ $$\\text{(T,T,H,H), (T,H,H,T), (T,H,T,H), (T,H,T,T),} $$ $$\\text{(T,T,H,T), (T,T,T,H), (H,T,T,T), (T,T,T,T)} \\} $$"
+    } else if (type == "coin5") {
+        var samplespace = "$$ \\{ \\text{(H,H,H,H,H), (H,H,H,T,H), (H,H,T,H,H), (H,T,H,H,H),}$$ $$\\text{(T,H,H,H,H), (H,H,T,T,H), (H,T,H,T,H), (H,T,T,H,H),} $$ $$\\text{(T,T,H,H,H), (T,H,H,T,H), (T,H,T,H,H), (T,H,T,T,H),} $$ $$\\text{(T,T,H,T,H), (T,T,T,H,H), (H,T,T,T,H), (T,T,T,T,H),} $$ $$ \\text{(H,H,H,H,T), (H,H,H,T,T), (H,H,T,H,T), (H,T,H,H,T),}$$ $$\\text{(T,H,H,H,T), (H,H,T,T,T), (H,T,H,T,T), (H,T,T,H,T),} $$ $$\\text{(T,T,H,H,T), (T,H,H,T,T), (T,H,T,H,T), (T,H,T,T,T),} $$ $$\\text{(T,T,H,T,T), (T,T,T,H,T), (H,T,T,T,T), (T,T,T,T,T)} \\} $$"
+    } else if (type == "dice1") {
+        var samplespace = "$$ \\text{Sample Space:} $$ $$ S = \\{ 1, 2, 3, 4, 5, 6 \\} $$"
+    } else if (type == "dice2") {
+        var samplespace = "$$ \\text{Sample Space: } $$ $ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>$\\text{(5,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>$\\text{(6,5),}$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
+    } else if (type == "deck") {
+        var samplespace = "$ \\text{Sample Space: } S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QS,}$</td><td>$\\text{QD,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+    }
+    
+    if (type == "coin1") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ \\text{Number of Outcomes} = \\boxed{2} $$"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = \\boxed{2} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= \\boxed{4} \\end{align} $$"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= \\boxed{4} \\end{align} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= \\boxed{8} \\end{align} $$ "
+        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= \\boxed{8} \\end{align} $$ " + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
@@ -556,17 +574,17 @@ function compoutcomes() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ \\text{Number of Outcomes} = \\boxed{6} $$"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = \\boxed{6} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Number of Outcomes} &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= \\boxed{36} \\end{align} $$"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= \\boxed{36} \\end{align} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "deck") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$$ \\text{Number of Outcomes} = \\boxed{52} $$"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = \\boxed{52} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -757,6 +775,24 @@ function compevents() {
     var type = document.getElementById("exptype").value;
     
     if (type == "coin1") {
+        var samplespace = "$$ S = \\{ \\text{Head, Tail} \\}$$"
+    } else if (type == "coin2") {
+        var samplespace = "$$ S = \\{ \\text{(H,H), (H,T), (T,H), (T,T)} \\}$$"
+    } else if (type == "coin3") {
+        var samplespace = "$ \\text{Sample Space: } S = $ <table><tr><td>$ \\{ \\text{(H,H,H),}$</td><td>$\\text{(H,H,T),}$</td><td>$\\text{(H,T,H),}$</td><td>$\\text{(H,T,T),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(T,H,H),}$</td><td>$\\text{(T,H,T),}$</td><td>$\\text{(T,T,H),}$</td><td>$\\text{(T,T,T)} \\}$</td></tr></table>"
+    } else if (type == "coin4") {
+        var samplespace = " $$ \\{ \\text{(H,H,H,H), (H,H,H,T), (H,H,T,H), (H,T,H,H),}$$ $$\\text{(T,H,H,H), (H,H,T,T), (H,T,H,T), (H,T,T,H),} $$ $$\\text{(T,T,H,H), (T,H,H,T), (T,H,T,H), (T,H,T,T),} $$ $$\\text{(T,T,H,T), (T,T,T,H), (H,T,T,T), (T,T,T,T)} \\} $$"
+    } else if (type == "coin5") {
+        var samplespace = "$$ \\{ \\text{(H,H,H,H,H), (H,H,H,T,H), (H,H,T,H,H), (H,T,H,H,H),}$$ $$\\text{(T,H,H,H,H), (H,H,T,T,H), (H,T,H,T,H), (H,T,T,H,H),} $$ $$\\text{(T,T,H,H,H), (T,H,H,T,H), (T,H,T,H,H), (T,H,T,T,H),} $$ $$\\text{(T,T,H,T,H), (T,T,T,H,H), (H,T,T,T,H), (T,T,T,T,H),} $$ $$ \\text{(H,H,H,H,T), (H,H,H,T,T), (H,H,T,H,T), (H,T,H,H,T),}$$ $$\\text{(T,H,H,H,T), (H,H,T,T,T), (H,T,H,T,T), (H,T,T,H,T),} $$ $$\\text{(T,T,H,H,T), (T,H,H,T,T), (T,H,T,H,T), (T,H,T,T,T),} $$ $$\\text{(T,T,H,T,T), (T,T,T,H,T), (H,T,T,T,T), (T,T,T,T,T)} \\} $$"
+    } else if (type == "dice1") {
+        var samplespace = "$$ S = \\{ 1, 2, 3, 4, 5, 6 \\} $$"
+    } else if (type == "dice2") {
+        var samplespace = "$ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>$\\text{(5,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>$\\text{(6,5),}$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
+    } else if (type == "deck") {
+        var samplespace = "$ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QS,}$</td><td>$\\text{QD,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+    }
+    
+    if (type == "coin1") {
         $("#explanation").show();
         var event = document.getElementById("eventscoin1").value;
         if (event == "head") {
@@ -792,7 +828,7 @@ function compevents() {
         } else if (event == "ex2tail") {
             document.getElementById("output").innerHTML = "$$ 2 \\text{ Tails} = \\{ (T,T,H),(T,H,T),(H,T,T) \\} $$"
         } else if (event == "ex1head") {
-            document.getElementById("output").innerHTML = "$$ 1 \\text{ Head} = \\{ (H,T,T),(T,H,T),(H,T,T) \\} $$"
+            document.getElementById("output").innerHTML = samplespace + "$$ 1 \\text{ Head} = \\{ (H,T,T),(T,H,T),(H,T,T) \\} $$"
         } else if (event == "ex1tail") {
             document.getElementById("output").innerHTML = "$$ 1 \\text{ Tail} = \\{ (T,H,H),(H,T,H),(H,H,T) \\} $$"
         } else if (event == "at2head") {
@@ -1021,24 +1057,27 @@ function compperm() {
     }  else if (topn == 4 && bottomn == 2) {
         table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{BA} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{CA} $</td><tr><td>$ \\text{AD} $</td><td>$ \\text{DA} $</td><td>$ \\text{BC} $</td><td>$ \\text{CB} $</td></tr><tr><td>$ \\text{BD} $</td><td>$ \\text{DB} $</td><td>$ \\text{CD} $</td><td>$ \\text{DC} $</td></tr></table> <br>"
     } else if (topn == 4 && bottomn == 3) {
-        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ACB} $</td><td style='padding: 0 10px;'>$ \\text{BAC} $</td><td style='padding: 0 10px;'>$ \\text{BCA} $</td><td style='padding: 0 10px;'>$ \\text{CAB} $</td><td style='padding: 0 10px;'>$ \\text{CBA} $</td></tr><tr><td>$\\text{ABD}$</td><td>$\\text{ADB}$</td><td>$\\text{BAD}$</td><td>$\\text{BDA}$</td><td>$\\text{DAB}$</td><td>$\\text{DBA}$</td></tr><tr><td>$\\text{ACD}$</td><td>$\\text{ADC}$</td><td>$\\text{CAD}$</td><td>$\\text{CDA}$</td><td>$\\text{DAC}$</td><td>$\\text{DCA}$</td></tr><tr><td>$\\text{BCD}$</td><td>$\\text{BDC}$</td><td>$\\text{CBD}$</td><td>$\\text{CDB}$</td><td>$\\text{DBC}$</td><td>$\\text{DCB}$</td></tr></table> <br>"
+        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ACB} $</td><td style='padding: 0 10px;'>$ \\text{BAC} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BCA} $</td><td style='padding: 0 10px;'>$ \\text{CAB} $</td><td style='padding: 0 10px;'>$ \\text{CBA} $</td></tr><tr><td>$\\text{ABD}$</td><td>$\\text{ADB}$</td><td>$\\text{BAD}$</td></tr><tr><td>$\\text{BDA}$</td><td>$\\text{DAB}$</td><td>$\\text{DBA}$</td></tr><tr><td>$\\dots$</td><td>$\\dots$</td><td>$\\dots$</td></tr></table> <br>"
     } else if (topn == 4 && bottomn == 4) {
-        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$\\text{ABCD}$</td><td style='padding: 0 10px;'>$\\text{ABDC}$</td><td style='padding: 0 10px;'>$\\text{ACBD}$</td><td style='padding: 0 10px;'>$\\text{ACDB}$</td><td style='padding: 0 10px;'>$\\text{ADBC}$</td><td style='padding: 0 10px;'>$\\text{ADCB}$</td></tr><tr><td>$\\text{BACD}$</td><td>$\\text{BADC}$</td><td>$\\text{BCAD}$</td><td>$\\text{BCDA}$</td><td>$\\text{BDAC}$</td><td>$\\text{BDCA}$</td></tr><tr><td>$\\text{CABD}$</td><td>$\\text{CADB}$</td><td>$\\text{CBAD}$</td><td>$\\text{CBDA}$</td><td>$\\text{CDAB}$</td><td>$\\text{CDBA}$</td></tr><tr><td>$\\text{DABC}$</td><td>$\\text{DACB}$</td><td>$\\text{DBAC}$</td><td>$\\text{DBCA}$</td><td>$\\text{DCAB}$</td><td>$\\text{DCBA}$</td></tr></table> <br>"
+        //table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$\\text{ABCD}$</td><td style='padding: 0 10px;'>$\\text{ABDC}$</td><td style='padding: 0 10px;'>$\\text{ACBD}$</td><td style='padding: 0 10px;'>$\\text{ACDB}$</td><td style='padding: 0 10px;'>$\\text{ADBC}$</td><td style='padding: 0 10px;'>$\\text{ADCB}$</td></tr><tr><td>$\\text{BACD}$</td><td>$\\text{BADC}$</td><td>$\\text{BCAD}$</td><td>$\\text{BCDA}$</td><td>$\\text{BDAC}$</td><td>$\\text{BDCA}$</td></tr><tr><td>$\\text{CABD}$</td><td>$\\text{CADB}$</td><td>$\\text{CBAD}$</td><td>$\\text{CBDA}$</td><td>$\\text{CDAB}$</td><td>$\\text{CDBA}$</td></tr><tr><td>$\\text{DABC}$</td><td>$\\text{DACB}$</td><td>$\\text{DBAC}$</td><td>$\\text{DBCA}$</td><td>$\\text{DCAB}$</td><td>$\\text{DCBA}$</td></tr></table> <br>"
+        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$\\text{ABCD}$</td><td style='padding: 0 10px;'>$\\text{ABDC}$</td><td style='padding: 0 10px;'>$\\text{ACBD}$</td></tr><tr><td style='padding: 0 10px;'>$\\text{ACDB}$</td><td style='padding: 0 10px;'>$\\text{ADBC}$</td><td style='padding: 0 10px;'>$\\text{ADCB}$</td></tr><tr><td>$\\text{BACD}$</td><td>$\\text{BADC}$</td><td>$\\text{BCAD}$</td></tr><tr><td>$\\text{BCDA}$</td><td>$\\text{BDAC}$</td><td>$\\text{BDCA}$</td></tr><tr><td>$\\dots$</td><td>$\\dots$</td><td>$\\dots$</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 1) {
         table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td><td style='padding: 0 10px;'>$ \\text{E} $</td></tr></table> <br>"
     }  else if (topn == 5 && bottomn == 2) {
         table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{BA} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{CA} $</td></tr><tr><td>$ \\text{AD} $</td><td>$ \\text{DA} $</td><td>$ \\text{AE} $</td><td>$ \\text{EA} $</td></tr><tr><td>$ \\text{BC} $</td><td>$ \\text{CB} $</td><td>$ \\text{BD} $</td><td>$ \\text{DB} $</td></tr><tr><td>$ \\text{BE} $</td><td>$ \\text{EB} $</td><td>$ \\text{CD} $</td><td>$ \\text{DC} $</td></tr><tr><td>$ \\text{CE} $</td><td>$ \\text{EC} $</td><td>$ \\text{DE} $</td><td>$ \\text{ED} $</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 3) {
         //<tr><td>$ \\text{ADE} $</td></tr><tr><td>$ \\text{BCD} $</td></tr><tr><td>$ \\text{BCE} $</td></tr><tr><td>$ \\text{BDE} $</td></tr><tr><td>$ \\text{CDE} $</td></tr>
-        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ACB} $</td><td style='padding: 0 10px;'>$ \\text{BAC} $</td><td style='padding: 0 10px;'>$ \\text{BCA} $</td><td style='padding: 0 10px;'>$ \\text{CAB} $</td><td style='padding: 0 10px;'>$ \\text{CBA} $</td></tr><tr><td>$\\text{ABD}$</td><td>$\\text{ADB}$</td><td>$\\text{BAD}$</td><td>$\\text{BDA}$</td><td>$\\text{DAB}$</td><td>$\\text{DBA}$</td></tr><tr><td>$\\text{ABE}$</td><td>$\\text{AEB}$</td><td>$\\text{BAE}$</td><td>$\\text{BEA}$</td><td>$\\text{EAB}$</td><td>$\\text{EBA}$</td></tr><tr><td>$\\text{ACD}$</td><td>$\\text{ADC}$</td><td>$\\text{CAD}$</td><td>$\\text{CDA}$</td><td>$\\text{DAC}$</td><td>$\\text{DCA}$</td></tr><tr><td>$\\text{ACE}$</td><td>$\\text{AEC}$</td><td>$\\text{CAE}$</td><td>$\\text{CEA}$</td><td>$\\text{EAC}$</td><td>$\\text{ECA}$</td></tr><tr><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td></tr></table> <br>"
+        //table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ACB} $</td><td style='padding: 0 10px;'>$ \\text{BAC} $</td><td style='padding: 0 10px;'>$ \\text{BCA} $</td><td style='padding: 0 10px;'>$ \\text{CAB} $</td><td style='padding: 0 10px;'>$ \\text{CBA} $</td></tr><tr><td>$\\text{ABD}$</td><td>$\\text{ADB}$</td><td>$\\text{BAD}$</td><td>$\\text{BDA}$</td><td>$\\text{DAB}$</td><td>$\\text{DBA}$</td></tr><tr><td>$\\text{ABE}$</td><td>$\\text{AEB}$</td><td>$\\text{BAE}$</td><td>$\\text{BEA}$</td><td>$\\text{EAB}$</td><td>$\\text{EBA}$</td></tr><tr><td>$\\text{ACD}$</td><td>$\\text{ADC}$</td><td>$\\text{CAD}$</td><td>$\\text{CDA}$</td><td>$\\text{DAC}$</td><td>$\\text{DCA}$</td></tr><tr><td>$\\text{ACE}$</td><td>$\\text{AEC}$</td><td>$\\text{CAE}$</td><td>$\\text{CEA}$</td><td>$\\text{EAC}$</td><td>$\\text{ECA}$</td></tr><tr><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td><td>$\\vdots$</td></tr></table> <br>"
+        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ACB} $</td><td style='padding: 0 10px;'>$ \\text{BAC} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{BCA} $</td><td style='padding: 0 10px;'>$ \\text{CAB} $</td><td style='padding: 0 10px;'>$ \\text{CBA} $</td></tr><tr><td>$\\text{ABD}$</td><td>$\\text{ADB}$</td><td>$\\text{BAD}$</td></tr><tr><td>$\\text{BDA}$</td><td>$\\text{DAB}$</td><td>$\\text{DBA}$</td></tr><tr><td>$\\dots$</td><td>$\\dots$</td><td>$\\dots$</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 4) {
-        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCD} $</td><td style='padding: 0 10px;'>$ \\text{ABCE} $</td><td style='padding: 0 10px;'>$ \\text{ABDE} $</td><td style='padding: 0 10px;'>$ \\text{ACDE} $</td><td style='padding: 0 10px;'>$ \\text{BCDE} $</td></tr></table> <br>"
+        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$\\text{ABCD}$</td><td style='padding: 0 10px;'>$\\text{ABDC}$</td><td style='padding: 0 10px;'>$\\text{ACBD}$</td></tr><tr><td style='padding: 0 10px;'>$\\text{ACDB}$</td><td style='padding: 0 10px;'>$\\text{ADBC}$</td><td style='padding: 0 10px;'>$\\text{ADCB}$</td></tr><tr><td>$\\text{BACD}$</td><td>$\\text{BADC}$</td><td>$\\text{BCAD}$</td></tr><tr><td>$\\text{BCDA}$</td><td>$\\text{BDAC}$</td><td>$\\text{BDCA}$</td></tr><tr><td>$\\dots$</td><td>$\\dots$</td><td>$\\dots$</td></tr></table> <br>"
     } else if (topn == 5 && bottomn == 5) {
-        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td>$ \\text{ABCDE} $</td></tr></table> <br>"
+        table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABCDE} $</td><td style='padding: 0 10px;'>$ \\text{ABCED} $</td><td style='padding: 0 10px;'>$ \\text{ABDCE} $</td><td style='padding: 0 10px;'>$ \\text{ABDEC} $</td></tr><tr><td>$ \\text{ABECD} $</td><td>$ \\text{ABEDC} $</td><td>$ \\text{ACBDE} $</td><td>$ \\text{ACBED} $</td></tr><tr><td>$ \\text{ACDBE} $</td><td>$ \\text{ACDEB} $</td><td>$ \\text{ACEBD} $</td><td>$ \\text{ACEDB} $</td></tr><tr><td>$ \\text{ADBCE} $</td><td>$ \\text{ADBEC} $</td><td>$ \\text{ADCBE} $</td><td>$ \\text{ADCEB} $</td></tr><tr><td>$ \\dots $</td><td>$ \\dots $</td><td>$ \\dots $</td><td>$ \\dots $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 1) {
         table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{A} $</td><td style='padding: 0 10px;'>$ \\text{B} $</td><td style='padding: 0 10px;'>$ \\text{C} $</td><td style='padding: 0 10px;'>$ \\text{D} $</td><td style='padding: 0 10px;'>$ \\text{E} $</td><td style='padding: 0 10px;'>$ \\text{F} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 2) {
-        table = " $ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{BA} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{CA} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{DA} $</td><tr><td>$ \\text{AE} $</td><td>$ \\text{EA} $</td><td>$ \\text{AF} $</td><td>$ \\text{FA} $</td><td>$ \\text{BC} $</td><td>$ \\text{CB} $</td><tr></tr><td>$ \\text{BD} $</td><td>$ \\text{DB} $</td><td>$ \\text{BE} $</td><td>$ \\text{EB} $</td><td>$ \\text{BF} $</td><td>$ \\text{FB} $</td></tr><tr></tr><td>$ \\text{CD} $</td><td>$ \\text{DC} $</td><td>$ \\text{CE} $</td><td>$ \\text{EC} $</td><td>$ \\text{CF} $</td><td>$ \\text{FC} $</td></tr><tr></tr><td>$ \\text{DE} $</td><td>$ \\text{ED} $</td><td>$ \\text{DF} $</td><td>$ \\text{FD} $</td><td>$ \\text{EF} $</td><td>$ \\text{FE} $</td></tr></table> <br>"
+        //table = " $ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{BA} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{CA} $</td><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{DA} $</td><tr><td>$ \\text{AE} $</td><td>$ \\text{EA} $</td><td>$ \\text{AF} $</td><td>$ \\text{FA} $</td><td>$ \\text{BC} $</td><td>$ \\text{CB} $</td><tr></tr><td>$ \\text{BD} $</td><td>$ \\text{DB} $</td><td>$ \\text{BE} $</td><td>$ \\text{EB} $</td><td>$ \\text{BF} $</td><td>$ \\text{FB} $</td></tr><tr></tr><td>$ \\text{CD} $</td><td>$ \\text{DC} $</td><td>$ \\text{CE} $</td><td>$ \\text{EC} $</td><td>$ \\text{CF} $</td><td>$ \\text{FC} $</td></tr><tr></tr><td>$ \\text{DE} $</td><td>$ \\text{ED} $</td><td>$ \\text{DF} $</td><td>$ \\text{FD} $</td><td>$ \\text{EF} $</td><td>$ \\text{FE} $</td></tr></table> <br>"
+        table = " $ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{AB} $</td><td style='padding: 0 10px;'>$ \\text{BA} $</td><td style='padding: 0 10px;'>$ \\text{AC} $</td><td style='padding: 0 10px;'>$ \\text{CA} $</td></tr><tr><td style='padding: 0 10px;'>$ \\text{AD} $</td><td style='padding: 0 10px;'>$ \\text{DA} $</td><td>$ \\text{AE} $</td><td>$ \\text{EA} $</td></tr><tr><td>$ \\text{AF} $</td><td>$ \\text{FA} $</td><td>$ \\text{BC} $</td><td>$ \\text{CB} $</td></tr><tr><td>$ \\text{BD} $</td><td>$ \\text{DB} $</td><td>$ \\text{BE} $</td><td>$ \\text{EB} $</td></tr><tr><td>$ \\dots $</td><td>$ \\dots $</td><td>$ \\dots $</td><td>$ \\dots $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 3) {
         table = "$ \\text{Permutations of}$ <br> $\\text{A, B, C, D, E, F:} $ <br><br>"+"<table><tr><td style='padding: 0 10px;'>$ \\text{ABC} $</td><td style='padding: 0 10px;'>$ \\text{ABD} $</td><td style='padding: 0 10px;'>$ \\text{ABE} $</td><td style='padding: 0 10px;'>$ \\text{ABF} $</td><td style='padding: 0 10px;'>$ \\text{ACD} $</td></tr><tr><td>$ \\text{ACE} $</td><td>$ \\text{ACF} $</td><td>$ \\text{ADE} $</td><td>$ \\text{ADF} $</td><td>$ \\text{AEF} $</td></tr><tr><td>$ \\text{BCD} $</td><td>$ \\text{BCE} $</td><td>$ \\text{BCF} $</td><td>$ \\text{BDE} $</td><td>$ \\text{BDF} $</td></tr><tr><td>$ \\text{BEF} $</td><td>$ \\text{CDE} $</td><td>$ \\text{CDF} $</td><td>$ \\text{CEF} $</td><td>$ \\text{DEF} $</td></tr></table> <br>"
     } else if (topn == 6 && bottomn == 4) {
