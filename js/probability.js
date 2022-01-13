@@ -572,17 +572,17 @@ function compoutcomes() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = \\boxed{2} $$ " + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = {\\color{RoyalBlue}2} $$ $$ P(\\text{Each Outcome}) = \\boxed{1/2} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= \\boxed{4} \\end{align} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= {\\color{RoyalBlue}4} \\end{align} $$ $$ P(\\text{Each Outcome}) = \\boxed{1/4} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= \\boxed{8} \\end{align} $$ " + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= {\\color{RoyalBlue}8} \\end{align} $$  $$ P(\\text{Each Outcome}) = \\boxed{1/8} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
@@ -597,17 +597,17 @@ function compoutcomes() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = \\boxed{6} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = {\\color{RoyalBlue}6} $$ $$ P(\\text{Each Outcome}) = \\boxed{1/6} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= \\boxed{36} \\end{align} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} & \\text{Number of Outcomes} \\\\ &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= {\\color{RoyalBlue}36} \\end{align} $$ $$ P(\\text{Each Outcome}) = \\boxed{1/36} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "deck") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = \\boxed{52} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = samplespace + "$$ \\text{Number of Outcomes} = {\\color{RoyalBlue}52} $$ $$ P(\\text{Each Outcome}) = \\boxed{1/52} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -922,6 +922,22 @@ function compevents() {
     } else if (type == "coin2") {
         var samplespace = "$$ \\text{Sample Space:} $$ $$ S = \\{ \\text{(H,H), (H,T), (T,H), (T,T)} \\}$$"
     } else if (type == "coin3") {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         var event = document.getElementById("eventscoin3").value;
         if (event == "ex1head") {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $ <table><tr><td>$ \\{ \\text{(H,H,H),}$</td><td>$\\text{(H,H,T),}$</td><td>$\\text{(H,T,H),}$</td><td>$ \\text{(T,H,H),} $</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{(H,T,T)}}, $</td><td>${\\color{RoyalBlue}\\text{(T,H,T)}},$</td><td>${\\color{RoyalBlue}\\text{(T,T,H)}},$</td><td>$\\text{(T,T,T)} \\}$</td></tr></table>"
@@ -939,7 +955,7 @@ function compevents() {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $ <table><tr><td>$ \\{ {\\color{RoyalBlue}\\text{(H,H,H)}},$</td><td>${\\color{RoyalBlue}\\text{(H,H,T)}},$</td><td>${\\color{RoyalBlue}\\text{(H,T,H)}},$</td><td>$ {\\color{RoyalBlue}\\text{(T,H,H)}}, $</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(H,T,T),} $</td><td>$\\text{(T,H,T),}$</td><td>$\\text{(T,T,H),}$</td><td>$\\text{(T,T,T)} \\}$</td></tr></table>"
         } else if (event == "at2tail") {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $ <table><tr><td>$ \\{ \\text{(H,H,H),}$</td><td>$\\text{(H,H,T),}$</td><td>$\\text{(H,T,H),}$</td><td>$ \\text{(T,H,H),} $</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{(H,T,T)}}, $</td><td>${\\color{RoyalBlue}\\text{(T,H,T)}},$</td><td>${\\color{RoyalBlue}\\text{(T,T,H)}},$</td><td>${\\color{RoyalBlue}\\text{(T,T,T)}} \\}$</td></tr></table>"
-        }  
+        }   
     } else if (type == "coin4") {
         var samplespace = " $$ \\{ \\text{(H,H,H,H), (H,H,H,T), (H,H,T,H), (H,T,H,H),}$$ $$\\text{(T,H,H,H), (H,H,T,T), (H,T,H,T), (H,T,T,H),} $$ $$\\text{(T,T,H,H), (T,H,H,T), (T,H,T,H), (T,H,T,T),} $$ $$\\text{(T,T,H,T), (T,T,T,H), (H,T,T,T), (T,T,T,T)} \\} $$"
     } else if (type == "coin5") {
@@ -947,18 +963,6 @@ function compevents() {
     } else if (type == "dice1") {
         var samplespace = "$$ \\text{Sample Space:} $$ $$ S = \\{ 1, 2, 3, 4, 5, 6 \\} $$"
     } else if (type == "dice2") {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         var event = document.getElementById("eventsdice2").value;
         if (event == "sum3") {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>${\\color{RoyalBlue}\\text{(1,2)}},$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{(2,1)}},$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>$\\text{(5,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>$\\text{(6,5),}$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
@@ -978,33 +982,7 @@ function compevents() {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>${\\color{RoyalBlue}\\text{(4,6)}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>${\\color{RoyalBlue}\\text{(5,5)}},$</td><td>$\\text{(5,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>${\\color{RoyalBlue}\\text{(6,4)}},$</td><td>$\\text{(6,5),}$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
         } else if (event == "sum11") {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>${\\color{RoyalBlue}\\text{(5,6)}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>${\\color{RoyalBlue}\\text{(6,5)}},$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
-        }
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
+        } 
     } else if (type == "deck") {
         var samplespace = "$$ \\text{Sample Space:} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QS,}$</td><td>$\\text{QD,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
     }
@@ -1037,21 +1015,21 @@ function compevents() {
         $("#explanation").show(); 
         var event = document.getElementById("eventscoin3").value;
         if (event == "ex1head") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{One Head} = $ <br> $ \\{ \\text{(H,T,T)},\\text{(T,H,T)},\\text{(H,T,T)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{One Head} = $ <br> $ \\{ \\text{(H,T,T)},\\text{(T,H,T)},\\text{(H,T,T)} \\} $ <br><br> $ P(\\text{One Head}) $ <br> $ \\begin{align} &= P \\text{(H,T,T)} + P \\text{(T,H,T)} + P \\text{(H,T,T)} \\\\ &= 1/8 + 1/8 + 1/8 \\\\ &= 3/8 \\\\ &= \\boxed{.375} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "ex1tail") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{One Tail} = $ <br> $ \\{ \\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{One Tail} = $ <br> $ \\{ \\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H)} \\} $ <br><br> $ P(\\text{One Tail}) $ <br> $ \\begin{align} &= P \\text{(H,H,T)} + P \\text{(H,T,H)} + P \\text{(T,H,H)} \\\\ &= 1/8 + 1/8 + 1/8 \\\\ &= 3/8 \\\\ &= \\boxed{.375} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "ex2head") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{Two Heads} = $ <br> $ \\{ \\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{Two Heads} = $ <br> $ \\{ \\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H)} \\} $ <br><br> $ P(\\text{Two Heads}) $ <br> $ \\begin{align} &= P \\text{(H,H,T)} + P \\text{(H,T,H)} + P \\text{(T,H,H)} \\\\ &= 1/8 + 1/8 + 1/8 \\\\ &= 3/8 \\\\ &= \\boxed{.375} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "ex2tail") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{Two Tails} = $ <br> $ \\{ \\text{(H,T,T)},\\text{(T,H,T)},\\text{(H,T,T)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{Two Tails} = $ <br> $ \\{ \\text{(H,T,T)},\\text{(T,H,T)},\\text{(H,T,T)} \\} $ <br><br> $ P(\\text{Two Tails}) $ <br> $ \\begin{align} &= P \\text{(H,T,T)} + P \\text{(T,H,T)} + P \\text{(H,T,T)} \\\\ &= 1/8 + 1/8 + 1/8 \\\\ &= 3/8 \\\\ &= \\boxed{.375} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "at1head") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{At Least One Head} = $ <br> $ \\{ \\text{(H,H,H)},\\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H),} $ <br> $\\text{(H,T,T)},\\text{(T,H,T)},\\text{(T,T,H)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{At Least One Head} = $ <br> $ \\{ \\text{(H,H,H)},\\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H),} $ <br> $\\text{(H,T,T)},\\text{(T,H,T)},\\text{(T,T,H)} \\} $ <br><br> $ P(\\text{At Least One Head}) $ <br> $ \\begin{align} &= P \\text{(H,H,H)} + P \\text{(H,H,T)} + P \\text{(H,T,H)} + P \\text{(T,H,H)} \\\\  & \\quad + P \\text{(H,T,T)} + P \\text{(T,H,T)} + P \\text{(T,T,H)} \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 7/8 \\\\ &= \\boxed{.875} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "at1tail") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{At Least One Tail} = $ <br> $ \\{ \\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H),} $ <br> $\\text{(H,T,T)},\\text{(T,H,T)},\\text{(T,T,H)},\\text{(T,T,T)} \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{At Least One Tail} = $ <br> $ \\{ \\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H),} $ <br> $\\text{(H,T,T)},\\text{(T,H,T)},\\text{(T,T,H)},\\text{(T,T,T)} \\} $ <br><br> $ P(\\text{At Least One Tail}) $ <br> $ \\begin{align} &= P \\text{(H,H,T)} + P \\text{(H,T,H)} + P \\text{(T,H,H)} \\\\  & \\quad + P \\text{(H,T,T)} + P \\text{(T,H,T)} + P \\text{(T,T,H)} + P \\text{(T,T,T)} \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 7/8 \\\\ &= \\boxed{.875} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "at2head") {
-            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{At Least Two Heads} = $ <br> $ \\{ \\text{(H,H,H)},\\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + " <br> $ \\text{At Least Two Heads} = $ <br> $ \\{ \\text{(H,H,H)},\\text{(H,H,T)},\\text{(H,T,H)},\\text{(T,H,H)} \\} $ <br><br> $ P(\\text{At Least Two Heads}) $ <br> $ \\begin{align} &= P \\text{(H,H,H)} + P \\text{(H,H,T)} + P \\text{(H,T,H)} + P \\text{(T,H,H)} \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= \\boxed{.50} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "at2tail") {
-            document.getElementById("output").innerHTML = samplespace +"<br> $ \\text{At Least Two Tails} = $ <br> $ \\{ \\text{(H,T,T)},\\text{(T,H,T)},\\text{(T,T,H)},\\text{(T,T,T)} \\} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace +"<br> $ \\text{At Least Two Tails} = $ <br> $ \\{ \\text{(H,T,T)},\\text{(T,H,T)},\\text{(T,T,H)},\\text{(T,T,T)} \\} $ <br><br> $ P(\\text{At Least Two Tails}) $ <br> $ \\begin{align} &= P \\text{(H,T,T)} + P \\text{(T,H,T)} + P \\text{(T,T,H)} + P \\text{(T,T,T)} \\\\ &= 1/8 + 1/8 + 1/8 + 1/8 \\\\ &= 4/8 \\\\ &= \\boxed{.50} \\end{align} $ " + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         }
     } else if (type == "coin4") {
         $("#explanation").show();
@@ -1090,23 +1068,23 @@ function compevents() {
         $("#explanation").show();
         var event = document.getElementById("eventsdice2").value;
         if (event == "sum3") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 3 = \\{ (1,2),(2,1) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 3 = \\{ (1,2),(2,1) \\} $ <br><br> $ \\begin{align} P(\\text{Sum is } 3) &= P (1,2)+P(2,1) \\\\ &= 1/36 + 1/36 \\\\ &= 2/36 \\\\ &= \\boxed{.0556} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum4") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 4 = \\{ (1,3),(2,2),(3,1) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 4 = \\{ (1,3),(2,2),(3,1) \\} $ <br><br> $ P(\\text{Sum is } 4) $ <br> $ \\begin{align} &= P (1,3)+P(2,2)+P(3,1) \\\\ &= 1/36 + 1/36 + 1/36 \\\\ &= 3/36 \\\\ &= \\boxed{.0833} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum5") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 5 = \\{ (1,4),(2,3),(3,2),(4,1) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 5 = \\{ (1,4),(2,3),(3,2),(4,1) \\} $ <br><br> $ P(\\text{Sum is } 5) $ <br> $ \\begin{align} &= P (1,4)+P(2,3)+P(3,2)+P(4,1) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 4/36 \\\\ &= \\boxed{.1111} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum6") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 6 = $ <br> $ \\{ (1,5),(2,4),(3,3),(4,2),(5,1) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 6 = $ <br> $ \\{ (1,5),(2,4),(3,3),(4,2),(5,1) \\} $ <br><br> $ P(\\text{Sum is } 6) $ <br> $ \\begin{align} &= P (1,5)+P(2,4)+P(3,3) \\\\ & \\quad +P(4,2)+P(5,1) \\\\ &= 1/36 + 1/36 + 1/36 \\\\ & \\quad  + 1/36 + 1/36 \\\\ &= 5/36 \\\\ &= \\boxed{.1389} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum7") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 7 = $ <br> $ \\{ (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 7 = $ <br> $ \\{ (1,6),(2,5),(3,4),(4,3),(5,2),(6,1) \\} $ <br><br> $ P(\\text{Sum is } 7) $ <br> $ \\begin{align} &= P (1,6)+P(2,5)+P(3,4) \\\\ & \\quad +P(4,3)+P(5,2)+P(6,1) \\\\ & = 1/36 + 1/36 + 1/36 \\\\  & \\quad + 1/36 + 1/36 + 1/36 \\\\ &= 6/36 \\\\ &= \\boxed{.1667} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum8") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 8 = $ <br> $ \\{ (2,6),(3,5),(4,4),(5,3),(6,2) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 8 = $ <br> $ \\{ (2,6),(3,5),(4,4),(5,3),(6,2) \\} $ <br><br> $ P(\\text{Sum is } 8) $ <br> $ \\begin{align} &= P (2,6)+P(3,5)+P(4,4) \\\\ & \\quad +P(5,3)+P(6,2) \\\\ &= 1/36 + 1/36 + 1/36 \\\\ & \\quad + 1/36 + 1/36 \\\\ &= 5/36 \\\\ &= \\boxed{.1389} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum9") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 9 = \\{ (3,6),(4,5),(5,4),(6,3) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 9 = \\{ (3,6),(4,5),(5,4),(6,3) \\} $ <br><br> $ P(\\text{Sum is } 9) $ <br> $ \\begin{align} &= P (3,6)+P(4,5)+P(5,4)+P(6,3) \\\\ &= 1/36 + 1/36 + 1/36 + 1/36 \\\\ &= 4/36 \\\\ &= \\boxed{.1111} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum10") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 10 = \\{ (4,6),(5,5),(6,4) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 10 = \\{ (4,6),(5,5),(6,4) \\} $ <br><br> $ P(\\text{Sum is } 10) $ <br> $ \\begin{align} &= P (4,6)+P(5,5)+P(6,4) \\\\ &= 1/36 + 1/36 + 1/36 \\\\ &= 3/36 \\\\ &= \\boxed{.0833} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "sum11") {
-            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 11 = \\{ (5,6),(6,5) \\} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 11 = \\{ (5,6),(6,5) \\} $ <br><br> $ \\begin{align} P(\\text{Sum is } 11) &= P (1,2)+P(2,1) \\\\ &= 1/36 + 1/36 \\\\ &= 2/36 \\\\ &= \\boxed{.0556} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } 
         
         
