@@ -984,7 +984,64 @@ function compevents() {
             var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>${\\color{RoyalBlue}\\text{(5,6)}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>${\\color{RoyalBlue}\\text{(6,5)}},$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
         } 
     } else if (type == "deck") {
-        var samplespace = "$$ \\text{Sample Space:} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QS,}$</td><td>$\\text{QD,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        var event = document.getElementById("eventsdeck").value;
+        if (event == "Heart") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ {\\color{RoyalBlue}\\text{2H}},$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{3H}},$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{4H}},$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{5H}},$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{6H}},$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{7H}},$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{8H}},$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{9H}},$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{10H}},$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{JH}},$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{QH}},$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{KH}},$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{AH}},$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Diamond") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>${\\color{RoyalBlue}\\text{2D}},$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>${\\color{RoyalBlue}\\text{3D}},$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>${\\color{RoyalBlue}\\text{4D}},$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>${\\color{RoyalBlue}\\text{5D}},$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>${\\color{RoyalBlue}\\text{6D}},$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>${\\color{RoyalBlue}\\text{7D}},$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>${\\color{RoyalBlue}\\text{8D}},$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>${\\color{RoyalBlue}\\text{9D}},$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>${\\color{RoyalBlue}\\text{10D}},$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>${\\color{RoyalBlue}\\text{JD}},$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>${\\color{RoyalBlue}\\text{QD}},$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>${\\color{RoyalBlue}\\text{KD}},$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>${\\color{RoyalBlue}\\text{AD}},$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Spade") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>${\\color{RoyalBlue}\\text{2S}},$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>${\\color{RoyalBlue}\\text{3S}},$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>${\\color{RoyalBlue}\\text{4S}},$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>${\\color{RoyalBlue}\\text{5S}},$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>${\\color{RoyalBlue}\\text{6S}},$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>${\\color{RoyalBlue}\\text{7S}},$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>${\\color{RoyalBlue}\\text{8S}},$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>${\\color{RoyalBlue}\\text{9S}},$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>${\\color{RoyalBlue}\\text{10S}},$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>${\\color{RoyalBlue}\\text{JS}},$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>${\\color{RoyalBlue}\\text{QS}},$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>${\\color{RoyalBlue}\\text{KS}},$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>${\\color{RoyalBlue}\\text{AS}},$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Club") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>${\\color{RoyalBlue}\\text{2C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>${\\color{RoyalBlue}\\text{3C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>${\\color{RoyalBlue}\\text{4C}},$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>${\\color{RoyalBlue}\\text{5C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>${\\color{RoyalBlue}\\text{6C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>${\\color{RoyalBlue}\\text{7C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>${\\color{RoyalBlue}\\text{8C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>${\\color{RoyalBlue}\\text{9C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>${\\color{RoyalBlue}\\text{10C}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>${\\color{RoyalBlue}\\text{JC}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>${\\color{RoyalBlue}\\text{QC}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>${\\color{RoyalBlue}\\text{KC}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>${\\color{RoyalBlue}\\text{AC}} \\} $</td></tr></table>"
+        } else if (event == "Red") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Black") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QS,}$</td><td>$\\text{QD,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Jack") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{JH}},$</td><td>${\\color{RoyalBlue}\\text{JD}},$</td><td>${\\color{RoyalBlue}\\text{JS}},$</td><td>${\\color{RoyalBlue}\\text{JC}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Queen") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{QH}},$</td><td>${\\color{RoyalBlue}\\text{QS}},$</td><td>${\\color{RoyalBlue}\\text{QD}},$</td><td>${\\color{RoyalBlue}\\text{QC}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "King") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{KH}},$</td><td>${\\color{RoyalBlue}\\text{KD}},$</td><td>${\\color{RoyalBlue}\\text{KS}},$</td><td>${\\color{RoyalBlue}\\text{KC}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
+        } else if (event == "Ace") {
+            var samplespace = "$$ \\text{Sample Space (Outcomes):} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{AH}},$</td><td>${\\color{RoyalBlue}\\text{AD}},$</td><td>${\\color{RoyalBlue}\\text{AS}},$</td><td>${\\color{RoyalBlue}\\text{AC}} \\} $</td></tr></table>"
+        }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
     }
     
     if (type == "coin1") {
@@ -1054,17 +1111,6 @@ function compevents() {
             document.getElementById("output").innerHTML = "$$ \\geq 5 = \\{ 5,6 \\}  $$"
         }
     } else if (type == "dice2") {
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
         $("#explanation").show();
         var event = document.getElementById("eventsdice2").value;
         if (event == "sum3") {
@@ -1086,41 +1132,67 @@ function compevents() {
         } else if (event == "sum11") {
             document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Sum is } 11 = \\{ (5,6),(6,5) \\} $ <br><br> $ \\begin{align} P(\\text{Sum is } 11) &= P (1,2)+P(2,1) \\\\ &= 1/36 + 1/36 \\\\ &= 2/36 \\\\ &= \\boxed{.0556} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } 
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
     } else if (type == "deck") {
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
         $("#explanation").show(); 
         var event = document.getElementById("eventsdeck").value;
-        if (event == "heart") {
-            document.getElementById("output").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + P(\\text{3H}) + \\cdots + P(\\text{AH}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
-        } else if (event == "diamond") {
-            document.getElementById("output").innerHTML = "$$ \\begin{align} &= P(\\text{2D}) + P(\\text{3D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
-        } else if (event == "spade") {
-            document.getElementById("output").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + P(\\text{3S}) + \\cdots + P(\\text{AS}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
-        } else if (event == "club") {
-            document.getElementById("output").innerHTML = "$$ \\begin{align} &= P(\\text{2C}) + P(\\text{3C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 13(1/52) \\\\ &= 13/52 \\\\ &= \\boxed{1/4} \\end{align} $$"
-        } else if (event == "red") {
-            document.getElementById("output").innerHTML = "$$ \\begin{align} &= P(\\text{2H}) + \\cdots + P(\\text{AH}) + P(\\text{2D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= \\boxed{1/2} \\end{align} $$"
-        } else if (event == "black") {
-            document.getElementById("output").innerHTML = "$$ \\begin{align} &= P(\\text{2S}) + \\cdots + P(\\text{AS}) + P(\\text{2C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= \\boxed{1/2} \\end{align} $$"
+        if (event == "Heart") {
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Heart} = $<br>$ \\{ \\text{2H},\\text{3H},\\text{4H},\\text{5H},\\text{6H},\\text{7H},\\text{8H}, $<br>$ \\text{9H},\\text{10H},\\text{JH},\\text{QH},\\text{KH},\\text{AH} \\} $ <br><br> $ P(\\text{Heart}) $ <br> $ \\begin{align} &= P(\\text{2H})+P(\\text{3H})+\\dots+P(\\text{AH}) \\\\ &= 1/52 + 1/52 + \\dots + 1/52 \\\\ &= 13/52 \\\\ &= \\boxed{.25} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        } else if (event == "Diamond") {
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Diamond} = $<br>$ \\{ \\text{2D},\\text{3D},\\text{4D},\\text{5D},\\text{6D},\\text{7D},\\text{8D}, $<br>$ \\text{9D},\\text{10D},\\text{JD},\\text{QD},\\text{KD},\\text{AD} \\} $ <br><br> $ P(\\text{Diamond}) $ <br> $ \\begin{align} &= P(\\text{2D})+P(\\text{3D})+\\dots+P(\\text{AD}) \\\\ &= 1/52 + 1/52 + \\dots + 1/52 \\\\ &= 13/52 \\\\ &= \\boxed{.25} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        } else if (event == "Spade") {
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Spade} = $<br>$ \\{ \\text{2S},\\text{3S},\\text{4S},\\text{5S},\\text{6S},\\text{7S},\\text{8S}, $<br>$ \\text{9S},\\text{10S},\\text{JS},\\text{QS},\\text{KS},\\text{AS} \\} $ <br><br> $ P(\\text{Spade}) $ <br> $ \\begin{align} &= P(\\text{2S})+P(\\text{3S})+\\dots+P(\\text{AS}) \\\\ &= 1/52 + 1/52 + \\dots + 1/52 \\\\ &= 13/52 \\\\ &= \\boxed{.25} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        } else if (event == "Club") {
+            document.getElementById("output").innerHTML = samplespace + "<br> $ \\text{Club} = $<br>$ \\{ \\text{2C},\\text{3C},\\text{4C},\\text{5C},\\text{6C},\\text{7C},\\text{8C}, $<br>$ \\text{9C},\\text{10C},\\text{JC},\\text{QC},\\text{KC},\\text{AC} \\} $ <br><br> $ P(\\text{Club}) $ <br> $ \\begin{align} &= P(\\text{2C})+P(\\text{3C})+\\dots+P(\\text{AC}) \\\\ &= 1/52 + 1/52 + \\dots + 1/52 \\\\ &= 13/52 \\\\ &= \\boxed{.25} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        } else if (event == "Red") {
+            document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} &= P(\\text{2H}) + \\cdots + P(\\text{AH}) + P(\\text{2D}) + \\cdots + P(\\text{AD}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= \\boxed{1/2} \\end{align} $$"
+        } else if (event == "Black") {
+            document.getElementById("output").innerHTML = samplespace + "$$ \\begin{align} &= P(\\text{2S}) + \\cdots + P(\\text{AS}) + P(\\text{2C}) + \\cdots + P(\\text{AC}) \\\\ &= 1/52 + \\cdots + 1/52 + 1/52 + \\cdots + 1/52 \\\\ &= 26(1/52) \\\\ &= 26/52 \\\\ &= \\boxed{1/2} \\end{align} $$"
         } else if (event == "Jack") {
-            document.getElementById("output").innerHTML = "$$ \\text{Jack} = \\{ \\text{JH},\\text{JD},\\text{JS},\\text{JC} \\} $$"
+            document.getElementById("output").innerHTML = samplespace + "$$ \\text{Jack} = \\{ \\text{JH},\\text{JD},\\text{JS},\\text{JC} \\} $$ $ P(\\text{Jack}) $ <br> $ \\begin{align} &= P(\\text{JH})+P(\\text{JD})+P(\\text{JS})+P(\\text{JC}) \\\\ &= 1/52 + 1/52 + 1/52 + 1/52 \\\\ &= 4/52 \\\\ &= \\boxed{.0769} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "Queen") {
-            document.getElementById("output").innerHTML = "$$ \\text{Queen} = \\{ \\text{QH},\\text{QD},\\text{QS},\\text{QC} \\} $$"
+            document.getElementById("output").innerHTML = samplespace + "$$ \\text{Queen} = \\{ \\text{QH},\\text{QD},\\text{QS},\\text{QC} \\} $$ $ P(\\text{Queen}) $ <br> $ \\begin{align} &= P(\\text{QH})+P(\\text{QD})+P(\\text{QS})+P(\\text{QC}) \\\\ &= 1/52 + 1/52 + 1/52 + 1/52 \\\\ &= 4/52 \\\\ &= \\boxed{.0769} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "King") {
-            document.getElementById("output").innerHTML = "$$ \\text{King} = \\{ \\text{KH},\\text{KD},\\text{KS},\\text{KC} \\} $$"
+            document.getElementById("output").innerHTML = samplespace + "$$ \\text{King} = \\{ \\text{KH},\\text{KD},\\text{KS},\\text{KC} \\} $$ $ P(\\text{King}) $ <br> $ \\begin{align} &= P(\\text{KH})+P(\\text{KD})+P(\\text{KS})+P(\\text{KC}) \\\\ &= 1/52 + 1/52 + 1/52 + 1/52 \\\\ &= 4/52 \\\\ &= \\boxed{.0769} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } else if (event == "Ace") {
-            document.getElementById("output").innerHTML = "$$ \\text{Ace} = \\{ \\text{AH},\\text{AD},\\text{AS},\\text{AC} \\} $$"
+            document.getElementById("output").innerHTML = samplespace + "$$ \\text{Ace} = \\{ \\text{AH},\\text{AD},\\text{AS},\\text{AC} \\} $$ $ P(\\text{Ace}) $ <br> $ \\begin{align} &= P(\\text{AH})+P(\\text{AD})+P(\\text{AS})+P(\\text{AC}) \\\\ &= 1/52 + 1/52 + 1/52 + 1/52 \\\\ &= 4/52 \\\\ &= \\boxed{.0769} \\end{align} $" + "<br><br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         }
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 
     }
     MathJax.typeset();
