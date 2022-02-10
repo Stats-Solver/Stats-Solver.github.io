@@ -125,7 +125,34 @@
       <hr>
           </div>
       
-      <table>
+      <div class="container">
+          <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-2">
+            <select id="stat" class="form-control" onchange="start()">
+                <option value="choose">Choose One</option>
+                <option value="frequency">Frequency Distribution</option>
+                <option value="relative">Relative Frequency</option>
+                <option value="percent">Percent Frequency</option>
+                <option value="bar">Bar Chart</option>
+                <option value="pie">Pie Chart</option>
+                <option value="cumulative">Cumulative Distributions</option>
+                <option value="histogram">Histogram</option>
+                <!--<option value="boxplot">Box Plot</option>
+                <option value="cumfrequency">Cumulative Frequency Distribution</option>
+                <option value="cumrelative">Cumulative Relative Frequency Distribution</option>
+                <option value="cumpercent">Cumulative Percent Frequency Distribution</option>-->
+                <option value="crosstabulation">Crosstabulation</option>
+                <option value="rowpercent">Row Percentages</option>
+                <option value="colpercent">Column Percentages</option>
+                <option value="scatter">Scatter Diagram</option>
+                <option value="trendline">Trendline</option>
+                <!--<option value="timeplot">Time Plot</option>-->
+            </select>
+        </div> 
+              </div>
+        </div>
+      
+      <!--<table>
           <tr>
             <td><span class="examplelink" onclick="frequency()">Frequency Distribution</span></td>
             <td><span class="examplelink" onclick="cumulative()">Cumulative Distributions</span></td>
@@ -151,7 +178,7 @@
       
       </table>
       
-      <!--<div id = "start" class = "container; text-center">
+      <div id = "start" class = "container; text-center">
       <span class="btn btn-primary" onclick="start()">Start</span>
           
           <div class="container">

@@ -5,19 +5,34 @@ $("#practice").hide();
 
 //var rand0 = 1
 
-function frequency(){
-    question1()
+function start(){
     $("#practice").show(); $("#examples").hide();
-}
-
-function relative(){
-    question2()
-    $("#practice").show(); $("#examples").hide();
-}
-
-function percent(){
-    question3()
-    $("#practice").show(); $("#examples").hide();
+    var stat = document.getElementById("stat").value;
+    var rand2 = Math.floor(Math.random() * 2) + 1;
+    if (stat == "frequency"){
+        if (rand2 == 1){
+            question1()
+        } else if (rand2 == 2){
+            question6()
+        } 
+    } else if (stat == "relative"){
+        if (rand2 == 1){
+            question2()
+        } else if (rand2 == 2){
+            question7()
+        } 
+    } else if (stat == "percent"){
+        question3()
+    } else if (stat == "bar"){
+        question4()
+    } else if (stat == "pie"){
+        question5()
+    } else if (stat == "cumulative"){
+        question6()
+    } else {
+        $("#examples").show(); $("#practice").hide();
+    }
+    
 }
 
 
@@ -192,10 +207,19 @@ function next() {
     $("#next").hide(); $("#solve").show(); $("#charts").hide();  $("#showhint").show();
     $("#output").empty(); $("#output2").empty(); $("#output3").empty(); $("#output4").empty();
     //rand = Math.floor(Math.random() * 16) + 1;
-    if (rand0 == 1) {
-        question1()
-    } else if (rand0 == 2) {
-        question2()
+    var rand2 = Math.floor(Math.random() * 2) + 1;
+    if (rand0 == 1 || rand0 == 6) {
+        if (rand2 == 1){
+            question1()
+        } else if (rand2 == 2){
+            question6()
+        }
+    } else if (rand0 == 2 || rand0 == 7) {
+        if (rand2 == 1){
+            question2()
+        } else if (rand2 == 2){
+            question7()
+        } 
     } else if (rand0 == 3) {
         question3()
     } else if (rand == 4) {
@@ -255,7 +279,7 @@ function question1() {
     rand0 = 1
     rand1 = Math.floor(Math.random() * 5) + 3;
     question = 1; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the frequency distribution shown below. What is the frequency of class C? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>2</td></tr><tr><td>B</td><td>"+rand1+"</td></tr><tr><td>C</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("output").innerHTML = "What is the frequency of class C? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>2</td></tr><tr><td>B</td><td>"+rand1+"</td></tr><tr><td>C</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
     MathJax.typeset();
 }
@@ -279,7 +303,7 @@ function question2() {
     rand0 = 2
     rand2 = Math.floor(Math.random() * 5) + 3;
     question = 2; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the frequency distribution shown below. What is the relative frequency of class B? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>2</td></tr><tr><td>B</td><td>"+rand2+"</td></tr><tr><td>C</td><td>"+(8-rand2)+"</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("output").innerHTML = "What is the relative frequency of class B? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>2</td></tr><tr><td>B</td><td>"+rand2+"</td></tr><tr><td>C</td><td>"+(8-rand2)+"</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ \\text{Relative Frequency} = \\dfrac{\\text{Frequency}}{n} $"
     MathJax.typeset();
 }
@@ -303,7 +327,7 @@ function question3() {
     rand0 = 3
     rand3 = parseFloat((.1*(Math.floor(Math.random() * 5) + 3)).toFixed(1));
     question = 3; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the relative frequency distribution shown below. What is the percent frequency of class A? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>"+rand3+"</td></tr><tr><td>B</td><td>"+parseFloat((.8-rand3).toFixed(1))+"</td></tr><tr><td>C</td><td>0.2</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("output").innerHTML = "What is the percent frequency of class A? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>"+rand3+"</td></tr><tr><td>B</td><td>"+parseFloat((.8-rand3).toFixed(1))+"</td></tr><tr><td>C</td><td>0.2</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ \\text{Percent Frequency} = \\text{Relative Frequency} \\times 100 \\% $"
     MathJax.typeset();
 }
@@ -324,10 +348,11 @@ function wrong3() {
 }
 
 function question4() {
+    rand0 = 4
     rand4 = Math.floor(Math.random() * 5) + 1;
     $("#charts").show();
     question = 4; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider a sample with the bar chart shown below. What is the sample size?"
+    document.getElementById("output").innerHTML = "What is the sample size?"
     document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
     google.charts.load('current', {packages: ['corechart', 'bar']});
         google.charts.setOnLoadCallback(drawBasic);
@@ -376,11 +401,12 @@ function wrong4() {
 }
 
 function question5() {
+    rand0 = 5
     rand5 = 10*Math.floor(Math.random() * 6) + 10;
     $("#charts").show();
     var x = ["A","B","C"]; var y = [30,rand5,70-rand5]
     question = 5; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider a sample with the pie chart shown below. What is the relative frequency of class B?"
+    document.getElementById("output").innerHTML = "What is the relative frequency of class B?"
     document.getElementById("hint").innerHTML = "$ \\text{Percent Frequency} = \\text{Relative Frequency} \\times 100 \\%  $"
     google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
@@ -437,9 +463,10 @@ function wrong5() {
 
 
 function question6() {
+    rand0 = 6
     rand6 = Math.floor(Math.random() * 7) + 1;
     question = 6; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the frequency distribution shown below. What is the frequency of the class 30-39? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>2</td></tr><tr><td>20-29</td><td>"+rand6+"</td></tr><tr><td>30-39</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("output").innerHTML = "What is the frequency of the class 30-39? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>2</td></tr><tr><td>20-29</td><td>"+rand6+"</td></tr><tr><td>30-39</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
     MathJax.typeset();
 }
@@ -460,9 +487,10 @@ function wrong6() {
 }
 
 function question7() {
+    rand0 = 7
     rand7 = Math.floor(Math.random() * 6) + 1;
     question = 7; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "Consider the frequency distribution shown below. What is the relative frequency of the class 20-29? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>3</td></tr><tr><td>20-29</td><td>"+rand7+"</td></tr><tr><td>30-39</td><td>"+(7-rand7)+"</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("output").innerHTML = "What is the relative frequency of the class 20-29? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>3</td></tr><tr><td>20-29</td><td>"+rand7+"</td></tr><tr><td>30-39</td><td>"+(7-rand7)+"</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
     document.getElementById("hint").innerHTML = "$ \\text{Relative Frequency} = \\dfrac{\\text{Frequency}}{n} $"
     MathJax.typeset();
 }
