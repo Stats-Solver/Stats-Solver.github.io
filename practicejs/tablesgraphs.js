@@ -10,17 +10,9 @@ function start(){
     var stat = document.getElementById("stat").value;
     var rand2 = Math.floor(Math.random() * 2) + 1;
     if (stat == "frequency"){
-        if (rand2 == 1){
-            question1()
-        } else if (rand2 == 2){
-            question6()
-        } 
+        question1()
     } else if (stat == "relative"){
-        if (rand2 == 1){
-            question2()
-        } else if (rand2 == 2){
-            question7()
-        } 
+        question2() 
     } else if (stat == "percent"){
         question3()
     } else if (stat == "bar"){
@@ -208,18 +200,10 @@ function next() {
     $("#output").empty(); $("#output2").empty(); $("#output3").empty(); $("#output4").empty();
     //rand = Math.floor(Math.random() * 16) + 1;
     var rand2 = Math.floor(Math.random() * 2) + 1;
-    if (rand0 == 1 || rand0 == 6) {
-        if (rand2 == 1){
-            question1()
-        } else if (rand2 == 2){
-            question6()
-        }
-    } else if (rand0 == 2 || rand0 == 7) {
-        if (rand2 == 1){
-            question2()
-        } else if (rand2 == 2){
-            question7()
-        } 
+    if (rand0 == 1) {
+        question1()
+    } else if (rand0 == 2) {
+        question2()
     } else if (rand0 == 3) {
         question3()
     } else if (rand == 4) {
@@ -275,6 +259,11 @@ function next() {
 
 var rand0
 
+
+
+
+// Frequency Distribution
+
 function question1() {
     rand0 = 1
     rand1 = Math.floor(Math.random() * 5) + 3;
@@ -287,7 +276,7 @@ function question1() {
 function correct1() {
     $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ 2 + "+rand1+"+ "+(8 - rand1)+" = 10 $"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand1+"+ {\\color{RoyalBlue}"+(8 - rand1)+"} = 10 $"
     MathJax.typeset();
 }
 
@@ -298,6 +287,85 @@ function wrong1() {
     document.getElementById("output4").innerHTML = "$ 2 + "+rand1+"+ "+ans+"  \\neq 10  $"
     MathJax.typeset();
 }
+
+function question6() {
+    rand0 = 6
+    rand6 = Math.floor(Math.random() * 7) + 1;
+    question = 6; document.getElementById("ans").value = ""
+    document.getElementById("output").innerHTML = "What is the frequency of the class 30-39? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>2</td></tr><tr><td>20-29</td><td>"+rand6+"</td></tr><tr><td>30-39</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
+    MathJax.typeset();
+}
+
+function correct6() {
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
+    document.getElementById("output2").innerHTML = "Correct!"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand6+" + "+(8-rand6)+" = 10 $"
+    MathJax.typeset();
+}
+
+function wrong6() {
+    var ans = document.getElementById("ans").value
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
+    document.getElementById("output3").innerHTML = "Wrong - Try Again"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand6+" + "+ans+" \\neq 10 $"
+    MathJax.typeset();
+}
+
+function question61() {
+    rand0 = 61
+    rand1 = Math.floor(Math.random() * 5) + 3;
+    question = 1; document.getElementById("ans").value = ""
+    document.getElementById("output").innerHTML = "What is the frequency of class C? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>2</td></tr><tr><td>B</td><td>"+rand1+"</td></tr><tr><td>C</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
+    MathJax.typeset();
+}
+
+function correct61() {
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
+    document.getElementById("output2").innerHTML = "Correct!"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand1+"+ "+(8 - rand1)+" = 10 $"
+    MathJax.typeset();
+}
+
+function wrong61() {
+    var ans = document.getElementById("ans").value
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
+    document.getElementById("output3").innerHTML = "Wrong - Try Again"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand1+"+ "+ans+"  \\neq 10  $"
+    MathJax.typeset();
+}
+
+function question62() {
+    rand0 = 62
+    rand6 = Math.floor(Math.random() * 7) + 1;
+    question = 6; document.getElementById("ans").value = ""
+    document.getElementById("output").innerHTML = "What is the frequency of the class 30-39? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>2</td></tr><tr><td>20-29</td><td>"+rand6+"</td></tr><tr><td>30-39</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
+    document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
+    MathJax.typeset();
+}
+
+function correct62() {
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
+    document.getElementById("output2").innerHTML = "Correct!"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand6+" + "+(8-rand6)+" = 10 $"
+    MathJax.typeset();
+}
+
+function wrong62() {
+    var ans = document.getElementById("ans").value
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
+    document.getElementById("output3").innerHTML = "Wrong - Try Again"
+    document.getElementById("output4").innerHTML = "$ 2 + "+rand6+" + "+ans+" \\neq 10 $"
+    MathJax.typeset();
+}
+
+
+
+
+
+// Relative Frequency
+
 
 function question2() {
     rand0 = 2
@@ -462,29 +530,7 @@ function wrong5() {
 
 
 
-function question6() {
-    rand0 = 6
-    rand6 = Math.floor(Math.random() * 7) + 1;
-    question = 6; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "What is the frequency of the class 30-39? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>10-19</td><td>2</td></tr><tr><td>20-29</td><td>"+rand6+"</td></tr><tr><td>30-39</td><td></td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
-    document.getElementById("hint").innerHTML = "$ \\sum{\\text{Frequencies}} = n $"
-    MathJax.typeset();
-}
 
-function correct6() {
-    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
-    document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ 2 + "+rand6+" + "+(8-rand6)+" = 10 $"
-    MathJax.typeset();
-}
-
-function wrong6() {
-    var ans = document.getElementById("ans").value
-    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
-    document.getElementById("output3").innerHTML = "Wrong - Try Again"
-    document.getElementById("output4").innerHTML = "$ 2 + "+rand6+" + "+ans+" \\neq 10 $"
-    MathJax.typeset();
-}
 
 function question7() {
     rand0 = 7

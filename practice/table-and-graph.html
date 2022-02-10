@@ -133,20 +133,20 @@
                 <option value="frequency">Frequency Distribution</option>
                 <option value="relative">Relative Frequency</option>
                 <option value="percent">Percent Frequency</option>
-                <option value="bar">Bar Chart</option>
-                <option value="pie">Pie Chart</option>
-                <option value="cumulative">Cumulative Distributions</option>
-                <option value="histogram">Histogram</option>
-                <!--<option value="boxplot">Box Plot</option>
+                <!--<option value="bar">Bar Chart</option>
+                <option value="pie">Pie Chart</option>-->
+                <option value="cumulative">Cumulative Frequency</option>
+                <!--<option value="histogram">Histogram</option>
+                <option value="boxplot">Box Plot</option>
                 <option value="cumfrequency">Cumulative Frequency Distribution</option>
                 <option value="cumrelative">Cumulative Relative Frequency Distribution</option>
                 <option value="cumpercent">Cumulative Percent Frequency Distribution</option>-->
                 <option value="crosstabulation">Crosstabulation</option>
                 <option value="rowpercent">Row Percentages</option>
                 <option value="colpercent">Column Percentages</option>
-                <option value="scatter">Scatter Diagram</option>
+                <!--<option value="scatter">Scatter Diagram</option>
                 <option value="trendline">Trendline</option>
-                <!--<option value="timeplot">Time Plot</option>-->
+                <option value="timeplot">Time Plot</option>-->
             </select>
         </div> 
               </div>
@@ -285,7 +285,8 @@
         </div>
         <div id="how2" class="how" style="color: darkslategray">
             <p class = "p1 text-center"><u>Frequency Distribution</u></p>
-            <p class = "p1 text-center">What is the frequency of class C?</p>
+            <br>
+            <p class = "p1 text-center">1. What is the frequency of class C?</p>
             
             <table class="text-center">
             <tr style='border-bottom: thin solid'>
@@ -306,16 +307,48 @@
               </tr>
             <tr style='border-top: thin solid'>
                 <td>$ \text{Total} $</td>
-                <td>$ 10 $</td>
+                <td>$ {\color{Black}10} $</td>
               </tr>
             </table>
             <br>
             
             <p class = "p1 text-center">Solution: 3 + 5 + x = 10 -> x = 2</p>
+            <br>
+            
+            <p class = "p1 text-center">2. What is the sample size?</p>
+            
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> $ \text{Class} $ </td>
+                <td> $ \text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ \text{A} $</td>
+                <td>$ 2 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{B} $</td>
+                <td>$ 3 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{C} $</td>
+                <td>$ 1 $</td>
+              </tr>
+            <tr style='border-top: thin solid'>
+                <td>$ \text{Total} $</td>
+                <td>$  $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1 text-center">Solution: 2 + 3 + 1 = 6</p>
+            
             <!--<p class = "p1 text-center">The frequencies in a frequency distribution sum to equal the total (n). So we have 3 + 5 + x = 10, which gives us x = 2. </p>-->
+            <br>
             
             <p class = "p1 text-center"><u>Relative Frequency</u></p>
-            <p class = "p1 text-center">What is the relative frequency of class B?</p>
+            <br>
+            <p class = "p1 text-center">3. What is the relative frequency of class B?</p>
             
             <table class="text-center">
             <tr style='border-bottom: thin solid'>
@@ -342,10 +375,9 @@
             <br>
             
             <p class = "p1 text-center">Solution: 6/10 = .6</p>
-            <!--<p class = "p1 text-center">The relative frequency of a class is the frequency of the class divided by the total (n). So we have 6/10 = .6. </p>-->
+            <br>
             
-            <p class = "p1 text-center"><u>Percent Frequency</u></p>
-            <p class = "p1 text-center">What is the percent frequency of class A?</p>
+            <p class = "p1 text-center">4. What is the relative frequency of class C?</p>
             
             <table class="text-center">
             <tr style='border-bottom: thin solid'>
@@ -353,15 +385,47 @@
                 <td> $ \text{Relative} $<br>$ \text{Frequency} $ </td>
               </tr>
             <tr>
-                <td>$ \text{Pepsi} $</td>
+                <td>$ \text{A} $</td>
+                <td>$ .1 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{B} $</td>
+                <td>$ .5 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{C} $</td>
+                <td>$  $</td>
+              </tr>
+            <tr style='border-top: thin solid'>
+                <td>$ \text{Total} $</td>
+                <td>$ 1 $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1 text-center">Solution: .1 + .5 + x = 1 -> x = .4</p>
+            <!--<p class = "p1 text-center">The relative frequency of a class is the frequency of the class divided by the total (n). So we have 6/10 = .6. </p>-->
+            
+            <br>
+            <p class = "p1 text-center"><u>Percent Frequency</u></p>
+            <br>
+            <p class = "p1 text-center">5. What is the percent frequency of class A?</p>
+            
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> <br>$ \text{Class} $ </td>
+                <td> $ \text{Relative} $<br>$ \text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ \text{A} $</td>
                 <td>$ .30 $</td>
               </tr>
             <tr>
-                <td>$ \text{Coke} $</td>
+                <td>$ \text{B} $</td>
                 <td>$ .50 $</td>
               </tr>
             <tr>
-                <td>$ \text{Sprite} $</td>
+                <td>$ \text{C} $</td>
                 <td>$ .20 $</td>
               </tr>
             <tr style='border-top: thin solid'>
@@ -372,6 +436,97 @@
             <br>
             
             <p class = "p1 text-center">Solution: .30 * 100 = 30 </p>
+            <br>
+            
+            <p class = "p1 text-center">6. What is the percent frequency of class B?</p>
+            
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> <br>$ \text{Class} $ </td>
+                <td> $ \text{Percent} $<br>$ \text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ \text{A} $</td>
+                <td>$ 25 $</td>
+              </tr>
+            <tr>
+                <td>$ \text{B} $</td>
+                <td>$  $</td>
+              </tr>
+            <tr>
+                <td>$ \text{C} $</td>
+                <td>$ 15 $</td>
+              </tr>
+            <tr style='border-top: thin solid'>
+                <td>$ \text{Total} $</td>
+                <td>$ 100 $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1 text-center">Solution: 25 + x + 15 = 100 -> x = 60 </p>
+            <br>
+            
+            <p class = "p1 text-center"><u>Cumulative Frequency</u></p>
+            <br>
+            <p class = "p1 text-center">7. What is the cumulative frequency for 20-29?</p>
+            
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> <br>$ \text{Class} $ </td>
+                <td> <br>$ \text{Frequency} $ </td>
+                <td> $ \text{Cumulative} $ <br>$ \text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ 10-19 $</td>
+                <td>$ 2 $</td>
+                <td>$ 2 $</td>
+              </tr>
+            <tr>
+                <td>$ 20-29 $</td>
+                <td>$ 5 $</td>
+                <td>$  $</td>
+              </tr>
+            <tr>
+                <td>$ 30-39 $</td>
+                <td>$ 3 $</td>
+                <td>$ 10 $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1 text-center">Solution: 2 + 5 = 10</p>
+            
+            <br>
+            <p class = "p1 text-center">8. What is the cumulative frequency for 30-39?</p>
+            
+            <table class="text-center">
+            <tr style='border-bottom: thin solid'>
+                <td> <br>$ \text{Class} $ </td>
+                <td> <br>$ \text{Frequency} $ </td>
+                <td> $ \text{Cumulative} $ <br>$ \text{Frequency} $ </td>
+              </tr>
+            <tr>
+                <td>$ 10-19 $</td>
+                <td>$ 2 $</td>
+                <td>$ 2 $</td>
+              </tr>
+            <tr>
+                <td>$ 20-29 $</td>
+                <td>$ 3 $</td>
+                <td>$ 5 $</td>
+              </tr>
+            <tr>
+                <td>$ 30-39 $</td>
+                <td>$ 1 $</td>
+                <td>$  $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1 text-center">Solution: 2 + 3 + 1 = 6</p>
+            
+            <br>
             
             
 
