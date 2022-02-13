@@ -127,7 +127,7 @@
       
       <div class="container">
           <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-2">
+        <div class="col-8 col-md-3 mb-2 mt-2">
             <select id="stat" class="form-control" onchange="start()">
                 <option value="choose">Choose One</option>
                 <option value="frequency">Frequency Distribution</option>
@@ -246,7 +246,7 @@
             </tr>
         </table> 
           </div>
-      
+      <div id="hiddenstuff">
       <div class="text-center mb-1" id="showhint">
           <span class="examplelink" onclick="showhint()" style = "font-size: 20px;">Hint</span>
         </div>
@@ -262,6 +262,7 @@
       
       <div class = "container mb-1 text-center" id = "output4" style = "font-size: 20px;">
       </div>
+          </div>
           
           </div>
       
@@ -284,17 +285,13 @@
             <br><br>
         </div>
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1 text-center"><u>Frequency Distribution</u></p>
+            <p class = "text-center"><u>Frequency Distribution</u></p>
             <br>
-            
-            
-            
-            
-            
+
             <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p class = "p1 text-center">1. What is the frequency of class C?</p>
+                <p class = "text-center">1. What is the frequency of class C?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -320,11 +317,13 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 10 - (3 + 5) = 2</p>
+                <p class = "text-center">Solution: 10 - (3 + 5) = 2</p>
+                
+                 <br>
 
             </div>
             <div class="col-md-4">
-                <p class = "p1 text-center">2. What is the sample size?</p>
+                <p class = "text-center">2. What is the sample size?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -346,51 +345,49 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 2 + 3 + 1 = 6</p>
+                <p class = "text-center">Solution: 2 + 3 + 1 = 6</p>
+                
+                 <br>
 
             </div> 
             <div class="col-md-4">
-                <p class = "p1 text-center">3. What is the frequency of class A?</p>
+                <p class = "text-center">3. What is the frequency of class A?</p>
             
                 <table class="text-center">
                 <tr>
                     <td> $ \text{B} $ </td>
                     <td> $ \text{C} $ </td>
-                  </tr>
-                <tr>
                     <td>$ \text{A} $</td>
                     <td>$ \text{A} $</td>
-                  </tr>
-                <tr>
                     <td>$ \text{B} $</td>
-                    <td>$ \text{A} $</td>
-                  </tr>
+                                      </tr>
                 <tr>
+                    <td>$ \text{A} $</td>
                     <td>$ \text{C} $</td>
                     <td>$ \text{B} $</td>
-                  </tr>
-                <tr>
                     <td>$ \text{A} $</td>
                     <td>$ \text{A} $</td>
                   </tr>
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 5</p>
+                <p class = "text-center">Solution: 5</p>
+                
+                <br>
 
             </div> 
           </div>
       </div>
 
-            <br>
             
-            <p class = "p1 text-center"><u>Relative Frequency</u></p>
+            
+            <p class = "text-center"><u>Relative Frequency</u></p>
             <br>
 
             <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p class = "p1 text-center">4. What is the relative frequency of class B?</p>
+                <p class = "text-center">4. What is the relative frequency of class B?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -416,10 +413,12 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 6/10 = .6</p>
+                <p class = "text-center">Solution: 6/10 = .6</p>
+                
+                <br>
             </div>
             <div class="col-md-4">
-                <p class = "p1 text-center">5. What is the relative frequency of class C?</p>
+                <p class = "text-center">5. What is the relative frequency of class C?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -445,64 +444,48 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 1 - (.1 + .5) = .4</p>
+                <p class = "text-center">Solution: 1 - (.1 + .5) = .4</p>
+                
+                <br>
             </div> 
             <div class="col-md-4">
-                <p class = "p1 text-center">6. What is the relative frequency of class B?</p>
+                <p class = "text-center">6. What is the relative frequency of class B?</p>
             
                 <table class="text-center">
                 <tr>
                     <td> $ \text{B} $ </td>
                     <td> $ \text{C} $ </td>
-                  </tr>
-                <tr>
                     <td>$ \text{A} $</td>
                     <td>$ \text{A} $</td>
-                  </tr>
-                <tr>
                     <td>$ \text{B} $</td>
-                    <td>$ \text{A} $</td>
-                  </tr>
+                </tr>
                 <tr>
+                    <td>$ \text{A} $</td>
                     <td>$ \text{C} $</td>
                     <td>$ \text{B} $</td>
-                  </tr>
-                <tr>
                     <td>$ \text{A} $</td>
                     <td>$ \text{A} $</td>
                   </tr>
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 3/10 = .3</p>
+                <p class = "text-center">Solution: 3/10 = .3</p>
+                
+                <br>
             </div> 
           </div>
       </div>
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <br>
-            <p class = "p1 text-center"><u>Percent Frequency</u></p>
+
+            <p class = "text-center"><u>Percent Frequency</u></p>
             <br>
             
-            
-            
-            
-            
-            
-            
+
             
             <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p class = "p1 text-center">7. What is the percent frequency of class A?</p>
+                <p class = "text-center">7. What is the percent frequency of class A?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -528,10 +511,11 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: .30 * 100 = 30 </p>
+                <p class = "text-center">Solution: .30 * 100 = 30 </p>
+                <br>
             </div>
             <div class="col-md-4">
-                <p class = "p1 text-center">8. What is the percent frequency of class B?</p>
+                <p class = "text-center">8. What is the percent frequency of class B?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -558,35 +542,32 @@
                 <br>
 
                 <p class = "p1 text-center">Solution: 100 - (50 + 20) = 30 </p>
+                <br>
             </div> 
             <div class="col-md-4">
-                <p class = "p1 text-center">9. What is the percent frequency of class C?</p>
+                <p class = "text-center">9. What is the percent frequency of class C?</p>
             
                 <table class="text-center">
                 <tr>
                     <td> $ \text{B} $ </td>
                     <td> $ \text{C} $ </td>
-                  </tr>
-                <tr>
                     <td>$ \text{A} $</td>
                     <td>$ \text{A} $</td>
-                  </tr>
-                <tr>
                     <td>$ \text{B} $</td>
-                    <td>$ \text{A} $</td>
-                  </tr>
+                </tr>
                 <tr>
+                    <td>$ \text{A} $</td>
                     <td>$ \text{C} $</td>
                     <td>$ \text{B} $</td>
-                  </tr>
-                <tr>
                     <td>$ \text{A} $</td>
                     <td>$ \text{A} $</td>
                   </tr>
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 2/10 * 100 = 20</p>
+                <p class = "text-center">Solution: 2/10 * 100 = 20</p>
+                
+                <br>
             </div> 
           </div>
       </div>
@@ -609,9 +590,9 @@
             </div>
             
             
-            <br>
             
-            <p class = "p1 text-center"><u>Cumulative Frequency</u></p>
+            
+            <p class = "text-center"><u>Cumulative Frequency</u></p>
             <br>
             
             
@@ -619,7 +600,7 @@
             <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p class = "p1 text-center">10. What is the cumulative frequency of class 20-29?</p>
+                <p class = "text-center">10. What is the cumulative frequency of class 20-29?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -641,10 +622,11 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 2 + 5 = 7</p>
+                <p class = "text-center">Solution: 2 + 5 = 7</p>
+                <br>
             </div>
             <div class="col-md-4">
-                <p class = "p1 text-center">11. What is the cumulative frequency of class 30-39?</p>
+                <p class = "text-center">11. What is the cumulative frequency of class 30-39?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -666,10 +648,11 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 2 + 3 + 3 = 10</p>
+                <p class = "text-center">Solution: 2 + 3 + 3 = 10</p>
+                <br>
             </div> 
             <div class="col-md-4">
-                <p class = "p1 text-center">12. What is the cumulative frequency of class 10-19?</p>
+                <p class = "text-center">12. What is the cumulative frequency of class 10-19?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -691,7 +674,9 @@
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 2 </p>
+                <p class = "text-center">Solution: 2 </p>
+                
+                <br>
             </div> 
           </div>
       </div>
@@ -730,9 +715,9 @@
 
             
             
-            <br>
             
-            <p class = "p1 text-center"><u>Crosstabulaion</u></p>
+            
+            <p class = "text-center"><u>Crosstabulaion</u></p>
             <br>
             
             
@@ -740,7 +725,7 @@
             <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <p class = "p1 text-center">13. What is the frequency of A and Y?</p>
+                <p class = "text-center">13. What is the frequency of A and Y?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -748,43 +733,44 @@
                     <td> $ \text{X} $ </td>
                     <td> $ \text{Y} $ </td>
                     <td> $ \text{Z} $ </td>
-                    <td> $ \text{Total} $ </td>
+                    <td style='border-left: thin solid'> $ \text{Total} $ </td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{A} $</td>
                     <td>$ 2 $</td>
                     <td>$ 4 $</td>
                     <td>$ 2 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{B} $</td>
                     <td>$ 5 $</td>
                     <td>$ 2 $</td>
                     <td>$ 3 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{C}$</td>
                     <td>$ 3 $</td>
                     <td>$ 2 $</td>
                     <td>$ 5 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                     <tr style='border-top: thin solid'>
                     <td style='border-right: thin solid'>$ \text{Total}$</td>
                     <td>$ 10 $</td>
                     <td>$ 10 $</td>
                     <td>$ 10 $</td>
-                    <td>$ 30 $</td>
+                    <td style='border-left: thin solid'>$ 30 $</td>
                   </tr>
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 4</p>
+                <p class = "text-center">Solution: 4</p>
+                <br>
             </div>
             <div class="col-md-4">
-                <p class = "p1 text-center">14. What is the row percentage of B and X?</p>
+                <p class = "text-center">14. What is the row percentage of B and X?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -792,43 +778,44 @@
                     <td> $ \text{X} $ </td>
                     <td> $ \text{Y} $ </td>
                     <td> $ \text{Z} $ </td>
-                    <td> $ \text{Total} $ </td>
+                    <td style='border-left: thin solid'> $ \text{Total} $ </td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{A} $</td>
                     <td>$ 2 $</td>
                     <td>$ 4 $</td>
                     <td>$ 2 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{B} $</td>
                     <td>$ 5 $</td>
                     <td>$ 2 $</td>
                     <td>$ 3 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{C}$</td>
                     <td>$ 3 $</td>
                     <td>$ 2 $</td>
                     <td>$ 5 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                     <tr style='border-top: thin solid'>
                     <td style='border-right: thin solid'>$ \text{Total}$</td>
                     <td>$ 10 $</td>
                     <td>$ 10 $</td>
                     <td>$ 10 $</td>
-                    <td>$ 30 $</td>
+                    <td style='border-left: thin solid'>$ 30 $</td>
                   </tr>
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 5/10 * 100 = 50</p>
+                <p class = "text-center">Solution: 5/10 * 100 = 50</p>
+                <br>
             </div> 
             <div class="col-md-4">
-                <p class = "p1 text-center">15. What is the column percentage of C and Y?</p>
+                <p class = "text-center">15. What is the column percentage of C and Y?</p>
             
                 <table class="text-center">
                 <tr style='border-bottom: thin solid'>
@@ -836,66 +823,47 @@
                     <td> $ \text{X} $ </td>
                     <td> $ \text{Y} $ </td>
                     <td> $ \text{Z} $ </td>
-                    <td> $ \text{Total} $ </td>
+                    <td style='border-left: thin solid'> $ \text{Total} $ </td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{A} $</td>
                     <td>$ 2 $</td>
                     <td>$ 4 $</td>
                     <td>$ 2 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{B} $</td>
                     <td>$ 5 $</td>
                     <td>$ 2 $</td>
                     <td>$ 3 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                 <tr>
                     <td style='border-right: thin solid'>$ \text{C}$</td>
                     <td>$ 3 $</td>
                     <td>$ 2 $</td>
                     <td>$ 5 $</td>
-                    <td>$ 10 $</td>
+                    <td style='border-left: thin solid'>$ 10 $</td>
                   </tr>
                     <tr style='border-top: thin solid'>
                     <td style='border-right: thin solid'>$ \text{Total}$</td>
                     <td>$ 10 $</td>
                     <td>$ 10 $</td>
                     <td>$ 10 $</td>
-                    <td>$ 30 $</td>
+                    <td style='border-left: thin solid'>$ 30 $</td>
                   </tr>
                 </table>
                 <br>
 
-                <p class = "p1 text-center">Solution: 2/10 * 100 = 20</p>
+                <p class = "text-center">Solution: 2/10 * 100 = 20</p>
+                <br>
             </div> 
           </div>
       </div>
             
             
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+ 
             
             <br>
             
