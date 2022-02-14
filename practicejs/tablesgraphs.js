@@ -6,7 +6,7 @@ $("#practice").hide();
 //var rand0 = 1
 
 function start(){
-    $("#practice").show(); $("#examples").hide(); $("#hiddenstuff").hide(); $("#next").hide(); $("#solve").show();
+    $("#practice").show(); $("#examples").hide(); $("#next").hide(); $("#solve").show();
     var stat = document.getElementById("stat").value;
     var rand2 = Math.floor(Math.random() * 3) + 1;
     if (stat == "frequency"){
@@ -26,7 +26,13 @@ function start(){
             question32()
         }
     } else if (stat == "percent"){
-        question3()
+        if (rand2 == 1) {
+            question3()
+        } else if (rand2 == 2) {
+            question23()
+        } else if (rand2 == 3) {
+            question33()
+        }
     } else if (stat == "bar"){
         question4()
     } else if (stat == "pie"){
@@ -135,14 +141,28 @@ function solve() {
         } else {
             wrong22()
         }
-    }  else if (question == 3) {
+    } else if (question == 3) {
         var ans = rand3*100
         if (x == ans) {
             correct3()
         } else {
             wrong3()
         }
-    } else if (question == 4) {
+    } else if (question == 23) {
+        var ans = 100 - (20 + rand23)
+        if (x == ans) {
+            correct23()
+        } else {
+            wrong23()
+        }
+    } else if (question == 33) {
+        var ans = (1+totvals)*10
+        if (x == ans) {
+            correct33()
+        } else {
+            wrong33()
+        }
+    }  else if (question == 4) {
         var ans = rand4+5
         if (x == ans) {
             correct4()
@@ -277,8 +297,24 @@ function next() {
         } else if (rand2 == 2) {
             question22()
         } 
-    }  else if (rand0 == 3) {
-        question3()
+    } else if (rand0 == 3) {
+        if (rand2 == 1) {
+            question23()
+        } else if (rand2 == 2) {
+            question33()
+        } 
+    } else if (rand0 == 23) {
+        if (rand2 == 1) {
+            question3()
+        } else if (rand2 == 2) {
+            question33()
+        } 
+    } else if (rand0 == 33) {
+        if (rand2 == 1) {
+            question3()
+        } else if (rand2 == 2) {
+            question23()
+        } 
     } else if (rand == 4) {
         question4()
     } else if (rand == 5) {
@@ -416,6 +452,9 @@ function wrong31() {
 
 
 
+// Relative Frequency
+
+
 function question2() {
     rand0 = 2
     rand2 = Math.floor(Math.random() * 5) + 3;
@@ -493,19 +532,26 @@ function wrong32() {
     MathJax.typeset();
 }
 
+
+
+
+// Percent Frequency
+
+
+
 function question3() {
     rand0 = 3
     rand3 = parseFloat((.1*(Math.floor(Math.random() * 5) + 3)).toFixed(1));
     question = 3; document.getElementById("ans").value = ""
-    document.getElementById("output").innerHTML = "What is the percent frequency of class A? <br><table><tr style='border-bottom: thin solid'><td>Class</td><td>Frequency</td></tr><tr><td>A</td><td>"+rand3+"</td></tr><tr><td>B</td><td>"+parseFloat((.8-rand3).toFixed(1))+"</td></tr><tr><td>C</td><td>0.2</td></tr><tr style='border-top: thin solid'><td>Total</td><td>10</td></tr></table>"
-    document.getElementById("hint").innerHTML = "$ \\text{Percent Frequency} = \\text{Relative Frequency} \\times 100 \\% $"
+    document.getElementById("output").innerHTML = "What is the percent frequency of class A? <br><br><table><tr style='border-bottom: thin solid'><td><br>Class</td><td>Relative<br>Frequency</td></tr><tr><td>A</td><td>"+rand3+"</td></tr><tr><td>B</td><td>"+parseFloat((.8-rand3).toFixed(1))+"</td></tr><tr><td>C</td><td>0.2</td></tr><tr style='border-top: thin solid'><td>Total</td><td>1</td></tr></table><br>"
+    document.getElementById("hint").innerHTML = "$ \\text{Percent Frequency} = \\text{Relative Frequency} \\times 100  $"
     MathJax.typeset();
 }
 
 function correct3() {
     $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output2").innerHTML = "Correct!"
-    document.getElementById("output4").innerHTML = "$ \\text{Percent Frequency} = "+rand3+" \\times 100 \\% = "+(rand3*100)+"\\%  $"
+    document.getElementById("output4").innerHTML = "$ \\text{Percent Frequency} = "+rand3+" \\times 100 = {\\color{Green}"+(rand3*100)+"}  $"
     MathJax.typeset();
 }
 
@@ -513,9 +559,73 @@ function wrong3() {
     var ans = document.getElementById("ans").value
     $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
     document.getElementById("output3").innerHTML = "Wrong - Try Again"
-    document.getElementById("output4").innerHTML = "$ \\text{Percent Frequency} = "+rand3+" \\times 100 \\% \\neq "+ans+" \\% $"
+    document.getElementById("output4").innerHTML = "$ \\text{Percent Frequency} = "+rand3+" \\times 100 \\neq {\\color{Red}"+ans+"} $"
     MathJax.typeset();
 }
+
+function question23() {
+    rand0 = 23
+    rand23 = (Math.floor(Math.random() * 5) + 1)*10;
+    question = 23; document.getElementById("ans").value = ""
+    document.getElementById("output").innerHTML = "What is the percent frequency of class B? <br><br><table><tr style='border-bottom: thin solid'><td><br>Class</td><td>Percent<br>Frequency</td></tr><tr><td>A</td><td>20</td></tr><tr><td>B</td><td></td></tr><tr><td>C</td><td>"+rand23+"</td></tr><tr style='border-top: thin solid'><td>Total</td><td>100</td></tr></table><br>"
+    document.getElementById("hint").innerHTML = "$ \\sum{\\text{Percent Frequencies}} = 100 $"
+    MathJax.typeset();
+}
+
+function correct23() {
+    var ans = document.getElementById("ans").value
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();  
+    document.getElementById("output2").innerHTML = "Correct!"
+    document.getElementById("output4").innerHTML = "$ 20 + {\\color{Green}"+ans+"} + "+rand23+" = 100 $"
+    MathJax.typeset();
+}
+
+function wrong23() {
+    var ans = document.getElementById("ans").value
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide();  
+    document.getElementById("output3").innerHTML = "Wrong - Try Again"
+    document.getElementById("output4").innerHTML = "$ 20 + {\\color{Red}"+ans+"} + "+rand23+" \\neq 100 $"
+    MathJax.typeset();
+}
+
+function question33() {
+    rand0 = 33
+    rand33a = Math.floor(Math.random() * 2); rand33b = Math.floor(Math.random() * 2); rand33c = Math.floor(Math.random() * 2);
+    rand33d = Math.floor(Math.random() * 2); rand33e = Math.floor(Math.random() * 2); rand33f = Math.floor(Math.random() * 2);
+    totvals = rand33a + rand33b + rand33c + rand33d + rand33e + rand33f
+    if (rand33a == 1) {vala = "C"} else {vala = "A"}; if (rand33b == 1) {valb = "C"} else {valb = "A"}; if (rand33c == 1) {valc = "C"} else {valc = "B"}; 
+    if (rand33d == 1) {vald = "C"} else {vald = "B"}; if (rand33e == 1) {vale = "C"} else {vale = "B"}; if (rand33f == 1) {valf = "C"} else {valf = "A"}; 
+    question = 33; document.getElementById("ans").value = ""
+    document.getElementById("output").innerHTML = "What is the percent frequency of class C? <br><br><table><tr><td>B</td><td>"+vala+"</td><td>"+valb+"</td><td>"+valc+"</td><td>A</td></tr><tr><td>A</td><td>"+vald+"</td><td>"+vale+"</td><td>"+valf+"</td><td>C</td></tr></table><br>"
+    document.getElementById("hint").innerHTML = "$ \\text{Percent Frequency} = \\dfrac{\\text{Frequency}}{n} \\times 100 $"
+    MathJax.typeset();
+}
+
+function correct33() {
+    var ans = document.getElementById("ans").value
+    $("#output2").show(); $("#output3").hide(); $("#next").show(); $("#solve").hide(); $("#hint").hide(); $("#showhint").hide();
+    document.getElementById("output2").innerHTML = "Correct!"
+    document.getElementById("output4").innerHTML = "$ \\text{Percent Frequency} = \\dfrac{"+(1+totvals)+"}{10} \\times 100 =  {\\color{Green}"  + ans + "}$"
+    MathJax.typeset();
+}
+
+function wrong33() {
+    var ans = document.getElementById("ans").value
+    $("#output2").hide(); $("#output3").show(); $("#hint").hide(); $("#showhint").hide(); 
+    document.getElementById("output3").innerHTML = "Wrong - Try Again"
+    document.getElementById("output4").innerHTML = "$ \\text{Percent Frequency} = \\dfrac{"+(1+totvals)+"}{10} \\times 100 \\neq  {\\color{Red}"  + ans + "}$"
+    MathJax.typeset();
+}
+
+
+
+
+
+
+
+
+
+
 
 function question4() {
     rand0 = 4
