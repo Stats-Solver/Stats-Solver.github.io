@@ -34,6 +34,11 @@ footer {
     text-align: center
 }
 
+table.ztable td{
+  padding: 2px 6px;
+  text-align: center;
+}
+
 .combperm{
     width: 50px;
 }

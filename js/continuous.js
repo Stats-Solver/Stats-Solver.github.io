@@ -1085,7 +1085,7 @@ function compuniformexpected() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ E(x) = \\frac{a+b}{2} = \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} = \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} E(x) &= \\frac{a+b}{2} \\\\ &= \\frac{" + parseFloat(minval)+ "+" + parseFloat(maxval) + "}{" + 2 + "} \\\\ &= \\boxed{" + parseFloat(((parseFloat(minval)+parseFloat(maxval))/2).toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1097,7 +1097,7 @@ function compuniformvariance() {
     var minval = document.getElementById('minval').value
     var maxval = document.getElementById('maxval').value
     
-    document.getElementById("output").innerHTML = "$$ \\text{Var}(x) = \\dfrac{(b-a)^2}{12} = \\frac{(" + maxval + "-" + minval + ")^2}{12} = \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Var}(x) &= \\dfrac{(b-a)^2}{12} \\\\ &= \\frac{(" + maxval + "-" + minval + ")^2}{12} \\\\ &= \\boxed{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1177,7 +1177,7 @@ function compuniform1() {
     
     //document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{ \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} } \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} = 1/30 \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align} $$"
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\leq "+lessval+") &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -1248,7 +1248,7 @@ function compuniform2() {
     
     //document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{ \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} } \\end{align} $$ $$ \\begin{align} P(x \\leq "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times \\frac{\\displaystyle 1}{\\displaystyle "+(maxval-minval)+"} = 1/30 \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval)).toFixed(2))+"} \\end{align} $$"
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+lessval+"-"+minval+"=\\boxed{"+(lessval - minval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x < "+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x < "+lessval+") &= " + (lessval - minval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (lessval - minval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -1316,7 +1316,7 @@ function compuniform3() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+maxval+"-"+greaterval+"=\\boxed{"+(maxval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x \\geq "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x \\geq "+greaterval+") &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
  
     
     
@@ -1387,7 +1387,7 @@ function compuniform4() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+maxval+"-"+greaterval+"=\\boxed{"+(maxval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x > "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x > "+greaterval+") &= " + (maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\ &= " + (maxval - greaterval) + "/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
  
     
     
@@ -1454,7 +1454,7 @@ function compuniform5() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+greaterval+"-"+greaterval+"=\\boxed{"+(greaterval - greaterval)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P(x = "+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= 0 \\times 1 / "+(maxval-minval)+"  \\\\ &= 0 / "+(maxval-minval)+"  \\\\ &= \\boxed{"+0+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x = "+greaterval+") &= 0 \\times 1 / "+(maxval-minval)+"  \\\\ &= 0 / "+(maxval-minval)+"  \\\\ &= \\boxed{"+0+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
  
     
     
@@ -1529,7 +1529,7 @@ function compuniform6() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" \\leq x \\leq "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" \\leq x \\leq "+twoval2+") &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1602,7 +1602,7 @@ function compuniform7() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" \\leq x < "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" \\leq x < "+twoval2+") &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1675,7 +1675,7 @@ function compuniform8() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" < x \\leq "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" < x \\leq "+twoval2+") &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -1748,7 +1748,7 @@ function compuniform9() {
     
     ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{length} &= "+twoval2+"-"+twoval1+"=\\boxed{"+(twoval2 - twoval1)+"} \\\\ \\text{width} &= f(x) = \\boxed{1/"+(maxval-minval)+"} \\end{align} $$ $$ \\begin{align} P("+twoval1+" < x < "+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+" < x < "+twoval2+") &= " + (twoval2 - twoval1) + " \\times 1 / "+(maxval-minval)+" \\\\ &= " + (twoval2 - twoval1) + " / "+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
@@ -2383,7 +2383,7 @@ function compsnormal1() {
         }
     }
     
-    var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
     document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
@@ -2591,7 +2591,7 @@ function compsnormal2() {
         }
     }
     
-    var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
     document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
@@ -2725,7 +2725,7 @@ function compsnormal3() {
     }
     
     
-    var table = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
+    var table = "<table class='ztable'><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
     
     document.getElementById("output2").innerHTML = "$$ \\begin{align} P(z = "+ lessval + ") = \\boxed{0} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
@@ -2925,7 +2925,7 @@ function compsnormal4() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     
     var zvalue2 = toFixing(parseFloat(greaterval),1);
     var zvalue2a = (zvalue2 - .1).toFixed(1);
@@ -3026,7 +3026,7 @@ function compsnormal4() {
     }
     
     
-    var tableb = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
+    var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     
     document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}   & \\; P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") \\\\  &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '')  + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
@@ -3675,11 +3675,11 @@ function compnormal1() {
         }
     }
     
-    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = \\boxed{" +lessval.toFixed(2)+ "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +lessval.toFixed(2)+ "} $$ "
     
-    var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(x"+ sign + lessval0 + ") = P(z"+ sign + lessval.toFixed(2) + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(x"+ sign + lessval0 + ") &= P(z"+ sign + lessval.toFixed(2) + ") \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -3980,9 +3980,9 @@ function compnormal2() {
     }
     
     
-    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} =\\boxed{" +lessval.toFixed(2)+ "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +lessval.toFixed(2)+ "} $$ "
     
-    var table = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
     document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(x"+ sign + lessval0 + ") &=  P(z"+ sign + lessval.toFixed(2) + ") \\\\ &= 1 - P(z \\leq" + lessval.toFixed(2) + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
@@ -4376,7 +4376,7 @@ function compnormal4() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     
     var zvalue2 = toFixing(parseFloat(greaterval),1);
     var zvalue2a = (zvalue2 - .1).toFixed(1);
@@ -4477,12 +4477,12 @@ function compnormal4() {
     }
     
     
-    var tableb = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
+    var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     
     
-    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 =\\frac{x_1-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = \\boxed{" +lessval.toFixed(2)+ "} $$ $$ z_2 =\\frac{x_2-\\mu}{\\sigma} =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} = \\boxed{" +greaterval.toFixed(2)+ "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 =\\frac{x_1-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +lessval.toFixed(2)+ "} $$ $$ z_2 =\\frac{x_2-\\mu}{\\sigma} =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +greaterval.toFixed(2)+ "} $$ "
     
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}  & \\;  P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") \\\\ &= P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") \\\\ &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '') + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}  & P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") \\\\ &= P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") \\\\ &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '') + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -4872,7 +4872,7 @@ function approxprobability1() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     
     var zvalue2 = toFixing(parseFloat(greaterval),1);
     var zvalue2a = (zvalue2 - .1).toFixed(1);
@@ -4973,13 +4973,13 @@ function approxprobability1() {
     }
     
     
-    var tableb = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
+    var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" \\pm .5 = \\boxed{"+xval1+" \\text{ to } "+xval2+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" \\pm .5 = {\\color{RoyalBlue}"+xval1+"} \\text{ to } {\\color{RoyalBlue}"+xval2+"} $$ "
     
-    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 = \\frac{x_1-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ $$ z_2 = \\frac{x_2-\\mu}{\\sigma} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z2.toFixed(2) + "} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 = \\frac{x_1-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ $$ z_2 = \\frac{x_2-\\mu}{\\sigma} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z2.toFixed(2) + "} $$"
     
-    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & \\; \\quad P(" + xval1 + " \\leq x \\leq " + xval2 + ") \\\\ &= P(" + z1.toFixed(2) + " \\leq z \\leq " + z2.toFixed(2) + ") \\\\ &= P(z \\leq " + z2.toFixed(2) + ") - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= " + prob2.replace(/^0+/, '') + " - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & P(" + xval1 + " \\leq x \\leq " + xval2 + ") \\\\ &= P(" + z1.toFixed(2) + " \\leq z \\leq " + z2.toFixed(2) + ") \\\\ &= P(z \\leq " + z2.toFixed(2) + ") - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= " + prob2.replace(/^0+/, '') + " - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -5265,13 +5265,13 @@ function approxprobability2() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = \\boxed{"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
-    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ P(x \\leq " + xval1 + ") = P(z \\leq " + z1.toFixed(2) + ") = \\boxed{" + prob1.replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\leq " + xval1 + ") &= P(z \\leq " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -5557,16 +5557,16 @@ function approxprobability3() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = \\boxed{"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
     //$$ \\text{Applying Continuity Correction Factor:}$$ $$ P(x < " + xval + ") \\rightarrow P(x < " + xval1 + ") $$ 
     
     
-    document.getElementById("output").innerHTML = " $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ P(x < " + xval1 + ") = P(z < " + z1.toFixed(2) + ") = \\boxed{" + prob1.replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x < " + xval1 + ") &= P(z < " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -5860,11 +5860,11 @@ function approxprobability4() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = \\boxed{"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
-    document.getElementById("output").innerHTML = " $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
     document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\geq " + xval1 + ") &= P(z \\geq " + z1.toFixed(2) + ") \\\\ &= 1 - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= 1 - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
@@ -6160,12 +6160,12 @@ function approxprobability5() {
         }
     }
     
-    var tablea = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + stnd + "} $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = \\boxed{"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
     
-    document.getElementById("output").innerHTML = " $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = \\boxed{" + z1.toFixed(2) + "} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
     document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x > " + xval1 + ") &= P(z > " + z1.toFixed(2) + ") \\\\ &= 1 - P(z < " + z1.toFixed(2) + ") \\\\ &= 1 - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
