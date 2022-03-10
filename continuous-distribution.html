@@ -85,13 +85,13 @@
               <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <li class="nav-item dropdown">
+            <!--<li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Practice
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="practice/table-and-graph.html">Table and Graph</a>
-              <!--<a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
               <a class="dropdown-item" href="practice/basic-probability.html">Basic Probability</a>
               <a class="dropdown-item" href="practice/discrete-distribution.html">Discrete Distribution</a>
               <a class="dropdown-item" href="practice/continuous-distribution.html">Continuous Distribution</a>
@@ -104,9 +104,9 @@
               <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>
               <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
               <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
-              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> -->
+              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> 
             </div>
-          </li>
+          </li>-->
             <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
@@ -131,12 +131,11 @@
           <div id = "uniformab">
         <table>
           <tr>
-            <td style="text-align: right">$\text{Minimum Value: } a $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Minimum Value">$ a $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="minval"></td>
-            </tr>
-            <tr>
-            <td style="text-align: right">$\text{Maximum Value: }  b $</td>
+            <td>&nbsp; &nbsp;</td>
+            <td data-toggle="tooltip" data-placement="top" title="Maximum Value">$ b $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="maxval"></td>
             </tr>
@@ -247,13 +246,10 @@
       <div class="container mb-3" id="normal">
         <table>
           <tr>
-            <td style="text-align: right">$\text{Expected Value: } $</td>
-            <td>$ \mu = $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu = $</td>
             <td><input class = "combperm" type="text" id="expval"></td>
-            </tr>
-            <tr>
-            <td style="text-align: right">$\text{Standard Deviation: }$</td>
-            <td>$ \sigma = $</td>
+            <td>&nbsp; &nbsp;</td>
+            <td data-toggle="tooltip" data-placement="top" title="Standard Deviation">$ \sigma = $</td>
             <td><input class = "combperm" type="text" id="stdev"></td>
             </tr>
         </table> 
@@ -320,13 +316,10 @@
           
           <table>
           <tr>
-            <td style="text-align: right">$\text{Number of Trials: }  $</td>
-            <td>$n = $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$n = $</td>
             <td><input class = "combperm" type="text" id="trials"></td>
-            </tr>
-            <tr>
-            <td style="text-align: right">$\text{Probability of Success: } $</td>
-            <td>$p = $</td>
+            <td>&nbsp; &nbsp;</td>
+            <td data-toggle="tooltip" data-placement="top" title="Probability of Success">$p = $</td>
             <td><input class = "combperm" type="text" id="psuccess"></td>
             </tr>
         </table>  
@@ -376,7 +369,7 @@
       <div class="container mb-3" id="exponential">
         <table>
           <tr>
-            <td>$\text{Expected Value: } \mu $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu $</td>
             <td>$ = $</td>
             <td><input class = "combperm" type="text" id="expval2"></td>
             </tr>
@@ -410,7 +403,7 @@
       <div class="container mb-3" id="tdistribution"> 
           <table>
           <tr>
-            <td>$\text{Degrees of Freedom: } df $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Degrees of Freedom">$ df $</td>
             <td>$ = $</td>
             <td><input class = "combperm3" type="text" id="degfree"></td>
             </tr>
@@ -469,7 +462,7 @@
       <div class="container mb-3" id="chidistribution"> 
           <table>
           <tr>
-            <td>$\text{Degrees of Freedom: } df $</td>
+            <td data-toggle="tooltip" data-placement="top" title="Degrees of Freedom">$df $</td>
             <td>$ = $</td>
             <td><input class = "combperm3" type="text" id="degfreec"></td>
             </tr>
@@ -491,12 +484,12 @@
       <div class="container mb-3" id="fdistribution"> 
           <table>
           <tr>
-            <td style="text-align: right">$ \text{Numerator Degrees of Freedom}$</td>
+            <td style="text-align: right">$ \text{Numerator } df$</td>
             <td>$= $</td>
             <td><input class = "combperm3" type="text" id="numdf"></td>
             </tr>
             <tr>
-            <td style="text-align: right">$ \text{Denominator Degrees of Freedom}$</td>
+            <td style="text-align: right">$ \text{Denominator } df$</td>
             <td>$= $</td>
             <td><input class = "combperm3" type="text" id="dendf"></td>
             </tr>
