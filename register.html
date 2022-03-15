@@ -46,10 +46,10 @@
     />
     <link rel="canonical" href="https://www.statssolver.com/" />
   </head>
-  <body style="height: 100%; position: absolute; width: 100%">
-    <div class="container h-100">
-      <div class="row align-items-center h-100">
-        <div class="col-md-6 col-sm-8 col-lg-4 my-auto mx-auto">
+  <body>
+    <div class="container" style="padding-top: 50px">
+      <div class="row h-100">
+        <div class="col-md-6 col-sm-8 col-lg-4 mx-auto">
           <h4 style="text-align: center">Create a Stats Solver account</h4>
           <br />
           <div class="card">
@@ -58,7 +58,7 @@
                 <label for="email">Email address</label>
                 <input
                   type="email"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   id="email"
                   aria-describedby="emailHelp"
                   placeholder=""
@@ -66,10 +66,28 @@
                 <small>We never share your email with anyone.</small>
               </div>
               <div class="form-group">
+                <label for="confirmPassword">First name <i><small>- Optional</small></i></label>
+                <input
+                  type="name"
+                  class="form-control form-control-sm"
+                  id="firstName"
+                  placeholder=""
+                />
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Last name <i><small>- Optional</small></i></label>
+                <input
+                  type="name"
+                  class="form-control form-control-sm"
+                  id="lastName"
+                  placeholder=""
+                />
+              </div>
+              <div class="form-group">
                 <label for="password">Password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   id="password"
                   placeholder=""
                 />
@@ -78,7 +96,7 @@
                 <label for="confirmPassword">Confirm password</label>
                 <input
                   type="password"
-                  class="form-control"
+                  class="form-control form-control-sm"
                   id="confirmPassword"
                   placeholder=""
                 />
