@@ -2263,7 +2263,12 @@ function confinterval() {
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
     var anssee = Math.sqrt(ansmse);
-    var ansans = anssee * Math.sqrt(1/n_x + ((xvalue-mean_x)^2)/sum_xminusx_bar2)
+    var ansansinside1 = n_x
+    var ansansinside2 = xvalue
+    var ansansinside3 = mean_x
+    var ansansinside4 = sum_xminusx_bar2
+    var ansansinside = 1/n_x + ((xvalue-mean_x)*(xvalue-mean_x))/sum_xminusx_bar2
+    var ansans = anssee * Math.sqrt(1/n_x + ((xvalue-mean_x)*(xvalue-mean_x))/sum_xminusx_bar2)
     var marginerror = talphahalf * ansans
     var anslow = ans - marginerror; var anshigh = (parseFloat(ans)+marginerror);
 
@@ -2371,7 +2376,7 @@ function confinterval() {
 
     var tablet = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
     
-    document.getElementById("output").innerHTML = "$$ \\text{Point Estimate:} $$ $$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} s_{\\hat{y}_p} &= s \\sqrt{ \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{ \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}}  = {\\color{RoyalBlue}" + parseFloat(ansans.toFixed(2)) + "} \\end{align} $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 2 = "+size+ " - 2 = {\\color{RoyalBlue}"+sizem2+"} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Point Estimate:} $$ $$ \\hat{y}_p = b_0 + b_1 x_p = "+parseFloat(ansint.toFixed(2))+" + "+parseFloat(ansslope.toFixed(2))+" (" + xvalue + ")  = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} s_{\\hat{y}_p} &= s \\sqrt{ \\frac{1}{n} + \\frac{(x_p - \\bar{x})^2}{\\sum{(x-\\bar{x})^2}}} \\\\ &= "+parseFloat(anssee.toFixed(2))+" \\sqrt{ \\frac{1}{"+n_x+"} + \\frac{(" + xvalue + " - " + mean_x + ")^2}{"+sum_xminusx_bar2+"}} = {\\color{RoyalBlue}" + parseFloat(ansans.toFixed(2)) + "} \\end{align} $$ $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"}$$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 2 = "+size+ " - 2 = {\\color{RoyalBlue}"+sizem2+"} $$"
     
     document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\hat{y}_p \\pm t_{\\alpha/2} s_{\\hat{y}_p} $$ $$" + parseFloat(ans.toFixed(2)) + "\\pm" + talphahalf.toFixed(3) + " ( "+parseFloat(ansans.toFixed(2))+") $$ $$"+parseFloat(ans.toFixed(2)) + "\\pm" +parseFloat(marginerror.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq E(y_p) \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
         
@@ -2449,7 +2454,7 @@ function predinterval() {
     var ansrsqu = ansssr / anssst; var ansrsquper = ansrsqu.toFixed(2) * 100;
     var ansmse = anssse / (n_x - 2);
     var anssee = Math.sqrt(ansmse);
-    var ansans = anssee * Math.sqrt(1 + 1/n_x + ((xvalue-mean_x)^2)/sum_xminusx_bar2)
+    var ansans = anssee * Math.sqrt(1 + 1/n_x + ((xvalue-mean_x)*(xvalue-mean_x))/sum_xminusx_bar2)
     var marginerror = talphahalf * ansans
     var anslow = ans - marginerror; var anshigh = (parseFloat(ans)+marginerror);
     
