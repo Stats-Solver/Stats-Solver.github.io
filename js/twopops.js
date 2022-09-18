@@ -486,7 +486,7 @@ function coninte(){
             return value * value;
         } );
         var each2minus = each2.map( function(value) {
-            return value - mn;
+            return value - mn2;
         } );
         var each2minus2 = each2minus.map( function(value) {
             return value * value;
@@ -734,7 +734,7 @@ function conint1(){
             return value * value;
         } );
         var each2minus = each2.map( function(value) {
-            return value - mn;
+            return value - mn2;
         } );
         var each2minus2 = each2minus.map( function(value) {
             return value * value;
