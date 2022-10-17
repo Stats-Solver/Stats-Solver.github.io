@@ -1,0 +1,525 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="The easy-to-use numerical summary calculator can be used to get step-by-step solutions to the mean, median, mode, variance, standard deviation and more.">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
+      
+    <title>Hypothesis Testing in R - Learn by Coding</title>
+      
+      <link rel="icon" href="/favicon.png">
+      
+      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-170214906-1');
+    </script>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+          <!-- Event snippet for Page view conversion page -->
+    <script>
+      gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
+    </script>
+      
+      <link rel="canonical" href="https://www.statssolver.com/numerical-summary.html" />
+
+      
+  </head>
+    
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" width="188" height="25" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Calculators
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="/continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="/sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="/confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="/two-population.html">Two Population</a>
+              <a class="dropdown-item" href="/population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="/goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="/simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="/multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="/time-series-analysis.html">Time Series Analysis</a>
+            </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Lessons
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/lessons/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="/lessons/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="/lessons/continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="/lessons/sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="/lessons/confidence-interval.html">Confidence Interval</a>
+            </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Coding
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a> 
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
+          </div>
+    
+      
+      <div class = "container">
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="/coding/hypothesis-testing.html">Coding Hypothesis Tests</a></h1>
+        <!--<h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="confidence-interval.html" class="text-primary" >Confidence Interval Calculator</a></h2>-->
+    </div>
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      
+      
+      
+      
+      
+ 
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container text-center">
+          <a href="/coding/hypothesis-testing/1.html" class="btn btn-primary">Start Coding!</a>
+        </div>
+      
+      
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      
+      
+      
+      
+      
+      <div class="container" id="how">
+          
+        <div id="how1" class="output text-center" style="color: darkslategray">
+            
+            Introduction:
+            <br><br>
+            
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            <p class = "p1">
+            In hypothesis testing, we are trying to test an assumption about the value of a population parameter, such as the population mean ($\mu$). In hypothesis tests about the population mean, there are two cases. The first case is when the population standard deviation ($\sigma$) is known and the other case is when the population standard deviationn is unknown. Then there are three forms of a hypothesis test: lower tail, upper tail and two-tailed. 
+            </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td>$H_0 \colon \mu \geq \mu_0$</td>
+                <td>$H_0 \colon \mu \leq \mu_0$</td>
+                <td>$H_0 \colon \mu = \mu_0$</td>
+              </tr>
+              <tr>
+                <td>$H_a \colon \mu < \mu_0$</td>
+                <td>$H_a \colon \mu > \mu_0$</td>
+                <td>$H_a \colon \mu \neq \mu_0$</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">
+            The first step in a hypothesis test, of any case or form, is to calculate the test statistic. The formula for the test statistic will dependent on whether $\sigma$ is known or unknown. If $\sigma$ is known, then the test statistic is written as $z$. This is because the test statistic in the $\sigma$ known case follows the standard normal, or z, distribution. In the $\sigma$ unknown case, the test statistic is written $t$ because it follows a $t$ distribution with $n-1$ degrees of freedom. Computing this formulas in R requires only one function to compute the square root. The function for calculating the square root in R is <code>sqrt(x)</code>.
+            </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>$\sigma$ Known</td>
+                <td>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Test Statistic</td>  
+                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}  $</td>
+                <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">
+            Once the test statistic is calculated, it can be used to calculate a probability known as a p-value. In a lower tail test, the p-value is the probability of getting a value for the test statistic as small as or smaller than the value from the sample. Since the test statistic follows a standard normal (z) distribution, the p-value is the area to the left of the test statistic under the z distribution. In R, probabilities for a normal distribution can be computed using the <code>pnorm(q)</code> function. The default values for the mean and standard deviation of this function are 0 and 1, corresponding to the standard normal distribution. 
+            </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="350" height="175"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class="p1">
+            After the p-value is computed, we can use the rejection rule for the p-value to determine whether or not to reject the null hypothesis ($H_0$). The rejection rule for the p-value says that we reject the null hypothesis if the p-value is less than or equal to the level of significance ($\alpha$). Coding this in R requires the use of an <code>if-else</code> statement. That is, one code is executed if a condition is satisified and a different code is executed if the condition is not satisifed. 
+            </p>
+            
+            <table class="text-center">
+                <tr>
+                <td>Lower, Upper and Two-Tailed</td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><code>if (pvalue <= alpha) {</code></td>
+              </tr>
+              <tr>
+                <td style="text-align:left">&nbsp;&nbsp;&nbsp;<code>"reject null"</code></td>
+              </tr>
+              <tr>
+                <td style="text-align:left"><code>} else {</code></td>
+              </tr>
+              <tr>
+                <td style="text-align:left">&nbsp;&nbsp;&nbsp;<code>"don't reject null"</code></td>
+                </tr>
+                <tr>
+                <td style="text-align:left"><code>}</code></td>
+                </tr>
+            </table>
+            <br>
+            
+            <p class="p1">
+            Another way to conduct a hypothesis test is to use a critical value. For a lower tail test, the critical value is the value of the test statistic corresponding to an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. Since the test statistic follows the standard normal ($z$) distribution, the critical value is the z value corresponding to an area of $\alpha$ in the lower tail of the $z$ distribution. For a lower tail test when $\sigma$ is known, the critical value is written $-z_\alpha$. The R function <code>qnorm(p)</code> can be used to calculate the critical value. 
+            </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas4" width="350" height="175"></canvas></td>
+              </tr>
+            </table>
+            
+            <p class="p1">
+            Just as there is a rejection rule for the p-value, there is a rejection rule for the critical value. The rejection rule for the critical value says to rejection the null hypothesis ($H_0$) if the test statistic ($z$) is less than or equal to the critical value ($-z_\alpha$). Like the rejection rule for the p-value, we will have to use an <code>if-else</code> statement to code this in R. If the condition for the critical value is satisfied we will reject the null hypothesis, otherwise we will not reject the null hypothesis. 
+            </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td><code>if (z <= critical) {</code></td>
+                <td><code>if (z >= critical) {</code></td>
+                <td><code>if (z <= -crit || z >= +crit) {</code></td>
+              </tr>
+              <tr>
+                <td><code>"reject null"</code></td>
+                  <td><code>"reject null"</code></td>
+                  <td><code>"reject null"</code></td>
+              </tr>
+              <tr>
+                <td><code>} else {</code></td>
+                  <td><code>} else {</code></td>
+                  <td><code>} else {</code></td>
+              </tr>
+              <tr>
+                <td><code>"don't reject null"</code></td>
+                  <td><code>"don't reject null"</code></td>
+                  <td><code>"don't reject null"</code></td>
+                </tr>
+                <tr>
+                <td><code>}</code></td>
+                    <td><code>}</code></td>
+                    <td><code>}</code></td>
+                </tr>
+            </table>
+            <br>
+            
+            <!--
+            <p class = "p1">The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
+
+            <table style="width:100%">
+              <tr>
+                <td></td>
+                <td>$\sigma$ Known</td>
+                <td>$\sigma$ Unknown</td>
+              </tr>
+              <tr>
+                <td>Test Statistic</td>  
+                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{{\color{Black} n}}}  $</td>
+                <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
+
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td>$H_0 \colon \mu \geq \mu_0$</td>
+                <td>$H_0 \colon \mu \leq \mu_0$</td>
+                <td>$H_0 \colon \mu = \mu_0$</td>
+              </tr>
+              <tr>
+                <td>$H_a \colon \mu < \mu_0$</td>
+                <td>$H_a \colon \mu > \mu_0$</td>
+                <td>$H_a \colon \mu \neq \mu_0$</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. </p>
+
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas1" width="350" height="175"></canvas><canvas id="howCanvas2" width="350" height="175"></canvas><canvas id="howCanvas3" width="350" height="175"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
+            
+            <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+             Square1 
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="6232876137"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>-->
+            
+            
+            <!--<div class="text-center mt-2 mb-2">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Big Rectangle 2 
+            <ins class="adsbygoogle"
+                 style="display:inline-block;width:300px;height:250px"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="3611905049"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            </div>
+            
+            <div class="text-center mt-2 mb-2">
+            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+                 crossorigin="anonymous"></script>
+            <!-- Responsive2 
+            <ins class="adsbygoogle"
+                 style="display:block"
+                 data-ad-client="ca-pub-3595688914204816"
+                 data-ad-slot="2627397291"
+                 data-ad-format="auto"
+                 data-full-width-responsive="true"></ins>
+            <script>
+                 (adsbygoogle = window.adsbygoogle || []).push({});
+            </script>
+            </div>
+
+          
+            
+            <p class = "p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
+
+            <table style="width:100%">
+              <tr>
+                <td><canvas id="howCanvas4" width="350" height="175"></canvas><canvas id="howCanvas5" width="350" height="175"></canvas><canvas id="howCanvas6" width="350" height="175"></canvas></td>
+              </tr>
+            </table>
+
+            <p class = "p1">To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.</p>
+
+            <table style="width:100%">
+              <tr>
+                <td>Lower Tail Test</td>
+                <td>Upper Tail Test</td>
+                <td>Two-Tailed Test</td>
+              </tr>
+              <tr>
+                <td>If $z \leq -z_\alpha$, reject $H_0$.</td>
+                <td>If $z \geq z_\alpha$, reject $H_0$.</td>
+                <td>If $z \leq -z_{\alpha/2}$ or $z \geq z_{\alpha/2}$, reject $H_0$.</td>
+              </tr>
+              <tr>
+                <td>If $t \leq -t_\alpha$, reject $H_0$.</td>
+                <td>If $t \geq t_\alpha$, reject $H_0$.</td>
+                <td>If $t \leq -t_{\alpha/2}$ or $t \geq t_{\alpha/2}$, reject $H_0$.</td>
+              </tr>
+            </table>
+          <br>
+          
+            <p class = "p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. There are two types of errors you can make:  Type I Error and Type II Error. A Type I Error is committed if you reject the null hypothesis when the null hypothesis is true. Ideally, we'd like to accept the null hypothesis when the null hypothesis is true. A Type II Error is committed if you accept the null hypothesis when the alternative hypothesis is true. Ideally, we'd like to reject the null hypothesis when the alternative hypothesis is true.</p>
+
+            <table>
+              <tr>
+                <td></td>
+                <td></td>
+                <td colspan="2">Condition</td>
+                <td></td>
+              </tr>
+              <tr>
+                <td></td>
+                <td style = "border-right: thin solid; border-bottom: thin solid"></td>
+                <td style = "border-bottom: thin solid">$H_0$ True</td>
+                <td style = "border-bottom: thin solid">$H_a$ True</td>
+              </tr>
+              <tr>
+                <td rowspan="2">Conclusion</td>
+                <td style = "border-right: thin solid">Accept $H_0$</td>
+                <td>Correct</td>
+                <td>Type II Error</td>
+              </tr>
+              <tr>
+                <td style = "border-right: thin solid">Reject $H_0$</td>
+                <td>Type I Error</td>
+                <td>Correct</td>
+              </tr>
+            </table>
+          <br>
+            
+          <p class = "p1"> Hypothesis testing is closely related to the statistical area of confidence intervals. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Confidence intervals can be found using the <a href="confidence-interval.html">Confidence Interval Calculator</a>. The calculator on this page does hypothesis tests for one population mean. Sometimes we're interest in hypothesis tests about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. The probability of a Type II Error can be calculated by clicking on the link at the bottom of the page. </p>
+            
+            
+        </div>
+      </div>
+        --> 
+      
+      
+      
+      
+      
+
+
+      
+
+      
+      
+      
+      
+          <footer id="footer">
+              <div class="container">
+                  <div class="container" id="explanation">
+      <p  class="text-center" style="background-color:white">
+          
+        
+    </p>
+    <div class="collapse" id="collapseExample" data-parent="#explanation">
+      <div class="card card-body" id="descriptiontext">
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseExample2" data-parent="#explanation">
+      <div class="card card-body" id="formulatext">
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseExample3" data-parent="#explanation">
+      <div class="card card-body" id="explanationtext">
+
+      </div>
+    </div>
+                    
+          </div>
+                <hr>
+            </div>
+          <p> 
+              &copy; 2022 <a href="/about.html">Learn by Coding</a> 
+            </p>  
+
+          </footer>
+      
+    <!--<div style = "height: 400px"></div>-->  
+    <!-- Optional JavaScript -->  
+      
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      
+      
+      
+                    <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script> 
+ 
+      
+      
+     <!-- <script src="/javascript/hypothesis.js"></script>-->
+      
+      <script>
+      $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+      
+      </script>
+      
+            <script type="text/javascript" src="//cdn.datacamp.com/dcl-react.js.gz"></script>
+
+
+  </body>
+</html>
