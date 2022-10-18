@@ -944,7 +944,7 @@ function conint1(){
 
         ctx.stroke();
     
-    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/oqKKgopDAIw'  target='_blank'>Video Lesson</a>"
+    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
 
     MathJax.typeset();
 

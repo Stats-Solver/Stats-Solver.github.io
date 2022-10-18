@@ -163,7 +163,7 @@
           
           <div class = "text-center mt-2">
           $\text{Confidence Level:}$
-            <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
+            <select id="conlev" class="hypinput3" onchange="levelchange()"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> <option value="other"> ⋯ </option> </select> <input type="text" style="width:40px;" id="conflevel" class="hypinput2"> % 
         </div>
 
           <div class="container center">
@@ -296,31 +296,7 @@
             
             <p class = "p1">Finally, we can put the point estimate and margin of error together to make the confidence interval. The confidence interval is created by adding and subtracting the margin of error from the point estimate. If $\sigma$ is known, the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If $\sigma$ is unknown, the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level.</p>
             
-           <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
+
             
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
@@ -420,36 +396,7 @@
         
         </div>
       
-      
-      
-     <!-- <div class="text-center mt-2 mb-2">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-         Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        </div>
-      -->
-      
-      <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
+
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"

@@ -6,9 +6,10 @@ $("#datainput").hide(); $("#valuesinput").show();
 $("#canvascontainer0").hide();  $("#581773186").hide();
 $("#confoutputs").hide();
 
- 
+ $("#conflevel").hide();
 
 type = "values"
+leveltype = "premade"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -34,6 +35,13 @@ ctx.scale(1.25, 1.25);
 
 how1(); how2();
 
+function levelchange(){
+    var levelinput = document.getElementById("conlev").value;
+    if (levelinput == "other") {
+        $("#conflevel").show(); $("#conlev").hide();
+        leveltype = "custom"
+    }
+}
 
 
 
@@ -677,7 +685,13 @@ function conint1(){
     var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
     var xbar = document.getElementById("xbar").value;
     var stdev = document.getElementById("stdev").value;
-    var conlev = document.getElementById("conlev").value;
+    
+    if (leveltype == "premade") {
+        var conlev = document.getElementById("conlev").value;
+    } else {
+        var conlev = document.getElementById("conflevel").value;
+    }
+    
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var zalphahalf = NormSInv(1 - alphahalf); var talphahalf = tinv(alphahalf,sizem1);
     var marginerror = zalphahalf * (stdev / Math.sqrt(size)); var marginerrort = talphahalf * (stdev / Math.sqrt(size));
@@ -887,7 +901,7 @@ function conint1(){
     
     
     if (sigma == "known") {
-        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = {\\color{RoyalBlue}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = {\\color{RoyalBlue}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} = " + zalphahalf.toFixed(2) + " \\frac{"+stdev+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}"+parseFloat(marginerror.toFixed(2))+"} $$  $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$"+xbar + "\\pm " +parseFloat(marginerror.toFixed(2)) + " $$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/t-MVlzPG14s' target='_blank'>Video Lesson</a> "
+        document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = {\\color{RoyalBlue}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = {\\color{RoyalBlue}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} = " + zalphahalf.toFixed(2) + " \\frac{"+stdev+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}"+parseFloat(marginerror.toFixed(2))+"} $$  $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$"+xbar + "\\pm " +parseFloat(marginerror.toFixed(2)) + " $$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
     } else if (sigma == "unknown") {
         document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslowt.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshight.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
     } 
