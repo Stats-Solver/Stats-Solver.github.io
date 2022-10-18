@@ -5,13 +5,25 @@ $("#hypoutputs").hide(); $("#testinput").hide(); $("#muknottest").hide();
 
 $("#degfreedom").hide();
 
+$("#alphaval").hide();
+
 
 type = "hypothesis"
 inputtype = "values"
+alphatype = "premade"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
+
+function alphachange(){
+    var alphainput = document.getElementById("alpha").value;
+    if (alphainput == "other") {
+        $("#alphaval").show(); $("#alpha").hide();
+        alphatype = "custom"
+    }
+}
+
 
 function sum(input){
              
@@ -1058,7 +1070,13 @@ function hyptest1(){
         }
     }
     var tail = document.getElementById("tail").value;
-    var alpha = document.getElementById("alpha").value;
+    
+    if (alphatype == "premade") {
+        var alpha = document.getElementById("alpha").value;
+    } else {
+        var alpha = document.getElementById("alphaval").value;
+    }
+    
     
     if (inputtype == "values" || inputtype == "data") {
         var test = (xbar-muknot)/(stdev/Math.sqrt(size));

@@ -209,7 +209,12 @@
             <td class="statistics">$ \text{Level of Significance: } $</td>
             <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
             <td class="statistics"> = </td>
-            <td class="statistics" style="text-align:left"><select id="alpha" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
+            <td class="statistics" style="text-align:left">
+                <select id="alpha" class="hypinputalpha" onchange="alphachange()"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> <option value="other"> ⋯ </option> </select>
+                <input type="text" style="width:40px;" id="alphaval" class="hypinput2">
+              
+              </td>
+             
           </tr>
         </table> 
           
@@ -291,18 +296,6 @@
           
         <div id="how1" class="output" style="color: darkslategray">
             
-          <!--  <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Big Banner 1 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:320px;height:100px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="8476368859"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
             
             How it Works:
             <br><br>
@@ -357,32 +350,6 @@
             
             <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
             
-            <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
-            
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
             
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
@@ -512,36 +479,6 @@
       
       </div>
       
-      
-      <!-- <div class="text-center mt-2 mb-2">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        </div>-->
-      
-      
-      
-      <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
