@@ -936,7 +936,7 @@ function range(){
         return a - b;
     });
     var eachmiddle = eachsort.slice(1,len-1)
-    document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ {\\color{RoyalBlue}" + eachsort[0] + "} ,"+eachmiddle+", {\\color{RoyalBlue}" + eachsort[len-1] + "} $$ $$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ " \\\\ &= \\boxed{" + rng + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/odZiQSj67DA' target='_blank'>Video Lesson</a>"
+    document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$ $$ {\\color{RoyalBlue}" + eachsort[0] + "} ,"+eachmiddle+", {\\color{RoyalBlue}" + eachsort[len-1] + "} $$ $$ \\begin{align} \\text{Range} &= \\text{Largest} - \\text{Smallest} \\\\ &= "+largest+" - "+smallest+ " \\\\ &= \\boxed{" + rng + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1010,13 +1010,13 @@ function iqr(){
 
 
     if (indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+"$$ \\text{Index: }  i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval25+" \\text{ and } "+indxval25plus1+". $$ $$  Q_1 = \\frac{" + val25indx  + "+" + val25indxplus1 + "}{2} = {\\color{RoyalBlue}" + val25avg + "} $$ $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval75+" \\text{ and } "+indxval75plus1+". $$ $$  Q_3 = \\frac{" + val75indx  + "+" + val75indxplus1 + "}{2} = {\\color{RoyalBlue}" + val75avg + "}$$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+val25avg+" = \\boxed{"+ansiqr1+"} $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/qQMch78M7x8' target='_blank'>Video Lesson</a>"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+"$$ \\text{Index: }  i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval25+" \\text{ and } "+indxval25plus1+". $$ $$  Q_1 = \\frac{" + val25indx  + "+" + val25indxplus1 + "}{2} = {\\color{RoyalBlue}" + val25avg + "} $$ $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Average values in positions } "+indxval75+" \\text{ and } "+indxval75plus1+". $$ $$  Q_3 = \\frac{" + val75indx  + "+" + val75indxplus1 + "}{2} = {\\color{RoyalBlue}" + val75avg + "}$$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+val25avg+" = \\boxed{"+ansiqr1+"} $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (indxint25 && !indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/qQMch78M7x8' target='_blank'>Video Lesson</a>"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+val25avg+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = "+answr75+" $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+val25avg+" \\\\ &= \\boxed{"+ansiqr2+"} $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (!indxint25 && indxint75){
-        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+answr25+" = \\boxed{"+ansiqr3+"}  $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/qQMch78M7x8' target='_blank'>Video Lesson</a>"
+        document.getElementById("output").innerHTML = "$$ "+eachsort+"$$ $$ \\text{Index: } i = " + "\\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " \\rightarrow Q_1 = "+answr25+" $$ $$ \\text{Index: } i = " + "\\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " \\rightarrow Q_3 = " + val75avg + " $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+val75avg+" - "+answr25+" = \\boxed{"+ansiqr3+"}  $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else{
-        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd25+". $$ $$ Q_1 = {\\color{RoyalBlue}"+answr25+"} $$ $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd75+". $$ $$ Q_3 = {\\color{RoyalBlue}"+answr75+"} $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+answr25+" = \\boxed{"+ansiqr4+"}  $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/qQMch78M7x8' target='_blank'>Video Lesson</a>"
+        document.getElementById("output").innerHTML = "$$ \\text{Ordered Data:} $$  "+table+" $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{25}{100}\\right)" + len + "=" + parseFloat(indxval25.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd25+". $$ $$ Q_1 = {\\color{RoyalBlue}"+answr25+"} $$ $$ \\text{Index: } i = \\left(\\frac{p}{100}\\right)n = \\left(\\frac{75}{100}\\right)" + len + "=" + parseFloat(indxval75.toFixed(2)) + " $$ $$ \\text{Round up to take value in position } "+indxrnd75+". $$ $$ Q_3 = {\\color{RoyalBlue}"+answr75+"} $$ $$ \\text{IQR} = \\text{Q}_3 - \\text{Q}_1 = "+answr75+" - "+answr25+" = \\boxed{"+ansiqr4+"}  $$"  + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
 
     MathJax.typeset();
@@ -1074,7 +1074,7 @@ function variancesam(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>$ {\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\bar{x} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(ansvar.toFixed(2))+"}  $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/FiVSWZaeR9k' target='_blank'>Video Lesson</a>"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = \\boxed{"+parseFloat(ansvar.toFixed(2))+"}  $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1109,7 +1109,7 @@ function variancepop(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>${\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\mu = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/FiVSWZaeR9k' target='_blank'>Video Lesson</a>"
+    document.getElementById("output").innerHTML = "$$ \\mu = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\frac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = \\boxed{"+parseFloat(ansvar.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1213,7 +1213,7 @@ function stdevsam(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>${\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\bar{x} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = {\\color{RoyalBlue}"+parseFloat(ansvar.toFixed(2))+"}  $$ $$ s = \\sqrt{s^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/zUZhX8h2inM' target='_blank'>Video Lesson</a>"
+    document.getElementById("output").innerHTML = "$$ \\bar{x} = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$  s^2 = \\frac{\\sum{(x-\\bar{x})^2}}{n-1} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1} = {\\color{RoyalBlue}"+parseFloat(ansvar.toFixed(2))+"}  $$ $$ s = \\sqrt{s^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1249,7 +1249,7 @@ function stdevpop(){
         table += "</tr>";
     }
     table = table + "<tr style='border-top: thin solid'>" + "<td>" + "$\\Sigma$" + "</td>" + "<td>$"+Math.round(sumeachminus)+"$</td>" + "<td>${\\color{RoyalBlue}"+parseFloat(sumeachminus2.toFixed(2))+"}$</td>" + "</tr>";
-    document.getElementById("output").innerHTML = "$$ \\mu = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\dfrac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = {\\color{RoyalBlue}"+parseFloat(ansvar.toFixed(2))+"} $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> &bull; <a href = 'https://youtu.be/zUZhX8h2inM' target='_blank'>Video Lesson</a>"
+    document.getElementById("output").innerHTML = "$$ \\mu = " + parseFloat(mn.toFixed(2))+ " $$ <table>" + table + "</table>$$ \\sigma^2 = \\dfrac{\\sum{(x-\\mu)^2}}{N} = \\frac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"}  = {\\color{RoyalBlue}"+parseFloat(ansvar.toFixed(2))+"} $$ $$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{"+parseFloat(ansvar.toFixed(2))+"} = \\boxed{"+parseFloat(ansstd.toFixed(2))+"} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
