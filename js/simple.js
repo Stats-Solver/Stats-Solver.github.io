@@ -767,7 +767,7 @@ function slope(){
         ]);
 
         var options = {
-          title: 'Regression Line',
+          title: 'Estimated Regression Line',
           hAxis: {title: 'x'},
           vAxis: {title: 'y'},
           legend: 'none',

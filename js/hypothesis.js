@@ -1230,11 +1230,11 @@ function hyptest1(){
         var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     }
     
-    if (pvalue <= alpha) {
-        var pinequ = "\\leq"
+    if (pvalue < alpha) {
+        var pinequ = "<"
         var concl = "\\text{Reject } H_o"
-        var critsignlower = "\\leq"
-        var critsignupper = "\\geq"
+        var critsignlower = "<"
+        var critsignupper = ">"
     } else if (pvalue > alpha) {
         var pinequ = ">"
         var concl = "\\text{Do Not Reject } H_o"
@@ -1260,22 +1260,22 @@ function hyptest1(){
         }
     }
      
-    if (testtwo <= zctwo1) {
-        var twosign1 = "\\leq"
+    if (testtwo < zctwo1) {
+        var twosign1 = "<"
     } else if (testtwo > zctwo1) {
         var twosign1 = ">"
     }
     
-    if (testtwo >= zctwo1) {
-        var twosign2 = "\\geq"
+    if (testtwo > zctwo1) {
+        var twosign2 = ">"
     } else if (testtwo < zctwo1) {
         var twosign2 = "<"
     }
     
-    if (test <= ctwo1) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
-    } else if (test >= ctwo2) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
+    if (test < ctwo1) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "<" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
+    } else if (test > ctwo2) {
+        var twocrit = testsymb + "="+test.toFixed(2) + ">" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
     } else {
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }

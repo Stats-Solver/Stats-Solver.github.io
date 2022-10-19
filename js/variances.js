@@ -5,6 +5,14 @@ $("#datainput").hide(); $("#valuesinput").show(); $("#datainput2").hide(); $("#v
 $("#581773186").hide();
 type = "values"; type2 = "values"
 
+$("#conflevel").hide();
+
+$("#alphaval").hide();
+
+alphatype = "premade"
+
+leveltype = "premade"
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
@@ -20,6 +28,24 @@ ctx.scale(1.25, 1.25);
 var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
+
+
+function levelchange(){
+    var levelinput = document.getElementById("conlev").value;
+    if (levelinput == "other") {
+        $("#conflevel").show(); $("#conlev").hide();
+        leveltype = "custom"
+    }
+}
+
+function alphachange(){
+    var alphainput = document.getElementById("alpha").value;
+    if (alphainput == "other") {
+        $("#alphaval").show(); $("#alpha").hide();
+        alphatype = "custom"
+    }
+}
+
 
 function sum(input){
              
@@ -470,8 +496,14 @@ function conint(){
         var size = len; var sizem1 = size - 1;
         var stdev = parseFloat(ansvar.toFixed(2));
     } 
-
-    var conlev = document.getElementById("conlev").value;
+    
+    if (leveltype == "premade") {
+        var conlev = document.getElementById("conlev").value;
+    } else {
+        var conlev = document.getElementById("conflevel").value;
+    }
+    
+    
     var confor = "variance"
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var exp = 2.71828;
@@ -485,6 +517,9 @@ function conint(){
         lowindex = 1
         highindex = 4
     } else if (conlev == 90) {
+        lowindex = 2
+        highindex = 3
+    } else {
         lowindex = 2
         highindex = 3
     }
@@ -684,7 +719,13 @@ function hyp(){
     
     var tail = document.getElementById("tail").value
     var muknot = document.getElementById("muknot").value
-    var alpha = document.getElementById("alpha").value;
+    
+    if (alphatype == "premade") {
+        var alpha = document.getElementById("alpha").value;
+    } else {
+        var alpha = document.getElementById("alphaval").value;
+    }
+    
     var test = ((size-1)*(stdev*stdev))/muknot 
     var exp = 2.71828;
     
@@ -774,11 +815,11 @@ function hyp(){
         }    
     }
 
-    if (pvalue <= alpha) {
-        var pinequ = "\\leq"
+    if (pvalue < alpha) {
+        var pinequ = "<"
         var concl = "\\text{Reject } H_o"
-        var critsignlower = "\\leq"
-        var critsignupper = "\\geq"
+        var critsignlower = "<"
+        var critsignupper = ">"
     } else if (pvalue > alpha) {
         var pinequ = ">"
         var concl = "\\text{Do Not Reject } H_o"
@@ -796,7 +837,11 @@ function hyp(){
     } else if (alpha == ".01") {
         var cless = chidf[1]; var cmore = chidf[4]
         var ctwo1 = chidf[0]; var ctwo2 = chidf[5]
+    } else {
+        var cless = chidf[1]; var cmore = chidf[4]
+        var ctwo1 = chidf[0]; var ctwo2 = chidf[5]
     }
+    
     
     if (type2 == "values") {
         document.getElementById("output3").innerHTML = "$$ \\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2} = \\frac{(" + size + "-1)" + stdev + "^2}{" + muknot + "^2} = " + parseFloat(test.toFixed(2)) + " $$ $$ df = n - 1 = "+size+ " - 1 = "+sizem1+" $$ $$ \\text{p-Value Approach:} $$"

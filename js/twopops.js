@@ -8,11 +8,35 @@ $("#twoouputs").hide(); $("#matchedsamples").hide();
 
 $("#equalvariance").hide(); 
 
+$("#conflevel").hide();
+
+$("#alphaval").hide();
+
+alphatype = "premade"
+
+leveltype = "premade"
+
 equalvar = "no"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
+
+function levelchange(){
+    var levelinput = document.getElementById("conlev").value;
+    if (levelinput == "other") {
+        $("#conflevel").show(); $("#conlev").hide();
+        leveltype = "custom"
+    }
+}
+
+function alphachange(){
+    var alphainput = document.getElementById("alphah").value;
+    if (alphainput == "other") {
+        $("#alphaval").show(); $("#alphah").hide();
+        alphatype = "custom"
+    }
+}
 
 function sum(input){
              
@@ -748,7 +772,13 @@ function conint1(){
         var stdev1 = parseFloat(ansstd.toFixed(2)); var stdev2 = parseFloat(ansstd2.toFixed(2));
         var sigma = "unknown"
     } 
-    var conlev = document.getElementById("conlev").value;
+    
+    if (leveltype == "premade") {
+        var conlev = document.getElementById("conlev").value;
+    } else {
+        var conlev = document.getElementById("conflevel").value;
+    }
+    
     var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
     var zalphahalf = NormSInv(1 - alphahalf);
     var marginerror = zalphahalf * Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2)); 
@@ -945,6 +975,14 @@ function conint1(){
         table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
 
         table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else {
+        table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     }
     
     
@@ -1127,7 +1165,14 @@ function hyptest1(){
     var tail = document.getElementById("tail").value;
     var muknot = document.getElementById("muknot").value;
     var dfree = parseFloat(size1)+parseFloat(size2)-2
-    var alpha = document.getElementById("alphah").value;
+    
+    if (alphatype == "premade") {
+        var alpha = document.getElementById("alphah").value;
+    } else {
+        var alpha = document.getElementById("alphaval").value;
+    }
+    
+    
     var test = ((xbar1-xbar2)-muknot)/Math.sqrt((stdev1*stdev1/size1)+(stdev2*stdev2/size2));
     var testtwo = -Math.abs(test);
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
@@ -1275,11 +1320,11 @@ function hyptest1(){
         var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     }
     
-    if (pvalue <= alpha) {
-        var pinequ = "\\leq"
+    if (pvalue < alpha) {
+        var pinequ = "<"
         var concl = "\\text{Reject } H_o"
-        var critsignlower = "\\leq"
-        var critsignupper = "\\geq"
+        var critsignlower = "<"
+        var critsignupper = ">"
     } else if (pvalue > alpha) {
         var pinequ = ">"
         var concl = "\\text{Do Not Reject } H_o"
@@ -1287,22 +1332,22 @@ function hyptest1(){
         var critsignupper = "<"
     }
      
-    if (testtwo <= zctwo1) {
-        var twosign1 = "\\leq"
+    if (testtwo < zctwo1) {
+        var twosign1 = "<"
     } else if (testtwo > zctwo1) {
         var twosign1 = ">"
     }
     
-    if (testtwo >= zctwo1) {
-        var twosign2 = "\\geq"
+    if (testtwo > zctwo1) {
+        var twosign2 = ">"
     } else if (testtwo < zctwo1) {
         var twosign2 = "<"
     }
     
-    if (test <= ctwo1) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
-    } else if (test >= ctwo2) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
+    if (test < ctwo1) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "<" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
+    } else if (test > ctwo2) {
+        var twocrit = testsymb + "="+test.toFixed(2) + ">" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
     } else {
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }

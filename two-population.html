@@ -127,17 +127,7 @@
             
            
         </div>
-         <!-- <table class = "mt-2 mb-3">
-          <tr>
-            <td class="statistics"><span class="text-center text-primary mb-3" style="font-size: 20px;">Confidence Interval</span></td>
-            <td class="statistics">
-            <svg  style="display:inline-block" onclick="switchhypothesis()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-            </td>
-          </tr>
-        </table>-->
+
                     
           <div id="valuesinput">
         <table class = "mt-2;">
@@ -201,7 +191,7 @@
       
       <div class = "text-center mt-2" id = "confidencelevel">
           $\text{Confidence Level:}$
-            <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
+            <select id="conlev" class="hypinput3" onchange="levelchange()"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> <option value="other"> ⋯ </option> </select> <input type="text" style="width:40px;" id="conflevel" class="hypinput2"> % 
         </div>
           
           <table class = "mt-2" id = "equalvariance">
@@ -215,14 +205,12 @@
           <div class="row justify-content-center">
         <div class = "col-4 col-md-2 text-center mt-2" id = "confsolve">
             <button id = "hyptest" class="button btn-outline-primary" onclick="conint()">Solve</button>
-            <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
-              <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
         </div>
           </div>
               </div>
       
       <div class = "text-center mt-2" id = "confidenceexamples">
-            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span> <!--&bull; <span class="examplelink" onclick="example3()">Example 3</span>-->
+            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
         </div>
           
     </div>
@@ -329,7 +317,7 @@
           <table class = "mt-2 mb-2">
           <tr>
             <td>$\text{Level of Significance:}$</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$ = <select id="alphah" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
+            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$ = <select id="alphah" class="hypinputalpha" onchange="alphachange()"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> <option value="other"> ⋯ </option> </select> <input type="text" style="width:40px;" id="alphaval" class="hypinput2"></td>
           </tr> 
         </table>
           
@@ -365,23 +353,11 @@
 
       
       
-      <!--While confidence intervals and hypothesis tests of one population mean might be more familiar to most, it is sometimes necessary to do inference for two population means. In the case of two populations, we are interested in doing confidence intervals and hypothesis testing about the difference between the two population means. A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate of the difference between two population means is simply the difference between two sample means.-->
       
     <div class="container" id="how">
         
         <div id="how1" class="output" style="color: darkslategray">
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Big Banner 1 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:320px;height:100px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="8476368859"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
+
             
             How it Works:
             <br><br>
@@ -431,32 +407,7 @@
             
             <p class = "p1"> If the two population variances are assumed to be equal, an alternative formula for computing the degrees of freedom is used. It's simply df = n1 + n2 - 2. This is a simple extension of the formula for the one population case. In the one population case the degrees of freedom is given by df = n - 1. If we add up the degrees of freedom for the two samples we would get df = (n1 - 1) + (n2 - 1) = n1 + n2 - 2. This formula gives a pretty good approximation of the more complicated formula above.  </p>
             
-           <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
-            
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
+
             
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
@@ -491,11 +442,7 @@
             </table>
             <br>
             
-            <!--       
-            <td>Two-Tailed Test</td>         <td>$H_0 \colon \mu_1 - \mu_2 = D_0$</td> <td>$H_a \colon \mu_1 - \mu_2 \neq D_0$</td> 
-                            <td></td> <td>Test Statistic</td> 
 
-            -->
             
             <p class = "p1"> Again, hypothesis testing for a single population mean is very similar to hypothesis testing for two population means. For a single population mean, the test statistics is the difference between mu and mu0 dividied by the standard error. For two population means, the test statistic is the difference between $\bar{x}_1 - \bar{x}_2$ and $D_0$ divided by the standard error. The procedure after computing the test statistic is identical to the one population case. That is, you proceed with the p-value approach or critical value approach in the same exact way. </p>
             
@@ -517,25 +464,7 @@
       </div>
       
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       
       <div id="twoouputs">
       
@@ -577,34 +506,7 @@
       </div>
       
       </div>
-      
-      
-       <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-         Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        -->
-      
-      <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
+
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
