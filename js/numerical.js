@@ -547,7 +547,7 @@ function calcweighted(){
     var adds2 = each2[0];  var avgeach2 = avg(each2);
     var adds3 = adds2 + "(" + adds + ")"
     var adds3value = 0; var adds2value = 0;
-    for (let i=1; i<len; i++){
+    for (let i=0; i<len; i++){
         adds3 += "+" + each2[i] + "(" + each[i] + ")"
         adds2 += "+" + each2[i]
         adds3value += each2[i] * each[i]
