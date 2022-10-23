@@ -1805,7 +1805,6 @@ function hyptest1(){
     
     
     if (sigma == "known") {
-        //var tablep = "<table><tr style='border-top: thin solid'><td><b>z</b></td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
         var tablep = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table31+"</tr><tr bgcolor='lightgray'><td>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table32+"</tr></table>"
         var tablec = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit1+"$</td>"+table21+"</tr><tr><td bgcolor='lightgray'>$"+zcrit+"$</td>"+table2+"</tr><tr><td>$"+zcrit2+"$</td>"+table22+"</tr></table>"
         } else if (sigma == "unknown") {
@@ -1813,9 +1812,7 @@ function hyptest1(){
             var tablec = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table52+"</tr><tr>"+table71+"</tr><tr>"+table7+"</tr><tr>"+table72+"</tr></table>"
     }
     
-    //$ \\text{Sample Mean:} $  =  \\frac{" + sumeach + "}{" + len + "}
-    //$ \\text{Sample Standard Deviation:} $ = \\sqrt{\\dfrac{"+parseFloat(sumeachminus2.toFixed(2))+"}{"+len+"-1}}
-    // \\dfrac{\\sum{(x-\\bar{x})^2}}{n-1} = \\sqrt{s^2} = \\frac{\\sum{x}}{n}
+
     
     if (inputtype == "values" || inputtype == "data") {
        if (sigma == "known") {
