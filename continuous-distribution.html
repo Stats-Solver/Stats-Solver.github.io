@@ -119,6 +119,13 @@
           </div>
 
       
+      
+      
+      
+      
+      
+      
+      
       <div class="container mb-3" id="uniform">
           
           <div id = "uniformab">
@@ -141,7 +148,7 @@
               <span id = uniformprobability>
           &nbsp;
               
-            <svg onclick="switchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg onclick="switchgraph()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
@@ -158,10 +165,19 @@
               </button>  
         </div> 
 
-          
+          <div class = " text-center mt-2" id = "uniformgraph">
+            $\text{Graph of PDF}$
+              
+              &nbsp;
+              
+            <svg onclick="switchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div> 
           
           <div class = " text-center mt-2" id = "uniformexpected">
-            $E(x)$
+            $\text{Expected Value}$
               
               &nbsp;
               
@@ -172,7 +188,7 @@
         </div> 
           
           <div class = " text-center mt-2" id = "uniformvariance">
-            $\text{Var}(x)$
+            $\text{Variance}$
               
               &nbsp;
               
@@ -183,6 +199,14 @@
         </div> 
           
           </div>
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -233,6 +257,13 @@
         </div> 
           
         </div>
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -293,19 +324,6 @@
       
       
       <div class="container mb-3" id="approximation">
-          
-        <!--<table>
-          <tr>
-            <td style="text-align:right">$\text{Number of Trials:}$</td>
-            <td>$n = $</td>
-            <td><input class = "combperm" type="text" id="trials"></td>
-            </tr>
-            <tr>
-            <td style="text-align:right">$\text{Probability of Success:}$</td>
-            <td>$p = $</td>
-            <td><input class = "combperm" type="text" id="psuccess"></td>
-            </tr>
-        </table> -->
           
           <table>
           <tr>
@@ -385,14 +403,7 @@
         </div> 
           </div>
       
-      
-      
-      
-      
-      
-      
-      
-      
+
       <div class="container mb-3" id="tdistribution"> 
           <table>
           <tr>
@@ -447,11 +458,7 @@
         </div> 
           
         </div>
-      
-      
-      
-      
-      
+
       <div class="container mb-3" id="chidistribution"> 
           <table>
           <tr>
@@ -467,13 +474,7 @@
         </div> 
           
         </div>
-      
-      
-      
-      
-      
-      
-      
+
       <div class="container mb-3" id="fdistribution"> 
           <table>
           <tr>
@@ -494,25 +495,7 @@
         </div> 
           
         </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
@@ -651,33 +634,6 @@
             <br>
             
             <p class = "p1">Now that we know how to calculate probabilities for the z-distribution, we can calculate probabilities for any normal distribution. We can do this by converting from normal to standard normal, using the formula $z=\frac{x-\mu}{\sigma}$. So, given a problem to calculate probability for a normal distribution, we start by converting the values to z-values. Then, depending on the type of z distribution probability type it is, we rewrite the problem so it's in terms of the probability that z less than or equal to a value. Then we use the z-table to find those probabilities and compute our answer. </p>
-
-        <!--  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
-            
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
             
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
@@ -794,34 +750,6 @@
         </div>
       </div>
       </div>
-      
-     <!-- <div class="text-center mt-2 mb-2">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-         Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        </div>-->
-      
-        <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
