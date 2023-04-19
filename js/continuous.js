@@ -9,8 +9,8 @@ $("#uniformbetween").hide(); $("#snormalbetween").hide(); $("#normalbetween").hi
 $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
 $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
 $("#uniform").show(); $("#uniformab").hide(); 
-$("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformgraph").hide();
-$("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide(); $("#normalprob").show(); $("#normalarea").hide();
+$("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformpdf").hide();
+$("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide(); $("#normalprob").show(); $("#normalarea").hide(); $("#normalcurve").hide();
 $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide(); $("#chidistribution").hide();
 $("#myCanvas0").hide(); $("#581773186").hide();
 $("#contoutputs").hide();
@@ -941,8 +941,8 @@ function compuniform(){
     } else if (uniformtype == "probability"){
         compuniformprob()
         $("#myCanvas").show(); $("#output2").show();
-    } else if (uniformtype == "graph"){
-        compuniformgraph()
+    } else if (uniformtype == "pdf"){
+        compuniformpdf()
         $("#myCanvas").show(); $("#output2").show();
     }
 }
@@ -962,61 +962,69 @@ function compuniformprob() {
     }
 }
 
-function switchgraph() {
+function switchpdfu() {
     $("#uniformprob").hide(); 
-    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformgraph").show(); 
-    uniformtype = "graph"
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformpdf").show(); 
+    uniformtype = "pdf"
 }
 
-function switchexpected() {
+function switchexpectedu() {
     $("#uniformprob").hide(); 
-    $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformgraph").hide();
+    $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformpdf").hide();
     uniformtype = "expected"
 }
  
-function switchvariance() {
+function switchvarianceu() {
     $("#uniformprob").hide(); 
-    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); $("#uniformstandard").hide(); $("#uniformgraph").hide();
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").show(); $("#uniformstandard").hide(); $("#uniformpdf").hide();
     uniformtype = "variance"
 }
 
-function switchstandard() {
+function switchstandardu() {
     $("#uniformprob").hide(); 
-    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").show(); $("#uniformgraph").hide();
+    $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").show(); $("#uniformpdf").hide();
     uniformtype = "standard"
 }
  
-function switchprobability() {
+function switchprobabilityu() {
     $("#uniformprob").show(); 
-    $("#uniformprobability").show(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformgraph").hide();
+    $("#uniformprobability").show(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformpdf").hide();
     uniformtype = "probability"
 }
 
-
-function uniformpdf(){
-    var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value
-    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\  &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} = "+fixnum(1/(maxval-minval))+" & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
-    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-}
-
-function uniformtext(){
+function compuniformpdf() {
+    $("#explanation").show(); $("#myCanvas").show(); 
     document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
     document.getElementById("formulatext").innerHTML = "$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$"
     document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
-}
-
-function compuniformgraph() {
-    $("#explanation").show(); $("#myCanvas").show(); 
-    uniformtext()
     var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value
-    var lessval = document.getElementById('unival').value; var width = fixnum(1/(maxval-minval))
-    uniformpdf()
-    var c = document.getElementById("myCanvas");var ctx = c.getContext("2d");ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'black';ctx.fillStyle = "black";
-    ctx.beginPath();ctx.moveTo(40, 20);ctx.lineTo(40, 130);ctx.lineTo(260, 130);
-    ctx.fillText("f(x)",35,15);ctx.fillText("x",265,132);ctx.fillText(width,10,48);ctx.fillText(minval,70,145);ctx.fillText(maxval,220,145);
-    ctx.moveTo(35, 45);ctx.lineTo(45, 45);ctx.moveTo(75, 135);ctx.lineTo(75, 125);ctx.moveTo(225, 135);ctx.lineTo(225, 125);
-    ctx.moveTo(75, 130);ctx.lineTo(75, 45);ctx.lineTo(225, 45);ctx.lineTo(225, 130);ctx.stroke();
+    document.getElementById("output").innerHTML = "$$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\  &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    ctx.stroke();
+    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1044,40 +1052,73 @@ function compuniformstandard() {
     $("#explanation").show();
     document.getElementById("explanationtext").innerHTML = "$$ \\text{Var}(x) = \\frac{(b-a)^2}{12} $$"
     var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt((maxval-minval)*(maxval-minval)/12)).toFixed(2)) + "} \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(((maxval-minval)*(maxval-minval)/12).toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt((maxval-minval)*(maxval-minval)/12)).toFixed(2)) + "} \\end{align} $$  <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
 function compuniformless() {
     $("#explanation").show(); $("#myCanvas").show(); 
-    uniformtext()
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value; 
     var lessval = document.getElementById('unival').value; var probtype = document.getElementById("probtype").value
-    var length = fixnum(lessval - minval); var width = fixnum(1/(maxval-minval))
     if (probtype == "lessequal"){
         var sign = "\\leq"
     } else if (probtype == "less") {
         var sign = "<"
     }
-    uniformpdf()
-    var c = document.getElementById("myCanvas"); var ctx = c.getContext("2d"); ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'lightgray';ctx.beginPath();ctx.moveTo(75, 130);ctx.lineTo(75, 45);
-    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 45);ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 130);
-    ctx.stroke();ctx.fillStyle = "lightgray";ctx.fill();
-    ctx.strokeStyle = 'black';ctx.fillStyle = "black";
-    ctx.beginPath();ctx.moveTo(40, 20);ctx.lineTo(40, 130);ctx.lineTo(260, 130);
-    ctx.fillText("f(x)",35,15);ctx.fillText("x",265,132);ctx.fillText(width,10,48);ctx.fillText(minval,70,145);ctx.fillText(maxval,220,145);
-    ctx.moveTo(35, 45);ctx.lineTo(45, 45);ctx.moveTo(75, 135);ctx.lineTo(75, 125);ctx.moveTo(225, 135);ctx.lineTo(225, 125);
-    ctx.moveTo(75, 130);ctx.lineTo(75, 45);ctx.lineTo(225, 45);ctx.lineTo(225, 130);
-    ctx.moveTo(75+((lessval-minval)/(maxval-minval))*150, 135);ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 125);
+    document.getElementById("output").innerHTML = "$$ \\text{Probability Density Function:} $$ $$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\  &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    var c = document.getElementById("myCanvas"); 
+    var ctx = c.getContext("2d"); 
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray'; 
+    ctx.beginPath();ctx.moveTo(75, 130); 
+    ctx.lineTo(75, 45);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke(); 
+    ctx.fillStyle = "lightgray"; 
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black'; 
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    ctx.fillText("f(x)",35,15); 
+    ctx.fillText("x",265,132); 
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145); 
+    ctx.fillText(maxval,220,145);
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
+    ctx.moveTo(75+((lessval-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((lessval-minval)/(maxval-minval))*150, 125);
     ctx.fillText(lessval,75+((lessval-minval)/(maxval-minval))*150 - 5,145);
-    ctx.fillText(width,50,90);ctx.fillText(length,75+(((lessval-minval)/(maxval-minval))*150)/2 - 8,40);ctx.stroke();
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+sign+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + length + " \\times "+width+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    ctx.fillText("1/"+(maxval-minval),50,90);
+    ctx.fillText(fixnum(lessval - minval),75+(((lessval-minval)/(maxval-minval))*150)/2 - 8,40);
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+sign+lessval+") &= \\text{length} \\times \\text{width} \\\\ &= " + fixnum(lessval - minval) + " \\times "+"1/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(lessval - minval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
 function compuniformgreater() {
     $("#explanation").show(); $("#myCanvas").show();
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value;
     var greaterval = document.getElementById('unival').value; var probtype = document.getElementById("probtype").value
     var length = fixnum(maxval - greaterval); var width = fixnum(1/(maxval-minval))
@@ -1086,71 +1127,140 @@ function compuniformgreater() {
     } else if (probtype == "greater") {
         var sign = ">"
     }
-    uniformpdf()
-    var c = document.getElementById("myCanvas"); var ctx = c.getContext("2d"); ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'lightgray';ctx.beginPath();ctx.moveTo(225, 130);ctx.lineTo(225, 45);
-    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 45);ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 130);
-    ctx.stroke();ctx.fillStyle = "lightgray";ctx.fill();ctx.strokeStyle = 'black';ctx.fillStyle = "black";
-    ctx.beginPath();ctx.moveTo(40, 20);ctx.lineTo(40, 130);ctx.lineTo(260, 130);
-    ctx.fillText("f(x)",35,15);ctx.fillText("x",265,132);ctx.fillText(width,10,48);ctx.fillText(minval,70,145);ctx.fillText(maxval,220,145);
-    ctx.moveTo(35, 45);ctx.lineTo(45, 45);ctx.moveTo(75, 135);ctx.lineTo(75, 125);ctx.moveTo(225, 135);ctx.lineTo(225, 125);
-    ctx.moveTo(75, 130);ctx.lineTo(75, 45);ctx.lineTo(225, 45);ctx.lineTo(225, 130);
+    document.getElementById("output").innerHTML = "$$ \\text{Probability Density Function:} $$ $$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\  &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    var c = document.getElementById("myCanvas"); 
+    var ctx = c.getContext("2d"); 
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray'; 
+    ctx.beginPath();
+    ctx.moveTo(225, 130); 
+    ctx.lineTo(225, 45);
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 45); 
+    ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke(); 
+    ctx.fillStyle = "lightgray"; 
+    ctx.fill(); 
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    ctx.fillText("f(x)",35,15); 
+    ctx.fillText("x",265,132); 
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    
     ctx.moveTo(75+((greaterval-minval)/(maxval-minval))*150, 135);ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 125);
     ctx.fillText(greaterval,75+((greaterval-minval)/(maxval-minval))*150 - 5,145);
-    ctx.fillText(width,75+((greaterval-minval)/(maxval-minval))*150 - 25,90);
-    ctx.fillText(length,225-(((maxval-greaterval)/(maxval-minval))*150)/2 - 8,40);ctx.stroke();
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+sign+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + length + " \\times "+width+" \\\\  &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    ctx.fillText("1/"+(maxval-minval),75+((greaterval-minval)/(maxval-minval))*150 - 25,90);
+    ctx.fillText(fixnum(maxval - greaterval),225-(((maxval-greaterval)/(maxval-minval))*150)/2 - 8,40);ctx.stroke();
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+sign+greaterval+") &= \\text{length} \\times \\text{width} \\\\ &= " + fixnum(maxval - greaterval) + " \\times 1/"+(maxval-minval)+" \\\\  &= \\boxed{"+parseFloat(((1/(maxval-minval))*(maxval - greaterval))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
 function compuniformequal() {
     $("#explanation").show(); $("#myCanvas").show();
-    uniformtext()
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
     var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value;
-    var greaterval = document.getElementById('unival').value; var width = fixnum(1/(maxval-minval))
-    uniformpdf()
+    var greaterval = document.getElementById('unival').value;
+    document.getElementById("output").innerHTML = "$$ \\text{Probability Density Function:} $$ $$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\  &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
     var c = document.getElementById("myCanvas"); var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);ctx.strokeStyle = 'lightgray';ctx.beginPath();
-    ctx.moveTo(75+((greaterval-minval)/(maxval-minval))*150, 45);ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 130);
-    ctx.stroke();ctx.strokeStyle = 'black';ctx.fillStyle = "black";
+    ctx.clearRect(0, 0, 300, 150); ctx.strokeStyle = 'lightgray'; ctx.beginPath();
+    ctx.moveTo(75+((greaterval-minval)/(maxval-minval))*150, 45); ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 130);
+    ctx.stroke(); ctx.strokeStyle = 'black'; ctx.fillStyle = "black";
     ctx.beginPath();ctx.moveTo(40, 20);ctx.lineTo(40, 130);ctx.lineTo(260, 130);
-    ctx.fillText("f(x)",35,15);ctx.fillText("x",265,132);ctx.fillText(width,10,48);ctx.fillText(minval,70,145);ctx.fillText(maxval,220,145);
+    ctx.fillText("f(x)",35,15); ctx.fillText("x",265,132); ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145); ctx.fillText(maxval,220,145);
     ctx.moveTo(35, 45);ctx.lineTo(45, 45);ctx.moveTo(75, 135);ctx.lineTo(75, 125);ctx.moveTo(225, 135);ctx.lineTo(225, 125);
     ctx.moveTo(75, 130);ctx.lineTo(75, 45);ctx.lineTo(225, 45);ctx.lineTo(225, 130);
     ctx.moveTo(75+((greaterval-minval)/(maxval-minval))*150, 135);ctx.lineTo(75+((greaterval-minval)/(maxval-minval))*150, 125);
     ctx.fillText(greaterval,75+((greaterval-minval)/(maxval-minval))*150 - 5,145);
-    ctx.fillText(width,75+((greaterval-minval)/(maxval-minval))*150 - 25,90);ctx.fillText("0",75+((greaterval-minval)/(maxval-minval))*150 - 2,40);
+    ctx.fillText("1/"+(maxval-minval),75+((greaterval-minval)/(maxval-minval))*150 - 25,90);ctx.fillText("0",75+((greaterval-minval)/(maxval-minval))*150 - 2,40);
     ctx.stroke();
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x = "+greaterval+") &= \\text{length} \\times \\text{width}  \\\\ &= 0 \\times "+width+"  \\\\ &= \\boxed{"+0+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x = "+greaterval+") &= \\text{length} \\times \\text{width}  \\\\ &= 0 \\times 1/"+(maxval-minval)+"  \\\\ &= \\boxed{"+0+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function compuniformbetween() {
     $("#explanation").show(); $("#myCanvas").show();
-    uniformtext()
-    var minval = document.getElementById('minval').value; var maxval = document.getElementById('maxval').value;
-    var twoval1 = document.getElementById('twoval1').value; var twoval2 = document.getElementById('twoval2').value;
-    var length = fixnum(twoval2 - twoval1); var width = fixnum(1/(maxval-minval))
+    document.getElementById("descriptiontext").innerHTML = "A random variable has a uniform distribution when it has the same probability of being in each possible interval of the same length. "
+    document.getElementById("formulatext").innerHTML = "$ f(x) = \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases}$"
+    document.getElementById("explanationtext").innerHTML = "To find the probability in a uniform distribution, calculate the area of the rectangle formed under the graph over the interval."
+    var minval = document.getElementById('minval').value; 
+    var maxval = document.getElementById('maxval').value;
+    var twoval1 = Math.max(document.getElementById('twoval1').value, minval); 
+    var twoval2 = Math.min(document.getElementById('twoval2').value, maxval);
+    var length = fixnum(twoval2 - twoval1); 
+    var width = fixnum(1/(maxval-minval))
     var probtypeb1 = document.getElementById("probtypeb1").value; var probtypeb2 = document.getElementById("probtypeb2").value
     if (probtypeb1 == "lessequal"){var sign1 = "\\leq"} else if (probtypeb1 == "less") {var sign1 = "<"}
     if (probtypeb2 == "lessequal"){var sign2 = "\\leq"} else if (probtypeb2 == "less") {var sign2 = "<"}
-    uniformpdf()
-    var c = document.getElementById("myCanvas");var ctx = c.getContext("2d");ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'lightgray';ctx.beginPath();ctx.moveTo(75+((twoval1-minval)/(maxval-minval))*150, 130);
-    ctx.lineTo(75+((twoval1-minval)/(maxval-minval))*150, 45);ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 45);
-    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 130);ctx.stroke();ctx.fillStyle = "lightgray";ctx.fill();
-    ctx.strokeStyle = 'black';ctx.fillStyle = "black";
-    ctx.beginPath();ctx.moveTo(40, 20);ctx.lineTo(40, 130);ctx.lineTo(260, 130);
-    ctx.fillText("f(x)",35,15);ctx.fillText("x",265,132);ctx.fillText(width,10,48);ctx.fillText(minval,70,145);ctx.fillText(maxval,220,145);
-    ctx.moveTo(35, 45);ctx.lineTo(45, 45);ctx.moveTo(75, 135);ctx.lineTo(75, 125);ctx.moveTo(225, 135);ctx.lineTo(225, 125);
-    ctx.moveTo(75, 130);ctx.lineTo(75, 45);ctx.lineTo(225, 45);ctx.lineTo(225, 130);
-    ctx.moveTo(75+((twoval1-minval)/(maxval-minval))*150, 135);ctx.lineTo(75+((twoval1-minval)/(maxval-minval))*150, 125);
-    ctx.fillText(twoval1,75+((twoval1-minval)/(maxval-minval))*150 - 5,145);ctx.moveTo(75+((twoval2-minval)/(maxval-minval))*150, 135);
-    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 125);ctx.fillText(twoval2,75+((twoval2-minval)/(maxval-minval))*150 - 5,145);
-    ctx.fillText(width,75+((twoval1-minval)/(maxval-minval))*150 - 25,90);
-    ctx.fillText(length,(75+((twoval1-minval)/(maxval-minval))*150 + 75+((twoval2-minval)/(maxval-minval))*150)/2 - 8,40);ctx.stroke();
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+sign1+" x "+sign2+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + length + " \\times "+width+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    
+    document.getElementById("output").innerHTML = "$$ \\text{Probability Density Function:} $$ $$ \\begin{align} f(x) &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle b-a} & \\text{for } a \\leq x \\leq b \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\  &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+maxval+"-"+minval+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\\\ &= \\begin{cases} \\frac{\\displaystyle1}{\\displaystyle"+(maxval-minval)+"} & \\text{for } "+minval+" \\leq x \\leq "+maxval+" \\\\ 0 & \\text{elsewhere} \\end{cases} \\end{align}$$"
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    ctx.moveTo(75+((twoval1-minval)/(maxval-minval))*150, 130);
+    ctx.lineTo(75+((twoval1-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 45);
+    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(40, 20);
+    ctx.lineTo(40, 130);
+    ctx.lineTo(260, 130);
+    ctx.fillText("f(x)",35,15);
+    ctx.fillText("x",265,132);
+    ctx.fillText("1/"+(maxval-minval),10,48);
+    ctx.fillText(minval,70,145);
+    ctx.fillText(maxval,220,145);
+    
+    ctx.moveTo(35, 45);
+    ctx.lineTo(45, 45);
+    ctx.moveTo(75, 135);
+    ctx.lineTo(75, 125);
+    ctx.moveTo(225, 135);
+    ctx.lineTo(225, 125);
+    ctx.moveTo(75, 130);
+    ctx.lineTo(75, 45);
+    ctx.lineTo(225, 45);
+    ctx.lineTo(225, 130);
+    ctx.moveTo(75+((twoval1-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((twoval1-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(twoval1,75+((twoval1-minval)/(maxval-minval))*150 - 5,145);
+    ctx.moveTo(75+((twoval2-minval)/(maxval-minval))*150, 135);
+    ctx.lineTo(75+((twoval2-minval)/(maxval-minval))*150, 125);
+    ctx.fillText(twoval2,75+((twoval2-minval)/(maxval-minval))*150 - 5,145);
+    ctx.fillText("1/"+(maxval-minval),75+((twoval1-minval)/(maxval-minval))*150 - 25,90);
+    ctx.fillText(fixnum(twoval2 - twoval1),(75+((twoval1-minval)/(maxval-minval))*150 + 75+((twoval2-minval)/(maxval-minval))*150)/2 - 8,40);
+    ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+twoval1+sign1+" x "+sign2+twoval2+") &= \\text{length} \\times \\text{width} \\\\ &= " + fixnum(twoval2 - twoval1) + " \\times 1/"+(maxval-minval)+" \\\\ &= \\boxed{"+parseFloat(((1/(maxval-minval))*(twoval2 - twoval1))).toFixed(2).replace(/^0+/, '')+"} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -2417,13 +2527,18 @@ function compsnormal4() {
 
 
 function switchnormalarea() {
-    $("#normalprob").hide(); $("#normalarea").show();
+    $("#normalprob").hide(); $("#normalarea").show(); $("#normalcurve").hide();
     normaltype = "area"
 }
 
 function switchnormalprob() {
-    $("#normalprob").show(); $("#normalarea").hide();
+    $("#normalprob").show(); $("#normalarea").hide(); $("#normalcurve").hide();
     normaltype = "probability"
+}
+
+function switchnormalcurve() {
+    $("#normalprob").hide(); $("#normalarea").hide(); $("#normalcurve").show();
+    normaltype = "curve"
 }
 
 function compnormal() {
@@ -2431,7 +2546,9 @@ function compnormal() {
         compnormalprob()
     } else if (normaltype == "area") {
         compnormalarea() 
-    } 
+    } else if (normaltype == "curve") {
+        compnormalcurve() 
+    }  
 }
 
 
@@ -2769,6 +2886,100 @@ function compnormalprob() {
         compnormal4()
     }
 }
+
+function compnormalcurve() {
+    $("#explanation").show(); $("#myCanvas").show();
+    
+    document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
+    document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
+    document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
+
+    var expval = document.getElementById('expval').value
+    var sd =  document.getElementById('stdev').value
+    var exp = 2.71828; 
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    //ctx.fillText("Normal Distribution",110,10);
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(30, 135);
+    ctx.lineTo(30, 125);
+    ctx.fillText(expval - 3 * sd,30 - ctx.measureText(expval - 3 * sd).width / 2,145);
+    
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.fillText(expval - 2 * sd,70 - ctx.measureText(expval - 2 * sd).width / 2,145);
+    
+    ctx.moveTo(110, 135);
+    ctx.lineTo(110, 125);
+    ctx.fillText(expval - 1 * sd,110 - ctx.measureText(expval - 1 * sd).width / 2,145);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(expval,150 - ctx.measureText(expval).width / 2,145);
+    
+    
+    ctx.moveTo(190, 135);
+    ctx.lineTo(190, 125);
+    ctx.fillText(parseFloat(expval) + parseFloat(1 * sd),190 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
+    
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.fillText(parseFloat(expval) + parseFloat(2 * sd),230 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
+    
+    ctx.moveTo(270, 135);
+    ctx.lineTo(270, 125);
+    ctx.fillText(parseFloat(expval) + parseFloat(3 * sd),270 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
+    
+    ctx.fillText("x",285,132);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+}
+
 
 function compnormal1() {
     $("#explanation").show(); $("#myCanvas").show();
