@@ -1,23 +1,23 @@
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide(); 
-$("#uniform").hide(); $("#normal").hide(); $("#snormal").hide(); $("#exponential").hide();
+$("#uniform").hide(); $("#normal").hide(); $("#standard").hide(); $("#exponential").hide();
 $("#lessthan").hide(); $("#greaterthan").hide(); $("#betweentwo").hide();
 $("#lessthan2").hide(); $("#greaterthan2").hide(); $("#betweentwo2").hide();
 $("#lessthan3").hide(); $("#greaterthan3").hide(); $("#betweentwo3").hide();
 $("#lessthan4").hide(); $("#greaterthan4").hide(); $("#betweentwo4").hide();
 $("#myCanvas").hide();
-$("#uniformbetween").hide(); $("#snormalbetween").hide(); $("#normalbetween").hide(); $("#exponentialbetween").hide(); 
+$("#uniformbetween").hide(); $("#standardbetween").hide(); $("#normalbetween").hide(); $("#exponentialbetween").hide(); 
 $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
 $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
 $("#uniform").show(); $("#uniformab").hide(); 
 $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformpdf").hide();
-$("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide();  $("#standardcurve").hide();
+$("#standardprob").show(); $("#standardarea").hide(); $("#standardarea2").hide();  $("#standardcurve").hide();
 $("#normalprob").show(); $("#normalarea").hide(); $("#normalcurve").hide();
 $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide(); $("#chidistribution").hide();
 $("#myCanvas0").hide(); $("#581773186").hide();
 $("#contoutputs").hide();
 
 normaltype = "probability"
-snormaltype = "probability"
+standardtype = "probability"
 approxtype = "probability"
 uniformtype = "probability"
 tdisttype = "probability"
@@ -857,8 +857,8 @@ function showstuff(){
         normal()
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").show(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
-    } else if (x == "snormal") {
-        snormal()
+    } else if (x == "standard") {
+        standard()
         $("#uniformexamples").hide(); $("#standardexamples").show(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "exponential") {
@@ -900,8 +900,8 @@ function stat(){
     } else if (x == "normal"){
         $("#myCanvas0").show();
         compnormal()
-    } else if (x == "snormal") {
-        compsnormal()
+    } else if (x == "standard") {
+        compstandard()
     } else if (x == "exponential") {
         compexponential()
     } else if (x == "tdistribution") {
@@ -920,7 +920,9 @@ function stat(){
    
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////// UNIFORM DISTRIBUTION////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function uniform() {
     $("#uniform").show();
@@ -1265,93 +1267,79 @@ function compuniformbetween() {
     MathJax.typeset();
 }
 
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////// STANDARD NORMAL DISTRIBUTION////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function switchstandardarea() {
-    $("#snormalprob").hide(); $("#snormalarea").show(); $("#standardcurve").hide();
-    snormaltype = "area"
+    $("#standardprob").hide(); $("#standardarea").show(); $("#standardcurve").hide();
+    standardtype = "area"
 }
 
 function switchstandardprob() {
-    $("#snormalprob").show(); $("#snormalarea").hide(); $("#standardcurve").hide();
-    snormaltype = "probability"
+    $("#standardprob").show(); $("#standardarea").hide(); $("#standardcurve").hide();
+    standardtype = "probability"
 }
 
 function switchstandardcurve() {
-    $("#snormalprob").hide(); $("#snormalarea").hide(); $("#standardcurve").show();
-    snormaltype = "curve"
+    $("#standardprob").hide(); $("#standardarea").hide(); $("#standardcurve").show();
+    standardtype = "curve"
 }
 
 
-function snormal() {
-    $("#snormal").show();
-    $("#snormalprob").show();
-    $("#snormalbetween").hide();
+function standard() {
+    $("#standard").show();
+    $("#standardprob").show();
+    $("#standardbetween").hide();
 }
 
 
-function compsnormal() {
-    if (snormaltype == "probability") {
-        compsnormalprob()
-    } else if (snormaltype == "area") {
-        compsnormalarea() 
-    } else if (snormaltype == "curve") {
+function compstandard() {
+    if (standardtype == "probability") {
+        $("#myCanvas0").hide(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
+        compstandardprob()
+    } else if (standardtype == "area") {
+        $("#myCanvas0").hide(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
+        compstandardarea() 
+    } else if (standardtype == "curve") {
+        $("#myCanvas").hide(); $("#output").hide(); $("#output2").hide();
         standardcurve() 
     }  
 }
 
 
-
-
-
-
-
-
-
-
-
-function switchsnormal1() {
-    var x = document.getElementById('areatype').value
+function switchstandard1() {
+    var x = document.getElementById('standardareatype').value
     if (x == "between") {
-        $("#snormalarea").hide(); $("#snormalarea2").show();
+        $("#snormalarea").hide(); $("#standardarea2").show();
     }
 }
 
-function switchsnormal2() {
-    var x = document.getElementById('areatype2').value
+function switchstandard2() {
+    var x = document.getElementById('standardareatype2').value
     if (x == "left" || x == "right") {
-        $("#snormalarea").show(); $("#snormalarea2").hide();
+        $("#standardarea").show(); $("#standardarea2").hide();
     }
 }
 
 
-
-
-
-
-
-
-
-
-
-
-function compsnormalarea() {
+function compstandardarea() {
     var x = document.getElementById('areatype').value
     if (x == "left") {
-        compsnormalarea1()
+        compstandardarealeft()
     } else if (x == "right") {
-        compsnormalarea2()
+        compstandardarearight()
     }   
 }
 
-function compsnormalarea1() {
+function compstandardarealeft() {
     $("#explanation").show(); $("#myCanvas").show();
     
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
-    var area = document.getElementById('areaval').value
+    var area = document.getElementById('standardareaval').value
     var z = NormSInv(area)
     var exp = 2.71828;
     
@@ -1494,18 +1482,14 @@ function compsnormalarea1() {
 }
 
 
-
-
-
-
-function compsnormalarea2() {
+function compstandardarearight() {
     $("#explanation").show(); $("#myCanvas").show();
     
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
-    var area = document.getElementById('areaval').value
+    var area = document.getElementById('standardareaval').value
     var z = NormSInv(1-area)
     
     var lessval = z
@@ -1649,13 +1633,6 @@ function compsnormalarea2() {
 }
 
 
-
-
-
-
-
-
-
 function standardcurve() {
     $("#explanation").show(); $("#myCanvas0").show();
     
@@ -1749,30 +1726,20 @@ function standardcurve() {
     
 }
 
-
-
-
-
-
-
-
-
-
-
-function compsnormalprob() {
+function compstandardprob() {
     probtype = document.getElementById('probtype2').value
     if (probtype == "lessequal" || probtype == "less") {
-        compsnormal1() 
+        compstandardless() 
     } else if (probtype == "greaterequal" || probtype == "greater") {
-        compsnormal2() 
+        compstandardgreater() 
     } else if (probtype == "equal") {
-        compsnormal3() 
+        compstandardequal() 
     } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
-        compsnormal4()
+        compstandardbetween()
     }
 }
 
-function compsnormal1() {
+function compstandardless() {
     $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
@@ -1780,7 +1747,7 @@ function compsnormal1() {
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
-    var lessval = document.getElementById('snormval').value
+    var lessval = document.getElementById('standardval').value
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
     
@@ -1979,14 +1946,14 @@ function compsnormal1() {
     MathJax.typeset();
 }
 
-function compsnormal2() {
+function compstandardgreater() {
     $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
-    var lessval = document.getElementById('snormval').value
+    var lessval = document.getElementById('standardval').value
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
     
@@ -2187,14 +2154,14 @@ function compsnormal2() {
     MathJax.typeset();
 }
 
-function compsnormal3() {
+function compstandardequal() {
     $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
-    var lessval = document.getElementById('snormval').value
+    var lessval = document.getElementById('standardval').value
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
     
@@ -2321,15 +2288,15 @@ function compsnormal3() {
     MathJax.typeset();
 }
 
-function compsnormal4() {
+function compstandardbetween() {
     $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
-    var lessval = document.getElementById('snormval1').value
+    var lessval = document.getElementById('standardval1').value
     var lessvalz = 30+10*lessval
-    var greaterval = document.getElementById('snormval2').value
+    var greaterval = document.getElementById('standardval2').value
     var greatervalz = 30+10*greaterval
     var exp = 2.71828;
 
@@ -2642,14 +2609,14 @@ function switchnormalcurve() {
 
 function compnormal() {
     if (normaltype == "probability") {
-        compnormalprob()
         $("#output").show(); $("#output2").show();
+        compnormalprob()
     } else if (normaltype == "area") {
-        compnormalarea() 
         $("#output").show(); $("#output2").show(); $("#myCanvas0").hide();
+        compnormalarea() 
     } else if (normaltype == "curve") {
-        compnormalcurve() 
         $("#output").hide(); $("#output2").hide(); $("#myCanvas").hide();
+        compnormalcurve() 
     }  
 }
 
@@ -7217,26 +7184,26 @@ function exampleuniform2(){
     document.getElementById('twoval2').value="175"
 }
 
-function examplesnormal(){
-    if (snormaltype == "probability") {
-        document.getElementById('snormval').value="-.71"
-        document.getElementById('snormval1').value="-1.75"
-        document.getElementById('snormval2').value="-1.04"
-    } else if (snormaltype == "area") {
-        document.getElementById('areatype').value="left"
-        document.getElementById('areaval').value=".6772"
+function examplestandard(){
+    if (standardtype == "probability") {
+        document.getElementById('standardval').value="-.71"
+        document.getElementById('standardval1').value="-1.75"
+        document.getElementById('standardval2').value="-1.04"
+    } else if (standardtype == "area") {
+        document.getElementById('standardareatype').value="left"
+        document.getElementById('standardareaval').value=".6772"
     } 
     
 }
 
-function examplesnormal2(){
-    if (snormaltype == "probability") {
-        document.getElementById('snormval').value=".44"
-        document.getElementById('snormval1').value=".52"
-        document.getElementById('snormval2').value="1.22"
-    } else if (snormaltype == "area") {
-        document.getElementById('areatype').value="right"
-        document.getElementById('areaval').value=".2266"
+function examplestandard2(){
+    if (standardtype == "probability") {
+        document.getElementById('standardval').value=".44"
+        document.getElementById('standardval1').value=".52"
+        document.getElementById('standardval2').value="1.22"
+    } else if (standardtype == "area") {
+        document.getElementById('standardareatype').value="right"
+        document.getElementById('standardareaval').value=".2266"
     }
 }
 
@@ -7399,35 +7366,35 @@ function uniformback() {
     $("#uniformbetween").hide();
 }
 
-function snormalprob() {
+function standardprob() {
     var probtype = document.getElementById('probtype2').value
     if (probtype == "between") {
-        $("#snormalprob").hide();
-        $("#snormalbetween").show();
+        $("#standardprob").hide();
+        $("#standardbetween").show();
         document.getElementById('probtype2b1').value = "lessequal"
         document.getElementById('probtype2b2').value = "lessequal"
     } else if (probtype == "between2") {
-        $("#snormalprob").hide();
-        $("#snormalbetween").show();
+        $("#standardprob").hide();
+        $("#standardbetween").show();
         document.getElementById('probtype2b1').value = "lessequal"
         document.getElementById('probtype2b2').value = "less"
     } else if (probtype == "between3") {
-        $("#snormalprob").hide();
-        $("#snormalbetween").show();
+        $("#standardprob").hide();
+        $("#standardbetween").show();
         document.getElementById('probtype2b1').value = "less"
         document.getElementById('probtype2b2').value = "lessequal"
     } else if (probtype == "between4") {
-        $("#snormalprob").hide();
-        $("#snormalbetween").show();
+        $("#standardprob").hide();
+        $("#standardbetween").show();
         document.getElementById('probtype2b1').value = "less"
         document.getElementById('probtype2b2').value = "less"
     }
 }
 
-function snormalback() {
+function standardback() {
     document.getElementById('probtype2').value = "lessequal"
-    $("#snormalprob").show();
-    $("#snormalbetween").hide();
+    $("#standardprob").show();
+    $("#standardbetween").hide();
 }
 
 function normalprob() {
