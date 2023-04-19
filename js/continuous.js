@@ -10,7 +10,8 @@ $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples"
 $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
 $("#uniform").show(); $("#uniformab").hide(); 
 $("#uniformprobability").hide(); $("#uniformexpected").hide(); $("#uniformvariance").hide(); $("#uniformstandard").hide(); $("#uniformpdf").hide();
-$("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide(); $("#normalprob").show(); $("#normalarea").hide(); $("#normalcurve").hide();
+$("#snormalprob").show(); $("#snormalarea").hide(); $("#snormalarea2").hide();  $("#standardcurve").hide();
+$("#normalprob").show(); $("#normalarea").hide(); $("#normalcurve").hide();
 $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide(); $("#chidistribution").hide();
 $("#myCanvas0").hide(); $("#581773186").hide();
 $("#contoutputs").hide();
@@ -1267,13 +1268,18 @@ function compuniformbetween() {
 
 
 function switchstandardarea() {
-    $("#snormalprob").hide(); $("#snormalarea").show();
+    $("#snormalprob").hide(); $("#snormalarea").show(); $("#standardcurve").hide();
     snormaltype = "area"
 }
 
 function switchstandardprob() {
-    $("#snormalprob").show(); $("#snormalarea").hide();
+    $("#snormalprob").show(); $("#snormalarea").hide(); $("#standardcurve").hide();
     snormaltype = "probability"
+}
+
+function switchstandardcurve() {
+    $("#snormalprob").hide(); $("#snormalarea").hide(); $("#standardcurve").show();
+    snormaltype = "curve"
 }
 
 
@@ -1289,7 +1295,9 @@ function compsnormal() {
         compsnormalprob()
     } else if (snormaltype == "area") {
         compsnormalarea() 
-    } 
+    } else if (snormaltype == "curve") {
+        standardcurve() 
+    }  
 }
 
 
@@ -1648,7 +1656,98 @@ function compsnormalarea2() {
 
 
 
+function standardcurve() {
+    $("#explanation").show(); $("#myCanvas0").show();
+    
+    document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
+    document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
+    document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
 
+    var expval = 0
+    var sd =  1
+    var exp = 2.71828; 
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    //ctx.fillText("Normal Distribution",110,10);
+    
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
+    ctx.moveTo(30, 135);
+    ctx.lineTo(30, 125);
+    ctx.fillText(expval - 3 * sd,30 - ctx.measureText(expval - 3 * sd).width / 2,145);
+    
+    ctx.moveTo(70, 135);
+    ctx.lineTo(70, 125);
+    ctx.fillText(expval - 2 * sd,70 - ctx.measureText(expval - 2 * sd).width / 2,145);
+    
+    ctx.moveTo(110, 135);
+    ctx.lineTo(110, 125);
+    ctx.fillText(expval - 1 * sd,110 - ctx.measureText(expval - 1 * sd).width / 2,145);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText(expval,150 - ctx.measureText(expval).width / 2,145);
+    
+    
+    ctx.moveTo(190, 135);
+    ctx.lineTo(190, 125);
+    ctx.fillText(parseFloat(expval) + parseFloat(1 * sd),190 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
+    
+    ctx.moveTo(230, 135);
+    ctx.lineTo(230, 125);
+    ctx.fillText(parseFloat(expval) + parseFloat(2 * sd),230 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
+    
+    ctx.moveTo(270, 135);
+    ctx.lineTo(270, 125);
+    ctx.fillText(parseFloat(expval) + parseFloat(3 * sd),270 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
+    
+    ctx.fillText("z",285,132);
+
+    
+    var points = []
+    
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+   
+   
+
+
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+}
 
 
 
@@ -1674,7 +1773,7 @@ function compsnormalprob() {
 }
 
 function compsnormal1() {
-    $("#explanation").show(); $("#myCanvas").show();
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
@@ -1875,7 +1974,7 @@ function compsnormal1() {
     
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2083,7 +2182,7 @@ function compsnormal2() {
     
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval.toFixed(2))))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(1-normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
@@ -2544,10 +2643,13 @@ function switchnormalcurve() {
 function compnormal() {
     if (normaltype == "probability") {
         compnormalprob()
+        $("#output").show(); $("#output2").show();
     } else if (normaltype == "area") {
         compnormalarea() 
+        $("#output").show(); $("#output2").show(); $("#myCanvas0").hide();
     } else if (normaltype == "curve") {
         compnormalcurve() 
+        $("#output").hide(); $("#output2").hide(); $("#myCanvas").hide();
     }  
 }
 
@@ -2888,7 +2990,7 @@ function compnormalprob() {
 }
 
 function compnormalcurve() {
-    $("#explanation").show(); $("#myCanvas").show();
+    $("#explanation").show();
     
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
