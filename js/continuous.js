@@ -1797,7 +1797,7 @@ function standardarearight() {
         }
     }
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + table + " $$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + parseFloat((1-area).toFixed(4)) + " \\end{align} $$" + table + " $$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
     MathJax.typeset();
 }
 
@@ -1821,10 +1821,6 @@ function standardareabetween() {
         var z1 = NormSInv(1 - (parseFloat(area) + .5))
         var z2 = 0
         var z = Math.abs(z1)
-    } else if (input1 == "zero" && input2 == "zero") {
-        var z1 = 0
-        var z2 = 0
-        var z = 0
     }
     var exp = 2.71828;
     var val = z.toFixed(2)
@@ -1877,16 +1873,17 @@ function standardareabetween() {
     if (input1 == "negz" && input2 == "posz") {
         ctx.fillText("-z",17 + 4.4*(30+10*lessval),145);
         ctx.fillText("z",18 + 4.4*(30+10*greaterval),145);
+        ctx.fillText(area,150 - ctx.measureText(area).width/2,90);
     } else if (input1 == "zero" && input2 == "posz") {
         ctx.fillText(0,17 + 4.4*(30+10*lessval),145);
         ctx.fillText("z",18 + 4.4*(30+10*greaterval),145);
+        ctx.fillText(area,(150 + 4.4*(30+10*greaterval))/2,95);
+        ctx.fillText(".50",110,95);
     } else if (input1 == "negz" && input2 == "zero") {
         ctx.fillText("-z",17 + 4.4*(30+10*lessval),145);
         ctx.fillText(0,18 + 4.4*(30+10*greaterval),145);
-    } else if (input1 == "zero" && input2 == "zero") {
-        var z1 = 0
-        var z2 = 0
-        var z = 0
+        ctx.fillText(area,(150 + 4.4*(30+10*lessval))/2,95);
+        ctx.fillText(".50",175,95);
     }
     //ctx.fillText(greaterval,points0[i+1].x - 10,145);
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
@@ -2092,13 +2089,11 @@ function standardareabetween() {
     }
     var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zval2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     if (input1 == "negz" && input2 == "posz") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= (1 - " + area + ")/2 \\\\ &= " + parseFloat(((1-area)/2).toFixed(4)) + " \\end{align} $$" + tablea + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= (1 - " + area + ")/2 \\\\ &= " + parseFloat(((1-area)/2).toFixed(4)) + " \\end{align} $$" + tablea + "$$-z = " + parseFloat(z1.toFixed(2)) + " \\rightarrow z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
     } else if (input1 == "zero" && input2 == "posz") {
         document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= .50 + " + area + " \\\\ &= " + parseFloat((parseFloat(area)+.5).toFixed(4)) + " \\end{align} $$" + tableb + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
     } else if (input1 == "negz" && input2 == "zero") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= 1 - (" + area + " + .50) \\\\ &= " + parseFloat((1-(parseFloat(area)+.5)).toFixed(4)) + " \\end{align} $$" + tablea + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
-    } else if (input1 == "zero" && input2 == "zero") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + tablea + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= 1 - (" + area + " + .50) \\\\ &= " + parseFloat((1-(parseFloat(area)+.5)).toFixed(4)) + " \\end{align} $$" + tablea + "$$ -z = " + parseFloat(z1.toFixed(2)) + " \\rightarrow z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
     }
     MathJax.typeset();
 }
