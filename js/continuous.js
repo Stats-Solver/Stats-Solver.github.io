@@ -837,7 +837,7 @@ function compute(X,df) {
 
 function showstuff(){
     $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
-    $("#uniform").hide(); $("#normal").hide(); $("#snormal").hide(); $("#exponential").hide(); $("#tdistribution").hide();
+    $("#uniform").hide(); $("#normal").hide(); $("#standard").hide(); $("#exponential").hide(); $("#tdistribution").hide();
     $("#approximation").hide(); $("#fdistribution").hide(); $("#chidistribution").hide();
     $("#lessthan").hide(); $("#greaterthan").hide(); $("#betweentwo").hide();
     $("#lessthan2").hide(); $("#greaterthan2").hide(); $("#betweentwo2").hide();
@@ -1086,7 +1086,8 @@ function uniformless() {
     var ctx = c.getContext("2d"); 
     ctx.clearRect(0, 0, 300, 150);
     ctx.strokeStyle = 'lightgray'; 
-    ctx.beginPath();ctx.moveTo(75, 130); 
+    ctx.beginPath();
+    ctx.moveTo(75, 130); 
     ctx.lineTo(75, 45);
     ctx.lineTo(75+((val-min)/(max-min))*150, 45);
     ctx.lineTo(75+((val-min)/(max-min))*150, 130);
@@ -1441,126 +1442,107 @@ function compstandard() {
 function switchstandard1() {
     var x = document.getElementById('standardareatype').value
     if (x == "between") {
-        $("#snormalarea").hide(); $("#standardarea2").show();
+        $("#standardarea").hide(); $("#standardarea2").show();
     }
 }
 
 function switchstandard2() {
-    var x = document.getElementById('standardareatype2').value
-    if (x == "left" || x == "right") {
-        $("#standardarea").show(); $("#standardarea2").hide();
-    }
+    document.getElementById('standardareatype').value = "left"
+    $("#standardarea").show(); $("#standardarea2").hide();
 }
 
 
 function compstandardarea() {
-    var x = document.getElementById('areatype').value
+    var x = document.getElementById('standardareatype').value
     if (x == "left") {
-        compstandardarealeft()
+        standardarealeft()
     } else if (x == "right") {
-        compstandardarearight()
-    }   
+        standardarearight()
+    } else if (x == "between") {
+        standardareabetween()
+    }     
 }
 
-function compstandardarealeft() {
-    $("#explanation").show(); $("#myCanvas").show();
-    
+function standardarealeft() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
-    
     var area = document.getElementById('standardareaval').value
     var z = NormSInv(area)
     var exp = 2.71828;
-    
-    var lessval = z
-    var lessvalz = 30+10*lessval
-    
-    
-    
-    
+    var val = z.toFixed(2)
+    var valz = 30+10*val
+    var exp = 2.71828;
+    if (probtype == "lessequal") {
+        var sign = "\\leq"
+    } else if (probtype == "less") {
+        var sign = "<"
+    }
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
-    for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+    for (i = 0; i < valz; i++) {
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[valz],points0[valz]);
+    ctx.lineTo(20 + 4.4*valz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
     ctx.fillText("z",285,132);
-    ctx.fillText("z₀",18 + 4.4*(30+10*lessval),145);
-    
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
-    
+    ctx.fillText("z",18 + 4.4*(30+10*val),145);
+    ctx.fillText(area,(50 + 4.4*(30+10*val))/2  - ctx.measureText(area).width + 25,125 - area * 50);
+    ctx.moveTo(20 + 4.4*(30+10*val), 135);
+    ctx.lineTo(20 + 4.4*(30+10*val), 125);
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
-    var zvalue = toFixing(parseFloat(lessval),1);
-    var zvaluer = parseFloat(lessval).toFixed(2); 
+    var zvalue = toFixing(parseFloat(val),1);
+    var zval = (zvalue - 0).toFixed(1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
+    var zvaluer = parseFloat(val).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
-    
+    var colm = zseconddec
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -1580,138 +1562,358 @@ function compstandardarealeft() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
     }
-    
-    
+    if (val < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (val >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
+    if (val < 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (val >= 0) {
+        table3 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
+    if (val < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (val >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    MathJax.typeset();
+}
+
+
+function standardarearight() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
+    document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
+    document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
+    document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
+    var area = document.getElementById('standardareaval').value
+    var z = NormSInv(1-area)
+    var lessval = z
+    var lessvalz = 30+10*lessval
+    var exp = 2.71828;
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))  
+    }
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    var points0 = []
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    for (i = 0; i < lessvalz2; i++) {
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(283, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    if (Math.abs(lessval) >= .25) {
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+    }
+    ctx.fillText("z",285,132);
+    ctx.fillText("z",18 + 4.4*(30+10*lessval),145);
+    ctx.fillText(area,105 + (50 + 4.4*(30+10*lessval))/2  - ctx.measureText(area).width + 25,130 - area * 50);
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    var points = []
+    for (i = 0; i < 60; i++) {
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.lineTo(283, 119);
+    ctx.stroke();
+    var zvalue = toFixing(parseFloat(lessval),1);
+    var zval = (zvalue - 0).toFixed(1);
+    var zvalue1 = (zvalue - .1).toFixed(1);
+    var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
+    var zvaluer = parseFloat(lessval).toFixed(2); 
+    var zseconddec = +zvaluer.toString().split('').pop();
+    var colm = zseconddec
+    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
+         var valstart = 0; 
+         var valend = 4;
+    } else if (zseconddec == 3) {
+         var valstart = 1; 
+         var valend = 5;
+    } else if (zseconddec == 4) {
+         var valstart = 2; 
+         var valend = 6;
+    } else if ((zseconddec == 5)) {
+         var valstart = 3; 
+         var valend = 7;
+    } else if (zseconddec == 6) {
+         var valstart = 4; 
+         var valend = 8;
+    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
+         var valstart = 5; 
+         var valend = 9;
+    }
+    table1 = []
+    for (var r = valstart; r < valend + 1; r++){
+        if (r == colm) {
+        table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        } else {
+            table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        } 
+    }
+    if (lessval < 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table2 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table2 += "<td>$" + normalcdf(parseFloat(zvalue1) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
         }
     }
-    
-    
-    
-    var table = "<table><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
-    
-    document.getElementById("output").innerHTML = "$$ P(z \\leq z_0) = " + area + " $$"
-    
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ z_0 = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
-    
+    if (lessval < 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    } else if (lessval >= 0) {
+        table4 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table4 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } 
+        }
+    }
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + table + " $$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
     MathJax.typeset();
-    
 }
 
-
-function compstandardarearight() {
-    $("#explanation").show(); $("#myCanvas").show();
-    
+function standardareabetween() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
-    
-    var area = document.getElementById('standardareaval').value
-    var z = NormSInv(1-area)
-    
-    var lessval = z
-    var lessvalz = 30+10*lessval
+    var area = document.getElementById('standardareaval2').value
+    var input1 = document.getElementById('standardareainput1').value
+    var input2 = document.getElementById('standardareainput2').value
+    if (input1 == "negz" && input2 == "posz") {
+        var z1 = NormSInv((1 - area) / 2)
+        var z2 = Math.abs(z1)
+        var z = z2
+    } else if (input1 == "zero" && input2 == "posz") {
+        var z1 = 0
+        var z2 = NormSInv(parseFloat(area) + .5)
+        var z = z2
+    } else if (input1 == "negz" && input2 == "zero") {
+        var z1 = NormSInv(1 - (parseFloat(area) + .5))
+        var z2 = 0
+        var z = Math.abs(z1)
+    } else if (input1 == "zero" && input2 == "zero") {
+        var z1 = 0
+        var z2 = 0
+        var z = 0
+    }
     var exp = 2.71828;
-    
+    var val = z.toFixed(2)
+    var valz = 30+10*val
+    var lessval = z1.toFixed(2)
+    var lessvalz = 30+10*lessval
+    var greaterval = z2.toFixed(2)
+    var greatervalz = 30+10*greaterval
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
-    var lessvalneg = -1*lessval
-    var lessvalz2 = 30+10*lessvalneg
-    
-    for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    for (i = 0; i < (greatervalz-lessvalz); i++) {
+      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
 		}
     
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++) {
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
+    ctx.lineTo(points0[i+1].x, 130);
     ctx.lineTo(20 + 4.4*lessvalz, 130);
-    ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
+    if (Math.abs(lessval) >= .5 && Math.abs(greaterval) >= .5) {
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+    }
     ctx.fillText("z",285,132);
-    ctx.fillText("z₀",18 + 4.4*(30+10*lessval),145);
-    
+    if (input1 == "negz" && input2 == "posz") {
+        ctx.fillText("-z",17 + 4.4*(30+10*lessval),145);
+        ctx.fillText("z",18 + 4.4*(30+10*greaterval),145);
+    } else if (input1 == "zero" && input2 == "posz") {
+        ctx.fillText(0,17 + 4.4*(30+10*lessval),145);
+        ctx.fillText("z",18 + 4.4*(30+10*greaterval),145);
+    } else if (input1 == "negz" && input2 == "zero") {
+        ctx.fillText("-z",17 + 4.4*(30+10*lessval),145);
+        ctx.fillText(0,18 + 4.4*(30+10*greaterval),145);
+    } else if (input1 == "zero" && input2 == "zero") {
+        var z1 = 0
+        var z2 = 0
+        var z = 0
+    }
+    //ctx.fillText(greaterval,points0[i+1].x - 10,145);
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    
+    ctx.moveTo(points0[i+1].x, 135);
+    ctx.lineTo(points0[i+1].x, 125);
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    ctx.lineTo(283, 119);
-    
+        points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++) {
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zval = (zvalue - 0).toFixed(1);
+    var zvaluea = (zvalue - .1).toFixed(1);
+    var zvalueb = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
-    
+    var colm = zseconddec
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -1731,37 +1933,175 @@ function compstandardarearight() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
+        if (r == colm) {
+                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
     }
-    
-    
+    if (lessval < 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvaluea) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvaluea) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table31 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table31 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvaluea) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table31 += "<td>$" + normalcdf(parseFloat(zvaluea) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     } else if (lessval >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
-            table3 += "<td>" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
+            if (r == colm) {
+                table3 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
         }
     }
-    
-    
-    
-    var table = "<table><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-    
-    document.getElementById("output").innerHTML = "$$ P(z \\geq z_0) = " + area + " $$"
-    
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(z \\leq z_0) &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + table + " $$ z_0 = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
-    
+    if (lessval < 0) {
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalueb) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalueb) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (lessval >= 0) {
+        table32 = []
+        for (var r = valstart; r < valend + 1; r++){
+            if (r == colm) {
+                table32 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalueb) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table32 += "<td>$" + normalcdf(parseFloat(zvalueb) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
+    var zvalue2 = toFixing(parseFloat(greaterval),1);
+    var zval2 = (zvalue2 - 0).toFixed(1);
+    var zvalue2a = (zvalue2 - .1).toFixed(1);
+    var zvalue2b = (parseFloat(zvalue2) + .1).toFixed(1);
+    var zvaluer2 = parseFloat(greaterval).toFixed(2); 
+    var zseconddec2 = +zvaluer2.toString().split('').pop();
+    var colm2 = zseconddec2
+    if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
+         var valstart2 = 0; 
+         var valend2 = 4;
+    } else if (zseconddec2 == 3) {
+         var valstart2 = 1; 
+         var valend2 = 5;
+    } else if (zseconddec2 == 4) {
+         var valstart2 = 2; 
+         var valend2 = 6;
+    } else if ((zseconddec2 == 5)) {
+         var valstart2 = 3; 
+         var valend2 = 7;
+    } else if (zseconddec2 == 6) {
+         var valstart2 = 4; 
+         var valend2 = 8;
+    } else if (zseconddec2 == 7 || zseconddec2 == 8 || zseconddec2 == 9) {
+         var valstart2 = 5; 
+         var valend2 = 9;
+    }
+    table4 = []
+    for (var r = valstart2; r < valend2 + 1; r++){
+        if (r == colm2) {
+                table4 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            } else {
+                table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+            }  
+    }
+    if (greaterval < 0) {
+        table51 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table51 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2a) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table51 += "<td>$" + normalcdf(parseFloat(zvalue2a) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (greaterval >= 0) {
+        table51 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table51 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2a) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table51 += "<td>$" + normalcdf(parseFloat(zvalue2a) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    if (greaterval < 0) {
+        table5 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table5 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table5 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (greaterval >= 0) {
+        table5 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table5 += "<td bgcolor='lightgray' style='border: 1px solid black'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table5 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    if (greaterval < 0) {
+        table52 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table52 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2b) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table52 += "<td>$" + normalcdf(parseFloat(zvalue2b) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    } else if (greaterval >= 0) {
+        table52 = []
+        for (var r = valstart2; r < valend2 + 1; r++){
+            if (r == colm2) {
+                table52 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue2b) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            } else {
+                table52 += "<td>$" + normalcdf(parseFloat(zvalue2b) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
+            }  
+        }
+    }
+    var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zval2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
+    if (input1 == "negz" && input2 == "posz") {
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= (1 - " + area + ")/2 \\\\ &= " + parseFloat(((1-area)/2).toFixed(4)) + " \\end{align} $$" + tablea + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    } else if (input1 == "zero" && input2 == "posz") {
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= .50 + " + area + " \\\\ &= " + parseFloat((parseFloat(area)+.5).toFixed(4)) + " \\end{align} $$" + tableb + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    } else if (input1 == "negz" && input2 == "zero") {
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= 1 - (" + area + " + .50) \\\\ &= " + parseFloat((1-(parseFloat(area)+.5)).toFixed(4)) + " \\end{align} $$" + tablea + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    } else if (input1 == "zero" && input2 == "zero") {
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + tablea + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    }
     MathJax.typeset();
-    
 }
-
 
 function standardcurve() {
     $("#explanation").show(); $("#myCanvas0").show();
@@ -1859,17 +2199,17 @@ function standardcurve() {
 function compstandardprob() {
     probtype = document.getElementById('probtype2').value
     if (probtype == "lessequal" || probtype == "less") {
-        compstandardless() 
+        standardless() 
     } else if (probtype == "greaterequal" || probtype == "greater") {
-        compstandardgreater() 
+        standardgreater() 
     } else if (probtype == "equal") {
-        compstandardequal() 
+        standardequal() 
     } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
-        compstandardbetween()
+        standardbetween()
     }
 }
 
-function compstandardless() {
+function standardless() {
     $("#explanation").show(); $("#myCanvas").show(); $("#output2").show();
     
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
@@ -1877,12 +2217,10 @@ function compstandardless() {
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
     
     var probtype = document.getElementById('probtype2').value
-    var lessval = document.getElementById('standardval').value
-    var lessvalz = 30+10*lessval
+    var val = document.getElementById('standardval').value
+    var valz = 30+10*val
     var exp = 2.71828;
-    
-    
-    
+
     if (probtype == "lessequal") {
         var sign = "\\leq"
     } else if (probtype == "less") {
@@ -1905,7 +2243,7 @@ function compstandardless() {
     
     var points0 = []
     
-    for (i = 0; i < lessvalz; i++) {
+    for (i = 0; i < valz; i++) {
       points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
 		}
     
@@ -1921,9 +2259,9 @@ function compstandardless() {
    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[valz],points0[valz]);
     
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(20 + 4.4*valz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
     
     ctx.stroke();
@@ -1941,10 +2279,10 @@ function compstandardless() {
     ctx.fillText("0",148,145);
     
     ctx.fillText("z",285,132);
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
+    ctx.fillText(val,25 + 4.4*(30+10*val) - ctx.measureText(val).width,145);
     
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    ctx.moveTo(20 + 4.4*(30+10*val), 135);
+    ctx.lineTo(20 + 4.4*(30+10*val), 125);
     
     
     var points = []
@@ -1955,10 +2293,6 @@ function compstandardless() {
     
         // move to the first point
        ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
        for (i = 1; i < points.length - 2; i ++)
        {
           var xc = (points[i].x + points[i + 1].x) / 2;
@@ -1967,14 +2301,14 @@ function compstandardless() {
        }
      // curve through the last two points
      ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+
     ctx.stroke();
     
-    var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue = toFixing(parseFloat(val),1);
+    var zval = (zvalue - 0).toFixed(1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
-    var zvaluer = parseFloat(lessval).toFixed(2); 
+    var zvaluer = parseFloat(val).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
     
@@ -1997,9 +2331,6 @@ function compstandardless() {
          var valstart = 5; 
          var valend = 9;
     }
-    
-    
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -2008,8 +2339,7 @@ function compstandardless() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
-    if (lessval < 0) {
+    if (val < 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colm) {
@@ -2018,7 +2348,7 @@ function compstandardless() {
                 table2 += "<td>$" + normalcdf(parseFloat(zvalue1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
         }
-    } else if (lessval >= 0) {
+    } else if (val >= 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colm) {
@@ -2028,8 +2358,7 @@ function compstandardless() {
             } 
         }
     }
-    
-    if (lessval < 0) {
+    if (val < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colm) {
@@ -2038,7 +2367,7 @@ function compstandardless() {
                 table3 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
         }
-    } else if (lessval >= 0) {
+    } else if (val >= 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colm) {
@@ -2048,8 +2377,7 @@ function compstandardless() {
             } 
         }
     }
-    
-    if (lessval < 0) {
+    if (val < 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colm) {
@@ -2058,7 +2386,7 @@ function compstandardless() {
                 table4 += "<td>$" + normalcdf(parseFloat(zvalue2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
         }
-    } else if (lessval >= 0) {
+    } else if (val >= 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
             if (r == colm) {
@@ -2068,126 +2396,93 @@ function compstandardless() {
             } 
         }
     }
-    
-    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + lessval + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ P(z"+ sign + val + ") = \\boxed{"+ parseFloat(normalcdf(parseFloat(val))).toFixed(4).replace(/^0+/, '') + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
-function compstandardgreater() {
+function standardgreater() {
     $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
-    
     var probtype = document.getElementById('probtype2').value
     var lessval = document.getElementById('standardval').value
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-    
-    
-    
     if (probtype == "greaterequal") {
         var sign = "\\geq"
     } else if (probtype == "greater") {
         var sign = ">"
     }
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))  
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
       var xc = (points0[i].x + points0[i + 1].x) / 2;
       var yc = (points0[i].y + points0[i + 1].y) / 2;
       ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
+    if (Math.abs(lessval) >= .25) {
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+    }
     ctx.fillText("z",285,132);
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
-    
+    ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width,145);
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
       points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
           var xc = (points[i].x + points[i + 1].x) / 2;
           var yc = (points[i].y + points[i + 1].y) / 2;
           ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, 119);
-    
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zval = (zvalue - 0).toFixed(1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -2207,16 +2502,14 @@ function compstandardgreater() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
-                table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
-            } else {
-                table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
-            } 
+        table1 += "<td bgcolor='lightgray'>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        } else {
+            table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
+        } 
     }
-    
     if (lessval < 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -2236,7 +2529,6 @@ function compstandardgreater() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -2256,7 +2548,6 @@ function compstandardgreater() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -2276,110 +2567,81 @@ function compstandardgreater() {
             } 
         }
     }
-    
-    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
+    var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(z"+ sign + lessval + ") &= 1 - P(z \\leq" + lessval + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(1-normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
 
-function compstandardequal() {
+function standardequal() {
     $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
-    
     var probtype = document.getElementById('probtype2').value
     var lessval = document.getElementById('standardval').value
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:250 - 3.36*i, y:120 - 220*f[i]}
-		}
+        points0[i] = {x:250 - 3.36*i, y:120 - 220*f[i]}
+    }
     
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
+    ctx.moveTo(points0[0].x, points0[0].y);
 
 
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(50 + 3.36*lessvalz, 130);
-    
     ctx.stroke();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(50, 130);
     ctx.lineTo(250, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     ctx.fillText("z",255,132);
     ctx.fillText(lessval,40 + 3.36*(30+10*lessval),145);
-    
     ctx.moveTo(50 + 3.36*(30+10*lessval), 135);
     ctx.lineTo(50 + 3.36*(30+10*lessval), 125);
-
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -2399,129 +2661,99 @@ function compstandardequal() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         table1 += "<td>" + (.01*r).toFixed(2).replace(/^0+/, '') + "</td>";
     }
-    
     table3 = []
     for (var r = valstart; r < valend + 1; r++){
         table3 += "<td>" + normalcdf(parseFloat(zvalue) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "</td>";
     }
-    
-    
     var table = "<table class='ztable'><tr style='border-top: thin solid'><td>z</td>"+table1+"</tr><tr style='border-top: thin solid'><td>"+zvalue+"</td>"+table3+"</tr></table>"
-    
     document.getElementById("output2").innerHTML = "$$ \\begin{align} P(z = "+ lessval + ") = \\boxed{0} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
 
-function compstandardbetween() {
+function standardbetween() {
     $("#explanation").show(); $("#myCanvas").show();
     document.getElementById("descriptiontext").innerHTML = "A standard normal distribution is a normal distribution with a mean of zero and standard deviation of one. "
     document.getElementById("formulatext").innerHTML = "$ f(z) = \\frac{1}{\\sqrt{2\\pi}}e^{-z^2/2} $"
     document.getElementById("explanationtext").innerHTML = "To find the probability that z will be less than or equal to a value, simply find the corresponding probability in the z-table for the given z-score."
-    
     var lessval = document.getElementById('standardval1').value
     var lessvalz = 30+10*lessval
     var greaterval = document.getElementById('standardval2').value
     var greatervalz = 30+10*greaterval
     var exp = 2.71828;
-
     var sign1 = "\\leq"; var sign2 = "\\leq"
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < (greatervalz-lessvalz); i++) {
       points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
 		}
     
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++) {
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    
     ctx.lineTo(points0[i+1].x, 130);
     ctx.lineTo(20 + 4.4*lessvalz, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
+    if (Math.abs(lessval) >= .5 && Math.abs(greaterval) >= .5) {
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+    }
     ctx.fillText("z",285,132);
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
-    ctx.fillText(greaterval,points0[i+1].x - 10,145);
-    
+    ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width,145);
+    ctx.fillText(greaterval,25 + 4.4*(30+10*greaterval) - ctx.measureText(greaterval).width,145);
+    //ctx.fillText(greaterval,points0[i+1].x - 10,145);
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
     ctx.moveTo(points0[i+1].x, 135);
     ctx.lineTo(points0[i+1].x, 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++) {
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
+    var zval = (zvalue - 0).toFixed(1);
     var zvaluea = (zvalue - .1).toFixed(1);
     var zvalueb = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -2541,7 +2773,6 @@ function compstandardbetween() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -2550,7 +2781,6 @@ function compstandardbetween() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (lessval < 0) {
         table31 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -2570,7 +2800,6 @@ function compstandardbetween() {
             }  
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -2590,7 +2819,6 @@ function compstandardbetween() {
             }  
         }
     }
-    
     if (lessval < 0) {
         table32 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -2610,16 +2838,14 @@ function compstandardbetween() {
             }  
         }
     }
-    
-    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
-    
+    var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     var zvalue2 = toFixing(parseFloat(greaterval),1);
+    var zval2 = (zvalue2 - 0).toFixed(1);
     var zvalue2a = (zvalue2 - .1).toFixed(1);
     var zvalue2b = (parseFloat(zvalue2) + .1).toFixed(1);
     var zvaluer2 = parseFloat(greaterval).toFixed(2); 
     var zseconddec2 = +zvaluer2.toString().split('').pop();
     var colm2 = zseconddec2
-    
     if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
          var valstart2 = 0; 
          var valend2 = 4;
@@ -2639,7 +2865,6 @@ function compstandardbetween() {
          var valstart2 = 5; 
          var valend2 = 9;
     }
-    
     table4 = []
     for (var r = valstart2; r < valend2 + 1; r++){
         if (r == colm2) {
@@ -2648,9 +2873,6 @@ function compstandardbetween() {
                 table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
-    
-    
     if (greaterval < 0) {
         table51 = []
         for (var r = valstart2; r < valend2 + 1; r++){
@@ -2670,7 +2892,6 @@ function compstandardbetween() {
             }  
         }
     }
-    
     if (greaterval < 0) {
         table5 = []
         for (var r = valstart2; r < valend2 + 1; r++){
@@ -2690,7 +2911,6 @@ function compstandardbetween() {
             }  
         }
     }
-    
     if (greaterval < 0) {
         table52 = []
         for (var r = valstart2; r < valend2 + 1; r++){
@@ -2710,12 +2930,8 @@ function compstandardbetween() {
             }  
         }
     }
-    
-    
-    var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}   & \\; P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") \\\\  &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '')  + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)) - normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
+    var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zval2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}   & \\; P(" + lessval + sign1 + " z "+ sign2 + greaterval + ") \\\\  &= P( z "+ sign2 + greaterval + ") - P( z " + sign1 + lessval + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval))).toFixed(4).replace(/^0+/, '')  + " - "+ parseFloat(normalcdf(parseFloat(lessval))).toFixed(4).replace(/^0+/, '')  + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval)).toFixed(4) - normalcdf(parseFloat(lessval)).toFixed(4)).toFixed(4).replace(/^0+/, '')  + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
