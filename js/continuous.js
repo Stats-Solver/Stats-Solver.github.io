@@ -16,11 +16,7 @@ $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide
 $("#myCanvas0").hide(); $("#581773186").hide();
 $("#contoutputs").hide();
 
-normaltype = "probability"
-standardtype = "probability"
-approxtype = "probability"
-uniformtype = "probability"
-tdisttype = "probability"
+normaltype = "probability"; standardtype = "probability"; approxtype = "probability"; uniformtype = "probability"; tdisttype = "probability"
 
 function fixnum(i){
     return parseFloat(i.toFixed(2))
@@ -52,52 +48,29 @@ var canvas = document.getElementById("myCanvas0");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas0");
+var canvas = document.getElementById("howCanvas1");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
-
-//var canvas = document.getElementById("howCanvas1");
-//var ctx = canvas.getContext("2d");
-//ctx.scale(1.25, 1.25);
 
 var canvas = document.getElementById("howCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-//var canvas = document.getElementById("howCanvas3");
-//var ctx = canvas.getContext("2d");
-//ctx.scale(1.25, 1.25);
-
-//var canvas = document.getElementById("howCanvas4");
-//var ctx = canvas.getContext("2d");
-//ctx.scale(1.167, 1.167);
-
-//var canvas = document.getElementById("howCanvas5");
-//var ctx = canvas.getContext("2d");
-//ctx.scale(1.167, 1.167);
-
-//var canvas = document.getElementById("howCanvas6");
-//var ctx = canvas.getContext("2d");
-//ctx.scale(1.167, 1.167);
-
-var canvas = document.getElementById("howCanvas7");
+var canvas = document.getElementById("howCanvas3");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-var canvas = document.getElementById("howCanvas8");
+var canvas = document.getElementById("howCanvas4");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-how0(); 
-//how1(); 
+how1(); 
 how2(); 
-//how3(); 
-//how4(); how5(); how6();
-how7(); 
-how8(); 
+how3(); 
+how4(); 
 
-function how0(){
-    var c = document.getElementById("howCanvas0");
+function how1(){
+    var c = document.getElementById("howCanvas1");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
@@ -134,65 +107,6 @@ function how0(){
     ctx.lineTo(225, 45);
     ctx.lineTo(225, 130);
     
-    
-    ctx.stroke();
-}
-
-function how1(){
-    var c = document.getElementById("howCanvas1");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(75, 130);
-    ctx.lineTo(75, 45);
-    ctx.lineTo(150, 45);
-    ctx.lineTo(150, 130);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(40, 20);
-    ctx.lineTo(40, 130);
-    ctx.lineTo(260, 130);
-    
-    
-    ctx.fillText("f(x)",35,15);
-    ctx.fillText("x",265,132);
-    ctx.fillText("1",15,42);
-    ctx.fillText("40",12,55);
-    ctx.fillText("10",70,145);
-    ctx.fillText("50",220,145);
-    
-    ctx.moveTo(10, 45);
-    ctx.lineTo(25, 45);
-    ctx.moveTo(35, 45);
-    ctx.lineTo(45, 45);
-    ctx.moveTo(75, 135);
-    ctx.lineTo(75, 125);
-    ctx.moveTo(225, 135);
-    ctx.lineTo(225, 125);
-    
-    ctx.moveTo(75, 130);
-    ctx.lineTo(75, 45);
-    ctx.lineTo(225, 45);
-    ctx.lineTo(225, 130);
-    
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("30",145,145);
-    
-    //ctx.fillText("20",110,40);
-    //ctx.fillText("1",160,82);
-    //ctx.fillText("40",157,95);
-    
-    //ctx.moveTo(155, 85);
-    //ctx.lineTo(170, 85); 
     
     ctx.stroke();
 }
@@ -266,352 +180,6 @@ function how3(){
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
     
-    ctx.fillText("Standard Normal Probability Distribution",65,10);
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    
-    ctx.fillText("z",285,132);
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    ctx.fillText("σ=1",225,50);
-    
-    
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke(); 
-}
-
-function how4(){
-    
-    var area = .10565
-    var z = NormSInv(area)
-    
-    var lessval = z
-    var lessvalz = 30+10*lessval
-
-    
-    var exp = 2.71828;
-
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("howCanvas4");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    
-    //ctx.fillText("P(-1.25 ≤ z ≤ 0.86)",80,10);
-    ctx.fillText("Type 1",135,10);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    
-    var points0 = []
-    
-    for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-    // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
-    ctx.lineTo(20 + 4.4*0, 130);
-    
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    
-    ctx.fillText("z",285,132);
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-
-    
-    ctx.fillText("-1.25",10 + 4.4*(30+10*lessval),145);
-    
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke(); 
-}
-
-function how5(){
-    
-    var lessval = -1.25
-    var lessvalz = 30+10*lessval
-    var greaterval = .86
-    var greatervalz = 30+10*greaterval
-    var exp = 2.71828;
-
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("howCanvas5");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.fillText("Type 2",135,10);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    
-    var points0 = []
-    
-    for (i = 0; i < (greatervalz-lessvalz); i++) {
-      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
-		}
-    
-    // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    
-    ctx.lineTo(points0[i+1].x, 130);
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
-    
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    
-    ctx.fillText("z",285,132);
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
-    ctx.fillText(greaterval,points0[i+1].x - 10,145);
-    
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    ctx.moveTo(points0[i+1].x, 135);
-    ctx.lineTo(points0[i+1].x, 125);
-    
-    
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke(); 
-}
-
-function how6(){
-    
-    var lessval = .86
-    var lessvalz = 30+10*lessval
-    var exp = 2.71828;
-
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("howCanvas6");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.fillText("Type 3",135,10);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    
-    var points0 = []
-    
-    var lessvalneg = -1*lessval
-    var lessvalz2 = 30+10*lessvalneg
-    
-    for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
-    // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
-    ctx.lineTo(283, 130);
-    
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    
-    ctx.fillText("z",285,132);
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
-    
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
-    
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke(); 
-}
-
-function how7(){
-    var exp = 2.71828;
-
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("howCanvas7");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Normal Approximation of Binomial",75,10);
     
     ctx.strokeStyle = 'lightgray';
@@ -670,7 +238,7 @@ function how7(){
     ctx.stroke(); 
 }
 
-function how8() {
+function how4() {
     var exp = 2.71828;
     
     var f = [];
@@ -679,7 +247,7 @@ function how8() {
       f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
     }
     
-    var c = document.getElementById("howCanvas8");
+    var c = document.getElementById("howCanvas4");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 200);
     
@@ -832,9 +400,6 @@ function compute(X,df) {
     return tcdf;
 }
 
-
-
-
 function showstuff(){
     $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
     $("#uniform").hide(); $("#normal").hide(); $("#standard").hide(); $("#exponential").hide(); $("#tdistribution").hide();
@@ -843,13 +408,13 @@ function showstuff(){
     $("#lessthan2").hide(); $("#greaterthan2").hide(); $("#betweentwo2").hide();
     $("#lessthan3").hide(); $("#greaterthan3").hide(); $("#betweentwo3").hide();
     $("#lessthan4").hide(); $("#greaterthan4").hide(); $("#betweentwo4").hide();
-    $("#explanation").hide(); $("#myCanvas").hide();
+    $("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
-    $("#output").empty(); $("#output2").empty(); $("#myCanvas0").hide();
+    //$("#output").empty(); $("#output2").empty(); $("#myCanvas0").hide(); $("#myCanvas").hide();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
-        uniform()
+        $("#uniform").show();$("#uniformprob").show();$("#uniformbetween").hide();$("#uniformab").show(); 
         $("#uniformexamples").show(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide();
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
         $("#uniformprobability").show();
@@ -858,7 +423,8 @@ function showstuff(){
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").show(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "standard") {
-        standard()
+        $("#standard").show(); $("#standardprob").show(); $("#standardbetween").hide();
+        $("#standardarea").hide(); $("#standardarea2").hide(); $("#standardcurve").hide();
         $("#uniformexamples").hide(); $("#standardexamples").show(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "exponential") {
@@ -896,12 +462,12 @@ function stat(){
     $("#output").empty(); $("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
-        compuniform()
+        uniform()
     } else if (x == "normal"){
         $("#myCanvas0").show();
         compnormal()
     } else if (x == "standard") {
-        compstandard()
+        standard()
     } else if (x == "exponential") {
         compexponential()
     } else if (x == "tdistribution") {
@@ -924,14 +490,7 @@ function stat(){
 ///////////////////////////////////////// UNIFORM DISTRIBUTION////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function uniform() {
-    $("#uniform").show();
-    $("#uniformprob").show();
-    $("#uniformbetween").hide();
-    $("#uniformab").show(); 
-}
-
-function compuniform(){
+function uniform(){
     if (uniformtype == "expected"){
         uniformexpected()
     } else if (uniformtype == "variance"){
@@ -1402,6 +961,19 @@ function uniformbetween() {
 ///////////////////////////////////////// STANDARD NORMAL DISTRIBUTION////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+function standard() {
+    if (standardtype == "probability") {
+        $("#myCanvas0").hide(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
+        compstandardprob()
+    } else if (standardtype == "area") {
+        $("#myCanvas0").hide(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
+        compstandardarea() 
+    } else if (standardtype == "curve") {
+        $("#myCanvas").hide(); $("#output").hide(); $("#output2").hide();
+        standardcurve() 
+    }  
+}
+
 function switchstandardarea() {
     $("#standardprob").hide(); $("#standardarea").show(); $("#standardcurve").hide();
     standardtype = "area"
@@ -1418,25 +990,6 @@ function switchstandardcurve() {
 }
 
 
-function standard() {
-    $("#standard").show();
-    $("#standardprob").show();
-    $("#standardbetween").hide();
-}
-
-
-function compstandard() {
-    if (standardtype == "probability") {
-        $("#myCanvas0").hide(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
-        compstandardprob()
-    } else if (standardtype == "area") {
-        $("#myCanvas0").hide(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
-        compstandardarea() 
-    } else if (standardtype == "curve") {
-        $("#myCanvas").hide(); $("#output").hide(); $("#output2").hide();
-        standardcurve() 
-    }  
-}
 
 
 function switchstandard1() {
@@ -2582,57 +2135,46 @@ function standardequal() {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
+    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    var points0 = []
-    var lessvalneg = -1*lessval
-    var lessvalz2 = 30+10*lessvalneg
-    for (i = 0; i < lessvalz2; i++) {
-        points0[i] = {x:250 - 3.36*i, y:120 - 220*f[i]}
-    }
-    
-    // move to the first point
-    ctx.moveTo(points0[0].x, points0[0].y);
 
-
-    for (i = 1; i < points0.length - 2; i ++){
-        var xc = (points0[i].x + points0[i + 1].x) / 2;
-        var yc = (points0[i].y + points0[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-    }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    ctx.lineTo(50 + 3.36*lessvalz, 130);
-    ctx.stroke();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
+    
     ctx.beginPath();
-    ctx.moveTo(50, 130);
-    ctx.lineTo(250, 130);
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    ctx.fillText("z",255,132);
-    ctx.fillText(lessval,40 + 3.36*(30+10*lessval),145);
-    ctx.moveTo(50 + 3.36*(30+10*lessval), 135);
-    ctx.lineTo(50 + 3.36*(30+10*lessval), 125);
+    
+    ctx.fillText("z",285,132);
+    ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width,145);
+    
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    
     var points = []
+    
     for (i = 0; i < 60; i++) {
-        points[i] = {x:50 + 3.36*i, y:120 - 220*f[i]}
-    }
-    // move to the first point
-    ctx.moveTo(points[0].x, points[0].y);
-    for (i = 1; i < points.length - 2; i ++){
-        var xc = (points[i].x + points[i + 1].x) / 2;
-        var yc = (points[i].y + points[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-    }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+		}
+    
+        // move to the first point
+       ctx.moveTo(points[0].x, points[0].y);
+       for (i = 1; i < points.length - 2; i ++)
+       {
+          var xc = (points[i].x + points[i + 1].x) / 2;
+          var yc = (points[i].y + points[i + 1].y) / 2;
+          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+       }
+     // curve through the last two points
+     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+
     ctx.stroke();
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -2689,27 +2231,39 @@ function standardbetween() {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    var points0 = []
-    for (i = 0; i < (greatervalz-lessvalz); i++) {
-      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
-		}
-    
-    // move to the first point
-    ctx.moveTo(points0[0].x, points0[0].y);
-    for (i = 1; i < points0.length - 2; i ++) {
-        var xc = (points0[i].x + points0[i + 1].x) / 2;
-        var yc = (points0[i].y + points0[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    if ((greaterval - lessval) > .2) {
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        var points0 = []
+        for (i = 0; i < (greatervalz-lessvalz); i++) {
+            points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+        }
+        // move to the first point
+        ctx.moveTo(points0[0].x, points0[0].y);
+        for (i = 1; i < points0.length - 2; i ++) {
+            var xc = (points0[i].x + points0[i + 1].x) / 2;
+            var yc = (points0[i].y + points0[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+        ctx.lineTo(points0[i+1].x, 130);
+        ctx.lineTo(20 + 4.4*lessvalz, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+    } else {
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20 + 4.4*lessvalz, 130);
+        ctx.lineTo(20 + 4.4*greatervalz, 130);
+        ctx.lineTo(20 + 4.4*greatervalz, 120 - 250*f[Math.floor(greatervalz)]);
+        ctx.lineTo(20 + 4.4*lessvalz, 120 - 250*f[Math.floor(lessvalz)]);
+        ctx.lineTo(20 + 4.4*lessvalz, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
     }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.lineTo(points0[i+1].x, 130);
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
     ctx.beginPath();
@@ -2721,26 +2275,50 @@ function standardbetween() {
         ctx.fillText("0",148,145);
     }
     ctx.fillText("z",285,132);
-    ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width,145);
-    ctx.fillText(greaterval,25 + 4.4*(30+10*greaterval) - ctx.measureText(greaterval).width,145);
-    //ctx.fillText(greaterval,points0[i+1].x - 10,145);
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    ctx.moveTo(points0[i+1].x, 135);
-    ctx.lineTo(points0[i+1].x, 125);
-    var points = []
-    for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+    if ((greaterval - lessval) >= .5) {
+        ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width,145);
+        ctx.fillText(greaterval,25 + 4.4*(30+10*greaterval) - ctx.measureText(greaterval).width,145);
+    } else {
+        ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - 1.25 *ctx.measureText(lessval).width,145);
+        ctx.fillText(greaterval,25 + 4.4*(30+10*greaterval)- .5 * ctx.measureText(greaterval).width,145);
     }
-    // move to the first point
-    ctx.moveTo(points[0].x, points[0].y);
-    for (i = 1; i < points.length - 2; i ++) {
-        var xc = (points[i].x + points[i + 1].x) / 2;
-        var yc = (points[i].y + points[i + 1].y) / 2;
-        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    if ((greaterval - lessval) > .2) {
+        //ctx.fillText(greaterval,points0[i+1].x - 10,145);
+        ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+        ctx.moveTo(points0[i+1].x, 135);
+        ctx.lineTo(points0[i+1].x, 125);
+        var points = []
+        for (i = 0; i < 60; i++) {
+            points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++) {
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    } else {
+        //ctx.fillText(greaterval,points0[i+1].x - 10,145);
+        ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+        ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+        var points = []
+        for (i = 0; i < 60; i++) {
+            points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++) {
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
     }
-    // curve through the last two points
-    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
     var zvalue = toFixing(parseFloat(lessval),1);
     var zval = (zvalue - 0).toFixed(1);
