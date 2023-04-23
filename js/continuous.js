@@ -1180,7 +1180,7 @@ function standardarealeft() {
         }
     }
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1349,7 +1349,7 @@ function standardarearight() {
         }
     }
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zval+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + parseFloat((1-area).toFixed(4)) + " \\end{align} $$" + table + " $$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + parseFloat((1-area).toFixed(4)) + " \\end{align} $$" + table + " $$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -1641,17 +1641,17 @@ function standardareabetween() {
     }
     var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zval2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     if (input1 == "negz" && input2 == "posz") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= (1 - " + area + ")/2 \\\\ &= " + parseFloat(((1-area)/2).toFixed(4)) + " \\end{align} $$" + tablea + "$$-z = " + parseFloat(z1.toFixed(2)) + " \\rightarrow z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= (1 - " + area + ")/2 \\\\ &= " + parseFloat(((1-area)/2).toFixed(4)) + " \\end{align} $$" + tablea + "$$-z = " + parseFloat(z1.toFixed(2)) + " \\rightarrow z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (input1 == "zero" && input2 == "posz") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= .50 + " + area + " \\\\ &= " + parseFloat((parseFloat(area)+.5).toFixed(4)) + " \\end{align} $$" + tableb + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= .50 + " + area + " \\\\ &= " + parseFloat((parseFloat(area)+.5).toFixed(4)) + " \\end{align} $$" + tableb + "$$ z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (input1 == "negz" && input2 == "zero") {
-        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= 1 - (" + area + " + .50) \\\\ &= " + parseFloat((1-(parseFloat(area)+.5)).toFixed(4)) + " \\end{align} $$" + tablea + "$$ -z = " + parseFloat(z1.toFixed(2)) + " \\rightarrow z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$"
+        document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } -z &= 1 - (" + area + " + .50) \\\\ &= " + parseFloat((1-(parseFloat(area)+.5)).toFixed(4)) + " \\end{align} $$" + tablea + "$$ -z = " + parseFloat(z1.toFixed(2)) + " \\rightarrow z = \\boxed{" + parseFloat(z.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
 
 function standardcurve() {
-    $("#explanation").show(); $("#myCanvas0").show();
+    $("#explanation").show(); $("#myCanvas0").show(); $("#myCanvas").hide(); $("#output").show(); $("#output2").hide();
     
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
@@ -1740,7 +1740,9 @@ function standardcurve() {
     
     ctx.stroke();
     
+    document.getElementById("output").innerHTML = "$$ \\text{Common Percentages:} $$ $$ 68.3\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(1 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(1 * sd))+" $$ $$ 95.4\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(2 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(2 * sd))+" $$ $$ 99.7\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(3 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(3 * sd))+" $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
+    MathJax.typeset();
 }
 
 function compstandardprob() {
@@ -3619,13 +3621,13 @@ function normalbetween() {
     
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 =\\frac{x_1-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +lessval.toFixed(2)+ "} $$ $$ z_2 =\\frac{x_2-\\mu}{\\sigma} =\\frac{"+greaterval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +greaterval.toFixed(2)+ "} $$ "
     
-    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}  & P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") \\\\ &= P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") \\\\ &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + " - "+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval.toFixed(2))).toFixed(4) - normalcdf(parseFloat(lessval.toFixed(2))).toFixed(4)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "<br>" + tablea + "<br>" + tableb + "$$ \\begin{align}  & P(" + lessval0 + sign1 + " x "+ sign2 + greaterval0 + ") \\\\ &= P(" + lessval.toFixed(2) + sign1 + " z "+ sign2 + greaterval.toFixed(2) + ") \\\\ &= P( z "+ sign2 + greaterval.toFixed(2) + ") - P( z " + sign1 + lessval.toFixed(2) + ") \\\\ &= "+ parseFloat(normalcdf(parseFloat(greaterval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + " - "+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(greaterval.toFixed(2))).toFixed(4) - normalcdf(parseFloat(lessval.toFixed(2))).toFixed(4)).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
 function normalarealower() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output").hide(); $("#output2").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
     var expval = document.getElementById('expval').value
     var sd =  document.getElementById('stdev').value
     var perc = document.getElementById('areavaln').value
@@ -3656,8 +3658,8 @@ function normalarealower() {
     var points0 = []
     
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     
     // move to the first point
    ctx.moveTo(points0[0].x, points0[0].y);
@@ -3692,7 +3694,7 @@ function normalarealower() {
     
     ctx.fillText("x",285,132);
     ctx.fillText("x",18 + 4.4*(30+10*lessval),145);
-    ctx.fillText(perc + "%",-5 + 4.4*(30+10*lessval),120);
+    ctx.fillText(perc + "%",20 + 4.4*(30+10*lessval)*.67,(130 + points0[i-5].y)/2);
     
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
@@ -3767,7 +3769,7 @@ function normalarealower() {
     
     ctx.fillText("z",285,132);
     ctx.fillText("z",18 + 4.4*(30+10*lessval),145);
-    ctx.fillText(perc + "%",-5 + 4.4*(30+10*lessval),120);
+    ctx.fillText(perc + "%",20 + 4.4*(30+10*lessval)*.67,(130 + points0[i-5].y)/2);
     
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
@@ -3892,7 +3894,9 @@ function normalarealower() {
     
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = table + " $$ z = " + parseFloat(z.toFixed(2)) + " $$" + "$$ z =\\frac{x-\\mu}{\\sigma} \\rightarrow " + parseFloat(z.toFixed(2)) + " = \\frac{x-"+expval+"}{"+sd+"} $$ $$ \\begin{align} x &= " + parseFloat(z.toFixed(2)) + "("+sd+") + "+expval+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Find the corresponding } z \\text{-value:} $$"
+    
+    document.getElementById("output2").innerHTML = table + " $$ z = {\\color{RoyalBlue}" + parseFloat(z.toFixed(2)) + "} $$ $$ \\text{Solve for } x \\text{:} $$ $$ z =\\frac{x-\\mu}{\\sigma} \\rightarrow " + parseFloat(z.toFixed(2)) + " = \\frac{x-"+expval+"}{"+sd+"} $$ $$ \\begin{align} x &= " + parseFloat(z.toFixed(2)) + "("+sd+") + "+expval+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -3901,7 +3905,7 @@ function normalarealower() {
 
 
 function normalareaupper() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output").hide(); $("#output2").show();
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
     var expval = document.getElementById('expval').value
     var sd =  document.getElementById('stdev').value
     var perc = document.getElementById('areavaln').value
@@ -4177,14 +4181,16 @@ function normalareaupper() {
     
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + table + " $$ z = " + parseFloat(z.toFixed(2)) + " $$" + "$$ z =\\frac{x-\\mu}{\\sigma} \\rightarrow " + parseFloat(z.toFixed(2)) + " = \\frac{x-"+expval+"}{"+sd+"} $$ $$ \\begin{align} x &= " + parseFloat(z.toFixed(2)) + "("+sd+") + "+expval+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output").innerHTML = "$$ \\text{Find the corresponding } z \\text{-value:} $$"
+    
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\text{Area to the left of } z &= 1 - " + area + " \\\\ &= " + (1-area) + " \\end{align} $$" + table + " $$ z = {\\color{RoyalBlue}" + parseFloat(z.toFixed(2)) + "} $$ $$ \\text{Solve for } x \\text{:} $$ $$ z =\\frac{x-\\mu}{\\sigma} \\rightarrow " + parseFloat(z.toFixed(2)) + " = \\frac{x-"+expval+"}{"+sd+"} $$ $$ \\begin{align} x &= " + parseFloat(z.toFixed(2)) + "("+sd+") + "+expval+" \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
 }
 
 function normalcurve() {
-    $("#explanation").show(); $("#myCanvas0").show(); $("#myCanvas").hide(); $("#output").hide(); $("#output2").hide();
+    $("#explanation").show(); $("#myCanvas0").show(); $("#myCanvas").hide(); $("#output").show(); $("#output2").hide();
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
     document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
@@ -4269,6 +4275,9 @@ function normalcurve() {
     
     ctx.stroke();
     
+    document.getElementById("output").innerHTML = "$$ \\text{Common Percentages:} $$ $$ 68.3\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(1 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(1 * sd))+" $$ $$ 95.4\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(2 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(2 * sd))+" $$ $$ 99.7\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(3 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(3 * sd))+" $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    
+    MathJax.typeset();
     
 }
 
