@@ -281,16 +281,16 @@
         <table>
           <tr>
             <td data-toggle="tooltip" data-placement="top" title="Expected Value">$ \mu = $</td>
-            <td><input class = "combperm" type="text" id="expval"></td>
+            <td><input class = "combperm2" type="text" id="expval"></td>
             <td>&nbsp; &nbsp;</td>
             <td data-toggle="tooltip" data-placement="top" title="Standard Deviation">$ \sigma = $</td>
-            <td><input class = "combperm" type="text" id="stdev"></td>
+            <td><input class = "combperm2" type="text" id="stdev"></td>
             </tr>
         </table> 
           
           <table class = "mt-2" id="normalprob">
             <tr>
-            <td>$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprob()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option> </select> <input class = "combperm" type="text" id="normalval">$)$ 
+            <td>$P(x$ <select id="probtype3" class="hypinput1 probtype" onchange="normalprobtype()">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> <option value="equal">=</option> <option value="between"> &#8804;&#8804; </option> <option value="between2"> &#8804;< </option> <option value="between3"> <&#8804; </option> <option value="between4"> << </option> </select> <input class = "combperm2" type="text" id="normalval">$)$ 
             
             &nbsp;
               
@@ -304,7 +304,7 @@
         </table>  
           
           <div class = "text-center mt-2" id="normalbetween">
-            $P($ <input class = "combperm" type="text" id="normalval1"> <select id="probtype3b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype3b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select> <input class = "combperm" type="text" id="normalval2">$)$
+            $P($ <input class = "combperm2" type="text" id="normalval1"> <select id="probtype3b1" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select>  $x$ <select id="probtype3b2" class="hypinput1 probtype" onchange="">  <option value="lessequal"> &#8804; </option> <option value="less"> < </option> </select> <input class = "combperm2" type="text" id="normalval2">$)$
               <button id = "switch1" class="btn btn-outline-primary" onclick="normalback()" id="normalback">
               <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-arrow-left" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
           <path fill-rule="evenodd" d="M5.854 4.646a.5.5 0 0 1 0 .708L3.207 8l2.647 2.646a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 0 1 .708 0z"/>
@@ -524,8 +524,8 @@
                 <select id="stat" class="form-control" onchange="showstuff()">
                     <option value="choose">Choose One</option>
                     <option value="uniform">Uniform Distribution</option>
-                    <option value="normal">Normal Distribution</option>
                     <option value="standard">Standard Normal Distribution</option>
+                    <option value="normal">Normal Distribution</option>
                     <option value="approximation">Approximation of Binomial</option>
                     <option value="exponential">Exponential Distribution</option>
                     <option value="tdistribution">Student's t-Distribution</option>
