@@ -6125,7 +6125,7 @@ function exponentialless() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+ sign + lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= 1 - "+ parseFloat(ans0.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+ sign + lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= 1 - "+ parseFloat(ans0.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6243,7 +6243,7 @@ function exponentialgreater() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - P(x"+ sign2 + lessval + ") \\\\  &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - (1 - "+ parseFloat(ans0.toFixed(4))  + ") \\\\ &= 1 - "+ parseFloat(ans.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-ans.toFixed(4)).toFixed(4)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - P(x"+ sign2 + lessval + ") \\\\  &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - (1 - "+ parseFloat(ans0.toFixed(4))  + ") \\\\ &= 1 - "+ parseFloat(ans.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-ans.toFixed(4)).toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6348,7 +6348,7 @@ function exponentialequal() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$  P(x = "+ lessval + ") = \\boxed{0}  $$"
+    document.getElementById("output2").innerHTML = "$$  P(x = "+ lessval + ") = \\boxed{0}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6477,7 +6477,7 @@ function exponentialbetween() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= P(x"+ sign2 + greaterval+") - P(x" + sign1 + lessval + ") \\\\ &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= (1 - "+ parseFloat(ans20.toFixed(4)) + ") - (1 - "+ parseFloat(ans10.toFixed(4)) + ") \\\\ &= "+ parseFloat(ans2.toFixed(4)) + " - "+ parseFloat(ans1.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= P(x"+ sign2 + greaterval+") - P(x" + sign1 + lessval + ") \\\\ &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= (1 - "+ parseFloat(ans20.toFixed(4)) + ") - (1 - "+ parseFloat(ans10.toFixed(4)) + ") \\\\ &= "+ parseFloat(ans2.toFixed(4)) + " - "+ parseFloat(ans1.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6493,7 +6493,7 @@ function exponentialpdf() {
     } else {
         var mu = document.getElementById('exponentialexpval2').value
     }
-    document.getElementById("output2").innerHTML = "$$ f(x) = \\frac{1}{\\mu}e^{-x/\\mu} $$ $$ \\boxed{ f(x) = \\frac{1}{"+mu+"}e^{-x/"+mu+"} } $$"
+    document.getElementById("output2").innerHTML = "$$ f(x) = \\frac{1}{\\mu}e^{-x/\\mu} $$ $$ \\downarrow $$ $$ \\boxed{ f(x) = \\frac{1}{"+mu+"}e^{-x/"+mu+"} } $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6509,14 +6509,14 @@ function exponentialformula() {
     } else {
         var mu = document.getElementById('exponentialexpval2').value
     }
-    document.getElementById("output2").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{-x_0/\\mu} $$ $$ \\boxed{ P(x \\leq x_0) = 1 - e^{-x_0/"+mu+"} }  $$"
+    document.getElementById("output2").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{-x_0/\\mu} $$ $$ \\downarrow $$ $$ \\boxed{ P(x \\leq x_0) = 1 - e^{-x_0/"+mu+"} }  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
 }
 
 function exponentialcurve() {
-    $("#explanation").show(); $("#myCanvas").show(); $("#output2").hide(); $("#myCanvas0").hide(); $("#output").hide();
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
     document.getElementById("formulatext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
     document.getElementById("explanationtext").innerHTML = "The probability that the random variable will be less than or equal to a value is found by using the formula."
@@ -6598,6 +6598,8 @@ function exponentialcurve() {
     
     
     ctx.stroke();
+    
+    document.getElementById("output2").innerHTML = "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     
     
 }
