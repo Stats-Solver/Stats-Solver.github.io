@@ -17,6 +17,7 @@ $("#myCanvas0").hide(); $("#581773186").hide();
 $("#contoutputs").hide();
 
 normaltype = "probability"; standardtype = "probability"; approxtype = "probability"; uniformtype = "probability"; tdisttype = "probability"
+exponentialinput = "mu"; exponentialtype = "probability"
 
 function fixnum(i){
     return parseFloat(i.toFixed(2))
@@ -428,9 +429,10 @@ function showstuff(){
         $("#uniformexamples").hide(); $("#standardexamples").show(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "exponential") {
-        exponential()
+        $("#exponential").show(); $("#exponentialprob").show(); $("#exponentialbetween").hide(); $("#exponentialpdfinput").hide();
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").show(); 
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
+        $("#exponentialpdf").hide(); $("#exponentialprobformula").hide(); $("#exponentialcurve").hide();
     } else if (x == "tdistribution") {
         tdistribution()
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
@@ -463,17 +465,17 @@ function stat(){
     var x = document.getElementById("stat").value;
     if (x == "uniform"){
         uniform()
-    } else if (x == "normal"){
-        normal()
     } else if (x == "standard") {
         standard()
-    } else if (x == "exponential") {
-        compexponential()
-    } else if (x == "tdistribution") {
-        comptdist()
+    }  else if (x == "normal"){
+        normal()
     } else if (x == "approximation") {
         $("#myCanvas0").show(); $("#myCanvas").show(); 
         compapprox()
+    } else if (x == "exponential") {
+        exponential()
+    } else if (x == "tdistribution") {
+        comptdist()
     } else if (x == "fdistribution") {
         compfdist()
     } else if (x == "chisquare") {
@@ -3902,8 +3904,6 @@ function normalarealower() {
     
 }
 
-
-
 function normalareaupper() {
     $("#myCanvas0").show(); $("#myCanvas").show(); $("#output").show(); $("#output2").show();
     var expval = document.getElementById('expval').value
@@ -5986,75 +5986,50 @@ function approxprobability5() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////// Exponential Distribution /////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 
 function exponential() {
-    $("#exponential").show();
-    $("#exponentialprob").show();
-    $("#exponentialbetween").hide();
-}
-
-function compexponential() {
-    var probtype = document.getElementById('probtype4').value
-    if (probtype == "lessequal" || probtype == "less") {
-        compexponential1() 
-    } else if (probtype == "greaterequal" || probtype == "greater") {
-        compexponential2() 
-    } else if (probtype == "equal") {
-        compexponential3()
-    } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
-        compexponential4()
+    if (exponentialtype == "probability"){
+        var probtype = document.getElementById('probtype4').value
+        if (probtype == "lessequal" || probtype == "less") {
+            exponentialless() 
+        } else if (probtype == "greaterequal" || probtype == "greater") {
+            exponentialgreater() 
+        } else if (probtype == "equal") {
+            exponentialequal()
+        } else if (probtype == "between" || probtype == "between2" || probtype == "between3" || probtype == "between4") {
+            exponentialbetween()
+        }
+    } else if (exponentialtype == "pdf") {
+        exponentialpdf()
+    } else if (exponentialtype == "formula") {
+        exponentialformula()
+    } else if (exponentialtype == "curve") {
+        exponentialcurve()
     }
+    
 }
 
-function compexponential1() {
-    $("#explanation").show(); $("#myCanvas").show();
-    
+function exponentialless() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
     document.getElementById("formulatext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
     document.getElementById("explanationtext").innerHTML = "The probability that the random variable will be less than or equal to a value is found by using the formula."
     
+    if (exponentialinput == "mu") {
+        var expval = document.getElementById('expval2').value
+    } else {
+        var expval = document.getElementById('exponentialexpval2').value
+    }
     var probtype = document.getElementById('probtype4').value
-    var expval = document.getElementById('expval2').value
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval').value;
     var lessvalz = (lessval / expval) * 15
+    var ans0 = Math.pow(exp,(-lessval/expval))
     var ans = 1 - Math.pow(exp,(-lessval/expval))
     
     var f = [];
@@ -6114,10 +6089,16 @@ function compexponential1() {
     
     ctx.fillText("f(x)",45,15);
     ctx.fillText("x",255,132);
-    ctx.fillText(lessval,45 + 6*lessvalz,145);
+    ctx.fillText(lessval,50 + 6*lessvalz - ctx.measureText(lessval).width/2,145);
     
     ctx.moveTo(50 + 6*lessvalz, 135);
     ctx.lineTo(50 + 6*lessvalz, 125);
+    
+    ctx.moveTo(45, 30);
+    ctx.lineTo(55, 30);
+    var intercept = "1/"+expval
+    ctx.fillText(intercept,43 - ctx.measureText(intercept).width,33);
+    
     
     var points = []
     
@@ -6144,21 +6125,26 @@ function compexponential1() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ P(x "+ sign + lessval + ") = 1 - e^{-"+ lessval + "/"+ expval + "} = \\boxed{"+ parseFloat(ans.toFixed(2)) + "} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+ sign + lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= 1 - "+ parseFloat(ans0.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$"
     
     MathJax.typeset();
     
 }
 
-function compexponential2() {
-    $("#explanation").show(); $("#myCanvas").show();
+function exponentialgreater() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     document.getElementById("explanationtext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
     
     var probtype = document.getElementById('probtype4').value
-    var expval = document.getElementById('expval2').value
+    if (exponentialinput == "mu") {
+        var expval = document.getElementById('expval2').value
+    } else {
+        var expval = document.getElementById('exponentialexpval2').value
+    }
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval').value;
     var lessvalz = (lessval / expval) * 15
+    var ans0 = Math.pow(exp,(-lessval/expval))
     var ans = 1 - Math.pow(exp,(-lessval/expval))
     
     var f = [];
@@ -6169,8 +6155,10 @@ function compexponential2() {
     
     if (probtype == "greaterequal") {
         var sign = "\\geq"
+        var sign2 = "\\leq"
     } else if (probtype == "greater") {
         var sign = ">"
+        var sign2 = "<"
     }
     
     var c = document.getElementById("myCanvas");
@@ -6220,10 +6208,15 @@ function compexponential2() {
     
     ctx.fillText("f(x)",45,15);
     ctx.fillText("x",255,132);
-    ctx.fillText(lessval,45 + 6*lessvalz,145);
+    ctx.fillText(lessval,50 + 6*lessvalz - ctx.measureText(lessval).width/2,145);
     
     ctx.moveTo(50 + 6*lessvalz, 135);
     ctx.lineTo(50 + 6*lessvalz, 125);
+    
+    ctx.moveTo(45, 30);
+    ctx.lineTo(55, 30);
+    var intercept = "1/"+expval
+    ctx.fillText(intercept,43 - ctx.measureText(intercept).width,33);
     
     var points = []
     
@@ -6250,18 +6243,22 @@ function compexponential2() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - "+ parseFloat(ans.toFixed(2)) + " = \\boxed{"+ parseFloat((1-ans).toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - P(x"+ sign2 + lessval + ") \\\\  &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - (1 - "+ parseFloat(ans0.toFixed(4))  + ") \\\\ &= 1 - "+ parseFloat(ans.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-ans.toFixed(4)).toFixed(4)) + "} \\end{align} $$"
     
     MathJax.typeset();
     
 }
 
-function compexponential3() {
-    $("#explanation").show(); $("#myCanvas").show();
+function exponentialequal() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     document.getElementById("explanationtext").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$$"
     
     var probtype = document.getElementById('probtype4').value
-    var expval = document.getElementById('expval2').value
+    if (exponentialinput == "mu") {
+        var expval = document.getElementById('expval2').value
+    } else {
+        var expval = document.getElementById('exponentialexpval2').value
+    }
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval').value;
     var lessvalz = (lessval / expval) * 15
@@ -6321,7 +6318,7 @@ function compexponential3() {
     
     ctx.fillText("f(x)",65,15);
     ctx.fillText("x",220,132);
-    ctx.fillText(lessval,68 + 5*lessvalz,145);
+    ctx.fillText(lessval,68 + 5*lessvalz - ctx.measureText(lessval).width/2,145);
     
     ctx.moveTo(70 + 5*lessvalz, 135);
     ctx.lineTo(70 + 5*lessvalz, 125);
@@ -6357,32 +6354,44 @@ function compexponential3() {
     
 }
 
-function compexponential4() {
-    $("#explanation").show(); $("#myCanvas").show();
+function exponentialbetween() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     document.getElementById("explanationtext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
     
-    var expval = document.getElementById('expval2').value
+    var probtype1 = document.getElementById('probtype4b1').value
+    var probtype2 = document.getElementById('probtype4b2').value
+    if (exponentialinput == "mu") {
+        var expval = document.getElementById('expval2').value
+    } else {
+        var expval = document.getElementById('exponentialexpval2').value
+    }
     var exp = 2.71828;
     var lessval = document.getElementById('exponentialval1').value;
     var lessvalz = (lessval / expval) * 15
     var greaterval = document.getElementById('exponentialval2').value;
     var greatervalz = (greaterval / expval) * 15
+    var ans10 = Math.pow(exp,(-lessval/expval))
+    var ans20 = Math.pow(exp,(-greaterval/expval))
     var ans1 = 1 - Math.pow(exp,(-lessval/expval))
     var ans2 = 1 - Math.pow(exp,(-greaterval/expval))
-    var ans = ans2 - ans1
+    var ans = ans2.toFixed(4) - ans1.toFixed(4)
     
-    var sign1 = "\\leq"; var sign2 = "\\leq"
+    if (probtype1 == "lessequal") {
+        var sign1 = "\\leq"
+    } else {
+        var sign1 = "<"
+    }
+    
+    if (probtype2 == "lessequal") {
+        var sign2 = "\\leq"
+    } else {
+        var sign2 = "<"
+    }
     
     var f = [];
     var i;
     for (i = 0; i < 30; i++) {
       f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
-    }
-    
-    if (probtype == "greaterequal") {
-        var sign = "\\geq"
-    } else if (probtype == "greater") {
-        var sign = ">"
     }
     
     var c = document.getElementById("myCanvas");
@@ -6430,13 +6439,18 @@ function compexponential4() {
     
     ctx.fillText("f(x)",45,15);
     ctx.fillText("x",255,132);
-    ctx.fillText(lessval,45 + 6*lessvalz,145);
-    ctx.fillText(greaterval,45 + 6*greatervalz,145);
+    ctx.fillText(lessval,50 + 6*lessvalz - ctx.measureText(lessval).width/2,145);
+    ctx.fillText(greaterval,50 + 6*greatervalz - ctx.measureText(lessval).width/2,145);
     
     ctx.moveTo(50 + 6*lessvalz, 135);
     ctx.lineTo(50 + 6*lessvalz, 125);
     ctx.moveTo(50 + 6*greatervalz, 135);
     ctx.lineTo(50 + 6*greatervalz, 125);
+    
+    ctx.moveTo(45, 30);
+    ctx.lineTo(55, 30);
+    var intercept = "1/"+expval
+    ctx.fillText(intercept,43 - ctx.measureText(intercept).width,33);
     
     var points = []
     
@@ -6463,21 +6477,160 @@ function compexponential4() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= "+ parseFloat(ans2.toFixed(2)) + " - "+ parseFloat(ans1.toFixed(2)) + " = \\boxed{"+ parseFloat(ans.toFixed(2)) + "} \\end{align} $$"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= P(x"+ sign2 + greaterval+") - P(x" + sign1 + lessval + ") \\\\ &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= (1 - "+ parseFloat(ans20.toFixed(4)) + ") - (1 - "+ parseFloat(ans10.toFixed(4)) + ") \\\\ &= "+ parseFloat(ans2.toFixed(4)) + " - "+ parseFloat(ans1.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$"
     
     MathJax.typeset();
     
 }
 
+function exponentialpdf() {
+    $("#explanation").show(); $("#myCanvas").hide(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
+    document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
+    document.getElementById("formulatext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
+    document.getElementById("explanationtext").innerHTML = "The probability that the random variable will be less than or equal to a value is found by using the formula."
+    if (exponentialinput == "mu") {
+        var mu = document.getElementById('expval2').value
+    } else {
+        var mu = document.getElementById('exponentialexpval2').value
+    }
+    document.getElementById("output2").innerHTML = "$$ f(x) = \\frac{1}{\\mu}e^{-x/\\mu} $$ $$ \\boxed{ f(x) = \\frac{1}{"+mu+"}e^{-x/"+mu+"} } $$"
+    
+    MathJax.typeset();
+    
+}
+
+function exponentialformula() {
+    $("#explanation").show(); $("#myCanvas").hide(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
+    document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
+    document.getElementById("formulatext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
+    document.getElementById("explanationtext").innerHTML = "The probability that the random variable will be less than or equal to a value is found by using the formula."
+    if (exponentialinput == "mu") {
+        var mu = document.getElementById('expval2').value
+    } else {
+        var mu = document.getElementById('exponentialexpval2').value
+    }
+    document.getElementById("output2").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{-x_0/\\mu} $$ $$ \\boxed{ P(x \\leq x_0) = 1 - e^{-x_0/"+mu+"} }  $$"
+    
+    MathJax.typeset();
+    
+}
+
+function exponentialcurve() {
+    $("#explanation").show(); $("#myCanvas").show(); $("#output2").hide(); $("#myCanvas0").hide(); $("#output").hide();
+    document.getElementById("descriptiontext").innerHTML = "The exponential distribution is commonly used when the random variable is time or distance. "
+    document.getElementById("formulatext").innerHTML = "$ P(x \\leq x_0) = 1 - e^{- x_0 / \\mu }$"
+    document.getElementById("explanationtext").innerHTML = "The probability that the random variable will be less than or equal to a value is found by using the formula."
+    
+    if (exponentialinput == "mu") {
+        var expval = document.getElementById('expval2').value
+    } else {
+        var expval = document.getElementById('exponentialexpval2').value
+    }
+    var exp = 2.71828;
+    
+    var f = [];
+    var i;
+    for (i = 0; i < 30; i++) {
+      f[i] = parseFloat(((1/15)*Math.pow(exp,(-i/15))))
+    }
+    
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    
+    ctx.beginPath();
+    ctx.moveTo(50, 20);
+    ctx.lineTo(50, 130);
+    ctx.lineTo(250, 130);
+    
+    
+    ctx.fillText("f(x)",45,15);
+    ctx.fillText("x",255,132);
+    
+    val1 = parseFloat((expval/2).toFixed(2))
+    ctx.moveTo(90, 135);
+    ctx.lineTo(90, 125);
+    ctx.fillText(val1,90 - ctx.measureText(val1).width/2,145);
+    
+    ctx.moveTo(130, 135);
+    ctx.lineTo(130, 125);
+    ctx.fillText(expval,130 - ctx.measureText(expval).width/2,145);
+    
+    val2 = parseFloat((parseFloat(expval)+parseFloat(expval/2)).toFixed(2))
+    ctx.moveTo(170, 135);
+    ctx.lineTo(170, 125);
+    ctx.fillText(val2,170 - ctx.measureText(val2).width/2,145);
+    
+    val3 = parseFloat((parseFloat(expval)+parseFloat(expval)).toFixed(2))
+    ctx.moveTo(210, 135);
+    ctx.lineTo(210, 125);
+    ctx.fillText(val3,210 - ctx.measureText(val3).width/2,145);
+    
+    ctx.moveTo(45, 30);
+    ctx.lineTo(55, 30);
+    var intercept = "1/"+expval
+    ctx.fillText(intercept,43 - ctx.measureText(intercept).width,33);
+    
+    
+    var points = []
+    
+    for (i = 0; i < 30; i++) {
+      points[i] = {x:50 + 6*i, y:130 - 1500*f[i]}
+		}
+    
+    // move to the first point
+   ctx.moveTo(points[0].x, points[0].y);
+   
+   
 
 
+   for (i = 1; i < points.length - 2; i ++)
+   {
+      var xc = (points[i].x + points[i + 1].x) / 2;
+      var yc = (points[i].y + points[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+   }
+ // curve through the last two points
+ ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    
+    
+    ctx.stroke();
+    
+    
+}
 
+function exponentialpdfinputshow() {
+    exponentialinput = "pdf"
+    $("#exponentialmuinput").hide(); $("#exponentialpdfinput").show();
+}
 
+function exponentialmuinputshow() {
+    exponentialinput = "mu"
+    $("#exponentialmuinput").show(); $("#exponentialpdfinput").hide();
+}
 
+function switchexponentialpdf() {
+    exponentialtype = "pdf"
+    $("#exponentialpdf").show(); $("#exponentialprobformula").hide(); $("#exponentialprob").hide(); $("#exponentialcurve").hide();
+}
 
+function switchexponentialprobformula() {
+    exponentialtype = "formula"
+    $("#exponentialpdf").hide(); $("#exponentialprobformula").show(); $("#exponentialprob").hide(); $("#exponentialcurve").hide();
+}
 
+function switchexponentialprob() {
+    exponentialtype = "probability"
+    $("#exponentialpdf").hide(); $("#exponentialprobformula").hide(); $("#exponentialprob").show(); $("#exponentialcurve").hide();
+}
 
-
+function switchexponentialcurve() {
+    exponentialtype = "curve"
+    $("#exponentialpdf").hide(); $("#exponentialprobformula").hide(); $("#exponentialprob").hide(); $("#exponentialcurve").show();
+}
 
 
 
