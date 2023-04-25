@@ -16,7 +16,7 @@ $("#tdistribution").hide(); $("#approximation").hide(); $("#fdistribution").hide
 $("#myCanvas0").hide(); $("#581773186").hide();
 $("#contoutputs").hide();
 
-normaltype = "probability"; standardtype = "probability"; approxtype = "probability"; uniformtype = "probability"; tdisttype = "probability"
+normaltype = "probability"; standardtype = "probability"; approxtype = "probability"; uniformtype = "probability"; tdisttype = "area"
 exponentialinput = "mu"; exponentialtype = "probability"
 
 function fixnum(i){
@@ -401,6 +401,187 @@ function compute(X,df) {
     return tcdf;
 }
 
+
+function ibetainv(p, a, b) {
+		var EPS = 1e-8,
+			a1 = a - 1,
+			b1 = b - 1,
+			j = 0,
+			lna, lnb, pp, t, u, err, x, al, h, w, afac;
+		if(p <= 0) return 0;
+		if(p >= 1) return 1;
+		if(a >= 1 && b >= 1) {
+			pp = (p < 0.5) ? p : 1 - p;
+			t = Math.sqrt(-2 * Math.log(pp));
+			x = (2.30753 + t * 0.27061) / (1 + t* (0.99229 + t * 0.04481)) - t;
+			if(p < 0.5) x = -x;
+			al = (x * x - 3) / 6;
+			h = 2 / (1 / (2 * a - 1)  + 1 / (2 * b - 1));
+			w = (x * Math.sqrt(al + h) / h) - (1 / (2 * b - 1) - 1 / (2 * a - 1)) * (al + 5 / 6 - 2 / (3 * h));
+			x = a / (a + b * Math.exp(2 * w));
+		} else {
+			lna = Math.log(a / (a + b));
+			lnb = Math.log(b / (a + b));
+			t = Math.exp(a * lna) / a;
+			u = Math.exp(b * lnb) / b;
+			w = t + u;
+			if(p < t / w) x = Math.pow(a * w * p, 1 / a);
+			else x = 1 - Math.pow(b * w * (1 - p), 1 / b);
+		}
+		afac = -gammaln(a) - gammaln(b) + gammaln(a + b);
+		for(; j < 10; j++) {
+			if(x === 0 || x === 1) return x;
+			err = ibeta(x, a, b) - p;
+			t = Math.exp(a1 * Math.log(x) + b1 * Math.log(1 - x) + afac);
+			u = err / t;
+			x -= (t = u / (1 - 0.5 * Math.min(1, u * (a1 / x - b1 / (1 - x)))));
+			if(x <= 0) x = 0.5 * (x + t);
+			if(x >= 1) x = 0.5 * (x + t + 1);
+			if(Math.abs(t) < EPS * x && j > 0) break;
+		}
+		return x;
+	}
+	
+function ibeat(x, a, b) {
+		// Factors in front of the continued fraction.
+		var bt = (x === 0 || x === 1) ?  0 :
+			Math.exp(gammaln(a + b) - gammaln(a) -
+			gammaln(b) + a * Math.log(x) + b *
+			Math.log(1 - x));
+		if(x < 0 || x > 1) return false;
+		if(x < (a + 1) / (a + b + 2))
+			// Use continued fraction directly.
+			return bt * betacf(x, a, b) / a;
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf(1 - x, b, a) / b;
+}
+
+function gammaln(x) {
+		var j = 0,
+			cof = [
+				76.18009172947146, -86.50532032941677, 24.01409824083091,
+				-1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5
+			],
+			ser = 1.000000000190015,
+			xx, y, tmp;
+		tmp = (y = xx = x) + 5.5;
+		tmp -= (xx + 0.5) * Math.log(tmp);
+		for (; j < 6; j++) ser += cof[j] / ++y;
+		return Math.log(2.5066282746310005 * ser / xx) - tmp;
+	}
+
+	// gamma of x
+function gammafn(x) {
+		var p = [
+				-1.716185138865495, 24.76565080557592, -379.80425647094563,
+				629.3311553128184, 866.9662027904133, -31451.272968848367,
+				-36144.413418691176, 66456.14382024054
+			],
+			q = [
+				-30.8402300119739, 315.35062697960416, -1015.1563674902192,
+				-3107.771671572311, 22538.118420980151, 4755.8462775278811,
+				-134659.9598649693, -115132.2596755535
+			],
+			fact = false,
+			n = 0,
+			xden = 0,
+			xnum = 0,
+			y = x,
+			i, z, yi, res, sum, ysq;
+		if(y <= 0) {
+			res = y % 1 + 3.6e-16;
+			if (res) {
+				fact = (!(y & 1) ? 1 : -1) * Math.PI / Math.sin(Math.PI * res);
+				y = 1 - y;
+			} else {
+				return Infinity;
+			}
+		}
+		yi = y;
+		if (y < 1) {
+			z = y++;
+		} else {
+			z = (y -= n = (y | 0) - 1) - 1;
+		}
+		for (i = 0; i < 8; ++i) {
+			xnum = (xnum + p[i]) * z;
+			xden = xden * z + q[i];
+		}
+		res = xnum / xden + 1;
+		if (yi < y) {
+			res /= yi;
+		} else if (yi > y) {
+			for (i = 0; i < n; ++i) {
+				res *= y;
+				y++;
+			}
+		}
+		if (fact) {
+			res = fact / res;
+		}
+		return res;
+	}
+	
+function betacf(x, a, b) {
+		var fpmin = 1e-30,
+			m = 1,
+			m2, aa, c, d, del, h, qab, qam, qap;
+		// These q's will be used in factors that occur in the coefficients
+		qab = a + b;
+		qap = a + 1;
+		qam = a - 1;
+		c = 1;
+		d = 1 - qab * x / qap;
+		if(Math.abs(d) < fpmin) d = fpmin;
+		d = 1 / d;
+		h = d;
+		for (; m <= 100; m++) {
+			m2 = 2 * m;
+			aa = m * (b - m) * x / ((qam + m2) * (a + m2));
+			// One step (the even one) of the recurrence
+			d = 1 + aa * d;
+			if(Math.abs(d) < fpmin) d = fpmin;
+			c = 1 + aa / c;
+			if(Math.abs(c) < fpmin) c = fpmin;
+			d = 1 / d;
+			h *= d * c;
+			aa = -(a + m) * (qab + m) * x / ((a + m2) * (qap + m2));
+			// Next step of the recurrence (the odd one)
+			d = 1 + aa * d;
+			if(Math.abs(d) < fpmin) d = fpmin;
+			c = 1 + aa / c;
+			if(Math.abs(c) < fpmin) c = fpmin;
+			d = 1 / d;
+			del = d * c;
+			h *= del;
+			if(Math.abs(del - 1.0) < 3e-7) break;
+		}
+		return h;
+	}
+	
+	
+	 function ibeta (x, a, b) {
+		// Factors in front of the continued fraction.
+		var bt = (x === 0 || x === 1) ?  0 :
+			Math.exp(gammaln(a + b) - gammaln(a) -
+			gammaln(b) + a * Math.log(x) + b *
+			Math.log(1 - x));
+		if(x < 0 || x > 1) return false;
+		if(x < (a + 1) / (a + b + 2))
+			// Use continued fraction directly.
+			return bt * betacf(x, a, b) / a;
+		// else use continued fraction after making the symmetry transformation.
+		return 1 - bt * betacf(1 - x, b, a) / b;
+	}
+
+function tinv(p, dof) {
+		var x = ibetainv(2 * Math.min(p, 1 - p), 0.5 * dof, 0.5);
+		x = Math.sqrt(dof * (1 - x) / x);
+		return (p > 0) ? x : -x;
+	
+}
+
+
 function showstuff(){
     $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
     $("#uniform").hide(); $("#normal").hide(); $("#standard").hide(); $("#exponential").hide(); $("#tdistribution").hide();
@@ -434,7 +615,7 @@ function showstuff(){
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
         $("#exponentialpdf").hide(); $("#exponentialprobformula").hide(); $("#exponentialcurve").hide();
     } else if (x == "tdistribution") {
-        tdistribution()
+        $("#tdistribution").show(); $("#tdistprob").show(); $("#tdistprobbetween").hide(); $("#tdistprobarea").hide(); $("#tdistprobarea2").hide();
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").show(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "approximation") {
@@ -475,7 +656,7 @@ function stat(){
     } else if (x == "exponential") {
         exponential()
     } else if (x == "tdistribution") {
-        comptdist()
+        tdistribution()
     } else if (x == "fdistribution") {
         compfdist()
     } else if (x == "chisquare") {
@@ -6125,7 +6306,7 @@ function exponentialless() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+ sign + lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= 1 - "+ parseFloat(ans0.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x "+ sign + lessval + ") &= 1 - e^{-"+ lessval + "/"+ expval + "} \\\\ &= 1 - "+ parseFloat(ans0.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6243,7 +6424,7 @@ function exponentialgreater() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - P(x"+ sign2 + lessval + ") \\\\  &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - (1 - "+ parseFloat(ans0.toFixed(4))  + ") \\\\ &= 1 - "+ parseFloat(ans.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-ans.toFixed(4)).toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P(x"+ sign + lessval + ") &= 1 - P(x"+ sign2 + lessval + ") \\\\  &= 1 - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= 1 - (1 - "+ parseFloat(ans0.toFixed(4))  + ") \\\\ &= 1 - "+ parseFloat(ans.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat((1-ans.toFixed(4)).toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6348,7 +6529,7 @@ function exponentialequal() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$  P(x = "+ lessval + ") = \\boxed{0}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$  P(x = "+ lessval + ") = \\boxed{0}  $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6477,7 +6658,7 @@ function exponentialbetween() {
     ctx.stroke();
     
     
-    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= P(x"+ sign2 + greaterval+") - P(x" + sign1 + lessval + ") \\\\ &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= (1 - "+ parseFloat(ans20.toFixed(4)) + ") - (1 - "+ parseFloat(ans10.toFixed(4)) + ") \\\\ &= "+ parseFloat(ans2.toFixed(4)) + " - "+ parseFloat(ans1.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} P("+ lessval + sign1 + " x " + sign2 + greaterval + ") &= P(x"+ sign2 + greaterval+") - P(x" + sign1 + lessval + ") \\\\ &= (1 - e^{-"+ greaterval + "/"+ expval + "}) - (1 - e^{-"+ lessval + "/"+ expval + "}) \\\\ &= (1 - "+ parseFloat(ans20.toFixed(4)) + ") - (1 - "+ parseFloat(ans10.toFixed(4)) + ") \\\\ &= "+ parseFloat(ans2.toFixed(4)) + " - "+ parseFloat(ans1.toFixed(4)) + " \\\\ &= \\boxed{"+ parseFloat(ans.toFixed(4)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6493,7 +6674,7 @@ function exponentialpdf() {
     } else {
         var mu = document.getElementById('exponentialexpval2').value
     }
-    document.getElementById("output2").innerHTML = "$$ f(x) = \\frac{1}{\\mu}e^{-x/\\mu} $$ $$ \\downarrow $$ $$ \\boxed{ f(x) = \\frac{1}{"+mu+"}e^{-x/"+mu+"} } $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ f(x) = \\frac{1}{\\mu}e^{-x/\\mu} $$ $$ \\downarrow $$ $$ \\boxed{ f(x) = \\frac{1}{"+mu+"}e^{-x/"+mu+"} } $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6509,7 +6690,7 @@ function exponentialformula() {
     } else {
         var mu = document.getElementById('exponentialexpval2').value
     }
-    document.getElementById("output2").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{-x_0/\\mu} $$ $$ \\downarrow $$ $$ \\boxed{ P(x \\leq x_0) = 1 - e^{-x_0/"+mu+"} }  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = "$$ P(x \\leq x_0) = 1 - e^{-x_0/\\mu} $$ $$ \\downarrow $$ $$ \\boxed{ P(x \\leq x_0) = 1 - e^{-x_0/"+mu+"} }  $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
     
@@ -6635,205 +6816,50 @@ function switchexponentialcurve() {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////// Student's t-Distribution /////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 function tdistribution() {
-    $("#tdistribution").show();
-    $("#tdistprob").show(); $("#tdistprobbetween").hide(); $("#tdistprobarea").hide(); $("#tdistprobarea2").hide();
-}
-
-function switchtdistarea() {
-    $("#tdistprob").hide(); $("#tdistprobarea").show();
-    tdisttype = "area"
-}
-
-function switchtdistprob() {
-    $("#tdistprob").show(); $("#tdistprobarea").hide();
-    tdisttype = "probability"
-}
-
-function comptdist() {
-    if (tdisttype == "probability") {
-        comptdistprob()
-    } else if (tdisttype == "area") {
-        comptdistarea() 
+    if (tdisttype == "area") {
+        tdistarea()
+    } else if (tdisttype == "value") {
+        tdistvalue() 
     } 
 }
 
-
-
-function comptdistarea() {
-    var areatype = document.getElementById('areatypet').value
-    if (areatype == "upper") {
-        comptarea1() 
-    } else if (areatype == "lower") {
-        comptarea2() 
-    } 
-}
-
-function comptarea1() {
-    
-    var tdist = [[0, 0, 0, 0, 0, 0], [1.376, 3.078, 6.314, 12.706, 31.821, 63.656], [1.061, 1.886, 2.920, 4.303, 6.965, 9.925], [.978, 1.638, 2.353, 3.182, 4.541, 5.841], [.941, 1.533, 2.132, 2.776, 3.747, 4.604], [.920, 1.476, 2.015, 2.571, 3.365, 4.032], [.906, 1.440, 1.943, 2.447, 3.143, 3.707], [.896, 1.415, 1.895, 2.365, 2.998, 3.499], [.889, 1.397, 1.860, 2.306, 2.896, 3.355], [.883, 1.383, 1.833, 2.262, 2.821, 3.250], [.879, 1.372, 1.812, 2.228, 2.764, 3.169], [.876, 1.363, 1.796, 2.201, 2.718, 3.106], [.873, 1.356, 1.782, 2.179, 2.681, 3.055], [.870, 1.350, 1.771, 2.160, 2.650, 3.012], [.868, 1.345, 1.761, 2.145, 2.624, 2.977], [.866, 1.341, 1.753, 2.131, 2.602, 2.947], [.865, 1.337, 1.746, 2.120, 2.583, 2.921], [.863, 1.333, 1.740, 2.110, 2.567, 2.898], [.862, 1.330, 1.734, 2.101, 2.552, 2.878], [.861, 1.328, 1.729, 2.093, 2.539, 2.861], [.860, 1.325, 1.725, 2.086, 2.528, 2.845], [.859, 1.323, 1.721, 2.080, 2.518, 2.831], [.858, 1.321, 1.717, 2.074, 2.508, 2.819], [.858, 1.319, 1.714, 2.069, 2.500, 2.807], [.857, 1.318, 1.711, 2.064, 2.492, 2.797], [.856, 1.316, 1.708, 2.060, 2.485, 2.787], [.856, 1.315, 1.706, 2.056, 2.479, 2.779], [.855, 1.314, 1.703, 2.052, 2.473, 2.771], [.855, 1.313, 1.701, 2.048, 2.467, 2.763], [.854, 1.311, 1.688, 2.045, 2.462, 2.756], [.854, 1.310, 1.697, 2.042, 2.457, 2.750], [.853, 1.309, 1.696, 2.040, 2.453, 2.744], [.853, 1.309, 1.694, 2.037, 2.449, 2.738], [.853, 1.308, 1.692, 2.035, 2.445, 2.733], [.852, 1.307, 1.691, 2.032, 2.441, 2.728], [.852, 1.306, 1.690, 2.030, 2.438, 2.724], [.852, 1.306, 1.688, 2.028, 2.434, 2.719], [.851, 1.305, 1.687, 2.026, 2.431, 2.715], [.851, 1.304, 1.686, 2.024, 2.429, 2.712], [.851, 1.304, 1.685, 2.023, 2.426, 2.708], [.851, 1.303, 1.684, 2.021, 2.423, 2.704], [.850, 1.303, 1.683, 2.020, 2.421, 2.701], [.850, 1.302, 1.682, 2.018, 2.418, 2.698], [.850, 1.302, 1.681, 2.017, 2.416, 2.695], [.850, 1.301, 1.680, 2.015, 2.414, 2.692], [.850, 1.301, 1.679, 2.014, 2.412, 2.690], [.850, 1.300, 1.679, 2.013, 2.410, 2.687], [.849, 1.300, 1.678, 2.012, 2.408, 2.685], [.849, 1.299, 1.677, 2.011, 2.407, 2.682], [.849, 1.299, 1.677, 2.010, 2.405, 2.680], [.849, 1.299, 1.676, 2.009, 2.403, 2.678], [.849, 1.298, 1.675, 2.008, 2.402, 2.676], [.849, 1.298, 1.675, 2.007, 2.400, 2.674], [.848, 1.298, 1.674, 2.006, 2.399, 2.672], [.848, 1.297, 1.674, 2.005, 2.397, 2.670], [.848, 1.297, 1.673, 2.004, 2.396, 2.668], [.848, 1.297, 1.673, 2.003, 2.395, 2.667], [.848, 1.297, 1.672, 2.002, 2.394, 2.665], [.848, 1.296, 1.672, 2.002, 2.392, 2.663], [.848, 1.296, 1.671, 2.001, 2.391, 2.662], [.848, 1.296, 1.671, 2.000, 2.390, 2.660], [.848, 1.296, 1.670, 2.000, 2.389, 2.659], [.847, 1.295, 1.670, 1.999, 2.388, 2.657], [.847, 1.295, 1.669, 1.998, 2.387, 2.656], [.847, 1.295, 1.669, 1.998, 2.386, 2.655], [.847, 1.295, 1.669, 1.997, 2.385, 2.654], [.847, 1.295, 1.668, 1.997, 2.384, 2.652], [.847, 1.294, 1.668, 1.996, 2.383, 2.651], [.847, 1.294, 1.668, 1.995, 2.382, 2.650], [.847, 1.294, 1.667, 1.995, 2.382, 2.649], [.847, 1.294, 1.667, 1.994, 2.381, 2.648], [.847, 1.294, 1.667, 1.994, 2.380, 2.647], [.847, 1.293, 1.666, 1.993, 2.379, 2.646], [.847, 1.293, 1.666, 1.993, 2.379, 2.645], [.847, 1.293, 1.666, 1.993, 2.378, 2.644], [.846, 1.293, 1.665, 1.992, 2.377, 2.643], [.846, 1.293, 1.665, 1.992, 2.376, 2.642], [.846, 1.293, 1.665, 1.991, 2.376, 2.641], [.846, 1.292, 1.665, 1.991, 2.375, 2.640], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.373, 2.638], [.846, 1.292, 1.664, 1.989, 2.373, 2.637], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.988, 2.371, 2.635], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.662, 1.987, 2.369, 2.633], [.846, 1.291, 1.662, 1.987, 2.369, 2.632],  [.846, 1.291, 1.662, 1.986, 2.368, 2.632], [.846, 1.291, 1.662, 1.986, 2.368, 2.631], [.846, 1.291, 1.662, 1.986, 2.368, 2.630], [.846, 1.291, 1.661, 1.986, 2.367, 2.630], [.845, 1.291, 1.661, 1.986, 2.367, 2.629], [.845, 1.291, 1.661, 1.985, 2.366, 2.629], [.845, 1.290, 1.661, 1.985, 2.366, 2.628], [.845, 1.290, 1.661, 1.985, 2.365, 2.627], [.845, 1.290, 1.661, 1.984, 2.365, 2.627], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.842, 1.282, 1.645, 1.960, 2.326, 2.576]]
-    
-    var area = document.getElementById('areat').value 
-    var degf = document.getElementById('degfree').value
-    var row = tdist[degf]
-    var row101 = tdist[101]
-    
-    if (degf >= 0 && degf <= 100) {
-        if (area == ".20") {
-            tval = row[0]
-        } else if (area == ".10") {
-            tval = row[1]
-        } else if (area == ".05") {
-            tval = row[2]
-        } else if (area == ".025") {
-            tval = row[3]
-        } else if (area == ".01") {
-            tval = row[4]
-        } else if (area == ".005") {
-            tval = row[5]
-        }
-    } else if (degf > 100) {
-        if (area == ".20") {
-            tval = row101[0]
-        } else if (area == ".10") {
-            tval = row101[1]
-        } else if (area == ".05") {
-            tval = row101[2]
-        } else if (area == ".025") {
-            tval = row101[3]
-        } else if (area == ".01") {
-            tval = row101[4]
-        } else if (area == ".005") {
-            tval = row101[5]
-        }
-    }
-    
-
-    var table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
-    
-    var table2 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
-    var table3 = "<td>$"+ degf +"$</td><td>$"+row[0]+"$</td><td>$"+row[1]+"$</td><td>$"+row[2]+"$</td><td>$"+row[3]+"$</td><td>$"+row[4]+"$</td><td>$"+row[5]+"$</td>"
-    
-    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
-    
-
-    document.getElementById("output2").innerHTML = table + "$$ t = " + tval + " $$"
-    
-    MathJax.typeset();
-    
-}
-
-
-function comptarea2() {
-    
-    var tdist = [[0, 0, 0, 0, 0, 0], [1.376, 3.078, 6.314, 12.706, 31.821, 63.656], [1.061, 1.886, 2.920, 4.303, 6.965, 9.925], [.978, 1.638, 2.353, 3.182, 4.541, 5.841], [.941, 1.533, 2.132, 2.776, 3.747, 4.604], [.920, 1.476, 2.015, 2.571, 3.365, 4.032], [.906, 1.440, 1.943, 2.447, 3.143, 3.707], [.896, 1.415, 1.895, 2.365, 2.998, 3.499], [.889, 1.397, 1.860, 2.306, 2.896, 3.355], [.883, 1.383, 1.833, 2.262, 2.821, 3.250], [.879, 1.372, 1.812, 2.228, 2.764, 3.169], [.876, 1.363, 1.796, 2.201, 2.718, 3.106], [.873, 1.356, 1.782, 2.179, 2.681, 3.055], [.870, 1.350, 1.771, 2.160, 2.650, 3.012], [.868, 1.345, 1.761, 2.145, 2.624, 2.977], [.866, 1.341, 1.753, 2.131, 2.602, 2.947], [.865, 1.337, 1.746, 2.120, 2.583, 2.921], [.863, 1.333, 1.740, 2.110, 2.567, 2.898], [.862, 1.330, 1.734, 2.101, 2.552, 2.878], [.861, 1.328, 1.729, 2.093, 2.539, 2.861], [.860, 1.325, 1.725, 2.086, 2.528, 2.845], [.859, 1.323, 1.721, 2.080, 2.518, 2.831], [.858, 1.321, 1.717, 2.074, 2.508, 2.819], [.858, 1.319, 1.714, 2.069, 2.500, 2.807], [.857, 1.318, 1.711, 2.064, 2.492, 2.797], [.856, 1.316, 1.708, 2.060, 2.485, 2.787], [.856, 1.315, 1.706, 2.056, 2.479, 2.779], [.855, 1.314, 1.703, 2.052, 2.473, 2.771], [.855, 1.313, 1.701, 2.048, 2.467, 2.763], [.854, 1.311, 1.688, 2.045, 2.462, 2.756], [.854, 1.310, 1.697, 2.042, 2.457, 2.750], [.853, 1.309, 1.696, 2.040, 2.453, 2.744], [.853, 1.309, 1.694, 2.037, 2.449, 2.738], [.853, 1.308, 1.692, 2.035, 2.445, 2.733], [.852, 1.307, 1.691, 2.032, 2.441, 2.728], [.852, 1.306, 1.690, 2.030, 2.438, 2.724], [.852, 1.306, 1.688, 2.028, 2.434, 2.719], [.851, 1.305, 1.687, 2.026, 2.431, 2.715], [.851, 1.304, 1.686, 2.024, 2.429, 2.712], [.851, 1.304, 1.685, 2.023, 2.426, 2.708], [.851, 1.303, 1.684, 2.021, 2.423, 2.704], [.850, 1.303, 1.683, 2.020, 2.421, 2.701], [.850, 1.302, 1.682, 2.018, 2.418, 2.698], [.850, 1.302, 1.681, 2.017, 2.416, 2.695], [.850, 1.301, 1.680, 2.015, 2.414, 2.692], [.850, 1.301, 1.679, 2.014, 2.412, 2.690], [.850, 1.300, 1.679, 2.013, 2.410, 2.687], [.849, 1.300, 1.678, 2.012, 2.408, 2.685], [.849, 1.299, 1.677, 2.011, 2.407, 2.682], [.849, 1.299, 1.677, 2.010, 2.405, 2.680], [.849, 1.299, 1.676, 2.009, 2.403, 2.678], [.849, 1.298, 1.675, 2.008, 2.402, 2.676], [.849, 1.298, 1.675, 2.007, 2.400, 2.674], [.848, 1.298, 1.674, 2.006, 2.399, 2.672], [.848, 1.297, 1.674, 2.005, 2.397, 2.670], [.848, 1.297, 1.673, 2.004, 2.396, 2.668], [.848, 1.297, 1.673, 2.003, 2.395, 2.667], [.848, 1.297, 1.672, 2.002, 2.394, 2.665], [.848, 1.296, 1.672, 2.002, 2.392, 2.663], [.848, 1.296, 1.671, 2.001, 2.391, 2.662], [.848, 1.296, 1.671, 2.000, 2.390, 2.660], [.848, 1.296, 1.670, 2.000, 2.389, 2.659], [.847, 1.295, 1.670, 1.999, 2.388, 2.657], [.847, 1.295, 1.669, 1.998, 2.387, 2.656], [.847, 1.295, 1.669, 1.998, 2.386, 2.655], [.847, 1.295, 1.669, 1.997, 2.385, 2.654], [.847, 1.295, 1.668, 1.997, 2.384, 2.652], [.847, 1.294, 1.668, 1.996, 2.383, 2.651], [.847, 1.294, 1.668, 1.995, 2.382, 2.650], [.847, 1.294, 1.667, 1.995, 2.382, 2.649], [.847, 1.294, 1.667, 1.994, 2.381, 2.648], [.847, 1.294, 1.667, 1.994, 2.380, 2.647], [.847, 1.293, 1.666, 1.993, 2.379, 2.646], [.847, 1.293, 1.666, 1.993, 2.379, 2.645], [.847, 1.293, 1.666, 1.993, 2.378, 2.644], [.846, 1.293, 1.665, 1.992, 2.377, 2.643], [.846, 1.293, 1.665, 1.992, 2.376, 2.642], [.846, 1.293, 1.665, 1.991, 2.376, 2.641], [.846, 1.292, 1.665, 1.991, 2.375, 2.640], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.373, 2.638], [.846, 1.292, 1.664, 1.989, 2.373, 2.637], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.988, 2.371, 2.635], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.662, 1.987, 2.369, 2.633], [.846, 1.291, 1.662, 1.987, 2.369, 2.632],  [.846, 1.291, 1.662, 1.986, 2.368, 2.632], [.846, 1.291, 1.662, 1.986, 2.368, 2.631], [.846, 1.291, 1.662, 1.986, 2.368, 2.630], [.846, 1.291, 1.661, 1.986, 2.367, 2.630], [.845, 1.291, 1.661, 1.986, 2.367, 2.629], [.845, 1.291, 1.661, 1.985, 2.366, 2.629], [.845, 1.290, 1.661, 1.985, 2.366, 2.628], [.845, 1.290, 1.661, 1.985, 2.365, 2.627], [.845, 1.290, 1.661, 1.984, 2.365, 2.627], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.842, 1.282, 1.645, 1.960, 2.326, 2.576]]
-    
-    var area = document.getElementById('areat').value 
-    var degf = document.getElementById('degfree').value
-    var row = tdist[degf]
-    var row101 = tdist[101]
-    
-    if (degf >= 0 && degf <= 100) {
-        if (area == ".20") {
-            tval = row[0]
-        } else if (area == ".10") {
-            tval = row[1]
-        } else if (area == ".05") {
-            tval = row[2]
-        } else if (area == ".025") {
-            tval = row[3]
-        } else if (area == ".01") {
-            tval = row[4]
-        } else if (area == ".005") {
-            tval = row[5]
-        }
-    } else if (degf > 100) {
-        if (area == ".20") {
-            tval = row101[0]
-        } else if (area == ".10") {
-            tval = row101[1]
-        } else if (area == ".05") {
-            tval = row101[2]
-        } else if (area == ".025") {
-            tval = row101[3]
-        } else if (area == ".01") {
-            tval = row101[4]
-        } else if (area == ".005") {
-            tval = row101[5]
-        }
-    }
-
-    var table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
-    
-    var table2 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
-    var table3 = "<td>$"+ degf +"$</td><td>$"+row[0]+"$</td><td>$"+row[1]+"$</td><td>$"+row[2]+"$</td><td>$"+row[3]+"$</td><td>$"+row[4]+"$</td><td>$"+row[5]+"$</td>"
-    
-    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
-
-    document.getElementById("output2").innerHTML = table + "$$ t = " + (-1 * tval) + " $$"
-    
-    MathJax.typeset();
-    
-}
-
-
-function comptdistprob() {
+function tdistarea() {
     var probtype = document.getElementById('probtypet').value
     if (probtype == "right") {
-        comptdist1() 
+        tdistarearight() 
     } else if (probtype == "left") {
-        comptdist2() 
+        tdistarealeft() 
     } 
 }
 
-function comptdist1() {
+function tdistarearight() {
     $("#myCanvas").show();
     
-    var tdist = [[0, 0, 0, 0, 0, 0], [1.376, 3.078, 6.314, 12.706, 31.821, 63.656], [1.061, 1.886, 2.920, 4.303, 6.965, 9.925], [.978, 1.638, 2.353, 3.182, 4.541, 5.841], [.941, 1.533, 2.132, 2.776, 3.747, 4.604], [.920, 1.476, 2.015, 2.571, 3.365, 4.032], [.906, 1.440, 1.943, 2.447, 3.143, 3.707], [.896, 1.415, 1.895, 2.365, 2.998, 3.499], [.889, 1.397, 1.860, 2.306, 2.896, 3.355], [.883, 1.383, 1.833, 2.262, 2.821, 3.250], [.879, 1.372, 1.812, 2.228, 2.764, 3.169], [.876, 1.363, 1.796, 2.201, 2.718, 3.106], [.873, 1.356, 1.782, 2.179, 2.681, 3.055], [.870, 1.350, 1.771, 2.160, 2.650, 3.012], [.868, 1.345, 1.761, 2.145, 2.624, 2.977], [.866, 1.341, 1.753, 2.131, 2.602, 2.947], [.865, 1.337, 1.746, 2.120, 2.583, 2.921], [.863, 1.333, 1.740, 2.110, 2.567, 2.898], [.862, 1.330, 1.734, 2.101, 2.552, 2.878], [.861, 1.328, 1.729, 2.093, 2.539, 2.861], [.860, 1.325, 1.725, 2.086, 2.528, 2.845], [.859, 1.323, 1.721, 2.080, 2.518, 2.831], [.858, 1.321, 1.717, 2.074, 2.508, 2.819], [.858, 1.319, 1.714, 2.069, 2.500, 2.807], [.857, 1.318, 1.711, 2.064, 2.492, 2.797], [.856, 1.316, 1.708, 2.060, 2.485, 2.787], [.856, 1.315, 1.706, 2.056, 2.479, 2.779], [.855, 1.314, 1.703, 2.052, 2.473, 2.771], [.855, 1.313, 1.701, 2.048, 2.467, 2.763], [.854, 1.311, 1.688, 2.045, 2.462, 2.756], [.854, 1.310, 1.697, 2.042, 2.457, 2.750], [.853, 1.309, 1.696, 2.040, 2.453, 2.744], [.853, 1.309, 1.694, 2.037, 2.449, 2.738], [.853, 1.308, 1.692, 2.035, 2.445, 2.733], [.852, 1.307, 1.691, 2.032, 2.441, 2.728], [.852, 1.306, 1.690, 2.030, 2.438, 2.724], [.852, 1.306, 1.688, 2.028, 2.434, 2.719], [.851, 1.305, 1.687, 2.026, 2.431, 2.715], [.851, 1.304, 1.686, 2.024, 2.429, 2.712], [.851, 1.304, 1.685, 2.023, 2.426, 2.708], [.851, 1.303, 1.684, 2.021, 2.423, 2.704], [.850, 1.303, 1.683, 2.020, 2.421, 2.701], [.850, 1.302, 1.682, 2.018, 2.418, 2.698], [.850, 1.302, 1.681, 2.017, 2.416, 2.695], [.850, 1.301, 1.680, 2.015, 2.414, 2.692], [.850, 1.301, 1.679, 2.014, 2.412, 2.690], [.850, 1.300, 1.679, 2.013, 2.410, 2.687], [.849, 1.300, 1.678, 2.012, 2.408, 2.685], [.849, 1.299, 1.677, 2.011, 2.407, 2.682], [.849, 1.299, 1.677, 2.010, 2.405, 2.680], [.849, 1.299, 1.676, 2.009, 2.403, 2.678], [.849, 1.298, 1.675, 2.008, 2.402, 2.676], [.849, 1.298, 1.675, 2.007, 2.400, 2.674], [.848, 1.298, 1.674, 2.006, 2.399, 2.672], [.848, 1.297, 1.674, 2.005, 2.397, 2.670], [.848, 1.297, 1.673, 2.004, 2.396, 2.668], [.848, 1.297, 1.673, 2.003, 2.395, 2.667], [.848, 1.297, 1.672, 2.002, 2.394, 2.665], [.848, 1.296, 1.672, 2.002, 2.392, 2.663], [.848, 1.296, 1.671, 2.001, 2.391, 2.662], [.848, 1.296, 1.671, 2.000, 2.390, 2.660], [.848, 1.296, 1.670, 2.000, 2.389, 2.659], [.847, 1.295, 1.670, 1.999, 2.388, 2.657], [.847, 1.295, 1.669, 1.998, 2.387, 2.656], [.847, 1.295, 1.669, 1.998, 2.386, 2.655], [.847, 1.295, 1.669, 1.997, 2.385, 2.654], [.847, 1.295, 1.668, 1.997, 2.384, 2.652], [.847, 1.294, 1.668, 1.996, 2.383, 2.651], [.847, 1.294, 1.668, 1.995, 2.382, 2.650], [.847, 1.294, 1.667, 1.995, 2.382, 2.649], [.847, 1.294, 1.667, 1.994, 2.381, 2.648], [.847, 1.294, 1.667, 1.994, 2.380, 2.647], [.847, 1.293, 1.666, 1.993, 2.379, 2.646], [.847, 1.293, 1.666, 1.993, 2.379, 2.645], [.847, 1.293, 1.666, 1.993, 2.378, 2.644], [.846, 1.293, 1.665, 1.992, 2.377, 2.643], [.846, 1.293, 1.665, 1.992, 2.376, 2.642], [.846, 1.293, 1.665, 1.991, 2.376, 2.641], [.846, 1.292, 1.665, 1.991, 2.375, 2.640], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.373, 2.638], [.846, 1.292, 1.664, 1.989, 2.373, 2.637], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.988, 2.371, 2.635], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.662, 1.987, 2.369, 2.633], [.846, 1.291, 1.662, 1.987, 2.369, 2.632],  [.846, 1.291, 1.662, 1.986, 2.368, 2.632], [.846, 1.291, 1.662, 1.986, 2.368, 2.631], [.846, 1.291, 1.662, 1.986, 2.368, 2.630], [.846, 1.291, 1.661, 1.986, 2.367, 2.630], [.845, 1.291, 1.661, 1.986, 2.367, 2.629], [.845, 1.291, 1.661, 1.985, 2.366, 2.629], [.845, 1.290, 1.661, 1.985, 2.366, 2.628], [.845, 1.290, 1.661, 1.985, 2.365, 2.627], [.845, 1.290, 1.661, 1.984, 2.365, 2.627], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.842, 1.282, 1.645, 1.960, 2.326, 2.576]]
     
     var degf = parseFloat(document.getElementById('degfree').value)
     var tval = parseFloat(document.getElementById('tdistval').value)
     var tvalpos = -1 * tval
     var prob = 1 - compute(tval,degf)
+    var prob2 = compute(tval,degf)
     var probpos = 1 - compute(tvalpos,degf)
     
-    var row = tdist[degf]
+    if (tval >= 0) {
+        var ans = parseFloat(prob.toFixed(3))
+    } else {
+        var ans = parseFloat((1-prob.toFixed(3)).toFixed(3))
+    }
+    
+    
 
     var lessval = tval
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-    
     
     var f = [];
     var i;
@@ -6886,10 +6912,14 @@ function comptdist1() {
     ctx.lineTo(283, 130);
     
     ctx.fillText("t",285,132);
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
+    ctx.fillText(lessval,20 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width/2,145);
     
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
 
     
     var points = []
@@ -6916,91 +6946,91 @@ function comptdist1() {
     ctx.lineTo(283, 119);
     
     ctx.stroke();
+    
+    var size = degf + 1;
+    var sizem1 = degf;
+    var sizem2 = degf - 1;
+    
+    table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (ans == .2) {
+        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
 
-    
-    var table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
-    
-    var table2 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
-    var table3 = "<td>$"+ degf +"$</td><td>$"+row[0]+"$</td><td>$"+row[1]+"$</td><td>$"+row[2]+"$</td><td>$"+row[3]+"$</td><td>$"+row[4]+"$</td><td>$"+row[5]+"$</td>"
-    
-    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
 
+        table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .1) {
+        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .05) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .025) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .01) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .005) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } 
+    
+    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     if (tval >= 0) {
-        
-        if (prob < .005) {
-            probval = "0 \\text{ to } .005"
-        } else if (prob >= .005 && prob < .01) {
-            probval = ".005 \\text{ to } .01"
-        } else if (prob >= .01 && prob < .025) {
-            probval = ".01 \\text{ to } .025"
-        } else if (prob >= .025 && prob < .05) {
-            probval = ".025 \\text{ to } .05"
-        } else if (prob >= .05 && prob < .10) {
-            probval = ".05 \\text{ to } .10"
-        } else if (prob >= .10 && prob < .20) {
-            probval = ".10 \\text{ to } .20"
-        } else if (prob >= .20) {
-            probval = ".20 \\text{ to } 1"
-        }
-
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} P(t \\geq " + tval + ") &= " + probval + " \\end{align} $$"
-        
-    } else if (tval < 0) {
-        
-        if (probpos < .005) {
-            probval = "0 \\text{ to } .005"
-        } else if (probpos >= .005 && probpos < .01) {
-            probval = ".005 \\text{ to } .01"
-        } else if (probpos >= .01 && probpos < .025) {
-            probval = ".01 \\text{ to } .025"
-        } else if (probpos >= .025 && probpos < .05) {
-            probval = ".025 \\text{ to } .05"
-        } else if (probpos >= .05 && probpos < .10) {
-            probval = ".05 \\text{ to } .10"
-        } else if (probpos >= .10 && probpos < .20) {
-            probval = ".10 \\text{ to } .20"
-        } else if (probpos >= .20) {
-            probval = ".20 \\text{ to } 1"
-        }
-        
-        if (probpos < .005) {
-            ansval = ".995 \\text{ to } 1"
-        } else if (probpos >= .005 && probpos < .01) {
-            ansval = ".99 \\text{ to } .995"
-        } else if (probpos >= .01 && probpos < .025) {
-            ansval = ".975 \\text{ to } .99"
-        } else if (probpos >= .025 && probpos < .05) {
-            ansval = ".95 \\text{ to } .975"
-        } else if (probpos >= .05 && probpos < .10) {
-            ansval = ".90 \\text{ to } .95"
-        } else if (probpos >= .10 && probpos < .20) {
-            ansval = ".80 \\text{ to } .90"
-        } else if (probpos >= .20) {
-            ansval = "0 \\text{ to } .80"
-        }
-
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} P(t \\geq " + tval + ") &= 1 - P(t \\geq " + tvalpos + ") \\\\ &= 1 - ("+ probval + ") \\\\ &= " + ansval + " \\end{align} $$"
-        
+        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = \\boxed{" + parseFloat(prob.toFixed(3)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\  &= {\\color{RoyalBlue}" + parseFloat((1-prob.toFixed(3)).toFixed(3)) + "} \\end{align} $$ $$ \\begin{align} &\\text{Area to right of } "+tval+" \\\\ &= 1 - " + parseFloat((1-prob.toFixed(3)).toFixed(3)) + " \\\\  &= \\boxed{" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
-    
+
     MathJax.typeset();
 }
 
-function comptdist2() {
+function tdistarealeft() {
     $("#myCanvas").show();
     
-    var tdist = [[0, 0, 0, 0, 0, 0], [1.376, 3.078, 6.314, 12.706, 31.821, 63.656], [1.061, 1.886, 2.920, 4.303, 6.965, 9.925], [.978, 1.638, 2.353, 3.182, 4.541, 5.841], [.941, 1.533, 2.132, 2.776, 3.747, 4.604], [.920, 1.476, 2.015, 2.571, 3.365, 4.032], [.906, 1.440, 1.943, 2.447, 3.143, 3.707], [.896, 1.415, 1.895, 2.365, 2.998, 3.499], [.889, 1.397, 1.860, 2.306, 2.896, 3.355], [.883, 1.383, 1.833, 2.262, 2.821, 3.250], [.879, 1.372, 1.812, 2.228, 2.764, 3.169], [.876, 1.363, 1.796, 2.201, 2.718, 3.106], [.873, 1.356, 1.782, 2.179, 2.681, 3.055], [.870, 1.350, 1.771, 2.160, 2.650, 3.012], [.868, 1.345, 1.761, 2.145, 2.624, 2.977], [.866, 1.341, 1.753, 2.131, 2.602, 2.947], [.865, 1.337, 1.746, 2.120, 2.583, 2.921], [.863, 1.333, 1.740, 2.110, 2.567, 2.898], [.862, 1.330, 1.734, 2.101, 2.552, 2.878], [.861, 1.328, 1.729, 2.093, 2.539, 2.861], [.860, 1.325, 1.725, 2.086, 2.528, 2.845], [.859, 1.323, 1.721, 2.080, 2.518, 2.831], [.858, 1.321, 1.717, 2.074, 2.508, 2.819], [.858, 1.319, 1.714, 2.069, 2.500, 2.807], [.857, 1.318, 1.711, 2.064, 2.492, 2.797], [.856, 1.316, 1.708, 2.060, 2.485, 2.787], [.856, 1.315, 1.706, 2.056, 2.479, 2.779], [.855, 1.314, 1.703, 2.052, 2.473, 2.771], [.855, 1.313, 1.701, 2.048, 2.467, 2.763], [.854, 1.311, 1.688, 2.045, 2.462, 2.756], [.854, 1.310, 1.697, 2.042, 2.457, 2.750], [.853, 1.309, 1.696, 2.040, 2.453, 2.744], [.853, 1.309, 1.694, 2.037, 2.449, 2.738], [.853, 1.308, 1.692, 2.035, 2.445, 2.733], [.852, 1.307, 1.691, 2.032, 2.441, 2.728], [.852, 1.306, 1.690, 2.030, 2.438, 2.724], [.852, 1.306, 1.688, 2.028, 2.434, 2.719], [.851, 1.305, 1.687, 2.026, 2.431, 2.715], [.851, 1.304, 1.686, 2.024, 2.429, 2.712], [.851, 1.304, 1.685, 2.023, 2.426, 2.708], [.851, 1.303, 1.684, 2.021, 2.423, 2.704], [.850, 1.303, 1.683, 2.020, 2.421, 2.701], [.850, 1.302, 1.682, 2.018, 2.418, 2.698], [.850, 1.302, 1.681, 2.017, 2.416, 2.695], [.850, 1.301, 1.680, 2.015, 2.414, 2.692], [.850, 1.301, 1.679, 2.014, 2.412, 2.690], [.850, 1.300, 1.679, 2.013, 2.410, 2.687], [.849, 1.300, 1.678, 2.012, 2.408, 2.685], [.849, 1.299, 1.677, 2.011, 2.407, 2.682], [.849, 1.299, 1.677, 2.010, 2.405, 2.680], [.849, 1.299, 1.676, 2.009, 2.403, 2.678], [.849, 1.298, 1.675, 2.008, 2.402, 2.676], [.849, 1.298, 1.675, 2.007, 2.400, 2.674], [.848, 1.298, 1.674, 2.006, 2.399, 2.672], [.848, 1.297, 1.674, 2.005, 2.397, 2.670], [.848, 1.297, 1.673, 2.004, 2.396, 2.668], [.848, 1.297, 1.673, 2.003, 2.395, 2.667], [.848, 1.297, 1.672, 2.002, 2.394, 2.665], [.848, 1.296, 1.672, 2.002, 2.392, 2.663], [.848, 1.296, 1.671, 2.001, 2.391, 2.662], [.848, 1.296, 1.671, 2.000, 2.390, 2.660], [.848, 1.296, 1.670, 2.000, 2.389, 2.659], [.847, 1.295, 1.670, 1.999, 2.388, 2.657], [.847, 1.295, 1.669, 1.998, 2.387, 2.656], [.847, 1.295, 1.669, 1.998, 2.386, 2.655], [.847, 1.295, 1.669, 1.997, 2.385, 2.654], [.847, 1.295, 1.668, 1.997, 2.384, 2.652], [.847, 1.294, 1.668, 1.996, 2.383, 2.651], [.847, 1.294, 1.668, 1.995, 2.382, 2.650], [.847, 1.294, 1.667, 1.995, 2.382, 2.649], [.847, 1.294, 1.667, 1.994, 2.381, 2.648], [.847, 1.294, 1.667, 1.994, 2.380, 2.647], [.847, 1.293, 1.666, 1.993, 2.379, 2.646], [.847, 1.293, 1.666, 1.993, 2.379, 2.645], [.847, 1.293, 1.666, 1.993, 2.378, 2.644], [.846, 1.293, 1.665, 1.992, 2.377, 2.643], [.846, 1.293, 1.665, 1.992, 2.376, 2.642], [.846, 1.293, 1.665, 1.991, 2.376, 2.641], [.846, 1.292, 1.665, 1.991, 2.375, 2.640], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.374, 2.639], [.846, 1.292, 1.664, 1.990, 2.373, 2.638], [.846, 1.292, 1.664, 1.989, 2.373, 2.637], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.989, 2.372, 2.636], [.846, 1.292, 1.663, 1.988, 2.371, 2.635], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.663, 1.988, 2.370, 2.634], [.846, 1.291, 1.662, 1.987, 2.369, 2.633], [.846, 1.291, 1.662, 1.987, 2.369, 2.632],  [.846, 1.291, 1.662, 1.986, 2.368, 2.632], [.846, 1.291, 1.662, 1.986, 2.368, 2.631], [.846, 1.291, 1.662, 1.986, 2.368, 2.630], [.846, 1.291, 1.661, 1.986, 2.367, 2.630], [.845, 1.291, 1.661, 1.986, 2.367, 2.629], [.845, 1.291, 1.661, 1.985, 2.366, 2.629], [.845, 1.290, 1.661, 1.985, 2.366, 2.628], [.845, 1.290, 1.661, 1.985, 2.365, 2.627], [.845, 1.290, 1.661, 1.984, 2.365, 2.627], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.845, 1.290, 1.660, 1.984, 2.364, 2.626], [.842, 1.282, 1.645, 1.960, 2.326, 2.576]]
     
     var degf = parseFloat(document.getElementById('degfree').value)
     var tval = parseFloat(document.getElementById('tdistval').value)
     var tvalpos = -1 * tval
-    var prob = 1 - compute(tval,degf)
+    var prob = compute(tval,degf)
     var probpos = 1 - compute(tvalpos,degf)
-    var ans = 1 - prob
     
-    var row = tdist[degf]
+    if (tval <= 0) {
+        var ans = parseFloat(prob.toFixed(3))
+    } else {
+        var ans = parseFloat((1-prob.toFixed(3)).toFixed(3))
+    }
 
 
     var lessval = tval
@@ -7056,11 +7086,15 @@ function comptdist2() {
     ctx.lineTo(280, 130);
     
     ctx.fillText("t",285,132);
-    ctx.fillText(lessval,10 + 4.4*(30+10*lessval),145);
+    ctx.fillText(lessval,20 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width/2,145);
     
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
     
+    
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
     
     var points = []
     
@@ -7086,6 +7120,178 @@ function comptdist2() {
     
     ctx.stroke();
 
+    var size = degf + 1;
+    var sizem1 = degf;
+    var sizem2 = degf - 1;
+    
+    table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (ans == .2) {
+        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .1) {
+        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .05) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .025) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .01) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .005) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } 
+    
+    
+    
+    
+    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    if (tval <= 0) {
+        document.getElementById("output2").innerHTML = table + "$$ \\begin{align}  &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\ &= \\boxed{" + parseFloat(prob.toFixed(3)) + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = {\\color{RoyalBlue}"+parseFloat((1-prob.toFixed(3)).toFixed(3))+"} $$ $$ \\begin{align} \\text{Area to left of } "+tval+" &= 1 - " + parseFloat((1-prob.toFixed(3)).toFixed(3)) + " \\\\  &= \\boxed{" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
+    
+    MathJax.typeset();
+}
+
+function tdistvalue() {
+    var areatype = document.getElementById('areatypet').value
+    if (areatype == "upper") {
+        tdistvalueupper() 
+    } else if (areatype == "lower") {
+        tdistvaluelower() 
+    } 
+}
+
+function tdistvalueupper() {
+    
+    var area = document.getElementById('areat').value 
+    var degf = document.getElementById('degfree').value
+    var row = tdist[degf]
+    var row101 = tdist[101]
+    
+    if (degf >= 0 && degf <= 100) {
+        if (area == ".20") {
+            tval = row[0]
+        } else if (area == ".10") {
+            tval = row[1]
+        } else if (area == ".05") {
+            tval = row[2]
+        } else if (area == ".025") {
+            tval = row[3]
+        } else if (area == ".01") {
+            tval = row[4]
+        } else if (area == ".005") {
+            tval = row[5]
+        }
+    } else if (degf > 100) {
+        if (area == ".20") {
+            tval = row101[0]
+        } else if (area == ".10") {
+            tval = row101[1]
+        } else if (area == ".05") {
+            tval = row101[2]
+        } else if (area == ".025") {
+            tval = row101[3]
+        } else if (area == ".01") {
+            tval = row101[4]
+        } else if (area == ".005") {
+            tval = row101[5]
+        }
+    }
+    
+
+    var table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
+    
+    var table2 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+    var table3 = "<td>$"+ degf +"$</td><td>$"+row[0]+"$</td><td>$"+row[1]+"$</td><td>$"+row[2]+"$</td><td>$"+row[3]+"$</td><td>$"+row[4]+"$</td><td>$"+row[5]+"$</td>"
+    
+    var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
+    
+
+    document.getElementById("output2").innerHTML = table + "$$ t = " + tval + " $$"
+    
+    MathJax.typeset();
+    
+}
+
+
+function tdistvaluelower() {
+    
+    var area = document.getElementById('areat').value 
+    var degf = document.getElementById('degfree').value
+    var row = tdist[degf]
+    var row101 = tdist[101]
+    
+    if (degf >= 0 && degf <= 100) {
+        if (area == ".20") {
+            tval = row[0]
+        } else if (area == ".10") {
+            tval = row[1]
+        } else if (area == ".05") {
+            tval = row[2]
+        } else if (area == ".025") {
+            tval = row[3]
+        } else if (area == ".01") {
+            tval = row[4]
+        } else if (area == ".005") {
+            tval = row[5]
+        }
+    } else if (degf > 100) {
+        if (area == ".20") {
+            tval = row101[0]
+        } else if (area == ".10") {
+            tval = row101[1]
+        } else if (area == ".05") {
+            tval = row101[2]
+        } else if (area == ".025") {
+            tval = row101[3]
+        } else if (area == ".01") {
+            tval = row101[4]
+        } else if (area == ".005") {
+            tval = row101[5]
+        }
+    }
+
     var table1 = "<td></td><td colspan='6'>$\\text{Area in Upper Tail}$</td>"
     
     var table2 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
@@ -7094,77 +7300,10 @@ function comptdist2() {
     
     var table = "<table><tr style='border-bottom: thin solid; border-top: thin solid'>"+table1+"</tr><tr style='border-bottom: thin solid'>"+table2+"</tr><tr>"+table3+"</tr></table>"
 
-    
-    if (tval >= 0) {
-        
-        if (prob < .005) {
-            probval = "0 \\text{ to } .005"
-        } else if (prob >= .005 && prob < .01) {
-            probval = ".005 \\text{ to } .01"
-        } else if (prob >= .01 && prob < .025) {
-            probval = ".01 \\text{ to } .025"
-        } else if (prob >= .025 && prob < .05) {
-            probval = ".025 \\text{ to } .05"
-        } else if (prob >= .05 && prob < .10) {
-            probval = ".05 \\text{ to } .10"
-        } else if (prob >= .10 && prob < .20) {
-            probval = ".10 \\text{ to } .20"
-        } else if (prob >= .20) {
-            probval = ".20 \\text{ to } 1"
-        }
-
-        if (ans < .005) {
-            ansval = "0 \\text{ to } .005"
-        } else if (ans >= .005 && ans < .01) {
-            ansval = ".005 \\text{ to } .01"
-        } else if (ans >= .01 && ans < .025) {
-            ansval = ".01 \\text{ to } .025"
-        } else if (ans >= .025 && ans < .05) {
-            ansval = ".025 \\text{ to } .05"
-        } else if (ans >= .05 && ans < .10) {
-            ansval = ".05 \\text{ to } .10"
-        } else if (ans >= .10 && ans < .20) {
-            ansval = ".10 \\text{ to } .20"
-        } else if (ans >= .20 && ans < .80) {
-            ansval = ".20 \\text{ to } .80"
-        } else if (ans >= .80 && ans < .90) {
-            ansval = ".80 \\text{ to } .90"
-        } else if (ans >= .90 && ans < .95) {
-            ansval = ".90 \\text{ to } .95"
-        } else if (ans >= .95 && ans < .975) {
-            ansval = ".95 \\text{ to } .975"
-        } else if (ans >= .975 && ans < .99) {
-            ansval = ".975 \\text{ to } .99"
-        } else if (ans >= .99 && ans < .995) {
-            ansval = ".99 \\text{ to } .995"
-        } 
-
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} P(t \\leq " + tval + ") &= 1 - P(t \\geq " + tval + ") \\\\ &= 1 - ("+ probval + ") \\\\ &= " + ansval + " \\end{align} $$"
-        
-    } else if (tval < 0) {
-        
-        if (probpos < .005) {
-            probval = "0 \\text{ to } .005"
-        } else if (probpos >= .005 && probpos < .01) {
-            probval = ".005 \\text{ to } .01"
-        } else if (probpos >= .01 && probpos < .025) {
-            probval = ".01 \\text{ to } .025"
-        } else if (probpos >= .025 && probpos < .05) {
-            probval = ".025 \\text{ to } .05"
-        } else if (probpos >= .05 && probpos < .10) {
-            probval = ".05 \\text{ to } .10"
-        } else if (probpos >= .10 && probpos < .20) {
-            probval = ".10 \\text{ to } .20"
-        } else if (probpos >= .20) {
-            probval = ".20 \\text{ to } 1"
-        }
-
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} P(t \\leq " + tval + ") &= P(t \\geq " + tvalpos + ") \\\\ &= " + probval + " \\end{align} $$"
-        
-    }
-    
+    document.getElementById("output2").innerHTML = table + "$$ t = " + (-1 * tval) + " $$"
     
     MathJax.typeset();
+    
 }
 
 
@@ -7172,6 +7311,17 @@ function comptdist2() {
 
 
 
+
+
+function switchtdistarea() {
+    $("#tdistprob").hide(); $("#tdistprobarea").show();
+    tdisttype = "area"
+}
+
+function switchtdistprob() {
+    $("#tdistprob").show(); $("#tdistprobarea").hide();
+    tdisttype = "probability"
+}
 
 
 
@@ -7563,12 +7713,13 @@ function exampleexponential2(){
 
 
 function exampletdist(){
-    if (tdisttype == "probability") {
+    if (tdisttype == "area") {
+        document.getElementById('probtypet').value="right"
         document.getElementById('degfree').value="14"
-        document.getElementById('tdistval').value="1.452"
+        document.getElementById('tdistval').value="1.761"
         document.getElementById('tdistval1').value="-1.75"
         document.getElementById('tdistval2').value="-1.04"
-    } else if (tdisttype == "area") {
+    } else if (tdisttype == "value") {
         document.getElementById('areatypet').value="left"
         document.getElementById('areaval').value=".6772"
     } 
@@ -7576,12 +7727,13 @@ function exampletdist(){
 }
 
 function exampletdist2(){
-    if (tdisttype == "probability") {
+    if (tdisttype == "area") {
+        document.getElementById('probtypet').value="left"
         document.getElementById('degfree').value="12"
-        document.getElementById('tdistval').value="2.386"
+        document.getElementById('tdistval').value="2.179"
         document.getElementById('tdistval1').value=".52"
         document.getElementById('tdistval2').value="1.22"
-    } else if (tdisttype == "area") {
+    } else if (tdisttype == "value") {
         document.getElementById('areatypet').value="right"
         document.getElementById('areaval').value=".2266"
     }
