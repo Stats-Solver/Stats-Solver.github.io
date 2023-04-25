@@ -7282,11 +7282,11 @@ function tdistvalueupper() {
     } else if (area == .05) {
         ctx.fillText(".05",241,125);
     } else if (area == .025) {
-        ctx.fillText(".025",253,127);
+        ctx.fillText(".025",256,109);
     } else if (area == .01) {
         ctx.fillText(".01",267,110);
     } else if (area == .005) {
-        ctx.fillText(".005",255,115);
+        ctx.fillText(".005",255,110);
     } 
 
     
@@ -7454,11 +7454,11 @@ function tdistvaluelower() {
     } else if (area == .05) {
         ctx.fillText(".05",285 - 241,125);
     } else if (area == .025) {
-        ctx.fillText(".025",285 - 253,127);
+        ctx.fillText(".025",285 - 256,109);
     } else if (area == .01) {
         ctx.fillText(".01",285 - 267,110);
     } else if (area == .005) {
-        ctx.fillText(".005",285 - 255,115);
+        ctx.fillText(".005",285 - 255,110);
     } 
     
     
