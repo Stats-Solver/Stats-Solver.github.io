@@ -615,7 +615,7 @@ function showstuff(){
         $("#tdistexamples").hide(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
         $("#exponentialpdf").hide(); $("#exponentialprobformula").hide(); $("#exponentialcurve").hide();
     } else if (x == "tdistribution") {
-        $("#tdistribution").show(); $("#tdistarea").show(); $("#tdistprobbetween").hide(); $("#tdistvalue").hide(); $("#tdistprobarea2").hide();
+        $("#tdistribution").show(); $("#tdistarea").show(); $("#tdistareabetween").hide(); $("#tdistvalue").hide(); $("#tdistvaluebetween").hide();
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").show(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "approximation") {
@@ -6815,11 +6815,9 @@ function switchexponentialcurve() {
     $("#exponentialpdf").hide(); $("#exponentialprobformula").hide(); $("#exponentialprob").hide(); $("#exponentialcurve").show();
 }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////// Student's t-Distribution /////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 function tdistribution() {
     if (tdisttype == "area") {
@@ -6830,33 +6828,29 @@ function tdistribution() {
 }
 
 function tdistarea() {
-    var probtype = document.getElementById('probtypet').value
-    if (probtype == "right") {
+    var areatype = document.getElementById('areatypet').value
+    if (areatype == "right") {
         tdistarearight() 
-    } else if (probtype == "left") {
+    } else if (areatype == "left") {
         tdistarealeft() 
+    }  else if (areatype == "between") {
+        tdistareabetween() 
     } 
 }
 
 function tdistarearight() {
-    $("#myCanvas").show();
-    
-    
+    $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
     var tval = parseFloat(document.getElementById('tdistval').value)
     var tvalpos = -1 * tval
     var prob = 1 - compute(tval,degf)
     var prob2 = compute(tval,degf)
     var probpos = 1 - compute(tvalpos,degf)
-    
     if (tval >= 0) {
         var ans = parseFloat(prob.toFixed(3))
     } else {
         var ans = parseFloat((1-prob.toFixed(3)).toFixed(3))
     }
-    
-    
-
     var lessval = tval
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
@@ -7017,34 +7011,26 @@ function tdistarearight() {
 }
 
 function tdistarealeft() {
-    $("#myCanvas").show();
-    
-    
+    $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
     var tval = parseFloat(document.getElementById('tdistval').value)
     var tvalpos = -1 * tval
     var prob = compute(tval,degf)
     var probpos = 1 - compute(tvalpos,degf)
-    
     if (tval <= 0) {
         var ans = parseFloat(prob.toFixed(3))
     } else {
         var ans = parseFloat((1-prob.toFixed(3)).toFixed(3))
     }
-
-
     var lessval = tval
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
@@ -7177,44 +7163,212 @@ function tdistarealeft() {
 
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
-    
-    
-    
-    
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
     if (tval <= 0) {
         document.getElementById("output2").innerHTML = table + "$$ \\begin{align}  &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\ &= \\boxed{" + parseFloat(prob.toFixed(3)) + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
         document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = {\\color{RoyalBlue}"+parseFloat((1-prob.toFixed(3)).toFixed(3))+"} $$ $$ \\begin{align} \\text{Area to left of } "+tval+" &= 1 - " + parseFloat((1-prob.toFixed(3)).toFixed(3)) + " \\\\  &= \\boxed{" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
+    MathJax.typeset();
+}
+
+function tdistareabetween() {
+    $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
+    var degf = parseFloat(document.getElementById('degfree').value)
+    var tval1 = -1 * Math.abs(parseFloat(document.getElementById('tdistval1').value))
+    var tval2 = Math.abs(tval1)
+    var prob = 1 - compute(tval2,degf)
+    var prob2 = compute(tval2,degf)
+    var ans = parseFloat(prob.toFixed(3))
     
+    var lessval = tval1
+    var lessvalz = 30+10*lessval
+    var greaterval = tval2
+    var greatervalz = 30+10*greaterval
+    var exp = 2.71828;
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    var c = document.getElementById("myCanvas");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    if ((greaterval - lessval) > .2) {
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        var points0 = []
+        for (i = 0; i < (greatervalz-lessvalz); i++) {
+            points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+        }
+        // move to the first point
+        ctx.moveTo(points0[0].x, points0[0].y);
+        for (i = 1; i < points0.length - 2; i ++) {
+            var xc = (points0[i].x + points0[i + 1].x) / 2;
+            var yc = (points0[i].y + points0[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+        ctx.lineTo(points0[i+1].x, 130);
+        ctx.lineTo(20 + 4.4*lessvalz, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+    } else {
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20 + 4.4*lessvalz, 130);
+        ctx.lineTo(20 + 4.4*greatervalz, 130);
+        ctx.lineTo(20 + 4.4*greatervalz, 120 - 250*f[Math.floor(greatervalz)]);
+        ctx.lineTo(20 + 4.4*lessvalz, 120 - 250*f[Math.floor(lessvalz)]);
+        ctx.lineTo(20 + 4.4*lessvalz, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+    }
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    if (Math.abs(lessval) >= .5 && Math.abs(greaterval) >= .5) {
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+    }
+    ctx.fillText("t",285,132);
+    if ((greaterval - lessval) >= .5) {
+        ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width,145);
+        ctx.fillText(greaterval,25 + 4.4*(30+10*greaterval) - ctx.measureText(greaterval).width,145);
+    } else {
+        ctx.fillText(lessval,25 + 4.4*(30+10*lessval) - 1.25 *ctx.measureText(lessval).width,145);
+        ctx.fillText(greaterval,25 + 4.4*(30+10*greaterval)- .5 * ctx.measureText(greaterval).width,145);
+    }
+    if ((greaterval - lessval) > .2) {
+        //ctx.fillText(greaterval,points0[i+1].x - 10,145);
+        ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+        ctx.moveTo(points0[i+1].x, 135);
+        ctx.lineTo(points0[i+1].x, 125);
+        var points = []
+        for (i = 0; i < 60; i++) {
+            points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++) {
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    } else {
+        //ctx.fillText(greaterval,points0[i+1].x - 10,145);
+        ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+        ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+        var points = []
+        for (i = 0; i < 60; i++) {
+            points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++) {
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+    }
+    ctx.stroke();
+    
+    var size = degf + 1;
+    var sizem1 = degf;
+    var sizem2 = degf - 1;
+    
+    table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (ans == .2) {
+        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .1) {
+        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .05) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .025) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .01) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .005) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } 
+    
+    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    document.getElementById("output2").innerHTML = table + " $$ \\begin{align} &\\text{Area to left of } "+tval1+" \\\\ &= \\text{Area to right of } "+tval2+" \\\\ &= {\\color{RoyalBlue}" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ $$ \\begin{align} \\text{Area } &\\text{between } "+tval1+" \\text{ and } "+tval2+" \\\\ &= 1 - 2 \\times "+parseFloat(prob.toFixed(3))+" \\\\ &= 1 - "+parseFloat(2*prob.toFixed(3))+" \\\\ &= \\boxed{" + parseFloat((1-2*prob.toFixed(3)).toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+
     MathJax.typeset();
 }
 
 function tdistvalue() {
-    var areatype = document.getElementById('areatypet').value
-    if (areatype == "upper") {
+    var type = document.getElementById('valuetypet').value
+    if (type == "upper") {
         tdistvalueupper() 
-    } else if (areatype == "lower") {
+    } else if (type == "lower") {
         tdistvaluelower() 
-    } 
+    } else if (type == "between") {
+        tdistvaluebetween() 
+    }  
 }
 
 function tdistvalueupper() {
-    $("#myCanvas").show();
-    
-    
+    $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
     var area = parseFloat(document.getElementById('areat').value)
     var tval = tinv(area, degf)
-    
-    
-
     var lessval = tval
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
@@ -7381,19 +7535,13 @@ function tdistvalueupper() {
 }
 
 function tdistvaluelower() {
-    $("#myCanvas").show();
-    
-    
+    $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
     var area = parseFloat(document.getElementById('areat').value)
     var tval = -1*tinv(area, degf)
-
-
     var lessval = tval
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
@@ -7547,10 +7695,7 @@ function tdistvaluelower() {
 
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
-    
-    
-    
-    
+
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     document.getElementById("output2").innerHTML = table + "$$ t = \\boxed{" + parseFloat(tval.toFixed(3)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
@@ -7559,10 +7704,183 @@ function tdistvaluelower() {
     MathJax.typeset();
 }
 
+function tdistvaluebetween() {
+    $("#myCanvas0").show(); $("#output2").show(); $("#myCanvas").hide(); $("#output").show();
+    var degf = parseFloat(document.getElementById('degfree').value)
+    var perc = parseFloat(document.getElementById('percentt').value)
+    var area = parseFloat((perc/100).toFixed(2))
+    var prob = ((100-perc)/100)/2
+    var ans = parseFloat(prob.toFixed(3))
+    
+    var tval1 = parseFloat((-1 * tinv(ans, degf)).toFixed(3))
+    var tval2 = parseFloat(tinv(ans, degf).toFixed(3))
+    
+    var lessval = tval1
+    var lessvalz = 30+10*lessval
+    var greaterval = tval2
+    var greatervalz = 30+10*greaterval
+    var exp = 2.71828;
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    var c = document.getElementById("myCanvas0");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    if ((greaterval - lessval) > .2) {
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        var points0 = []
+        for (i = 0; i < (greatervalz-lessvalz); i++) {
+            points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+        }
+        // move to the first point
+        ctx.moveTo(points0[0].x, points0[0].y);
+        for (i = 1; i < points0.length - 2; i ++) {
+            var xc = (points0[i].x + points0[i + 1].x) / 2;
+            var yc = (points0[i].y + points0[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+        ctx.lineTo(points0[i+1].x, 130);
+        ctx.lineTo(20 + 4.4*lessvalz, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+    } else {
+        ctx.strokeStyle = 'lightgray';
+        ctx.beginPath();
+        ctx.moveTo(20 + 4.4*lessvalz, 130);
+        ctx.lineTo(20 + 4.4*greatervalz, 130);
+        ctx.lineTo(20 + 4.4*greatervalz, 120 - 250*f[Math.floor(greatervalz)]);
+        ctx.lineTo(20 + 4.4*lessvalz, 120 - 250*f[Math.floor(lessvalz)]);
+        ctx.lineTo(20 + 4.4*lessvalz, 130);
+        ctx.stroke();
+        ctx.fillStyle = "lightgray";
+        ctx.fill();
+    }
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(283, 130);
+    if (Math.abs(lessval) >= .5 && Math.abs(greaterval) >= .5) {
+        ctx.moveTo(150, 135);
+        ctx.lineTo(150, 125);
+        ctx.fillText("0",148,145);
+    }
+    ctx.fillText("t",285,132);
+    ctx.fillText("-t",19 + 4.4*(30+10*lessval),145);
+    ctx.fillText("t",18 + 4.4*(30+10*greaterval),145);
+    ctx.fillText(perc + "%",145,90);
+    if ((greaterval - lessval) > .2) {
+        //ctx.fillText(greaterval,points0[i+1].x - 10,145);
+        ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+        ctx.moveTo(points0[i+1].x, 135);
+        ctx.lineTo(points0[i+1].x, 125);
+        var points = []
+        for (i = 0; i < 60; i++) {
+            points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++) {
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    } else {
+        //ctx.fillText(greaterval,points0[i+1].x - 10,145);
+        ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+        ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
+        ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
+        var points = []
+        for (i = 0; i < 60; i++) {
+            points[i] = {x:20 + 4.45*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++) {
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+    }
+    ctx.stroke();
+    
+    var size = degf + 1;
+    var sizem1 = degf;
+    var sizem2 = degf - 1;
+    
+    table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
+    
+    table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    
+    if (ans == .2) {
+        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
 
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
 
+        table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .1) {
+        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
 
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
 
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .05) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .025) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .01) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } else if (ans == .005) {
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+    
+        table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
+
+        table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
+
+        table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
+    } 
+    
+    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
+    
+    document.getElementById("output").innerHTML = "$$ \\text{Area between } -t \\text{ and } t = "+area+" $$ $$ \\begin{align} \\text{Area to right of } t &= (1-"+area+")/2 \\\\ &= "+parseFloat((1-area).toFixed(3))+"/2 \\\\ &= "+parseFloat(((1-area)/2).toFixed(3))+" \\end{align} $$ "
+    
+    document.getElementById("output2").innerHTML = table + " $$ \\boxed{"+tval1+" \\text{ and } "+tval2+"} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+
+    MathJax.typeset();
+}
 
 function switchtdistvalue() {
     $("#tdistvalue").show(); $("#tdistarea").hide();
@@ -7575,9 +7893,45 @@ function switchtdistarea() {
     tdisttype = "area"
 }
 
+function switchtdistvaluebetween() {
+    var valuetype = document.getElementById('valuetypet').value
+    if (valuetype == "between") {
+        $("#tdistvaluebetween").show(); $("#tdistvalue").hide();
+    }
+}
 
+function switchtdistareabetween() {
+    var areatype = document.getElementById('areatypet').value
+    if (areatype == "between") {
+        $("#tdistareabetween").show(); $("#tdistarea").hide();
+    }
+}
 
+function switchtdistvaluebetweenback() {
+    document.getElementById('valuetypet').value = "upper"
+    $("#tdistvaluebetween").hide(); $("#tdistvalue").show();
+}
 
+function switchtdistareabetweenback() {
+    document.getElementById('areatypet').value = "right"
+    $("#tdistareabetween").hide(); $("#tdistarea").show();
+}
+
+function tdistvalset() {
+    if (document.getElementById('tdistval1').value == "-" || document.getElementById('tdistval1').value == "") {
+        document.getElementById('tdistval2').value = ""
+    } else {
+        document.getElementById('tdistval2').value = -1 * document.getElementById('tdistval1').value
+    }
+}
+
+function tdistvalset2() {
+    if (document.getElementById('tdistval2').value == "-" || document.getElementById('tdistval2').value == "") {
+        document.getElementById('tdistval1').value = ""
+    } else {
+        document.getElementById('tdistval1').value = -1 * document.getElementById('tdistval2').value
+    }
+}
 
 
 
@@ -7847,32 +8201,9 @@ function compfdist() {
     
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////// Examples ////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function exampleuniform(){
     document.getElementById('minval').value="30"
@@ -7957,20 +8288,14 @@ function exampleexponential2(){
     document.getElementById('exponentialval2').value="6"
 }
 
-
-
-
-
 function exampletdist(){
     if (tdisttype == "area") {
-        document.getElementById('probtypet').value="right"
         document.getElementById('degfree').value="14"
         document.getElementById('tdistval').value="1.761"
-        document.getElementById('tdistval1').value="-1.75"
-        document.getElementById('tdistval2').value="-1.04"
+        document.getElementById('tdistval1').value="-1.761"
+        document.getElementById('tdistval2').value="1.761"
     } else if (tdisttype == "value") {
         document.getElementById('degfree').value="14"
-        document.getElementById('areatypet').value="upper"
         document.getElementById('areat').value=".05"
     } 
     
@@ -7978,21 +8303,15 @@ function exampletdist(){
 
 function exampletdist2(){
     if (tdisttype == "area") {
-        document.getElementById('probtypet').value="left"
         document.getElementById('degfree').value="12"
         document.getElementById('tdistval').value="-2.179"
-        document.getElementById('tdistval1').value=".52"
-        document.getElementById('tdistval2').value="1.22"
+        document.getElementById('tdistval1').value="-2.179"
+        document.getElementById('tdistval2').value="2.179"
     } else if (tdisttype == "value") {
         document.getElementById('degfree').value="12"
-        document.getElementById('areatypet').value="lower"
         document.getElementById('areat').value=".025"
     }
 }
-
-
-
-
 
 function exampleapprox() {
     document.getElementById('psuccess').value=".3"
@@ -8000,37 +8319,27 @@ function exampleapprox() {
     document.getElementById('approxval').value = "20"
 }
 
-
-
 function exampleapprox2() {
     document.getElementById('psuccess').value=".7"
     document.getElementById('trials').value="100"
     document.getElementById('approxval').value = "60"
 }
 
-
-
-
 function examplechi() {
     document.getElementById('degfreec').value="8"
     document.getElementById('areac').value=".05"
 }
-
-
 
 function examplechi2() {
     document.getElementById('degfreec').value="12"
     document.getElementById('areac').value=".025"
 }
 
-
 function examplefdist() {
     document.getElementById('numdf').value="4"
     document.getElementById('dendf').value="8"
     document.getElementById('areaf').value=".05"
 }
-
-
 
 function examplefdist2() {
     document.getElementById('numdf').value="6"
