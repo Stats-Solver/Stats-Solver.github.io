@@ -6931,9 +6931,9 @@ function tdistarearight() {
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
     if (tval >= 0) {
-        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = \\boxed{" + parseFloat(prob.toFixed(3)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\  &= {\\color{RoyalBlue}" + parseFloat((1-prob.toFixed(3)).toFixed(3)) + "} \\end{align} $$ $$ \\begin{align} &\\text{Area to right of } "+tval+" \\\\ &= 1 - " + parseFloat((1-prob.toFixed(3)).toFixed(3)) + " \\\\  &= \\boxed{" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\  &= {\\color{RoyalBlue}" + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ $$ \\begin{align} &\\text{Area to right of } "+tval+" \\\\ &= 1 - " + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + " \\\\  &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
 
     MathJax.typeset();
@@ -7094,9 +7094,9 @@ function tdistarealeft() {
     } 
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     if (tval <= 0) {
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align}  &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\ &= \\boxed{" + parseFloat(prob.toFixed(3)) + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\begin{align}  &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\ &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = {\\color{RoyalBlue}"+parseFloat((1-prob.toFixed(3)).toFixed(3))+"} $$ $$ \\begin{align} \\text{Area to left of } "+tval+" &= 1 - " + parseFloat((1-prob.toFixed(3)).toFixed(3)) + " \\\\  &= \\boxed{" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = {\\color{RoyalBlue}"+String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '')+"} $$ $$ \\begin{align} \\text{Area to left of } "+tval+" &= 1 - " + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + " \\\\  &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
@@ -7274,7 +7274,7 @@ function tdistareabetween() {
     
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output2").innerHTML = table + " $$ \\begin{align} &\\text{Area to left of } "+tval1+" \\\\ &= \\text{Area to right of } "+tval2+" \\\\ &= {\\color{RoyalBlue}" + parseFloat(prob.toFixed(3)) + "} \\end{align} $$ $$ \\begin{align} \\text{Area } &\\text{between } "+tval1+" \\text{ and } "+tval2+" \\\\ &= 1 - 2 \\times "+parseFloat(prob.toFixed(3))+" \\\\ &= 1 - "+parseFloat(2*prob.toFixed(3))+" \\\\ &= \\boxed{" + parseFloat((1-2*prob.toFixed(3)).toFixed(3)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = table + " $$ \\begin{align} &\\text{Area to left of } "+tval1+" \\\\ &= \\text{Area to right of } "+tval2+" \\\\ &= {\\color{RoyalBlue}" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ $$ \\begin{align} \\text{Area } &\\text{between } "+tval1+" \\text{ and } "+tval2+" \\\\ &= 1 - 2 \\times "+String(parseFloat(prob.toFixed(3))).replace(/^0+/, '')+" \\\\ &= 1 - "+String(parseFloat(2*prob.toFixed(3))).replace(/^0+/, '')+" \\\\ &= \\boxed{" + String(parseFloat((1-2*prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
 
     MathJax.typeset();
 }
@@ -7804,7 +7804,7 @@ function tdistvaluebetween() {
     
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     
-    document.getElementById("output").innerHTML = "$$ \\text{Area between } -t \\text{ and } t = "+area+" $$ $$ \\begin{align} \\text{Area to right of } t &= (1-"+area+")/2 \\\\ &= "+parseFloat((1-area).toFixed(3))+"/2 \\\\ &= "+parseFloat(((1-area)/2).toFixed(3))+" \\end{align} $$ "
+    document.getElementById("output").innerHTML = "$$ \\text{Area between } -t \\text{ and } t = "+String(area).replace(/^0+/, '')+" $$ $$ \\begin{align} \\text{Area to right of } t &= (1-"+String(area).replace(/^0+/, '')+")/2 \\\\ &= "+String(parseFloat((1-area).toFixed(3))).replace(/^0+/, '')+"/2 \\\\ &= "+String(parseFloat(((1-area)/2).toFixed(3))).replace(/^0+/, '')+" \\end{align} $$ "
     
     document.getElementById("output2").innerHTML = table + " $$ \\boxed{"+tval1+" \\text{ and } "+tval2+"} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
 
