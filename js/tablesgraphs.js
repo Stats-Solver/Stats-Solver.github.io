@@ -85,12 +85,6 @@ function avg(input){
     return sum(input)/input.length
 }
 
-
-
-
-
-
-
 var canvas = document.getElementById("howCanvas1");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
@@ -360,24 +354,6 @@ function howscat() {
     
     ctx.stroke();
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 function showthings(){

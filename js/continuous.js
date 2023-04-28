@@ -619,7 +619,7 @@ function showstuff(){
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").show(); $("#approxexamples").hide(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "approximation") {
-        approximation()
+        $("#approximation").show(); $("#approxmean").hide(); $("#approxstandard").hide(); $("#approxprobability").show();
         $("#uniformexamples").hide(); $("#standardexamples").hide(); $("#normalexamples").hide(); $("#exponentialexamples").hide(); 
         $("#tdistexamples").hide(); $("#approxexamples").show(); $("#fdistexamples").hide(); $("#chiexamples").hide();
     } else if (x == "fdistribution") {
@@ -651,8 +651,7 @@ function stat(){
     }  else if (x == "normal"){
         normal()
     } else if (x == "approximation") {
-        $("#myCanvas0").show(); $("#myCanvas").show(); 
-        compapprox()
+        approximation()
     } else if (x == "exponential") {
         exponential()
     } else if (x == "tdistribution") {
@@ -2912,7 +2911,7 @@ function normalless() {
     
     ctx.stroke();
     
-    var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue = toFixing(parseFloat(lessval.toFixed(2)),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3007,13 +3006,9 @@ function normalless() {
             } 
         }
     }
-    
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +lessval.toFixed(2)+ "} $$ "
-    
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(x"+ sign + lessval0 + ") &= P(z"+ sign + lessval.toFixed(2) + ") \\\\ &= \\boxed{"+ parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
+    document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(x"+ sign + lessval0 + ") &= P(z"+ sign + lessval.toFixed(2) + ") \\\\ &= \\boxed{"+ parseFloat(normalcdf(lessval.toFixed(2))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
@@ -3207,7 +3202,7 @@ function normalgreater() {
     
     ctx.stroke();
     
-    var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue = toFixing(parseFloat(lessval.toFixed(2)),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3303,14 +3298,9 @@ function normalgreater() {
             } 
         }
     }
-    
-    
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z =\\frac{x-\\mu}{\\sigma} =\\frac{"+lessval0+"-"+expval+"}{"+sd+"} = {\\color{RoyalBlue}" +lessval.toFixed(2)+ "} $$ "
-    
     var table = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
     document.getElementById("output2").innerHTML = "<br>" + table + "$$ \\begin{align} P(x"+ sign + lessval0 + ") &=  P(z"+ sign + lessval.toFixed(2) + ") \\\\ &= 1 - P(z \\leq" + lessval.toFixed(2) + ") \\\\ &= 1 - " + parseFloat(normalcdf(parseFloat(lessval.toFixed(2)))).toFixed(4).replace(/^0+/, '') + " \\\\ &= \\boxed{"+ parseFloat((1-normalcdf(parseFloat(lessval.toFixed(2))))).toFixed(4).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
 
@@ -3602,7 +3592,7 @@ function normalbetween() {
     
     ctx.stroke();
     
-    var zvalue = toFixing(parseFloat(lessval),1);
+    var zvalue = toFixing(parseFloat(lessval.toFixed(2)),1);
     var zvaluea = (zvalue - .1).toFixed(1);
     var zvalueb = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
@@ -3700,7 +3690,7 @@ function normalbetween() {
     
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
     
-    var zvalue2 = toFixing(parseFloat(greaterval),1);
+    var zvalue2 = toFixing(parseFloat(greaterval.toFixed(2)),1);
     var zvalue2a = (zvalue2 - .1).toFixed(1);
     var zvalue2b = (parseFloat(zvalue2) + .1).toFixed(1);
     var zvaluer2 = parseFloat(greaterval).toFixed(2); 
@@ -4481,36 +4471,7 @@ function switchnormalcurve() {
 //////////////////////////////////////////////////// Approximation of Binomial ////////////////////////////////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 function approximation() {
-    $("#approximation").show();
-    $("#approxmean").hide();
-    $("#approxstandard").hide();
-    $("#approxprobability").show();
-}
-
-function switchstandard() {
-    $("#approxmean").hide();
-    $("#approxstandard").show();
-    $("#approxprobability").hide();
-    approxtype = "standard"
-}
-
-function switchprobab() {
-    $("#approxmean").hide();
-    $("#approxstandard").hide();
-    $("#approxprobability").show();
-    approxtype = "probability"
-}
-
-function switchmean() {
-    $("#approxmean").show();
-    $("#approxstandard").hide();
-    $("#approxprobability").hide();
-    approxtype = "mean"
-}
-
-function compapprox() {
     if (approxtype == "mean") {
         approxmean()
     } else if (approxtype == "standard") {
@@ -4520,52 +4481,24 @@ function compapprox() {
     }
 }
 
-function approxmean() {
-    $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide();
-    document.getElementById("explanationtext").innerHTML = "$ \\mu = np $"
-    var trials = document.getElementById('trials').value
-    var psuccess = document.getElementById('psuccess').value
-    var ans = trials * psuccess
-    
-    document.getElementById("output2").innerHTML = "$$ \\mu = np = (" + trials + ") ( " + psuccess + ") = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
-    
-    MathJax.typeset();
-}
-
-function approxstandard() {
-    $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide();
-    document.getElementById("explanationtext").innerHTML = "$ \\sigma = \\sqrt{np(1-p)} $"
-    var trials = document.getElementById('trials').value
-    var psuccess = document.getElementById('psuccess').value
-    var ans = Math.sqrt(trials * psuccess * (1 - psuccess))
-    
-    document.getElementById("output2").innerHTML = "$$ \\sigma = \\sqrt{np(1-p)} = \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
-    
-    MathJax.typeset();
-}
-
-
-
-
-
 function approxprobability() {
     var x = document.getElementById('probtypea').value
     if (x == "equal") {
-        approxprobability1()
+        approxequal()
     } else if (x == "lessequal") {
-        approxprobability2()
+        approxlessequal()
     } else if (x == "less") {
-        approxprobability3()
+        approxless()
     } else if (x == "greaterequal") {
-        approxprobability4()
+        approxgreaterequal()
     } else if (x == "greater") {
-        approxprobability5()
+        approxgreater()
     }
 }
 
 
-function approxprobability1() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
+function approxequal() {
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -4579,100 +4512,72 @@ function approxprobability1() {
     var prob2 = (normalcdf(z2)).toFixed(4)
     var ans = (prob2 - prob1).toFixed(4)
     var exp = 2.71828;
-    
     var lessval = z1
     var greaterval = z2
     var lessvalz = 30+10*lessval
     var greatervalz = 30+10*greaterval
     var lessval0 = xval1
     var greaterval0 = xval2
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Normal Distribution",110,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < (greatervalz-lessvalz); i++) {
-      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
-		}
-    
+        points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*greatervalz, 130);
     ctx.lineTo(20 + 4.4*lessvalz, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
-    ctx.fillText(mean,148,145);
-    
+    ctx.fillText(mean,150 - ctx.measureText(mean).width/2,145);
     ctx.fillText("x",285,132);
-    ctx.fillText(lessval0,5 + 4.4*(30+10*lessval),145);
-    ctx.fillText(greaterval0,15 + 4.4*(30+10*greaterval),145);
-    
+    ctx.fillText(lessval0,22 + 4.4*(30+10*lessval)- ctx.measureText(lessval0).width,145);
+    ctx.fillText(greaterval0,18 + 4.4*(30+10*greaterval),145);
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
     ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
     ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
@@ -4727,8 +4632,8 @@ function approxprobability1() {
     ctx.fillText("0",148,145);
     
     ctx.fillText("z",285,132);
-    ctx.fillText(lessval.toFixed(2),5 + 4.4*(30+10*lessval),145);
-    ctx.fillText(greaterval.toFixed(2),15 + 4.4*(30+10*greaterval),145);
+    ctx.fillText(lessval.toFixed(2),22 + 4.4*(30+10*lessval)- ctx.measureText(lessval).width,145);
+    ctx.fillText(greaterval.toFixed(2),18 + 4.4*(30+10*greaterval),145);
     
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
@@ -4758,16 +4663,6 @@ function approxprobability1() {
     
     
     ctx.stroke();
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluea = (zvalue - .1).toFixed(1);
@@ -4968,7 +4863,7 @@ function approxprobability1() {
     
     var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" \\pm .5 = {\\color{RoyalBlue}"+xval1+"} \\text{ to } {\\color{RoyalBlue}"+xval2+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" \\pm .5 = {\\color{RoyalBlue}"+xval1+"} \\text{ to } {\\color{RoyalBlue}"+xval2+"} $$ "
     
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 = \\frac{x_1-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ $$ z_2 = \\frac{x_2-\\mu}{\\sigma} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z2.toFixed(2) + "} $$"
     
@@ -4977,8 +4872,8 @@ function approxprobability1() {
     MathJax.typeset();
 }
 
-function approxprobability2() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
+function approxlessequal() {
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -5260,7 +5155,7 @@ function approxprobability2() {
     
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
@@ -5269,8 +5164,8 @@ function approxprobability2() {
     MathJax.typeset();
 }
 
-function approxprobability3() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
+function approxless() {
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -5552,20 +5447,17 @@ function approxprobability3() {
     
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
-    
-    //$$ \\text{Applying Continuity Correction Factor:}$$ $$ P(x < " + xval + ") \\rightarrow P(x < " + xval1 + ") $$ 
-    
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x < " + xval1 + ") &= P(z < " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x < " + xval1 + ") &= P(z < " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     
     MathJax.typeset();
 }
 
-function approxprobability4() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
+function approxgreaterequal() {
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -5855,7 +5747,7 @@ function approxprobability4() {
     
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
     
@@ -5864,8 +5756,8 @@ function approxprobability4() {
     MathJax.typeset();
 }
 
-function approxprobability5() {
-    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show();
+function approxgreater() {
+    $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
     var psuccess = document.getElementById('psuccess').value
     var xval = document.getElementById('approxval').value
@@ -6155,7 +6047,7 @@ function approxprobability5() {
     
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
     
-    document.getElementById("output0").innerHTML = "$$ \\text{Expected Value:} $$ $$ \\mu = np = (" + trials + ") ( " + psuccess + ") = {\\color{RoyalBlue}"+mean+"} $$ $$ \\text{Standard Deviation:} $$ $$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= {\\color{RoyalBlue}" + stnd + "} \\end{align} $$ $$ \\text{Continuity Correction Factor} = {\\color{RoyalBlue}.5} $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
     
     
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
@@ -6165,13 +6057,50 @@ function approxprobability5() {
     MathJax.typeset();
 }
 
+function approxmean() {
+    $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide(); $("#output").hide(); $("#output2").show();
+    document.getElementById("explanationtext").innerHTML = "$ \\mu = np $"
+    var trials = document.getElementById('trials').value
+    var psuccess = document.getElementById('psuccess').value
+    var ans = trials * psuccess
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\mu &= np \\\\ &= (" + trials + ") ( " + psuccess + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> $$"
+    MathJax.typeset();
+}
 
+function approxstandard() {
+    $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide(); $("#output").hide(); $("#output2").show();
+    document.getElementById("explanationtext").innerHTML = "$ \\sigma = \\sqrt{np(1-p)} $"
+    var trials = document.getElementById('trials').value
+    var psuccess = document.getElementById('psuccess').value
+    var ans = Math.sqrt(trials * psuccess * (1 - psuccess))
+    document.getElementById("output2").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> $$"
+    MathJax.typeset();
+}
+
+function switchstandard() {
+    $("#approxmean").hide();
+    $("#approxstandard").show();
+    $("#approxprobability").hide();
+    approxtype = "standard"
+}
+
+function switchprobab() {
+    $("#approxmean").hide();
+    $("#approxstandard").hide();
+    $("#approxprobability").show();
+    approxtype = "probability"
+}
+
+function switchmean() {
+    $("#approxmean").show();
+    $("#approxstandard").hide();
+    $("#approxprobability").hide();
+    approxtype = "mean"
+}
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////// Exponential Distribution /////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 function exponential() {
     if (exponentialtype == "probability"){

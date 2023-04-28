@@ -234,40 +234,54 @@
             <td></td>
           </tr>
         </table> 
-          <div class = " text-center mt-2" id="discreteprobs">
+          <div class = " text-center mt-2" id="tableprobs">
             $P(x$ <select id="probtype1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probval">)
-            
-            <span id = "probswitch">
             &nbsp;
-              
-            <svg onclick="dswitchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg onclick="tableswitchgraph()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
-                </span>
         </div> 
-          
-          <div class = " text-center mt-2" id = "discreteexpected">
-            $E(x)$
-              
+          <div class = " text-center mt-2" id="tablegraph">
+            $\text{Draw Graph}$
+            &nbsp;
+            <svg onclick="tableswitchvalidity()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div>
+          <div class = " text-center mt-2" id="tablevalidity">
+            $\text{Check Validity}$
+            &nbsp;
+            <svg onclick="tableswitchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div>
+          <div class = " text-center mt-2" id = "tableexpected">
+            $\text{Expected Value}$
               &nbsp;
-              
-            <svg onclick="dswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg onclick="tableswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
         </div> 
-          
-          <div class = " text-center mt-2" id = "discretevariance">
-            $\text{Var}(x)$
-              
+          <div class = " text-center mt-2" id = "tablevariance">
+            $\text{Variance}$
               &nbsp;
-              
-            <svg onclick="dswitchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <svg onclick="tableswitchstandard()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
         </div> 
+          <div class = " text-center mt-2" id = "tablestandard">
+            $\text{Standard Deviation}$
+              &nbsp;
+            <svg onclick="tableswitchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div>
           </div>
 
       
@@ -435,19 +449,15 @@
           
           <div class = " text-center mt-2" id="frequencyprobs">
             $P(x$ <select id="probtype1f" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probvalf">)
-            
-            <span id = "probswitchf">
             &nbsp;
               
             <svg onclick="fswitchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
               <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
-                </span>
-        </div> 
-          
-          <div class = " text-center mt-2" id = "frequencyexpected">
-            $E(x)$
+        </div>
+          <div class = " text-center mt-2" id = "frequencyprobdist">
+            $\text{Probability Distribution}$
               
               &nbsp;
               
@@ -456,9 +466,38 @@
               <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
             </svg>
         </div> 
-          
+          <div class = " text-center mt-2" id = "frequencygraph">
+            $\text{Draw Graph}$
+              
+              &nbsp;
+              
+            <svg onclick="fswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div>
+          <div class = " text-center mt-2" id = "frequencyexpected">
+            $\text{Expected Value}$
+              
+              &nbsp;
+              
+            <svg onclick="fswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div> 
           <div class = " text-center mt-2" id = "frequencyvariance">
-            $\text{Var}(x)$
+            $\text{Variance}$
+              
+              &nbsp;
+              
+            <svg onclick="fswitchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
+              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
+            </svg>
+        </div> 
+          <div class = " text-center mt-2" id = "frequencystandard">
+            $\text{Standard Deviation}$
               
               &nbsp;
               
@@ -476,7 +515,7 @@
 
           <table>
           <tr>
-            <td>$\text{Number of Values: } n $</td>
+            <td>$ n $</td>
             <td>$ = $</td>
             <td><select id="uniformval" class="hypinput1 probtype" onchange="univalues()"> <option value="2" selected>2</option> <option value="3"> 3 </option> <option value="4"> 4 </option> <option value="5"> 5 </option><option value="6"> 6 </option>  </select></td>
             </tr>
@@ -518,7 +557,6 @@
           <tr>
             <td rowspan="2">$f(x)=$</td>
             <td>$x$</td>
-            <td rowspan="2">&nbsp;&nbsp;&nbsp;  $\text{for } x = $ <span id = "forvalues">$1,2,3,4$</span></td>
           </tr>
             <tr style='border-top: thin solid'>
             <td><select id="formulaval" class="hypinput1 probtype" onchange="forvalues()" style="width:35px;"> <option value="3">3</option> <option value="6"> 6 </option> <option value="10" selected> 10 </option> <option value="15"> 15 </option><option value="21"> 21 </option>  </select></td>
@@ -560,9 +598,6 @@
       
       
       <div class="container mb-3" id="binomial">
-          
-
-          
           <table>
           <tr>
             
@@ -669,17 +704,14 @@
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()">
                     <option value="choose">Choose One</option>
-                    <option value="probability">Probability</option>
-                    <option value="expected">Expected Value</option>
-                    <option value="variance">Variance</option>
-                    <option value="standard">Standard Deviation</option>
+                    <!--<option value="random">Random Variable</option>-->
+                    <option value="probability">Probability Distribution</option>
+                    <option value="frequency">Frequency Distribution</option>
+                    <option value="uniform">Uniform Distribution</option>
+                    <option value="formula">Formula Distribution</option>
                     <option value="binomial">Binomial Distribution</option>
                     <option value="poisson">Poisson Distribution</option>
-                    <option value="hypergeometric">Hypergeometric Distribution</option>
-                    <option value="validity">Check Validity</option>
-                    <option value="frequency">Frequency Distribution</option>
-                    <option value="uniform">Discrete Uniform Distribution</option>
-                    <option value="formula">Formula Distribution</option>
+                    <option value="hypergeometric">Hypergeometric Dist.</option>
                 </select>
                 </div>
                 <div class="col-4 col-md-2">
@@ -801,32 +833,6 @@
             
             <p class = "p1"> The standard deviation can be found by taking the square root of the variance. Like the variance, the standard deviation is a measure of variability for a discrete random variable. However, unlike the variance, it is in the same units as the random variable. The reason the variance is not in the same units as the random variable is because its formula involves squaring the difference between x and the mean. So, the units of the variance are in the units of the random variable squared. Taking the square root brings the value back to the same units as the random variable. </p>
             
-           <!--  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script> -->
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
-            
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
                  crossorigin="anonymous"></script>
@@ -842,7 +848,6 @@
             </script>
             </div>
 
-            
             <p class = "p1"> The binomial probability distribution is associated with a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p). </p>
             
             <table style="width:100%">
@@ -887,22 +892,7 @@
             
         </div>
       </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       
       <div id = "discoutputs">
      <div class="container">
@@ -914,37 +904,12 @@
       <canvas id="myCanvas" width="300" height="150" ></canvas>
       </div>
           
-          
+         <div class="container container2 text-center">
+      <div id="charts" style="width: 500px; height: 300px;"></div>
+          </div> 
           
         </div>
-      
-     <!-- <div class="text-center mt-2 mb-2">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-         Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        </div>-->
-      
-      <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
+
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
@@ -1009,6 +974,7 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       <script src="/js/discretem.js"></script>
   </body>
 </html>

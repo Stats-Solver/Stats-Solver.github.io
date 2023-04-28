@@ -1,9 +1,4 @@
-$("#expectedtable").show();
-//$("#expectedexamples").show(); $("#standardexamples").hide(); 
-//$("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-//$("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-
-$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
+$("#expectedtable").show();$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
 $("#variance").hide(); $("#standard").hide();
 $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
 $("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
@@ -13,35 +8,18 @@ $("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
 $("#equal").hide(); $("#less").hide(); $("#greater").hide();
 $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
 $("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
-
 $("#expected").show(); $("#expectedprobs").show(); 
-//$("#expectedtable").hide(); 
 $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
 $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
 $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
 $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-
 $("#expectedexamples").show(); $("#standardexamples").hide(); 
 $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-
-$("#discreteprobs").hide(); 
-
-$("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").hide();
-$("#probswitch").hide(); $("#explanation").hide();
-
-$("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
+$("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide(); $("#tablegraph").hide();
+$("#probswitch").hide(); $("#explanation").hide();$("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
 $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-
-$("#581773186").hide();
-
-$("#discoutputs").hide();
-
-
-frequencytype = "probability"
-formulatype = "probability"
-uniformtype = "probability"
-binomialtype = "probability"
-discretekind = "probability"
+$("#581773186").hide();$("#discoutputs").hide();
+tablekind = "probability"; frequencytype = "probability"; formulatype = "probability"; uniformtype = "probability"; binomialtype = "probability"
 
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
@@ -96,35 +74,27 @@ function showstuff(){
     
     var x = document.getElementById("stat").value;
     if (x == "probability"){
-        probabilities()
+        $("#expected").show(); $("#tableprobs").show();
+        $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide(); $("#tablegraph").hide();
+        $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
+        $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
+        $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+        $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
         $("#expectedtable").show();
         $("#expectedexamples").show(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-    } else if (x == "expected"){
-        expected()
-        $("#expectedtable").show();
-        $("#expectedexamples").show(); $("#standardexamples").hide(); 
+    } else if (x == "frequency") {
+        $("#frequency").show(); 
+        $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide();
+        $("#frequencyprobdist").hide(); $("#frequencystandard").hide(); $("#frequencygraph").hide();
+        $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
+        $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
+        $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();
+        $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
+        $("#expectedexamples").hide(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-        $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-    } else if (x == "variance"){
-        variance()
-        $("#expectedtable").show();
-        $("#expectedexamples").show(); $("#standardexamples").hide(); 
-        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-        $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-    } else if (x == "standard") {
-        standard()
-        $("#expectedtable").show();
-        $("#expectedexamples").show(); $("#standardexamples").hide(); 
-        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-        $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-    } else if (x == "discrete") {
-        discrete()
-        $("#expectedtable").show();
-        $("#expectedexamples").show(); $("#standardexamples").hide(); 
-        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-        $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
+        $("#formulaexamples").hide(); $("#frequencyexamples").show(); $("#uniformexamples").hide();
     } else if (x == "binomial") {
         binomial()
         $("#expectedexamples").hide(); $("#standardexamples").hide(); 
@@ -162,35 +132,15 @@ function showstuff(){
         $("#expectedexamples").hide(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").show();
-    } else if (x == "frequency") {
-        $("#frequency").show(); 
-        $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide();
-        $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
-        $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
-        $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();
-        $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
-        $("#expectedexamples").hide(); $("#standardexamples").hide(); 
-        $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-        $("#formulaexamples").hide(); $("#frequencyexamples").show(); $("#uniformexamples").hide();
     }
-   
 }
 
 function stat(){
     $("#discoutputs").show(); $("#how").hide();
     $("#output").empty(); $("#myCanvas").hide(); 
-    //$("#581773186").show();
     var x = document.getElementById("stat").value;
     if (x == "probability"){
-        compprobabilities()
-    } else if (x == "expected"){
-        compexpected()
-    } else if (x == "variance"){
-        compvariance()
-    } else if (x == "standard") {
-        compstandard()
-    } else if (x == "discrete") {
-        compdiscrete()
+        table()
     } else if (x == "frequency") {
         compfrequency()
     } else if (x == "uniform") {
@@ -207,35 +157,43 @@ function stat(){
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
     }
-   
 }
 
-function probabilities() {
-    $("#expected").show(); $("#discreteprobs").show();
-    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
-    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
-    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-    rows = 3
-}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////// Probability Distribution ////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-function compprobabilities() {
-    var x = document.getElementById('probtype1').value
-    if (x == "equal") {
-        compprob1()
-    } else if (x == "lessequal") {
-        compprob2()
-    } else if (x == "less") {
-        compprob3()
-    } else if (x == "greaterequal") {
-        compprob4()
-    } else if (x == "greater") {
-        compprob5()
+function table() {
+    if (tablekind == "probability") {
+        tableprobabilities()
+    } else if (tablekind == "graph") {
+        tablegraph()
+    } else if (tablekind == "validity") {
+        tablevalidity()
+    } else if (tablekind == "expected") {
+        tableexpected()
+    } else if (tablekind == "variance") {
+        tablevariance()
+    } else if (tablekind == "standard") {
+        tablestandard()
     }
 }
-
-function compprob1() {
-    $("#explanation").show();
+function tableprobabilities() {
+    var x = document.getElementById('probtype1').value
+    if (x == "equal") {
+        tableprobequal()
+    } else if (x == "lessequal") {
+        tableproblessequal()
+    } else if (x == "less") {
+        tableprobless()
+    } else if (x == "greaterequal") {
+        tableprobgreaterequal()
+    } else if (x == "greater") {
+        tableprobgreater()
+    }
+}
+function tableprobequal() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
     document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
     document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
@@ -260,7 +218,6 @@ function compprob1() {
     var f8 = document.getElementById('f8').value
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
-    
     var ans = ""
     if (x == x1) {
         ans = f1
@@ -285,13 +242,11 @@ function compprob1() {
     } else {
         ans = "0"
     }
-    
-    document.getElementById("output").innerHTML = "$$ P(x=" + x + ") = f(" + x + ") = \\boxed{" + ans + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + ans + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function compprob2() {
-    $("#explanation").show();
+function tableproblessequal() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
     document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
     document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
@@ -338,9 +293,8 @@ function compprob2() {
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function compprob3() {
-    $("#explanation").show();
+function tableprobless() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
     document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
     document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
@@ -387,9 +341,8 @@ function compprob3() {
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + ans + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function compprob4() {
-    $("#explanation").show();
+function tableprobgreaterequal() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
     document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
     document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
@@ -443,9 +396,8 @@ function compprob4() {
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function compprob5() {
-    $("#explanation").show();
+function tableprobgreater() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "Probabilities for a discrete random variable are provided by the probability function, f(x). "
     document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
     document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
@@ -470,47 +422,85 @@ function compprob5() {
     var f8 = document.getElementById('f8').value
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
-    
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
     var xaf0 = xa.filter(function(y) {return y <= x}) //(y => y <= x)
     var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
-    
     var xaf = xa.filter(function(y) {return y > x}) //(y => y > x)
     var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
     var start = xaf02.length
     var start2 = xaf02.length + 1
     var end = xaf02.length + xaf2.length
-    
     var adds2 = fa[start]
     var ans = parseFloat(fa[start])
     for (let i=start2; i<end; i++){
         adds2 += "+"+fa[i]+""
         ans += parseFloat(fa[i])
     }
-    
     document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
+function tablegraph() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").show();
+    document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = parseFloat(document.getElementById('x4').value)
+    var x5 = parseFloat(document.getElementById('x5').value)
+    var x6 = parseFloat(document.getElementById('x6').value)
+    var x7 = parseFloat(document.getElementById('x7').value)
+    var x8 = parseFloat(document.getElementById('x8').value)
+    var x9 = parseFloat(document.getElementById('x9').value)
+    var x10 = parseFloat(document.getElementById('x10').value)
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+        google.charts.setOnLoadCallback(drawBasic);
+        function drawBasic() {
 
-function expected() {
-    $("#expected").show(); $("#expectedprobs").hide();
-    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
-    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
-    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-    rows = 3
+          var data = new google.visualization.DataTable();
+          data.addColumn('timeofday', 'Time of Day');
+          data.addColumn('number', 'Motivation Level');
+
+
+          var data = google.visualization.arrayToDataTable([
+            ['Class', 'Frequency'],
+            [x[0], f[0]],
+            [x[1], f[1]],
+            [x[2], f[2]],
+          ]);
+
+          var options = {
+              legend: 'none',
+              vAxis: {title: 'Frequency'},
+              hAxis: {title: 'Class'}
+          };
+
+          var chart = new google.visualization.ColumnChart(
+            document.getElementById('charts'));
+
+          chart.draw(data, options);
+        }
 }
-
-function compexpected() {
-    $("#explanation").show();
+function tablevalidity() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
     document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
@@ -534,7 +524,58 @@ function compexpected() {
     var f8 = document.getElementById('f8').value
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
-
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var sumfx = f1
+    var ans = parseFloat(f1)
+    for (i = 1; i < rows; i++) {
+        sumfx += "+" + f[i]
+        ans += parseFloat(f[i])
+    }
+    if (f1 < 0 || f2 < 0 || f3 < 0 || f4 < 0 || f5 < 0 || f6 < 0 || f7 < 0 || f8 < 0 || f9 < 0 || f10 < 0) {
+        var lesszero = true
+    } else {
+        var lesszero = false
+    }
+    
+    var answer = parseFloat(ans.toFixed(2))
+    if (answer == 1 && lesszero == false){
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\geq 0 {\\color{RoyalBlue}\\checkmark} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\checkmark} \\end{align} $$ $$ \\boxed{\\text{Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer == 1 && lesszero == true) {
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\text{ is not } \\geq 0 {\\color{RoyalBlue}\\times} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\checkmark} \\end{align} $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer != 1 && lesszero == false) {
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\text{ is } \\geq 0 {\\color{RoyalBlue}\\checkmark} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\times} \\end{align} $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer != 1 && lesszero == true) {
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\text{ is not } \\geq 0 {\\color{RoyalBlue}\\times} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\times} \\end{align} $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
+    MathJax.typeset();
+}
+function tableexpected() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
+    document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
     var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
@@ -543,29 +584,12 @@ function compexpected() {
         table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]*f[i]).toFixed(2))+"$</td></tr>"
         ans += x[i]*f[i]
     }
-    
-    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
-    
-    //  =\\mu
- 
-    document.getElementById("output").innerHTML = table + "$$ E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} E(x) &= \\sum x f(x) \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function variance() {
-    $("#expected").show(); $("#expectedprobs").hide();
-    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
-    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
-    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-    rows = 3
-}
-
-function compvariance() {
-    $("#explanation").show();
+function tablevariance() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "The variance measures the variability of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = \\sum (x-\\mu)^2 f(x) $"
     document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
@@ -590,10 +614,7 @@ function compvariance() {
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
     var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
-
     var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$x-\\mu$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2f(x)$</td></tr>"
-    
-    
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var mu = 0
@@ -605,35 +626,12 @@ function compvariance() {
         table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>" 
         ans += (Math.pow((x[i]-mu),2))*f[i]
     }
-    
-    
-    
-    
-    
-    
-    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
-    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
-    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
-    
-    //  = \\sum x f(x) E(x) = = \\sigma^2
- 
-    document.getElementById("output").innerHTML = "$$ E(x) = \\mu = "+parseFloat(mu.toFixed(2))+" $$" + table + " $$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\mu = "+parseFloat(mu.toFixed(2))+" $$" + table + " $$ \\begin{align} \\text{Var}(x) &= \\sum (x-\\mu)^2 f(x) \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function standard() {
-    $("#standard").show(); $("#expected").show(); 
-    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
-    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
-    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-    rows = 3
-
-}
-
-function compstandard() {
-    $("#explanation").show();
+function tablestandard() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "The standard deviation measures the variability of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ \\sigma = \\sqrt{\\sigma^2} $"
     document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the random variable."
@@ -658,10 +656,7 @@ function compstandard() {
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
     var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
-
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
-    
-    
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var mu = 0
@@ -673,65 +668,37 @@ function compstandard() {
         table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>"
         ans += (Math.pow((x[i]-mu),2))*f[i]
     }
-    
-    
-    
-    
-    
-    
-    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
-    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
-    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
     table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
-    
-    // $$ \\text{Var}(x) = \\sigma^2 = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$  \\sigma^2 \\text{Var}(x)
-    // $$ \\text{Var}(x) = \\sigma^2 = {\\color{RoyalBlue}" + parseFloat(ans.toFixed(2)) + "} $$ 
-
-    document.getElementById("output").innerHTML = "$$ \\sigma = \\sqrt{\\sigma^2} = \\sqrt{" + parseFloat(ans.toFixed(2)) + "} = \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "}  $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{" + parseFloat(ans.toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function discrete() {
-    $("#probswitch").show();
-    $("#expected").show(); $("#discreteprobs").show(); 
-    $("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
-    $("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-    $("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
-    $("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-    rows = 3
+function tableswitchgraph() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "graph"; $("#tablegraph").show();
+}
+function tableswitchvalidity() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").show();
+    tablekind = "validity"; $("#tablegraph").hide();
+}
+function tableswitchexpected() {
+    $("#tableprobs").hide(); $("#tableexpected").show(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "expected"; $("#tablegraph").hide();
+}
+function tableswitchvariance() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").show(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "variance"; $("#tablegraph").hide();
+}
+function tableswitchstandard() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").show(); $("#tablevalidity").hide();
+    tablekind = "standard"; $("#tablegraph").hide();
+}
+function tableswitchprobability() {
+    $("#tableprobs").show(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "probability"; $("#tablegraph").hide();
 }
 
-function dswitchexpected() {
-    $("#discreteprobs").hide(); $("#discreteexpected").show(); $("#discretevariance").hide(); $("#discretestandard").hide();
-    discretekind = "expected"
-}
 
-function dswitchvariance() {
-    $("#discreteprobs").hide(); $("#discreteexpected").hide(); $("#discretevariance").show(); $("#discretestandard").hide();
-    discretekind = "variance"
-}
 
-function dswitchstandard() {
-    $("#discreteprobs").hide(); $("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").show();
-    discretekind = "standard"
-}
-
-function dswitchprobability() {
-    $("#discreteprobs").show(); $("#discreteexpected").hide(); $("#discretevariance").hide(); $("#discretestandard").hide();
-    discretekind = "probability"
-}
-
-function compdiscrete() {
-    if (discretekind == "probability") {
-        compprobabilities()
-    } else if (discretekind == "expected") {
-        compexpected()
-    } else if (discretekind == "variance") {
-        compvariance()
-    } else if (discretekind == "standard") {
-        compstandard()
-    }
-}
 
 
 
