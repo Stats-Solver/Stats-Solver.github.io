@@ -19,12 +19,10 @@ $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide();
 $("#probswitch").hide(); $("#explanation").hide();$("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
 $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
 $("#581773186").hide();$("#discoutputs").hide();
-tablekind = "probability"; frequencytype = "probability"; formulatype = "probability"; uniformtype = "probability"; binomialtype = "probability"
-
+tablekind = "probability"; frequencytype = "distribution"; formulatype = "probability"; uniformtype = "probability"; binomialtype = "probability"
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
-
 function factorial(n) {
     if (n > 0) {
         return (n != 1) ? n * factorial(n - 1) : 1;
@@ -33,7 +31,6 @@ function factorial(n) {
     }
   
 }
-
 function sum(input){
              
  if (toString.call(input) !== "[object Array]")
@@ -49,7 +46,6 @@ function sum(input){
                }
              return total;
             }
-
 function showstuff(){
     $("#expected").hide(); $("#variance").hide(); $("#standard").hide(); $("#discreteprobs").hide();
     $("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
@@ -57,21 +53,13 @@ function showstuff(){
     $("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
     $("#variance7").hide(); $("#variance8").hide(); $("#variance9").hide(); $("#variance10").hide();
     $("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
-    $("#equal").hide(); $("#less").hide(); $("#greater").hide();
-    $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
+    $("#equal").hide(); $("#less").hide(); $("#greater").hide(); $("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
     $("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
-    //$("#explanation").hide();
     $("#inputqu").hide();$(".slidecontainer").hide();$("#input2").hide(); $("#inputzscore").hide(); 
     $(".description").hide(); $(".population").hide(); $(".sample").hide();
-    //$("#output").empty();
-    
     $("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
-    
-    
     $("#expectedexamples").hide(); $("#standardexamples").hide(); 
     $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-    
-    
     var x = document.getElementById("stat").value;
     if (x == "probability"){
         $("#expected").show(); $("#tableprobs").show();
@@ -85,8 +73,8 @@ function showstuff(){
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
     } else if (x == "frequency") {
-        $("#frequency").show(); 
-        $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide();
+        $("#frequency").show(); $("#frequencyvalidity").hide(); 
+        $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").show();
         $("#frequencyprobdist").hide(); $("#frequencystandard").hide(); $("#frequencygraph").hide();
         $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
         $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
@@ -95,6 +83,10 @@ function showstuff(){
         $("#expectedexamples").hide(); $("#standardexamples").hide(); 
         $("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
         $("#formulaexamples").hide(); $("#frequencyexamples").show(); $("#uniformexamples").hide();
+        $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
+        $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
+        $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();
+        $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
     } else if (x == "binomial") {
         binomial()
         $("#expectedexamples").hide(); $("#standardexamples").hide(); 
@@ -134,7 +126,6 @@ function showstuff(){
         $("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").show();
     }
 }
-
 function stat(){
     $("#discoutputs").show(); $("#how").hide();
     $("#output").empty(); $("#myCanvas").hide(); 
@@ -142,7 +133,7 @@ function stat(){
     if (x == "probability"){
         table()
     } else if (x == "frequency") {
-        compfrequency()
+        frequency()
     } else if (x == "uniform") {
         compuniform()
     } else if (x == "formula") {
@@ -242,7 +233,7 @@ function tableprobequal() {
     } else {
         ans = "0"
     }
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + ans + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + String(parseFloat(ans)).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 function tableproblessequal() {
@@ -261,36 +252,35 @@ function tableproblessequal() {
     var x8 = document.getElementById('x8').value
     var x9 = document.getElementById('x9').value
     var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf = xa.filter(function(y) {return y <= x}) //(y => y <= x) 
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf = xa.filter(function(y) {return y <= x}) 
+    var xaf2 = xaf.filter(function(y) {return y}) 
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
-    var adds2 = fa[0]
+    var adds2 = String(fa[0]).replace(/^0+/, '')
     var ans = parseFloat(fa[0])
     for (let i=1; i<xaf2.length; i++){
-        adds2 += "+"+fa[i]+""
+        adds2 += "+"+String(fa[i]).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
 function tableprobless() {
@@ -309,36 +299,35 @@ function tableprobless() {
     var x8 = document.getElementById('x8').value
     var x9 = document.getElementById('x9').value
     var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf = xa.filter(function(y) {return y < x}) //(y => y < x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf = xa.filter(function(y) {return y < x}) 
+    var xaf2 = xaf.filter(function(y) {return y}) 
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
-    var adds2 = fa[0]
+    var adds2 = String(fa[0]).replace(/^0+/, '')
     var ans = parseFloat(fa[0])
     for (let i=1; i<xaf2.length; i++){
-        adds2 += "+"+fa[i]+""
+        adds2 += "+"+String(fa[i]).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + ans + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
 function tableprobgreaterequal() {
@@ -357,43 +346,40 @@ function tableprobgreaterequal() {
     var x8 = document.getElementById('x8').value
     var x9 = document.getElementById('x9').value
     var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf0 = xa.filter(function(y) {return y < x}) //(y => y < x)
-    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
-    
-    var xaf = xa.filter(function(y) {return y >= x}) //(y => y >= x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf0 = xa.filter(function(y) {return y < x})
+    var xaf02 = xaf0.filter(function(y) {return y})
+    var xaf = xa.filter(function(y) {return y >= x})
+    var xaf2 = xaf.filter(function(y) {return y})
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
     var start = xaf02.length
     var start2 = xaf02.length + 1
     var end = xaf02.length + xaf2.length
-    
-    var adds2 = fa[start]
+    var adds2 = String(fa[start]).replace(/^0+/, '')
     var ans = parseFloat(fa[start])
     for (let i=start2; i<end; i++){
-        adds2 += "+"+fa[i]+""
+        adds2 += "+"+String(fa[i]).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '')+ "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
 function tableprobgreater() {
@@ -402,6 +388,58 @@ function tableprobgreater() {
     document.getElementById("formulatext").innerHTML = "$ P(x=x_0) = f(x_0) $"
     document.getElementById("explanationtext").innerHTML = "The probability function is sometimes given by P(x) instead of f(x)."
     var x = document.getElementById('probval').value
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = parseFloat(document.getElementById('f1').value)
+    var f2 = parseFloat(document.getElementById('f2').value)
+    var f3 = parseFloat(document.getElementById('f3').value)
+    var f4 = parseFloat(document.getElementById('f4').value)
+    var f5 = parseFloat(document.getElementById('f5').value)
+    var f6 = parseFloat(document.getElementById('f6').value)
+    var f7 = parseFloat(document.getElementById('f7').value)
+    var f8 = parseFloat(document.getElementById('f8').value)
+    var f9 = parseFloat(document.getElementById('f9').value)
+    var f10 = parseFloat(document.getElementById('f10').value)
+    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
+    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
+    var xaf0 = xa.filter(function(y) {return y <= x}) //(y => y <= x)
+    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
+    var xaf = xa.filter(function(y) {return y > x}) //(y => y > x)
+    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
+    var adds = "f("+xaf2[0]+")"
+    for (let i=1; i<xaf2.length; i++){
+        adds += "+ f("+xaf[i]+")"
+    }
+    var start = xaf02.length
+    var start2 = xaf02.length + 1
+    var end = xaf02.length + xaf2.length
+    var adds2 = String(fa[start]).replace(/^0+/, '')
+    var ans = parseFloat(fa[start])
+    for (let i=start2; i<end; i++){
+        adds2 += "+"+String(fa[i]).replace(/^0+/, '')+""
+        ans += parseFloat(fa[i])
+    }
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
+    
+    MathJax.typeset();
+}
+function tablevalidity() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
+    document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
     var x1 = document.getElementById('x1').value
     var x2 = document.getElementById('x2').value
     var x3 = document.getElementById('x3').value
@@ -422,29 +460,234 @@ function tableprobgreater() {
     var f8 = document.getElementById('f8').value
     var f9 = document.getElementById('f9').value
     var f10 = document.getElementById('f10').value
-    var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
-    var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    var xaf0 = xa.filter(function(y) {return y <= x}) //(y => y <= x)
-    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
-    var xaf = xa.filter(function(y) {return y > x}) //(y => y > x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    var adds = "f("+xaf2[0]+")"
-    for (let i=1; i<xaf2.length; i++){
-        adds += "+ f("+xaf[i]+")"
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var sumfx = f1
+    var ans = parseFloat(f1)
+    for (i = 1; i < rows; i++) {
+        sumfx += "+" + f[i]
+        ans += parseFloat(f[i])
     }
-    var start = xaf02.length
-    var start2 = xaf02.length + 1
-    var end = xaf02.length + xaf2.length
-    var adds2 = fa[start]
-    var ans = parseFloat(fa[start])
-    for (let i=start2; i<end; i++){
-        adds2 += "+"+fa[i]+""
-        ans += parseFloat(fa[i])
+    if (f1 < 0 || f2 < 0 || f3 < 0 || f4 < 0 || f5 < 0 || f6 < 0 || f7 < 0 || f8 < 0 || f9 < 0 || f10 < 0) {
+        var lesszero = true
+    } else {
+        var lesszero = false
     }
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+    var answer = parseFloat(ans.toFixed(2))
+    if (answer == 1 && lesszero == false){
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\geq 0 $$ $$ \\sum f(x) = 1 $$ $$ \\boxed{\\text{Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer == 1 && lesszero == true) {
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\ngeq 0 $$ $$ \\sum f(x) = 1 $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer != 1 && lesszero == false) {
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\geq 0 $$ $$ \\sum f(x) \\neq 1 $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer != 1 && lesszero == true) {
+        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\ngeq 0 $$ $$ \\sum f(x) \\neq 1  $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
-function tablegraph() {
+function tableexpected() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
+    document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var ans = 0
+    for (i = 0; i < rows; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+String(parseFloat(f[i])).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat((x[i]*f[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
+        ans += x[i]*f[i]
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
+    document.getElementById("output").innerHTML = table + "$$ E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+function tablevariance() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
+    document.getElementById("descriptiontext").innerHTML = "The variance measures the variability of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = \\sum (x-\\mu)^2 f(x) $"
+    document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
+    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$x-\\mu$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2f(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var mu = 0
+    for (i = 0; i < rows; i++) {
+        mu += x[i]*f[i]
+    }
+    var ans = 0
+    for (i = 0; i < rows; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+String(parseFloat(f[i])).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat((x[i]-mu).toFixed(2))).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>" 
+        ans += (Math.pow((x[i]-mu),2))*f[i]
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
+    document.getElementById("output").innerHTML = "$$ \\mu = "+parseFloat(mu.toFixed(2))+" $$" + table + " $$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+function tablestandard() {
+    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
+    document.getElementById("descriptiontext").innerHTML = "The standard deviation measures the variability of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ \\sigma = \\sqrt{\\text{Var}(x)} $"
+    document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the random variable."
+    var x1 = document.getElementById('x1').value
+    var x2 = document.getElementById('x2').value
+    var x3 = document.getElementById('x3').value
+    var x4 = document.getElementById('x4').value
+    var x5 = document.getElementById('x5').value
+    var x6 = document.getElementById('x6').value
+    var x7 = document.getElementById('x7').value
+    var x8 = document.getElementById('x8').value
+    var x9 = document.getElementById('x9').value
+    var x10 = document.getElementById('x10').value
+    var f1 = document.getElementById('f1').value
+    var f2 = document.getElementById('f2').value
+    var f3 = document.getElementById('f3').value
+    var f4 = document.getElementById('f4').value
+    var f5 = document.getElementById('f5').value
+    var f6 = document.getElementById('f6').value
+    var f7 = document.getElementById('f7').value
+    var f8 = document.getElementById('f8').value
+    var f9 = document.getElementById('f9').value
+    var f10 = document.getElementById('f10').value
+    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var mu = 0
+    for (i = 0; i < rows; i++) {
+        mu += x[i]*f[i]
+    }
+    var ans = 0
+    for (i = 0; i < rows; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>"
+        ans += (Math.pow((x[i]-mu),2))*f[i]
+    }
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + parseFloat(ans.toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+function tableswitchgraph() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "graph"; $("#tablegraph").show();
+}
+function tableswitchvalidity() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").show();
+    tablekind = "validity"; $("#tablegraph").hide();
+}
+function tableswitchexpected() {
+    $("#tableprobs").hide(); $("#tableexpected").show(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "expected"; $("#tablegraph").hide();
+}
+function tableswitchvariance() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").show(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "variance"; $("#tablegraph").hide();
+}
+function tableswitchstandard() {
+    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").show(); $("#tablevalidity").hide();
+    tablekind = "standard"; $("#tablegraph").hide();
+}
+function tableswitchprobability() {
+    $("#tableprobs").show(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
+    tablekind = "probability"; $("#tablegraph").hide();
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////// Frequency Distribution //////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+function frequency() {
+    if (frequencytype == "distribution") {
+        distributionf()
+    } else if (frequencytype == "validity") {
+        validityf()
+    } else if (frequencytype == "probability") {
+        probabilitiesf()
+    } else if (frequencytype == "expected") {
+        expectedf()
+    } else if (frequencytype == "variance") {
+        variancef()
+    } else if (frequencytype == "standard") {
+        standardf()
+    }
+}
+function distributionf() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
+    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1 = document.getElementById('f1f').value
+    var f2 = document.getElementById('f2f').value
+    var f3 = document.getElementById('f3f').value
+    var f4 = document.getElementById('f4f').value
+    var f5 = document.getElementById('f5f').value
+    var f6 = document.getElementById('f6f').value
+    var f7 = document.getElementById('f7f').value
+    var f8 = document.getElementById('f8f').value
+    var f9 = document.getElementById('f9f').value
+    var f10 = document.getElementById('f10f').value
+    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var tot = sum(f)
+    for (i = 0; i < rowsf; i++) {
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+String(parseFloat((f[i]/tot).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
+    }
+    table += "</table>"
+    document.getElementById("output").innerHTML = table + "<br> <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+function frequencygraph() {
     $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").show();
     document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
@@ -499,310 +742,10 @@ function tablegraph() {
           chart.draw(data, options);
         }
 }
-function tablevalidity() {
+function validityf() {
     $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
     document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
-    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var x4 = document.getElementById('x4').value
-    var x5 = document.getElementById('x5').value
-    var x6 = document.getElementById('x6').value
-    var x7 = document.getElementById('x7').value
-    var x8 = document.getElementById('x8').value
-    var x9 = document.getElementById('x9').value
-    var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
-    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
-    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
-    var sumfx = f1
-    var ans = parseFloat(f1)
-    for (i = 1; i < rows; i++) {
-        sumfx += "+" + f[i]
-        ans += parseFloat(f[i])
-    }
-    if (f1 < 0 || f2 < 0 || f3 < 0 || f4 < 0 || f5 < 0 || f6 < 0 || f7 < 0 || f8 < 0 || f9 < 0 || f10 < 0) {
-        var lesszero = true
-    } else {
-        var lesszero = false
-    }
-    
-    var answer = parseFloat(ans.toFixed(2))
-    if (answer == 1 && lesszero == false){
-        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\geq 0 {\\color{RoyalBlue}\\checkmark} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\checkmark} \\end{align} $$ $$ \\boxed{\\text{Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    } else if (answer == 1 && lesszero == true) {
-        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\text{ is not } \\geq 0 {\\color{RoyalBlue}\\times} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\checkmark} \\end{align} $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    } else if (answer != 1 && lesszero == false) {
-        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\text{ is } \\geq 0 {\\color{RoyalBlue}\\checkmark} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\times} \\end{align} $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    } else if (answer != 1 && lesszero == true) {
-        document.getElementById("output").innerHTML = "$$ \\text{Each } f(x) \\text{ is not } \\geq 0 {\\color{RoyalBlue}\\times} $$ $$ \\begin{align} \\sum f(x) &= " + sumfx + " \\\\ &= " + answer + " {\\color{RoyalBlue}\\times} \\end{align} $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    }
-    MathJax.typeset();
-}
-function tableexpected() {
-    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
-    document.getElementById("descriptiontext").innerHTML = "The expected value measures the central location of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$ E(x) = \\mu = \\sum x f(x) $"
-    document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var x4 = document.getElementById('x4').value
-    var x5 = document.getElementById('x5').value
-    var x6 = document.getElementById('x6').value
-    var x7 = document.getElementById('x7').value
-    var x8 = document.getElementById('x8').value
-    var x9 = document.getElementById('x9').value
-    var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$xf(x)$</td></tr>"
-    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
-    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
-    var ans = 0
-    for (i = 0; i < rows; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]*f[i]).toFixed(2))+"$</td></tr>"
-        ans += x[i]*f[i]
-    }
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
-    document.getElementById("output").innerHTML = table + "$$ \\begin{align} E(x) &= \\sum x f(x) \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    MathJax.typeset();
-}
-function tablevariance() {
-    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
-    document.getElementById("descriptiontext").innerHTML = "The variance measures the variability of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sigma^2 = \\sum (x-\\mu)^2 f(x) $"
-    document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var x4 = document.getElementById('x4').value
-    var x5 = document.getElementById('x5').value
-    var x6 = document.getElementById('x6').value
-    var x7 = document.getElementById('x7').value
-    var x8 = document.getElementById('x8').value
-    var x9 = document.getElementById('x9').value
-    var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
-    var table = "<table><tr style='border-bottom: thin solid'><td style = 'padding: 5px 10px;'>$x$</td><td style = 'padding: 5px 10px;'>$f(x)$</td><td style = 'padding: 5px 10px;'>$x-\\mu$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2$</td><td style = 'padding: 5px 10px;'>$(x-\\mu)^2f(x)$</td></tr>"
-    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
-    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
-    var mu = 0
-    for (i = 0; i < rows; i++) {
-        mu += x[i]*f[i]
-    }
-    var ans = 0
-    for (i = 0; i < rows; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>" 
-        ans += (Math.pow((x[i]-mu),2))*f[i]
-    }
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$0$</td><td>$-$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
-    document.getElementById("output").innerHTML = "$$ \\mu = "+parseFloat(mu.toFixed(2))+" $$" + table + " $$ \\begin{align} \\text{Var}(x) &= \\sum (x-\\mu)^2 f(x) \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    MathJax.typeset();
-}
-function tablestandard() {
-    $("#explanation").show(); $("#output").show(); $("#myCanvas").hide(); $("#charts").hide();
-    document.getElementById("descriptiontext").innerHTML = "The standard deviation measures the variability of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$ \\sigma = \\sqrt{\\sigma^2} $"
-    document.getElementById("explanationtext").innerHTML = "The standard deviation is in the same units as the random variable."
-    var x1 = document.getElementById('x1').value
-    var x2 = document.getElementById('x2').value
-    var x3 = document.getElementById('x3').value
-    var x4 = document.getElementById('x4').value
-    var x5 = document.getElementById('x5').value
-    var x6 = document.getElementById('x6').value
-    var x7 = document.getElementById('x7').value
-    var x8 = document.getElementById('x8').value
-    var x9 = document.getElementById('x9').value
-    var x10 = document.getElementById('x10').value
-    var f1 = document.getElementById('f1').value
-    var f2 = document.getElementById('f2').value
-    var f3 = document.getElementById('f3').value
-    var f4 = document.getElementById('f4').value
-    var f5 = document.getElementById('f5').value
-    var f6 = document.getElementById('f6').value
-    var f7 = document.getElementById('f7').value
-    var f8 = document.getElementById('f8').value
-    var f9 = document.getElementById('f9').value
-    var f10 = document.getElementById('f10').value
-    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3);
-    var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
-    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
-    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
-    var mu = 0
-    for (i = 0; i < rows; i++) {
-        mu += x[i]*f[i]
-    }
-    var ans = 0
-    for (i = 0; i < rows; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>"
-        ans += (Math.pow((x[i]-mu),2))*f[i]
-    }
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\sigma^2} \\\\ &= \\sqrt{" + parseFloat(ans.toFixed(2)) + "} \\\\ &= \\boxed{" + parseFloat((Math.sqrt(ans)).toFixed(2)) + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    MathJax.typeset();
-}
-function tableswitchgraph() {
-    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
-    tablekind = "graph"; $("#tablegraph").show();
-}
-function tableswitchvalidity() {
-    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").show();
-    tablekind = "validity"; $("#tablegraph").hide();
-}
-function tableswitchexpected() {
-    $("#tableprobs").hide(); $("#tableexpected").show(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
-    tablekind = "expected"; $("#tablegraph").hide();
-}
-function tableswitchvariance() {
-    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").show(); $("#tablestandard").hide(); $("#tablevalidity").hide();
-    tablekind = "variance"; $("#tablegraph").hide();
-}
-function tableswitchstandard() {
-    $("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").show(); $("#tablevalidity").hide();
-    tablekind = "standard"; $("#tablegraph").hide();
-}
-function tableswitchprobability() {
-    $("#tableprobs").show(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide();
-    tablekind = "probability"; $("#tablegraph").hide();
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-function frequency() {
-    //$("#probswitchf").show();
-    $("#frequency").show(); 
-    //$("#discreteprobs").show(); 
-    $("#make2f").hide(); $("#make3f").show(); $("#make4f").hide(); $("#make5f").hide();
-    $("#make6f").hide(); $("#make7f").hide(); $("#make8f").hide(); $("#make9f").hide(); $("#make10f").hide();
-    $("#row4f").hide(); $("#row5f").hide(); $("#row6f").hide(); $("#row7f").hide();
-    $("#row8f").hide(); $("#row9f").hide(); $("#row10f").hide();
-    rowsf = 3
-}
-
-function fswitchprobability() {
-    $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
-    frequencytype = "probability"
-}
-
-function fswitchexpected() {
-    $("#frequencyprobs").hide(); $("#frequencyexpected").show(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
-    frequencytype = "expected"
-}
-
-function fswitchvariance() {
-    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").show(); $("#frequencydist").hide();  
-    frequencytype = "variance"
-}
-
-function fswitchdistribution() {
-    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").show();  
-    frequencytype = "distribution"
-}
-
-
-function compfrequency() {
-    if (frequencytype == "probability") {
-        compprobabilitiesf()
-    } else if (frequencytype == "expected") {
-        compexpectedf()
-    } else if (frequencytype == "variance") {
-        compvariancef()
-    } else if (frequencytype == "distribution") {
-        compdistributionf()
-    } 
-}
-
-function compdistributionf() {
-    $("#explanation").show();
-    document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$$ E(x) = \\mu = \\sum x f(x) $$"
     document.getElementById("explanationtext").innerHTML = "The expected value is also known as the mean."
     var x1 = document.getElementById('x1f').value
     var x2 = document.getElementById('x2f').value
@@ -814,57 +757,77 @@ function compdistributionf() {
     var x8 = document.getElementById('x8f').value
     var x9 = document.getElementById('x9f').value
     var x10 = document.getElementById('x10f').value
-    var f1 = document.getElementById('f1f').value
-    var f2 = document.getElementById('f2f').value
-    var f3 = document.getElementById('f3f').value
-    var f4 = document.getElementById('f4f').value
-    var f5 = document.getElementById('f5f').value
-    var f6 = document.getElementById('f6f').value
-    var f7 = document.getElementById('f7f').value
-    var f8 = document.getElementById('f8f').value
-    var f9 = document.getElementById('f9f').value
-    var f10 = document.getElementById('f10f').value
-
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var tot = sum(f)
-    var ans = 0
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+f[i]+"/"+tot+"="+parseFloat((f[i]/tot).toFixed(2))+"$</td></tr>"
-        ans += x[i]*f[i]
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+String(parseFloat((f[i]/tot).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
     }
-    
-    var adds = f[0]; 
-    for (let i=1; i<rowsf; i++){
-        adds += "+" + f[i]
+    table += "</table>"
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var sumfx = f1
+    var ans = parseFloat(f1)
+    var rows = rowsf
+    for (i = 1; i < rows; i++) {
+        sumfx += "+" + f[i]
+        ans += parseFloat(f[i])
     }
-    
-    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td></tr></table>"
- 
-    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Total} &= " + adds + "\\\\ &= " + tot +" \\end{align} $$ " + table
+    if (f1 < 0 || f2 < 0 || f3 < 0 || f4 < 0 || f5 < 0 || f6 < 0 || f7 < 0 || f8 < 0 || f9 < 0 || f10 < 0) {
+        var lesszero = true
+    } else {
+        var lesszero = false
+    }
+    var answer = parseFloat(ans.toFixed(2))
+    if (answer == 1 && lesszero == false){
+        document.getElementById("output").innerHTML = table + "$$ \\text{Each } f(x) \\geq 0 $$ $$ \\sum f(x) = 1 $$ $$ \\boxed{\\text{Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer == 1 && lesszero == true) {
+        document.getElementById("output").innerHTML = table + "$$ \\text{Each } f(x) \\ngeq 0 $$ $$ \\sum f(x) = 1 $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer != 1 && lesszero == false) {
+        document.getElementById("output").innerHTML = table + "$$ \\text{Each } f(x) \\geq 0 $$ $$ \\sum f(x) \\neq 1 $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else if (answer != 1 && lesszero == true) {
+        document.getElementById("output").innerHTML = table + "$$ \\text{Each } f(x) \\ngeq 0 $$ $$ \\sum f(x) \\neq 1  $$ $$ \\boxed{\\text{Not Valid}} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
-
-function compprobabilitiesf() {
+function probabilitiesf() {
     var x = document.getElementById('probtype1f').value
     if (x == "equal") {
-        compprob1f()
+        probequalf()
     } else if (x == "lessequal") {
-        compprob2f()
+        problessequalf()
     } else if (x == "less") {
-        compprob3f()
+        problessf()
     } else if (x == "greaterequal") {
-        compprob4f()
+        probgreaterequalf()
     } else if (x == "greater") {
-        compprob5f()
+        probgreaterf()
     }
 }
-
-function compprob1f() {
+function probequalf() {
     $("#explanation").show();
     var x = document.getElementById('probvalf').value
     var x1 = document.getElementById('x1f').value
@@ -887,10 +850,8 @@ function compprob1f() {
     var f8f = document.getElementById('f8f').value
     var f9f = document.getElementById('f9f').value
     var f10f= document.getElementById('f10f').value
-    
     var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
     var tot = sum(f)
-
     var f1 = f1f/tot
     var f2 = f2f/tot
     var f3 = f3f/tot
@@ -901,7 +862,6 @@ function compprob1f() {
     var f8 = f8f/tot
     var f9 = f9f/tot
     var f10 = f10f/tot
-
     var ans = ""
     if (x == x1) {
         ans = f1
@@ -926,19 +886,17 @@ function compprob1f() {
     } else {
         ans = "0"
     }
-    
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
     var xs = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var tot = sum(f)
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+xs[i]+"$</td><td>$"+parseFloat((f[i]/tot).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+xs[i]+"$</td><td>$"+String(parseFloat((f[i]/tot).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
     }
-    
-    document.getElementById("output").innerHTML = table + "$$ P(x=" + x + ") = f(" + x + ") = \\boxed{" + ans + "} $$"
+    table += "</table>"
+    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x=" + x + ") &= f(" + x + ") \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function compprob2f() {
+function problessequalf() {
     $("#explanation").show();
     var x = document.getElementById('probvalf').value
     var x1 = document.getElementById('x1f').value
@@ -961,10 +919,8 @@ function compprob2f() {
     var f8f = document.getElementById('f8f').value
     var f9f = document.getElementById('f9f').value
     var f10f= document.getElementById('f10f').value
-    
     var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
     var tot = sum(f)
-
     var f1 = f1f/tot
     var f2 = f2f/tot
     var f3 = f3f/tot
@@ -975,35 +931,33 @@ function compprob2f() {
     var f8 = f8f/tot
     var f9 = f9f/tot
     var f10 = f10f/tot
-    
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf = xa.filter(function(y) {return y <= x}) //(y => y <= x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf = xa.filter(function(y) {return y <= x})
+    var xaf2 = xaf.filter(function(y) {return y}) 
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
-    var adds2 = parseFloat((fa[0]).toFixed(2))
+    var adds2 = String(parseFloat((fa[0]).toFixed(2))).replace(/^0+/, '')
     var ans = parseFloat(fa[0])
     for (let i=1; i<xaf2.length; i++){
-        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        adds2 += "+"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
     }
-    
-    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    table += "</table>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\leq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
-
-function compprob3f() {
+function problessf() {
     $("#explanation").show();
     var x = document.getElementById('probvalf').value
     var x1 = document.getElementById('x1f').value
@@ -1026,10 +980,8 @@ function compprob3f() {
     var f8f = document.getElementById('f8f').value
     var f9f = document.getElementById('f9f').value
     var f10f= document.getElementById('f10f').value
-    
     var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
     var tot = sum(f)
-
     var f1 = f1f/tot
     var f2 = f2f/tot
     var f3 = f3f/tot
@@ -1040,35 +992,33 @@ function compprob3f() {
     var f8 = f8f/tot
     var f9 = f9f/tot
     var f10 = f10f/tot
-    
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf = xa.filter(function(y) {return y < x}) //(y => y < x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf = xa.filter(function(y) {return y < x})
+    var xaf2 = xaf.filter(function(y) {return y})
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
-    var adds2 = parseFloat((fa[0]).toFixed(2))
+    var adds2 = String(parseFloat((fa[0]).toFixed(2))).replace(/^0+/, '')
     var ans = parseFloat(fa[0])
     for (let i=1; i<xaf2.length; i++){
-        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        adds2 += "+"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
     }
-    
-    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat((ans).toFixed(2)) + "}  \\end{align} $$"
+    table += "</table>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat((ans).toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x <" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat((ans).toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
-
-function compprob4f() {
+function probgreaterequalf() {
     $("#explanation").show();
     var x = document.getElementById('probvalf').value
     var x1 = document.getElementById('x1f').value
@@ -1091,10 +1041,8 @@ function compprob4f() {
     var f8f = document.getElementById('f8f').value
     var f9f = document.getElementById('f9f').value
     var f10f= document.getElementById('f10f').value
-    
     var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
     var tot = sum(f)
-
     var f1 = f1f/tot
     var f2 = f2f/tot
     var f3 = f3f/tot
@@ -1105,42 +1053,38 @@ function compprob4f() {
     var f8 = f8f/tot
     var f9 = f9f/tot
     var f10 = f10f/tot
-    
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf0 = xa.filter(function(y) {return y < x}) //(y => y < x)
-    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
-    
-    var xaf = xa.filter(function(y) {return y >= x}) //(y => y >= x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf0 = xa.filter(function(y) {return y < x})
+    var xaf02 = xaf0.filter(function(y) {return y})
+    var xaf = xa.filter(function(y) {return y >= x})
+    var xaf2 = xaf.filter(function(y) {return y})
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
     var start = xaf02.length
     var start2 = xaf02.length + 1
     var end = xaf02.length + xaf2.length
-    
-    var adds2 = parseFloat((fa[start]).toFixed(2))
+    var adds2 = String(parseFloat((fa[start]).toFixed(2))).replace(/^0+/, '')
     var ans = parseFloat(fa[start])
     for (let i=start2; i<end; i++){
-        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        adds2 += "+"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
     }
-    
-    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "}  \\end{align} $$"
+    table += "</table>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x \\geq" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
-
-function compprob5f() {
+function probgreaterf() {
     $("#explanation").show();
     var x = document.getElementById('probvalf').value
     var x1 = document.getElementById('x1f').value
@@ -1163,10 +1107,8 @@ function compprob5f() {
     var f8f = document.getElementById('f8f').value
     var f9f = document.getElementById('f9f').value
     var f10f= document.getElementById('f10f').value
-    
     var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
     var tot = sum(f)
-
     var f1 = f1f/tot
     var f2 = f2f/tot
     var f3 = f3f/tot
@@ -1177,42 +1119,38 @@ function compprob5f() {
     var f8 = f8f/tot
     var f9 = f9f/tot
     var f10 = f10f/tot
-    
     var xa = [x1, x2, x3, x4, x5, x6, x7, x8, x9, x10]
     var fa = [f1, f2, f3, f4, f5, f6, f7, f8, f9, f10]
-    
-    var xaf0 = xa.filter(function(y) {return y <= x}) //(y => y <= x)
-    var xaf02 = xaf0.filter(function(y) {return y}) //(y => y)
-    
-    var xaf = xa.filter(function(y) {return y > x}) //(y => y > x)
-    var xaf2 = xaf.filter(function(y) {return y}) //(y => y)
-    
+    var xaf0 = xa.filter(function(y) {return y <= x})
+    var xaf02 = xaf0.filter(function(y) {return y})
+    var xaf = xa.filter(function(y) {return y > x})
+    var xaf2 = xaf.filter(function(y) {return y}) 
     var adds = "f("+xaf2[0]+")"
     for (let i=1; i<xaf2.length; i++){
         adds += "+ f("+xaf[i]+")"
     }
-    
     var start = xaf02.length
     var start2 = xaf02.length + 1
     var end = xaf02.length + xaf2.length
-    
-    var adds2 = parseFloat((fa[start]).toFixed(2))
+    var adds2 = String(parseFloat((fa[start]).toFixed(2))).replace(/^0+/, '')
     var ans = parseFloat(fa[start])
     for (let i=start2; i<end; i++){
-        adds2 += "+"+parseFloat((fa[i]).toFixed(2))+""
+        adds2 += "+"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+""
         ans += parseFloat(fa[i])
     }
-    
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td></tr>"
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+xa[i]+"$</td><td>$"+parseFloat((fa[i]).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+xa[i]+"$</td><td>$"+String(parseFloat((fa[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
     }
-    
-    document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + "  \\\\ &= \\boxed{" + parseFloat((ans).toFixed(2)) + "}  \\end{align} $$"
+    table += "</table>"
+    if (xaf2.length == 1) {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= \\boxed{" + String(parseFloat((ans).toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    } else {
+        document.getElementById("output").innerHTML = table + "$$ \\begin{align} P(x >" + x + ") &= " + adds + " \\\\ &= " + adds2 + " \\\\ &= \\boxed{" + String(parseFloat((ans).toFixed(2))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    }
     MathJax.typeset();
 }
-
-function compexpectedf() {
+function expectedf() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The expected value of a random variable measures the central location of the values of the random variable. "
     document.getElementById("formulatext").innerHTML = "$ E(x) = \\sum x f(x) $"
@@ -1237,30 +1175,23 @@ function compexpectedf() {
     var f8 = document.getElementById('f8f').value
     var f9 = document.getElementById('f9f').value
     var f10 = document.getElementById('f10f').value
-
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$xf(x)$</td></tr>"
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var tot = sum(f)
     var ans = 0
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+parseFloat((f[i]/tot).toFixed(2))+"$</td><td>$"+parseFloat(((x[i]*f[i])/tot).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+String(parseFloat((f[i]/tot).toFixed(2))).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat(((x[i]*f[i])/tot).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
         ans += (x[i]*f[i])/tot
     }
-    
-    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+x1*f1+"$</td></tr>"
-    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+x2*f2+"$</td></tr>"
-    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+x3*f3+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
- 
-    document.getElementById("output").innerHTML = table + "$$ E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$"
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>${\\color{RoyalBlue}"+parseFloat(ans.toFixed(2))+"}$</td></tr></table>"
+    document.getElementById("output").innerHTML = table + "$$  E(x) = \\sum x f(x) = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
-function compvariancef() {
+function variancef() {
     $("#explanation").show();
     document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
-    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sum (x-f(x))^2 $"
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sum (x-\\mu)^2f(x) $"
     document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
     var x1 = document.getElementById('x1f').value
     var x2 = document.getElementById('x2f').value
@@ -1281,11 +1212,9 @@ function compvariancef() {
     var f7f = document.getElementById('f7f').value
     var f8f = document.getElementById('f8f').value
     var f9f = document.getElementById('f9f').value
-    var f10f= document.getElementById('f10f').value
-    
+    var f10f= document.getElementById('f10f').value   
     var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
     var tot = sum(f)
-
     var f1 = f1f/tot
     var f2 = f2f/tot
     var f3 = f3f/tot
@@ -1295,13 +1224,8 @@ function compvariancef() {
     var f7 = f7f/tot
     var f8 = f8f/tot
     var f9 = f9f/tot
-    var f10 = f10f/tot
-    
-    var ans = ((Math.pow((x1-mu),2))*f1) + ((Math.pow((x1-mu),2))*f2) + ((Math.pow((x1-mu),2))*f3); 
-
+    var f10 = f10f/tot    
     var table = "<table><tr style='border-bottom: thin solid'><td>$x$</td><td>$f(x)$</td><td>$x-\\mu$</td><td>$(x-\\mu)^2$</td><td>$(x-\\mu)^2f(x)$</td></tr>"
-    
-    
     var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
     var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
     var mu = 0
@@ -1310,63 +1234,97 @@ function compvariancef() {
     }
     var ans = 0
     for (i = 0; i < rowsf; i++) {
-        table += "<tr><td>$"+x[i]+"$</td><td>$"+parseFloat(f[i].toFixed(2))+"$</td><td>$"+parseFloat((x[i]-mu).toFixed(2))+"$</td><td>$"+parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))+"$</td><td>$"+parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))+"$</td></tr>"
+        table += "<tr><td>$"+x[i]+"$</td><td>$"+String(parseFloat(f[i].toFixed(2))).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat((x[i]-mu).toFixed(2))).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat((Math.pow((x[i]-mu),2)).toFixed(2))).replace(/^0+/, '')+"$</td><td>$"+String(parseFloat(((Math.pow((x[i]-mu),2))*f[i]).toFixed(2))).replace(/^0+/, '')+"$</td></tr>"
         ans += (Math.pow((x[i]-mu),2))*f[i]
     }
-    
-    
-    
-    
-    
-    
-    //table = table + "<tr><td>$"+x1+"$</td><td>$"+f1+"$</td><td>$"+(x1-mu)+"$</td><td>$"+((x1-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f1)+"$</td></tr>"
-    //table = table + "<tr><td>$"+x2+"$</td><td>$"+f2+"$</td><td>$"+(x2-mu)+"$</td><td>$"+((x2-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f2)+"$</td></tr>"
-    //table = table + "<tr><td>$"+x3+"$</td><td>$"+f3+"$</td><td>$"+(x3-mu)+"$</td><td>$"+((x3-mu)**2)+"$</td><td>$"+(((x1-mu)**2)*f3)+"$</td></tr>"
-    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>$"+parseFloat(ans.toFixed(2))+"$</td></tr></table>"
- 
-    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sum (x-f(x))^2 = \\boxed{" + parseFloat(ans.toFixed(2)) + "} $$ "
+    table = table + "<tr style='border-top: thin solid'><td>$\\sum$</td><td>$1$</td><td>$-$</td><td>$-$</td><td>${\\color{RoyalBlue}"+String(parseFloat(ans.toFixed(2))).replace(/^0+/, '')+"}$</td></tr></table>"
+    document.getElementById("output").innerHTML = table + "$$ \\text{Var}(x) = \\sum (x-\\mu)^2 f(x) = \\boxed{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
+function standardf() {
+    $("#explanation").show();
+    document.getElementById("descriptiontext").innerHTML = "The variance of a random variable measures the variability in the values of the random variable. "
+    document.getElementById("formulatext").innerHTML = "$ \\text{Var}(x) = \\sum (x - \\mu)^2 f(x) $"
+    document.getElementById("explanationtext").innerHTML = "Variance is not in the same units as the random variable."
+    var x1 = document.getElementById('x1f').value
+    var x2 = document.getElementById('x2f').value
+    var x3 = document.getElementById('x3f').value
+    var x4 = document.getElementById('x4f').value
+    var x5 = document.getElementById('x5f').value
+    var x6 = document.getElementById('x6f').value
+    var x7 = document.getElementById('x7f').value
+    var x8 = document.getElementById('x8f').value
+    var x9 = document.getElementById('x9f').value
+    var x10 = document.getElementById('x10f').value
+    var f1f = document.getElementById('f1f').value
+    var f2f = document.getElementById('f2f').value
+    var f3f = document.getElementById('f3f').value
+    var f4f = document.getElementById('f4f').value
+    var f5f = document.getElementById('f5f').value
+    var f6f = document.getElementById('f6f').value
+    var f7f = document.getElementById('f7f').value
+    var f8f = document.getElementById('f8f').value
+    var f9f = document.getElementById('f9f').value
+    var f10f= document.getElementById('f10f').value   
+    var f = [f1f,f2f,f3f,f4f,f5f,f6f,f7f,f8f,f9f,f10f]
+    var tot = sum(f)
+    var f1 = f1f/tot
+    var f2 = f2f/tot
+    var f3 = f3f/tot
+    var f4 = f4f/tot
+    var f5 = f5f/tot
+    var f6 = f6f/tot
+    var f7 = f7f/tot
+    var f8 = f8f/tot
+    var f9 = f9f/tot
+    var f10 = f10f/tot    
+    var x = [x1,x2,x3,x4,x5,x6,x7,x8,x9,x10]
+    var f = [f1,f2,f3,f4,f5,f6,f7,f8,f9,f10]
+    var mu = 0
+    for (i = 0; i < rowsf; i++) {
+        mu += x[i]*f[i]
+    }
+    var ans = 0
+    for (i = 0; i < rowsf; i++) {
+        ans += (Math.pow((x[i]-mu),2))*f[i]
+    }
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{\\text{Var}(x)} \\\\ &= \\sqrt{" + String(parseFloat(ans.toFixed(2))).replace(/^0+/, '') + "} \\\\ &= \\boxed{" + String(parseFloat(Math.sqrt(ans.toFixed(2)).toFixed(2))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+function fswitchprobability() {
+    $("#frequencyprobs").show(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
+    $("#frequencystandard").hide(); $("#frequencyvalidity").hide(); 
+    frequencytype = "probability"
+}
+function fswitchvalidity() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
+    $("#frequencystandard").hide(); $("#frequencyvalidity").show(); 
+    frequencytype = "validity"
+}
+function fswitchexpected() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").show(); $("#frequencyvariance").hide(); $("#frequencydist").hide(); 
+    $("#frequencystandard").hide(); $("#frequencyvalidity").hide(); 
+    frequencytype = "expected"
+}
+function fswitchvariance() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").show(); $("#frequencydist").hide();  
+    $("#frequencystandard").hide(); $("#frequencyvalidity").hide();  
+    frequencytype = "variance"
+}
+function fswitchstandard() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").hide();  
+    $("#frequencystandard").show(); $("#frequencyvalidity").hide();  
+    frequencytype = "standard"
+}
+function fswitchdistribution() {
+    $("#frequencyprobs").hide(); $("#frequencyexpected").hide(); $("#frequencyvariance").hide(); $("#frequencydist").show();  
+    $("#frequencystandard").hide(); $("#frequencyvalidity").hide();  
+    frequencytype = "distribution"
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////// Uniform Distribution ///////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 function switchexpectedu() {
     $("#uniformprobability").hide(); $("#uniformexpected").show(); $("#uniformvariance").hide(); 

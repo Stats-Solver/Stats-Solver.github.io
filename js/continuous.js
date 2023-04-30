@@ -4584,93 +4584,66 @@ function approxequal() {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Standard Normal Distribution",90,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < (greatervalz-lessvalz); i++) {
-      points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
-		}
-    
+        points0[i] = {x:20 + 4.4*lessvalz + 4.4*i, y:120 - 250*f[i+Math.floor(lessvalz)]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*greatervalz, 130);
     ctx.lineTo(20 + 4.4*lessvalz, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),22 + 4.4*(30+10*lessval)- ctx.measureText(lessval).width,145);
     ctx.fillText(greaterval.toFixed(2),18 + 4.4*(30+10*greaterval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
     ctx.moveTo(20 + 4.4*(30+10*greaterval), 135);
     ctx.lineTo(20 + 4.4*(30+10*greaterval), 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvaluea = (zvalue - .1).toFixed(1);
     var zvalueb = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -4690,7 +4663,6 @@ function approxequal() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -4699,7 +4671,6 @@ function approxequal() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (lessval < 0) {
         table31 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -4719,7 +4690,6 @@ function approxequal() {
             }  
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -4739,7 +4709,6 @@ function approxequal() {
             }  
         }
     }
-    
     if (lessval < 0) {
         table32 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -4759,16 +4728,13 @@ function approxequal() {
             }  
         }
     }
-    
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvaluea+"$</td>"+table31+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalueb+"$</td>"+table32+"</tr></table>"
-    
     var zvalue2 = toFixing(parseFloat(greaterval),1);
     var zvalue2a = (zvalue2 - .1).toFixed(1);
     var zvalue2b = (parseFloat(zvalue2) + .1).toFixed(1);
     var zvaluer2 = parseFloat(greaterval).toFixed(2); 
     var zseconddec2 = +zvaluer2.toString().split('').pop();
     var colm2 = zseconddec2
-    
     if (zseconddec2 == 0 || zseconddec2 == 1 || zseconddec2 == 2) {
          var valstart2 = 0; 
          var valend2 = 4;
@@ -4788,7 +4754,6 @@ function approxequal() {
          var valstart2 = 5; 
          var valend2 = 9;
     }
-    
     table4 = []
     for (var r = valstart2; r < valend2 + 1; r++){
         if (r == colm2) {
@@ -4797,9 +4762,6 @@ function approxequal() {
                 table4 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
-    
-    
     if (greaterval < 0) {
         table51 = []
         for (var r = valstart2; r < valend2 + 1; r++){
@@ -4819,7 +4781,6 @@ function approxequal() {
             }  
         }
     }
-    
     if (greaterval < 0) {
         table5 = []
         for (var r = valstart2; r < valend2 + 1; r++){
@@ -4839,7 +4800,6 @@ function approxequal() {
             }  
         }
     }
-    
     if (greaterval < 0) {
         table52 = []
         for (var r = valstart2; r < valend2 + 1; r++){
@@ -4859,19 +4819,12 @@ function approxequal() {
             }  
         }
     }
-    
-    
     var tableb = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table4+"</tr><tr><td>$"+zvalue2a+"$</td>"+table51+"</tr><tr><td bgcolor='lightgray'>$"+zvalue2+"$</td>"+table5+"</tr><tr><td>$"+zvalue2b+"$</td>"+table52+"</tr></table>"
-    
-    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" \\pm .5 = {\\color{RoyalBlue}"+xval1+"} \\text{ to } {\\color{RoyalBlue}"+xval2+"} $$ "
-    
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ "+xval+" \\pm .5 = "+xval1+" \\text{ to } "+xval2+" $$ "
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z_1 = \\frac{x_1-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ $$ z_2 = \\frac{x_2-\\mu}{\\sigma} = \\frac{" + xval2 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z2.toFixed(2) + "} $$"
-    
     document.getElementById("output2").innerHTML = tablea + "<br>" + tableb + "$$ \\begin{align} & P(" + xval1 + " \\leq x \\leq " + xval2 + ") \\\\ &= P(" + z1.toFixed(2) + " \\leq z \\leq " + z2.toFixed(2) + ") \\\\ &= P(z \\leq " + z2.toFixed(2) + ") - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= " + prob2.replace(/^0+/, '') + " - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
-
 function approxlessequal() {
     $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
@@ -4883,187 +4836,129 @@ function approxlessequal() {
     var z1 = parseFloat(((xval1 - mean)/stnd).toFixed(2))
     var prob1 = (normalcdf(z1)).toFixed(4)
     var exp = 2.71828;
-    
     var lessval = z1
     var lessvalz = 30+10*lessval
     var lessval0 = xval1
-    
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Normal Distribution",110,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText(mean,145,145);
-    
     ctx.fillText("x",285,132);
     ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Standard Normal Distribution",90,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -5083,7 +4978,6 @@ function approxlessequal() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -5092,7 +4986,6 @@ function approxlessequal() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (lessval < 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5112,7 +5005,6 @@ function approxlessequal() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5132,7 +5024,6 @@ function approxlessequal() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5152,18 +5043,12 @@ function approxlessequal() {
             } 
         }
     }
-    
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
-    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
-    
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ "+xval+" + .5 = "+xval1+" $$ "
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
-    
-    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\leq " + xval1 + ") &= P(z \\leq " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
+    document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\leq " + xval1 + ") &= P(z \\leq " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
 function approxless() {
     $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
@@ -5175,187 +5060,129 @@ function approxless() {
     var z1 = parseFloat(((xval1 - mean)/stnd).toFixed(2))
     var prob1 = (normalcdf(z1)).toFixed(4)
     var exp = 2.71828;
-    
     var lessval = z1
     var lessvalz = 30+10*lessval
     var lessval0 = xval1
-    
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Normal Distribution",110,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText(mean,145,145);
-    
     ctx.fillText("x",285,132);
     ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Standard Normal Distribution",90,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -5375,7 +5202,6 @@ function approxless() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -5384,7 +5210,6 @@ function approxless() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (lessval < 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5404,7 +5229,6 @@ function approxless() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5424,7 +5248,6 @@ function approxless() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5444,15 +5267,10 @@ function approxless() {
             } 
         }
     }
-    
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
-    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
-    
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ "+xval+" - .5 = "+xval1+" $$ "
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
-    
     document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x < " + xval1 + ") &= P(z < " + z1.toFixed(2) + ") \\\\ &= \\boxed{" + prob1.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
 
@@ -5468,194 +5286,135 @@ function approxgreaterequal() {
     var prob1 = (normalcdf(z1)).toFixed(4)
     var ans = (1-prob1).toFixed(4)
     var exp = 2.71828;
-    
     var lessval = z1
     var lessvalz = 30+10*lessval
     var lessval0 = xval1
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Normal Distribution",110,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText(mean,145,145);
-    
     ctx.fillText("x",285,132);
     ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, points[i+1].y);
-    
-    
     ctx.stroke();
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Standard Normal Distribution",90,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, points[i+1].y);
-    
-    
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -5675,7 +5434,6 @@ function approxgreaterequal() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -5684,7 +5442,6 @@ function approxgreaterequal() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (lessval < 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5704,7 +5461,6 @@ function approxgreaterequal() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5724,7 +5480,6 @@ function approxgreaterequal() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -5744,18 +5499,12 @@ function approxgreaterequal() {
             } 
         }
     }
-    
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
-    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" - .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
-    
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ "+xval+" - .5 = "+xval1+" $$ "
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
-    
     document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x \\geq " + xval1 + ") &= P(z \\geq " + z1.toFixed(2) + ") \\\\ &= 1 - P(z \\leq " + z1.toFixed(2) + ") \\\\ &= 1 - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
-
 function approxgreater() {
     $("#myCanvas0").show(); $("#myCanvas").show(); $("#output0").show(); $("#output").show(); $("#output2").show();
     var trials = document.getElementById('trials').value
@@ -5768,194 +5517,135 @@ function approxgreater() {
     var prob1 = (normalcdf(z1)).toFixed(4)
     var ans = (1-prob1).toFixed(4)
     var exp = 2.71828;
-    
     var lessval = z1
     var lessvalz = 30+10*lessval
     var lessval0 = xval1
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Normal Distribution",110,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText(mean,145,145);
-    
     ctx.fillText("x",285,132);
     ctx.fillText(lessval0,18 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, points[i+1].y);
-    
-    
     ctx.stroke();
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.fillText("Standard Normal Distribution",90,10);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     ctx.fillText("z",285,132);
     ctx.fillText(lessval.toFixed(2),10 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, points[i+1].y);
-    
-    
     ctx.stroke();
-    
     var zvalue = toFixing(parseFloat(lessval),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(lessval).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colm = zseconddec
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -5975,7 +5665,6 @@ function approxgreater() {
          var valstart = 5; 
          var valend = 9;
     }
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colm) {
@@ -5984,7 +5673,6 @@ function approxgreater() {
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (lessval < 0) {
         table2 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -6004,7 +5692,6 @@ function approxgreater() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table3 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -6024,7 +5711,6 @@ function approxgreater() {
             } 
         }
     }
-    
     if (lessval < 0) {
         table4 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -6044,19 +5730,12 @@ function approxgreater() {
             } 
         }
     }
-    
     var tablea = "<table class='ztable'><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid; border-bottom: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue1+"$</td>"+table2+"</tr><tr><td bgcolor='lightgray'>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table4+"</tr></table>"
-    
-    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ \\text{Continuity Correction Factor} = .5 $$ $$ "+xval+" + .5 = {\\color{RoyalBlue}"+xval1+"} $$ "
-    
-    
+    document.getElementById("output0").innerHTML = "$$ \\mu = "+mean+" \\quad \\sigma = " + stnd + " $$ $$ "+xval+" + .5 = "+xval1+" $$ "
     document.getElementById("output").innerHTML = "$$ \\text{Convert to Standard Normal:} $$ $$ z = \\frac{x-\\mu}{\\sigma} = \\frac{" + xval1 + " - " + mean + "}{" + stnd + "} = {\\color{RoyalBlue}" + z1.toFixed(2) + "} $$ "
-    
     document.getElementById("output2").innerHTML = tablea + "$$ \\begin{align} P(x > " + xval1 + ") &= P(z > " + z1.toFixed(2) + ") \\\\ &= 1 - P(z < " + z1.toFixed(2) + ") \\\\ &= 1 - " + prob1.replace(/^0+/, '') + " \\\\ &= \\boxed{" + ans.replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
-
 function approxmean() {
     $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide(); $("#output").hide(); $("#output2").show();
     document.getElementById("explanationtext").innerHTML = "$ \\mu = np $"
@@ -6066,7 +5745,6 @@ function approxmean() {
     document.getElementById("output2").innerHTML = "$$ \\begin{align} \\mu &= np \\\\ &= (" + trials + ") ( " + psuccess + ") \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> $$"
     MathJax.typeset();
 }
-
 function approxstandard() {
     $("#explanation").show(); $("#myCanvas0").hide(); $("#myCanvas").hide(); $("#output").hide(); $("#output2").show();
     document.getElementById("explanationtext").innerHTML = "$ \\sigma = \\sqrt{np(1-p)} $"
@@ -6076,21 +5754,18 @@ function approxstandard() {
     document.getElementById("output2").innerHTML = "$$ \\begin{align} \\sigma &= \\sqrt{np(1-p)} \\\\ &= \\sqrt{(" + trials + ") ( " + psuccess + ") ( 1 - " + psuccess + ")} \\\\ &= \\boxed{" + parseFloat(ans.toFixed(2)) + "} \\end{align} <a href = 'mailto: contact@statssolver.com'>Send Feedback</a> $$"
     MathJax.typeset();
 }
-
 function switchstandard() {
     $("#approxmean").hide();
     $("#approxstandard").show();
     $("#approxprobability").hide();
     approxtype = "standard"
 }
-
 function switchprobab() {
     $("#approxmean").hide();
     $("#approxstandard").hide();
     $("#approxprobability").show();
     approxtype = "probability"
 }
-
 function switchmean() {
     $("#approxmean").show();
     $("#approxstandard").hide();
@@ -6755,7 +6430,6 @@ function tdistribution() {
         tdistvalue() 
     } 
 }
-
 function tdistarea() {
     var areatype = document.getElementById('areatypet').value
     if (areatype == "right") {
@@ -6766,7 +6440,6 @@ function tdistarea() {
         tdistareabetween() 
     } 
 }
-
 function tdistarearight() {
     $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
@@ -6783,162 +6456,109 @@ function tdistarearight() {
     var lessval = tval
     var lessvalz = 30+10*lessval
     var exp = 2.71828;
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
     ctx.fillText("t",285,132);
     ctx.fillText(lessval,20 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width/2,145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, 119);
-    
     ctx.stroke();
-    
     var size = degf + 1;
     var sizem1 = degf;
     var sizem2 = degf - 1;
-    
     table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
     table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
-    
     if (ans == .2) {
         table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .1) {
         table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .05) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .025) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .01) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .005) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
-    
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
     if (tval >= 0) {
-        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\text{Area} = \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\  &= {\\color{RoyalBlue}" + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ $$ \\begin{align} &\\text{Area to right of } "+tval+" \\\\ &= 1 - " + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + " \\\\  &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + " $$ \\begin{align} \\text{Area} &= 1 - " + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + " \\\\  &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
-
     MathJax.typeset();
 }
-
 function tdistarealeft() {
     $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
@@ -6963,144 +6583,97 @@ function tdistarealeft() {
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.fillText("t",285,132);
     ctx.fillText(lessval,20 + 4.4*(30+10*lessval) - ctx.measureText(lessval).width/2,145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-
     var size = degf + 1;
     var sizem1 = degf;
     var sizem2 = degf - 1;
-    
     table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
     table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
-    
     if (ans == .2) {
         table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .1) {
         table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .05) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .025) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .01) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .005) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
     if (tval <= 0) {
-        document.getElementById("output2").innerHTML = table + "$$ \\begin{align}  &\\text{Area to left of } "+tval+" \\\\ &= \\text{Area to right of } "+Math.abs(tval)+" \\\\ &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "}  \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\text{Area} = \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else {
-        document.getElementById("output2").innerHTML = table + "$$ \\text{Area to right of } "+tval+" = {\\color{RoyalBlue}"+String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '')+"} $$ $$ \\begin{align} \\text{Area to left of } "+tval+" &= 1 - " + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + " \\\\  &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output2").innerHTML = table + "$$ \\begin{align} \\text{Area} &= 1 - " + String(parseFloat((1-prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + " \\\\  &= \\boxed{" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
-
 function tdistareabetween() {
     $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
@@ -7109,7 +6682,6 @@ function tdistareabetween() {
     var prob = 1 - compute(tval2,degf)
     var prob2 = compute(tval2,degf)
     var ans = parseFloat(prob.toFixed(3))
-    
     var lessval = tval1
     var lessvalz = 30+10*lessval
     var greaterval = tval2
@@ -7213,72 +6785,46 @@ function tdistareabetween() {
         }
     }
     ctx.stroke();
-    
     var size = degf + 1;
     var sizem1 = degf;
     var sizem2 = degf - 1;
-    
     table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
     table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
-    
     if (ans == .2) {
         table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .1) {
         table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .05) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .025) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .01) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .005) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
-    
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = table + " $$ \\begin{align} &\\text{Area to left of } "+tval1+" \\\\ &= \\text{Area to right of } "+tval2+" \\\\ &= {\\color{RoyalBlue}" + String(parseFloat(prob.toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ $$ \\begin{align} \\text{Area } &\\text{between } "+tval1+" \\text{ and } "+tval2+" \\\\ &= 1 - 2 \\times "+String(parseFloat(prob.toFixed(3))).replace(/^0+/, '')+" \\\\ &= 1 - "+String(parseFloat(2*prob.toFixed(3))).replace(/^0+/, '')+" \\\\ &= \\boxed{" + String(parseFloat((1-2*prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-
+    document.getElementById("output2").innerHTML = table + " $$ \\begin{align} \\text{Area} &= 1 - 2 \\times "+String(parseFloat(prob.toFixed(3))).replace(/^0+/, '')+" \\\\ &= 1 - "+String(parseFloat(2*prob.toFixed(3))).replace(/^0+/, '')+" \\\\ &= \\boxed{" + String(parseFloat((1-2*prob.toFixed(3)).toFixed(3))).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
-
 function tdistvalue() {
     var type = document.getElementById('valuetypet').value
     if (type == "upper") {
@@ -7289,7 +6835,6 @@ function tdistvalue() {
         tdistvaluebetween() 
     }  
 }
-
 function tdistvalueupper() {
     $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
@@ -7304,60 +6849,44 @@ function tdistvalueupper() {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     var lessvalneg = -1*lessval
     var lessvalz2 = 30+10*lessvalneg
-    
     for (i = 0; i < lessvalz2; i++) {
-      points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:283 - 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(283, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(283, 130);
-    
     ctx.fillText("t",285,132);
     ctx.fillText("t",20 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     if (area == .2) {
         ctx.fillText(".20",210,115);
     } else if (area == .1) {
@@ -7371,98 +6900,61 @@ function tdistvalueupper() {
     } else if (area == .005) {
         ctx.fillText(".005",255,110);
     } 
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.lineTo(283, 119);
-    
     ctx.stroke();
-    
     var size = degf + 1;
     var sizem1 = degf;
     var sizem2 = degf - 1;
-    
     table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
     table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
-    
     if (area == .2) {
         table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .1) {
         table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .05) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .025) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .01) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .005) {
         table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
-    
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
     document.getElementById("output2").innerHTML = table + "$$ t = \\boxed{" + parseFloat(tval.toFixed(3)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-
     MathJax.typeset();
 }
-
 function tdistvaluelower() {
     $("#myCanvas").show(); $("#output2").show(); $("#myCanvas0").hide(); $("#output").hide();
     var degf = parseFloat(document.getElementById('degfree').value)
@@ -7474,56 +6966,42 @@ function tdistvaluelower() {
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
     }
-    
     var c = document.getElementById("myCanvas");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     var points0 = []
-    
     for (i = 0; i < lessvalz; i++) {
-      points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
+        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
     // move to the first point
-   ctx.moveTo(points0[0].x, points0[0].y);
-
-
-   for (i = 1; i < points0.length - 2; i ++)
-   {
-      var xc = (points0[i].x + points0[i + 1].x) / 2;
-      var yc = (points0[i].y + points0[i + 1].y) / 2;
-      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
-   }
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+        var xc = (points0[i].x + points0[i + 1].x) / 2;
+        var yc = (points0[i].y + points0[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    
     ctx.lineTo(20 + 4.4*lessvalz, 130);
     ctx.lineTo(20 + 4.4*0, 130);
-    
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.fillText("t",285,132);
     ctx.fillText("t",20 + 4.4*(30+10*lessval),145);
-    
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    
     if (area == .2) {
         ctx.fillText(".20",285 - 210,115);
     } else if (area == .1) {
@@ -7537,113 +7015,72 @@ function tdistvaluelower() {
     } else if (area == .005) {
         ctx.fillText(".005",285 - 255,110);
     } 
-    
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-
     var size = degf + 1;
     var sizem1 = degf;
     var sizem2 = degf - 1;
-    
     table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
     table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
-    
     if (area == .2) {
         table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
         table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .1) {
-        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .05) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"   
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .025) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"  
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .01) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (area == .005) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } 
-
-    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
-    document.getElementById("output2").innerHTML = table + "$$ t = \\boxed{" + parseFloat(tval.toFixed(3)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    
-    
+    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"    
+    document.getElementById("output2").innerHTML = table + "$$ t = \\boxed{" + parseFloat(tval.toFixed(3)) + "} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"   
     MathJax.typeset();
 }
-
 function tdistvaluebetween() {
     $("#myCanvas0").show(); $("#output2").show(); $("#myCanvas").hide(); $("#output").show();
     var degf = parseFloat(document.getElementById('degfree').value)
     var perc = parseFloat(document.getElementById('percentt').value)
     var area = parseFloat((perc/100).toFixed(2))
     var prob = ((100-perc)/100)/2
-    var ans = parseFloat(prob.toFixed(3))
-    
+    var ans = parseFloat(prob.toFixed(3))    
     var tval1 = parseFloat((-1 * tinv(ans, degf)).toFixed(3))
-    var tval2 = parseFloat(tinv(ans, degf).toFixed(3))
-    
+    var tval2 = parseFloat(tinv(ans, degf).toFixed(3))    
     var lessval = tval1
     var lessvalz = 30+10*lessval
     var greaterval = tval2
@@ -7652,8 +7089,8 @@ function tdistvaluebetween() {
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
@@ -7742,110 +7179,76 @@ function tdistvaluebetween() {
             ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
         }
     }
-    ctx.stroke();
-    
+    ctx.stroke();   
     var size = degf + 1;
     var sizem1 = degf;
-    var sizem2 = degf - 1;
-    
-    table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
-    table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
-    
+    var sizem2 = degf - 1;   
+    table1 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"    
+    table2 = "<td></td><td colspan='6' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"   
     if (ans == .2) {
-        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td >$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"   
         table4 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .1) {
-        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .05) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"    
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .025) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"   
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .01) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"   
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
     } else if (ans == .005) {
-        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
+        table3 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"   
         table4 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
         table5 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
         table6 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
-    } 
-    
-    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"
-    
-    document.getElementById("output").innerHTML = "$$ \\text{Area between } -t \\text{ and } t = "+String(area).replace(/^0+/, '')+" $$ $$ \\begin{align} \\text{Area to right of } t &= (1-"+String(area).replace(/^0+/, '')+")/2 \\\\ &= "+String(parseFloat((1-area).toFixed(3))).replace(/^0+/, '')+"/2 \\\\ &= "+String(parseFloat(((1-area)/2).toFixed(3))).replace(/^0+/, '')+" \\end{align} $$ "
-    
+    }    
+    var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>"   
+    document.getElementById("output").innerHTML = "$$ \\begin{align} \\text{Area to right of } t &= (1-"+String(area).replace(/^0+/, '')+")/2 \\\\ &= "+String(parseFloat((1-area).toFixed(3))).replace(/^0+/, '')+"/2 \\\\ &= "+String(parseFloat(((1-area)/2).toFixed(3))).replace(/^0+/, '')+" \\end{align} $$" 
     document.getElementById("output2").innerHTML = table + " $$ \\boxed{"+tval1+" \\text{ and } "+tval2+"} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-
     MathJax.typeset();
 }
-
 function switchtdistvalue() {
     $("#tdistvalue").show(); $("#tdistarea").hide();
     tdisttype = "value"
 }
-
-
 function switchtdistarea() {
     $("#tdistvalue").hide(); $("#tdistarea").show();
     tdisttype = "area"
 }
-
 function switchtdistvaluebetween() {
     var valuetype = document.getElementById('valuetypet').value
     if (valuetype == "between") {
         $("#tdistvaluebetween").show(); $("#tdistvalue").hide();
     }
 }
-
 function switchtdistareabetween() {
     var areatype = document.getElementById('areatypet').value
     if (areatype == "between") {
         $("#tdistareabetween").show(); $("#tdistarea").hide();
     }
 }
-
 function switchtdistvaluebetweenback() {
     document.getElementById('valuetypet').value = "upper"
     $("#tdistvaluebetween").hide(); $("#tdistvalue").show();
 }
-
 function switchtdistareabetweenback() {
     document.getElementById('areatypet').value = "right"
     $("#tdistareabetween").hide(); $("#tdistarea").show();
 }
-
 function tdistvalset() {
     if (document.getElementById('tdistval1').value == "-" || document.getElementById('tdistval1').value == "") {
         document.getElementById('tdistval2').value = ""
@@ -7853,7 +7256,6 @@ function tdistvalset() {
         document.getElementById('tdistval2').value = -1 * document.getElementById('tdistval1').value
     }
 }
-
 function tdistvalset2() {
     if (document.getElementById('tdistval2').value == "-" || document.getElementById('tdistval2').value == "") {
         document.getElementById('tdistval1').value = ""
