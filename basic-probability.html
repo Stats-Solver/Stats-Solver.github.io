@@ -115,6 +115,7 @@
                     <option value="dice1">Rolling a Die</option>
                     <option value="dice2">Rolling 2 Dice</option>
                     <option value="deck">Deck of Cards</option>
+                    <!--<option value="equally">Equally Likely</option>-->
                 </select>
                 </div>
             <div class="col-4 col-md-2" id = "times">
@@ -174,28 +175,30 @@
                     <option value="at5">≥5</option>
                 </select>
                 <select id="eventsdice2" class="form-control" onchange="" style="text-align: left">
-                    <option value="sum3">Sum=3</option>
-                    <option value="sum4">Sum=4</option>
-                    <option value="sum5">Sum=5</option>
-                    <option value="sum6">Sum=6</option>
-                    <option value="sum7">Sum=7</option>
-                    <option value="sum8">Sum=8</option>
-                    <option value="sum9">Sum=9</option>
-                    <option value="sum10">Sum=10</option>
-                    <option value="sum11">Sum=11</option>
-
+                    <!--<option value="sum2">Sum = 2</option>-->
+                    <option value="sum3">Sum = 3</option>
+                    <option value="sum4">Sum = 4</option>
+                    <option value="sum5">Sum = 5</option>
+                    <option value="sum6">Sum = 6</option>
+                    <option value="sum7">Sum = 7</option>
+                    <option value="sum8">Sum = 8</option>
+                    <option value="sum9">Sum = 9</option>
+                    <option value="sum10">Sum = 10</option>
+                    <option value="sum11">Sum = 11</option>
+                    <!--<option value="sum12">Sum = 12</option>-->
                 </select>
                 <select id="eventsdeck" class="form-control" onchange="" style="text-align: left">
                     <option value="Heart">Heart</option>
                     <option value="Diamond">Diamond</option>
                     <option value="Spade">Spade</option>
                     <option value="Club">Club</option>
-                    <option value="Red">Red</option>
-                    <option value="Black">Black</option>
+                    <!--<option value="Red">Red</option>-->
+                    <!--<option value="Black">Black</option>-->
                     <option value="Jack">Jack</option>
                     <option value="Queen">Queen</option>
                     <option value="King">King</option>
                     <option value="Ace">Ace</option>
+                    <option value="Face">Face</option>
                 </select>
             </div>
             
@@ -409,35 +412,24 @@
         </table> 
           
           </div>
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       <div class="container">
         <div class="row justify-content-center">
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()" style="text-align: left">
                     <option value="choose">Choose One</option>
-                    <option value="samplespace">Sample Space</option>
-                    <option value="outcomes">Number of Outcomes</option>
-                    <option value="probout">Probability of Outcomes</option>
+                    <!--<option value="samplespace">Sample Space</option>-->
+                    <option value="probout">Outcomes</option>
+                    <option value="probability">Events</option>
                     <!--<option value="tree">Tree Diagram</option>-->
                     <option value="combinations">Combinations</option>
                     <option value="permutations">Permutations</option>
-                    <option value="events">Events</option>
-                    <option value="probability">Probability of Events</option>
+                    <!--<option value="events">Events</option>-->
                     <option value="complement">Complement</option>
                     <option value="union">Union</option>
+                    <option value="intersection">Intersection</option>
                     <!--<option value="jointprob">Joint Probability Table</option>-->
                     <option value="conditional">Conditional Probability</option>
-                    <option value="intersection">Intersection</option>
                     <option value="bayes">Bayes' Theorem</option>
                 </select>
                 </div>
@@ -567,33 +559,7 @@
             <br>
             
             <p class = "p1"> Regardless of which method is used to assign probability, it is important that two requirements are satisfied. The first requirement is that the probability of each outcome is between zero and one. The second requirement is that the sum of the probabilities equals one. In probability, the term "event" has a different meaning than it does in everyday life. An event is defined to be a collection of sample points (outcomes). To calculate the probability of event, simply sum the probabilities of the outcomes of the event.  </p>
-            
-          <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
-            
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
+ 
             
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
@@ -653,61 +619,14 @@
             
       </div>
       </div> 
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
+
       <div id = "proboutputs">
      <div class="container">
         <div id="output" class="output">
         </div>
       </div>
       </div>
-      
-    <!--<div class="text-center mt-2 mb-2">
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-         Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        </div>-->
-      
-      <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
+
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
