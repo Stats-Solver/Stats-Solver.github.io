@@ -579,12 +579,9 @@ function compoutcomes() {
     MathJax.typeset();
 }
 
-
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////// Sample Space ////////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
 
 function compsamplespace2() {
     document.getElementById("descriptiontext").innerHTML = "The number of outcomes can be calculated using the counting rule for multiple-step experiments."
@@ -653,17 +650,17 @@ function compprobout() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> $ \\text{Head, Tail} $ $$ \\text{Number} = {\\color{RoyalBlue}2} $$ $$ P(\\text{Outcome}) = \\boxed{1/2} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$ \\text{Head, Tail} $ $$ \\text{Number} = {\\color{RoyalBlue}2} $$ $$ P(\\text{Outcome}) = \\boxed{1/2} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> $ \\text{HH, HT, TH, TT} $ $$ \\begin{align} \\text{Number} &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= {\\color{RoyalBlue}4} \\end{align} $$ $$ P(\\text{Outcome}) = \\boxed{1/4} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$ \\text{HH, HT, TH, TT} $ $$ \\begin{align} \\text{Number} &= (n_1)(n_2) \\\\ &= (2)(2) \\\\ &= {\\color{RoyalBlue}4} \\end{align} $$ $$ P(\\text{Outcome}) = \\boxed{1/4} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin3") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> $ \\text{HHH, HHT, HTH, THH} $ <br> $ \\text{HTT, THT, TTH, TTT} $ $$ \\begin{align} \\text{Number} &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= {\\color{RoyalBlue}8} \\end{align} $$ $$ P(\\text{Outcome}) = \\boxed{1/8} $$ " + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$ \\text{HHH, HHT, HTH, THH} $ <br> $ \\text{HTT, THT, TTH, TTT} $ $$ \\begin{align} \\text{Number} &= (n_1)(n_2)(n_3) \\\\ &= (2)(2)(2) \\\\ &= {\\color{RoyalBlue}8} \\end{align} $$ $$ P(\\text{Outcome}) = \\boxed{1/8} $$ " + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "coin4") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
@@ -678,22 +675,20 @@ function compprobout() {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide();  $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> $ \\text{1, 2, 3, 4, 5, 6} $ $$ \\text{Number} = {\\color{RoyalBlue}6} $$ $$ P(\\text{Outcome}) = \\boxed{1/6} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "$ \\text{1, 2, 3, 4, 5, 6} $ $$ \\text{Number} = {\\color{RoyalBlue}6} $$ $$ P(\\text{Outcome}) = \\boxed{1/6} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "dice2") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> <table><tr><td>$ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6)}$</td></tr><tr><td>$ \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6)}$</td></tr><tr><td>$ \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6)}$</td></tr><tr><td>$ \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6)}$</td></tr><tr><td>$ \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>$\\text{(5,6)}$</td></tr><tr><td>$ \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>$\\text{(6,5),}$</td><td>$\\text{(6,6)} $</td></tr></table> $$ \\begin{align} \\text{Number} &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= {\\color{RoyalBlue}36} \\end{align} $$ $$ P(\\text{Outcome}) = \\boxed{1/36} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "<table><tr><td>$ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6)}$</td></tr><tr><td>$ \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6)}$</td></tr><tr><td>$ \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6)}$</td></tr><tr><td>$ \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6)}$</td></tr><tr><td>$ \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>$\\text{(5,6)}$</td></tr><tr><td>$ \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>$\\text{(6,5),}$</td><td>$\\text{(6,6)} $</td></tr></table> $$ \\begin{align} \\text{Number} &= (n_1)(n_2) \\\\ &= (6)(6) \\\\ &= {\\color{RoyalBlue}36} \\end{align} $$ $$ P(\\text{Outcome}) = \\boxed{1/36} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     } else if (type == "deck") {
         $("#explanation").show(); $("#output2").hide(); 
         $("#coin1").hide(); $("#coin2").hide(); $("#coin3").hide(); $("#coin4").hide(); $("#coin5").hide(); 
         $("#dice1").hide(); $("#dice2").hide(); $("#deck1").hide();
-        document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> <table><tr><td>$ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C}$</td></tr><tr><td>$ \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C}$</td></tr><tr><td>$ \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C}$</td><tr></tr><td>$ \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C}$</td></tr><tr><td>$ \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C}$</td></tr><tr><td>$ \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C}$</td></tr><tr><td>$ \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C}$</td></tr><tr><td>$ \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C}$</td></tr><tr><td>$ \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C}$</td></tr><tr><td>$ \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC}$</td></tr><tr><td>$ \\text{QH,}$</td><td>$\\text{QS,}$</td><td>$\\text{QD,}$</td><td>$\\text{QC}$</td></tr><tr><td>$ \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC}$</td></tr><tr><td>$ \\text{AH,}$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} $</td></tr></table>$$ \\text{Number} = {\\color{RoyalBlue}52} $$ $$ P(\\text{Outcome}) = \\boxed{1/52} $$" + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output").innerHTML = "<table><tr><td>$\\text{AH,}$</td><td>$\\text{2H,}$</td><td>$\\text{3H,}$</td><td>$\\text{4H,}$</td><td>$\\text{5H,}$</td><td>$\\text{6H,}$</td><td>$\\text{7H,}$</td><td>$\\text{8H,}$</td><td>$\\text{9H,}$</td><td>$\\text{10H,}$</td><td>$\\text{JH,}$</td><td>$\\text{QH,}$</td><td>$\\text{KH}$</td><tr><td>$\\text{AD,}$</td><td>$\\text{2D,}$</td><td>$\\text{3D,}$</td><td>$\\text{4D,}$</td><td>$\\text{5D,}$</td><td>$\\text{6D,}$</td><td>$\\text{7D,}$</td><td>$\\text{8D,}$</td><td>$\\text{9D,}$</td><td>$ \\text{10D,}$</td><td>$\\text{JD,}$</td><td>$\\text{QD,}$</td><td>$\\text{KD}$</td><tr><tr><td>$\\text{AS,}$</td><td>$\\text{2S,}$</td><td>$\\text{3S,}$</td><td>$\\text{4S,}$</td><td>$\\text{5S,}$</td><td>$\\text{6S,}$</td><td>$\\text{7S,}$</td><td>$\\text{8S,}$</td><td>$\\text{9S,}$</td><td>$ \\text{10S,}$</td><td>$\\text{JS,}$</td><td>$\\text{QS,}$</td><td>$\\text{KS}$</td></tr><tr><td>$\\text{AC,}$</td><td>$\\text{2C,}$</td><td>$\\text{3C,}$</td><td>$\\text{4C,}$</td><td>$\\text{5C,}$</td><td>$\\text{6C,}$</td><td>$\\text{7C,}$</td><td>$\\text{8C,}$</td><td>$\\text{9C,}$</td><td>$\\text{10C,}$</td><td>$\\text{JC,}$</td><td>$\\text{QC,}$</td><td>$\\text{KC}$</td><tr></table> $$ \\text{Number} = {\\color{RoyalBlue}52} $$ $$ P(\\text{Outcome}) = \\boxed{1/52} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     }
     MathJax.typeset();
 }
-
-
 
 function compprobout2() {
     document.getElementById("descriptiontext").innerHTML = "An experiment is a process that generates some outcomes. The sample space is the set of all possible outcomes."
@@ -937,8 +932,6 @@ function compevents() {
             var samplespace = "$$ \\text{Sample Space:} $$ $ S = $  <table><tr><td>$ \\{ \\text{(1,1),}$</td><td>$\\text{(1,2),}$</td><td>$\\text{(1,3),}$</td><td>$\\text{(1,4),}$</td><td>$\\text{(1,5),}$</td><td>$\\text{(1,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(2,1),}$</td><td>$\\text{(2,2),}$</td><td>$\\text{(2,3),}$</td><td>$\\text{(2,4),}$</td><td>$\\text{(2,5),}$</td><td>$\\text{(2,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(3,1),}$</td><td>$\\text{(3,2),}$</td><td>$\\text{(3,3),}$</td><td>$\\text{(3,4),}$</td><td>$\\text{(3,5),}$</td><td>$\\text{(3,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(4,1),}$</td><td>$\\text{(4,2),}$</td><td>$\\text{(4,3),}$</td><td>$\\text{(4,4),}$</td><td>$\\text{(4,5),}$</td><td>$\\text{(4,6),}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(5,1),}$</td><td>$\\text{(5,2),}$</td><td>$\\text{(5,3),}$</td><td>$\\text{(5,4),}$</td><td>$\\text{(5,5),}$</td><td>${\\color{RoyalBlue}\\text{(5,6)}},$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{(6,1),}$</td><td>$\\text{(6,2),}$</td><td>$\\text{(6,3),}$</td><td>$\\text{(6,4),}$</td><td>${\\color{RoyalBlue}\\text{(6,5)}},$</td><td>$\\text{(6,6)} \\} $</td></tr></table>"
         } 
     } else if (type == "deck") {
- 
-        
         var event = document.getElementById("eventsdeck").value;
         if (event == "Heart") {
             var samplespace = "$$ \\text{Sample Space:} $$ $ S = $  <table><tr><td>$ \\{ {\\color{RoyalBlue}\\text{2H}},$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{3H}},$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{4H}},$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{5H}},$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{6H}},$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{7H}},$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{8H}},$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{9H}},$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{10H}},$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{JH}},$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{QH}},$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{KH}},$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{AH}},$</td><td>$\\text{AD,}$</td><td>$\\text{AS,}$</td><td>$\\text{AC} \\} $</td></tr></table>"
@@ -961,10 +954,7 @@ function compevents() {
         } else if (event == "Ace") {
             var samplespace = "$$ \\text{Sample Space:} $$ $ S = $  <table><tr><td>$ \\{ \\text{2H,}$</td><td>$\\text{2D,}$</td><td>$\\text{2S,}$</td><td>$\\text{2C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{3H,}$</td><td>$\\text{3D,}$</td><td>$\\text{3S,}$</td><td>$\\text{3C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{4H,}$</td><td>$\\text{4D,}$</td><td>$\\text{4S,}$</td><td>$\\text{4C,}$</td><tr></tr><td>$ {\\color{White} \\{ } \\text{5H,}$</td><td>$\\text{5D,}$</td><td>$\\text{5S,}$</td><td>$\\text{5C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{6H,}$</td><td>$\\text{6D,}$</td><td>$\\text{6S,}$</td><td>$\\text{6C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{7H,}$</td><td>$\\text{7D,}$</td><td>$\\text{7S,}$</td><td>$\\text{7C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{8H,}$</td><td>$\\text{8D,}$</td><td>$\\text{8S,}$</td><td>$\\text{8C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{9H,}$</td><td>$\\text{9D,}$</td><td>$\\text{9S,}$</td><td>$\\text{9C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{10H,}$</td><td>$\\text{10D,}$</td><td>$\\text{10S,}$</td><td>$\\text{10C,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{JH,}$</td><td>$\\text{JD,}$</td><td>$\\text{JS,}$</td><td>$\\text{JC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{QH,}$</td><td>$\\text{QD,}$</td><td>$\\text{QS,}$</td><td>$\\text{QC,}$</td></tr><tr><td>$ {\\color{White} \\{ } \\text{KH,}$</td><td>$\\text{KD,}$</td><td>$\\text{KS,}$</td><td>$\\text{KC,}$</td></tr><tr><td>$ {\\color{White} \\{ } {\\color{RoyalBlue}\\text{AH}},$</td><td>${\\color{RoyalBlue}\\text{AD}},$</td><td>${\\color{RoyalBlue}\\text{AS}},$</td><td>${\\color{RoyalBlue}\\text{AC}} \\} $</td></tr></table>"
         }
-        
-
     }
-    
     if (type == "coin1") {
         $("#explanation").show();
         var event = document.getElementById("eventscoin1").value;
@@ -1289,9 +1279,6 @@ function compprobability() {
         }  else if (event == "Face") {
             document.getElementById("output").innerHTML = "$ \\text{Outcomes:} $ <br> <table><tr><td>$\\text{AH,}$</td><td>$\\text{2H,}$</td><td>$\\text{3H,}$</td><td>$\\text{4H,}$</td><td>$\\text{5H,}$</td><td>$\\text{6H,}$</td><td>$\\text{7H,}$</td><td>$\\text{8H,}$</td><td>$\\text{9H,}$</td><td>$\\text{10H,}$</td><td>${\\color{RoyalBlue}\\text{JH,}}$</td><td>${\\color{RoyalBlue}\\text{QH,}}$</td><td>${\\color{RoyalBlue}\\text{KH}}$</td><tr><td>$\\text{AD,}$</td><td>$\\text{2D,}$</td><td>$\\text{3D,}$</td><td>$\\text{4D,}$</td><td>$\\text{5D,}$</td><td>$\\text{6D,}$</td><td>$\\text{7D,}$</td><td>$\\text{8D,}$</td><td>$\\text{9D,}$</td><td>$ \\text{10D,}$</td><td>${\\color{RoyalBlue}\\text{JD,}}$</td><td>${\\color{RoyalBlue}\\text{QD,}}$</td><td>${\\color{RoyalBlue}\\text{KD}}$</td><tr><tr><td>$\\text{AS,}$</td><td>$\\text{2S,}$</td><td>$\\text{3S,}$</td><td>$\\text{4S,}$</td><td>$\\text{5S,}$</td><td>$\\text{6S,}$</td><td>$\\text{7S,}$</td><td>$\\text{8S,}$</td><td>$\\text{9S,}$</td><td>$ \\text{10S,}$</td><td>${\\color{RoyalBlue}\\text{JS,}}$</td><td>${\\color{RoyalBlue}\\text{QS,}}$</td><td>${\\color{RoyalBlue}\\text{KS}}$</td></tr><tr><td>$\\text{AC,}$</td><td>$\\text{2C,}$</td><td>$\\text{3C,}$</td><td>$\\text{4C,}$</td><td>$\\text{5C,}$</td><td>$\\text{6C,}$</td><td>$\\text{7C,}$</td><td>$\\text{8C,}$</td><td>$\\text{9C,}$</td><td>$\\text{10C,}$</td><td>${\\color{RoyalBlue}\\text{JC,}}$</td><td>${\\color{RoyalBlue}\\text{QC,}}$</td><td>${\\color{RoyalBlue}\\text{KC}}$</td><tr></table> $$ \\begin{align} \\text{Prob.} &= P(\\text{JH})+\\cdots+P(\\text{KC}) \\\\ &= 12(1/52) \\\\ &= 12/52 \\\\ &= \\boxed{.23} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
         } 
-        
-
-
     }
     MathJax.typeset();
 }
@@ -1665,6 +1652,10 @@ function compperm() {
     MathJax.typeset();
 }
 
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////// Complement ////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 function complement() {
     $("#complement").show();
 }
@@ -1677,11 +1668,14 @@ function compcomp() {
     
     var probac = document.getElementById("probcomp").value;
     
-    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + " \\\\ &= \\boxed{" + (1-probac).toFixed(2) + "} \\end{align} $$" + " <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\begin{align} P(A) &= 1 - P(A^c) \\\\ &= 1 - " + probac + " \\\\ &= \\boxed{" + String((1-probac).toFixed(2)).replace(/^0+/, '') + "} \\end{align} $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
 
     
     MathJax.typeset();
 }
+
+
+
 
 function union() {
     $("#union").show();
