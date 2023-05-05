@@ -7499,7 +7499,7 @@ function fdistribution() {
     row3 = fdist025[dendf]
     row4 = fdist01[dendf]
     var table0 = "<td colspan='7'>$\\text{F-Distribution Table}$</td>"
-    var table1 = "<td>$ \\text{Den. } $</td><td>$\\text{Upper}$</td></td><td style='border-bottom: thin solid;' colspan='5'>$\\text{Numerator } df$</td>"
+    var table1 = "<td>$ \\text{Den} $</td><td>$\\text{Upper}$</td></td><td style='border-bottom: thin solid;' colspan='5'>$\\text{Numerator } df$</td>"
     var table2 = "<td>$ df$</td><td>$\\text{Area}$</td><td>$"+ numdfm2 +"$</td><td>$"+ numdfm1 +"$</td><td bgcolor='lightgray'>$"+ numdf +"$</td><td>$"+ numdfp1 +"$</td><td>$"+ numdfp2 +"$</td>"
     if (area == ".10") {
         var table3 = "<td>$"+ dendf +"$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray'>$"+ row1[numdfm2].toFixed(2) +"$</td><td bgcolor='lightgray'>$"+ row1[numdfm1].toFixed(2) +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+ row1[numdf].toFixed(2) +"$</td><td bgcolor='lightgray'>$"+ row1[numdfp1].toFixed(2) +"$</td><td bgcolor='lightgray'>$"+ row1[numdfp2].toFixed(2) +"$</td>"
