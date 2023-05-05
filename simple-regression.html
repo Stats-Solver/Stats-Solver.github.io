@@ -44,9 +44,7 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          <!--<li class="nav-item">
-            <a class="nav-link" href="/index.html">Home <span class="sr-only">(current)</span></a>
-          </li>-->
+
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -81,7 +79,6 @@
       
     <div class = "container">
         <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="simple-regression.html">Simple Regression Calculator</a></h1>
-        <!--<h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="multiple-regression.html" class="text-primary" >Multiple Regression Calculator</a></h2>-->
     </div>
       
       <div class="container">
@@ -96,10 +93,7 @@
         <div class="col-4 col-md-2 mb-3" id = "blankx">
             
         </div>
-        <!--<div class = "col-4 col-md-2" id = "level">
-          $\text{CL:}$
-            <select id="conlev" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
-        </div>-->
+
          </div>     
     </div>
       
@@ -141,25 +135,10 @@
         <div class="col-4 col-md-2 mb-3" id="xpval">      
         $x_p=$ <input type="text" style="width:50px;" id="xpvalue" class="hypinput2">
         </div>  	
-        <!--<div class="col-4 col-md-2 mb-3" id="residtype">
-            <select class="form-control" id="residtypeval">
-                <option value="againstx">Against x</option>
-                <option value="againsty">Against ŷ</option>
-            </select>
-        </div> -->
+
     </div>
           </div>
-      
-      <!--<div class="container mb-3" id = "xval">
-          <div class="row justify-content-center">
-              
-              <table id="statistics">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="x1s">$x=$ <input type="text" style="width:50px;" id="xvalue" class="hypinput2"></td>  
-          </tr>
-        </table> 
-              </div>
-              </div>-->
+
       
       
       <div class="container">
@@ -168,7 +147,8 @@
         <div class="col-8 col-md-3 mb-2">
             <select id="stat" class="form-control" onchange="showthings()">
                 <option value="choose">Choose One</option>
-                <option value="slope">Est. Regression Equation</option>
+                <option value="equation">Regression Equation</option>
+                <option value="interpretation">Interpretation</option>
                 <option value="prediction">Predicted Value</option>
                 <option value="sumsqu">Sum of Squares</option>
                 <option value="rsquared">Coefficient of Determination</option>
@@ -199,12 +179,11 @@
       
       
     <div class="container">
-      <hr>
-          </div>
+        <hr>
+    </div>
       
-      <div class="container" id="how">
-        <div id="how1" class="output text-center" style="color: darkslategray">
-            
+    <div class="container" id="how">
+    <div id="how1" class="output text-center" style="color: darkslategray">
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
      crossorigin="anonymous"></script>
@@ -219,20 +198,15 @@
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
                 </div>
-            
         </div>
         <div id="how2" class="how" style="color: darkslategray">
             <p class = "p1">In simple linear regression, the starting point is the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. It provides a mathematical relationship between the dependent variable (y) and the independent variable (x). Furthermore, it can be used to predict the value of y for a given value of x. There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The formulas for the slope and intercept are derived from the least squares method: min Σ(y - ŷ)<sup>2</sup>. The graph of the estimated regression equation is known as the estimated regression line.</p>
-            
             <table style="width:100%" class="text-center">
               <tr>
                 <td><canvas id="howCanvas1" width="375" height="250"></canvas></td>
               </tr>
             </table>
-
-            
             <p class = "p1">After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted r<sup>2</sup>, provides a measure of goodness of fit for the estimated regression equation. Before we can find the r<sup>2</sup>, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.</p>
-
             <table class="text-center">
               <tr>
                 <td colspan="2">Sum of Squares</td>
@@ -251,7 +225,6 @@
               </tr>
             </table>
             <br>
-            
             <p class = "p1">Now that we know the sum of squares, we can calculate the coefficient of determination. The r<sup>2</sup> is the ratio of the SSR to the SST. It takes a value between zero and one, with zero indicating the worst fit and one indicating a perfect fit. A perfect fit indicates all the points in a scatter diagram will lie on the estimated regression line. When interpreting the r<sup>2</sup>, the first step is to convert its value to a percentage. Then it can be interpreted as the percentage of the variability in y explained by the estimated regression equation. </p>
             
             <table style="width:100%" class="text-center">
@@ -263,36 +236,7 @@
               </tr>
             </table>
             <br> 
-            
             <p class = "p1">The sample correlation coefficient can be calculated using the coefficient of determination, indicating a close relationship between regression and correlation. Regression can be thought of as a stronger version of regression. While correlation tells us the sign and strength of a relationship, regression quantifies the relationship to facilitate prediction. To get the sample correlation coefficient, simply take the square root of the coefficient of determination, with the sign being the same sign as the slope.</p>
-            
-             <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
-            
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>-->
-            
             <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
                  crossorigin="anonymous"></script>
@@ -307,9 +251,7 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
             </div>
-            
             <p class = "p1">The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. There are two ways of testing for significance, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. </p>
-            
             <table style="width:100%" class="text-center">
               <tr>
                 <td>Mean Square Error</td>
@@ -321,9 +263,7 @@
               </tr>
             </table>
             <br>
-            
             <p class = "p1">The t test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, b<sub>1</sub>, by the estimated standard deviation of b<sub>1</sub>, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t distribution with n-2 degrees of freedom. In simple linear regression, the F test amounts to the same hypothesis test as the t test. The only difference will be the test statistic and the probability distribution used. </p>
-
             <table style="width:100%" class="text-center">
               <tr>
                 <td>t Test</td>
@@ -335,20 +275,13 @@
               </tr>
             </table>
             <br>
-            
             <p class = "p1">Confidence intervals and predictions intervals can be constructed around the estimated regression line. In both cases, the intervals will be narrowest near the mean of x and get wider the further they move from the mean. The differennce between them is that a confidence interval gives a range for the expected value of y. A prediction interval gives a range for the predicted value of y. Confidence intervals will be narrower than prediction intervals. </p>
-            
             <table style="width:100%" class="text-center">
               <tr>
                 <td><canvas id="howCanvas2" width="375" height="250"></canvas></td>
               </tr>
             </table>
-            
-            <p class = "p1"> In a simple linear regression, there is only one independent variable (x). However, we may want to include more than one independent vartiable to improve the predictive power of our regression. This is known as multiple regression, which can be solved using our <a href="multiple-regression.html">Multiple Regression Calculator</a>. One of the most important parts of regression is testing for significance. The two tests for signficance, t test and F test, are examples of hypothesis tests. Hypothesis testing can be done using our <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>
-
-            
-            
-            
+            <p class = "p1"> In a simple linear regression, there is only one independent variable (x). However, we may want to include more than one independent vartiable to improve the predictive power of our regression. This is known as multiple regression, which can be solved using our <a href="multiple-regression.html">Multiple Regression Calculator</a>. One of the most important parts of regression is testing for significance. The two tests for signficance, t test and F test, are examples of hypothesis tests. Hypothesis testing can be done using our <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>  
       </div>
       </div>
       
@@ -386,37 +319,6 @@
        
       </div>
 
-      
-      
-      
-       <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-         Square2 
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8840542382"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script> 
-        
-      -->
-      
-      
-      <!-- <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Big Rectangle 1 
-        <ins class="adsbygoogle"
-             style="display:inline-block;width:300px;height:250px"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8756420514"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-        </div>-->
       
       <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
