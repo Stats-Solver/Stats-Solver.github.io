@@ -1839,102 +1839,70 @@ function standardareabetween() {
     }
     MathJax.typeset();
 }
-
 function standardcurve() {
     $("#explanation").show(); $("#myCanvas0").show(); $("#myCanvas").hide(); $("#output").show(); $("#output2").hide();
-    
     document.getElementById("descriptiontext").innerHTML = "The normal distribution is the most important continuous distribution. "
     document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{x-\\mu}{\\sigma} $"
     document.getElementById("explanationtext").innerHTML = "To calculate probabilities for a normal distribution, first convert to the standard normal distribution."
-
     var expval = 0
     var sd =  1
     var exp = 2.71828; 
-    
     var f = [];
     var i;
     for (i = 0; i < 60; i++) {
       var j = (i-30)/10
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
-    
     var c = document.getElementById("myCanvas0");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
-    
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
-    
     //ctx.fillText("Normal Distribution",110,10);
-    
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    
     ctx.moveTo(30, 135);
     ctx.lineTo(30, 125);
     ctx.fillText(expval - 3 * sd,30 - ctx.measureText(expval - 3 * sd).width / 2,145);
-    
     ctx.moveTo(70, 135);
     ctx.lineTo(70, 125);
     ctx.fillText(expval - 2 * sd,70 - ctx.measureText(expval - 2 * sd).width / 2,145);
-    
     ctx.moveTo(110, 135);
     ctx.lineTo(110, 125);
     ctx.fillText(expval - 1 * sd,110 - ctx.measureText(expval - 1 * sd).width / 2,145);
-    
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText(expval,150 - ctx.measureText(expval).width / 2,145);
-    
-    
     ctx.moveTo(190, 135);
     ctx.lineTo(190, 125);
     ctx.fillText(parseFloat(expval) + parseFloat(1 * sd),190 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
-    
     ctx.moveTo(230, 135);
     ctx.lineTo(230, 125);
     ctx.fillText(parseFloat(expval) + parseFloat(2 * sd),230 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
-    
     ctx.moveTo(270, 135);
     ctx.lineTo(270, 125);
     ctx.fillText(parseFloat(expval) + parseFloat(3 * sd),270 - ctx.measureText(parseFloat(expval) + parseFloat(1 * sd)).width / 2,145);
-    
     ctx.fillText("z",285,132);
-
-    
     var points = []
-    
     for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
+        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     ctx.stroke();
-    
     document.getElementById("output").innerHTML = "$$ \\text{Common Percentages:} $$ $$ 68.3\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(1 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(1 * sd))+" $$ $$ 95.4\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(2 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(2 * sd))+" $$ $$ 99.7\\% \\text{ of values between } "+(parseFloat(expval) - parseFloat(3 * sd))+" \\text{ and } "+(parseFloat(expval) + parseFloat(3 * sd))+" $$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
-    
     MathJax.typeset();
 }
-
 function compstandardprob() {
     probtype = document.getElementById('probtype2').value
     if (probtype == "lessequal" || probtype == "less") {
@@ -7359,58 +7327,58 @@ function chisquare() {
     var row = chidist[df]
     var rowm1 = chidist[dfm1]
     var rowp1 = chidist[dfp1]
-    table1 = "<td colspan='8'>$\\text{Chi-Square Distribution Table}$</td>"
-    table2 = "<td></td><td colspan='7' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
+    table1 = "<td colspan='6'>$\\text{Chi-Square Distribution Table}$</td>"
+    table2 = "<td></td><td colspan='5' style='border-bottom: thin solid;'>$\\text{Area in Upper Tail}$</td>"
     if (area == ".995") {
-        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.995$</td><td>$.99$</td><td >$.975$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td bgcolor='lightgray'>$"+rowm1[0].toFixed(3)+"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td bgcolor='lightgray'>$"+rowp1[0].toFixed(3)+"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td bgcolor='lightgray'>$.995$</td><td>$.99$</td><td >$.975$</td><td>$.95$</td><td>$.90$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td bgcolor='lightgray'>$"+rowm1[0].toFixed(3)+"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td bgcolor='lightgray'>$"+rowp1[0].toFixed(3)+"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td>"
     } else if (area == ".99") {
-        table3 = "<td>$df$</td><td>$.995$</td><td bgcolor='lightgray'>$.99$</td><td>$.975$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.995$</td><td bgcolor='lightgray'>$.99$</td><td>$.975$</td><td>$.95$</td><td>$.90$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td>"
     } else if (area == ".975") {
-        table3 = "<td>$df$</td><td>$.995$</td><td>$.99$</td><td bgcolor='lightgray'>$.975$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[0].toFixed(3)+"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[0].toFixed(3)+"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.995$</td><td>$.99$</td><td bgcolor='lightgray'>$.975$</td><td>$.95$</td><td>$.90$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[0].toFixed(3)+"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[0].toFixed(3)+"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td>"
     } else if (area == ".95") {
-        table3 = "<td>$df$</td><td>$.995$</td><td>$.99$</td><td>$.975$</td><td bgcolor='lightgray'>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[0].toFixed(3)+"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[0].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[0].toFixed(3)+"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.99$</td><td>$.975$</td><td bgcolor='lightgray'>$.95$</td><td>$.90$</td><td>$.10$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td>"
     } else if (area == ".90") {
-        table3 = "<td>$df$</td><td>$.99$</td><td>$.975$</td><td>$.95$</td><td bgcolor='lightgray'>$.90$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[1].toFixed(3)+"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[1].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[1].toFixed(3)+"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.975$</td><td>$.95$</td><td bgcolor='lightgray'>$.90$</td><td>$.10$</td><td>$.05$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td>"
     } else if (area == ".10") {
-        table3 = "<td>$df$</td><td>$.975$</td><td>$.95$</td><td>$.90$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[2].toFixed(3)+"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[2].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[2].toFixed(3)+"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.95$</td><td>$.90$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td>"
     } else if (area == ".05") {
-        table3 = "<td>$df$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td><td>$"+rowm1[9].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[9].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td><td>$"+rowp1[9].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.90$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td>"
     } else if (area == ".025") {
-        table3 = "<td>$df$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td><td>$"+rowm1[9].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[9].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td><td>$"+rowp1[9].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td><td>$"+rowm1[9].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[9].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td><td>$"+rowp1[9].toFixed(3)+"$</td>"
     } else if (area == ".01") {
-        table3 = "<td>$df$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[8].toFixed(3)+"$</td><td>$"+rowm1[9].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[9].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[8].toFixed(3)+"$</td><td>$"+rowp1[9].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[8].toFixed(3)+"$</td><td>$"+rowm1[9].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[9].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[8].toFixed(3)+"$</td><td>$"+rowp1[9].toFixed(3)+"$</td>"
     } else if (area == ".005") {
-        table3 = "<td>$df$</td><td>$.95$</td><td>$.90$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[3].toFixed(3)+"$</td><td>$"+rowm1[4].toFixed(3)+"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[9].toFixed(3)+"$</td>"
-        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[3].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[4].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[9].toFixed(3)+"$</td>"
-        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[3].toFixed(3)+"$</td><td>$"+rowp1[4].toFixed(3)+"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[9].toFixed(3)+"$</td>"
+        table3 = "<td>$df$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
+        table4 = "<td>$"+ dfm1 +"$</td><td>$"+rowm1[5].toFixed(3)+"$</td><td>$"+rowm1[6].toFixed(3)+"$</td><td>$"+rowm1[7].toFixed(3)+"$</td><td>$"+rowm1[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowm1[9].toFixed(3)+"$</td>"
+        table5 = "<td bgcolor='lightgray'>$"+ df +"$</td><td bgcolor='lightgray'>$"+row[5].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[6].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[7].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+row[8].toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+row[9].toFixed(3)+"$</td>"
+        table6 = "<td>$"+ dfp1 +"$</td><td>$"+rowp1[5].toFixed(3)+"$</td><td>$"+rowp1[6].toFixed(3)+"$</td><td>$"+rowp1[7].toFixed(3)+"$</td><td>$"+rowp1[8].toFixed(3)+"$</td><td bgcolor='lightgray'>$"+rowp1[9].toFixed(3)+"$</td>"
     }         
     var table = "<table><tr>"+table1+"</tr><tr style='border-top: thin solid'>"+table2+"</tr><tr style='border-bottom: thin solid'>"+table3+"</tr><tr>"+table4+"</tr><tr>"+table5+"</tr><tr>"+table6+"</tr></table>" 
     
