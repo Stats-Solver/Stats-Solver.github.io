@@ -1070,21 +1070,16 @@ function hyptest1(){
         }
     }
     var tail = document.getElementById("tail").value;
-    
     if (alphatype == "premade") {
         var alpha = document.getElementById("alpha").value;
     } else {
         var alpha = document.getElementById("alphaval").value;
     }
-    
-    
     if (inputtype == "values" || inputtype == "data") {
         var test = (xbar-muknot)/(stdev/Math.sqrt(size));
     } else if (inputtype == "test") {
         var test = parseFloat(document.getElementById("testvalue").value);
     }
-    
-    
     var testtwo = -Math.abs(test);
     var zpless = normalcdf(test); var zpmore = 1 - normalcdf(test);
     var zptwo = normalcdf(testtwo); var zptwo2 = 2 * zptwo;
@@ -1093,7 +1088,6 @@ function hyptest1(){
     var tcless = -tinv(alpha,sizem1); var tcmore = tinv(alpha,sizem1)
     var tctwo1 = -tinv(alpha/2,sizem1); var tctwo2 = tinv(alpha/2,sizem1); 
     var exp = 2.71828;
-    
     if (sigma == "known") {
         document.getElementById("descriptiontext").innerHTML = "A hypothesis test is used to determine whether the population mean is less than, greater than or different than some value."
         document.getElementById("formulatext").innerHTML = "$ z =\\dfrac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $"
@@ -1103,7 +1097,6 @@ function hyptest1(){
         document.getElementById("formulatext").innerHTML = "$ t =\\dfrac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $"
         document.getElementById("explanationtext").innerHTML = "Rejecting the null hypothesis means accepting the alternative hypothesis."
     } 
-    
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "z";
@@ -1229,19 +1222,17 @@ function hyptest1(){
         }   
         var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     }
-    
-    if (pvalue < alpha) {
-        var pinequ = "<"
+    if (pvalue <= alpha) {
+        var pinequ = "\\leq"
         var concl = "\\text{Reject } H_o"
-        var critsignlower = "<"
-        var critsignupper = ">"
+        var critsignlower = "\\leq"
+        var critsignupper = "\\geq"
     } else if (pvalue > alpha) {
         var pinequ = ">"
         var concl = "\\text{Do Not Reject } H_o"
         var critsignlower = ">"
         var critsignupper = "<"
     }
-    
     if (pvalue <= alpha) {
         if (tail == "lower") {
             var interpret = " $$ \\text{Interpretation: Conclude } \\mu <" + muknot + " $$ "
@@ -1259,34 +1250,29 @@ function hyptest1(){
             var interpret = " $$ \\text{Interpretation: Can't conclude } \\mu \\neq" + muknot + " $$ "
         }
     }
-     
     if (testtwo < zctwo1) {
         var twosign1 = "<"
     } else if (testtwo > zctwo1) {
         var twosign1 = ">"
     }
-    
     if (testtwo > zctwo1) {
         var twosign2 = ">"
     } else if (testtwo < zctwo1) {
         var twosign2 = "<"
     }
-    
-    if (test < ctwo1) {
-        var twocrit = testsymb + "="+test.toFixed(2) + "<" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
-    } else if (test > ctwo2) {
-        var twocrit = testsymb + "="+test.toFixed(2) + ">" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
+    if (test <= ctwo1) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\leq" +""+ cvalsymb1+" = "+ctwo1.toFixed(2);
+    } else if (test >= ctwo2) {
+        var twocrit = testsymb + "="+test.toFixed(2) + "\\geq" +" "+ cvalsymb2+" = "+ctwo2.toFixed(2);
     } else {
         var twocrit = "\\begin{align}"+testsymb+ "&="+test.toFixed(2) + ">" + cvalsymb1+" = "+zctwo1.toFixed(2)+" \\\\ \\text{ and }"+testsymb+ "&="+test.toFixed(2) + "< "+cvalsymb2+" = "+zctwo2.toFixed(2)+ " \\end{align}"
     }
-    
     var zvalue = toFixing(parseFloat(test),1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zvaluer = parseFloat(test).toFixed(2); 
     var zseconddec = +zvaluer.toString().split('').pop();
     var colp = zseconddec
-    
     if (tail == "lower" || tail == "upper") {
         var zcrit = toFixing(zcless,1);
         var zcrit1 = (zcrit - .1).toFixed(1);
@@ -1302,8 +1288,6 @@ function hyptest1(){
         var zcritseconddec = (""+zcritr)[4];
         var colc = zcritseconddec 
     }
-        
-    
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
          var valend = 4;
@@ -1323,12 +1307,6 @@ function hyptest1(){
          var valstart = 5; 
          var valend = 9;
     }
-    
-    
-    
-    
-    
-    
     if (zseconddec == 0) {
          var colp1 = 1
     } else if (zseconddec == 1) {
@@ -1344,14 +1322,6 @@ function hyptest1(){
     } else if (zseconddec == 9) {
          var colp1 = 5
     }
-    
-    
-    
-    
-    
-    
-    
-    
     if (zcritseconddec == 0 || zcritseconddec == 1 || zcritseconddec == 2) {
          var critstart = 0; 
          var critend = 4;
@@ -1371,8 +1341,6 @@ function hyptest1(){
          var critstart = 5; 
          var critend = 9;
     }
-    
-    
     table1 = []
     for (var r = valstart; r < valend + 1; r++){
         if (r == colp) {
@@ -1381,7 +1349,6 @@ function hyptest1(){
                 table1 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     if (test < 0) {
         table31 = []
         for (var r = valstart; r < valend + 1; r++){
@@ -1436,7 +1403,6 @@ function hyptest1(){
             }  
         }
     }
-    
     table12 = []
     for (var r = critstart; r < critend + 1; r++){
         if (r == colc) {
@@ -1445,7 +1411,6 @@ function hyptest1(){
                 table12 += "<td>$" + (.01*r).toFixed(2).replace(/^0+/, '') + "$</td>";
             }  
     }
-    
     table21 = []
     for (var r = critstart; r < critend + 1; r++){
         if (r == colc) {
@@ -1454,7 +1419,6 @@ function hyptest1(){
                 table21 += "<td>$" + normalcdf(parseFloat(zcrit1) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
     }
-    
     table2 = []
     for (var r = critstart; r < critend + 1; r++){
         if (r == colc) {
@@ -1463,7 +1427,6 @@ function hyptest1(){
                 table2 += "<td bgcolor='lightgray'>$" + normalcdf(parseFloat(zcrit) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
     }
-    
     table22 = []
     for (var r = critstart; r < critend + 1; r++){
         if (r == colc) {
@@ -1472,22 +1435,8 @@ function hyptest1(){
                 table22 += "<td>$" + normalcdf(parseFloat(zcrit2) - parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
             } 
     }
-    
-    
-    
-    
-    
-    
-    
-    
     table41 = "<td colspan='7'>$\\text{Student's t-Distribution Table}$</td>"
-    
     table4 = "<td></td><td colspan='6' style='border-bottom: thin solid'>$\\text{Area in Upper Tail}$</td>"
-    
-
-    
-    
-    
     if (sigma == "unknown" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "t";
@@ -1498,65 +1447,44 @@ function hyptest1(){
         if (pvalue > .2) {
             //var pval = ".20 \\text{ to } 1"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.2 && pvalue >.1) {
             //var pval = ".10 \\text{ to } .20"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.1 && pvalue >.05) {
             //var pval = ".05 \\text{ to } .10"
             table5 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.05 && pvalue >.025) {
             //var pval = ".025 \\text{ to } .05"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.025 && pvalue >.01) {
             //var pval = ".01 \\text{ to } .025"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.01 && pvalue >.005) {
             //var pval = ".005 \\text{ to } .01"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.005) {
             //var pval = "0 \\text{ to } .005"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else {
             //var pval = pvalue.toFixed(4);
@@ -1572,65 +1500,44 @@ function hyptest1(){
         if (pvalue > .2) {
             //var pval = ".20 \\text{ to } 1"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.2 && pvalue >.1) {
             //var pval = ".10 \\text{ to } .20"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.1 && pvalue >.05) {
             //var pval = ".05 \\text{ to } .10"
             table5 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.05 && pvalue >.025) {
             //var pval = ".025 \\text{ to } .05"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.025 && pvalue >.01) {
             //var pval = ".01 \\text{ to } .025"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.01 && pvalue >.005) {
             //var pval = ".005 \\text{ to } .01"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalue <.005) {
             //var pval = "0 \\text{ to } .005"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else {
             //var pval = pvalue.toFixed(4);
@@ -1647,65 +1554,44 @@ function hyptest1(){
         if (pvalhalf > .2) {
             var pvalh = ".20 \\text{ to } 1"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.2 && pvalhalf >.1) {
             var pvalh = ".10 \\text{ to } .20"
             table5 = "<td>$df$</td><td bgcolor='lightgray'>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td bgcolor='lightgray'>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.1 && pvalhalf >.05) {
             var pvalh = ".05 \\text{ to } .10"
             table5 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.05 && pvalhalf >.025) {
             var pvalh = ".025 \\text{ to } .05"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.025 && pvalhalf >.01) {
             var pvalh = ".01 \\text{ to } .025"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.01 && pvalhalf >.005) {
             var pvalh = ".005 \\text{ to } .01"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-right: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (pvalhalf <.005) {
             var pvalh = "0 \\text{ to } .005"
             table5 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-    
             table61 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table6 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border-top: thin solid; border-bottom: thin solid; border-left: thin solid'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else {
             var pvalh = pvalhalf.toFixed(4);
@@ -1730,80 +1616,41 @@ function hyptest1(){
         }   
         var ctwo1 = tctwo1; var ctwo2 = tctwo2; 
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     if (tail == "lower" || tail == "upper") {
         if (alpha == ".1") {
             table52 = "<td>$df$</td><td>$.20$</td><td bgcolor='lightgray'>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-
             table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (alpha == ".05") {
             table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-
             table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (alpha == ".01") {
             table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td bgcolor='lightgray'>$.01$</td><td>$.005$</td>"
-
             table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         }
     } else if (tail == "two") {
         if (alpha == ".1") {
             table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td bgcolor='lightgray'>$.05$</td><td>$.025$</td><td>$.01$</td><td>$.005$</td>"
-
             table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (alpha == ".05") {
             table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td bgcolor='lightgray'>$.025$</td><td>$.01$</td><td>$.005$</td>"
-
             table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td>$"+tinv(.005,size).toFixed(3)+"$</td>"
         } else if (alpha == ".01") {
             table52 = "<td>$df$</td><td>$.20$</td><td>$.10$</td><td>$.05$</td><td>$.025$</td><td>$.01$</td><td bgcolor='lightgray'>$.005$</td>"
-
             table71 = "<td>$"+ sizem2 +"$</td><td>$"+tinv(.20,sizem2).toFixed(3)+"$</td><td>$"+tinv(.10,sizem2).toFixed(3)+"$</td><td>$"+tinv(.05,sizem2).toFixed(3)+"$</td><td>$"+tinv(.025,sizem2).toFixed(3)+"$</td><td>$"+tinv(.01,sizem2).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,sizem2).toFixed(3)+"$</td>"
-
             table7 = "<td bgcolor='lightgray'>$"+ sizem1 +"$</td><td bgcolor='lightgray'>$"+tinv(.20,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.10,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.05,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.025,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.01,sizem1).toFixed(3)+"$</td><td bgcolor='lightgray' style='border: 1px solid black'>$"+tinv(.005,sizem1).toFixed(3)+"$</td>"
-
             table72 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
         }
     }
-    
-    
-    
-    
-    
-    
     if (sigma == "known") {
         var tablep = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr style='border-top: thin solid'><td>$"+zvalue1+"$</td>"+table31+"</tr><tr bgcolor='lightgray'><td>$"+zvalue+"$</td>"+table3+"</tr><tr><td>$"+zvalue2+"$</td>"+table32+"</tr></table>"
         var tablec = "<table><tr><td colspan='6'>$\\text{Standard Normal Table}$</td></tr><tr style='border-top: thin solid'><td>$z$</td>"+table12+"</tr><tr style='border-top: thin solid'><td>$"+zcrit1+"$</td>"+table21+"</tr><tr><td bgcolor='lightgray'>$"+zcrit+"$</td>"+table2+"</tr><tr><td>$"+zcrit2+"$</td>"+table22+"</tr></table>"
@@ -1811,9 +1658,6 @@ function hyptest1(){
             var tablep = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
             var tablec = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid;'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table52+"</tr><tr>"+table71+"</tr><tr>"+table7+"</tr><tr>"+table72+"</tr></table>"
     }
-    
-
-    
     if (inputtype == "values" || inputtype == "data") {
        if (sigma == "known") {
             document.getElementById("output1").innerHTML = " $ \\text{Test Statistic:} $ $$ z =\\frac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} = \\frac{"+xbar+"-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} = {\\color{RoyalBlue} "+test.toFixed(2)+"} $$   $ \\text{p-Value Approach:} $"
@@ -1827,24 +1671,16 @@ function hyptest1(){
     } else if (inputtype == "test") {
         document.getElementById("output1").innerHTML = "$ \\text{p-Value Approach:} $"
     }
-    
-
-    
-    
-    
     if (tail == "lower") {
-        
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
           f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
         }
-
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
-
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
         ctx.moveTo(70, 103);
@@ -1855,24 +1691,17 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-
-
         ctx.moveTo(70, 135);
         ctx.lineTo(70, 125);
-
-
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
         ctx.fillText("p-value",25,105);
-
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText(test.toFixed(2),60,145);
@@ -1881,44 +1710,30 @@ function hyptest1(){
             ctx.fillText(test.toFixed(2),60,145);   
             //ctx.fillText("df = "+sizem1,220,40); 
         }
-
-
         var points = []
-
         for (i = 0; i < 60; i++) {
-          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-            }
-
-            // move to the first point
-           ctx.moveTo(points[0].x, points[0].y);
-
-           for (i = 1; i < points.length - 2; i ++)
-           {
-              var xc = (points[i].x + points[i + 1].x) / 2;
-              var yc = (points[i].y + points[i + 1].y) / 2;
-              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-           }
-         // curve through the last two points
-         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-
-
+            points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++){
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
         ctx.stroke();
-
-        
     } else if (tail == "upper") {
-        
-
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
-          var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
+            var j = (i-30)/10
+            f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2)))) 
         }
-
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
-
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
         ctx.moveTo(230, 100);
@@ -1929,24 +1744,17 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-
-
         ctx.moveTo(230, 135);
         ctx.lineTo(230, 125);
-
-
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
         ctx.fillText("p-value",240,100);
-
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText(test.toFixed(2),220,145);
@@ -1956,39 +1764,29 @@ function hyptest1(){
             //ctx.fillText("df = "+sizem1,220,40); 
         }
         var points = []
-
         for (i = 0; i < 60; i++) {
-          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-            }
-
-            // move to the first point
-           ctx.moveTo(points[0].x, points[0].y);
-
-           for (i = 1; i < points.length - 2; i ++)
-           {
-              var xc = (points[i].x + points[i + 1].x) / 2;
-              var yc = (points[i].y + points[i + 1].y) / 2;
-              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-           }
-         // curve through the last two points
-         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-
-
+            points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++){
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
         ctx.stroke();
-
     } else if (tail == "two") {
-
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
-          var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+            var j = (i-30)/10
+            f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
-
         var c = document.getElementById("myCanvas1");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
-
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
         ctx.moveTo(70, 103);
@@ -1999,7 +1797,6 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-        
         ctx.beginPath();
         ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
@@ -2009,27 +1806,20 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-
-
         ctx.moveTo(70, 135);
         ctx.lineTo(70, 125);
         ctx.moveTo(230, 135);
         ctx.lineTo(230, 125);
-
-
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
         ctx.fillText("p-value",25,105);
         ctx.fillText("p-value",245,105);
-
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText((-Math.abs(test.toFixed(2))),66,145);
@@ -2040,68 +1830,49 @@ function hyptest1(){
             ctx.fillText(Math.abs(test.toFixed(2)),226,145); 
             //ctx.fillText("df = "+sizem1,220,40); 
         }
-
-
         var points = []
-
         for (i = 0; i < 60; i++) {
-          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-            }
-
-            // move to the first point
-           ctx.moveTo(points[0].x, points[0].y);
-
-           for (i = 1; i < points.length - 2; i ++)
-           {
-              var xc = (points[i].x + points[i + 1].x) / 2;
-              var yc = (points[i].y + points[i + 1].y) / 2;
-              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-           }
-         // curve through the last two points
-         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-
-
+            points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++){
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
         ctx.stroke();
-
     }
-
-    
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
+        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value} = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output2").innerHTML = tablep+" $$ \\begin{align} p \\text{-value} &= P("+testsymb+tailsign+test.toFixed(2)+" ) \\\\ &= 1 - P(z \\leq "+test.toFixed(2)+" ) \\\\ &= 1 - " + (1-pval).toFixed(4).replace(/^0+/, '') + " = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
+        document.getElementById("output2").innerHTML = tablep+" $$p \\text{-value} = 1 - " + (1-pval).toFixed(4).replace(/^0+/, '') + " = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "two" && sigma == "known") {
         if (test < 0) {
-            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+test.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
+            document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} = 2 (" + pvalh.replace(/^0+/, '')+ ") = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
         } else {
-            document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\geq "+test.toFixed(2)+" ) \\\\ &=2 \\times [1 - P("+testsymb+" \\leq "+test.toFixed(2)+" ) ] \\\\ &=2 \\times [1 - "+(1-pvalh).toFixed(4).replace(/^0+/, '')+" ] \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
+            document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} = 2 (1 - " + String((1-pvalh).toFixed(4)).replace(/^0+/, '')+ ") = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ " + interpret
         }
-        
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
+        document.getElementById("output2").innerHTML = tablep+ "$$ p \\text{-value} = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+" $$ p \\text{-value}=P("+testsymb+tailsign+test.toFixed(2)+" ) = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
+        document.getElementById("output2").innerHTML = tablep+" $$ p \\text{-value} = {\\color{RoyalBlue}" + pval.replace(/^0+/, '')+ "} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval.replace(/^0+/, '')+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{"+concl+"} $$ " + interpret
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output2").innerHTML = tablep+"$$ \\begin{align} p \\text{-value}&=2 \\times P("+testsymb+" \\leq "+testtwo.toFixed(2)+" ) \\\\ &= 2 \\times " + pvalh.replace(/^0+/, '')+ " = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} \\end{align} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ "  + interpret
+        document.getElementById("output2").innerHTML = tablep+"$$ p \\text{-value} = 2 (" + pvalh.replace(/^0+/, '')+ ") = {\\color{RoyalBlue}"+pval.replace(/^0+/, '')+"} $$ $$ ( \\text{Note: Exact } p\\text{-value is } " + pvalue.toFixed(4).replace(/^0+/, '') + " ) $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } p\\text{-value} \\leq \\alpha $$ $$ p \\text{-value}="+pval+pinequ+" \\alpha = "+alpha+"$$ $$ \\text{Conclusion: } \\boxed{" + concl +"} $$ "  + interpret
     }
-    
     document.getElementById("output21").innerHTML = " $ \\text{Critical Value Approach:} $"
-    
-    
-    
     if (tail == "lower") {
-
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
           var j = (i-30)/10
           f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
-
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
-
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
         ctx.moveTo(70, 103);
@@ -2112,25 +1883,17 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-
-
         ctx.moveTo(70, 135);
         ctx.lineTo(70, 125);
-
-
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        
         ctx.fillText(alpha,35,105);
-
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("-z",65,145);
@@ -2141,48 +1904,30 @@ function hyptest1(){
             ctx.fillText("α",72,146);   
             //ctx.fillText("df = "+sizem1,220,40); 
         }
-
-
         var points = []
-
         for (i = 0; i < 60; i++) {
-          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-            }
-
-            // move to the first point
-           ctx.moveTo(points[0].x, points[0].y);
-
-
-
-
-           for (i = 1; i < points.length - 2; i ++)
-           {
-              var xc = (points[i].x + points[i + 1].x) / 2;
-              var yc = (points[i].y + points[i + 1].y) / 2;
-              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-           }
-         // curve through the last two points
-         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-
-
+            points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++){
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
         ctx.stroke();
-        
-
-
     } else if (tail == "upper") {
-
-        
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
-          var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+            var j = (i-30)/10
+            f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
-
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
-
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
         ctx.moveTo(230, 100);
@@ -2193,25 +1938,17 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-
-
         ctx.moveTo(230, 135);
         ctx.lineTo(230, 125);
-
-
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        
         ctx.fillText(alpha,250,105);
-
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("z",227,145);
@@ -2222,46 +1959,30 @@ function hyptest1(){
             ctx.fillText("α",233,146);  
             //ctx.fillText("df = "+sizem1,220,40); 
         }
-
-
         var points = []
-
         for (i = 0; i < 60; i++) {
-          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-            }
-
-            // move to the first point
-           ctx.moveTo(points[0].x, points[0].y);
-
-
-
-
-           for (i = 1; i < points.length - 2; i ++)
-           {
-              var xc = (points[i].x + points[i + 1].x) / 2;
-              var yc = (points[i].y + points[i + 1].y) / 2;
-              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-           }
-         // curve through the last two points
-         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-
-
+            points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++){
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
         ctx.stroke();
-        
-
     } else if (tail == "two") {
-
         var f = [];
         var i;
         for (i = 0; i < 60; i++) {
-          var j = (i-30)/10
-          f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+            var j = (i-30)/10
+            f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
         }
-
         var c = document.getElementById("myCanvas2");
         var ctx = c.getContext("2d");
         ctx.clearRect(0, 0, 300, 150);
-
         ctx.strokeStyle = 'lightgray';
         ctx.beginPath();
         ctx.moveTo(70, 103);
@@ -2272,7 +1993,6 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-        
         ctx.beginPath();
         ctx.moveTo(230, 100);
         ctx.lineTo(230, 130);
@@ -2282,28 +2002,20 @@ function hyptest1(){
         ctx.stroke();
         ctx.fillStyle = "lightgray";
         ctx.fill();
-
         ctx.strokeStyle = 'black';
         ctx.fillStyle = "black";
-
         ctx.beginPath();
         ctx.moveTo(20, 130);
         ctx.lineTo(280, 130);
-
-
         ctx.moveTo(70, 135);
         ctx.lineTo(70, 125);
         ctx.moveTo(230, 135);
         ctx.lineTo(230, 125);
-
-
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145);
-        
         ctx.fillText((alpha/2),30,105);
         ctx.fillText((alpha/2),245,105);
-
         if (sigma == "known") {
             ctx.fillText("z",285,132);
             ctx.fillText("-z",65,145);
@@ -2318,54 +2030,34 @@ function hyptest1(){
             ctx.fillText("α/2",232,146);
             //ctx.fillText("df = "+sizem1,220,40); 
         }
-
-
         var points = []
-
         for (i = 0; i < 60; i++) {
-          points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-            }
-
-            // move to the first point
-           ctx.moveTo(points[0].x, points[0].y);
-
-
-
-
-           for (i = 1; i < points.length - 2; i ++)
-           {
-              var xc = (points[i].x + points[i + 1].x) / 2;
-              var yc = (points[i].y + points[i + 1].y) / 2;
-              ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-           }
-         // curve through the last two points
-         ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-
-
-        ctx.stroke();
-
-        
+            points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        }
+        // move to the first point
+        ctx.moveTo(points[0].x, points[0].y);
+        for (i = 1; i < points.length - 2; i ++){
+            var xc = (points[i].x + points[i + 1].x) / 2;
+            var yc = (points[i].y + points[i + 1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+        }
+        // curve through the last two points
+        ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+        ctx.stroke();  
     }
-    
-    
-    
     if (tail == "lower" && sigma == "known") {
         document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "known") {
         document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Values:} $$ $$ "+cvalsymb1+" = {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "}  \\text{ and } "+cvalsymb2+" = {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "lower" && sigma == "unknown") {
         document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "upper" && sigma == "unknown") {
         document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{RoyalBlue}" + ctwo1.toFixed(3) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{RoyalBlue}"+ctwo2.toFixed(3) + "} \\end{align} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Values:} $$ $$ "+cvalsymb1+" = {\\color{RoyalBlue}" + ctwo1.toFixed(3) + "} \\text{ and } "+cvalsymb2+" = {\\color{RoyalBlue}"+ctwo2.toFixed(3) + "} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret+" <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
     }
-    
-    
-    
-    
     MathJax.typeset();
 }
 
