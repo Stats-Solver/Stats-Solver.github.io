@@ -7253,7 +7253,7 @@ function chisquare() {
     var exp = 2.71828;
     var f = [];
     var i;
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 22; i++) {
         var j = (i-30)/10
         f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
     }
@@ -7264,8 +7264,8 @@ function chisquare() {
     ctx.beginPath();
     ctx.moveTo(190, 130);
     ctx.lineTo(190, 106);
-    ctx.quadraticCurveTo(210, 120, 247, 125);
-    ctx.lineTo(247, 130);
+    ctx.quadraticCurveTo(210, 120, 271, 127);
+    ctx.lineTo(271, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
@@ -7283,9 +7283,9 @@ function chisquare() {
     ctx.fillText("χ²",285,132);
     ctx.fillText("χ²",185,145);
     ctx.fillText(area,193,149);
-    ctx.fillText(area,205,108);
+    ctx.fillText(area,218,113);
     var points = []
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 22; i++) {
         points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
     }
     // move to the first point
@@ -7408,7 +7408,7 @@ function fdistribution() {
     var exp = 2.71828;
     var f = [];
     var i;
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 22; i++) {
         var j = (i-30)/10
         f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
     }
@@ -7419,8 +7419,8 @@ function fdistribution() {
     ctx.beginPath();
     ctx.moveTo(190, 130);
     ctx.lineTo(190, 106);
-    ctx.quadraticCurveTo(210, 120, 247, 125);
-    ctx.lineTo(247, 130);
+    ctx.quadraticCurveTo(210, 120, 271, 127);
+    ctx.lineTo(271, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
@@ -7438,9 +7438,9 @@ function fdistribution() {
     ctx.fillText("F",285,132);
     ctx.fillText("F",185,145);
     ctx.fillText(area,190,146);
-    ctx.fillText(area,205,108);
+    ctx.fillText(area,218,113);
     var points = []
-    for (i = 0; i < 20; i++) {
+    for (i = 0; i < 22; i++) {
         points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
     }
     // move to the first point
