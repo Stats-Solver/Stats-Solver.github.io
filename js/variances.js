@@ -13,6 +13,12 @@ alphatype = "premade"
 
 leveltype = "premade"
 
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+how1()
+
 $(function () {
             $('[data-toggle="tooltip"]').tooltip()
     })
@@ -29,6 +35,41 @@ var canvas = document.getElementById("myCanvas2");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
+function how1(){
+    var exp = 2.71828;
+    var f = [];
+    var i;
+    for (i = 0; i < 22; i++) {
+        var j = (i-30)/10
+        f[i] = parseFloat(Math.pow(i,8/2-1)*Math.pow(exp,-.5*i))
+    }
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 10);
+    ctx.lineTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    ctx.fillText("χ²",285,132);
+    var points = []
+    for (i = 0; i < 22; i++) {
+        points[i] = {x:20 + 12*i, y:130 - 10*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.stroke();
+    
+}
 
 function levelchange(){
     var levelinput = document.getElementById("conlev").value;
@@ -424,7 +465,7 @@ function tinv(p, dof) {
 
 
 function conint(){
-    $("#581773186").show();
+    $("#581773186").show(); $("#how").hide();
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
     var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
     var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]
@@ -645,7 +686,7 @@ function conint(){
 
 
 function hyp(){
-    $("#581773186").show();
+    $("#581773186").show(); $("#how").hide();
     var chi1 = [.000, .001, .004, 3.841, 5.024, 7.879]
     var chi2 = [.010, .051, .103, 5.991, 7.378, 10.597]
     var chi3 = [.072, .216, .352, 7.815, 9.348, 12.838]

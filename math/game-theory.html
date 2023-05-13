@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="/css/gamestyle.css">
+
+                         <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>  
+      
+    <title>Game Theory Calculator with Steps - Stats Solver</title>
+      
+      <link rel="icon" href="/solver.png">
+      
+      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-170214906-1');
+    </script>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+      <script type="text/javascript">
+    window._mNHandle = window._mNHandle || {};
+    window._mNHandle.queue = window._mNHandle.queue || [];
+    medianet_versionId = "3121199";
+</script>
+<script src="https://contextual.media.net/dmedianet.js?cid=8CU4R757V" async="async"></script>
+ 
+      
+      
+  </head>
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Calculators
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="two-population.html">Two Population</a>
+              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <!--<a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>-->
+              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a>
+            </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Practice
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="practice/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="practice/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="practice/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="practice/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="practice/continuous-distribution.html">Continuous Distribution</a>
+              <!--<a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="two-population.html">Two Population</a>
+              <a class="dropdown-item" href="population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="analysis-of-variance.html">Analysis of Variance</a>
+              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="time-series-analysis.html">Time Series Analysis</a> -->
+            </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tables
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
+              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
+              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
+              <!--<a class="dropdown-item" href="tables/z-distribution.html">Binomial Probability</a>
+              <a class="dropdown-item" href="tables/z-distribution.html">Poisson Probability</a> -->
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+          </div>
+    
+      
+    <div class = "container">
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="game-theory.html">Game Theory Calculator</a></h1>
+        <!--<h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="continuous-distribution.html" class="text-primary" >Continuous Distribution Calculator</a></h2>-->
+    </div>
+      
+      <div class="container mb-0">
+      <hr>
+          </div>
+  
+      
+      <div class="container mb-2">
+
+          
+            <table id = "matrixa">
+            <tr>
+            <td></td>
+            <td></td>
+            <td colspan="2">Player 2</td>
+            <!--<td></td>
+            <td rowspan="2" style="color: white">Player 1 &thinsp;</td>-->
+            </tr>
+            <tr>
+            <td></td>
+            <td></td>
+            <td>X</td>
+            <td>Y</td>
+            </tr>
+            <tr>
+            <td rowspan="2">Player 1 &thinsp;</td>
+            <td>A &thinsp;</td>
+            <td id="a11" style="border: 1px solid black;"><input class = "combperm1" type="text" id="a11p1" style = "text-align: center; border: 0">,<input class = "combperm" type="text" id="a11p2" style = "text-align: center; border: 0"></td>
+            <td id="a12" style="border: 1px solid black;"><input class = "combperm1" type="text" id="a12v" style = "text-align: center; border: 0">,<input class = "combperm" type="text" id="a12v" style = "text-align: center; border: 0"></td>
+            <td id="a13"><input class = "combperm" type="text" id="a13v" style = "text-align: center;"></td>
+            <td id="a14"><input class = "combperm" type="text" id="a14v" style = "text-align: center;"></td>
+            <td id="a15"><input class = "combperm" type="text" id="a15v" style = "text-align: center;"></td>
+            <td id="a16"><input class = "combperm" type="text" id="a16v" style = "text-align: center;"></td>
+            <td><svg id="upa" onclick="upa()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5z"/>
+            </svg>
+            <svg id="downa2" onclick="downa()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+            </svg>
+            </td>
+          </tr>
+            <tr>
+            <td>B &thinsp;</td>
+            <td id="a21" style="border: 1px solid black;"><input class = "combperm1" type="text" id="a21v1" style = "text-align: center; border: 0">,<input class = "combperm" type="text" id="a21v2" style = "text-align: center; border: 0"></td>
+            <td id="a22" style="border: 1px solid black;"><input class = "combperm1" type="text" id="a22v1" style = "text-align: center; border: 0">,<input class = "combperm" type="text" id="a22v2" style = "text-align: center; border: 0"></td>
+            <td id="a23"><input class = "combperm" type="text" id="a23v" style = "text-align: center;"></td>
+            <td id="a24"><input class = "combperm" type="text" id="a24v" style = "text-align: center;"></td>
+            <td id="a25"><input class = "combperm" type="text" id="a25v" style = "text-align: center;"></td>
+            <td id="a26"><input class = "combperm" type="text" id="a26v" style = "text-align: center;"></td>
+            <td><svg id="downa" onclick="downa()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-down" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M8 1a.5.5 0 0 1 .5.5v11.793l3.146-3.147a.5.5 0 0 1 .708.708l-4 4a.5.5 0 0 1-.708 0l-4-4a.5.5 0 0 1 .708-.708L7.5 13.293V1.5A.5.5 0 0 1 8 1z"/>
+            </svg></td>
+          </tr>
+            <tr>
+            <td id="a30"></td>
+            <td id="a31"><input class = "combperm" type="text" id="a31v" style = "text-align: center;"></td>
+            <td id="a32"><input class = "combperm" type="text" id="a32v" style = "text-align: center;"></td>
+            <td id="a33"><input class = "combperm" type="text" id="a33v" style = "text-align: center;"></td>
+            <td id="a34"><input class = "combperm" type="text" id="a34v" style = "text-align: center;"></td>
+            <td id="a35"><input class = "combperm" type="text" id="a35v" style = "text-align: center;"></td>
+            <td id="a36"><input class = "combperm" type="text" id="a36v" style = "text-align: center;"></td>
+          </tr>
+            <tr>
+            <td id="a40"></td>
+            <td id="a41"><input class = "combperm" type="text" id="a41v" style = "text-align: center;"></td>
+            <td id="a42"><input class = "combperm" type="text" id="a42v" style = "text-align: center;"></td>
+            <td id="a43"><input class = "combperm" type="text" id="a43v" style = "text-align: center;"></td>
+            <td id="a44"><input class = "combperm" type="text" id="a44v" style = "text-align: center;"></td>
+            <td id="a45"><input class = "combperm" type="text" id="a45v" style = "text-align: center;"></td>
+            <td id="a46"><input class = "combperm" type="text" id="a46v" style = "text-align: center;"></td>
+          </tr>
+            <tr>
+            <td id="a50"></td>
+            <td id="a51"><input class = "combperm" type="text" id="a51v" style = "text-align: center;"></td>
+            <td id="a52"><input class = "combperm" type="text" id="a52v" style = "text-align: center;"></td>
+            <td id="a53"><input class = "combperm" type="text" id="a53v" style = "text-align: center;"></td>
+            <td id="a54"><input class = "combperm" type="text" id="a54v" style = "text-align: center;"></td>
+            <td id="a55"><input class = "combperm" type="text" id="a55v" style = "text-align: center;"></td>
+            <td id="a56"><input class = "combperm" type="text" id="a56v" style = "text-align: center;"></td>
+          </tr>
+            <tr>
+            <td id="a60"></td>
+            <td id="a61"><input class = "combperm" type="text" id="a61v" style = "text-align: center;"></td>
+            <td id="a62"><input class = "combperm" type="text" id="a62v" style = "text-align: center;"></td>
+            <td id="a63"><input class = "combperm" type="text" id="a63v" style = "text-align: center;"></td>
+            <td id="a64"><input class = "combperm" type="text" id="a64v" style = "text-align: center;"></td>
+            <td id="a65"><input class = "combperm" type="text" id="a65v" style = "text-align: center;"></td>
+            <td id="a66"><input class = "combperm" type="text" id="a66v" style = "text-align: center;"></td>
+          </tr>
+            <tr style="line-height: 0px">
+            <td></td>
+            <td></td>
+            <td><svg id="lefta" onclick="lefta()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+                <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/></svg>
+                <svg id="righta2" onclick="righta()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg>
+                </td>
+            <td id="rightacell"><svg id="righta" onclick="righta()" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+              <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+            </svg></td>
+            <td id="a29"></td>
+            <td id="a39"></td>
+            <td id="a49"></td>
+            <td id="a59"></td>
+            <td id="a69"></td>
+          </tr>
+                    
+        </table> 
+            
+
+          
+
+
+          </div>
+
+      
+
+      
+      
+            <div class="container text-center">
+                <div class="row text-center" style="display:inline-block;">
+        <input type="radio" name="kind" checked="yes" id="determinant">
+        <label for="determinant">Iterated Elimination</label>
+        &nbsp;
+        <input type="radio" name="kind" id="inverse">
+        <label for="inverse">Nash Equilibrium</label>
+        </div>
+                <!--<div  class = "text-center" >
+                <svg onclick="removematrix()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+                    &nbsp;
+                <input type="checkbox" id="scalars" onchange="coefficients()">
+                <label for="scalars"> Scalars</label>
+                    &nbsp;
+                 <svg onclick="addmatrix()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg>    
+                
+                </div>
+                <div class = "text-center mb-2" id="addscalars">
+            <span class="examplelink" onclick="addcoefficients()">Include Scalars</span>
+        </div>
+                <div class = "text-center mb-2" id="removescalars">
+            <span class="examplelink" onclick="removecoefficients()">Exclude Scalars</span>
+        </div>-->
+        <div class="row justify-content-center" style="display: flex;align-items: center; justify-content: center;">
+            <!--<div class="col-8 col-md-3">
+                <select id="stat" class="form-control" onchange="showstuff()">
+                    <option value="choose">Choose One</option>
+                    <option value="probability">Probability</option>
+                    <option value="expected">Expected Value</option>
+                    <option value="variance">Variance</option>
+                    <option value="standard">Standard Deviation</option>
+                    <option value="discrete">Table Distribution</option>
+                    <option value="binomial">Binomial Distribution</option>
+                    <option value="poisson">Poisson Distribution</option>
+                    <option value="hypergeometric">Hypergeometric Distribution</option>
+                    <option value="frequency">Frequency Distribution</option>
+                    <option value="uniform">Discrete Uniform Distribution</option>
+                    <option value="formula">Formula Distribution</option>
+                </select>
+                </div>-->
+            <!--<div>
+            <svg onclick="removematrix()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-dash" viewBox="0 0 16 16">
+              <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+            </svg>
+                </div>-->
+                <div class="col-4 col-md-2">
+                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+                </div>  
+            <!--<div><svg onclick="addmatrix()" xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+              <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+            </svg> 
+                </div>-->
+            </div>
+                
+                <div class = "text-center mt-2" id = "expectedexamples">
+            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+        </div>
+        </div>
+        
+      
+    <div class="container">
+      <hr>
+          </div>
+      
+      
+      
+      
+      
+    
+      
+      
+      
+      
+
+
+      
+      <div class="container" id="how">
+        <div id="how1" class="output" style="color: darkslategray">
+            How it Works:
+            <br><br>
+        </div>
+        <div id="how2" class="how" style="color: darkslategray">
+            
+            <p class = "p1">  </p>
+            
+
+            
+            
+        </div>
+      </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div id = "discoutputs">
+     <div class="container">
+        <div id="output" style="text-align: center">
+        </div>
+      </div>
+      
+      <div class="container text-center">
+      <canvas id="myCanvas" width="300" height="150" ></canvas>
+      </div>
+        </div>
+      
+      <!--<div class="container text-center">
+        <div id="expconf" class="explanation">
+            <a href="#" data-toggle="popover" data-placement="bottom" title="Confidence Intervals" data-content="Provide a range of values that a population parameter is likely to be in.">Description</a>
+        </div>
+      </div>-->
+      
+      <div id="581773186" class="text-center mt-2 mb-2">
+    <script type="text/javascript">
+        try {
+            window._mNHandle.queue.push(function (){
+                window._mNDetails.loadTag("581773186", "300x250", "581773186");
+            });
+        }
+        catch (error) {}
+    </script>
+</div>
+      
+          <footer id="footer">
+              <div class="container">
+                  <div class="container" id="explanation">
+          <p  class="text-center" style="background-color:white">
+              <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Definition
+          </a> &bull;
+              <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Formula
+          </a> &bull;
+          <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+            Explanation
+          </a>
+        </p>
+        <div class="collapse" id="collapseExample" data-parent="#explanation">
+          <div class="card card-body" id="descriptiontext">
+
+          </div>
+        </div>
+              <div class="collapse" id="collapseExample2" data-parent="#explanation">
+          <div class="card card-body" id="formulatext">
+
+          </div>
+        </div>
+              <div class="collapse" id="collapseExample3" data-parent="#explanation">
+          <div class="card card-body" id="explanationtext">
+
+          </div>
+        </div>
+              </div>
+                  <!--<p>Related: <a href="continuous.html">Continuous Distributions Calculator</a> </p>-->
+                <hr>
+            </div>
+          <p> 
+              &copy; 2021 <a href="/about.html">Stats Solver</a> 
+              
+              </p>
+          </footer>
+      
+      
+    <!--  style="border:1px solid #d3d3d3;"-->
+    <!-- <div style = "height: 400px"></div>-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script src="/js/matrix.js"></script>
+  </body>
+</html>
