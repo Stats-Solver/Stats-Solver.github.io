@@ -51,9 +51,9 @@ table4 = []
 for (i = 0; i < 30; i++) {
     var zval = .1 * i
     var zval2 = Math.round(zval * 10) / 10
-    table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover='highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '')+"</td></tr>"
+    table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover='highlights0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights1()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights2()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlights3()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights4()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights5()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlights6()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights7()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights8()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlights9()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '')+"</td></tr>"
 }
-table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover='highlight00()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight11()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight22()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight33()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlight44()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight55()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight66()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight77()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight88()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlight99()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '')+"</td></tr>"
+table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover='highlights0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights1()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover='highlights4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '')+"</td><td onmouseover ='highlights9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '')+"</td></tr>"
 var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
 document.getElementById("output2").innerHTML = tablez2
 
@@ -186,38 +186,6 @@ function highlight327(){highlight = 27; highlight3()};
 function highlight328(){highlight = 28; highlight3()};
 function highlight329(){highlight = 29; highlight3()};
 function highlight330(){highlight = 30; highlight3()};
-
-function highlightx0(){highlight = 0; highlightx()}; 
-function highlightx1(){highlight = 1; highlightx()}; 
-function highlightx2(){highlight = 2; highlightx()}; 
-function highlightx3(){highlight = 3; highlightx()};
-function highlightx4(){highlight = 4; highlightx()};
-function highlightx5(){highlight = 5; highlightx()};
-function highlightx6(){highlight = 6; highlightx()};
-function highlightx7(){highlight = 7; highlightx()};
-function highlightx8(){highlight = 8; highlightx()};
-function highlightx9(){highlight = 9; highlightx()};
-function highlightx10(){highlight = 10; highlightx()};
-function highlightx11(){highlight = 11; highlightx()};
-function highlightx12(){highlight = 12; highlightx()};
-function highlightx13(){highlight = 13; highlightx()};
-function highlightx14(){highlight = 14; highlightx()};
-function highlightx15(){highlight = 15; highlightx()};
-function highlightx16(){highlight = 16; highlightx()};
-function highlightx17(){highlight = 17; highlightx()};
-function highlightx18(){highlight = 18; highlightx()};
-function highlightx19(){highlight = 19; highlightx()};
-function highlightx20(){highlight = 20; highlightx()};
-function highlightx21(){highlight = 21; highlightx()};
-function highlightx22(){highlight = 22; highlightx()};
-function highlightx23(){highlight = 23; highlightx()};
-function highlightx24(){highlight = 24; highlightx()};
-function highlightx25(){highlight = 25; highlightx()};
-function highlightx26(){highlight = 26; highlightx()};
-function highlightx27(){highlight = 27; highlightx()};
-function highlightx28(){highlight = 28; highlightx()};
-function highlightx29(){highlight = 29; highlightx()};
-function highlightx30(){highlight = 30; highlightx()};
 
 function highlight40(){highlight = 0; highlight4()}; 
 function highlight41(){highlight = 1; highlight4()}; 
@@ -411,15 +379,327 @@ function highlight928(){highlight = 28; highlight9()};
 function highlight929(){highlight = 29; highlight9()};
 function highlight930(){highlight = 30; highlight9()};
 
+var highlights
 
+function highlights00(){highlights = 0; highlights0()}; 
+function highlights01(){highlights = 1; highlights0()}; 
+function highlights02(){highlights = 2; highlights0()}; 
+function highlights03(){highlights = 3; highlights0()};
+function highlights04(){highlights = 4; highlights0()};
+function highlights05(){highlights = 5; highlights0()};
+function highlights06(){highlights = 6; highlights0()};
+function highlights07(){highlights = 7; highlights0()};
+function highlights08(){highlights = 8; highlights0()};
+function highlights09(){highlights = 9; highlights0()};
+function highlights010(){highlights = 10; highlights0()};
+function highlights011(){highlights = 11; highlights0()};
+function highlights012(){highlights = 12; highlights0()};
+function highlights013(){highlights = 13; highlights0()};
+function highlights014(){highlights = 14; highlights0()};
+function highlights015(){highlights = 15; highlights0()};
+function highlights016(){highlights = 16; highlights0()};
+function highlights017(){highlights = 17; highlights0()};
+function highlights018(){highlights = 18; highlights0()};
+function highlights019(){highlights = 19; highlights0()};
+function highlights020(){highlights = 20; highlights0()};
+function highlights021(){highlights = 21; highlights0()};
+function highlights022(){highlights = 22; highlights0()};
+function highlights023(){highlights = 23; highlights0()};
+function highlights024(){highlights = 24; highlights0()};
+function highlights025(){highlights = 25; highlights0()};
+function highlights026(){highlights = 26; highlights0()};
+function highlights027(){highlights = 27; highlights0()};
+function highlights028(){highlights = 28; highlights0()};
+function highlights029(){highlights = 29; highlights0()};
+function highlights030(){highlights = 30; highlights0()};
 
+function highlights10(){highlights = 0; highlights1()}; 
+function highlights11(){highlights = 1; highlights1()}; 
+function highlights12(){highlights = 2; highlights1()}; 
+function highlights13(){highlights = 3; highlights1()};
+function highlights14(){highlights = 4; highlights1()};
+function highlights15(){highlights = 5; highlights1()};
+function highlights16(){highlights = 6; highlights1()};
+function highlights17(){highlights = 7; highlights1()};
+function highlights18(){highlights = 8; highlights1()};
+function highlights19(){highlights = 9; highlights1()};
+function highlights110(){highlights = 10; highlights1()};
+function highlights111(){highlights = 11; highlights1()};
+function highlights112(){highlights = 12; highlights1()};
+function highlights113(){highlights = 13; highlights1()};
+function highlights114(){highlights = 14; highlights1()};
+function highlights115(){highlights = 15; highlights1()};
+function highlights116(){highlights = 16; highlights1()};
+function highlights117(){highlights = 17; highlights1()};
+function highlights118(){highlights = 18; highlights1()};
+function highlights119(){highlights = 19; highlights1()};
+function highlights120(){highlights = 20; highlights1()};
+function highlights121(){highlights = 21; highlights1()};
+function highlights122(){highlights = 22; highlights1()};
+function highlights123(){highlights = 23; highlights1()};
+function highlights124(){highlights = 24; highlights1()};
+function highlights125(){highlights = 25; highlights1()};
+function highlights126(){highlights = 26; highlights1()};
+function highlights127(){highlights = 27; highlights1()};
+function highlights128(){highlights = 28; highlights1()};
+function highlights129(){highlights = 29; highlights1()};
+function highlights130(){highlights = 30; highlights1()};
 
+function highlights20(){highlights = 0; highlights2()}; 
+function highlights21(){highlights = 1; highlights2()}; 
+function highlights22(){highlights = 2; highlights2()}; 
+function highlights23(){highlights = 3; highlights2()};
+function highlights24(){highlights = 4; highlights2()};
+function highlights25(){highlights = 5; highlights2()};
+function highlights26(){highlights = 6; highlights2()};
+function highlights27(){highlights = 7; highlights2()};
+function highlights28(){highlights = 8; highlights2()};
+function highlights29(){highlights = 9; highlights2()};
+function highlights210(){highlights = 10; highlights2()};
+function highlights211(){highlights = 11; highlights2()};
+function highlights212(){highlights = 12; highlights2()};
+function highlights213(){highlights = 13; highlights2()};
+function highlights214(){highlights = 14; highlights2()};
+function highlights215(){highlights = 15; highlights2()};
+function highlights216(){highlights = 16; highlights2()};
+function highlights217(){highlights = 17; highlights2()};
+function highlights218(){highlights = 18; highlights2()};
+function highlights219(){highlights = 19; highlights2()};
+function highlights220(){highlights = 20; highlights2()};
+function highlights221(){highlights = 21; highlights2()};
+function highlights222(){highlights = 22; highlights2()};
+function highlights223(){highlights = 23; highlights2()};
+function highlights224(){highlights = 24; highlights2()};
+function highlights225(){highlights = 25; highlights2()};
+function highlights226(){highlights = 26; highlights2()};
+function highlights227(){highlights = 27; highlights2()};
+function highlights228(){highlights = 28; highlights2()};
+function highlights229(){highlights = 29; highlights2()};
+function highlights230(){highlights = 30; highlights2()};
 
+function highlights30(){highlights = 0; highlights3()}; 
+function highlights31(){highlights = 1; highlights3()}; 
+function highlights32(){highlights = 2; highlights3()};
+function highlights33(){highlights = 3; highlights3()};
+function highlights34(){highlights = 4; highlights3()};
+function highlights35(){highlights = 5; highlights3()};
+function highlights36(){highlights = 6; highlights3()};
+function highlights37(){highlights = 7; highlights3()};
+function highlights38(){highlights = 8; highlights3()};
+function highlights39(){highlights = 9; highlights3()};
+function highlights310(){highlights = 10; highlights3()};
+function highlights311(){highlights = 11; highlights3()};
+function highlights312(){highlights = 12; highlights3()};
+function highlights313(){highlights = 13; highlights3()};
+function highlights314(){highlights = 14; highlights3()};
+function highlights315(){highlights = 15; highlights3()};
+function highlights316(){highlights = 16; highlights3()};
+function highlights317(){highlights = 17; highlights3()};
+function highlights318(){highlights = 18; highlights3()};
+function highlights319(){highlights = 19; highlights3()};
+function highlights320(){highlights = 20; highlights3()};
+function highlights321(){highlights = 21; highlights3()};
+function highlights322(){highlights = 22; highlights3()};
+function highlights323(){highlights = 23; highlights3()};
+function highlights324(){highlights = 24; highlights3()};
+function highlights325(){highlights = 25; highlights3()};
+function highlights326(){highlights = 26; highlights3()};
+function highlights327(){highlights = 27; highlights3()};
+function highlights328(){highlights = 28; highlights3()};
+function highlights329(){highlights = 29; highlights3()};
+function highlights330(){highlights = 30; highlights3()};
 
+function highlights40(){highlights = 0; highlights4()}; 
+function highlights41(){highlights = 1; highlights4()}; 
+function highlights42(){highlights = 2; highlights4()}; 
+function highlights43(){highlights = 3; highlights4()};
+function highlights44(){highlights = 4; highlights4()};
+function highlights45(){highlights = 5; highlights4()};
+function highlights46(){highlights = 6; highlights4()};
+function highlights47(){highlights = 7; highlights4()};
+function highlights48(){highlights = 8; highlights4()};
+function highlights49(){highlights = 9; highlights4()};
+function highlights410(){highlights = 10; highlights4()};
+function highlights411(){highlights = 11; highlights4()};
+function highlights412(){highlights = 12; highlights4()};
+function highlights413(){highlights = 13; highlights4()};
+function highlights414(){highlights = 14; highlights4()};
+function highlights415(){highlights = 15; highlights4()};
+function highlights416(){highlights = 16; highlights4()};
+function highlights417(){highlights = 17; highlights4()};
+function highlights418(){highlights = 18; highlights4()};
+function highlights419(){highlights = 19; highlights4()};
+function highlights420(){highlights = 20; highlights4()};
+function highlights421(){highlights = 21; highlights4()};
+function highlights422(){highlights = 22; highlights4()};
+function highlights423(){highlights = 23; highlights4()};
+function highlights424(){highlights = 24; highlights4()};
+function highlights425(){highlights = 25; highlights4()};
+function highlights426(){highlights = 26; highlights4()};
+function highlights427(){highlights = 27; highlights4()};
+function highlights428(){highlights = 28; highlights4()};
+function highlights429(){highlights = 29; highlights4()};
+function highlights430(){highlights = 30; highlights4()};
 
+function highlights50(){highlights = 0; highlights5()}; 
+function highlights51(){highlights = 1; highlights5()}; 
+function highlights52(){highlights = 2; highlights5()}; 
+function highlights53(){highlights = 3; highlights5()};
+function highlights54(){highlights = 4; highlights5()};
+function highlights55(){highlights = 5; highlights5()};
+function highlights56(){highlights = 6; highlights5()};
+function highlights57(){highlights = 7; highlights5()};
+function highlights58(){highlights = 8; highlights5()};
+function highlights59(){highlights = 9; highlights5()};
+function highlights510(){highlights = 10; highlights5()};
+function highlights511(){highlights = 11; highlights5()};
+function highlights512(){highlights = 12; highlights5()};
+function highlights513(){highlights = 13; highlights5()};
+function highlights514(){highlights = 14; highlights5()};
+function highlights515(){highlights = 15; highlights5()};
+function highlights516(){highlights = 16; highlights5()};
+function highlights517(){highlights = 17; highlights5()};
+function highlights518(){highlights = 18; highlights5()};
+function highlights519(){highlights = 19; highlights5()};
+function highlights520(){highlights = 20; highlights5()};
+function highlights521(){highlights = 21; highlights5()};
+function highlights522(){highlights = 22; highlights5()};
+function highlights523(){highlights = 23; highlights5()};
+function highlights524(){highlights = 24; highlights5()};
+function highlights525(){highlights = 25; highlights5()};
+function highlights526(){highlights = 26; highlights5()};
+function highlights527(){highlights = 27; highlights5()};
+function highlights528(){highlights = 28; highlights5()};
+function highlights529(){highlights = 29; highlights5()};
+function highlights530(){highlights = 30; highlights5()};
 
+function highlights60(){highlights = 0; highlights6()}; 
+function highlights61(){highlights = 1; highlights6()}; 
+function highlights62(){highlights = 2; highlights6()}; 
+function highlights63(){highlights = 3; highlights6()};
+function highlights64(){highlights = 4; highlights6()};
+function highlights65(){highlights = 5; highlights6()};
+function highlights66(){highlights = 6; highlights6()};
+function highlights67(){highlights = 7; highlights6()};
+function highlights68(){highlights = 8; highlights6()};
+function highlights69(){highlights = 9; highlights6()};
+function highlights610(){highlights = 10; highlights6()};
+function highlights611(){highlights = 11; highlights6()};
+function highlights612(){highlights = 12; highlights6()};
+function highlights613(){highlights = 13; highlights6()};
+function highlights614(){highlights = 14; highlights6()};
+function highlights615(){highlights = 15; highlights6()};
+function highlights616(){highlights = 16; highlights6()};
+function highlights617(){highlights = 17; highlights6()};
+function highlights618(){highlights = 18; highlights6()};
+function highlights619(){highlights = 19; highlights6()};
+function highlights620(){highlights = 20; highlights6()};
+function highlights621(){highlights = 21; highlights6()};
+function highlights622(){highlights = 22; highlights6()};
+function highlights623(){highlights = 23; highlights6()};
+function highlights624(){highlights = 24; highlights6()};
+function highlights625(){highlights = 25; highlights6()};
+function highlights626(){highlights = 26; highlights6()};
+function highlights627(){highlights = 27; highlights6()};
+function highlights628(){highlights = 28; highlights6()};
+function highlights629(){highlights = 29; highlights6()};
+function highlights630(){highlights = 30; highlights6()};
 
+function highlights70(){highlights = 0; highlights7()}; 
+function highlights71(){highlights = 1; highlights7()}; 
+function highlights72(){highlights = 2; highlights7()}; 
+function highlights73(){highlights = 3; highlights7()};
+function highlights74(){highlights = 4; highlights7()};
+function highlights75(){highlights = 5; highlights7()};
+function highlights76(){highlights = 6; highlights7()};
+function highlights77(){highlights = 7; highlights7()};
+function highlights78(){highlights = 8; highlights7()};
+function highlights79(){highlights = 9; highlights7()};
+function highlights710(){highlights = 10; highlights7()};
+function highlights711(){highlights = 11; highlights7()};
+function highlights712(){highlights = 12; highlights7()};
+function highlights713(){highlights = 13; highlights7()};
+function highlights714(){highlights = 14; highlights7()};
+function highlights715(){highlights = 15; highlights7()};
+function highlights716(){highlights = 16; highlights7()};
+function highlights717(){highlights = 17; highlights7()};
+function highlights718(){highlights = 18; highlights7()};
+function highlights719(){highlights = 19; highlights7()};
+function highlights720(){highlights = 20; highlights7()};
+function highlights721(){highlights = 21; highlights7()};
+function highlights722(){highlights = 22; highlights7()};
+function highlights723(){highlights = 23; highlights7()};
+function highlights724(){highlights = 24; highlights7()};
+function highlights725(){highlights = 25; highlights7()};
+function highlights726(){highlights = 26; highlights7()};
+function highlights727(){highlights = 27; highlights7()};
+function highlights728(){highlights = 28; highlights7()};
+function highlights729(){highlights = 29; highlights7()};
+function highlights730(){highlights = 30; highlights7()};
 
+function highlights80(){highlights = 0; highlights8()}; 
+function highlights81(){highlights = 1; highlights8()}; 
+function highlights82(){highlights = 2; highlights8()}; 
+function highlights83(){highlights = 3; highlights8()};
+function highlights84(){highlights = 4; highlights8()};
+function highlights85(){highlights = 5; highlights8()};
+function highlights86(){highlights = 6; highlights8()};
+function highlights87(){highlights = 7; highlights8()};
+function highlights88(){highlights = 8; highlights8()};
+function highlights89(){highlights = 9; highlights8()};
+function highlights810(){highlights = 10; highlights8()};
+function highlights811(){highlights = 11; highlights8()};
+function highlights812(){highlights = 12; highlights8()};
+function highlights813(){highlights = 13; highlights8()};
+function highlights814(){highlights = 14; highlights8()};
+function highlights815(){highlights = 15; highlights8()};
+function highlights816(){highlights = 16; highlights8()};
+function highlights817(){highlights = 17; highlights8()};
+function highlights818(){highlights = 18; highlights8()};
+function highlights819(){highlights = 19; highlights8()};
+function highlights820(){highlights = 20; highlights8()};
+function highlights821(){highlights = 21; highlights8()};
+function highlights822(){highlights = 22; highlights8()};
+function highlights823(){highlights = 23; highlights8()};
+function highlights824(){highlights = 24; highlights8()};
+function highlights825(){highlights = 25; highlights8()};
+function highlights826(){highlights = 26; highlights8()};
+function highlights827(){highlights = 27; highlights8()};
+function highlights828(){highlights = 28; highlights8()};
+function highlights829(){highlights = 29; highlights8()};
+function highlights830(){highlights = 30; highlights8()};
+
+function highlights90(){highlights = 0; highlights9()}; 
+function highlights91(){highlights = 1; highlights9()}; 
+function highlights92(){highlights = 2; highlights9()}; 
+function highlights93(){highlights = 3; highlights9()};
+function highlights94(){highlights = 4; highlights9()};
+function highlights95(){highlights = 5; highlights9()};
+function highlights96(){highlights = 6; highlights9()};
+function highlights97(){highlights = 7; highlights9()};
+function highlights98(){highlights = 8; highlights9()};
+function highlights99(){highlights = 9; highlights9()};
+function highlights910(){highlights = 10; highlights9()};
+function highlights911(){highlights = 11; highlights9()};
+function highlights912(){highlights = 12; highlights9()};
+function highlights913(){highlights = 13; highlights9()};
+function highlights914(){highlights = 14; highlights9()};
+function highlights915(){highlights = 15; highlights9()};
+function highlights916(){highlights = 16; highlights9()};
+function highlights917(){highlights = 17; highlights9()};
+function highlights918(){highlights = 18; highlights9()};
+function highlights919(){highlights = 19; highlights9()};
+function highlights920(){highlights = 20; highlights9()};
+function highlights921(){highlights = 21; highlights9()};
+function highlights922(){highlights = 22; highlights9()};
+function highlights923(){highlights = 23; highlights9()};
+function highlights924(){highlights = 24; highlights9()};
+function highlights925(){highlights = 25; highlights9()};
+function highlights926(){highlights = 26; highlights9()};
+function highlights927(){highlights = 27; highlights9()};
+function highlights928(){highlights = 28; highlights9()};
+function highlights929(){highlights = 29; highlights9()};
+function highlights930(){highlights = 30; highlights9()};
 
 function highlight0(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td bgcolor='lightgray'><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
@@ -428,7 +708,7 @@ function highlight0(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td bgcolor='lightgray' style='border: 1px solid black' onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td bgcolor='lightgray' onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
@@ -436,12 +716,15 @@ function highlight0(){
         }
         
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td bgcolor='lightgray' onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
+    
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
 }
-
-
 function highlight1(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td bgcolor='lightgray'><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -449,23 +732,22 @@ function highlight1(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' bgcolor='lightgray' style='border: 1px solid black' onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
             table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
-
-
-
 function highlight2(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td bgcolor='lightgray'><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -473,19 +755,22 @@ function highlight2(){
         if (highlight == i){
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray' style='border: 1px solid black'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
             table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
 function highlight3(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td bgcolor='lightgray'><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -493,21 +778,22 @@ function highlight3(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray' style='border: 1px solid black'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
             table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td bgcolor='lightgray' onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
-
-
 function highlight4(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td bgcolor='lightgray'><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -515,21 +801,22 @@ function highlight4(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
-
-
 function highlight5(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td bgcolor='lightgray'><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -537,19 +824,22 @@ function highlight5(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
 function highlight6(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td bgcolor='lightgray'><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -557,21 +847,22 @@ function highlight6(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td bgcolor='lightgray' onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
-
-
 function highlight7(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td bgcolor='lightgray'><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -579,21 +870,22 @@ function highlight7(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>" 
+            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>" 
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
-
-
 function highlight8(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td bgcolor='lightgray'><b>.08</b></td><td><b>.09</b></td></tr>"
     table2 = []
@@ -601,20 +893,22 @@ function highlight8(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
 }
-
-
 function highlight9(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td bgcolor='lightgray'><b>.09</b></td></tr>"
     table2 = []
@@ -622,14 +916,18 @@ function highlight9(){
         if (highlight == i) {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         } else {
             var zval = -3 + .1 * i
             var zval2 = Math.round(zval * 10) / 10
-            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+            table2 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1"+i+"()'>"+normalcdf(zval2-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2"+i+"()'>"+normalcdf(zval2-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3"+i+"()'>"+normalcdf(zval2-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4"+i+"()'>"+normalcdf(zval2-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5"+i+"()'>"+normalcdf(zval2-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6"+i+"()'>"+normalcdf(zval2-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7"+i+"()'>"+normalcdf(zval2-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8"+i+"()'>"+normalcdf(zval2-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
         }
     }
-    table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlight == 30){
+        table3 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>-0.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()' bgcolor='lightgray'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()' bgcolor='lightgray'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()' bgcolor='lightgray'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()' bgcolor='lightgray'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()' bgcolor='lightgray'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()' bgcolor='lightgray'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()' bgcolor='lightgray'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()' bgcolor='lightgray'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table3 = "<tr style='border-bottom: thin solid;'><td><b>-0.0</b></td><td onmouseover = 'highlight030()'>"+normalcdf(0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight130()'>"+normalcdf(-.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight230()'>"+normalcdf(-.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(-.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight430()'>"+normalcdf(-.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight530()'>"+normalcdf(-.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight630()'>"+normalcdf(-.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight730()'>"+normalcdf(-.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight830()'>"+normalcdf(-.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight930()' bgcolor='lightgray'>"+normalcdf(-.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+"</table>"
     document.getElementById("output").innerHTML = tablez
     MathJax.typeset();
@@ -664,29 +962,49 @@ function highlight9(){
 
 
 
-function highlight0a(){
+function highlights0(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td bgcolor='lightgray'><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td bgcolor='lightgray' onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td bgcolor='lightgray' onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
 }
 
 
-function highlight1a(){
+function highlights1(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td bgcolor='lightgray'><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
@@ -695,29 +1013,49 @@ function highlight1a(){
 
 
 
-function highlight2a(){
+function highlights2(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td bgcolor='lightgray'><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
 }
 
-function highlight33(){
+function highlights3(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td bgcolor='lightgray'><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
@@ -725,45 +1063,76 @@ function highlight33(){
 
 
 
-function highlight44(){
+function highlights4(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td bgcolor='lightgray'><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
+    }
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
 }
 
 
 
-function highlight55(){
+function highlights5(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td bgcolor='lightgray'><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlight030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
 }
 
-function highlight66(){
+function highlights6(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td bgcolor='lightgray'><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td bgcolor='lightgray' onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
@@ -771,15 +1140,25 @@ function highlight66(){
 
 
 
-function highlight77(){
+function highlights7(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td bgcolor='lightgray'><b>.07</b></td><td><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
@@ -787,30 +1166,50 @@ function highlight77(){
 
 
 
-function highlight88(){
+function highlights8(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td bgcolor='lightgray'><b>.08</b></td><td><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
 }
 
 
-function highlight99(){
+function highlights9(){
     table1 = "<tr style='border-bottom: thin solid; border-top: thin solid'><td><b>z</b></td><td><b>.00</b></td><td><b>.01</b></td><td><b>.02</b></td><td><b>.03</b></td><td><b>.04</b></td><td><b>.05</b></td><td><b>.06</b></td><td><b>.07</b></td><td><b>.08</b></td><td bgcolor='lightgray'><b>.09</b></td></tr>"
     table4 = []
     for (i = 0; i < 30; i++) {
-        var zval = .1 * i
-        var zval2 = Math.round(zval * 10) / 10
-        table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlight00()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight11()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight22()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight33()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight44()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight55()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight66()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight77()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight88()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight99()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        if (highlights == i) {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td bgcolor='lightgray'><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        } else {
+            var zval = .1 * i
+            var zval2 = Math.round(zval * 10) / 10
+            table4 += "<tr><td><b>"+zval2.toFixed(1)+"</b></td><td onmouseover = 'highlights0"+i+"()'>"+normalcdf(zval2).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights1"+i+"()'>"+normalcdf(zval2+.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights2"+i+"()'>"+normalcdf(zval2+.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights3"+i+"()'>"+normalcdf(zval2+.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights4"+i+"()'>"+normalcdf(zval2+.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights5"+i+"()'>"+normalcdf(zval2+.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights6"+i+"()'>"+normalcdf(zval2+.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights7"+i+"()'>"+normalcdf(zval2+.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights8"+i+"()'>"+normalcdf(zval2+.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights9"+i+"()' bgcolor='lightgray'>"+normalcdf(zval2+.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+        }
     }
-    table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlight0()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight1()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight2()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight3()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight4()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight5()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight6()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight7()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight8()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlight9()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    if (highlights == 30) {
+        table5 = "<tr style='border-bottom: thin solid;'><td bgcolor='lightgray'><b>3.0</b></td><td onmouseover = 'highlights030()' bgcolor='lightgray'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()' bgcolor='lightgray'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()' bgcolor='lightgray'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()' bgcolor='lightgray'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()' bgcolor='lightgray'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()' bgcolor='lightgray'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()' bgcolor='lightgray'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()' bgcolor='lightgray'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()' bgcolor='lightgray'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    } else {
+        table5 = "<tr style='border-bottom: thin solid;'><td><b>3.0</b></td><td onmouseover = 'highlights030()'>"+normalcdf(3.0).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights130()'>"+normalcdf(3.01).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights230()'>"+normalcdf(3.02).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights330()'>"+normalcdf(3.03).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights430()'>"+normalcdf(3.04).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights530()'>"+normalcdf(3.05).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights630()'>"+normalcdf(3.06).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights730()'>"+normalcdf(3.07).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights830()'>"+normalcdf(3.08).toFixed(4).replace(/^0+/, '') +"</td><td onmouseover = 'highlights930()' bgcolor='lightgray'>"+normalcdf(3.09).toFixed(4).replace(/^0+/, '') +"</td></tr>"
+    }
     var tablez2 = "<table style='column-gap: 20px;'>"+table1+table4+table5+"</table>"
     document.getElementById("output2").innerHTML = tablez2
     MathJax.typeset();
