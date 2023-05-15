@@ -381,325 +381,325 @@ function highlight930(){highlight = 30; highlight9(); graph1(-.09)};
 
 var highlights
 
-function highlights00(){highlights = 0; highlights0(); graph2(3-3.00)}; 
-function highlights01(){highlights = 1; highlights0(); graph2(3-2.90)}; 
-function highlights02(){highlights = 2; highlights0(); graph2(3-2.80)}; 
-function highlights03(){highlights = 3; highlights0(); graph2(3-2.70)};
-function highlights04(){highlights = 4; highlights0(); graph2(3-2.60)};
-function highlights05(){highlights = 5; highlights0(); graph2(3-2.50)};
-function highlights06(){highlights = 6; highlights0(); graph2(3-2.40)};
-function highlights07(){highlights = 7; highlights0(); graph2(3-2.30)};
-function highlights08(){highlights = 8; highlights0(); graph2(3-2.20)};
-function highlights09(){highlights = 9; highlights0(); graph2(3-2.10)};
-function highlights010(){highlights = 10; highlights0(); graph2(3-2.00)};
-function highlights011(){highlights = 11; highlights0(); graph2(3-1.90)};
-function highlights012(){highlights = 12; highlights0(); graph2(3-1.80)};
-function highlights013(){highlights = 13; highlights0(); graph2(3-1.70)};
-function highlights014(){highlights = 14; highlights0(); graph2(3-1.60)};
-function highlights015(){highlights = 15; highlights0(); graph2(3-1.50)};
-function highlights016(){highlights = 16; highlights0(); graph2(3-1.40)};
-function highlights017(){highlights = 17; highlights0(); graph2(3-1.30)};
-function highlights018(){highlights = 18; highlights0(); graph2(3-1.20)};
-function highlights019(){highlights = 19; highlights0(); graph2(3-1.10)};
-function highlights020(){highlights = 20; highlights0(); graph2(3-1.00)};
-function highlights021(){highlights = 21; highlights0(); graph2(3-.90)};
-function highlights022(){highlights = 22; highlights0(); graph2(3-.80)};
-function highlights023(){highlights = 23; highlights0(); graph2(3-.70)};
-function highlights024(){highlights = 24; highlights0(); graph2(3-.60)};
-function highlights025(){highlights = 25; highlights0(); graph2(3-.50)};
-function highlights026(){highlights = 26; highlights0(); graph2(3-.40)};
-function highlights027(){highlights = 27; highlights0(); graph2(3-.30)};
-function highlights028(){highlights = 28; highlights0(); graph2(3-.20)};
-function highlights029(){highlights = 29; highlights0(); graph2(3-.10)};
-function highlights030(){highlights = 30; highlights0(); graph2(3-.00)};
+function highlights00(){highlights = 0; highlights0(); graph2(.00)}; 
+function highlights01(){highlights = 1; highlights0(); graph2(.10)}; 
+function highlights02(){highlights = 2; highlights0(); graph2(.20)}; 
+function highlights03(){highlights = 3; highlights0(); graph2(.30)};
+function highlights04(){highlights = 4; highlights0(); graph2(.40)};
+function highlights05(){highlights = 5; highlights0(); graph2(.50)};
+function highlights06(){highlights = 6; highlights0(); graph2(.60)};
+function highlights07(){highlights = 7; highlights0(); graph2(.70)};
+function highlights08(){highlights = 8; highlights0(); graph2(.80)};
+function highlights09(){highlights = 9; highlights0(); graph2(.90)};
+function highlights010(){highlights = 10; highlights0(); graph2(1.00)};
+function highlights011(){highlights = 11; highlights0(); graph2(1.10)};
+function highlights012(){highlights = 12; highlights0(); graph2(1.20)};
+function highlights013(){highlights = 13; highlights0(); graph2(1.30)};
+function highlights014(){highlights = 14; highlights0(); graph2(1.40)};
+function highlights015(){highlights = 15; highlights0(); graph2(1.50)};
+function highlights016(){highlights = 16; highlights0(); graph2(1.60)};
+function highlights017(){highlights = 17; highlights0(); graph2(1.70)};
+function highlights018(){highlights = 18; highlights0(); graph2(1.80)};
+function highlights019(){highlights = 19; highlights0(); graph2(1.90)};
+function highlights020(){highlights = 20; highlights0(); graph2(2.00)};
+function highlights021(){highlights = 21; highlights0(); graph2(2.10)};
+function highlights022(){highlights = 22; highlights0(); graph2(2.20)};
+function highlights023(){highlights = 23; highlights0(); graph2(2.30)};
+function highlights024(){highlights = 24; highlights0(); graph2(2.40)};
+function highlights025(){highlights = 25; highlights0(); graph2(2.50)};
+function highlights026(){highlights = 26; highlights0(); graph2(2.60)};
+function highlights027(){highlights = 27; highlights0(); graph2(2.70)};
+function highlights028(){highlights = 28; highlights0(); graph2(2.80)};
+function highlights029(){highlights = 29; highlights0(); graph2(2.90)};
+function highlights030(){highlights = 30; highlights0(); graph2(3.00)};
 
-function highlights10(){highlights = 0; highlights1(); graph2(3-3.01)}; 
-function highlights11(){highlights = 1; highlights1(); graph2(3-2.91)}; 
-function highlights12(){highlights = 2; highlights1(); graph2(3-2.81)}; 
-function highlights13(){highlights = 3; highlights1(); graph2(3-2.71)};
-function highlights14(){highlights = 4; highlights1(); graph2(3-2.61)};
-function highlights15(){highlights = 5; highlights1(); graph2(3-2.51)};
-function highlights16(){highlights = 6; highlights1(); graph2(3-2.41)};
-function highlights17(){highlights = 7; highlights1(); graph2(3-2.31)};
-function highlights18(){highlights = 8; highlights1(); graph2(3-2.21)};
-function highlights19(){highlights = 9; highlights1(); graph2(3-2.11)};
-function highlights110(){highlights = 10; highlights1(); graph2(3-2.01)};
-function highlights111(){highlights = 11; highlights1(); graph2(3-1.91)};
-function highlights112(){highlights = 12; highlights1(); graph2(3-1.81)};
-function highlights113(){highlights = 13; highlights1(); graph2(3-1.71)};
-function highlights114(){highlights = 14; highlights1(); graph2(3-1.61)};
-function highlights115(){highlights = 15; highlights1(); graph2(3-1.51)};
-function highlights116(){highlights = 16; highlights1(); graph2(3-1.41)};
-function highlights117(){highlights = 17; highlights1(); graph2(3-1.31)};
-function highlights118(){highlights = 18; highlights1(); graph2(3-1.21)};
-function highlights119(){highlights = 19; highlights1(); graph2(3-1.11)};
-function highlights120(){highlights = 20; highlights1(); graph2(3-1.01)};
-function highlights121(){highlights = 21; highlights1(); graph2(3-.91)};
-function highlights122(){highlights = 22; highlights1(); graph2(3-.81)};
-function highlights123(){highlights = 23; highlights1(); graph2(3-.71)};
-function highlights124(){highlights = 24; highlights1(); graph2(3-.61)};
-function highlights125(){highlights = 25; highlights1(); graph2(3-.51)};
-function highlights126(){highlights = 26; highlights1(); graph2(3-.41)};
-function highlights127(){highlights = 27; highlights1(); graph2(3-.31)};
-function highlights128(){highlights = 28; highlights1(); graph2(3-.21)};
-function highlights129(){highlights = 29; highlights1(); graph2(3-.11)};
-function highlights130(){highlights = 30; highlights1(); graph2(3-.01)};
+function highlights10(){highlights = 0; highlights1(); graph2(.01)}; 
+function highlights11(){highlights = 1; highlights1(); graph2(.11)}; 
+function highlights12(){highlights = 2; highlights1(); graph2(.21)}; 
+function highlights13(){highlights = 3; highlights1(); graph2(.31)};
+function highlights14(){highlights = 4; highlights1(); graph2(.41)};
+function highlights15(){highlights = 5; highlights1(); graph2(.51)};
+function highlights16(){highlights = 6; highlights1(); graph2(.61)};
+function highlights17(){highlights = 7; highlights1(); graph2(.71)};
+function highlights18(){highlights = 8; highlights1(); graph2(.81)};
+function highlights19(){highlights = 9; highlights1(); graph2(.91)};
+function highlights110(){highlights = 10; highlights1(); graph2(1.01)};
+function highlights111(){highlights = 11; highlights1(); graph2(1.11)};
+function highlights112(){highlights = 12; highlights1(); graph2(1.21)};
+function highlights113(){highlights = 13; highlights1(); graph2(1.31)};
+function highlights114(){highlights = 14; highlights1(); graph2(1.41)};
+function highlights115(){highlights = 15; highlights1(); graph2(1.51)};
+function highlights116(){highlights = 16; highlights1(); graph2(1.61)};
+function highlights117(){highlights = 17; highlights1(); graph2(1.71)};
+function highlights118(){highlights = 18; highlights1(); graph2(1.81)};
+function highlights119(){highlights = 19; highlights1(); graph2(1.91)};
+function highlights120(){highlights = 20; highlights1(); graph2(2.01)};
+function highlights121(){highlights = 21; highlights1(); graph2(2.11)};
+function highlights122(){highlights = 22; highlights1(); graph2(2.21)};
+function highlights123(){highlights = 23; highlights1(); graph2(2.31)};
+function highlights124(){highlights = 24; highlights1(); graph2(2.41)};
+function highlights125(){highlights = 25; highlights1(); graph2(2.51)};
+function highlights126(){highlights = 26; highlights1(); graph2(2.61)};
+function highlights127(){highlights = 27; highlights1(); graph2(2.71)};
+function highlights128(){highlights = 28; highlights1(); graph2(2.81)};
+function highlights129(){highlights = 29; highlights1(); graph2(2.91)};
+function highlights130(){highlights = 30; highlights1(); graph2(3.01)};
 
-function highlights20(){highlights = 0; highlights2(); graph2(3-3.02)}; 
-function highlights21(){highlights = 1; highlights2(); graph2(3-2.92)}; 
-function highlights22(){highlights = 2; highlights2(); graph2(3-2.82)}; 
-function highlights23(){highlights = 3; highlights2(); graph2(3-2.72)};
-function highlights24(){highlights = 4; highlights2(); graph2(3-2.62)};
-function highlights25(){highlights = 5; highlights2(); graph2(3-2.52)};
-function highlights26(){highlights = 6; highlights2(); graph2(3-2.42)};
-function highlights27(){highlights = 7; highlights2(); graph2(3-2.32)};
-function highlights28(){highlights = 8; highlights2(); graph2(3-2.22)};
-function highlights29(){highlights = 9; highlights2(); graph2(3-2.12)};
-function highlights210(){highlights = 10; highlights2(); graph2(3-2.02)};
-function highlights211(){highlights = 11; highlights2(); graph2(3-1.92)};
-function highlights212(){highlights = 12; highlights2(); graph2(3-1.82)};
-function highlights213(){highlights = 13; highlights2(); graph2(3-1.72)};
-function highlights214(){highlights = 14; highlights2(); graph2(3-1.62)};
-function highlights215(){highlights = 15; highlights2(); graph2(3-1.52)};
-function highlights216(){highlights = 16; highlights2(); graph2(3-1.42)};
-function highlights217(){highlights = 17; highlights2(); graph2(3-1.32)};
-function highlights218(){highlights = 18; highlights2(); graph2(3-1.22)};
-function highlights219(){highlights = 19; highlights2(); graph2(3-1.12)};
-function highlights220(){highlights = 20; highlights2(); graph2(3-1.02)};
-function highlights221(){highlights = 21; highlights2(); graph2(3-.92)};
-function highlights222(){highlights = 22; highlights2(); graph2(3-.82)};
-function highlights223(){highlights = 23; highlights2(); graph2(3-.72)};
-function highlights224(){highlights = 24; highlights2(); graph2(3-.62)};
-function highlights225(){highlights = 25; highlights2(); graph2(3-.52)};
-function highlights226(){highlights = 26; highlights2(); graph2(3-.42)};
-function highlights227(){highlights = 27; highlights2(); graph2(3-.32)};
-function highlights228(){highlights = 28; highlights2(); graph2(3-.22)};
-function highlights229(){highlights = 29; highlights2(); graph2(3-.12)};
-function highlights230(){highlights = 30; highlights2(); graph2(3-.02)};
+function highlights20(){highlights = 0; highlights2(); graph2(.02)}; 
+function highlights21(){highlights = 1; highlights2(); graph2(.12)}; 
+function highlights22(){highlights = 2; highlights2(); graph2(.22)}; 
+function highlights23(){highlights = 3; highlights2(); graph2(.32)};
+function highlights24(){highlights = 4; highlights2(); graph2(.42)};
+function highlights25(){highlights = 5; highlights2(); graph2(.52)};
+function highlights26(){highlights = 6; highlights2(); graph2(.62)};
+function highlights27(){highlights = 7; highlights2(); graph2(.72)};
+function highlights28(){highlights = 8; highlights2(); graph2(.82)};
+function highlights29(){highlights = 9; highlights2(); graph2(.92)};
+function highlights210(){highlights = 10; highlights2(); graph2(1.02)};
+function highlights211(){highlights = 11; highlights2(); graph2(1.12)};
+function highlights212(){highlights = 12; highlights2(); graph2(1.22)};
+function highlights213(){highlights = 13; highlights2(); graph2(1.32)};
+function highlights214(){highlights = 14; highlights2(); graph2(1.42)};
+function highlights215(){highlights = 15; highlights2(); graph2(1.52)};
+function highlights216(){highlights = 16; highlights2(); graph2(1.62)};
+function highlights217(){highlights = 17; highlights2(); graph2(1.72)};
+function highlights218(){highlights = 18; highlights2(); graph2(1.82)};
+function highlights219(){highlights = 19; highlights2(); graph2(1.92)};
+function highlights220(){highlights = 20; highlights2(); graph2(2.02)};
+function highlights221(){highlights = 21; highlights2(); graph2(2.12)};
+function highlights222(){highlights = 22; highlights2(); graph2(2.22)};
+function highlights223(){highlights = 23; highlights2(); graph2(2.32)};
+function highlights224(){highlights = 24; highlights2(); graph2(2.42)};
+function highlights225(){highlights = 25; highlights2(); graph2(2.52)};
+function highlights226(){highlights = 26; highlights2(); graph2(2.62)};
+function highlights227(){highlights = 27; highlights2(); graph2(2.72)};
+function highlights228(){highlights = 28; highlights2(); graph2(2.82)};
+function highlights229(){highlights = 29; highlights2(); graph2(2.92)};
+function highlights230(){highlights = 30; highlights2(); graph2(3.02)};
 
-function highlights30(){highlights = 0; highlights3(); graph2(3-3.03)}; 
-function highlights31(){highlights = 1; highlights3(); graph2(3-2.93)}; 
-function highlights32(){highlights = 2; highlights3(); graph2(3-2.83)};
-function highlights33(){highlights = 3; highlights3(); graph2(3-2.73)};
-function highlights34(){highlights = 4; highlights3(); graph2(3-2.63)};
-function highlights35(){highlights = 5; highlights3(); graph2(3-2.53)};
-function highlights36(){highlights = 6; highlights3(); graph2(3-2.43)};
-function highlights37(){highlights = 7; highlights3(); graph2(3-2.33)};
-function highlights38(){highlights = 8; highlights3(); graph2(3-2.23)};
-function highlights39(){highlights = 9; highlights3(); graph2(3-2.13)};
-function highlights310(){highlights = 10; highlights3(); graph2(3-2.03)};
-function highlights311(){highlights = 11; highlights3(); graph2(3-1.93)};
-function highlights312(){highlights = 12; highlights3(); graph2(3-1.83)};
-function highlights313(){highlights = 13; highlights3(); graph2(3-1.73)};
-function highlights314(){highlights = 14; highlights3(); graph2(3-1.63)};
-function highlights315(){highlights = 15; highlights3(); graph2(3-1.53)};
-function highlights316(){highlights = 16; highlights3(); graph2(3-1.43)};
-function highlights317(){highlights = 17; highlights3(); graph2(3-1.33)};
-function highlights318(){highlights = 18; highlights3(); graph2(3-1.23)};
-function highlights319(){highlights = 19; highlights3(); graph2(3-1.13)};
-function highlights320(){highlights = 20; highlights3(); graph2(3-1.03)};
-function highlights321(){highlights = 21; highlights3(); graph2(3-.93)};
-function highlights322(){highlights = 22; highlights3(); graph2(3-.83)};
-function highlights323(){highlights = 23; highlights3(); graph2(3-.73)};
-function highlights324(){highlights = 24; highlights3(); graph2(3-.63)};
-function highlights325(){highlights = 25; highlights3(); graph2(3-.53)};
-function highlights326(){highlights = 26; highlights3(); graph2(3-.43)};
-function highlights327(){highlights = 27; highlights3(); graph2(3-.33)};
-function highlights328(){highlights = 28; highlights3(); graph2(3-.23)};
-function highlights329(){highlights = 29; highlights3(); graph2(3-.13)};
-function highlights330(){highlights = 30; highlights3(); graph2(3-.03)};
+function highlights30(){highlights = 0; highlights3(); graph2(.03)}; 
+function highlights31(){highlights = 1; highlights3(); graph2(.13)}; 
+function highlights32(){highlights = 2; highlights3(); graph2(.23)};
+function highlights33(){highlights = 3; highlights3(); graph2(.33)};
+function highlights34(){highlights = 4; highlights3(); graph2(.43)};
+function highlights35(){highlights = 5; highlights3(); graph2(.53)};
+function highlights36(){highlights = 6; highlights3(); graph2(.63)};
+function highlights37(){highlights = 7; highlights3(); graph2(.73)};
+function highlights38(){highlights = 8; highlights3(); graph2(.83)};
+function highlights39(){highlights = 9; highlights3(); graph2(.93)};
+function highlights310(){highlights = 10; highlights3(); graph2(1.03)};
+function highlights311(){highlights = 11; highlights3(); graph2(1.13)};
+function highlights312(){highlights = 12; highlights3(); graph2(1.23)};
+function highlights313(){highlights = 13; highlights3(); graph2(1.33)};
+function highlights314(){highlights = 14; highlights3(); graph2(1.43)};
+function highlights315(){highlights = 15; highlights3(); graph2(1.53)};
+function highlights316(){highlights = 16; highlights3(); graph2(1.63)};
+function highlights317(){highlights = 17; highlights3(); graph2(1.73)};
+function highlights318(){highlights = 18; highlights3(); graph2(1.83)};
+function highlights319(){highlights = 19; highlights3(); graph2(1.93)};
+function highlights320(){highlights = 20; highlights3(); graph2(2.03)};
+function highlights321(){highlights = 21; highlights3(); graph2(2.13)};
+function highlights322(){highlights = 22; highlights3(); graph2(2.23)};
+function highlights323(){highlights = 23; highlights3(); graph2(2.33)};
+function highlights324(){highlights = 24; highlights3(); graph2(2.43)};
+function highlights325(){highlights = 25; highlights3(); graph2(2.53)};
+function highlights326(){highlights = 26; highlights3(); graph2(2.63)};
+function highlights327(){highlights = 27; highlights3(); graph2(2.73)};
+function highlights328(){highlights = 28; highlights3(); graph2(2.83)};
+function highlights329(){highlights = 29; highlights3(); graph2(2.93)};
+function highlights330(){highlights = 30; highlights3(); graph2(3.03)};
 
-function highlights40(){highlights = 0; highlights4(); graph2(3-3.04)}; 
-function highlights41(){highlights = 1; highlights4(); graph2(3-2.94)}; 
-function highlights42(){highlights = 2; highlights4(); graph2(3-2.84)}; 
-function highlights43(){highlights = 3; highlights4(); graph2(3-2.74)};
-function highlights44(){highlights = 4; highlights4(); graph2(3-2.64)};
-function highlights45(){highlights = 5; highlights4(); graph2(3-2.54)};
-function highlights46(){highlights = 6; highlights4(); graph2(3-2.44)};
-function highlights47(){highlights = 7; highlights4(); graph2(3-2.34)};
-function highlights48(){highlights = 8; highlights4(); graph2(3-2.24)};
-function highlights49(){highlights = 9; highlights4(); graph2(3-2.14)};
-function highlights410(){highlights = 10; highlights4(); graph2(3-2.04)};
-function highlights411(){highlights = 11; highlights4(); graph2(3-1.94)};
-function highlights412(){highlights = 12; highlights4(); graph2(3-1.84)};
-function highlights413(){highlights = 13; highlights4(); graph2(3-1.74)};
-function highlights414(){highlights = 14; highlights4(); graph2(3-1.64)};
-function highlights415(){highlights = 15; highlights4(); graph2(3-1.54)};
-function highlights416(){highlights = 16; highlights4(); graph2(3-1.44)};
-function highlights417(){highlights = 17; highlights4(); graph2(3-1.34)};
-function highlights418(){highlights = 18; highlights4(); graph2(3-1.24)};
-function highlights419(){highlights = 19; highlights4(); graph2(3-1.14)};
-function highlights420(){highlights = 20; highlights4(); graph2(3-1.04)};
-function highlights421(){highlights = 21; highlights4(); graph2(3-.94)};
-function highlights422(){highlights = 22; highlights4(); graph2(3-.84)};
-function highlights423(){highlights = 23; highlights4(); graph2(3-.74)};
-function highlights424(){highlights = 24; highlights4(); graph2(3-.64)};
-function highlights425(){highlights = 25; highlights4(); graph2(3-.54)};
-function highlights426(){highlights = 26; highlights4(); graph2(3-.44)};
-function highlights427(){highlights = 27; highlights4(); graph2(3-.34)};
-function highlights428(){highlights = 28; highlights4(); graph2(3-.24)};
-function highlights429(){highlights = 29; highlights4(); graph2(3-.14)};
-function highlights430(){highlights = 30; highlights4(); graph2(3-.04)};
+function highlights40(){highlights = 0; highlights4(); graph2(.04)}; 
+function highlights41(){highlights = 1; highlights4(); graph2(.14)}; 
+function highlights42(){highlights = 2; highlights4(); graph2(.24)}; 
+function highlights43(){highlights = 3; highlights4(); graph2(.34)};
+function highlights44(){highlights = 4; highlights4(); graph2(.44)};
+function highlights45(){highlights = 5; highlights4(); graph2(.54)};
+function highlights46(){highlights = 6; highlights4(); graph2(.64)};
+function highlights47(){highlights = 7; highlights4(); graph2(.74)};
+function highlights48(){highlights = 8; highlights4(); graph2(.84)};
+function highlights49(){highlights = 9; highlights4(); graph2(.94)};
+function highlights410(){highlights = 10; highlights4(); graph2(1.04)};
+function highlights411(){highlights = 11; highlights4(); graph2(1.14)};
+function highlights412(){highlights = 12; highlights4(); graph2(1.24)};
+function highlights413(){highlights = 13; highlights4(); graph2(1.34)};
+function highlights414(){highlights = 14; highlights4(); graph2(1.44)};
+function highlights415(){highlights = 15; highlights4(); graph2(1.54)};
+function highlights416(){highlights = 16; highlights4(); graph2(1.64)};
+function highlights417(){highlights = 17; highlights4(); graph2(1.74)};
+function highlights418(){highlights = 18; highlights4(); graph2(1.84)};
+function highlights419(){highlights = 19; highlights4(); graph2(1.94)};
+function highlights420(){highlights = 20; highlights4(); graph2(2.04)};
+function highlights421(){highlights = 21; highlights4(); graph2(2.14)};
+function highlights422(){highlights = 22; highlights4(); graph2(2.24)};
+function highlights423(){highlights = 23; highlights4(); graph2(2.34)};
+function highlights424(){highlights = 24; highlights4(); graph2(2.44)};
+function highlights425(){highlights = 25; highlights4(); graph2(2.54)};
+function highlights426(){highlights = 26; highlights4(); graph2(2.64)};
+function highlights427(){highlights = 27; highlights4(); graph2(2.74)};
+function highlights428(){highlights = 28; highlights4(); graph2(2.84)};
+function highlights429(){highlights = 29; highlights4(); graph2(2.94)};
+function highlights430(){highlights = 30; highlights4(); graph2(3.04)};
 
-function highlights50(){highlights = 0; highlights5(); graph2(3-3.05)}; 
-function highlights51(){highlights = 1; highlights5(); graph2(3-2.95)}; 
-function highlights52(){highlights = 2; highlights5(); graph2(3-2.85)}; 
-function highlights53(){highlights = 3; highlights5(); graph2(3-2.75)};
-function highlights54(){highlights = 4; highlights5(); graph2(3-2.65)};
-function highlights55(){highlights = 5; highlights5(); graph2(3-2.55)};
-function highlights56(){highlights = 6; highlights5(); graph2(3-2.45)};
-function highlights57(){highlights = 7; highlights5(); graph2(3-2.35)};
-function highlights58(){highlights = 8; highlights5(); graph2(3-2.25)};
-function highlights59(){highlights = 9; highlights5(); graph2(3-2.15)};
-function highlights510(){highlights = 10; highlights5(); graph2(3-2.05)};
-function highlights511(){highlights = 11; highlights5(); graph2(3-1.95)};
-function highlights512(){highlights = 12; highlights5(); graph2(3-1.85)};
-function highlights513(){highlights = 13; highlights5(); graph2(3-1.75)};
-function highlights514(){highlights = 14; highlights5(); graph2(3-1.65)};
-function highlights515(){highlights = 15; highlights5(); graph2(3-1.55)};
-function highlights516(){highlights = 16; highlights5(); graph2(3-1.45)};
-function highlights517(){highlights = 17; highlights5(); graph2(3-1.35)};
-function highlights518(){highlights = 18; highlights5(); graph2(3-1.25)};
-function highlights519(){highlights = 19; highlights5(); graph2(3-1.15)};
-function highlights520(){highlights = 20; highlights5(); graph2(3-1.05)};
-function highlights521(){highlights = 21; highlights5(); graph2(3-.95)};
-function highlights522(){highlights = 22; highlights5(); graph2(3-.85)};
-function highlights523(){highlights = 23; highlights5(); graph2(3-.75)};
-function highlights524(){highlights = 24; highlights5(); graph2(3-.65)};
-function highlights525(){highlights = 25; highlights5(); graph2(3-.55)};
-function highlights526(){highlights = 26; highlights5(); graph2(3-.45)};
-function highlights527(){highlights = 27; highlights5(); graph2(3-.35)};
-function highlights528(){highlights = 28; highlights5(); graph2(3-.25)};
-function highlights529(){highlights = 29; highlights5(); graph2(3-.15)};
-function highlights530(){highlights = 30; highlights5(); graph2(3-.05)};
+function highlights50(){highlights = 0; highlights5(); graph2(.05)}; 
+function highlights51(){highlights = 1; highlights5(); graph2(.15)}; 
+function highlights52(){highlights = 2; highlights5(); graph2(.25)}; 
+function highlights53(){highlights = 3; highlights5(); graph2(.35)};
+function highlights54(){highlights = 4; highlights5(); graph2(.45)};
+function highlights55(){highlights = 5; highlights5(); graph2(.55)};
+function highlights56(){highlights = 6; highlights5(); graph2(.65)};
+function highlights57(){highlights = 7; highlights5(); graph2(.75)};
+function highlights58(){highlights = 8; highlights5(); graph2(.85)};
+function highlights59(){highlights = 9; highlights5(); graph2(.95)};
+function highlights510(){highlights = 10; highlights5(); graph2(1.05)};
+function highlights511(){highlights = 11; highlights5(); graph2(1.15)};
+function highlights512(){highlights = 12; highlights5(); graph2(1.25)};
+function highlights513(){highlights = 13; highlights5(); graph2(1.35)};
+function highlights514(){highlights = 14; highlights5(); graph2(1.45)};
+function highlights515(){highlights = 15; highlights5(); graph2(1.55)};
+function highlights516(){highlights = 16; highlights5(); graph2(1.65)};
+function highlights517(){highlights = 17; highlights5(); graph2(1.75)};
+function highlights518(){highlights = 18; highlights5(); graph2(1.85)};
+function highlights519(){highlights = 19; highlights5(); graph2(1.95)};
+function highlights520(){highlights = 20; highlights5(); graph2(2.05)};
+function highlights521(){highlights = 21; highlights5(); graph2(2.15)};
+function highlights522(){highlights = 22; highlights5(); graph2(2.25)};
+function highlights523(){highlights = 23; highlights5(); graph2(2.35)};
+function highlights524(){highlights = 24; highlights5(); graph2(2.45)};
+function highlights525(){highlights = 25; highlights5(); graph2(2.55)};
+function highlights526(){highlights = 26; highlights5(); graph2(2.65)};
+function highlights527(){highlights = 27; highlights5(); graph2(2.75)};
+function highlights528(){highlights = 28; highlights5(); graph2(2.85)};
+function highlights529(){highlights = 29; highlights5(); graph2(2.95)};
+function highlights530(){highlights = 30; highlights5(); graph2(3.05)};
 
-function highlights60(){highlights = 0; highlights6(); graph2(3-3.06)}; 
-function highlights61(){highlights = 1; highlights6(); graph2(3-2.96)}; 
-function highlights62(){highlights = 2; highlights6(); graph2(3-2.86)}; 
-function highlights63(){highlights = 3; highlights6(); graph2(3-2.76)};
-function highlights64(){highlights = 4; highlights6(); graph2(3-2.66)};
-function highlights65(){highlights = 5; highlights6(); graph2(3-2.56)};
-function highlights66(){highlights = 6; highlights6(); graph2(3-2.46)};
-function highlights67(){highlights = 7; highlights6(); graph2(3-2.36)};
-function highlights68(){highlights = 8; highlights6(); graph2(3-2.26)};
-function highlights69(){highlights = 9; highlights6(); graph2(3-2.16)};
-function highlights610(){highlights = 10; highlights6(); graph2(3-2.06)};
-function highlights611(){highlights = 11; highlights6(); graph2(3-1.96)};
-function highlights612(){highlights = 12; highlights6(); graph2(3-1.86)};
-function highlights613(){highlights = 13; highlights6(); graph2(3-1.76)};
-function highlights614(){highlights = 14; highlights6(); graph2(3-1.66)};
-function highlights615(){highlights = 15; highlights6(); graph2(3-1.56)};
-function highlights616(){highlights = 16; highlights6(); graph2(3-1.46)};
-function highlights617(){highlights = 17; highlights6(); graph2(3-1.36)};
-function highlights618(){highlights = 18; highlights6(); graph2(3-1.26)};
-function highlights619(){highlights = 19; highlights6(); graph2(3-1.16)};
-function highlights620(){highlights = 20; highlights6(); graph2(3-1.06)};
-function highlights621(){highlights = 21; highlights6(); graph2(3-.96)};
-function highlights622(){highlights = 22; highlights6(); graph2(3-.86)};
-function highlights623(){highlights = 23; highlights6(); graph2(3-.76)};
-function highlights624(){highlights = 24; highlights6(); graph2(3-.66)};
-function highlights625(){highlights = 25; highlights6(); graph2(3-.56)};
-function highlights626(){highlights = 26; highlights6(); graph2(3-.46)};
-function highlights627(){highlights = 27; highlights6(); graph2(3-.36)};
-function highlights628(){highlights = 28; highlights6(); graph2(3-.26)};
-function highlights629(){highlights = 29; highlights6(); graph2(3-.16)};
-function highlights630(){highlights = 30; highlights6(); graph2(3-.06)};
+function highlights60(){highlights = 0; highlights6(); graph2(.06)}; 
+function highlights61(){highlights = 1; highlights6(); graph2(.16)}; 
+function highlights62(){highlights = 2; highlights6(); graph2(.26)}; 
+function highlights63(){highlights = 3; highlights6(); graph2(.36)};
+function highlights64(){highlights = 4; highlights6(); graph2(.46)};
+function highlights65(){highlights = 5; highlights6(); graph2(.56)};
+function highlights66(){highlights = 6; highlights6(); graph2(.66)};
+function highlights67(){highlights = 7; highlights6(); graph2(.76)};
+function highlights68(){highlights = 8; highlights6(); graph2(.86)};
+function highlights69(){highlights = 9; highlights6(); graph2(.96)};
+function highlights610(){highlights = 10; highlights6(); graph2(1.06)};
+function highlights611(){highlights = 11; highlights6(); graph2(1.16)};
+function highlights612(){highlights = 12; highlights6(); graph2(1.26)};
+function highlights613(){highlights = 13; highlights6(); graph2(1.36)};
+function highlights614(){highlights = 14; highlights6(); graph2(1.46)};
+function highlights615(){highlights = 15; highlights6(); graph2(1.56)};
+function highlights616(){highlights = 16; highlights6(); graph2(1.66)};
+function highlights617(){highlights = 17; highlights6(); graph2(1.76)};
+function highlights618(){highlights = 18; highlights6(); graph2(1.86)};
+function highlights619(){highlights = 19; highlights6(); graph2(1.96)};
+function highlights620(){highlights = 20; highlights6(); graph2(2.06)};
+function highlights621(){highlights = 21; highlights6(); graph2(2.16)};
+function highlights622(){highlights = 22; highlights6(); graph2(2.26)};
+function highlights623(){highlights = 23; highlights6(); graph2(2.36)};
+function highlights624(){highlights = 24; highlights6(); graph2(2.46)};
+function highlights625(){highlights = 25; highlights6(); graph2(2.56)};
+function highlights626(){highlights = 26; highlights6(); graph2(2.66)};
+function highlights627(){highlights = 27; highlights6(); graph2(2.76)};
+function highlights628(){highlights = 28; highlights6(); graph2(2.86)};
+function highlights629(){highlights = 29; highlights6(); graph2(2.96)};
+function highlights630(){highlights = 30; highlights6(); graph2(3.06)};
 
-function highlights70(){highlights = 0; highlights7(); graph2(3-3.07)}; 
-function highlights71(){highlights = 1; highlights7(); graph2(3-2.97)}; 
-function highlights72(){highlights = 2; highlights7(); graph2(3-2.87)}; 
-function highlights73(){highlights = 3; highlights7(); graph2(3-2.77)};
-function highlights74(){highlights = 4; highlights7(); graph2(3-2.67)};
-function highlights75(){highlights = 5; highlights7(); graph2(3-2.57)};
-function highlights76(){highlights = 6; highlights7(); graph2(3-2.47)};
-function highlights77(){highlights = 7; highlights7(); graph2(3-2.37)};
-function highlights78(){highlights = 8; highlights7(); graph2(3-2.27)};
-function highlights79(){highlights = 9; highlights7(); graph2(3-2.17)};
-function highlights710(){highlights = 10; highlights7(); graph2(3-2.07)};
-function highlights711(){highlights = 11; highlights7(); graph2(3-1.97)};
-function highlights712(){highlights = 12; highlights7(); graph2(3-1.87)};
-function highlights713(){highlights = 13; highlights7(); graph2(3-1.77)};
-function highlights714(){highlights = 14; highlights7(); graph2(3-1.67)};
-function highlights715(){highlights = 15; highlights7(); graph2(3-1.57)};
-function highlights716(){highlights = 16; highlights7(); graph2(3-1.47)};
-function highlights717(){highlights = 17; highlights7(); graph2(3-1.37)};
-function highlights718(){highlights = 18; highlights7(); graph2(3-1.27)};
-function highlights719(){highlights = 19; highlights7(); graph2(3-1.17)};
-function highlights720(){highlights = 20; highlights7(); graph2(3-1.07)};
-function highlights721(){highlights = 21; highlights7(); graph2(3-.97)};
-function highlights722(){highlights = 22; highlights7(); graph2(3-.87)};
-function highlights723(){highlights = 23; highlights7(); graph2(3-.77)};
-function highlights724(){highlights = 24; highlights7(); graph2(3-.67)};
-function highlights725(){highlights = 25; highlights7(); graph2(3-.57)};
-function highlights726(){highlights = 26; highlights7(); graph2(3-.47)};
-function highlights727(){highlights = 27; highlights7(); graph2(3-.37)};
-function highlights728(){highlights = 28; highlights7(); graph2(3-.27)};
-function highlights729(){highlights = 29; highlights7(); graph2(3-.17)};
-function highlights730(){highlights = 30; highlights7(); graph2(3-.07)};
+function highlights70(){highlights = 0; highlights7(); graph2(.07)}; 
+function highlights71(){highlights = 1; highlights7(); graph2(.17)}; 
+function highlights72(){highlights = 2; highlights7(); graph2(.27)}; 
+function highlights73(){highlights = 3; highlights7(); graph2(.37)};
+function highlights74(){highlights = 4; highlights7(); graph2(.47)};
+function highlights75(){highlights = 5; highlights7(); graph2(.57)};
+function highlights76(){highlights = 6; highlights7(); graph2(.67)};
+function highlights77(){highlights = 7; highlights7(); graph2(.77)};
+function highlights78(){highlights = 8; highlights7(); graph2(.87)};
+function highlights79(){highlights = 9; highlights7(); graph2(.97)};
+function highlights710(){highlights = 10; highlights7(); graph2(1.07)};
+function highlights711(){highlights = 11; highlights7(); graph2(1.17)};
+function highlights712(){highlights = 12; highlights7(); graph2(1.27)};
+function highlights713(){highlights = 13; highlights7(); graph2(1.37)};
+function highlights714(){highlights = 14; highlights7(); graph2(1.47)};
+function highlights715(){highlights = 15; highlights7(); graph2(1.57)};
+function highlights716(){highlights = 16; highlights7(); graph2(1.67)};
+function highlights717(){highlights = 17; highlights7(); graph2(1.77)};
+function highlights718(){highlights = 18; highlights7(); graph2(1.87)};
+function highlights719(){highlights = 19; highlights7(); graph2(1.97)};
+function highlights720(){highlights = 20; highlights7(); graph2(2.07)};
+function highlights721(){highlights = 21; highlights7(); graph2(2.17)};
+function highlights722(){highlights = 22; highlights7(); graph2(2.27)};
+function highlights723(){highlights = 23; highlights7(); graph2(2.37)};
+function highlights724(){highlights = 24; highlights7(); graph2(2.47)};
+function highlights725(){highlights = 25; highlights7(); graph2(2.57)};
+function highlights726(){highlights = 26; highlights7(); graph2(2.67)};
+function highlights727(){highlights = 27; highlights7(); graph2(2.77)};
+function highlights728(){highlights = 28; highlights7(); graph2(2.87)};
+function highlights729(){highlights = 29; highlights7(); graph2(2.97)};
+function highlights730(){highlights = 30; highlights7(); graph2(3.07)};
 
-function highlights80(){highlights = 0; highlights8(); graph2(3-3.08)}; 
-function highlights81(){highlights = 1; highlights8(); graph2(3-2.98)}; 
-function highlights82(){highlights = 2; highlights8(); graph2(3-2.88)}; 
-function highlights83(){highlights = 3; highlights8(); graph2(3-2.78)};
-function highlights84(){highlights = 4; highlights8(); graph2(3-2.68)};
-function highlights85(){highlights = 5; highlights8(); graph2(3-2.58)};
-function highlights86(){highlights = 6; highlights8(); graph2(3-2.48)};
-function highlights87(){highlights = 7; highlights8(); graph2(3-2.38)};
-function highlights88(){highlights = 8; highlights8(); graph2(3-2.28)};
-function highlights89(){highlights = 9; highlights8(); graph2(3-2.18)};
-function highlights810(){highlights = 10; highlights8(); graph2(3-2.08)};
-function highlights811(){highlights = 11; highlights8(); graph2(3-1.98)};
-function highlights812(){highlights = 12; highlights8(); graph2(3-1.88)};
-function highlights813(){highlights = 13; highlights8(); graph2(3-1.78)};
-function highlights814(){highlights = 14; highlights8(); graph2(3-1.68)};
-function highlights815(){highlights = 15; highlights8(); graph2(3-1.58)};
-function highlights816(){highlights = 16; highlights8(); graph2(3-1.48)};
-function highlights817(){highlights = 17; highlights8(); graph2(3-1.38)};
-function highlights818(){highlights = 18; highlights8(); graph2(3-1.28)};
-function highlights819(){highlights = 19; highlights8(); graph2(3-1.18)};
-function highlights820(){highlights = 20; highlights8(); graph2(3-1.08)};
-function highlights821(){highlights = 21; highlights8(); graph2(3-.98)};
-function highlights822(){highlights = 22; highlights8(); graph2(3-.88)};
-function highlights823(){highlights = 23; highlights8(); graph2(3-.78)};
-function highlights824(){highlights = 24; highlights8(); graph2(3-.68)};
-function highlights825(){highlights = 25; highlights8(); graph2(3-.58)};
-function highlights826(){highlights = 26; highlights8(); graph2(3-.48)};
-function highlights827(){highlights = 27; highlights8(); graph2(3-.38)};
-function highlights828(){highlights = 28; highlights8(); graph2(3-.28)};
-function highlights829(){highlights = 29; highlights8(); graph2(3-.18)};
-function highlights830(){highlights = 30; highlights8(); graph2(3-.08)};
+function highlights80(){highlights = 0; highlights8(); graph2(.08)}; 
+function highlights81(){highlights = 1; highlights8(); graph2(.18)}; 
+function highlights82(){highlights = 2; highlights8(); graph2(.28)}; 
+function highlights83(){highlights = 3; highlights8(); graph2(.38)};
+function highlights84(){highlights = 4; highlights8(); graph2(.48)};
+function highlights85(){highlights = 5; highlights8(); graph2(.58)};
+function highlights86(){highlights = 6; highlights8(); graph2(.68)};
+function highlights87(){highlights = 7; highlights8(); graph2(.78)};
+function highlights88(){highlights = 8; highlights8(); graph2(.88)};
+function highlights89(){highlights = 9; highlights8(); graph2(.98)};
+function highlights810(){highlights = 10; highlights8(); graph2(1.08)};
+function highlights811(){highlights = 11; highlights8(); graph2(1.18)};
+function highlights812(){highlights = 12; highlights8(); graph2(1.28)};
+function highlights813(){highlights = 13; highlights8(); graph2(1.38)};
+function highlights814(){highlights = 14; highlights8(); graph2(1.48)};
+function highlights815(){highlights = 15; highlights8(); graph2(1.58)};
+function highlights816(){highlights = 16; highlights8(); graph2(1.68)};
+function highlights817(){highlights = 17; highlights8(); graph2(1.78)};
+function highlights818(){highlights = 18; highlights8(); graph2(1.88)};
+function highlights819(){highlights = 19; highlights8(); graph2(1.98)};
+function highlights820(){highlights = 20; highlights8(); graph2(2.08)};
+function highlights821(){highlights = 21; highlights8(); graph2(2.18)};
+function highlights822(){highlights = 22; highlights8(); graph2(2.28)};
+function highlights823(){highlights = 23; highlights8(); graph2(2.38)};
+function highlights824(){highlights = 24; highlights8(); graph2(2.48)};
+function highlights825(){highlights = 25; highlights8(); graph2(2.58)};
+function highlights826(){highlights = 26; highlights8(); graph2(2.68)};
+function highlights827(){highlights = 27; highlights8(); graph2(2.78)};
+function highlights828(){highlights = 28; highlights8(); graph2(2.88)};
+function highlights829(){highlights = 29; highlights8(); graph2(2.98)};
+function highlights830(){highlights = 30; highlights8(); graph2(3.08)};
 
-function highlights90(){highlights = 0; highlights9(); graph2(3-3.09)}; 
-function highlights91(){highlights = 1; highlights9(); graph2(3-2.99)}; 
-function highlights92(){highlights = 2; highlights9(); graph2(3-2.89)}; 
-function highlights93(){highlights = 3; highlights9(); graph2(3-2.79)};
-function highlights94(){highlights = 4; highlights9(); graph2(3-2.69)};
-function highlights95(){highlights = 5; highlights9(); graph2(3-2.59)};
-function highlights96(){highlights = 6; highlights9(); graph2(3-2.49)};
-function highlights97(){highlights = 7; highlights9(); graph2(3-2.39)};
-function highlights98(){highlights = 8; highlights9(); graph2(3-2.29)};
-function highlights99(){highlights = 9; highlights9(); graph2(3-2.19)};
-function highlights910(){highlights = 10; highlights9(); graph2(3-2.09)};
-function highlights911(){highlights = 11; highlights9(); graph2(3-1.99)};
-function highlights912(){highlights = 12; highlights9(); graph2(3-1.89)};
-function highlights913(){highlights = 13; highlights9(); graph2(3-1.79)};
-function highlights914(){highlights = 14; highlights9(); graph2(3-1.69)};
-function highlights915(){highlights = 15; highlights9(); graph2(3-1.59)};
-function highlights916(){highlights = 16; highlights9(); graph2(3-1.49)};
-function highlights917(){highlights = 17; highlights9(); graph2(3-1.39)};
-function highlights918(){highlights = 18; highlights9(); graph2(3-1.29)};
-function highlights919(){highlights = 19; highlights9(); graph2(3-1.19)};
-function highlights920(){highlights = 20; highlights9(); graph2(3-1.09)};
-function highlights921(){highlights = 21; highlights9(); graph2(3-.99)};
-function highlights922(){highlights = 22; highlights9(); graph2(3-.89)};
-function highlights923(){highlights = 23; highlights9(); graph2(3-.79)};
-function highlights924(){highlights = 24; highlights9(); graph2(3-.69)};
-function highlights925(){highlights = 25; highlights9(); graph2(3-.59)};
-function highlights926(){highlights = 26; highlights9(); graph2(3-.49)};
-function highlights927(){highlights = 27; highlights9(); graph2(3-.39)};
-function highlights928(){highlights = 28; highlights9(); graph2(3-.29)};
-function highlights929(){highlights = 29; highlights9(); graph2(3-.19)};
-function highlights930(){highlights = 30; highlights9(); graph2(3-.09)};
+function highlights90(){highlights = 0; highlights9(); graph2(.09)}; 
+function highlights91(){highlights = 1; highlights9(); graph2(.19)}; 
+function highlights92(){highlights = 2; highlights9(); graph2(.29)}; 
+function highlights93(){highlights = 3; highlights9(); graph2(.39)};
+function highlights94(){highlights = 4; highlights9(); graph2(.49)};
+function highlights95(){highlights = 5; highlights9(); graph2(.59)};
+function highlights96(){highlights = 6; highlights9(); graph2(.69)};
+function highlights97(){highlights = 7; highlights9(); graph2(.79)};
+function highlights98(){highlights = 8; highlights9(); graph2(.89)};
+function highlights99(){highlights = 9; highlights9(); graph2(.99)};
+function highlights910(){highlights = 10; highlights9(); graph2(1.09)};
+function highlights911(){highlights = 11; highlights9(); graph2(1.19)};
+function highlights912(){highlights = 12; highlights9(); graph2(1.29)};
+function highlights913(){highlights = 13; highlights9(); graph2(1.39)};
+function highlights914(){highlights = 14; highlights9(); graph2(1.49)};
+function highlights915(){highlights = 15; highlights9(); graph2(1.59)};
+function highlights916(){highlights = 16; highlights9(); graph2(1.69)};
+function highlights917(){highlights = 17; highlights9(); graph2(1.79)};
+function highlights918(){highlights = 18; highlights9(); graph2(1.89)};
+function highlights919(){highlights = 19; highlights9(); graph2(1.99)};
+function highlights920(){highlights = 20; highlights9(); graph2(2.09)};
+function highlights921(){highlights = 21; highlights9(); graph2(2.19)};
+function highlights922(){highlights = 22; highlights9(); graph2(2.29)};
+function highlights923(){highlights = 23; highlights9(); graph2(2.39)};
+function highlights924(){highlights = 24; highlights9(); graph2(2.49)};
+function highlights925(){highlights = 25; highlights9(); graph2(2.59)};
+function highlights926(){highlights = 26; highlights9(); graph2(2.69)};
+function highlights927(){highlights = 27; highlights9(); graph2(2.79)};
+function highlights928(){highlights = 28; highlights9(); graph2(2.89)};
+function highlights929(){highlights = 29; highlights9(); graph2(2.99)};
+function highlights930(){highlights = 30; highlights9(); graph2(3.09)};
 
 
 function highlight0(){
@@ -1248,8 +1248,8 @@ function graph0(){
     var exp = 2.71828;
     var f = [];
     var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
+    for (i = 0; i < 600; i++) {
+      var j = (i-300)/100
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     var c = document.getElementById("Canvas1");
@@ -1267,8 +1267,8 @@ function graph0(){
     ctx.fillText("0",148,145);
     //ctx.fillText("σ=1",225,50);
     var points = []
-    for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.4*i, y:130 - 300*f[i]}
+    for (i = 0; i < 600; i++) {
+        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1283,13 +1283,13 @@ function graph0(){
 }
 
 function graph1(z){
-    var lessval = Math.max(z, -2.70)
-    var lessvalz = 30+10*lessval
+    var lessval = Math.max(z, -2.97)
+    var lessvalz = 300+100*lessval
     var exp = 2.71828;
     var f = [];
     var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
+    for (i = 0; i < 600; i++) {
+      var j = (i-300)/100
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     var c = document.getElementById("Canvas1");
@@ -1300,7 +1300,7 @@ function graph1(z){
     ctx.beginPath();
     var points0 = []
     for (i = 0; i < lessvalz; i++) {
-        points0[i] = {x:20 + 4.4*i, y:130 - 300*f[i]}
+        points0[i] = {x:20 + .433*i, y:130 - 300*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1313,8 +1313,10 @@ function graph1(z){
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
     
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
-    ctx.lineTo(20 + 4.4*0, 130);
+    ctx.lineTo(20 + .433*lessvalz, 130 - 300*f[Math.round(lessvalz)]);
+    
+    ctx.lineTo(20 + .433*lessvalz, 130);
+    ctx.lineTo(20 + .433*0, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
@@ -1324,18 +1326,18 @@ function graph1(z){
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
     //ctx.fillText("z",285,132);
-    ctx.fillText("z",18 + 4.4*(30+10*lessval),145);
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    if (Math.abs(z) > .2){
+    ctx.fillText("z",18 + .434*(300+100*lessval),145);
+    ctx.moveTo(20 + .433*(300+100*lessval), 135);
+    ctx.lineTo(20 + .433*(300+100*lessval), 125);
+    if (Math.abs(z) >= .2){
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145); 
     }
     //ctx.fillText("σ=1",225,50);
     var points = []
-    for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.4*i, y:130 - 300*f[i]}
+    for (i = 0; i < 600; i++) {
+        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1378,8 +1380,8 @@ function graph00(){
     var exp = 2.71828;
     var f = [];
     var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
+    for (i = 0; i < 600; i++) {
+      var j = (i-300)/100
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     var c = document.getElementById("Canvas2");
@@ -1397,8 +1399,8 @@ function graph00(){
     ctx.fillText("0",148,145);
     //ctx.fillText("σ=1",225,50);
     var points = []
-    for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.4*i, y:130 - 300*f[i]}
+    for (i = 0; i < 600; i++) {
+        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1414,12 +1416,12 @@ function graph00(){
 
 function graph2(z){
     var lessval = Math.max(z, -2.70)
-    var lessvalz = 30+10*lessval
+    var lessvalz = 300+100*lessval
     var exp = 2.71828;
     var f = [];
     var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
+    for (i = 0; i < 600; i++) {
+      var j = (i-300)/100
       f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
     }
     var c = document.getElementById("Canvas2");
@@ -1430,7 +1432,7 @@ function graph2(z){
     ctx.beginPath();
     var points0 = []
     for (i = 0; i < lessvalz; i++) {
-        points0[i] = {x:20 + 4.4*i, y:130 - 300*f[i]}
+        points0[i] = {x:20 + .433*i, y:130 - 300*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1443,8 +1445,8 @@ function graph2(z){
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
     
-    ctx.lineTo(20 + 4.4*lessvalz, 130);
-    ctx.lineTo(20 + 4.4*0, 130);
+    ctx.lineTo(20 + .433*lessvalz, 130);
+    ctx.lineTo(20 + .433*0, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
     ctx.fill();
@@ -1454,18 +1456,18 @@ function graph2(z){
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
     //ctx.fillText("z",285,132);
-    ctx.fillText("z",18 + 4.4*(30+10*lessval),145);
-    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
-    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
-    if (Math.abs(z) > .2){
+    ctx.fillText("z",18 + .433*(300+100*lessval),145);
+    ctx.moveTo(20 + .433*(300+100*lessval), 135);
+    ctx.lineTo(20 + .433*(300+100*lessval), 125);
+    if (Math.abs(z) >= .2){
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
         ctx.fillText("0",148,145); 
     }
     //ctx.fillText("σ=1",225,50);
     var points = []
-    for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.4*i, y:130 - 300*f[i]}
+    for (i = 0; i < 600; i++) {
+        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
