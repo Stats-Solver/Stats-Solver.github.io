@@ -129,7 +129,12 @@
       <hr>
           </div>
       
-      <div class="text-center mt-2 mb-2">
+     
+
+      
+      <div class="container" id="how">
+          
+           <div class="text-center mt-2 mb-2">
             <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
      crossorigin="anonymous"></script>
         <!-- Responsive3 -->
@@ -143,18 +148,15 @@
              (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
                 </div>
-
-      
-      <div class="container" id="how">
           
-            <p class = "p1"> Frequency distributions can be made in R using the <code>table()</code> function. There is no functions that directly give you relative frequency distributions, but it can easily be calculated by dividing the frequency distribution by the november of observations. The number of observations in a dataset can be computed by using the <code>length()</code> function. To get the percent frequency distribution, simply use the same code that was used to get relative frequency distribution and multiply it by 100. A pie chart can be made by simply using the <code>pie()</code> function. A bar chart can be created by using the <code>barplot()</code> function. </p>
+            <p class = "p1"> To do a simple linear regression in R, use the <code>lm()</code> function, which stands for linear model. This function will give you the coefficients of the estimated regression equation. For a simple linear regression, there are two inputs, y and x, separated by a tilda. Note that the dependent variable, y, comes before the independent variable, x.  </p>
             
             <p style="background-color:	#F0F0F0">
-             &nbsp; > table(x) # Frequency Distribution <br>
-             &nbsp; > table(x) / length(x) # Relative Frequency Distribution <br>
-             &nbsp; > table(x) / length(x) * 100 # Percent Frequency Distribution <br>
-             &nbsp; > pie(x)  <br> 
-             &nbsp; > barplot(x)
+             &nbsp;> lm(y ~ x) <span style = "color:darkseagreen"># Regression Coefficients</span> <br>
+             &nbsp;> summary(lm(y ~ x)) <span style = "color:darkseagreen"># Regression Output</span> <br>
+             &nbsp;> table(x) / length(x) * 100 # Percent Frequency Distribution <br>
+             &nbsp;> pie(x)  <br> 
+             &nbsp;> barplot(x)
             </p>
           
             <p class = "p1"> Creating frequency distributions for quantitative data is tricker as you have to define the classes, or groupings. One quick way of defining the classes is by using the ones R chooses when creating a histogram. Once the classes are defined, a frequency distribution  for quantitative data can be created by using the same function as was used for qualitative data. Similarly, the relative and percent frequency distributions can be created in the same way.  </p>

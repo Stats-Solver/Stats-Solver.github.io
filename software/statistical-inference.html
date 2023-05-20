@@ -73,32 +73,6 @@
               <a class="dropdown-item" href="/time-series-analysis.html">Time Series Analysis</a>
             </div>
           </li>
-            <!--<li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Lessons
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="numerical-summary.html">Numerical Summary</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="discrete-distribution.html">Discrete Distribution</a>
-              <a class="dropdown-item" href="continuous-distribution.html">Continuous Distribution</a>
-              <a class="dropdown-item" href="sampling-distribution.html">Sampling Distribution</a>
-              <a class="dropdown-item" href="confidence-interval.html">Confidence Interval</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="simple-regression.html">Simple Regression</a>
-            </div>
-          </li>
-           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="/tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="/tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="/tables/f-distribution.html">F-Distribution</a>
-            </div>
-          </li>-->
             <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Other
@@ -122,8 +96,8 @@
     <div class = "container">
         
 
-        <h1 class="page-header text-center mt-2" style="font-size: 1.5em">Statistical Inference in R</h1>
-        <h2 class="page-header text-center mt-2" style="font-size: 1em"><a href="/software.html" class="text-primary" >Back to Software</a></h2>
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em">Statistical Inference in R</h1>
+        <!--<h2 class="page-header text-center mt-1" style="font-size: 1em"><a href="/software.html" class="text-primary" >Statistical Software</a></h2>-->
     </div>
       
       <div class="container">
@@ -155,18 +129,29 @@
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> sample(x, n) <span style = "color:darkseagreen"># Sampling</span> <br>
              &nbsp;> sample(x, n, replacement = TRUE) <span style = "color:darkseagreen"># Sampling with Replacement</span> <br>
-             &nbsp;> mean(x) # Point Estimate of Mean <br>
-             &nbsp;> sd(x) # Point Estimate of Standard Deviation 
+             &nbsp;> mean(x) <span style = "color:darkseagreen"># Sample Mean</span> <br>
+             &nbsp;> sd(x) <span style = "color:darkseagreen"># Sample Standard Deviation</span> <br>
+             &nbsp;> mean(condition) <span style = "color:darkseagreen"># Sample Proportion</span> 
             </p>
           
-            <p class = "p1"> Creating frequency distributions for quantitative data is tricker as you have to define the classes, or groupings. One quick way of defining the classes is by using the ones R chooses when creating a histogram. Once the classes are defined, a frequency distribution  for quantitative data can be created by using the same function as was used for qualitative data. Similarly, the relative and percent frequency distributions can be created in the same way. </p>
+            <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
             
-            <p style="background-color:	#F0F0F0">
-             &nbsp; > hist(x) <span style = "color:darkseagreen"># Histogram <br>
-             &nbsp; > table(x) / length(x) <span style = "color:darkseagreen"># Relative Frequency Distribution</span> <br>
-             &nbsp; > table(x) / length(x) * 100 <span style = "color:darkseagreen"># Percent Frequency Distribution</span> <br>
-             &nbsp; > quantile(x, .30) # 30th Percentile <br> 
-             &nbsp; > quantile(x, .25) # 1st Quartile
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;> ahalf <- (1 - conf) / 2 <span style = "color:darkseagreen"># &alpha;/2</span> <br>
+             &nbsp;> z <- qnorm(ahalf, lower.tail = FALSE) <span style = "color:darkseagreen"># z_&alpha;/2</span> <br>
+             &nbsp;> z * sigma / sqrt(length(x)) <span style = "color:darkseagreen"># Margin of Error</span> <br>
+             &nbsp;> mean(x) - z * sigma / sqrt(length(x)) <span style = "color:darkseagreen"># Lower Bound of Confidence Interval</span> <br>
+             &nbsp;> mean(x) + z * sigma / sqrt(length(x)) <span style = "color:darkseagreen"># Upper Bound of Confidence Interval</span> 
+            </p>
+          
+            <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;> ahalf <- (1 - conf) / 2 <span style = "color:darkseagreen"># &alpha;/2</span> <br>
+             &nbsp;> t <- qt(ahalf, lower.tail = FALSE) <span style = "color:darkseagreen"># t_&alpha;/2</span> <br>
+             &nbsp;> t * sd(x) / sqrt(length(x)) <span style = "color:darkseagreen"># Margin of Error</span> <br>
+             &nbsp;> mean(x) - t * sd(x) / sqrt(length(x)) <span style = "color:darkseagreen"># Lower Bound of Confidence Interval</span> <br>
+             &nbsp;> mean(x) + t * sd(x) / sqrt(length(x)) <span style = "color:darkseagreen"># Upper Bound of Confidence Interval</span> 
             </p>
           
             <div class="text-center mt-2 mb-2">
@@ -183,38 +168,28 @@
                  (adsbygoogle = window.adsbygoogle || []).push({});
             </script>
             </div>
-
-            <p class = "p1">Many basic numerical summaries can be computed in R by simple using their name. For example, the function for calculating the mean is simply <code>mean()</code>. Similarly, the function for calculating the median is <code>median()</code>. Computing the mode is more difficult as there is no function for directly calculating the mode. To get the mode, use the <code>table()</code> function and identify which value has the highest frequency. The function for calculating percentiles is <code>quantile()</code>. While the previous functions only require one argument, the data, this function requires an additional argument. The second argument in this function is the desired percentile, expressed as a decimal. For example, if you want the 30th percentile, you set the second argument as .30. Quartiles can be computed using the same function by inputing the appropriate value for the second argument: either .25, .50 or .75. </p>
+          
+          <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
             
-            <p style="background-color:	#F0F0F0">
-             &nbsp; > mean(x) <br>
-             &nbsp; > median(x) <br>
-             &nbsp; > table(x) # Median <br>
-             &nbsp; > quantile(x, probs) # Percentiles <br> 
-             &nbsp; > quantile(x, probs = c(.25, .50, .75)) # Quartiles
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;> z <- (mean(x) - mu) / (sigma / sqrt(length(x))) <span style = "color:darkseagreen"># Test Statistic</span> <br>
+             &nbsp;> pnorm(z) <span style = "color:darkseagreen"># Lower Tail p-Value</span> <br>
+             &nbsp;> pnorm(z, lower.tail = FALSE) <span style = "color:darkseagreen"># Upper Tail p-Value</span> <br>
+             &nbsp;> 2 * pnorm(z) <span style = "color:darkseagreen"># Two-Tailed p-Value (Negative z)</span> <br>
+             &nbsp;> 2 * pnorm(z, lower.tail = FALSE) <span style = "color:darkseagreen"># Two-Tailed p-Value (Positive z)</span>
             </p>
           
-            <p class = "p1">Although there is a function called <code>range()</code>, this does not calculate the range of data. Instead, it gives you the maximum and minimum values of the data. Since the range is simply the difference of these two values, you can apply the <code>diff()</code> function afterwards to compute the range. Alternative, you can use the <code>max()</code> and <code>min()</code> functions. To compute the interquartile range, use the function <code>IQR()</code>. It is important to note that all the letters in this function are capitalized as R is a case-sensitive programming language. To compute the variance, simply use the function <code>var(x)</code>. Similarly, to compute the standard deviation, use the function <code>sd()</code>. There is no function for calculating the coefficient of variation in R, so it must be done manually using the functions for mean and standard deviation. </p>
-          
-            <p style="background-color:	#F0F0F0">
-            &nbsp; > diff(range(x)) # Range <br>
-            &nbsp; > max(x) - min(x) # Range (Alternative Method) <br>
-            &nbsp; > IQR(x) # Interquartile Range <br>
-            &nbsp; > var(x) # Variance <br> 
-            &nbsp; > sd(x) # Standard Deviation <br> 
-            &nbsp; > sd(x) / mean(x) * 100 # Coefficient of Variation
+          <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;> z <- (mean(x) - mu) / (sigma / sqrt(length(x))) <span style = "color:darkseagreen"># Test Statistic</span> <br>
+             &nbsp;> qnorm(alpha) <span style = "color:darkseagreen"># Lower Tail Critical Value</span> <br>
+             &nbsp;> qnorm(alpha, lower.tail = FALSE) <span style = "color:darkseagreen"># Upper Tail Critical Value</span> <br>
+             &nbsp;> qnorm(alpha / 2) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Negative)</span> <br>
+             &nbsp;> 2 * qnorm(alpha / 2, lower.tail = FALSE) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Positive)</span>
             </p>
-          
-            <p class = "p1">Calculating skewness requires the use of a package as it is not part of base R. Install the "moments" package using the <code>install.packages()</code> function and then load it by using the <code>library()</code> function. Note that quotations are required around the package name in the former function but not the latter. Then simply use the <code>skewness()</code> function to calculate the skewness. There is no function in R for calculating z-scores so they need to be calculated manually using the functions for mean and standard deviation. To calculate the covariance, use the function <code>cov()</code>. Similarly, to calculate the correlation coefficient, use the function <code>cor()</code>. </p>
-          
-            <p style="background-color:	#F0F0F0">
-            &nbsp; > install.packages("moments") <br>
-            &nbsp; > library(moments) # Load Package <br>
-            &nbsp; > skewness() <br>
-            &nbsp; > (x - mean(x)) / sd(x) # z-Scores <br>
-            &nbsp; > cov(x) # Covariance <br> 
-            &nbsp; > cor(x) # Correlation Coefficient
-            </p>
+
+            
           
           <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
