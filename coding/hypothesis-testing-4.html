@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="The easy-to-use numerical summary calculator can be used to get step-by-step solutions to the mean, median, mode, variance, standard deviation and more.">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
+      
+    <title>Hypothesis Testing in R - Learn by Coding</title>
+      
+      <link rel="icon" href="/favicon.png">
+      
+      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-170214906-1');
+    </script>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+          <!-- Event snippet for Page view conversion page -->
+    <script>
+      gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
+    </script>
+      
+      <link rel="canonical" href="https://www.statssolver.com/numerical-summary.html" />
+
+      
+  </head>
+    
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/index.html"><img src="/lbclogo.png" width="250" height="29" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Subjects
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/statistics.html">Statistics</a>
+            </div>
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
+          </div>
+    
+      
+      <div class = "container">
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="hypothesis-testing.html">Hypothesis Testing in R</a></h1>
+        <!--<h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="confidence-interval.html" class="text-primary" >Confidence Interval Calculator</a></h2>-->
+    </div>
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      
+      <div class="container center">
+          <div class="row justify-content-center">
+        <div class="col-8 col-md-3">
+            <select id="stat" class="form-control" onchange="showthings()">
+                <option value="known">Population Mean: σ Known</option>
+                <option value="unknown">Population Mean: σ Unknown</option>
+                <option value="proportion">Population Proportion</option>
+            </select>
+        </div>  
+              </div>
+        </div>
+      
+      
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      
+      
+
+      
+      
+      
+      <div class="container" id="criticalvalue">
+          <h4 class="text-center"> Critical Value </h4>
+          <h5 class="text-center" style="color: gray">Lower Tail Test</h5>
+        <div class="row">
+            <div class="col-md-6">
+                
+                <h5 class="text-center">Formula:</h5>
+                
+                <p>$-z_\alpha$ = value of the test statistic corresponding to an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic</p>
+                
+                <h5 class="text-center">Example:</h5>
+                
+                <p>$$ \begin{align} \mu &\geq 5 \\ \mu &< 5  \end{align}  $$</p>
+                
+                <p>$$ \text{Level of Significance: } \alpha = .05  $$</p>
+
+                
+            </div>
+            <div class="col-md-6">
+                
+                <h5 class="text-center">Functions:</h5>
+                
+                <p><code>qnorm(p)</code>: gives the z value corresponding to an area of p in the lower tail of the standard normal distribution </p>
+                
+                <h5 class="text-center">Explanation:</h5>
+                
+                <p> Since the test statistic follows a standard normal distribution, the p-value will be the area to the left of the test statistic under a standard normal distribution.  </p>
+                            
+            </div>   
+          </div>
+          
+          <div data-datacamp-exercise data-lang="r">
+            <code data-type="pre-exercise-code">
+                # This will get executed each time the exercise gets initialized
+                b = 6
+            </code>
+            <code data-type="sample-code">
+                # Write your function.
+                crit <- function(______) {
+                    ______(alpha)
+                }
+                
+                # Call your function.
+                crit(____)
+
+
+            </code>
+            <code data-type="solution">
+                # Calculate the test statistic
+                (4-5)/(2/sqrt(30))
+
+            </code>
+            <code data-type="sct">
+                success_msg("Great job!")
+            </code>
+            <div data-type="hint">Use the assignment operator (<code><-</code>) to create the variable <code>a</code>.</div>
+        </div>
+          
+          <div class="container text-center">
+          <p><a href="/statistics/hypothesis-testing-3.html">
+            Rejection Rule
+        <svg onclick="teststatistic()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg></a>
+              <a href="/statistics/hypothesis-testing-5.html">
+        <svg onclick="rejectionrule()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+          <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+        </svg>
+          Rejection Rule</a>
+          </p>
+      </div>
+      </div>
+      
+      
+      
+      
+     
+      
+      
+      
+      
+      
+
+
+      
+
+      
+      
+      
+      
+          <footer id="footer">
+              <div class="container">
+                  <div class="container" id="explanation">
+      <p  class="text-center" style="background-color:white">
+          
+        
+    </p>
+    <div class="collapse" id="collapseExample" data-parent="#explanation">
+      <div class="card card-body" id="descriptiontext">
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseExample2" data-parent="#explanation">
+      <div class="card card-body" id="formulatext">
+
+      </div>
+    </div>
+    <div class="collapse" id="collapseExample3" data-parent="#explanation">
+      <div class="card card-body" id="explanationtext">
+
+      </div>
+    </div>
+                    
+          </div>
+                <hr>
+            </div>
+          <p> 
+              &copy; 2022 <a href="/about.html">Learn by Coding</a> 
+            </p>  
+
+          </footer>
+      
+    <!--<div style = "height: 400px"></div>-->  
+    <!-- Optional JavaScript -->  
+      
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      
+      
+      
+                    <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script> 
+ 
+      
+      
+      <!--<script src="/javascript/hypothesis.js"></script>-->
+      
+      <script>
+      $(function () {
+            $('[data-toggle="tooltip"]').tooltip()
+    })
+      
+      </script>
+      
+            <script type="text/javascript" src="//cdn.datacamp.com/dcl-react.js.gz"></script>
+
+
+  </body>
+</html>

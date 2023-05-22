@@ -81,6 +81,7 @@
                 <a class="dropdown-item" href="/lessons.html">Lessons</a>
                 <a class="dropdown-item" href="/tables.html">Tables</a>
                 <a class="dropdown-item" href="/software.html">Software</a>
+                <a class="dropdown-item" href="/coding.html">Coding</a>
             </div>
           </li>
             <li class="nav-item">
@@ -125,14 +126,14 @@
         </script>
                 </div>
           
-            <p class = "p1"> Frequency distributions can be made in R using the <code>table()</code> function. There is no functions that directly give you relative frequency distributions, but it can easily be calculated by dividing the frequency distribution by the november of observations. The number of observations in a dataset can be computed by using the <code>length()</code> function. To get the percent frequency distribution, simply use the same code that was used to get relative frequency distribution and multiply it by 100. A pie chart can be made by simply using the <code>pie()</code> function. A bar chart can be created by using the <code>barplot()</code> function. </p>
+            <p class = "p1"> Frequency distributions can be made in R using the <code>table()</code> function. There is no functions that directly give you relative frequency distributions, but it can easily be calculated by dividing the frequency distribution by the november of observations. The number of observations in a dataset can be computed by using the <code>length()</code> function. To get the percent frequency distribution, simply use the same code that was used to get relative frequency distribution and multiply it by 100. A pie chart can be made by simply using the <code>pie()</code> function and a bar chart can be created by using the <code>barplot()</code> function. The input for both of these functions is the frequency distribution. </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> table(x) <span style = "color:darkseagreen"># Frequency Distribution</span> <br>
              &nbsp;> table(x) / length(x) <span style = "color:darkseagreen"># Relative Frequency Distribution</span> <br>
              &nbsp;> table(x) / length(x) * 100 <span style = "color:darkseagreen"># Percent Frequency Distribution</span> <br>
-             &nbsp;> pie(x)  <br> 
-             &nbsp;> barplot(x)
+             &nbsp;> pie(table(x))  <br> 
+             &nbsp;> barplot(table(x))
             </p>
           
             <p class = "p1"> Creating frequency distributions for quantitative data is tricker as you have to define the classes, or groupings. One quick way of defining the classes is by using the ones R chooses when creating a histogram. A histogram can be created in R using the <code>hist()</code> function. Use the <code>seq()</code> function to define the classes and the <code>cut()</code> function to place each observation into one of hte classes. Once the classes are determined, a frequency distribution  for quantitative data can be created by using the same function as was used for qualitative data. A cumulative frequency distribution can be created by using the <code>cumsum()</code> function. </p>
@@ -152,7 +153,7 @@
              &nbsp;> table(x, y) / rowSums(table(x, y)) * 100 <span style = "color:darkseagreen"># Row Percentages</span> <br>
              &nbsp;> table(x, y) / colSums(table(x, y)) * 100 <span style = "color:darkseagreen"># Column Percentages</span> <br>
              &nbsp;> plot(x, y) <span style = "color:darkseagreen"># Scatter Diagram</span> <br> 
-             &nbsp;> abline(a, b) <span style = "color:darkseagreen"># Trend Line</span> 
+             &nbsp;> abline(lm(y ~ x)) <span style = "color:darkseagreen"># Trend Line</span> 
             </p>
           
             <div class="text-center mt-2 mb-2">
@@ -183,7 +184,7 @@
             <p class = "p1">Although there is a function called <code>range()</code>, this does not calculate the range of data. Instead, it gives you the maximum and minimum values of the data. Since the range is simply the difference of these two values, you can apply the <code>diff()</code> function afterwards to compute the range. Alternative, you can use the <code>max()</code> and <code>min()</code> functions. To compute the interquartile range, use the function <code>IQR()</code>. It is important to note that all the letters in this function are capitalized as R is a case-sensitive programming language. To compute the variance, simply use the function <code>var(x)</code>. Similarly, to compute the standard deviation, use the function <code>sd()</code>. There is no function for calculating the coefficient of variation in R, so it must be done manually using the functions for mean and standard deviation. </p>
           
             <p style="background-color:	#F0F0F0; font-family: monospace">
-            &nbsp;> max(x) - min(x) <span style = "color:darkseagreen"># Range</span> <br>
+            &nbsp;> diff(range(x)) <span style = "color:darkseagreen"># Range</span> <br>
             &nbsp;> IQR(x) <span style = "color:darkseagreen"># Interquartile Range</span> <br>
             &nbsp;> var(x) <span style = "color:darkseagreen"># Variance</span> <br> 
             &nbsp;> sd(x) <span style = "color:darkseagreen"># Standard Deviation</span> <br> 
@@ -196,8 +197,8 @@
             &nbsp;> library(moments) <span style = "color:darkseagreen"># Load Package</span> <br>
             &nbsp;> skewness(x) <br>
             &nbsp;> (x - mean(x)) / sd(x) <span style = "color:darkseagreen"># z-Scores</span> <br>
-            &nbsp;> cov(x) <span style = "color:darkseagreen"># Covariance</span> <br> 
-            &nbsp;> cor(x) <span style = "color:darkseagreen"># Correlation Coefficient</span>
+            &nbsp;> cov(x, y) <span style = "color:darkseagreen"># Covariance</span> <br> 
+            &nbsp;> cor(x, y) <span style = "color:darkseagreen"># Correlation Coefficient</span>
             </p>
           
           <div class="text-center mt-2 mb-2">

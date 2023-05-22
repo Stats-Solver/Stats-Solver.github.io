@@ -81,6 +81,7 @@
                 <a class="dropdown-item" href="/lessons.html">Lessons</a>
                 <a class="dropdown-item" href="/tables.html">Tables</a>
                 <a class="dropdown-item" href="/software.html">Software</a>
+                <a class="dropdown-item" href="/coding.html">Coding</a>
             </div>
           </li>
             <li class="nav-item">
@@ -124,7 +125,7 @@
         </script>
                 </div>
           
-            <p class = "p1"> Selecting a sample in R is done by simply using the <code>sample()</code> function. There are two arguments that go into this function: the data, denoted by x, and the sample size, denoted by size. The default method of sampling with this function is sampling without replacement. In order to use sampling with replacement, add the argument replacement = "TRUE". Once the sample is chose, we can do some simple inference such as point estimation by using functions we're already familiar with. We can use the <code>mean()</code> function  </p>
+            <p class = "p1"> Selecting a sample in R is done by simply using the <code>sample()</code> function. There are two arguments that go into this function: the data, denoted by x, and the sample size, denoted by size. The default method of sampling with this function is sampling without replacement. In order to use sampling with replacement, add the argument replacement = "TRUE". Once the sample is chose, we can do some simple inference such as point estimation by using functions we're already familiar with. We can use the <code>mean()</code> function, the sample mean, to get the point estimate of the population mean. In a similar way, we can use the <code>sd()</code> function. </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> sample(x, n) <span style = "color:darkseagreen"># Sampling</span> <br>
@@ -134,7 +135,7 @@
              &nbsp;> mean(condition) <span style = "color:darkseagreen"># Sample Proportion</span> 
             </p>
           
-            <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
+            <p class = "p1"> The first step in calculating a confidence interval is setting 1 - $\alpha$ equal to the confidence cofficient, the decimal form of the confidence level. Then, solving for $\alpha/2$, we get $\alpha/2$ is equal to (1 - confidence coefficient)/2. For the sigma known case, the value of $z_{\alpha/2}$ can be found by using $\alpha/2$ in the <code>qnorm()</code> function. Set the argument lower.tail to FALSE because $z_{\alpha/2}$ is the z-value with an area of $\alpha/2$ in the upper tail.  Then the margin of error can be found manually by using the formula. The confidence interval can be found by adding and substracting the margin of error from the mean. </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> ahalf <- (1 - conf) / 2 <span style = "color:darkseagreen"># &alpha;/2</span> <br>
@@ -144,11 +145,11 @@
              &nbsp;> mean(x) + z * sigma / sqrt(length(x)) <span style = "color:darkseagreen"># Upper Bound of Confidence Interval</span> 
             </p>
           
-            <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
+            <p class = "p1"> The steps for finding confidence intervals in the sigma unknown is nearly identical to the steps for the sigma known case. The only difference is that you use the t-distribution instead of the z-distribution. So, instead of using the qnorm() function, use the qt() function.  </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> ahalf <- (1 - conf) / 2 <span style = "color:darkseagreen"># &alpha;/2</span> <br>
-             &nbsp;> t <- qt(ahalf, lower.tail = FALSE) <span style = "color:darkseagreen"># t_&alpha;/2</span> <br>
+             &nbsp;> t <- qt(ahalf, df, lower.tail = FALSE) <span style = "color:darkseagreen"># t_&alpha;/2</span> <br>
              &nbsp;> t * sd(x) / sqrt(length(x)) <span style = "color:darkseagreen"># Margin of Error</span> <br>
              &nbsp;> mean(x) - t * sd(x) / sqrt(length(x)) <span style = "color:darkseagreen"># Lower Bound of Confidence Interval</span> <br>
              &nbsp;> mean(x) + t * sd(x) / sqrt(length(x)) <span style = "color:darkseagreen"># Upper Bound of Confidence Interval</span> 
@@ -182,11 +183,29 @@
           <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
-             &nbsp;> z <- (mean(x) - mu) / (sigma / sqrt(length(x))) <span style = "color:darkseagreen"># Test Statistic</span> <br>
              &nbsp;> qnorm(alpha) <span style = "color:darkseagreen"># Lower Tail Critical Value</span> <br>
              &nbsp;> qnorm(alpha, lower.tail = FALSE) <span style = "color:darkseagreen"># Upper Tail Critical Value</span> <br>
-             &nbsp;> qnorm(alpha / 2) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Negative)</span> <br>
-             &nbsp;> 2 * qnorm(alpha / 2, lower.tail = FALSE) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Positive)</span>
+             &nbsp;> qnorm(alpha / 2) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Lower)</span> <br>
+             &nbsp;> qnorm(alpha / 2, lower.tail = FALSE) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Upper)</span>
+            </p>
+
+         <p class = "p1"> Hypothesis tests in the sigma unknown case are very similar to the sigma known case. The only difference is you use the t-distribution instead of the z-distribution. So, instead of using the pnorm() function, use the <code>pt()</code> function. Instead of using the qnorm() function, use the <code>qt()</code> function. Also, since the population standard deviation is unknown, the sample standard deviation must be used. It can be calculated using the sd() function. As well, you need to add an argument to the functions since the t-distribution requires a degrees of freedom.   </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;> t <- (mean(x) - mu) / (sd(x) / sqrt(length(x))) <span style = "color:darkseagreen"># Test Statistic</span> <br>
+             &nbsp;> pt(t, df) <span style = "color:darkseagreen"># Lower Tail p-Value</span> <br>
+             &nbsp;> pt(t, df, lower.tail = FALSE) <span style = "color:darkseagreen"># Upper Tail p-Value</span> <br>
+             &nbsp;> 2 * pt(t, df) <span style = "color:darkseagreen"># Two-Tailed p-Value (Negative t)</span> <br>
+             &nbsp;> 2 * pt(t, df, lower.tail = FALSE) <span style = "color:darkseagreen"># Two-Tailed p-Value (Positive t)</span>
+            </p>
+
+        <p class = "p1"> To calculate a confidence interval for the population mean when the population standard deviation is know, we will need four things. First, we need the point estimate of the population mean, which was shown above. Second, we need the  </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;> qt(alpha, df) <span style = "color:darkseagreen"># Lower Tail Critical Value</span> <br>
+             &nbsp;> qt(alpha, df, lower.tail = FALSE) <span style = "color:darkseagreen"># Upper Tail Critical Value</span> <br>
+             &nbsp;> qt(alpha / 2, df) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Lower)</span> <br>
+             &nbsp;> qt(alpha / 2, df, lower.tail = FALSE) <span style = "color:darkseagreen"># Two-Tailed Critical Value (Upper)</span>
             </p>
 
             
