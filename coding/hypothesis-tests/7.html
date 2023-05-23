@@ -44,7 +44,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/lbclogo.png" width="250" height="29" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" width="188" height="25" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,11 +54,39 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Subjects
+            Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/statistics.html">Statistics</a>
+              <a class="dropdown-item" href="/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="/continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="/sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="/confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="/two-population.html">Two Population</a>
+              <a class="dropdown-item" href="/population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="/goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="/analysis-of-variance.html">Analysis of Variance</a>
+              <a class="dropdown-item" href="/simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="/multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="/time-series-analysis.html">Time Series Analysis</a>
             </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Other
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/lessons.html">Lessons</a>
+              <a class="dropdown-item" href="/tables.html">Tables</a>
+              <a class="dropdown-item" href="/software.html">Software</a>
+              <a class="dropdown-item" href="/coding.html">Coding</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
@@ -85,7 +113,7 @@
                 <option value="unknown">Population Mean: σ Unknown</option>
                 <option value="proportion">Population Proportion</option>
             </select>
-        </div>  
+        </div> 
               </div>
         </div>
       
@@ -101,33 +129,33 @@
       
       
       
-      <div class="container" id="criticalvalue">
-          <h4 class="text-center"> Critical Value </h4>
-          <h5 class="text-center" style="color: gray">Lower Tail Test</h5>
+      <div class="container" id="pvalue">
+          <h4 class="text-center"> p-Value </h4>
+          <h5 class="text-center" style="color: gray">Two-Tailed Test</h5>
         <div class="row">
             <div class="col-md-6">
                 
                 <h5 class="text-center">Formula:</h5>
                 
-                <p>$-z_\alpha$ = value of the test statistic corresponding to an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic</p>
+                <p>$p$-value = probability of getting a value for the test statistic as unlikely or more unlikely than the value from the sample </p>
                 
                 <h5 class="text-center">Example:</h5>
                 
                 <p>$$ \begin{align} \mu &\geq 5 \\ \mu &< 5  \end{align}  $$</p>
                 
-                <p>$$ \text{Level of Significance: } \alpha = .05  $$</p>
+                <p>$$ \text{Test Statistic: } z = -2.74  $$</p>
 
                 
             </div>
             <div class="col-md-6">
-                
+             
                 <h5 class="text-center">Functions:</h5>
                 
-                <p><code>qnorm(p)</code>: gives the z value corresponding to an area of p in the lower tail of the standard normal distribution </p>
+                <p><code>pnorm(q, lower.tail = FALSE)</code>: gives the probability that a variable will be greater than or equal to q in a standard normal distribution </p>
                 
                 <h5 class="text-center">Explanation:</h5>
                 
-                <p> Since the test statistic follows a standard normal distribution, the p-value will be the area to the left of the test statistic under a standard normal distribution.  </p>
+                <p>Since the test statistic follows a standard normal distribution, the p-value will be the area to the left of the test statistic under a standard normal distribution.  </p>
                             
             </div>   
           </div>
@@ -139,12 +167,16 @@
             </code>
             <code data-type="sample-code">
                 # Write your function.
-                crit <- function(______) {
-                    ______(alpha)
+                pval <- function(test) {
+                    if (test < 0) {
+                      2 * pnorm(test)
+                    } else {
+                      2 * pnorm(test, lower.tail = FALSE)
+                    }
                 }
                 
                 # Call your function.
-                crit(____)
+                pval(-2.74)
 
 
             </code>
@@ -160,12 +192,12 @@
         </div>
           
           <div class="container text-center">
-          <p><a href="/statistics/hypothesis-testing-3.html">
-            Rejection Rule
+          <p><a href="/statistics/hypothesis-testing-6.html">
+            Test Statistic
         <svg onclick="teststatistic()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
           <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
         </svg></a>
-              <a href="/statistics/hypothesis-testing-5.html">
+              <a href="/statistics/hypothesis-testing-8.html">
         <svg onclick="rejectionrule()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
           <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
         </svg>

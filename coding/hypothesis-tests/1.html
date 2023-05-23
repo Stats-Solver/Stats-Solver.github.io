@@ -13,7 +13,7 @@
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
       
-    <title>Hypothesis Testing in R - Learn by Coding</title>
+    <title>Coding Hypothesis Tests - Stats Solver</title>
       
       <link rel="icon" href="/favicon.png">
       
@@ -44,7 +44,7 @@
   <body>
       <div class="container">
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/lbclogo.png" width="250" height="29" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" width="188" height="25" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
@@ -54,11 +54,39 @@
           
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Subjects
+            Statistics Calculators
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/statistics.html">Statistics</a>
+              <a class="dropdown-item" href="/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="/continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="/sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="/confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="/two-population.html">Two Population</a>
+              <a class="dropdown-item" href="/population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="/goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="/analysis-of-variance.html">Analysis of Variance</a>
+              <a class="dropdown-item" href="/simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="/multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="/time-series-analysis.html">Time Series Analysis</a>
             </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Other
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/lessons.html">Lessons</a>
+              <a class="dropdown-item" href="/tables.html">Tables</a>
+              <a class="dropdown-item" href="/software.html">Software</a>
+              <a class="dropdown-item" href="/coding.html">Coding</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
@@ -68,7 +96,7 @@
     
       
       <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="hypothesis-testing.html">Hypothesis Testing in R</a></h1>
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="/coding/hypothesis-tests.html">Coding Hypothesis Tests</a></h1>
         <!--<h2 class="page-header text-center mt-2" style="font-size: 1em">Related: <a href="confidence-interval.html" class="text-primary" >Confidence Interval Calculator</a></h2>-->
     </div>
       
@@ -77,13 +105,17 @@
           </div>
       
       
+
+      
+      
+      
+      
       <div class="container center">
           <div class="row justify-content-center">
         <div class="col-8 col-md-3">
             <select id="stat" class="form-control" onchange="showthings()">
-                <option value="known">Population Mean: σ Known</option>
-                <option value="unknown">Population Mean: σ Unknown</option>
-                <option value="proportion">Population Proportion</option>
+                <option value="known" selected>Mean: Sigma Known</option>
+                <option value="unknown">Mean: Sigma Unknown</option>
             </select>
         </div> 
               </div>
@@ -98,42 +130,35 @@
       
       
       
-      
-      
-      
-      
-      
-      
-      
-      <div class="container" id="rejectionrule">
-          <h4 class="text-center"> Rejection Rule </h4>
-          <h5 class="text-center" style="color: gray">Two-Tailed Test</h5>
+      <div class="container" id="teststatistic">
+          <h4 class="text-center">Test Statistic </h4>
         <div class="row">
             <div class="col-md-6">
                 
                 <h5 class="text-center">Formula:</h5>
                 
-                <p>$$ \text{Reject } H_0 \text{ if }  p\text{-value } \leq \alpha $$</p>
+                <p>$$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}} $$</p>
                 
                 <h5 class="text-center">Example:</h5>
                 
-                <p>$$ p\text{-value} = .0031  $$</p>
+                <p>$$ \begin{align} \mu &\geq 5 \\ \mu &< 5  \end{align}  $$</p>
                 
-                <p>$$ \text{Level of Significance: } \alpha = .05  $$</p>
+                <p>$$ \bar{x} = 4 \quad \sigma = 2 \quad n = 30 \quad \alpha = .05  $$</p>
+                
 
                 
             </div>
             <div class="col-md-6">
-             
+                
                 <h5 class="text-center">Functions:</h5>
                 
-                <p> <code> if (</code>condition<code>) {</code>output1<code>} else {</code>output2<code>}</code> 
-                </p>
+                <p class="text-center">sqrt(x)</p>
                 
                 <h5 class="text-center">Explanation:</h5>
                 
-                <p> The rejection rule for the p-value is used to determine whether or not to reject the null hypothesis ($H_0$). </p>
-                            
+                <p> The test statistic is calculated using four values: the sample mean ($\bar{x}$), denoted "mean", the hypothesized value of the population mean ($\mu_0$), denoted "mu", the population standard deviation ($\sigma$), denoted "sd", and the sample size ($n$), denoted "size".  </p>
+            
+                
             </div>   
           </div>
           
@@ -144,16 +169,13 @@
             </code>
             <code data-type="sample-code">
                 # Write your function.
-                reject <- function(pval, alpha){
-                    if (pval <= alpha) {
-                      "reject null"
-                    } else {
-                      "don't reject null"
-                    }
+                test <- function(mean, mu, sd, size) {
+                    (______ - mu) / (sd / sqrt(_____))
                 }
                 
                 # Call your function.
-                reject(.0031, .05)
+                test(mean = 4, mu = 5, sd = 2, size = 30)
+
 
 
             </code>
@@ -169,24 +191,16 @@
         </div>
           
           <div class="container text-center">
-          <p><a href="/statistics/hypothesis-testing-7.html">
-            p-Value
-        <svg onclick="teststatistic()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
-          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
-        </svg></a>
-              <a href="/statistics/hypothesis-testing-9.html">
-        <svg onclick="rejectionrule()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+          <p><a href="2.html">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
           <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
         </svg>
-          Critical Value</a>
+          Next</a>
           </p>
       </div>
+          
       </div>
-      
-      
-      
-      
-     
+
       
       
       
@@ -202,32 +216,11 @@
       
           <footer id="footer">
               <div class="container">
-                  <div class="container" id="explanation">
-      <p  class="text-center" style="background-color:white">
-          
-        
-    </p>
-    <div class="collapse" id="collapseExample" data-parent="#explanation">
-      <div class="card card-body" id="descriptiontext">
-
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample2" data-parent="#explanation">
-      <div class="card card-body" id="formulatext">
-
-      </div>
-    </div>
-    <div class="collapse" id="collapseExample3" data-parent="#explanation">
-      <div class="card card-body" id="explanationtext">
-
-      </div>
-    </div>
-                    
-          </div>
+                  
                 <hr>
             </div>
           <p> 
-              &copy; 2022 <a href="/about.html">Learn by Coding</a> 
+              &copy; 2023 <a href="/about.html">Stats Solver</a> 
             </p>  
 
           </footer>
@@ -263,7 +256,7 @@
  
       
       
-      <!--<script src="/javascript/hypothesis.js"></script>-->
+     <!-- <script src="/javascript/hypothesis.js"></script>-->
       
       <script>
       $(function () {

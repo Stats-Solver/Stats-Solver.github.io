@@ -13,7 +13,7 @@
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
       
-    <title>Confidence Intervals in R - Learn by Coding</title>
+    <title>Coding Confidence Intervals - Stats Solver</title>
       
       <link rel="icon" href="/favicon.png">
       
@@ -176,26 +176,32 @@
                 }
                 
                 # Call your function.
-                ahalf(95)
+                ahalf(level = 95)
 
 
 
             </code>
             <code data-type="solution">
-                # Calculate the test statistic
-                (4-5)/(2/sqrt(30))
+                # Write your function.
+                ahalf <- function(level) {
+                    coeff <- level / 100 # Confidence Coefficient
+                    (1 - coeff) / 2
+                }
+                
+                # Call your function.
+                ahalf(95)
 
             </code>
             <code data-type="sct">
                 success_msg("Great job!")
             </code>
-            <div data-type="hint">Use the assignment operator (<code><-</code>) to create the variable <code>a</code>.</div>
+            <div data-type="hint">Use the formula. The confidence coefficient is denoted by "coeff".</div>
         </div>
           
           <div class="container text-center">
           <p>
               <a href="2.html">
-        <svg onclick="rejectionrule()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
           <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
         </svg>
           Next</a>

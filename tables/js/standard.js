@@ -1272,7 +1272,7 @@ function graph0(){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1304,7 +1304,7 @@ function graph1(z){
     ctx.beginPath();
     var points0 = []
     for (i = 0; i < lessvalz; i++) {
-        points0[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points0[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1317,7 +1317,7 @@ function graph1(z){
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
     ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
     
-    ctx.lineTo(20 + .433*lessvalz, 130 - 300*f[Math.round(lessvalz)]);
+    ctx.lineTo(20 + .433*lessvalz, 130 - 275*f[Math.round(lessvalz)]);
     
     ctx.lineTo(20 + .433*lessvalz, 130);
     ctx.lineTo(20 + .433*0, 130);
@@ -1341,7 +1341,7 @@ function graph1(z){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1404,7 +1404,7 @@ function graph00(){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1436,7 +1436,7 @@ function graph2(z){
     ctx.beginPath();
     var points0 = []
     for (i = 0; i < lessvalz; i++) {
-        points0[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points0[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1471,7 +1471,7 @@ function graph2(z){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1538,7 +1538,6 @@ function how1(){
     var c = document.getElementById("howCanvas1");
     var ctx = c.getContext("2d");
     ctx.clearRect(0, 0, 300, 150);
-    ctx.fillText("Standard Normal Distribution",85,10);
     ctx.strokeStyle = 'black';
     ctx.fillStyle = "black";
     ctx.beginPath();
@@ -1548,10 +1547,9 @@ function how1(){
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.4*i, y:125 - 250*f[i]}
+        points[i] = {x:20 + 4.4*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1584,7 +1582,7 @@ function how2(){
     ctx.beginPath();
     var points0 = []
     for (i = 0; i < lessvalz; i++) {
-        points0[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        points0[i] = {x:20 + 4.4*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1607,16 +1605,15 @@ function how2(){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    ctx.fillText("z",285,132);
     ctx.moveTo(150, 135);
     ctx.lineTo(150, 125);
     ctx.fillText("0",148,145);
-    ctx.fillText("-1.25",10 + 4.4*(30+10*lessval),145);
+    ctx.fillText("z",17 + 4.4*(30+10*lessval),145);
     ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
     ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
     var points = []
     for (i = 0; i < 60; i++) {
-        points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
+        points[i] = {x:20 + 4.4*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);

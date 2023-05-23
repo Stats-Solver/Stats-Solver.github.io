@@ -13,7 +13,7 @@
       <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
       <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
       
-    <title>Confidence Intervals in R - Learn by Coding</title>
+    <title>Coding Confidence Intervals - Stats Solver</title>
       
       <link rel="icon" href="/favicon.png">
       
@@ -129,7 +129,7 @@
              &nbsp;1 coeff <- function(level) { <span style = "color:darkseagreen"># Input Confidence Level</span> <br> 
              &nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;level / 100 <span style = "color:darkseagreen"># Output Confidence Coefficient</span> <br>
              &nbsp;3 } <br>
-             &nbsp;4 coeff(95) <span style = "color:darkseagreen"># .95</span> 
+             &nbsp;4 coeff(level = 95) <span style = "color:darkseagreen"># .95</span> 
             </p>
             
             <p class = "p1">Setting the 1 - $\alpha$ equal to the confidence coefficient and then solving for $\alpha/2$, we get $\alpha/2$ = (1 - Confidence Coefficient) / 2. Once we've found the value of $\alpha/2$, we can find the value of $z_{\alpha/2}$. $z_{\alpha/2}$ is the z-value providing an area of $\alpha/2$ in the upper tail of the standard normal, or z, distribution. The function qnorm() can be used to calculate this z-value. The first argument for the qnorm() function is the area. The second argument is lower.tail, which can take a value of TRUE or FALSE.  </p>
@@ -139,7 +139,7 @@
              &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;ahalf <- (1 - coeff) / 2 <span style = "color:darkseagreen"># Calculate Alpha Half </span> <br>
              &nbsp;7 &nbsp;&nbsp;&nbsp;&nbsp;qnorm(ahalf, lower.tail = FALSE) <span style = "color:darkseagreen"># Output z_Alpha Half </span> <br>
              &nbsp;8 } <br>
-             &nbsp;9 z(.95) <span style = "color:darkseagreen"># 1.96</span> 
+             &nbsp;9 z(coeff = .95) <span style = "color:darkseagreen"># 1.96</span> 
             </p>
             
 
@@ -149,7 +149,7 @@
              &nbsp;10 margin <- function(z, sd, size) { <span style = "color:darkseagreen"># Three Inputs</span> <br> 
              &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp; z * sd / sqrt(size) <span style = "color:darkseagreen"># Output Margin of Error </span> <br>
              &nbsp;12 } <br>
-             &nbsp;13 margin(1.96, 4, 50) <span style = "color:darkseagreen"># 5</span> 
+             &nbsp;13 margin(z = 1.96, sd = 4, size = 50) <span style = "color:darkseagreen"># 5</span> 
             </p>
             
             <p class = "p1">To get the confidence interval, we need the mean and the margin of error. The confidence interval is equal to the mean plus or minus the margin of error. So in our function for the confidence interval, we input the mean and the margin of error, denoted by "margin". We subtract the margin of error from the mean and add the margin of error to the mean. Since there will be two values outputed, we wanted to combine them into a single entity. We do this using the c() function, which stands for concatenate. </p>
@@ -158,7 +158,7 @@
              &nbsp;14 conf <- function(mean, margin) { <span style = "color:darkseagreen"># Input Mean and Margin of Error</span> <br> 
              &nbsp;15 &nbsp;&nbsp;&nbsp;&nbsp; c(mean - margin, mean + margin) <span style = "color:darkseagreen"># Output Confidence Interval </span> <br>
              &nbsp;16 } <br>
-             &nbsp;17 margin(10, 5) <span style = "color:darkseagreen"># 5, 15</span> 
+             &nbsp;17 margin(mean = 10, margin = 5) <span style = "color:darkseagreen"># 5, 15</span> 
             </p>
             
 

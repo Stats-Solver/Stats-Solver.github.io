@@ -1190,7 +1190,7 @@ function graph0(){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1225,7 +1225,7 @@ function graph1(z){
     var lessvalneg = -1*lessval
     var lessvalz2 = 300+100*lessvalneg
     for (i = 0; i < lessvalz2; i++) {
-        points0[i] = {x:280 - .433*i, y:130 - 300*f[i]}
+        points0[i] = {x:280 - .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1260,7 +1260,7 @@ function graph1(z){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1318,7 +1318,7 @@ function graph00(){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1352,7 +1352,7 @@ function graph2(z){
     var lessvalneg = -1*lessval
     var lessvalz2 = 300+100*lessvalneg
     for (i = 0; i < lessvalz2; i++) {
-        points0[i] = {x:280 - .433*i, y:130 - 300*f[i]}
+        points0[i] = {x:280 - .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1386,7 +1386,7 @@ function graph2(z){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1439,7 +1439,7 @@ function graph000(){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
@@ -1473,7 +1473,7 @@ function graph3(z){
     var lessvalneg = -1*lessval
     var lessvalz2 = 300+100*lessvalneg
     for (i = 0; i < lessvalz2; i++) {
-        points0[i] = {x:280 - .433*i, y:130 - 300*f[i]}
+        points0[i] = {x:280 - .433*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points0[0].x, points0[0].y);
@@ -1507,7 +1507,183 @@ function graph3(z){
     //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
-        points[i] = {x:20 + .433*i, y:130 - 300*f[i]}
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.stroke(); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var canvas = document.getElementById("howCanvas1");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+var canvas = document.getElementById("howCanvas2");
+var ctx = canvas.getContext("2d");
+ctx.scale(1.25, 1.25);
+
+how1(); how2();
+
+function how1(){
+    var exp = 2.71828;
+    var f = []; var f2 = []; var f3 = []
+    var i;
+    for (i = 0; i < 60; i++) {
+      var j = (i-30)/10
+      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    var c = document.getElementById("howCanvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    
+    ctx.fillText("Standard Normal Dist.",200,23);
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    var points = []
+    for (i = 0; i < 60; i++) {
+        points[i] = {x:20 + 4.4*i, y:130 - 275*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.stroke(); 
+    
+    ctx.strokeStyle = 'gray';
+    ctx.fillStyle = "gray";
+    ctx.fillText("t-Distribution w/ 20 df",201,35);
+    ctx.beginPath();
+    var points = []
+    for (i = 0; i < 60; i++) {
+        points[i] = {x:20 + 4.4*i, y:120 - 225*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.stroke(); 
+    
+    ctx.strokeStyle = 'lightgray';
+    ctx.fillStyle = "lightgray";
+    ctx.fillText("t-Distribution w/ 10 df",201,47);
+    ctx.beginPath();
+    var points = []
+    for (i = 0; i < 60; i++) {
+        points[i] = {x:20 + 4.4*i, y:110 - 175*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.stroke(); 
+}
+
+function how2(){
+    var area = .10565
+    var z = 1.3
+    var lessval = z
+    var lessvalz = 30+10*lessval
+    var exp = 2.71828;
+    var f = [];
+    var i;
+    for (i = 0; i < 60; i++) {
+        var j = (i-30)/10
+        f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+    }
+    var c = document.getElementById("howCanvas2");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    ctx.strokeStyle = 'lightgray';
+    ctx.beginPath();
+    var points0 = []
+    var lessvalneg = -1*lessval
+    var lessvalz2 = 30+10*lessvalneg
+    for (i = 0; i < lessvalz2; i++) {
+        points0[i] = {x:280 - 4.4*i, y:130 - 300*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points0[0].x, points0[0].y);
+    for (i = 1; i < points0.length - 2; i ++){
+      var xc = (points0[i].x + points0[i + 1].x) / 2;
+      var yc = (points0[i].y + points0[i + 1].y) / 2;
+      ctx.quadraticCurveTo(points0[i].x, points0[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
+    ctx.lineTo(20 + 4.4*lessvalz, 130);
+    ctx.lineTo(280, 130);
+    ctx.stroke();
+    ctx.fillStyle = "lightgray";
+    ctx.fill();
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black"; 
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",148,145);
+    ctx.fillText("t",18 + 4.4*(30+10*lessval),145);
+    ctx.moveTo(20 + 4.4*(30+10*lessval), 135);
+    ctx.lineTo(20 + 4.4*(30+10*lessval), 125);
+    var points = []
+    for (i = 0; i < 60; i++) {
+        points[i] = {x:20 + 4.4*i, y:130 - 275*f[i]}
     }
     // move to the first point
     ctx.moveTo(points[0].x, points[0].y);
