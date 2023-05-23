@@ -141,10 +141,6 @@
       <br>
       
       <div class="container" id="how">
-        <div id="how1" class="output text-center" style="color: darkslategray">
-            How to Use:
-            <br><br>
-        </div>
         <div id="how2" class="how" style="color: darkslategray">
             <p class = "p1">The standard normal table, or z table, provides probabilities for the standard normal probability distribution. The standard normal probability distribution is simply a normal probability distribution with a mean of zero and a standard deviation of one. Like the normal probability distribution, the standard normal probability distribution has a bell-shape. The mean of the distribution is in the middle, which is also the highest point on the curve. Furthermore, the distribution is symmetric about the mean, with the right side of the curve being a mirror image of the left side. </p>
             
@@ -164,7 +160,7 @@
             </table>
             <br>
             
-            <p class = "p1">The z table is made up of two pages. The first page is for negative z values and the second page is for positive z values. To find the above area (probability), use the first page. Then match up -1.2 in the first column with .05 in the first row. The corresponding probability is .1056. So that means that the probability that z will be less than or equal to -1.25 is .1056. </p>
+            <p class = "p1">The z table is made up of two pages. The first page is for negative z values and the second page is for positive z values. To find the the area (probability) to the left of a negative z-value, use the first page. For example, to find the area to the left of -1.2, match up -1.2 in the first column with .05 in the first row. The corresponding area is .1056. So that means that the probability that z will be less than or equal to -1.25 is .1056. Note that the standard normal distribution is a continuous probability distribution. That means that the probability that z will take exactly one value is zero. So the probability that z will be less than or equal to a value is the same as the probability that z will be less than that value.  </p>
             
             <table  class="text-center">
               <tr style='border-top: thin solid'>
@@ -201,6 +197,97 @@
               </tr>
             </table>
             <br>
+            
+            <p class = "p1">Calculating the probability that z will be greater than or equal to some value requires an additional step. Suppose you want to calculate the probability that z will be greater than or equal to 0.83. Start with the fact that the total area under the standard normal distribution is one. This means that the area to the right of .83 will be one minus the area to the left of .83. It is important to look at the problem in this way because the standard normal table only gives you the area to the left. Then, using the table, the area to the left of 0.83 is .7967. So the area to the right of 0.83 is 1 - .7967 = .2033. </p>
+            
+            <table  class="text-center">
+              <tr style='border-top: thin solid'>
+                <td><b>z</b></td>
+                <td><b>.01</b></td>
+                <td><b>.02</b></td>
+                <td bgcolor="lightgray"><b>.03</b></td>
+                <td><b>.04</b></td>
+                <td><b>.05</b></td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td><b>0.7</b></td>
+                <td>.7611</td>
+                <td>.7642</td>
+                <td bgcolor="lightgray">.7673</td>
+                <td>.7704</td>
+                <td>.7734</td>
+              </tr>
+              <tr>
+                <td bgcolor="lightgray"><b>0.8</b></td>
+                <td bgcolor="lightgray">.7910</td>
+                <td bgcolor="lightgray">.7939</td>
+                <td bgcolor="lightgray">.7967</td>
+                <td bgcolor="lightgray">.7995</td>
+                <td bgcolor="lightgray">.8023</td>
+              </tr>
+              <tr>
+                <td><b>0.9</b></td>
+                <td>.8186</td>
+                <td>.8212</td>
+                <td bgcolor="lightgray">.8238</td>
+                <td>.8264</td>
+                <td>.8289</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The third type of probability to know how to calculate for the standard normal distribution is the probability that z will be between two values. For example, suppose you want to find the probability that z will be between 0.83 and 2.57. Again, the standard normal distribution only gives us the area to the left of z-values, not the area between. However, if we subtract the area to the left of the large z-value minus the area to the left of the smaller z-value, the result will be the area between them. So the area to the left of 2.57 minus the area to the left 0.83 is equal to the area between 0.83 and 2.57. Thus the probability that z will be between 0.83 and 2.57 is .9932 - .7967 = .1965. </p>
+            
+            <table  class="text-center">
+              <tr style='border-top: thin solid'>
+                <td><b>z</b></td>
+                <td><b>.05</b></td>
+                <td><b>.06</b></td>
+                <td bgcolor="lightgray"><b>.07</b></td>
+                <td><b>.08</b></td>
+                <td><b>.09</b></td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td><b>2.4</b></td>
+                <td>.9929</td>
+                <td>.9931</td>
+                <td bgcolor="lightgray">.9932</td>
+                <td>.9934</td>
+                <td>.9936</td>
+              </tr>
+              <tr>
+                <td bgcolor="lightgray"><b>2.5</b></td>
+                <td bgcolor="lightgray">.9946</td>
+                <td bgcolor="lightgray">.9948</td>
+                <td bgcolor="lightgray">.9949</td>
+                <td bgcolor="lightgray">.9951</td>
+                <td bgcolor="lightgray">.9952</td>
+              </tr>
+              <tr>
+                <td><b>2.6</b></td>
+                <td>.9960</td>
+                <td>.9961</td>
+                <td bgcolor="lightgray">.9962</td>
+                <td>.9963</td>
+                <td>.9964</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">One of the main applications of the standard normal distribution is computing probabilities for normal distributions in general. The normal distribution has many real world applications. For example, heights, weights, rainfall, test scores and many other real world phenomena follow a normal distribution. Probabilities for a normal distribution can be computed by first converting to the standard normal distribution. After conversion, the normal procedure for calculating probabilities for a standard normal distribution can be used.  </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Normal to Standard Normal</td>
+              </tr>
+              <tr>
+                <td>$ z = \dfrac{x-\mu}{\sigma} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Aside from real-world applications, the normal distribution, and thus the standard normal distribution, is frequently used in statistical inference. The sampling distribution of the sample mean follows a normal distribution when the sample size is large. So probabilities can be calculated for the sample mean using the standard normal distribution. It is also used in confidence intervals and hypothesis testing when the population standard deviation is known. In confidence interval, the standard normal distribution is used to compute the margin of error. In hypothesis testing, the standard normal distribution is used to calculate the test statistic. </p>
+            
 
             
       </div>
