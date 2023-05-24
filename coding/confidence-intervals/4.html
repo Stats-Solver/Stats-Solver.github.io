@@ -143,9 +143,9 @@
 
                 <h5 class="text-center">Example:</h5>
                 
-                <p>$$ \bar{x} = 5 \quad \sigma = 2 \quad n = 30 $$</p>
+                <p>$$ \bar{x} = 5 $$</p>
                 
-                <p>$$ \text{Confidence Level} = 95 \% $$</p>
+                <p>$$ \text{Margin of Error} = 3 $$</p>
 
                 
             </div>
@@ -158,7 +158,7 @@
                 
                 <h5 class="text-center">Explanation:</h5>
                 
-                <p>The c() function will combine the lower and upper values of the confidence interval into a single output.  </p>
+                <p>The confidence interval is the mean plus/minus the margin of error. The c() function will combine the lower and upper bounds of the confidence interval into a single output.  </p>
                 
                             
             </div>   
@@ -171,16 +171,12 @@
             </code>
             <code data-type="sample-code">
                 # Write your function.
-                conf <- function(mean, sd, size, level) {
-                    coeff <- level / 100 # Confidence Coefficient
-                    ahalf <- (1 - coeff) / 2 # Alpha Half
-                    z <- qnorm(ahalf, lower.tail = FALSE) # z_Alpha Half
-                    margin <- z * sd / sqrt(size) # Margin of Error
-                    c(mean - ______, mean + ______)
+                ______ <- function(______, margin) {
+                    c(mean - ______, ______ + margin)
                 }
                 
                 # Call your function.
-                conf(5, 2, 30, 95)
+                conf(5, ______)
 
 
 

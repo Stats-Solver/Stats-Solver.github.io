@@ -144,9 +144,7 @@
 
                 <h5 class="text-center">Example:</h5>
                 
-                <p>$$ \bar{x} = 5 \quad \sigma = 2 \quad n = 30 $$</p>
-                
-                <p>$$ \text{Confidence Level} = 95 \% $$</p>
+                <p>$$ \alpha / 2 = .025 $$</p>
                 
             </div>
             <div class="col-md-6">
@@ -170,14 +168,12 @@
             </code>
             <code data-type="sample-code">
                 # Write your function.
-                z <- function(level) {
-                    coeff <- level / 100 # Confidence Coefficient
-                    ahalf <- (1 - coeff) / 2 # Alpha Half
-                    qnorm(______, lower.tail = ______)
+                z <- function(ahalf) {
+                    _____(ahalf, lower.tail = ______)
                 }
                 
                 # Call your function.
-                z(level = 95)
+                z(_____)
 
 
 
@@ -197,11 +193,11 @@
           <p>
               <a href="1.html">
             Previous
-        <svg onclick="teststatistic()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
           <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
         </svg></a>
               <a href="3.html">
-        <svg onclick="rejectionrule()" xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
           <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
         </svg>
           Next</a>

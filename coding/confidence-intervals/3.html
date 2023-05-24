@@ -144,9 +144,7 @@
 
                 <h5 class="text-center">Example:</h5>
                 
-                <p>$$ \bar{x} = 5 \quad \sigma = 2 \quad n = 30 $$</p>
-                
-                <p>$$ \text{Confidence Level} = 95 \% $$</p>
+                <p>$$ z_{\alpha / 2} = 1.96 \quad \sigma = 2 \quad n = 30 $$</p>
 
                 
             </div>
@@ -171,15 +169,12 @@
             </code>
             <code data-type="sample-code">
                 # Write your function.
-                margin <- function(sd, size, level) {
-                    coeff <- level / 100 # Confidence Coefficient
-                    ahalf <- (1 - coeff) / 2 # Alpha Half
-                    z <- qnorm(ahalf, lower.tail = FALSE) # z_Alpha Half
-                    z * (______ / sqrt(______))
+                _____ <- function(z, sd, _____) {
+                    z * (______ / sqrt(size))
                 }
                 
                 # Call your function.
-                margin(sd = 2, size = 30, level = 95)
+                margin(______, 2, 30)
 
 
 

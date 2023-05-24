@@ -34,7 +34,7 @@
       gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
     </script>
       
-      <link rel="canonical" href="https://www.statssolver.com/numerical-summary.html" />
+      <link rel="canonical" href="https://www.statssolver.com/coding/hypothesis-tests.html" />
 
       
   </head>
@@ -102,29 +102,7 @@
       <hr>
           </div>
       
-      
-      
-      
-      
-      
-      
-      
-      
-      
-      
-    <!--  <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-             <h5 class="text-center"><a href="statistics/descriptive-statistics.html"> Population Mean: σ Known </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h5 class="text-center"><a href="statistics/probability-basics.html"> Population Mean: σ Unknown </a> </h4>
-            </div>   
-            <div class="col-md-4">
-             <h5 class="text-center"><a href="statistics/discrete-distributions.html"> Population Proportion </a></h4>
-            </div>
-          </div>
-      </div> -->
+
       
       
       
@@ -150,13 +128,7 @@
       
       
       <div class="container" id="how">
-          
-        <div id="how1" class="output text-center" style="color: darkslategray">
-            
-            Introduction:
-            <br><br>
-            
-        </div>
+
         <div id="how2" class="how" style="color: darkslategray">
             <p class = "p1">
             The first step in hypothesis testing is to calculate the test statistic. When the population standard deviation is known, the formula for hte test statistic uses the population standard deviation and is denoted by z. The test statistic is written z because it follows a standard normal, or z, distribution. The formula for the test statistic uses four values: the sample mean, the hypothesized value of the population mean, the population standard deviation and the sample size. So a function that calculates the the test statistic will require four arguments. 
@@ -166,269 +138,147 @@
              &nbsp;1 test <- function(mean, mu, sd, size) { <span style = "color:darkseagreen"># Four Inputs</span> <br> 
              &nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;(mean - mu) / (sd / sqrt(size)) <span style = "color:darkseagreen"># Output Test Statistic</span> <br>
              &nbsp;3 } <br>
-             &nbsp;4 test(95) <span style = "color:darkseagreen"># .95</span> 
+             &nbsp;4 test(mean = 5.5, mu = 6, sd = 2, size = 40) <span style = "color:darkseagreen"># -1.58</span> 
             </p>
             
             <p class = "p1">
-            The first step in a hypothesis test, of any case or form, is to calculate the test statistic. The formula for the test statistic will dependent on whether $\sigma$ is known or unknown. If $\sigma$ is known, then the test statistic is written as $z$. This is because the test statistic in the $\sigma$ known case follows the standard normal, or z, distribution. In the $\sigma$ unknown case, the test statistic is written $t$ because it follows a $t$ distribution with $n-1$ degrees of freedom. Computing this formulas in R requires only one function to compute the square root. The function for calculating the square root in R is <code>sqrt(x)</code>.
+            There are two ways to use the test statistic to conduct a hypothesis test. One way is with the p-value approach and the other is the critical value approach. In the p-value approach, we calculate a p-value, where the "p" stands for probability. In a lower tail test, the p-value is the probability of getting a value of the test statistic as small as or smaller than the value from the sample. So to calculate this in R, we can use the pnorm() function and put the test statistic as the argument. This will give us the area under the standard normal distribution to the left of the test statistic.
             </p>
             
-            <table style="width:100%">
-              <tr>
-                <td></td>
-                <td>$\sigma$ Known</td>
-                <td>$\sigma$ Unknown</td>
-              </tr>
-              <tr>
-                <td>Test Statistic</td>  
-                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{n}}  $</td>
-                <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
-              </tr>
-            </table>
-            <br>
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;5 pval <- function(test) { <span style = "color:darkseagreen"># Input Test Statistic</span> <br> 
+             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;pnorm(test) <span style = "color:darkseagreen"># Output p-Value</span> <br>
+             &nbsp;7 } <br>
+             &nbsp;8 pval(test = -1.25) <span style = "color:darkseagreen"># .0571</span> 
+            </p>
+
+            <p class = "p1">
+            Once we've calculate the p-value, we can use the rejection rule for the p-value approach to determine whether or not to reject the null hypothesis. The rejection rule for the p-value approach says to reject the null hypothesis if the p-value is less than or equal to the level of significance, $\alpha$. In order to program this into R, we need to use an if-else statement. The condition for our if-else statement is that the p-value is less than or equal to the level of significance. If this condition is met, our function prints "reject null". If the condition is not satisfied, meaning the p-value is greater than the level of significance, our function prints "do not reject null".
+            </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;9 reject <- function(pval, alpha) { <span style = "color:darkseagreen"># Input p-Value and Level of Significance</span> <br> 
+             &nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;if (pval <= alpha) { <span style = "color:darkseagreen"># Condition</span> <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reject null" <span style = "color:darkseagreen"># Output if Condition Satisfied</span> <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;} else { <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "do not reject null" <span style = "color:darkseagreen"># Output if Condition Not Satisfied</span>  <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;}  <br>
+             &nbsp;13 }  <br>
+             &nbsp;14 reject(pval = .0571, alpha = .05) <span style = "color:darkseagreen"># "do not reject null"</span> 
+            </p>
+
+            <p class = "p1">
+            The second way of using the test statistic to conduct a hypothesis test is through the critical value approach. In the critical value approach, we calculate a critical value and compare its value to the test statistic. The critical value in a lower tail test is the value of the test statistic corresponding to an area of $\alpha$ (level of significance) in the lower tail of the sampling distribution of the test statistic. Since the test statstic follows a z-distribution, the critical value is the z-value corresponding to an area of $\alpha$ in the lower tail of the z-distribution. So, in our function, we can use the qnorm function and use the level of significance as the argument. 
+            </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;5 crit <- function(alpha) { <span style = "color:darkseagreen"># Input Test Statistic</span> <br> 
+             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;qnorm(alpha) <span style = "color:darkseagreen"># Output p-Value</span> <br>
+             &nbsp;7 } <br>
+             &nbsp;8 crit(alpha = .05) <span style = "color:darkseagreen"># -1.64</span> 
+            </p>
+
+            <p class = "p1">
+            Once we've calculate the critical value, we can use the rejection rule for the critical value approach to determine whether or not to reject the null hypothesis. The rejection rule for the p-value approach says to reject the null hypothesis if the p-value is less than or equal to the level of significance, $\alpha$. In order to program this into R, we need to use an if-else statement. The condition for our if-else statement is that the p-value is less than or equal to the level of significance. If this condition is met, our function prints "reject null". If the condition is not satisfied, meaning the p-value is greater than the level of significance, our function prints "do not reject null".
+            </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;9 reject <- function(pval, alpha) { <span style = "color:darkseagreen"># Input p-Value and Level of Significance</span> <br> 
+             &nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;if (pval <= alpha) { <span style = "color:darkseagreen"># Condition</span> <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reject null" <span style = "color:darkseagreen"># Output if Condition Satisfied</span> <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;} else { <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "do not reject null" <span style = "color:darkseagreen"># Output if Condition Not Satisfied</span>  <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;}  <br>
+             &nbsp;13 }  <br>
+             &nbsp;14 reject(.0571, .05) <span style = "color:darkseagreen"># "do not reject null"</span> 
+            </p>
+
+
+
+
+
+
+
+
+
+            <p class = "p1">
+            The first step in hypothesis testing is to calculate the test statistic. When the population standard deviation is known, the formula for hte test statistic uses the population standard deviation and is denoted by z. The test statistic is written z because it follows a standard normal, or z, distribution. The formula for the test statistic uses four values: the sample mean, the hypothesized value of the population mean, the population standard deviation and the sample size. So a function that calculates the the test statistic will require four arguments. 
+            </p>
+            
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;1 test <- function(x, mu) { <span style = "color:darkseagreen"># Four Inputs</span> <br> 
+             &nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;(mean(x) - mu) / (sd(x) / sqrt(length(x))) <span style = "color:darkseagreen"># Output Test Statistic</span> <br>
+             &nbsp;3 } <br>
+             &nbsp;4 test(x, mu = 6) <span style = "color:darkseagreen"># -1.58</span> 
+            </p>
             
             <p class = "p1">
-            Once the test statistic is calculated, it can be used to calculate a probability known as a p-value. In a lower tail test, the p-value is the probability of getting a value for the test statistic as small as or smaller than the value from the sample. Since the test statistic follows a standard normal (z) distribution, the p-value is the area to the left of the test statistic under the z distribution. In R, probabilities for a normal distribution can be computed using the <code>pnorm(q)</code> function. The default values for the mean and standard deviation of this function are 0 and 1, corresponding to the standard normal distribution. 
+            There are two ways to use the test statistic to conduct a hypothesis test. One way is with the p-value approach and the other is the critical value approach. In the p-value approach, we calculate a p-value, where the "p" stands for probability. In a lower tail test, the p-value is the probability of getting a value of the test statistic as small as or smaller than the value from the sample. So to calculate this in R, we can use the pnorm() function and put the test statistic as the argument. This will give us the area under the standard normal distribution to the left of the test statistic.
             </p>
             
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas1" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class="p1">
-            After the p-value is computed, we can use the rejection rule for the p-value to determine whether or not to reject the null hypothesis ($H_0$). The rejection rule for the p-value says that we reject the null hypothesis if the p-value is less than or equal to the level of significance ($\alpha$). Coding this in R requires the use of an <code>if-else</code> statement. That is, one code is executed if a condition is satisified and a different code is executed if the condition is not satisifed. 
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;5 pval <- function(test) { <span style = "color:darkseagreen"># Input Test Statistic</span> <br> 
+             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;pt(test, lower.tail = FALSE) <span style = "color:darkseagreen"># Output p-Value</span> <br>
+             &nbsp;7 } <br>
+             &nbsp;8 pval(test = -1.25) <span style = "color:darkseagreen"># .0571</span> 
             </p>
-            
-            <table class="text-center">
-                <tr>
-                <td>Lower, Upper and Two-Tailed</td>
-              </tr>
-              <tr>
-                <td style="text-align:left"><code>if (pvalue <= alpha) {</code></td>
-              </tr>
-              <tr>
-                <td style="text-align:left">&nbsp;&nbsp;&nbsp;<code>"reject null"</code></td>
-              </tr>
-              <tr>
-                <td style="text-align:left"><code>} else {</code></td>
-              </tr>
-              <tr>
-                <td style="text-align:left">&nbsp;&nbsp;&nbsp;<code>"don't reject null"</code></td>
-                </tr>
-                <tr>
-                <td style="text-align:left"><code>}</code></td>
-                </tr>
-            </table>
-            <br>
-            
-            <p class="p1">
-            Another way to conduct a hypothesis test is to use a critical value. For a lower tail test, the critical value is the value of the test statistic corresponding to an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. Since the test statistic follows the standard normal ($z$) distribution, the critical value is the z value corresponding to an area of $\alpha$ in the lower tail of the $z$ distribution. For a lower tail test when $\sigma$ is known, the critical value is written $-z_\alpha$. The R function <code>qnorm(p)</code> can be used to calculate the critical value. 
-            </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas4" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-            
-            <p class="p1">
-            Just as there is a rejection rule for the p-value, there is a rejection rule for the critical value. The rejection rule for the critical value says to rejection the null hypothesis ($H_0$) if the test statistic ($z$) is less than or equal to the critical value ($-z_\alpha$). Like the rejection rule for the p-value, we will have to use an <code>if-else</code> statement to code this in R. If the condition for the critical value is satisfied we will reject the null hypothesis, otherwise we will not reject the null hypothesis. 
-            </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td>Lower Tail Test</td>
-                <td>Upper Tail Test</td>
-                <td>Two-Tailed Test</td>
-              </tr>
-              <tr>
-                <td><code>if (z <= critical) {</code></td>
-                <td><code>if (z >= critical) {</code></td>
-                <td><code>if (z <= -crit || z >= +crit) {</code></td>
-              </tr>
-              <tr>
-                <td><code>"reject null"</code></td>
-                  <td><code>"reject null"</code></td>
-                  <td><code>"reject null"</code></td>
-              </tr>
-              <tr>
-                <td><code>} else {</code></td>
-                  <td><code>} else {</code></td>
-                  <td><code>} else {</code></td>
-              </tr>
-              <tr>
-                <td><code>"don't reject null"</code></td>
-                  <td><code>"don't reject null"</code></td>
-                  <td><code>"don't reject null"</code></td>
-                </tr>
-                <tr>
-                <td><code>}</code></td>
-                    <td><code>}</code></td>
-                    <td><code>}</code></td>
-                </tr>
-            </table>
-            <br>
-            
-            <!--
-            <p class = "p1">The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
 
-            <table style="width:100%">
-              <tr>
-                <td></td>
-                <td>$\sigma$ Known</td>
-                <td>$\sigma$ Unknown</td>
-              </tr>
-              <tr>
-                <td>Test Statistic</td>  
-                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{{\color{Black} n}}}  $</td>
-                <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
-              </tr>
-            </table>
-            <br>
+            <p class = "p1">
+            Once we've calculate the p-value, we can use the rejection rule for the p-value approach to determine whether or not to reject the null hypothesis. The rejection rule for the p-value approach says to reject the null hypothesis if the p-value is less than or equal to the level of significance, $\alpha$. In order to program this into R, we need to use an if-else statement. The condition for our if-else statement is that the p-value is less than or equal to the level of significance. If this condition is met, our function prints "reject null". If the condition is not satisfied, meaning the p-value is greater than the level of significance, our function prints "do not reject null".
+            </p>
             
-            <p class = "p1">Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;9 reject <- function(pval, alpha) { <span style = "color:darkseagreen"># Input p-Value and Level of Significance</span> <br> 
+             &nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;if (pval <= alpha) { <span style = "color:darkseagreen"># Condition</span> <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reject null" <span style = "color:darkseagreen"># Output if Condition Satisfied</span> <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;} else { <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "do not reject null" <span style = "color:darkseagreen"># Output if Condition Not Satisfied</span>  <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;}  <br>
+             &nbsp;13 }  <br>
+             &nbsp;14 reject(pval = .0571, alpha = .05) <span style = "color:darkseagreen"># "do not reject null"</span> 
+            </p>
 
-            <table style="width:100%">
-              <tr>
-                <td>Lower Tail Test</td>
-                <td>Upper Tail Test</td>
-                <td>Two-Tailed Test</td>
-              </tr>
-              <tr>
-                <td>$H_0 \colon \mu \geq \mu_0$</td>
-                <td>$H_0 \colon \mu \leq \mu_0$</td>
-                <td>$H_0 \colon \mu = \mu_0$</td>
-              </tr>
-              <tr>
-                <td>$H_a \colon \mu < \mu_0$</td>
-                <td>$H_a \colon \mu > \mu_0$</td>
-                <td>$H_a \colon \mu \neq \mu_0$</td>
-              </tr>
-            </table>
-            <br>
+            <p class = "p1">
+            The second way of using the test statistic to conduct a hypothesis test is through the critical value approach. In the critical value approach, we calculate a critical value and compare its value to the test statistic. The critical value in a lower tail test is the value of the test statistic corresponding to an area of $\alpha$ (level of significance) in the lower tail of the sampling distribution of the test statistic. Since the test statstic follows a z-distribution, the critical value is the z-value corresponding to an area of $\alpha$ in the lower tail of the z-distribution. So, in our function, we can use the qnorm function and use the level of significance as the argument. 
+            </p>
             
-            <p class = "p1">In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. </p>
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;5 crit <- function(alpha) { <span style = "color:darkseagreen"># Input Test Statistic</span> <br> 
+             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;qnorm(alpha) <span style = "color:darkseagreen"># Output p-Value</span> <br>
+             &nbsp;7 } <br>
+             &nbsp;8 crit(alpha = .05) <span style = "color:darkseagreen"># -1.64</span> 
+            </p>
 
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas1" width="350" height="175"></canvas><canvas id="howCanvas2" width="350" height="175"></canvas><canvas id="howCanvas3" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-            <br>
+            <p class = "p1">
+            Once we've calculate the critical value, we can use the rejection rule for the critical value approach to determine whether or not to reject the null hypothesis. The rejection rule for the p-value approach says to reject the null hypothesis if the p-value is less than or equal to the level of significance, $\alpha$. In order to program this into R, we need to use an if-else statement. The condition for our if-else statement is that the p-value is less than or equal to the level of significance. If this condition is met, our function prints "reject null". If the condition is not satisfied, meaning the p-value is greater than the level of significance, our function prints "do not reject null".
+            </p>
             
-            <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;9 reject <- function(pval, alpha) { <span style = "color:darkseagreen"># Input p-Value and Level of Significance</span> <br> 
+             &nbsp;10 &nbsp;&nbsp;&nbsp;&nbsp;if (pval <= alpha) { <span style = "color:darkseagreen"># Condition</span> <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "reject null" <span style = "color:darkseagreen"># Output if Condition Satisfied</span> <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;} else { <br>
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; "do not reject null" <span style = "color:darkseagreen"># Output if Condition Not Satisfied</span>  <br>
+             &nbsp;12 &nbsp;&nbsp;&nbsp;&nbsp;}  <br>
+             &nbsp;13 }  <br>
+             &nbsp;14 reject(.0571, .05) <span style = "color:darkseagreen"># "do not reject null"</span> 
+            </p>
+
+
             
-            <!--<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-             Square1 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="6232876137"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>-->
+
+
+
+
+
+
+
             
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
-            
-            <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Responsive2 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="2627397291"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
 
           
-            
-            <p class = "p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas4" width="350" height="175"></canvas><canvas id="howCanvas5" width="350" height="175"></canvas><canvas id="howCanvas6" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-
-            <p class = "p1">To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Lower Tail Test</td>
-                <td>Upper Tail Test</td>
-                <td>Two-Tailed Test</td>
-              </tr>
-              <tr>
-                <td>If $z \leq -z_\alpha$, reject $H_0$.</td>
-                <td>If $z \geq z_\alpha$, reject $H_0$.</td>
-                <td>If $z \leq -z_{\alpha/2}$ or $z \geq z_{\alpha/2}$, reject $H_0$.</td>
-              </tr>
-              <tr>
-                <td>If $t \leq -t_\alpha$, reject $H_0$.</td>
-                <td>If $t \geq t_\alpha$, reject $H_0$.</td>
-                <td>If $t \leq -t_{\alpha/2}$ or $t \geq t_{\alpha/2}$, reject $H_0$.</td>
-              </tr>
-            </table>
-          <br>
-          
-            <p class = "p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. There are two types of errors you can make:  Type I Error and Type II Error. A Type I Error is committed if you reject the null hypothesis when the null hypothesis is true. Ideally, we'd like to accept the null hypothesis when the null hypothesis is true. A Type II Error is committed if you accept the null hypothesis when the alternative hypothesis is true. Ideally, we'd like to reject the null hypothesis when the alternative hypothesis is true.</p>
-
-            <table>
-              <tr>
-                <td></td>
-                <td></td>
-                <td colspan="2">Condition</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style = "border-right: thin solid; border-bottom: thin solid"></td>
-                <td style = "border-bottom: thin solid">$H_0$ True</td>
-                <td style = "border-bottom: thin solid">$H_a$ True</td>
-              </tr>
-              <tr>
-                <td rowspan="2">Conclusion</td>
-                <td style = "border-right: thin solid">Accept $H_0$</td>
-                <td>Correct</td>
-                <td>Type II Error</td>
-              </tr>
-              <tr>
-                <td style = "border-right: thin solid">Reject $H_0$</td>
-                <td>Type I Error</td>
-                <td>Correct</td>
-              </tr>
-            </table>
-          <br>
-            
-          <p class = "p1"> Hypothesis testing is closely related to the statistical area of confidence intervals. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Confidence intervals can be found using the <a href="confidence-interval.html">Confidence Interval Calculator</a>. The calculator on this page does hypothesis tests for one population mean. Sometimes we're interest in hypothesis tests about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. The probability of a Type II Error can be calculated by clicking on the link at the bottom of the page. </p>
-            
-            
+              </div>
         </div>
-      </div>
-        --> 
+
       
       
       

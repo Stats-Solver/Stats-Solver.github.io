@@ -144,9 +144,7 @@
 
                 <h5 class="text-center">Example:</h5>
                 
-                <p>$$ \bar{x} = 5 \quad \sigma = 2 \quad n = 30 $$</p>
-                
-                <p>$$ \text{Confidence Level} = 95 \% $$</p>
+                <p>$$ \text{Confidence Coefficient} = .95 $$</p>
                 
             </div>
             <div class="col-md-6">
@@ -166,17 +164,15 @@
           <div data-datacamp-exercise data-lang="r">
             <code data-type="pre-exercise-code">
                 # This will get executed each time the exercise gets initialized
-                b = 6
             </code>
             <code data-type="sample-code">
                 # Write your function.
-                ahalf <- function(level) {
-                    coeff <- ______ / 100 # Confidence Coefficient
-                    (1 - ______) / 2
+                ahalf <- function(coeff) {
+                    (1 - _____) / 2
                 }
                 
                 # Call your function.
-                ahalf(level = 95)
+                ahalf(_____)
 
 
 
@@ -184,22 +180,25 @@
             <code data-type="solution">
                 # Write your function.
                 ahalf <- function(level) {
-                    coeff <- level / 100 # Confidence Coefficient
-                    (1 - coeff) / 2
+                    coeff <- 100
                 }
-                
-                # Call your function.
-                ahalf(95)
 
             </code>
             <code data-type="sct">
-                success_msg("Great job!")
+                ex() %>% check_fun_def("ahalf") %>% {
+                  check_arguments(.)
+                }
             </code>
             <div data-type="hint">Use the formula. The confidence coefficient is denoted by "coeff".</div>
         </div>
           
           <div class="container text-center">
           <p>
+              <a href="0.html">
+            Previous
+        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg></a>
               <a href="2.html">
         <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
           <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>

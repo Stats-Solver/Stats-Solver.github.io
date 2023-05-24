@@ -36,7 +36,7 @@
       gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
     </script>
       
-      <link rel="canonical" href="https://www.statssolver.com/numerical-summary.html" />
+      <link rel="canonical" href="https://www.statssolver.com/software/probability-theory.html" />
 
       
   </head>
@@ -132,19 +132,17 @@
              &nbsp;> rbinom(r, size, prob) <span style = "color:darkseagreen"># Generate Random Numbers</span> <br> 
             </p>
           
-            <p class = "p1"> The functions for the Poisson distribution, and all probability distributions in R, are similar to the ones for the binomial distribution. However, the arguments are going to be different. The function <code>dpois()</code> will give you the probability  </p>
+            <p class = "p1"> The functions for the Poisson distribution, and all probability distributions in R, are similar to the ones for the binomial distribution. However, the arguments are going to be different. Instead of the arguments "size" and "prob", there is one argument for the poisson distribution in R, "lambda". When using the Poisson distribution, we are interested in calculating the number of occurences in a period of time or space. The argument "lambda" is the average number of occurences. The function <code>dpois()</code> will give you the probability of having x number of occurences. The function <code>ppois()</code> calculates the probability of having x or fewer occurences. Setting the argument lower.tail equal to FALSE gives you the probability of x or more occurences. </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
-             &nbsp;> dpois(x, lambda) <span style = "color:darkseagreen"># Probability of x Successes</span> <br>
+             &nbsp;> dpois(x, lambda) <span style = "color:darkseagreen"># Probability of x</span> <br>
              &nbsp;> ppois(x, lambda) <span style = "color:darkseagreen"># Cumulative Probability</span> <br>
              &nbsp;> ppois(x, lambda, lower.tail = FALSE) <span style = "color:darkseagreen"># Cumulative Probability (Upper Tail)</span> <br>
              &nbsp;> qpois(q, lambda) <span style = "color:darkseagreen"># Inverse Cumulative Probability</span> <br>
              &nbsp;> rpois(r, lambda) <span style = "color:darkseagreen"># Generate Random Numbers</span> <br> 
             </p>
-          
-  
 
-            <p class = "p1"> The functions for the Poisson distribution, and all probability distributions in R, are similar to the ones for the binomial distribution. However, the arguments are going to be different. The function <code>dpois()</code> will give you the probability  </p>
+            <p class = "p1"> The functions for the uniform distribution all have the term "unif" in them. In each of the functions there are arguments for the minimum and maximum value, labeled "min" and "max". The <code>dunif()</code> function gives you the value of the probability density function at the value x. Note that this is not the probability of x as this is a continuous probability distribution. The function <code>punif()</code> gives you the cumuluative probability, or the probability of getting a value less than or equal to x. Setting the argument lower.tail equal to FALSE gives you the probability of getting a value greater than or equal to x. The function <code>qunif()</code> gives you the value correspondinging to the given cumulative probability, q. </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> dunif(x, min, max) <span style = "color:darkseagreen"># Probability of x Successes</span> <br>
@@ -154,7 +152,7 @@
              &nbsp;> runif(r, min, max) <span style = "color:darkseagreen"># Generate Random Numbers</span> <br> 
             </p>
           
-            <p class = "p1"> The functions for the Poisson distribution, and all probability distributions in R, are similar to the ones for the binomial distribution. However, the arguments are going to be different. The function <code>dpois()</code> will give you the probability  </p>
+            <p class = "p1"> The functions for calculating probabilities for the normal distribution all have the term "norm" in them. The arguments "mean" and "sd" are the mean and standard deviation of the distribution. The default values for these arguments are 0 and 1, which correspond to the standard normal distribution. In other words, omitting these arguments means you're calculating probabilities for the standard normal distribution. The function <code>dnorm()</code> calculates the values of the probability density function at x. Again, this is not the probability of getting a value of x. Rather, it is the height of the normal curve at x. Probabilities are calculated for a continuous distribution by taking the area under the curve, which can be done use the <code>pnorm()</code> function. </p>
             
             <p style="background-color:	#F0F0F0; font-family: monospace">
              &nbsp;> dnorm(x, mean, sd) <span style = "color:darkseagreen"># Probability of x Successes</span> <br>

@@ -36,7 +36,7 @@
       gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
     </script>
       
-      <link rel="canonical" href="https://www.statssolver.com/numerical-summary.html" />
+      <link rel="canonical" href="https://www.statssolver.com/coding/confidence-intervals.html" />
 
       
   </head>
@@ -106,7 +106,7 @@
       
       
       <div class="container text-center">
-          <a href="confidence-intervals/1.html" class="btn btn-primary">Start Coding</a>
+          <a href="confidence-intervals/0.html" class="btn btn-primary">Start Coding</a>
         </div>
       
       
@@ -126,20 +126,69 @@
             <p class = "p1">The first step in finding a confidence interval is to set 1 - $\alpha$ equal to the confidence coefficient. The confidence coefficient is the decimal form of the confidence level. So if the confidence leve is 95%, the confidence coefficient is .95. So we can calculate the confidence coefficient in R by dividing the confidence level by 100.  The simple function shown below takes in the confidence "level", denoted by level, and solves for the conefidence coefficient, denoted by "coeff". The function is executed for a confidence level of 95% and the resulting output is .95.</p>
 
             <p style="background-color:	#F0F0F0; font-family: monospace">
-             &nbsp;1 coeff <- function(level) { <span style = "color:darkseagreen"># Input Confidence Level</span> <br> 
-             &nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;level / 100 <span style = "color:darkseagreen"># Output Confidence Coefficient</span> <br>
+             &nbsp;1 coeff <- function(level) {  <br> 
+             &nbsp;2 &nbsp;&nbsp;&nbsp;&nbsp;level / 100  <br>
              &nbsp;3 } <br>
-             &nbsp;4 coeff(level = 95) <span style = "color:darkseagreen"># .95</span> 
+             &nbsp;4 coeff(95) <span style = "color:darkseagreen"># .95</span> 
             </p>
             
             <p class = "p1">Setting the 1 - $\alpha$ equal to the confidence coefficient and then solving for $\alpha/2$, we get $\alpha/2$ = (1 - Confidence Coefficient) / 2. Once we've found the value of $\alpha/2$, we can find the value of $z_{\alpha/2}$. $z_{\alpha/2}$ is the z-value providing an area of $\alpha/2$ in the upper tail of the standard normal, or z, distribution. The function qnorm() can be used to calculate this z-value. The first argument for the qnorm() function is the area. The second argument is lower.tail, which can take a value of TRUE or FALSE.  </p>
 
             <p style="background-color:	#F0F0F0; font-family: monospace">
-             &nbsp;5 z <- function(coeff) { <span style = "color:darkseagreen"># Input Confidence Coefficient</span> <br> 
-             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;ahalf <- (1 - coeff) / 2 <span style = "color:darkseagreen"># Calculate Alpha Half </span> <br>
-             &nbsp;7 &nbsp;&nbsp;&nbsp;&nbsp;qnorm(ahalf, lower.tail = FALSE) <span style = "color:darkseagreen"># Output z_Alpha Half </span> <br>
+             &nbsp;5 ahalf <- function(coeff) {  <br> 
+             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;ahalf <- (1 - coeff) / 2 <br>
              &nbsp;8 } <br>
-             &nbsp;9 z(coeff = .95) <span style = "color:darkseagreen"># 1.96</span> 
+             &nbsp;9 ahalf(.95) <span style = "color:darkseagreen"># 1.96</span> 
+            </p>
+
+            <p class = "p1">Setting the 1 - $\alpha$ equal to the confidence coefficient and then solving for $\alpha/2$, we get $\alpha/2$ = (1 - Confidence Coefficient) / 2. Once we've found the value of $\alpha/2$, we can find the value of $z_{\alpha/2}$. $z_{\alpha/2}$ is the z-value providing an area of $\alpha/2$ in the upper tail of the standard normal, or z, distribution. The function qnorm() can be used to calculate this z-value. The first argument for the qnorm() function is the area. The second argument is lower.tail, which can take a value of TRUE or FALSE.  </p>
+
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;5 z <- function(ahalf) {  <br> 
+             &nbsp;7 &nbsp;&nbsp;&nbsp;&nbsp;qnorm(ahalf, lower.tail = FALSE)  <br>
+             &nbsp;8 } <br>
+             &nbsp;9 z(.025) <span style = "color:darkseagreen"># 1.96</span> 
+            </p>
+            
+
+            <p class = "p1"> Once we have $z_{\alpha/2}$, we can calculate the margin of errors. The margin of error is made up of three components: $z_{\alpha/2}$, the standard deviation and the sample size. In our R code, $z_{\alpha/2}$ is denoted by "z", the standard deviation is denoted by "sd" and the sample size is denoted by "size". Given the value of these three, we can use the formula $z_{\alpha/2} \sigma / \sqrt(n)$ to calculate the margin of error. </p>
+
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;10 margin <- function(z, sd, size) {  <br> 
+             &nbsp;11 &nbsp;&nbsp;&nbsp;&nbsp; z * sd / sqrt(size)  <br>
+             &nbsp;12 } <br>
+             &nbsp;13 margin(1.96, 4, 50) <span style = "color:darkseagreen"># 5</span> 
+            </p>
+            
+            <p class = "p1">To get the confidence interval, we need the mean and the margin of error. The confidence interval is equal to the mean plus or minus the margin of error. So in our function for the confidence interval, we input the mean and the margin of error, denoted by "margin". We subtract the margin of error from the mean and add the margin of error to the mean. Since there will be two values outputed, we wanted to combine them into a single entity. We do this using the c() function, which stands for concatenate. </p>
+
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;14 conf <- function(mean, margin) {  <br> 
+             &nbsp;15 &nbsp;&nbsp;&nbsp;&nbsp; c(mean - margin, mean + margin)  <br>
+             &nbsp;16 } <br>
+             &nbsp;17 margin(10, 5) <span style = "color:darkseagreen"># 5, 15</span> 
+            </p>
+            
+            
+
+
+
+
+
+
+
+
+
+
+            <p class = "p1">In the case that the population standard deviation is unknown, the procedure is similar to what's shown above, except the t-distribution is used instead of the standard normal or z-distribution. So instead of looking for $z_{\alpha/2}$ as in the sigma known case, we are looking for $t_{\alpha/2}$. Since we are using the t-distribution, we need the degrees of freedom. The degrees of freedom for a confidence interval about the population mean is equal to the sample size minus one (n - 1). The function <code>qt()</code> will gives you the t-value for a given probability. The argument lower.tail being equal to FALSE will make it the upper tail area. </p>
+
+            <p style="background-color:	#F0F0F0; font-family: monospace">
+             &nbsp;5 t <- function(x ,coeff) { <span style = "color:darkseagreen"># Input Confidence Coefficient</span> <br> 
+             &nbsp;6 &nbsp;&nbsp;&nbsp;&nbsp;ahalf <- (1 - coeff) / 2 <span style = "color:darkseagreen"># Calculate Alpha Half </span> <br>
+             &nbsp;7 &nbsp;&nbsp;&nbsp;&nbsp;size <- length(x) <span style = "color:darkseagreen"># Calculate Alpha Half </span> <br>
+             &nbsp;8 &nbsp;&nbsp;&nbsp;&nbsp;qnt(ahalf, df = size - 1, lower.tail = FALSE) <span style = "color:darkseagreen"># Output z_Alpha Half </span> <br>
+             &nbsp;9 } <br>
+             &nbsp;10 t(x, coeff = .95) <span style = "color:darkseagreen"># 1.96</span> 
             </p>
             
 
@@ -160,83 +209,22 @@
              &nbsp;16 } <br>
              &nbsp;17 margin(mean = 10, margin = 5) <span style = "color:darkseagreen"># 5, 15</span> 
             </p>
-            
 
-            
-            <!--<div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Big Rectangle 2 
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:300px;height:250px"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="3611905049"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
-            
-            <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Responsive2 
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="2627397291"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
-            
-            <p class = "p1">If we're constructing a confidence interval of the population proportion, we use the sample proportion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean and sample proportion are easy to calculate, the focus will be on finding the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
-            
-            <table>
-              <tr>
-                <td></td>
-                <td>Population Proportion</td>
-              </tr>
-              <tr>
-                <td>Margin of Error</td>  
-                <td>$ z_{\alpha/2} \sqrt{\dfrac{\bar{p}(1-\bar{p})}{n}} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">Sometimes, when dealing with confidence intervals, we are interested in achieving a certain margin of error. In order to achieve the margin of error that we want, we can adjusted the sample size. The formula for this can be easily derived from the margin of error formula and is shown below. In the formula, $E$ is the desired margin of error. If the population standard deviation is unknown, a planning value is used for $\sigma$.  </p>
 
-            <table style="width:100%">
-              <tr>
-                <td>Sample Size</td>
-              </tr>
-              <tr> 
-                <td>$ n = \dfrac{(z_{\alpha/2})^2 \sigma ^2}{E^2} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> The sample size needed to achieve the desired margin of error can also be found for confidence intervals about the population proportion. Again, the formula for this can be easily derived from the margin of error formula and is shown below. In the formula, $E$ is the desired margin of error and $p^*$ is the planning value. </p>
 
-            <table style="width:100%">
-              <tr>
-                <td>Sample Size</td>
-              </tr>
-              <tr> 
-                <td>$ n = \dfrac{(z_{\alpha/2})^2 p^* (1-p^*)}{E^2} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> Confidence intervals is closely related to the statistical area of hypothesis testing. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Hypothesis teting can be done using the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. The calculator on this page solves confidence intervals for one population mean. Sometimes we're interest in confidnece intervals about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. </p>
+
+
+
+
+
+
             
 
         
             
             
         </div>
-      </div>-->
+      </div>
       
       
       
