@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="The easy-to-use basic probability calculator gives you step-by-step solutions to the combination, permutation, complement, union, intersection and more.">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="/css/probstyle.css">
+
+                         <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script>  
+      
+    <title>Probability Theory Calculator - Stats Solver</title>
+      
+      <link rel="icon" href="/solver.png">
+      
+      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-170214906-1');
+    </script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+      <link rel="canonical" href="https://www.statssolver.com/basic-probability.html" />
+
+      
+  </head>
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Calculators
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="/continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="/sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="/confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="/two-population.html">Two Population</a>
+              <a class="dropdown-item" href="/population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="/goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="/analysis-of-variance.html">Analysis of Variance</a>
+              <a class="dropdown-item" href="/simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="/multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="/time-series-analysis.html">Time Series Analysis</a>
+            </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tables
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="/tables/standard-normal.html">Standard Normal</a>
+                <a class="dropdown-item" href="/tables/t-distribution.html">t-Distribution</a>
+                <a class="dropdown-item" href="/tables/chi-square.html">Chi-Square</a>
+                <a class="dropdown-item" href="/tables/f-distribution.html">F-Distribution</a>
+            </div>
+          </li>
+            <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Other
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="probability-theory.html">Probability Theory</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+          </div>
+    
+      
+    <div class = "container">
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="probability-theory.html">Probability Theory Calculator</a></h1>
+    </div>
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <div class="container mb-3" id="setprops">
+        <div class="row justify-content-center">
+          
+            <div class="col-8 col-md-3">
+            <select id="lawtype" class="form-control" style="text-align: left">
+                    <option value="com">Commutativity</option>
+                    <option value="ass">Associativity</option>
+                    <option value="dis">Distributive Laws</option>
+                    <option value="dem">DeMorgan's Laws</option>
+                </select>
+            </div>
+            
+            <div class="col-6 col-md-2">
+            <select id="lawwhich" class="form-control" style="text-align: left">
+                    <option value="first">First</option>
+                    <option value="second">Second</option>
+                </select>
+            </div>
+            
+            
+          
+          </div>
+          
+          </div>
+      
+      <div class="container mb-3" id="probprops">
+        <div class="row justify-content-center">
+          
+            <div class="col-8 col-md-3">
+            <select id="lawtype" class="form-control" style="text-align: left">
+                    <option value="comm">Complement</option>
+                    <option value="assoc">Empty Set</option>
+                    <option value="distrib">Subset</option>
+                    <option value="demorg">Maximum</option>
+                    <option value="demorg">Union</option>
+                    <option value="demorg">Continuity</option>
+                    <option value="demorg">Boole's Inequality</option>
+                    <option value="demorg">Inclusion Exclusion</option>
+                    <option value="demorg">Bonferroni's Inequality</option>
+                </select>
+            </div>
+            
+            
+          
+          </div>
+          
+          </div>
+      
+      
+      <div class="container mb-3" id="ind">
+        <div class="row justify-content-center">
+          
+            <div class="col-8 col-md-3">
+            <select id="indwhich" class="form-control" style="text-align: left">
+                    <option value="1">Aᶜ and B</option>
+                    <option value="2">A and Bᶜ</option>
+                    <option value="3">Aᶜ and Bᶜ</option>
+                </select>
+            </div>
+            
+            <div class="col-6 col-md-2">
+
+            </div>
+            
+            
+          
+          </div>
+          
+          </div>
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+      <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8 col-md-3">
+                <select id="stat" class="form-control" onchange="showstuff()" style="text-align: left">
+                    <option value="choose">Choose One</option>
+                    <option value="setprop">Basics of Set Theory </option>
+                    <!--<option value="propprob">Basics of Probability</option>
+                    <option value="countrules">Counting Rules</option>
+                    <option value="indcomp">Conditional Probability</option>-->
+                    <option value="ind">Independence</option>
+                </select>
+                </div>
+                <div class="col-4 col-md-2">
+                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
+                </div> 
+            </div>
+          
+        </div>
+      
+
+      
+      
+    <div class="container">
+      <hr>
+          </div>
+
+      
+      <div class="container" id="how">
+
+        <div id="how2" class="how" style="color: darkslategray">
+            <p class = "p1">The foundation of probability theory is set theory. Basics concepts in set theory are sample space, complement, union, intersection and subset. There are also several properties of set theory that are commonly used in probability theory. Two of these are the distributive laws and DeMorgan's laws. DeMorgan's laws show how union and intersection are related through complements. We can show these laws to be true either through the use of Venn diagrams or formal proofs.  </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Distributive Laws:</td>
+                <td>DeMorgan's Laws:</td>
+              </tr>
+              <tr>
+                <td>A∪(B∩C)=(A∪B)∩(A∪C)</td>
+                <td>(A∪B)ᶜ = Aᶜ∩Bᶜ</td>
+              </tr>
+              <tr>
+                <td>A∩(B∪C)=(A∩B)∪(A∩C)</td>
+                <td>(A∩B)ᶜ = Aᶜ∪Bᶜ</td>
+              </tr>
+            </table>
+            <br>
+            
+           <!-- <p class = "p1">Probability theory is built on the foundation of a set of three axioms. A function P on the set of events B that satisfies the three axioms is called a probability function. The first axiom is that the probability of of any event is at least zero. The second is that the probability of the sample space is equal to 1. The third axiom is that for disjoint events, the probability of their union is equal to the sum of their probabilities.</p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Axioms of Probability:</td>
+              </tr>
+              <tr>
+                <td>$ 1. \: P(A) \geq 0 \text{, for all } A \in \mathcal{B} $</td>
+              </tr>
+              <tr>
+                <td>$ 2. \: P(S) = 1 $</td>
+              </tr>
+              <tr>
+                <td>$ 3. \: P(A) \geq 0 $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Many properties of probabilities can be derived just from these three axioms.  </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Distributive Laws:</td>
+                <td>DeMorgan's Laws:</td>
+              </tr>
+              <tr>
+                <td>A∪(B∩C)=(A∪B)∩(A∪C)</td>
+                <td>(A∪B)ᶜ = Aᶜ∩Bᶜ</td>
+              </tr>
+              <tr>
+                <td>A∩(B∪C)=(A∩B)∪(A∩C)</td>
+                <td>(A∩B)ᶜ = Aᶜ∪Bᶜ</td>
+              </tr>
+            </table>
+            <br>-->
+            
+            <p class = "p1">Two events, A and B, are said to be independent if the probability of their intersection is equal to the product of their probabilities. That is, A and B are independent if P(A∩B) = P(A)P(B). Then if A and B are independent, any combination involving their complements are also independent. That is, if A and B are independent, then Aᶜ and B, A and Bᶜ and Aᶜ and Bᶜ are independent as well. So if P(A∩B) = P(A)P(B), we also have P(Aᶜ∩B) = P(Aᶜ)P(B), P(A∩Bᶜ) = P(A)P(Bᶜ) and P(Aᶜ∩Bᶜ) = P(Aᶜ)P(Bᶜ). </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Independence:</td>
+              </tr>
+              <tr>
+                <td>P(A∩B) = P(A)P(B)</td>
+              </tr>
+            </table>
+            <br>
+            
+      </div>
+      </div> 
+
+      <div id = "proboutputs">
+     <div class="container text-center">
+         
+         <div id="output" class="output">
+        </div>
+
+         <div id = "venns1">
+             <div class="row" style="display: flex; justify-content: center;" width="100%">
+            <div class="column">
+                $$ \text{Left Side:} $$
+                <canvas id="venn1" width="400" height="200"></canvas><br>
+                <canvas id="venn2" width="400" height="200"></canvas><br>
+                 </div>
+            <div class="column">
+                $$ \text{Right Side:} $$
+                 <canvas id="venn3" width="400" height="200"></canvas><br>
+                <canvas id="venn4" width="400" height="200"></canvas><br>
+                <canvas id="venn5" width="400" height="200"></canvas><br>
+                 </div>
+            </div>
+         
+         </div>
+         
+         <div id = "venns2">
+            <div class="row" style="display: flex; justify-content: center;" width="100%">
+            <div class="column">
+                $$ \text{Left Side:} $$
+                <canvas id="venn6" width="400" height="300"></canvas><br>
+                <canvas id="venn7" width="400" height="300"></canvas><br>
+                <canvas id="venn8" width="400" height="300"></canvas><br>
+                 </div>
+            <div class="column">
+                $$ \text{Right Side:} $$
+                 <canvas id="venn9" width="400" height="300"></canvas><br>
+                <canvas id="venn10" width="400" height="300"></canvas><br>
+                <canvas id="venn11" width="400" height="300"></canvas><br>
+                 </div>
+            </div>
+         
+         
+         </div>
+         
+         <div id="output2" class="output">
+        </div>
+         
+         
+      </div>
+      </div>
+      
+
+      
+      <div class="text-center mt-2 mb-2">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
+             crossorigin="anonymous"></script>
+        <!-- Responsive1 -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-3595688914204816"
+             data-ad-slot="8250424918"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+             (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+          </div>
+      
+          <footer id="footer">
+              <div class="container">
+                  <div class="container text-center">
+      <canvas id="myCanvas" width="300" height="150" ></canvas>
+      </div>
+      
+      <!--<div class="container" id="explanation">
+      <p  class="text-center" style="background-color:white">
+      <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+        Explanation
+      </a>
+    </p>
+    <div class="collapse" id="collapseExample" data-parent="#explanation">
+      <div class="card card-body" id="descriptiontext">
+
+      </div>
+    </div>
+          <div class="collapse" id="collapseExample2" data-parent="#explanation">
+      <div class="card card-body" id="formulatext">
+
+      </div>
+    </div>
+          <div class="collapse" id="collapseExample3" data-parent="#explanation">
+      <div class="card card-body" id="explanationtext">
+            
+      </div>
+    </div>
+          </div>
+                  <p>Related: <a href="discrete.html">Discrete Distributions Calculator</a> </p>-->
+                <hr>
+            </div>
+          <p> 
+              &copy; 2024 <a href="/about.html">Stats Solver</a> 
+              
+              </p>
+          </footer>
+      
+      
+    <!--  style="border:1px solid #d3d3d3;"-->
+    <!-- <div style = "height: 400px"></div>-->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script src="js/probtheory.js"></script>
+  </body>
+</html>
