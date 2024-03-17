@@ -1,4 +1,4 @@
-$("#setprops").show(); $("#ind").hide(); $("#probprops").hide(); 
+$("#set").show(); $("#ind").hide(); $("#prob").hide(); 
 $("#values").hide(); $("#enterstats").hide(); $("#explanation").hide(); 
 $("#venn1").hide(); $("#venn2").hide(); $("#venn3").hide(); $("#venn4").hide(); $("#venn5").hide();
 $("#venn6").hide(); $("#venn7").hide(); $("#venn8").hide(); $("#venn9").hide(); $("#venn10").hide();
@@ -49,6 +49,7 @@ var ctx = canvas.getContext("2d");
 ctx.scale(1.33, 1.33);
 
 function showstuff(){
+    $("#set").hide(); $("#ind").hide(); $("#prob").hide();
     $("#events").hide(); $("#blankspace").show();
     var x = document.getElementById("stat").value;
     if (x == "choose") {
@@ -56,12 +57,12 @@ function showstuff(){
         $("#experimentexamples").show(); 
         document.getElementById("output").innerHTML = "";
         $("#explanation").hide();
-    } else if (x == "setprops") {
-        $("#setprops").show(); $("#ind").hide();
-    } else if (x == "distributive") {
-        $("#demorgan").show(); $("#ind").hide();
+    } else if (x == "set") {
+        $("#set").show(); $("#ind").hide(); $("#prob").hide(); 
+    } else if (x == "prob") {
+        $("#prob").show(); $("#ind").hide(); $("#set").hide(); 
     } else if (x == "ind") {
-        $("#ind").show(); $("#setprops").hide();
+        $("#ind").show(); $("#set").hide(); $("#prob").hide(); 
     }
    
    
@@ -75,10 +76,10 @@ function stat(){
     $("#581773186").show();
     $("#output").empty();  $("#myCanvas").hide(); $("#output2").hide();
     var x = document.getElementById("stat").value;
-    if (x == "setprop") {
-        compsetprop()
-    } else if (x == "distributive") {
-        compdistributive()
+    if (x == "set") {
+        set()
+    } else if (x == "prob") {
+        prob()
     } else if (x == "ind") {
         ind()
     } else{
@@ -88,7 +89,7 @@ function stat(){
    
 }
 
-function compsetprop() {
+function set() {
     var type = document.getElementById("lawtype").value;
     var which = document.getElementById("lawwhich").value;
     if (type == "dis") {
@@ -121,7 +122,7 @@ function compsetprop() {
 function dis1() {
     $("#venns2").show(); $("#output2").show(); $("#output1").show(); 
     $("#venn6").show(); $("#venn7").show(); $("#venn8").show(); $("#venn9").show(); $("#venn10").show();
-    document.getElementById("output").innerHTML = "$$ \\displaylines{\\text{First Distributive Law:} \\\\ A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C) }$$  $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} x \\in A \\cup (B \\cap C) &\\Leftrightarrow x \\in A \\text{ or } x \\in B \\cap C \\\\ &\\Leftrightarrow x \\in A \\text{ or } (x \\in B \\text{ and } x \\in C) \\\\ &\\Leftrightarrow (x \\in A \\text{ or } x \\in B) \\text{ and } (x \\in A \\text{ or } x \\in C)  \\\\ &\\Leftrightarrow x \\in A \\cup B \\text{ and } x \\in A \\cup C \\\\ &\\Leftrightarrow x \\in (A \\cup B) \\cap (A \\cap B) \\end{align} }$$ $ \\text{Venn Diagram:} $"
+    document.getElementById("output").innerHTML = "$$ \\displaylines{\\text{First Distributive Law:} \\\\ A \\cup (B \\cap C) = (A \\cup B) \\cap (A \\cup C) }$$  $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} x \\in A \\cup (B \\cap C) &\\Leftrightarrow x \\in A \\text{ or } x \\in B \\cap C \\\\ &\\Leftrightarrow x \\in A \\text{ or } (x \\in B \\text{ and } x \\in C) \\\\ &\\Leftrightarrow (x \\in A \\text{ or } x \\in B) \\text{ and } (x \\in A \\text{ or } x \\in C)  \\\\ &\\Leftrightarrow x \\in A \\cup B \\text{ and } x \\in A \\cup C \\\\ &\\Leftrightarrow x \\in (A \\cup B) \\cap (A \\cap B) \\end{align} }$$ $ \\text{Venn Diagrams:} $"
     
     var c = document.getElementById("venn6");
     var ctx = c.getContext("2d");
@@ -1215,6 +1216,67 @@ function ass2() {
     document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Second Law of Associativity:} \\\\ A \\cap B = B \\cup A } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} x \\in A \\cap B &\\Leftrightarrow x \\in A \\text{ and } x \\in B \\\\ &\\Leftrightarrow x \\in B \\text{ and } x \\in A \\\\ &\\Leftrightarrow x \\in B \\cap A \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
+
+
+
+
+
+
+
+
+
+
+
+function prob() {
+    var type = document.getElementById("probtype").value;
+    if (type == "comp") {
+        comp()
+    } else if (type == "empty") {
+        empty()
+    } else if (type == "subset") {
+        subset()
+    } else if (type == "one") {
+        one()
+    } else if (type == "union") {
+        union()
+    }
+}
+
+function comp() {
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Theorem:} \\\\ P(A) = 1 - P(A^c) }$$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} P(A) + P(A^c) &= P(A \\cup A^c) \\\\ &= P(S) \\\\ &= 1 \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+    
+    //A \\cup A^c = S \\Rightarrow P(A \\cup A^c) = P(S) = 1 \\\\ A \\cap A^c = \\emptyset \\Rightarrow P(A \\cup A^c) = P(A) + P(A^c) \\\\  P(A) + P(A^c) = 1 \\Rightarrow P(A) = 1 - P(A^c)
+}
+
+function empty() {
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Theorem:} \\\\ P(\\emptyset) = 0 }$$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} P(\\emptyset) &= 1 - P(\\emptyset ^c) \\\\ &= 1 - P(S) \\\\ &= 1 - 1 \\\\ &= 0 \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+
+function subset() {
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Theorem:} \\\\ \\text{If } A \\subset B, \\text{ then } P(A) \\leq P(B) }$$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} P(B) &= P[A \\cup (A^c \\cap B)] \\\\ &= P(A) + P(A^c \\cap B) \\\\ &\\geq P(A) \\end{align} } $$  <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+    
+    //$$ \\begin{align} P(A) &= P(B) - P(A^c \\cap B) \\\\ &\\leq P(B) \\end{align}   $$
+}
+
+function one() {
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Theorem:} \\\\ 0 \\leq P(A) \\leq 1 }$$ $$ \\displaylines{ \\text{Proof:} \\\\ P(A) \\geq 0 \\text{ and } A \\subset S \\\\ 0 \\leq P(A) \\leq P(S) = 1 } $$  <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+    
+    //$$ \\begin{align} P(A) &= P(B) - P(A^c \\cap B) \\\\ &\\leq P(B) \\end{align}   $$
+}
+
+function union() {
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Theorem:} \\\\ P(A \\cup B) = P(A) + P(B) - P(A \\cap B) }$$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} P(A \\cup B) &= P[(A \\cap B^c) \\cup (A \\cap B) \\cup (A \\cap B^c)] \\\\ &= P(A \\cap B^c) + P(A \\cap B) + P(A \\cap B^c) \\\\ &= [P(A) - P(A \\cap B)] + P(A \\cap B) + [P(B) - P(A \\cap B)] \\\\ &= P(A) + P(B) - P(A \\cap B) \\end{align} } $$  <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    MathJax.typeset();
+}
+
+
+
+
+
 
 function ind() {
     var which = document.getElementById("indwhich").value;

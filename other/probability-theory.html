@@ -130,11 +130,14 @@
       
       
       
-      <div class="container mb-3" id="setprops">
+      <div class="container mb-3" id="set">
         <div class="row justify-content-center">
           
             <div class="col-8 col-md-3">
             <select id="lawtype" class="form-control" style="text-align: left">
+                    <!--<option value="union">Union</option>
+                    <option value="int">Intersection</option>
+                    <option value="comp">Complement</option>-->
                     <option value="com">Commutativity</option>
                     <option value="ass">Associativity</option>
                     <option value="dis">Distributive Laws</option>
@@ -155,21 +158,25 @@
           
           </div>
       
-      <div class="container mb-3" id="probprops">
+      <div class="container mb-3" id="prob">
         <div class="row justify-content-center">
           
             <div class="col-8 col-md-3">
-            <select id="lawtype" class="form-control" style="text-align: left">
-                    <option value="comm">Complement</option>
-                    <option value="assoc">Empty Set</option>
-                    <option value="distrib">Subset</option>
-                    <option value="demorg">Maximum</option>
-                    <option value="demorg">Union</option>
-                    <option value="demorg">Continuity</option>
+            <select id="probtype" class="form-control" style="text-align: left">
+                    <option value="comp">P(A) = 1 - P(Aᶜ)</option>
+                    <option value="empty">P(∅) = 0</option>
+                    <option value="subset">A ⊂ B ⇒ P(A) ≤ P(B) </option>
+                    <option value="one">0 ≤ P(A) ≤ 1</option>
+                    <option value="union">P(A∪B) = P(A) + P(B) - P(A∩B)</option>
+                    <!--<option value="union1">A∩B = ∅ ⇒ P(A∪B) = P(A) + P(B) </option>
+                    <option value="demorg">Continuity of Probability</option>
                     <option value="demorg">Boole's Inequality</option>
                     <option value="demorg">Inclusion Exclusion</option>
-                    <option value="demorg">Bonferroni's Inequality</option>
+                    <option value="demorg">Bonferroni's Inequality</option>-->
                 </select>
+            </div>
+            <div class="col-6 col-md-2">
+
             </div>
             
             
@@ -184,6 +191,7 @@
           
             <div class="col-8 col-md-3">
             <select id="indwhich" class="form-control" style="text-align: left">
+                    <!--<option value="0">A and B</option>-->
                     <option value="1">Aᶜ and B</option>
                     <option value="2">A and Bᶜ</option>
                     <option value="3">Aᶜ and Bᶜ</option>
@@ -219,11 +227,11 @@
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()" style="text-align: left">
                     <option value="choose">Choose One</option>
-                    <option value="setprop">Basics of Set Theory </option>
-                    <!--<option value="propprob">Basics of Probability</option>
-                    <option value="countrules">Counting Rules</option>
-                    <option value="indcomp">Conditional Probability</option>-->
-                    <option value="ind">Independence</option>
+                    <option value="set">Basics of Set Theory </option>
+                    <option value="prob">Properties of Probability</option>
+                    <!--<option value="equi">Equilikely Probability</option>
+                    <option value="cond">Conditional Probability</option>-->
+                    <option value="ind">Independent Events</option>
                 </select>
                 </div>
                 <div class="col-4 col-md-2">
