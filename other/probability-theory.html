@@ -127,7 +127,31 @@
       
       
       
-      
+      <div class="container mb-3" id="bas">
+        <div class="row justify-content-center">
+          
+            <div class="col-8 col-md-3">
+            <select id="bastype" class="form-control" style="text-align: left">
+                    <!--<option value="com">Complement</option>
+                    <option value="union">Union</option>
+                    <option value="int">Intersection</option>-->
+                    <option value="dis">Disjoint Union</option>
+                </select>
+            </div>
+            
+            <div class="col-6 col-md-2">
+                <select id="baswhich" class="form-control" style="text-align: left">
+                    <option value="1">A</option>
+                    <option value="2">B</option>
+                    <option value="3">A∪B</option>
+                </select>
+            </div>
+            
+            
+          
+          </div>
+          
+      </div>
       
       
       <div class="container mb-3" id="set">
@@ -135,13 +159,10 @@
           
             <div class="col-8 col-md-3">
             <select id="lawtype" class="form-control" style="text-align: left">
-                    <!--<option value="union">Union</option>
-                    <option value="int">Intersection</option>
-                    <option value="comp">Complement</option>-->
                     <option value="com">Commutativity</option>
                     <option value="ass">Associativity</option>
-                    <option value="dis">Distributive Laws</option>
-                    <option value="dem">DeMorgan's Laws</option>
+                    <option value="dis">Distributive</option>
+                    <option value="dem">DeMorgan's</option>
                 </select>
             </div>
             
@@ -167,12 +188,8 @@
                     <option value="empty">P(∅) = 0</option>
                     <option value="subset">A ⊂ B ⇒ P(A) ≤ P(B) </option>
                     <option value="one">0 ≤ P(A) ≤ 1</option>
+                    <!--<option value="dis1">P(Aᶜ∩B) and P(A∩Bᶜ)</option>-->
                     <option value="union">P(A∪B) = P(A) + P(B) - P(A∩B)</option>
-                    <!--<option value="union1">A∩B = ∅ ⇒ P(A∪B) = P(A) + P(B) </option>
-                    <option value="demorg">Continuity of Probability</option>
-                    <option value="demorg">Boole's Inequality</option>
-                    <option value="demorg">Inclusion Exclusion</option>
-                    <option value="demorg">Bonferroni's Inequality</option>-->
                 </select>
             </div>
             <div class="col-6 col-md-2">
@@ -185,6 +202,30 @@
           
           </div>
       
+      
+      <div class="container mb-3" id="adv">
+        <div class="row justify-content-center">
+          
+            <div class="col-8 col-md-3">
+            <select id="advtype" class="form-control" style="text-align: left">
+                    <option value="cont">Continuity of Probability</option>
+                    <!--<option value="boole">Boole's Inequality</option>
+                    <option value="inc">Inclusion Exclusion </option>
+                    <option value="bon">Bonferroni's Inequality</option>-->
+                </select>
+            </div>
+            <div class="col-6 col-md-2">
+                <select id="advwhich" class="form-control" style="text-align: left">
+                    <option value="inc">Increasing</option>
+                    <option value="dec">Decreasing</option>
+                </select>
+            </div>
+            
+            
+          
+          </div>
+          
+          </div>
       
       <div class="container mb-3" id="ind">
         <div class="row justify-content-center">
@@ -227,8 +268,10 @@
             <div class="col-8 col-md-3">
                 <select id="stat" class="form-control" onchange="showstuff()" style="text-align: left">
                     <option value="choose">Choose One</option>
-                    <option value="set">Basics of Set Theory </option>
+                    <option value="bas">Basics of Set Theory </option>
+                    <option value="set">Laws of Set Theory </option>
                     <option value="prob">Properties of Probability</option>
+                    <option value="adv">Advanced Properties</option>
                     <!--<option value="equi">Equilikely Probability</option>
                     <option value="cond">Conditional Probability</option>-->
                     <option value="ind">Independent Events</option>
@@ -252,7 +295,21 @@
       <div class="container" id="how">
 
         <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">The foundation of probability theory is set theory. Basics concepts in set theory are sample space, complement, union, intersection and subset. There are also several properties of set theory that are commonly used in probability theory. Two of these are the distributive laws and DeMorgan's laws. DeMorgan's laws show how union and intersection are related through complements. We can show these laws to be true either through the use of Venn diagrams or formal proofs.  </p>
+            <p class = "p1">The foundation of probability theory is set theory. Basics concepts in set theory are complement, union and intersection. The complement of an event A is the event containing all points that are not in A. The union of events A and B is the event containing all points in A or B. The intersection of events A and B is the event containing all points in A and B. So the term "not" refers to complement, "or" refers to union, while "and" refers to intersection. In probability theory, it is often useful to split an event into disjoint unions.  </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Union:</td>
+                <td>Intersection:</td>
+              </tr>
+              <tr>
+                <td>A∪B = {x: x∈A or x∈B}</td>
+                <td>A∩B = {x: x∈A and x∈B}</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">There are several laws of set theory that are commonly used in probability theory. A few of these are associativity, commutativity, distributive and DeMorgan's. Associativity says that when you're taking the union or intersection of two sets, it doesn't matter which one you take first. Commutativity says that if you're taking the union or intersection of three sets, it doesn't matter which two you take the union or intersection of first. The distributive laws and DeMorgan's laws are shown below. </p>
                 
             <table style="width:100%">
               <tr>
@@ -270,41 +327,59 @@
             </table>
             <br>
             
-           <!-- <p class = "p1">Probability theory is built on the foundation of a set of three axioms. A function P on the set of events B that satisfies the three axioms is called a probability function. The first axiom is that the probability of of any event is at least zero. The second is that the probability of the sample space is equal to 1. The third axiom is that for disjoint events, the probability of their union is equal to the sum of their probabilities.</p>
+            <p class = "p1">Many of the properties of probability can be derived from a set of just three axioms. If these three axioms are satisfied for a function P, then P is called a probability function. The probability function, P, is defined on the set of subsets of the sample space, denoted B. The first axiom is that the probability of of any event is at least zero. The second is that the probability of the sample space is equal to 1. The third axiom is that for an infinite sequence of disjoint events, the probability of their union is equal to the sum of their probabilities.</p>
                 
             <table style="width:100%">
               <tr>
                 <td>Axioms of Probability:</td>
               </tr>
               <tr>
-                <td>$ 1. \: P(A) \geq 0 \text{, for all } A \in \mathcal{B} $</td>
+                <td>1. P(A) ≥ 0 </td>
               </tr>
               <tr>
-                <td>$ 2. \: P(S) = 1 $</td>
+                <td>2. P(S) = 1 </td>
               </tr>
               <tr>
-                <td>$ 3. \: P(A) \geq 0 $</td>
+                <td>3. P(∪A) = ∑P(A) </td>
               </tr>
             </table>
             <br>
             
-            <p class = "p1">Many properties of probabilities can be derived just from these three axioms.  </p>
+            <p class = "p1">There are a few basic probabilities in probability that are frequently useful. The first property is that the probability of any event is equal to one minus the probability of its complement. This follow from the second axiom and the fact that the union of any event and its complement is equal to the entire sample space. The second property is that the probability of the empty set is equal to zero, which follows from the first property and the fact that the complement of the empty set is the sample space. The rest of the properties of probability can be derived in a similar fashion. </p>
                 
             <table style="width:100%">
               <tr>
-                <td>Distributive Laws:</td>
-                <td>DeMorgan's Laws:</td>
+                <td>Properties of Probability:</td>
               </tr>
               <tr>
-                <td>A∪(B∩C)=(A∪B)∩(A∪C)</td>
-                <td>(A∪B)ᶜ = Aᶜ∩Bᶜ</td>
+                <td>P(A) = 1 - P(Aᶜ)</td>
+                
               </tr>
               <tr>
-                <td>A∩(B∪C)=(A∩B)∪(A∩C)</td>
-                <td>(A∩B)ᶜ = Aᶜ∪Bᶜ</td>
+                  <td>P(∅) = 0</td>
+              </tr>
+                <tr>
+                  <td>0 ≤ P(A) ≤ 1</td>
               </tr>
             </table>
-            <br>-->
+            <br>
+            
+            <p class = "p1">Along with these basic properties, there are also some more advanced properties which are often quite useful. One of these is called continuity of probability, which says that the limit of the probability of a sequence of events is equal to the probability of the limit. In other words, limit and probability can be interchanged. Another useful advanced property is known as Boole's inequality, which says that the probability of the union of events is less than or equal to the sum of their probabilities. Note that Boole's inequality makes a similar yet different statement than the third axiom. This is because third axioms applies to only disjoint sets while Boole's inequality applies to any sets.  </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Advanced Properties:</td>
+              </tr>
+              <tr>
+                <td>lim(P(∪A)) = P(lim(∪A))</td>
+                
+              </tr>
+                <tr>
+                <td> P(∪A) ≤ ∑P(A) </td>
+                
+              </tr>
+            </table>
+            <br>
             
             <p class = "p1">Two events, A and B, are said to be independent if the probability of their intersection is equal to the product of their probabilities. That is, A and B are independent if P(A∩B) = P(A)P(B). Then if A and B are independent, any combination involving their complements are also independent. That is, if A and B are independent, then Aᶜ and B, A and Bᶜ and Aᶜ and Bᶜ are independent as well. So if P(A∩B) = P(A)P(B), we also have P(Aᶜ∩B) = P(Aᶜ)P(B), P(A∩Bᶜ) = P(A)P(Bᶜ) and P(Aᶜ∩Bᶜ) = P(Aᶜ)P(Bᶜ). </p>
                 
@@ -318,6 +393,16 @@
             </table>
             <br>
             
+            <p class="text-center">
+                References:<br>
+                Casella, George, and Roger L. Berger. "Statistical Inference." (2002)<br>
+                Hoel, Paul Gerhard, Sidney C. Port, and Charles Joel Stone. "Introduction to Probability Theory." (1971)<br>
+                Hogg, Robert V., Joseph W. McKean, and Allen T. Craig. "Introduction to Mathematical Statistics." (2019)<br>
+                Wasserman, Larry. "All of Statistics: A Concise Course in Statistical Inference." (2013)
+            
+            </p>
+            <br>
+            
       </div>
       </div> 
 
@@ -326,6 +411,13 @@
          
          <div id="output" class="output">
         </div>
+         
+         <div id = "venns0">
+             <div>
+                 <canvas id="venn01" width="400" height="200"></canvas><br>
+                 </div>
+         
+         </div>
 
          <div id = "venns1">
              <div class="row" style="display: flex; justify-content: center;" width="100%">
