@@ -1025,7 +1025,7 @@ function dis2() {
     $("#venns2").show(); $("#output2").show(); 
     $("#venn6").show(); $("#venn7").show(); $("#venn8").show(); $("#venn9").show(); $("#venn10").show();
 
-   document.getElementById("output").innerHTML = "$$ \\displaylines{\\text{Distributive Law 2:} \\\\ A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C) }$$  $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cap (B \\cup C) &\\Leftrightarrow s \\in A \\text{ and } s \\in B \\cup C \\\\ &\\Leftrightarrow s \\in A \\text{ and } (x \\in B \\text{ or } s \\in C) \\\\ &\\Leftrightarrow (x \\in A \\text{ and } s \\in B) \\text{ or } (x \\in A \\text{ and } s \\in C) \\\\ &\\Leftrightarrow s \\in A \\cap B \\text{ or } s \\in A \\cap C \\\\ &\\Leftrightarrow s \\in (A \\cap B) \\cup (A \\cap B) \\end{align} }$$ $ \\text{Venn Diagrams:} $"
+   document.getElementById("output").innerHTML = "$$ \\displaylines{\\text{Distributive Law 2:} \\\\ A \\cap (B \\cup C) = (A \\cap B) \\cup (A \\cap C) }$$  $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cap (B \\cup C) &\\Leftrightarrow s \\in A \\text{ and } s \\in B \\cup C \\\\ &\\Leftrightarrow s \\in A \\text{ and } (s \\in B \\text{ or } s \\in C) \\\\ &\\Leftrightarrow (x \\in A \\text{ and } s \\in B) \\text{ or } (s \\in A \\text{ and } s \\in C) \\\\ &\\Leftrightarrow s \\in A \\cap B \\text{ or } s \\in A \\cap C \\\\ &\\Leftrightarrow s \\in (A \\cap B) \\cup (A \\cap B) \\end{align} }$$ $ \\text{Venn Diagrams:} $"
     
     
     var c = document.getElementById("venn6");
@@ -1811,19 +1811,19 @@ function com1() {
 /////$$ \\text{Show } (A \\cup B)^c \\subset A^c \\cap B^c \\text{ and } A^c \\cap B^c \\subset (A \\cup B)^c $$
 
 function com2() {
-    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Commutative Law 2:} \\\\ A \\cap B = B \\cup A } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cap B &\\Leftrightarrow s \\in A \\text{ and } s \\in B \\\\ &\\Leftrightarrow s \\in B \\text{ and } s \\in A \\\\ &\\Leftrightarrow s \\in B \\cap A \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Commutative Law 2:} \\\\ A \\cap B = B \\cap A } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cap B &\\Leftrightarrow s \\in A \\text{ and } s \\in B \\\\ &\\Leftrightarrow s \\in B \\text{ and } s \\in A \\\\ &\\Leftrightarrow s \\in B \\cap A \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
 function ass1() {
-    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Associative Law 1:} \\\\ A \\cup (B \\cup C) = (A \\cup B) \\cup C } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cup (B \\cup C) &\\Leftrightarrow s \\in A \\text{ or } s \\in B \\cup C \\\\ &\\Leftrightarrow s \\in A \\text{ or } (x \\in B \\text{ or } s \\in C) \\\\ &\\Leftrightarrow (x \\in A \\text{ or } s \\in B) \\text{ or } s \\in C \\\\ &\\Leftrightarrow s \\in A \\cup B \\text{ or } s \\in C \\\\ &\\Leftrightarrow s \\in (A \\cup B) \\cup C \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Associative Law 1:} \\\\ A \\cup (B \\cup C) = (A \\cup B) \\cup C } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cup (B \\cup C) &\\Leftrightarrow s \\in A \\text{ or } s \\in B \\cup C \\\\ &\\Leftrightarrow s \\in A \\text{ or } (s \\in B \\text{ or } s \\in C) \\\\ &\\Leftrightarrow (s \\in A \\text{ or } s \\in B) \\text{ or } s \\in C \\\\ &\\Leftrightarrow s \\in A \\cup B \\text{ or } s \\in C \\\\ &\\Leftrightarrow s \\in (A \\cup B) \\cup C \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
 /////$$ \\text{Show } (A \\cup B)^c \\subset A^c \\cap B^c \\text{ and } A^c \\cap B^c \\subset (A \\cup B)^c $$
 
 function ass2() {
-    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Associative Law 2:} \\\\ A \\cap (B \\cap C) = (A \\cap B) \\cap C } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cap (B \\cap C) &\\Leftrightarrow s \\in A \\text{ and } s \\in B \\cap C \\\\ &\\Leftrightarrow s \\in A \\text{ and } (x \\in B \\text{ and } s \\in C) \\\\ &\\Leftrightarrow (x \\in A \\text{ and } s \\in B) \\text{ and } s \\in C \\\\ &\\Leftrightarrow s \\in A \\cap B \\text{ and } s \\in C \\\\ &\\Leftrightarrow s \\in (A \\cap B) \\cap C \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+    document.getElementById("output").innerHTML = "$$ \\displaylines{ \\text{Associative Law 2:} \\\\ A \\cap (B \\cap C) = (A \\cap B) \\cap C } $$ $$ \\displaylines{ \\text{Proof:} \\\\ \\begin{align} s \\in A \\cap (B \\cap C) &\\Leftrightarrow s \\in A \\text{ and } s \\in B \\cap C \\\\ &\\Leftrightarrow s \\in A \\text{ and } (s \\in B \\text{ and } s \\in C) \\\\ &\\Leftrightarrow (s \\in A \\text{ and } s \\in B) \\text{ and } s \\in C \\\\ &\\Leftrightarrow s \\in A \\cap B \\text{ and } s \\in C \\\\ &\\Leftrightarrow s \\in (A \\cap B) \\cap C \\end{align} }$$ <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
     MathJax.typeset();
 }
 
