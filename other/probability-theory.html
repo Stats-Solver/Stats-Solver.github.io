@@ -30,7 +30,7 @@
             };
         </script>  
       
-    <title>Probability Theory Calculator - Stats Solver</title>
+    <title>Probability Theory - Stats Solver</title>
       
       <link rel="icon" href="/solver.png">
       
@@ -113,7 +113,7 @@
     
       
     <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="probability-theory.html">Probability Theory Calculator</a></h1>
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="probability-theory.html">Probability Theory</a></h1>
     </div>
       
       <div class="container">
@@ -132,20 +132,26 @@
           
             <div class="col-8 col-md-3">
             <select id="bastype" class="form-control" style="text-align: left">
-                    <!--<option value="com">Complement</option>
-                    <option value="union">Union</option>
-                    <option value="int">Intersection</option>-->
-                    <option value="dis">Disjoint Union</option>
+                    <option value="uni">Union</option>
+                    <option value="int">Intersection</option>
+                    <option value="com">Complement</option>
+                    <option value="sub">Subset</option>
+                    <!--<option value="disj">Disjoint</option>
+                    <option value="dis">Disjoint Unions</option>
+                    <option value="mon">Monotone</option>-->
                 </select>
             </div>
             
+            
+            
             <div class="col-6 col-md-2">
-                <select id="baswhich" class="form-control" style="text-align: left">
+                <!--<select id="baswhich" class="form-control" style="text-align: left">
                     <option value="1">A</option>
                     <option value="2">B</option>
                     <option value="3">A∪B</option>
-                </select>
+                </select>-->
             </div>
+            
             
             
           
@@ -159,17 +165,19 @@
           
             <div class="col-8 col-md-3">
             <select id="lawtype" class="form-control" style="text-align: left">
-                    <option value="com">Commutativity</option>
-                    <option value="ass">Associativity</option>
+                    <option value="com">Commutative</option>
+                    <option value="ass">Associative</option>
+                    <!--<option value="comp">Complement</option>
+                    <option value="ident">Identity</option>-->
                     <option value="dis">Distributive</option>
                     <option value="dem">DeMorgan's</option>
                 </select>
             </div>
             
             <div class="col-6 col-md-2">
-            <select id="lawwhich" class="form-control" style="text-align: left">
-                    <option value="first">First</option>
-                    <option value="second">Second</option>
+                <select id="lawwhich" class="form-control" style="text-align: left">
+                    <option value="first">1</option>
+                    <option value="second">2</option>
                 </select>
             </div>
             
@@ -184,16 +192,21 @@
           
             <div class="col-8 col-md-3">
             <select id="probtype" class="form-control" style="text-align: left">
-                    <option value="comp">P(A) = 1 - P(Aᶜ)</option>
-                    <option value="empty">P(∅) = 0</option>
-                    <option value="subset">A ⊂ B ⇒ P(A) ≤ P(B) </option>
-                    <option value="one">0 ≤ P(A) ≤ 1</option>
-                    <!--<option value="dis1">P(Aᶜ∩B) and P(A∩Bᶜ)</option>-->
-                    <option value="union">P(A∪B) = P(A) + P(B) - P(A∩B)</option>
+                    <option value="comp">1. P(A) = 1 - P(Aᶜ)</option>
+                    <option value="empty">2. P(∅) = 0</option>
+                    <option value="subset">3. A ⊂ B ⇒ P(A) ≤ P(B) </option>
+                    <option value="one">4. 0 ≤ P(A) ≤ 1</option>
+                    <!--<option value="dis">5. P(Aᶜ∩B)</option>-->
+                    <option value="union">5. P(A∪B) = P(A) + P(B) - P(A∩B)</option>
+                    <!--<option value="union2">P(A∪B) ≤ P(A) + P(B)</option>
+                    <option value="union2">P(A∩B) ≤ P(A) & P(A∩B) ≤ P(B)</option>-->
                 </select>
             </div>
             <div class="col-6 col-md-2">
-
+                <!--<select id="probwhich" class="form-control" style="text-align: left">
+                    <option value="a">a. P(A∩Bᶜ)</option>
+                    <option value="b">b. P(Aᶜ∩B)</option>
+                </select>-->
             </div>
             
             
@@ -209,16 +222,16 @@
             <div class="col-8 col-md-3">
             <select id="advtype" class="form-control" style="text-align: left">
                     <option value="cont">Continuity of Probability</option>
-                    <!--<option value="boole">Boole's Inequality</option>
+                    <!--<option value="boole">Boole's Inequality</option>-->
                     <option value="inc">Inclusion Exclusion </option>
-                    <option value="bon">Bonferroni's Inequality</option>-->
+                    <option value="bonf">Bonferroni's Inequality</option>
                 </select>
             </div>
             <div class="col-6 col-md-2">
-                <select id="advwhich" class="form-control" style="text-align: left">
+                <!--<select id="advwhich" class="form-control" style="text-align: left">
                     <option value="inc">Increasing</option>
                     <option value="dec">Decreasing</option>
-                </select>
+                </select>-->
             </div>
             
             
@@ -303,8 +316,8 @@
                 <td>Intersection:</td>
               </tr>
               <tr>
-                <td>A∪B = {x: x∈A or x∈B}</td>
-                <td>A∩B = {x: x∈A and x∈B}</td>
+                <td>A∪B = {s: s∈A or s∈B}</td>
+                <td>A∩B = {s: s∈A and s∈B}</td>
               </tr>
             </table>
             <br>
@@ -377,6 +390,18 @@
                 <tr>
                 <td> P(∪A) ≤ ∑P(A) </td>
                 
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">It is often the case that the probability of each outcome of an experiment can be assumed to be equally likely. Examples of this include tossing a coin, rolling a die and picking a card from a deck. When it is reasonable to assume that outcomes are equally likely, probabilities can be assigned simply by determining how many outcomes are possible. The number of outcomes possible in an event, denoted |A|, can be calculated using combinatorial analysis, or counting rules. Important counting rules include the mn-rule (or multiplication rule), the extended mn-rule, permutations and combinations. </p>
+                
+            <table style="width:100%">
+              <tr>
+                <td>Equilikely Probability:</td>
+              </tr>
+              <tr>
+                <td>P(A) = |A| / |S|</td>
               </tr>
             </table>
             <br>
@@ -485,7 +510,7 @@
       <canvas id="myCanvas" width="300" height="150" ></canvas>
       </div>
       
-      <!--<div class="container" id="explanation">
+      <div class="container" id="explanation">
       <p  class="text-center" style="background-color:white">
       <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
         Explanation
@@ -507,7 +532,7 @@
       </div>
     </div>
           </div>
-                  <p>Related: <a href="discrete.html">Discrete Distributions Calculator</a> </p>-->
+                   
                 <hr>
             </div>
           <p> 
