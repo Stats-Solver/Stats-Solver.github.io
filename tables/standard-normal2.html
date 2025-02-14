@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Numerical summaries calculator with steps. Solve the mean, median, mode, variance, standard deviation, covariance, correlation coefficient and more.">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+      
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+      <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
+      
+    <title>Standard Normal Distribution Table - Stats Solver</title>
+      
+      <link rel="icon" href="/solver.png">
+      
+      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+      
+                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-170214906-1');
+    </script>
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      
+      
+      <script type="text/javascript">
+    window._mNHandle = window._mNHandle || {};
+    window._mNHandle.queue = window._mNHandle.queue || [];
+    medianet_versionId = "3121199";
+</script>
+<script src="https://contextual.media.net/dmedianet.js?cid=8CU4R757V" async="async"></script>
+
+          <!-- Event snippet for Page view conversion page -->
+    <script>
+      gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
+    </script>
+
+      
+  </head>
+  <body>
+      <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+          
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             Statistics Calculators
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <a class="dropdown-item" href="/table-and-graph.html">Table and Graph</a>
+              <a class="dropdown-item" href="/numerical-summary.html">Numerical Summary</a>
+              <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="/discrete-distribution.html">Discrete Distribution</a>
+              <a class="dropdown-item" href="/continuous-distribution.html">Continuous Distribution</a>
+              <a class="dropdown-item" href="/sampling-distribution.html">Sampling Distribution</a>
+              <a class="dropdown-item" href="/confidence-interval.html">Confidence Interval</a>
+              <a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a>
+              <a class="dropdown-item" href="/two-population.html">Two Population</a>
+              <a class="dropdown-item" href="/population-variance.html">Population Variance</a>
+              <a class="dropdown-item" href="/goodness-of-fit.html">Goodness of Fit</a>
+              <a class="dropdown-item" href="/analysis-of-variance.html">Analysis of Variance</a>
+              <a class="dropdown-item" href="/simple-regression.html">Simple Regression</a>
+              <a class="dropdown-item" href="/multiple-regression.html">Multiple Regression</a>
+              <a class="dropdown-item" href="/time-series-analysis.html">Time Series Analysis</a>
+            </div>
+          </li>
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Tables
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="standard-normal.html">Standard Normal</a>
+                <a class="dropdown-item" href="t-distribution.html">t-Distribution</a>
+                <a class="dropdown-item" href="chi-square.html">Chi-Square</a>
+                <a class="dropdown-item" href="f-distribution.html">F-Distribution</a>
+            </div>
+          </li>
+            <li class="nav-item">
+            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
+          </li>
+        </ul>
+      </div>
+      
+    </nav>
+          </div>
+    
+      
+    <div class = "container">
+        
+
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="standard-normal2.html">Standard Normal Table</a></h1>
+    </div>
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      <table style="width:100%" class="text-center">
+              <tr>
+                <td><canvas id="Canvas1" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+      
+      <div class="container">
+        <div id="output">
+        </div>
+      </div>
+      
+      <br>
+      
+      <div class="container">
+      <hr>
+          </div>
+      
+      
+      <div class="container" id="how">
+        <div id="how2" class="how" style="color: darkslategray">
+            <p class = "p1">The standard normal table, or z table, provides probabilities for the standard normal probability distribution. The standard normal probability distribution is simply a normal probability distribution with a mean of zero and a standard deviation of one. Like the normal probability distribution, the standard normal probability distribution has a bell-shape. The mean of the distribution is in the middle, which is also the highest point on the curve. Furthermore, the distribution is symmetric about the mean, with the right side of the curve being a mirror image of the left side. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td><canvas id="howCanvas1" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Since the standard normal probability distribution is a continuous probability distribution, probabilities are given by the area under the graph. The z table gives the area under the standard normal distribution to the left of different z values. These areas are thus the probability that z will be less than or equal to that value. It is often the case that the probability you are looking for is not less than or equal but rather the probability that z will be greater than or equal or between two values. These types of probabilities involve additional steps. </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td><canvas id="howCanvas2" width="375" height="188"></canvas></td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">The z table is made up of two pages. The first page is for negative z values and the second page is for positive z values. To find the the area (probability) to the left of a negative z-value, use the first page. For example, to find the area to the left of -1.2, match up -1.2 in the first column with .05 in the first row. The corresponding area is .1056. So that means that the probability that z will be less than or equal to -1.25 is .1056. Note that the standard normal distribution is a continuous probability distribution. That means that the probability that z will take exactly one value is zero. So the probability that z will be less than or equal to a value is the same as the probability that z will be less than that value.  </p>
+            
+            <table  class="text-center">
+              <tr style='border-top: thin solid'>
+                <td><b>z</b></td>
+                <td><b>.03</b></td>
+                <td><b>.04</b></td>
+                <td bgcolor="lightgray"><b>.05</b></td>
+                <td><b>.06</b></td>
+                <td><b>.07</b></td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td><b>-1.3</b></td>
+                <td>.0918</td>
+                <td>.0901</td>
+                <td bgcolor="lightgray">.0885</td>
+                <td>.0869</td>
+                <td>.0853</td>
+              </tr>
+              <tr>
+                <td bgcolor="lightgray"><b>-1.2</b></td>
+                <td bgcolor="lightgray">.1093</td>
+                <td bgcolor="lightgray">.1075</td>
+                <td bgcolor="lightgray">.1056</td>
+                <td bgcolor="lightgray">.1038</td>
+                <td bgcolor="lightgray">.1020</td>
+              </tr>
+              <tr>
+                <td><b>-1.1</b></td>
+                <td>.1292</td>
+                <td>.1271</td>
+                <td bgcolor="lightgray">.1251</td>
+                <td>.1230</td>
+                <td>.1210</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Calculating the probability that z will be greater than or equal to some value requires an additional step. Suppose you want to calculate the probability that z will be greater than or equal to 0.83. Start with the fact that the total area under the standard normal distribution is one. This means that the area to the right of .83 will be one minus the area to the left of .83. It is important to look at the problem in this way because the standard normal table only gives you the area to the left. Then, using the table, the area to the left of 0.83 is .7967. So the area to the right of 0.83 is 1 - .7967 = .2033. </p>
+            
+            <table  class="text-center">
+              <tr style='border-top: thin solid'>
+                <td><b>z</b></td>
+                <td><b>.01</b></td>
+                <td><b>.02</b></td>
+                <td bgcolor="lightgray"><b>.03</b></td>
+                <td><b>.04</b></td>
+                <td><b>.05</b></td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td><b>0.7</b></td>
+                <td>.7611</td>
+                <td>.7642</td>
+                <td bgcolor="lightgray">.7673</td>
+                <td>.7704</td>
+                <td>.7734</td>
+              </tr>
+              <tr>
+                <td bgcolor="lightgray"><b>0.8</b></td>
+                <td bgcolor="lightgray">.7910</td>
+                <td bgcolor="lightgray">.7939</td>
+                <td bgcolor="lightgray">.7967</td>
+                <td bgcolor="lightgray">.7995</td>
+                <td bgcolor="lightgray">.8023</td>
+              </tr>
+              <tr>
+                <td><b>0.9</b></td>
+                <td>.8186</td>
+                <td>.8212</td>
+                <td bgcolor="lightgray">.8238</td>
+                <td>.8264</td>
+                <td>.8289</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1"> The third type of probability to know how to calculate for the standard normal distribution is the probability that z will be between two values. For example, suppose you want to find the probability that z will be between 0.83 and 2.57. Again, the standard normal distribution only gives us the area to the left of z-values, not the area between. However, if we subtract the area to the left of the large z-value minus the area to the left of the smaller z-value, the result will be the area between them. So the area to the left of 2.57 minus the area to the left 0.83 is equal to the area between 0.83 and 2.57. Thus the probability that z will be between 0.83 and 2.57 is .9932 - .7967 = .1965. </p>
+            
+            <table  class="text-center">
+              <tr style='border-top: thin solid'>
+                <td><b>z</b></td>
+                <td><b>.05</b></td>
+                <td><b>.06</b></td>
+                <td bgcolor="lightgray"><b>.07</b></td>
+                <td><b>.08</b></td>
+                <td><b>.09</b></td>
+              </tr>
+              <tr style='border-top: thin solid'>
+                <td><b>2.4</b></td>
+                <td>.9929</td>
+                <td>.9931</td>
+                <td bgcolor="lightgray">.9932</td>
+                <td>.9934</td>
+                <td>.9936</td>
+              </tr>
+              <tr>
+                <td bgcolor="lightgray"><b>2.5</b></td>
+                <td bgcolor="lightgray">.9946</td>
+                <td bgcolor="lightgray">.9948</td>
+                <td bgcolor="lightgray">.9949</td>
+                <td bgcolor="lightgray">.9951</td>
+                <td bgcolor="lightgray">.9952</td>
+              </tr>
+              <tr>
+                <td><b>2.6</b></td>
+                <td>.9960</td>
+                <td>.9961</td>
+                <td bgcolor="lightgray">.9962</td>
+                <td>.9963</td>
+                <td>.9964</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">One of the main applications of the standard normal distribution is computing probabilities for normal distributions in general. The normal distribution has many real world applications. For example, heights, weights, rainfall, test scores and many other real world phenomena follow a normal distribution. Probabilities for a normal distribution can be computed by first converting to the standard normal distribution. After conversion, the normal procedure for calculating probabilities for a standard normal distribution can be used.  </p>
+            
+            <table style="width:100%" class="text-center">
+              <tr>
+                <td>Normal to Standard Normal</td>
+              </tr>
+              <tr>
+                <td>$ z = \dfrac{x-\mu}{\sigma} $</td>
+              </tr>
+            </table>
+            <br>
+            
+            <p class = "p1">Aside from real-world applications, the normal distribution, and thus the standard normal distribution, is frequently used in statistical inference. The sampling distribution of the sample mean follows a normal distribution when the sample size is large. So probabilities can be calculated for the sample mean using the standard normal distribution. It is also used in confidence intervals and hypothesis testing when the population standard deviation is known. In confidence interval, the standard normal distribution is used to compute the margin of error. In hypothesis testing, the standard normal distribution is used to calculate the test statistic. </p>
+            
+
+            
+      </div>
+      </div>
+      
+          <footer id="footer">
+              
+              <div class="container">
+                  <a href="ztable.pdf" download="ztable.pdf">Download</a>
+            </div>
+              
+              <div class="container">
+                <hr>
+            </div>
+          <p> 
+              &copy; 2024 <a href="/about.html">Stats Solver</a> 
+            </p>  
+
+          </footer>
+      
+    <!--<div style = "height: 400px"></div>-->  
+    <!-- Optional JavaScript -->  
+      
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      
+      
+      
+                    <!-- MathJax -->
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {
+            loader: {load: ['[tex]/ams']},
+            tex: {packages: {'[+]': ['ams']}}
+        };
+        </script>
+        <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                fontCache: 'global'
+                }
+            };
+        </script> 
+ 
+      
+      
+      <script src="js/standard2.js"></script>
+  </body>
+</html>
