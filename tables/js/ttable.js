@@ -348,6 +348,7 @@ function highlight(x,y){
     }
     var tablet = "<table style='column-gap: 20px;'>"+table1+table2+table3+table4+table5+"</table>"
     document.getElementById("output").innerHTML = tablet
+    graph1(y)
 }
 
 
@@ -402,7 +403,20 @@ function graph0(){
 }
 
 function graph1(z){
-    var lessval = Math.max(z, -2.97)
+    if (z == 1) {
+        var t = .84
+    } else if (z == 2) {
+        var t = 1.28
+    } else if (z == 3) {
+        var t = 1.64
+    } else if (z == 4) {
+        var t = 1.96
+    } else if (z == 5) {
+        var t = 2.33
+    } else if (z == 6) {
+        var t = 2.57
+    }
+    var lessval = Math.max(t, -2.97)
     var lessvalz = 300+100*lessval
     var exp = 2.71828;
     var f = [];
