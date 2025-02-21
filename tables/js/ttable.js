@@ -348,7 +348,7 @@ function highlight(x,y){
     }
     var tablet = "<table style='column-gap: 20px;'>"+table1+table2+table3+table4+table5+"</table>"
     document.getElementById("output").innerHTML = tablet
-    graph1(y)
+    graph1(y,x)
 }
 
 
@@ -402,19 +402,25 @@ function graph0(){
     ctx.stroke(); 
 }
 
-function graph1(z){
+function graph1(z,d){
     if (z == 1) {
         var t = .84
+        var tval = tinv(.20, d).toFixed(3)
     } else if (z == 2) {
         var t = 1.28
+        var tval = tinv(.10, d).toFixed(3)
     } else if (z == 3) {
         var t = 1.64
+        var tval = tinv(.05, d).toFixed(3)
     } else if (z == 4) {
         var t = 1.96
+        var tval = tinv(.025, d).toFixed(3)
     } else if (z == 5) {
         var t = 2.33
+        var tval = tinv(.01, d).toFixed(3)
     } else if (z == 6) {
         var t = 2.57
+        var tval = tinv(.005, d).toFixed(3)
     }
     var lessval = Math.max(t, -2.97)
     var lessvalz = 300+100*lessval
@@ -459,8 +465,9 @@ function graph1(z){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    //ctx.fillText("z",285,132);
-    ctx.fillText("t",18 + .434*(300+100*lessval),145);
+    ctx.fillText("t",285,132);
+    //ctx.fillText("t",18 + .434*(300+100*lessval),145);
+    ctx.fillText(tval,8 + .434*(300+100*lessval),145);
     ctx.moveTo(20 + .433*(300+100*lessval), 135);
     ctx.lineTo(20 + .433*(300+100*lessval), 125);
     if (Math.abs(z) >= .2){
