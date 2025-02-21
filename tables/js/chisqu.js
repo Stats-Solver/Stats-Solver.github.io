@@ -317,24 +317,87 @@ var d100 = [67.328, 70.065, 74.222, 77.929, 82.358, 118.498, 124.342, 129.561, 1
 
 var d2 = [...d30, ...d35, ...d40, ...d45, ...d50, ...d55, ...d60, ...d65, ...d70, ...d75, ...d80, ...d85, ...d90, ...d95, ...d100]
 
-    
-table0 = "<tr style='border-top: thin solid'><td></td><td colspan='10' style='border-bottom: thin solid;'><b>Area in the Upper Tail</b></td></tr>"
-table1 = "<tr style='border-bottom: thin solid;'><td><b>df</b></td><td><b>.995</b></td><td><b>.99</b></td><td><b>.975</b></td><td><b>.95</b></td><td><b>.90</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td></tr>"
-table2 = []
-for (r = 1; r < 30; r++) {
-    i = 10*(r-1)
-    table2 += "<tr><td><b>"+r+"</b></td><td onmouseover = 'highlight0"+r+"()'>"+d[i].toFixed(3)+"</td><td onmouseover = 'highlight1"+r+"()'>"+d[i+1].toFixed(3)+"</td><td onmouseover = 'highlight2"+i+"()'>"+d[i+2].toFixed(3)+"</td><td onmouseover = 'highlight3"+i+"()'>"+d[i+3].toFixed(3)+"</td><td onmouseover = 'highlight4"+i+"()'>"+d[i+4].toFixed(3)+"</td><td onmouseover = 'highlight5"+i+"()'>"+d[i+5].toFixed(3)+"</td><td onmouseover = 'highlight6"+i+"()'>"+d[i+6].toFixed(3)+"</td><td onmouseover = 'highlight7"+i+"()'>"+d[i+7].toFixed(3)+"</td><td onmouseover = 'highlight8"+i+"()'>"+d[i+8].toFixed(3)+"</td><td onmouseover = 'highlight9"+i+"()'>"+d[i+9].toFixed(3)+"</td></tr>"
-}
-var tablez = "<table style='column-gap: 20px;'>"+table0+table1+table2+"</table>"
-document.getElementById("output").innerHTML = tablez
 
-table3 = []
-for (r = 1; r < 16; r++) {
-    i = 10*(r-1)
-    table3 += "<tr><td><b>"+(25 + 5*r)+"</b></td><td onmouseover = 'highlights0"+r+"()'>"+d2[i].toFixed(3)+"</td><td onmouseover = 'highlights1"+r+"()'>"+d2[i+1].toFixed(3)+"</td><td onmouseover = 'highlights2"+r+"()'>"+d2[i+2].toFixed(3)+"</td><td onmouseover = 'highlights3"+r+"()'>"+d2[i+3].toFixed(3)+"</td><td onmouseover = 'highlights4"+r+"()'>"+d2[i+4].toFixed(3)+"</td><td onmouseover = 'highlights5"+r+"()'>"+d2[i+5].toFixed(3)+"</td><td onmouseover = 'highlights6"+r+"()'>"+d2[i+6].toFixed(3)+"</td><td onmouseover = 'highlights7"+r+"()'>"+d2[i+7].toFixed(3)+"</td><td onmouseover = 'highlights8"+r+"()'>"+d2[i+8].toFixed(3)+"</td><td onmouseover = 'highlights9"+r+"()'>"+d2[i+9].toFixed(3)+"</td></tr>"
+
+
+
+
+
+
+
+
+
+table(1,0);
+
+function table(d,s){
+    if (z == 0) {
+        table1 = "<tr><td colspan='8' style='color:black'><i>Click to Highlight</i></td></tr>";
+    } else {
+        table1 = "<tr><td colspan='8' style='cursor:pointer' style='cursor:pointer' onclick='table("+(d-10)+","+s+")' class='text-primary'>&#9650;</td></tr>";
+    }
+    if (s == 0) {
+        table2 = "<tr><td></td><td style='border-bottom: thin solid; border-top: thin solid'><b>df</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.995</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.99</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.975</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.95</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.90</b></td><td></td></tr>";  
+    } else {
+        table2 = "<tr><td></td><td style='border-bottom: thin solid; border-top: thin solid'><b>df</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.10</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.05</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.025</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.01</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.005</b></td><td></td></tr>";  
+    }
+    table3 = [];
+    for (i = d; i < d+10; i++) {
+        if (d < 50) {
+            if (i == d+4) {
+                if (s == 0) {
+                    table3 += "<tr><td style='color:white'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"++"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+d[i]+"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +d[i+1]+ "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+d[i+2]+"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+d[i+3]+"</td><td style='cursor:pointer' onclick='table("+z+",1)' class='text-primary'>&#9654;</td></tr>";                
+                } else {
+                    table3 += "<tr><td class='text-primary' style='cursor:pointer' onclick='table("+d+",0)' >&#9664;</td><td><b>"+zval2.toFixed(1)+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"+normalcdf(zval2-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+normalcdf(zval2-0.01-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +normalcdf(zval2-0.02-0.05*s).toFixed(4).replace(/^0+/, '') + "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+normalcdf(zval2-0.03-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+normalcdf(zval2-0.04-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='color:white'>&#9654;</td></tr>";             
+                }
+            } else {
+                if (zval < 0) {
+                    table3 += "<tr><td></td><td><b>"+zval2.toFixed(1)+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"+normalcdf(zval2-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+normalcdf(zval2-0.01-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +normalcdf(zval2-0.02-0.05*s).toFixed(4).replace(/^0+/, '') + "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+normalcdf(zval2-0.03-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+normalcdf(zval2-0.04-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td></td></tr>";
+                } else {
+                    table3 += "<tr><td></td><td><b>-"+zval2.toFixed(1)+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"+normalcdf(zval2-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+normalcdf(zval2-0.01-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +normalcdf(zval2-0.02-0.05*s).toFixed(4).replace(/^0+/, '') + "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+normalcdf(zval2-0.03-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+normalcdf(zval2-0.04-0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td></td></tr>";
+                }
+            }            
+        } else {
+            if (i == z+4) {
+                if (s == 0) {
+                    table3 += "<tr><td style='color:white'>&#9664;</td><td><b><span style='color:white'>-</span>"+(zval2-.1).toFixed(1)+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"+normalcdf(zval2-.1+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+normalcdf(zval2-.1+0.01+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +normalcdf(zval2-.1+0.02+0.05*s).toFixed(4).replace(/^0+/, '') + "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+normalcdf(zval2-.1+0.03+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+normalcdf(zval2-.1+0.04+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick='table("+z+",1)' class='text-primary'>&#9654;</td></tr>";                
+                } else {
+                    table3 += "<tr><td class='text-primary' style='cursor:pointer' onclick='table("+z+",0)' >&#9664;</td><td><b><span style='color:white'>-</span>"+(zval2-.1).toFixed(1)+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"+normalcdf(zval2-.1+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+normalcdf(zval2-.1+0.01+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +normalcdf(zval2-.1+0.02+0.05*s).toFixed(4).replace(/^0+/, '') + "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+normalcdf(zval2-.1+0.03+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+normalcdf(zval2-.1+0.04+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='color:white'>&#9654;</td></tr>";             
+                }
+            } else {
+                table3 += "<tr><td></td><td><b><span style='color:white'>-</span>"+(zval2-.1).toFixed(1)+"</b></td><td style='cursor:pointer' onclick='highlight0"+i+"()'>"+normalcdf(zval2-.1+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight1"+i+"()'>"+normalcdf(zval2-.1+0.01+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight2"+i+"()'>" +normalcdf(zval2-.1+0.02+0.05*s).toFixed(4).replace(/^0+/, '') + "</td><td style='cursor:pointer' onclick = 'highlight3"+i+"()'>"+normalcdf(zval2-.1+0.03+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td style='cursor:pointer' onclick = 'highlight4"+i+"()'>"+normalcdf(zval2-.1+0.04+0.05*s).toFixed(4).replace(/^0+/, '') +"</td><td></td></tr>";
+            }                  
+        }
+    }
+    if (z < 50) {
+        table4 = "<tr><td></td><td></td><td></td><td colspan='2' style='cursor:pointer' onclick='table("+(z+10)+","+s+")' class='text-primary'>&#9660;</td><td></td><td></td></tr>";
+    } else {
+        table4 = "<tr><td></td><td></td><td></td><td colspan='2' style='cursor:pointer; color:white'>&#9660;</td><td></td><td></td></tr>";
+    }
+    var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+table4+"</table>";
+    document.getElementById("output").innerHTML = tablez;
 }
-var tablez2 = "<table style='column-gap: 20px;'>"+table0+table1+table3+"</table>"
-document.getElementById("output2").innerHTML = tablez2
+
+
+
+
+
+
+
+
+
+
+
+table2(d) {    
+	table1 = "<tr style='border-top: thin solid'><td></td><td colspan='10' style='border-bottom: thin solid;'><b>Area in the Upper Tail</b></td></tr>"
+	table2 = "<tr style='border-bottom: thin solid;'><td><b>df</b></td><td><b>.995</b></td><td><b>.99</b></td><td><b>.975</b></td><td><b>.95</b></td><td><b>.90</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td></tr>"
+	table3 = []
+	for (r = 1; r < 30; r++) {
+		i = 10*(r-1)
+		table3 += "<tr><td><b>"+r+"</b></td><td onmouseover = 'highlight0"+r+"()'>"+d[i].toFixed(3)+"</td><td onmouseover = 'highlight1"+r+"()'>"+d[i+1].toFixed(3)+"</td><td onmouseover = 'highlight2"+i+"()'>"+d[i+2].toFixed(3)+"</td><td onmouseover = 'highlight3"+i+"()'>"+d[i+3].toFixed(3)+"</td><td onmouseover = 'highlight4"+i+"()'>"+d[i+4].toFixed(3)+"</td><td onmouseover = 'highlight5"+i+"()'>"+d[i+5].toFixed(3)+"</td><td onmouseover = 'highlight6"+i+"()'>"+d[i+6].toFixed(3)+"</td><td onmouseover = 'highlight7"+i+"()'>"+d[i+7].toFixed(3)+"</td><td onmouseover = 'highlight8"+i+"()'>"+d[i+8].toFixed(3)+"</td><td onmouseover = 'highlight9"+i+"()'>"+d[i+9].toFixed(3)+"</td></tr>"
+	}
+	var tablez = "<table style='column-gap: 20px;'>"+table0+table1+table2+"</table>"
+	document.getElementById("output").innerHTML = tablez
+}
     
 
 
