@@ -468,6 +468,20 @@ function graph1(z,d){
     ctx.fillText("t",285,132);
     //ctx.fillText("t",18 + .434*(300+100*lessval),145);
     ctx.fillText(tval,8 + .434*(300+100*lessval),145);
+    if (z == 1) {
+        ctx.fillText(".20",55 + .434*(300+100*lessval),95);
+    } else if (z == 2) {
+        ctx.fillText(".10",45 + .434*(300+100*lessval),105);
+    } else if (z == 3) {
+        ctx.fillText(".05",41 + .434*(300+100*lessval),114);
+    } else if (z == 4) {
+        ctx.fillText(".025",35 + .434*(300+100*lessval),119);
+    } else if (z == 5) {
+        ctx.fillText(".01",25 + .434*(300+100*lessval),120);
+    } else if (z == 6) {
+        ctx.fillText(".005",20 + .434*(300+100*lessval),120);
+    }
+    ctx.fillText("df = "+d,225,40);
     ctx.moveTo(20 + .433*(300+100*lessval), 135);
     ctx.lineTo(20 + .433*(300+100*lessval), 125);
     if (Math.abs(z) >= .2){
