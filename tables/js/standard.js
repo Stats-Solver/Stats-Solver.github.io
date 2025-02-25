@@ -380,6 +380,11 @@ function graph1(z){
     ctx.fillText("z",285,132);
     //ctx.fillText("z",18 + .434*(300+100*lessval),145);
     ctx.fillText(lessval.toFixed(2),10 + .434*(300+100*lessval),145);
+    if (lessval < -2) {
+        ctx.fillText(normalcdf(lessval).toFixed(4).replace(/^0+/, ''),20,120);
+    } else {
+        ctx.fillText(normalcdf(lessval).toFixed(4).replace(/^0+/, ''),10 + .434*(300+100*lessval),100);
+    }
     ctx.moveTo(20 + .433*(300+100*lessval), 135);
     ctx.lineTo(20 + .433*(300+100*lessval), 125);
     if (Math.abs(z) > .39){

@@ -481,7 +481,7 @@ function graph1(z,d){
     } else if (z == 6) {
         ctx.fillText(".005",20 + .434*(300+100*lessval),120);
     }
-    ctx.fillText("df = "+d,225,40);
+    ctx.fillText("df = "+d,220,40);
     ctx.moveTo(20 + .433*(300+100*lessval), 135);
     ctx.lineTo(20 + .433*(300+100*lessval), 125);
     if (Math.abs(z) >= .2){
