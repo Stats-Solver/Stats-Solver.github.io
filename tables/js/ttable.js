@@ -362,7 +362,46 @@ var canvas = document.getElementById("Canvas1");
 var ctx = canvas.getContext("2d");
 ctx.scale(1.25, 1.25);
 
-graph0();
+graph00();
+
+function graph00(){
+    var d = 10;
+    var exp = 2.71828;
+    var f = [];
+    var i;
+    for (i = 0; i < 600; i++) {
+      var j = (i-300)/100
+      f[i] = parseFloat((gammafn((d+1)/2)/(Math.sqrt(3.14*d)*gammafn(d/2)))*Math.pow(1+(j*j)/d,-(d+1)/2))
+    }
+    var c = document.getElementById("Canvas1");
+    var ctx = c.getContext("2d");
+    ctx.clearRect(0, 0, 300, 150);
+    //ctx.fillText("Standard Normal Distribution",85,10);
+    ctx.strokeStyle = 'black';
+    ctx.fillStyle = "black";
+    ctx.beginPath();
+    ctx.moveTo(20, 130);
+    ctx.lineTo(280, 130);
+    ctx.fillText("t",285,132);
+    ctx.moveTo(150, 135);
+    ctx.lineTo(150, 125);
+    ctx.fillText("0",147,145);
+    //ctx.fillText("σ=1",225,50);
+    var points = []
+    for (i = 0; i < 600; i++) {
+        points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
+    }
+    // move to the first point
+    ctx.moveTo(points[0].x, points[0].y);
+    for (i = 1; i < points.length - 2; i ++){
+        var xc = (points[i].x + points[i + 1].x) / 2;
+        var yc = (points[i].y + points[i + 1].y) / 2;
+        ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
+    }
+    // curve through the last two points
+    ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
+    ctx.stroke(); 
+}
 
 function graph0(){
     var exp = 2.71828;
@@ -429,7 +468,7 @@ function graph1(z,d){
     var i;
     for (i = 0; i < 600; i++) {
       var j = (i-300)/100
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
+      f[i] = parseFloat((gammafn((d+1)/2)/(Math.sqrt(3.14*d)*gammafn(d/2)))*Math.pow(1+(j*j)/d,-(d+1)/2))
     }
     var c = document.getElementById("Canvas1");
     var ctx = c.getContext("2d");
@@ -465,23 +504,23 @@ function graph1(z,d){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    ctx.fillText("t",285,132);
-    //ctx.fillText("t",18 + .434*(300+100*lessval),145);
-    ctx.fillText(tval,8 + .434*(300+100*lessval),145);
-    if (z == 1) {
-        ctx.fillText(".20",55 + .434*(300+100*lessval),95);
-    } else if (z == 2) {
-        ctx.fillText(".10",45 + .434*(300+100*lessval),105);
-    } else if (z == 3) {
-        ctx.fillText(".05",41 + .434*(300+100*lessval),114);
-    } else if (z == 4) {
-        ctx.fillText(".025",35 + .434*(300+100*lessval),119);
-    } else if (z == 5) {
-        ctx.fillText(".01",25 + .434*(300+100*lessval),120);
-    } else if (z == 6) {
-        ctx.fillText(".005",20 + .434*(300+100*lessval),120);
-    }
-    ctx.fillText("df = "+d,220,40);
+    //ctx.fillText("t",285,132);
+    ctx.fillText("t",18 + .434*(300+100*lessval),145);
+    //ctx.fillText(tval,8 + .434*(300+100*lessval),145);
+    //if (z == 1) {
+    //    ctx.fillText(".20",55 + .434*(300+100*lessval),95);
+    //} else if (z == 2) {
+    //    ctx.fillText(".10",45 + .434*(300+100*lessval),105);
+    //} else if (z == 3) {
+    //    ctx.fillText(".05",41 + .434*(300+100*lessval),114);
+    //} else if (z == 4) {
+    //    ctx.fillText(".025",35 + .434*(300+100*lessval),119);
+    //} else if (z == 5) {
+    //    ctx.fillText(".01",25 + .434*(300+100*lessval),120);
+    //} else if (z == 6) {
+    //    ctx.fillText(".005",20 + .434*(300+100*lessval),120);
+    //}
+    //ctx.fillText("df = "+d,220,40);
     ctx.moveTo(20 + .433*(300+100*lessval), 135);
     ctx.lineTo(20 + .433*(300+100*lessval), 125);
     if (Math.abs(z) >= .2){
