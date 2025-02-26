@@ -504,9 +504,9 @@ function graph1(z,d){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    //ctx.fillText("t",285,132);
-    ctx.fillText("t",18 + .434*(300+100*lessval),145);
-    //ctx.fillText(tval,8 + .434*(300+100*lessval),145);
+    ctx.fillText("t",285,132);
+    //ctx.fillText("t",18 + .434*(300+100*lessval),145);
+    ctx.fillText(tval,8 + .434*(300+100*lessval),145);
     //if (z == 1) {
     //    ctx.fillText(".20",55 + .434*(300+100*lessval),95);
     //} else if (z == 2) {

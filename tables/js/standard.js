@@ -377,9 +377,9 @@ function graph1(z){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    //ctx.fillText("z",285,132);
-    ctx.fillText("z",18 + .434*(300+100*lessval),145);
-    //ctx.fillText(lessval.toFixed(2),10 + .434*(300+100*lessval),145);
+    ctx.fillText("z",285,132);
+    //ctx.fillText("z",18 + .434*(300+100*lessval),145);
+    ctx.fillText(lessval.toFixed(2),10 + .434*(300+100*lessval),145);
     //if (lessval < -2) {
     //    ctx.fillText(normalcdf(lessval).toFixed(4).replace(/^0+/, ''),20,120);
     //} else {
