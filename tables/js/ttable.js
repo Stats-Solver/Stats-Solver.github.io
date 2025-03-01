@@ -237,7 +237,7 @@ function table(d){
     } else {
         table1 = "<tr><td colspan='7' style='cursor:pointer' style='cursor:pointer' onclick='table("+(d-10)+")' class='text-primary'>&#9650;</td></tr>"
     }
-    table2 = "<tr style='border-top: thin solid'><td></td><td colspan='6' style='border-bottom: thin solid;'><b>Area in the Upper Tail</b></td></tr>"
+    table2 = "<tr style='border-top: thin solid'><td></td><td colspan='6' style='border-bottom: thin solid;'><b>Area in Upper Tail</b></td></tr>"
     table3 = "<tr style='border-bottom: thin solid;'><td><b>df</b></td><td><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td></tr>"
     table4 = []
     for (i = d; i < d + 10; i++) {
@@ -265,7 +265,7 @@ function highlight(x,y){
     } else {
         table1 = "<tr><td colspan='7' style='cursor:pointer' style='cursor:pointer' onclick='table("+(rounddown11(x)-10)+")' class='text-primary'>&#9650;</td></tr>"
     }
-    table2 = "<tr style='border-top: thin solid'><td></td><td colspan='6' style='border-bottom: thin solid;'><b>Area in the Upper Tail</b></td></tr>"
+    table2 = "<tr style='border-top: thin solid'><td></td><td colspan='6' style='border-bottom: thin solid;'><b>Area in Upper Tail</b></td></tr>"
     if (y == 1) {
         table3 = "<tr style='border-bottom: thin solid;'><td><b>df</b></td><td bgcolor='lightgray'><b>.20</b></td><td><b>.10</b></td><td><b>.05</b></td><td><b>.025</b></td><td><b>.01</b></td><td><b>.005</b></td></tr>"
     } else if (y == 2) {
