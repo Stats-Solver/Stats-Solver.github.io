@@ -463,6 +463,7 @@ function graph1(z,d){
     }
     var lessval = Math.max(t, -2.97)
     var lessvalz = 300+100*lessval
+    var tvalz = 300+100*tval
     var exp = 2.71828;
     var f = [];
     var i;
@@ -478,7 +479,7 @@ function graph1(z,d){
     ctx.strokeStyle = 'lightgray';
     ctx.beginPath();
     var points0 = []
-    var lessvalneg = -1*lessval
+    var lessvalneg = -1*tval
     var lessvalz2 = 300+100*lessvalneg
     for (i = 0; i < lessvalz2; i++) {
         points0[i] = {x:280 - .433*i, y:130 - 275*f[i]}
@@ -492,8 +493,8 @@ function graph1(z,d){
     }
     // curve through the last two points
     ctx.quadraticCurveTo(points0[i].x, points0[i].y, points0[i+1].x,points0[i+1].y);
-    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[lessvalz],points0[lessvalz]);
-    ctx.lineTo(20 + .433*lessvalz, 130);
+    ctx.quadraticCurveTo(points0[i+1].x, points0[i+1].y, points0[tvalz],points0[tvalz]);
+    ctx.lineTo(20 + .433*tvalz, 130);
     ctx.lineTo(280, 130);
     ctx.stroke();
     ctx.fillStyle = "lightgray";
@@ -504,9 +505,9 @@ function graph1(z,d){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    //ctx.fillText("t",285,132);
-    ctx.fillText("t",18 + .434*(300+100*lessval),145);
-    //ctx.fillText(tval,8 + .434*(300+100*lessval),145);
+    ctx.fillText("t",285,132);
+    //ctx.fillText("t",18 + .434*(300+100*tval),145);
+    ctx.fillText(tval,8 + .434*(300+100*tval),145);
     //if (z == 1) {
     //    ctx.fillText(".20",55 + .434*(300+100*lessval),95);
     //} else if (z == 2) {
@@ -521,8 +522,8 @@ function graph1(z,d){
     //    ctx.fillText(".005",20 + .434*(300+100*lessval),120);
     //}
     //ctx.fillText("df = "+d,220,40);
-    ctx.moveTo(20 + .433*(300+100*lessval), 135);
-    ctx.lineTo(20 + .433*(300+100*lessval), 125);
+    ctx.moveTo(20 + .433*(300+100*tval), 135);
+    ctx.lineTo(20 + .433*(300+100*tval), 125);
     if (Math.abs(z) >= .2){
         ctx.moveTo(150, 135);
         ctx.lineTo(150, 125);
