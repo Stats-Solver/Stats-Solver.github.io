@@ -329,17 +329,22 @@ function table(d,s){
     }
     table3 = [];
     for (i = d; i < d+10; i++) {
+		if (c[i-1][0] < 10) {
+			var font = 16;
+		} else {
+			var font = 13;
+		}
         if (i == d+4){
             if (s == 0) {
-                table3 += "<tr><td style='color:white'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer'>"+c[i-1][0].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][1].toFixed(3)+"</td><td style='cursor:pointer'>" +c[i-1][2].toFixed(3)+ "</td><td style='cursor:pointer'>"+c[i-1][3].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][4].toFixed(3)+"</td><td style='cursor:pointer' onclick='table("+d+",1)' class='text-primary'>&#9654;</td></tr>";                   
+                table3 += "<tr><td style='color:white'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][0].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][1].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>" +c[i-1][2].toFixed(3)+ "</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][3].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][4].toFixed(3)+"</td><td style='cursor:pointer' onclick='table("+d+",1)' class='text-primary'>&#9654;</td></tr>";                   
             } else {
-                table3 += "<tr><td style='cursor:pointer' onclick='table("+d+",0)' class='text-primary'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer'>"+c[i-1][5].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][6].toFixed(3)+"</td><td style='cursor:pointer'>" +c[i-1][7].toFixed(3)+ "</td><td style='cursor:pointer'>"+c[i-1][8].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][9].toFixed(3)+"</td><td style='color:white'>&#9654;</td></tr>";                               
+                table3 += "<tr><td style='cursor:pointer' onclick='table("+d+",0)' class='text-primary'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px''>"+c[i-1][5].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][6].toFixed(3)+"</td><td style='cursor:pointer'>" +c[i-1][7].toFixed(3)+ "</td><td style='cursor:pointer'>"+c[i-1][8].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][9].toFixed(3)+"</td><td style='color:white'>&#9654;</td></tr>";                               
             }            
         } else {
             if (s == 0) {
-                table3 += "<tr><td></td><td><b>"+i+"</b></td><td style='cursor:pointer'>"+c[i-1][0].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][1].toFixed(3)+"</td><td style='cursor:pointer'>" +c[i-1][2].toFixed(3)+ "</td><td style='cursor:pointer'>"+c[i-1][3].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][4].toFixed(3)+"</td><td></td></tr>";                                              
+                table3 += "<tr><td></td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][0].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][1].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>" +c[i-1][2].toFixed(3)+ "</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][3].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][4].toFixed(3)+"</td><td></td></tr>";                                              
             } else {
-                table3 += "<tr><td></td><td><b>"+i+"</b></td><td style='cursor:pointer'>"+c[i-1][5].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][6].toFixed(3)+"</td><td style='cursor:pointer'>" +c[i-1][7].toFixed(3)+ "</td><td style='cursor:pointer'>"+c[i-1][8].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][9].toFixed(3)+"</td><td></td></tr>";                                               
+                table3 += "<tr><td></td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][5].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][6].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>" +c[i-1][7].toFixed(3)+ "</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][8].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][9].toFixed(3)+"</td><td></td></tr>";                                               
             }
         }
 
