@@ -321,7 +321,11 @@ var c = [
 table(1,0);
 
 function table(d,s){
-    table1 = "<tr><td colspan='8' style='color:black'><i>Click to Highlight</i></td></tr>";
+	if (d < 11) {
+    	table1 = "<tr><td colspan='8' style='color:black'><i>Click to Highlight</i></td></tr>";		
+	} else {
+    	table1 = "<tr><td></td><td></td><td></td><td colspan='2' style='cursor:pointer' onclick='table("+(d-10)+","+s+")' class='text-primary'>&#9650;</td><td></td><td></td></tr>";
+	}
     if (s == 0) {
         table2 = "<tr><td></td><td style='border-bottom: thin solid; border-top: thin solid'><b>df</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.995</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.99</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.975</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.95</b></td><td style='border-bottom: thin solid; border-top: thin solid'><b>.90</b></td><td></td></tr>";          
     } else {
@@ -329,29 +333,102 @@ function table(d,s){
     }
     table3 = [];
     for (i = d; i < d+10; i++) {
-		if (c[i-1][0] < 10) {
-			var font = 16;
-		} else {
-			var font = 13;
-		}
         if (i == d+4){
             if (s == 0) {
-                table3 += "<tr><td style='color:white'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][0].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][1].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>" +c[i-1][2].toFixed(3)+ "</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][3].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][4].toFixed(3)+"</td><td style='cursor:pointer' onclick='table("+d+",1)' class='text-primary'>&#9654;</td></tr>";                   
+				if (d < 30) {
+					table3 += "<tr><td style='color:white'>&#9664;</td><td><b>"+i+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][0]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][1]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][2]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][3]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][4]))+"</td>"+
+                    "<td style='cursor:pointer' onclick='table("+d+",1)' class='text-primary'>&#9654;</td></tr>";            
+				} else {
+					table3 += "<tr><td style='color:white'>&#9664;</td><td><b>"+(i*5-30*4)+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][0]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][1]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][2]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][3]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][4]))+"</td>"+
+                    "<td style='cursor:pointer' onclick='table("+d+",1)' class='text-primary'>&#9654;</td></tr>";            
+				}  
             } else {
-                table3 += "<tr><td style='cursor:pointer' onclick='table("+d+",0)' class='text-primary'>&#9664;</td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px''>"+c[i-1][5].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][6].toFixed(3)+"</td><td style='cursor:pointer'>" +c[i-1][7].toFixed(3)+ "</td><td style='cursor:pointer'>"+c[i-1][8].toFixed(3)+"</td><td style='cursor:pointer'>"+c[i-1][9].toFixed(3)+"</td><td style='color:white'>&#9654;</td></tr>";                               
+				if (d < 30) {
+                	table3 += "<tr><td style='cursor:pointer' onclick='table("+d+",0)' class='text-primary'>&#9664;</td><td><b>"+i+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][5]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][6]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][7]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][8]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][9]))+"</td>"+
+                    "<td style='color:white'>&#9654;</td></tr>";  					
+				} else {
+					table3 += "<tr><td style='cursor:pointer' onclick='table("+d+",0)' class='text-primary'>&#9664;</td><td><b>"+(i*5-30*4)+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][5]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][6]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][7]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][8]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][9]))+"</td>"+
+                    "<td style='color:white'>&#9654;</td></tr>"; 
+				}                             
             }            
         } else {
             if (s == 0) {
-                table3 += "<tr><td></td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][0].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][1].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>" +c[i-1][2].toFixed(3)+ "</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][3].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][4].toFixed(3)+"</td><td></td></tr>";                                              
+				if (d < 30) {
+                	table3 += "<tr><td></td><td><b>"+i+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][0]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][1]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][2]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][3]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][4]))+"</td>"+
+                    "<td></td></tr>";  					
+				} else {
+					table3 += "<tr><td></td><td><b>"+(i*5-30*4)+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][0]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][1]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][2]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][3]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][4]))+"</td>"+
+                    "<td></td></tr>";  	
+				}                                            
             } else {
-                table3 += "<tr><td></td><td><b>"+i+"</b></td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][5].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][6].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>" +c[i-1][7].toFixed(3)+ "</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][8].toFixed(3)+"</td><td style='cursor:pointer; font-size:"+font+"px'>"+c[i-1][9].toFixed(3)+"</td><td></td></tr>";                                               
+				if (d < 30) {
+					table3 += "<tr><td></td><td><b>"+i+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][5]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][6]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][7]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][8]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][9]))+"</td>"+
+                    "<td></td></tr>"; 
+				} else {
+					table3 += "<tr><td></td><td><b>"+(i*5-30*4)+"</b></td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][5]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][6]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][7]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][8]))+"</td>"+
+                    "<td style='cursor:pointer'>"+(formatValue(c[i-1][9]))+"</td>"+
+                    "<td></td></tr>"; 
+				}                                              
             }
         }
-
     }
-    table4 = "<tr><td></td><td></td><td></td><td colspan='2' style='cursor:pointer' onclick='table("+(d+10)+","+s+")' class='text-primary'>&#9660;</td><td></td><td></td></tr>";
+	if (d < 30) {
+		table4 = "<tr><td></td><td></td><td></td><td colspan='2' style='cursor:pointer' onclick='table("+(d+10)+","+s+")' class='text-primary'>&#9660;</td><td></td><td></td></tr>";
+	} else {
+		table4 = "<tr><td></td><td></td><td></td><td colspan='2' style='color:white'>&#9660;</td><td></td><td></td></tr>";
+	}
     var tablez = "<table style='column-gap: 20px;'>"+table1+table2+table3+table4+"</table>";
     document.getElementById("output").innerHTML = tablez;
+
+    // Helper function for formatting values with appropriate decimal places
+    function formatValue(value) {
+        if (value >= 100) {
+            return value.toFixed(1);
+        } else if (value >= 10) {
+            return value.toFixed(2);
+        } else {
+            return value.toFixed(3);
+        }
+    }
 }
 
 

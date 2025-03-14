@@ -252,7 +252,7 @@ function table(d){
     if (d < 91) {
         table5 = "<tr><td colspan='7' style='cursor:pointer' style='cursor:pointer' onclick='table("+(d+10)+")' class='text-primary'>&#9660;</td></tr>"
     } else {
-        table5 = "<tr><td colspan='7'  style='color:white'>&#9660;</td></tr>"
+        table5 = "<tr><td colspan='7' style='color:white'>&#9660;</td></tr>"
     }
     var tablet = "<table style='column-gap: 20px;'>"+table1+table2+table3+table4+table5+"</table>"
     document.getElementById("output").innerHTML = tablet
