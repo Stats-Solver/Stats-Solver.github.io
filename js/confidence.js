@@ -1,5 +1,5 @@
 datainput.hidden = true; conflevel.hidden = true;
-
+canvascontainer.hidden = true; canvascontainer0.hidden = true
 type = "values"; leveltype = "premade";
 
 var canvas = document.getElementById("myCanvas"); var ctx = canvas.getContext("2d"); ctx.scale(1.25, 1.25);
@@ -627,6 +627,7 @@ function conint(){
 function conint1(){
     //$("#canvascontainer").show();$("#expconf").show();
     canvascontainer.hidden=false; //expconf.hidden=false;
+    canvascontainer0.hidden = true;
     var sigma = document.getElementById("sigma").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
     var xbar = document.getElementById("xbar").value;
