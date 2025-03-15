@@ -3,21 +3,21 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Step-by-step solutions to almost any statistics problem. Solve your statistics homework with our easy-to-use calculators.">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
 
     <title>Stats Solver - Step-by-Step Statistics Solutions</title>
       
-      <link rel="icon" href="solver.png">
+    <link rel="icon" href="solver.png">
       
-      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816" crossorigin="anonymous"></script>
       
-          <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -27,182 +27,273 @@
       gtag('config', 'UA-170214906-1');
     </script>
       
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
       
-      <link rel="canonical" href="https://www.statssolver.com/" />
+    <link rel="canonical" href="https://www.statssolver.com/" />
 
+    <style>
+      .card {
+        transition: all 0.3s;
+        height: 100%;
+      }
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      }
+      .card-title {
+        color: #0d6efd;
+      }
+      .card-title a {
+        color: #0d6efd;
+        text-decoration: none;
+      }
+      .card-title a:hover {
+        text-decoration: underline;
+      }
+      .coming-soon .card-title {
+        color: #6c757d;
+      }
+    </style>
   </head>
   <body>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="#"><img src="stats-solver-logo.png" width="188" height="25" alt = "stats solver logo" style="mix-blend-mode: multiply;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#"><img src="stats-solver-logo.png" width="188" height="25" alt="stats solver logo" style="mix-blend-mode: multiply;"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Calculators
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="linear-regression.html">Linear Regression</a>
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-            </div>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Calculators
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tables
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a></li>
+                  <li><a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a></li>
+                  <li><a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a></li>
+                  <li><a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/help.html">Help</a>
+              </li>
+            </ul>
           </div>
+        </div>
+      </nav>
+    </div>
      
-      <!-- JUMBOTRON -->
-      <div class="container">
-      <div class="jumbotron text-center" style="padding: 20px">
-        <div class="container">
-            <img src="bell-curve.png" width="220" height="90" alt = "bell curve" style="mix-blend-mode: multiply;" class="mb-2">
-            <h1 style="font-size: 2em">Step-by-Step Statistics Solutions</h1>
-            <p>Get help on your statistics homework with our easy-to-use calculators.</p>
-            <a href="hypothesis-testing.html" class="btn btn-primary">Get Started</a>
-          </div>
+    <!-- HERO SECTION (replaced jumbotron) -->
+    <div class="container py-4">
+      <div class="p-5 mb-4 bg-light rounded-3 text-center">
+        <div class="container-fluid py-3">
+          <img src="bell-curve.png" width="220" height="90" alt="bell curve" style="mix-blend-mode: multiply;" class="mb-2">
+          <h1 class="display-5 fw-bold" style="font-size: 2em">Step-by-Step Statistics Solutions</h1>
+          <p class="fs-4">Get help on your statistics homework with our easy-to-use calculators.</p>
+          <a href="hypothesis-testing.html" class="btn btn-primary btn-lg">Get Started</a>
+        </div>
       </div>
-          </div>
+    </div>
       
-
+    <div class="container">
+      <h2 class="page-header">Welcome!</h2>
+      <p>Here, you will find all the help you need to be successful in your statistics classes. Check out our statistics calculators to get step-by-step solutions to almost any statistics problems. Choose from topics such as numerical summaries, confidence intervals, hypothesis testing, linear regression and more.</p>
+    </div>  
       
-    <div class = "container">
-        <h2 class="page-header">Welcome!</h2>
-        <p>Here, you will find all the help you need to be successful in your statistics classes. Check out our statistics calculators to get step-by-step solutions to almost any statistics problems. Choose from topics such as numerical summaries, confidence intervals, hypothesis testing, simple regression and more.   </p>
-      </div>  
-      
-       <div class="container">
+    <div class="container">
       <hr>
-          </div>
+    </div>
        
-      <div class = "container">
-        <img src="calculator.png" width="42" height="49" alt = "statistics calculator" style = "display: block; margin-left: auto; margin-right: auto;" class="mb-1">
-        <h3 class="text-center">Calculators</h3>
-      </div> 
-      
-      <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-                <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Frequency Distribution, Bar Chart, Histogram, Scatter Diagram, Crosstabulation"><a href="tables-and-graphs.html"> Tables and Graphs </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Mean, Median, Variance, Standard Deviation, Correlation Coefficient"><a href="numerical-summaries.html"> Numerical Summaries </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Outcomes, Combinations, Permutations, Conditional Probability, Intersection"><a href="basic-probability.html"> Basic Probability </a> </h4>
-            </div>   
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Expected Value, Variance, Binomial Distribution, Poisson Distribution"><a href="discrete-distributions.html"> Discrete Distributions </a></h4>
-            </div>
-              <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Uniform Distribution, Normal Distribution, Exponential Distribution"><a href="continuous-distributions.html"> Continuous Distributions </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Expected Value of Sample Mean, Standard Error of the Mean, Point Estimation"><a href="sampling-distributions.html"> Sampling Distributions</a> </h4>
-            </div>    
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Margin of Error, Confidence Level, Confidence Coefficient, Sample Size"><a href="confidence-intervals.html"> Confidence Intervals </a> </h4>
-            </div>
-              <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Test Statistic, Null and Alternative Hypothesis, p-Value, Critical Value"><a href="hypothesis-testing.html">  Hypothesis Testing </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Estimated Regression Equation, Coefficient of Determination, t-Test"><a href="linear-regression.html"> Linear Regression  </a> </h4>
-            </div>
-          </div>
+    <div class="container mb-4">
+      <div class="text-center mb-4">
+        <img src="calculator.png" width="42" height="49" alt="statistics calculator" style="display: block; margin-left: auto; margin-right: auto;" class="mb-1">
+        <h3>Calculators</h3>
       </div>
+      
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- First row of calculator cards -->
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="tables-and-graphs.html">Tables and Graphs</a></h5>
+              <p class="card-text">Frequency Distribution, Bar Chart, Pie Chart, Histogram, Scatter Diagram, Crosstabulation</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="numerical-summaries.html">Numerical Summaries</a></h5>
+              <p class="card-text">Mean, Median, Mode, Percentiles, Variance, Standard Deviation, Covariance, Correlation </p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="basic-probability.html">Basic Probability</a></h5>
+              <p class="card-text">Sample Space, Combinations, Permutations, Complement, Union, Intersection, Conditional</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Second row of calculator cards -->
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="discrete-distributions.html">Discrete Distributions</a></h5>
+              <p class="card-text">Expected Value, Variance, Standard Deviation, Binomial Distribution, Poisson Distribution</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="continuous-distributions.html">Continuous Distributions</a></h5>
+              <p class="card-text">Uniform Distribution, Normal Distribution, Exponential Distribution, t-Distribution</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="sampling-distributions.html">Sampling Distributions</a></h5>
+              <p class="card-text">Expected Value, Standard Error of the Mean, Distribution Form, Central Limit Theorem</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Third row of calculator cards -->
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="confidence-intervals.html">Confidence Intervals</a></h5>
+              <p class="card-text">Margin of Error, Confidence Level, Confidence Coefficient, Sigma Known, Sigma Unknown</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="hypothesis-testing.html">Hypothesis Testing</a></h5>
+              <p class="card-text">Test Statistic, Null Hypothesis, Alternative Hypothesis, p-Value, Critical Value</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="linear-regression.html">Linear Regression</a></h5>
+              <p class="card-text">Regression Equation, Coefficient of Determination, Sum of Squares, Standard Error, t-Test</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
     <div class="container">
       <hr>
-          </div>
+    </div>
        
-      <div class = "container">
-        <img src="table.png" width="41" height="49" alt = "statistics calculator" style = "display: block; margin-left: auto; margin-right: auto;" class="mb-1">
-        <h3 class="text-center">Tables</h3>
-      </div> 
-      
-      <div class="container">
-        <div class="row">
-            <div class="col-md-4">
-              <h4 class="text-center" data-toggle="tooltip" data-placement="top"><a href="tables/standard-normal.html"> Standard Normal </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top"><a href="tables/t-distribution.html"> t-Distribution </a> </h4>
-            </div>
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top"><a href="tables/chi-square.html"> Chi-Square </a> </h4>
-            </div>   
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top"><a href="tables/f-distribution.html"> F-Distribution </a></h4>
-            </div>
-              <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Coming Soon"><a href=""> Binomial </a> </h4>
-            </div> 
-              <div class="col-md-4">
-             <h4 class="text-center" data-toggle="tooltip" data-placement="top" title="Coming Soon"><a href=""> Poisson </a> </h4>
-            </div>
-          </div>
+    <div class="container mb-5">
+      <div class="text-center mb-4">
+        <img src="table.png" width="41" height="49" alt="statistics table" style="display: block; margin-left: auto; margin-right: auto;" class="mb-1">
+        <h3>Tables</h3>
       </div>
       
-      
-      
-      
-      
-          <footer id="footer text-center">
-            <div class="container">
-                <hr>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <!-- Table cards -->
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="tables/standard-normal.html">Standard Normal</a></h5>
+              <p class="card-text">Cumulative probabilities for the z-distribution</p>
             </div>
-          <p> 
-
-              &copy; 2025 <a href="about.html">Stats Solver</a> 
-              
-              </p>
-              
-          </footer>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="tables/t-distribution.html">t-Distribution</a></h5>
+              <p class="card-text">Critical values for Student's t-distribution</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="tables/chi-square.html">Chi-Square</a></h5>
+              <p class="card-text">Critical values for chi-square distribution</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Second row of table cards -->
+        <div class="col">
+          <div class="card h-100 text-center">
+            <div class="card-body">
+              <h5 class="card-title"><a href="tables/f-distribution.html">F-Distribution</a></h5>
+              <p class="card-text">Critical values for Snedecor's F-distribution</p>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center coming-soon">
+            <div class="card-body">
+              <h5 class="card-title">Binomial</h5>
+              <p class="card-text">Coming Soon</p>
+              <!--<p><small class="text-muted">Coming Soon</small></p>-->
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card h-100 text-center coming-soon">
+            <div class="card-body">
+              <h5 class="card-title">Poisson</h5>
+              <p class="card-text">Coming Soon</p>
+              <!--<p><small class="text-muted">Coming Soon</small></p>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
       
-    <!--<div style = "height: 400px"></div>-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <footer id="footer" class="text-center py-4">
+      <div class="container">
+        <hr>
+      </div>
+      <p>&copy; 2025 <a href="about.html">Stats Solver</a></p>
+    </footer>
       
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+      
+    <!-- Initialize tooltips -->
     <script>
-      $(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-    })
-      
-      </script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
   </body>
 </html>

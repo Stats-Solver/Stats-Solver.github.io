@@ -3,40 +3,35 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Confidence intervals calculator with steps. Solve the margin of error.">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
 
-                         <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script>  
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        loader: {load: ['[tex]/ams']},
+        tex: {
+          packages: {'[+]': ['ams']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>  
       
     <title>Confidence Intervals Calculator with Steps - Stats Solver</title>
       
-      <link rel="icon" href="/solver.png">
+    <link rel="icon" href="/solver.png">
       
-     <!-- <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
-      
-                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -46,410 +41,327 @@
       gtag('config', 'UA-170214906-1');
     </script>
       
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
       
-      <link rel="canonical" href="https://www.statssolver.com/confidence-intervals.html" />
-
-      
+    <link rel="canonical" href="https://www.statssolver.com/confidence-intervals.html" />
   </head>
   <body>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/index.html">
+            <img src="/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Calculators
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="linear-regression.html">Linear Regression</a>
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-            </div>
-          </li>
-            <li class="nav-item">
-            <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Calculators
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tables
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a></li>
+                  <li><a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a></li>
+                  <li><a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a></li>
+                  <li><a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/help.html">Help</a>
+              </li>
+            </ul>
           </div>
+        </div>
+      </nav>
+    </div>
     
-      
-    <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="confidence-intervals.html">Confidence Intervals</a></h1>
+    <div class="container">
+      <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em">
+        <a href="confidence-intervals.html" style="text-decoration: none">Confidence Intervals</a>
+      </h1>
     </div>
       
-      <div class="container">
+    <div class="container">
       <hr>
-          </div>
+    </div>
       
-      <div class="container" id = "confidence">
-          
-          <div id = "valuesinput">
+    <div class="container" id="confidence">
+      <div id="valuesinput">
         <table id="statistics">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
+            <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Sample Size">$n$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
             <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><select id="samplestat" class="hypinput1" onchange="samplestat()"> <option value="mean"> x&#772; </option> <option value="proportion"> p&#772; </option> </select></td>
+            <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Sample Statistic">
+              <select id="samplestat" class="hypinput1" onchange="samplestat()"> 
+                <option value="mean"> x&#772; </option> 
+                <option value="proportion"> p&#772; </option> 
+              </select>
+            </td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
             <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
+            <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Standard Deviation" id="sd1">
+              <select id="sigma" class="hypinput1"> 
+                <option value="known"> &#963; </option> 
+                <option value="unknown"> s </option> 
+              </select>
+            </td>
             <td class="statistics" id="sd2"> = </td>
             <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
             <td class="statistics"></td>
             <td class="statistics">
-            <svg onclick="switchdata()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
+              <i class="fas fa-random" onclick="switchdata()"></i>
             </td>
           </tr>
         </table> 
-          </div>
+      </div>
           
-          <div class="container center" id="datainput">
-           <table>
+      <div class="container text-center" id="datainput">
+        <table>
           <tr>
-            <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values" size="30"> </td>
+            <td class="statistics"> 
+              <input type="text" class="form-control" id="xvalues" placeholder="Enter Values" size="30"> 
+            </td>
             <td class="statistics"></td>
             <td class="statistics">
-                <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-                  <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-                </svg>
+              <i class="fas fa-random" onclick="switchvalues()"></i>
             </td>
           </tr>
         </table>  
-        </div>
+      </div>
           
-          
-          
-          
-          <div class = "text-center mt-2">
-          $\text{Confidence Level:}$
-            <select id="conlev" class="hypinput3" onchange="levelchange()"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> <option value="other"> ⋯ </option> </select> <input type="text" style="width:40px;" id="conflevel" class="hypinput2"> % 
-        </div>
+      <div class="text-center mt-2">
+        $\text{Confidence Level:}$
+        <select id="conlev" class="hypinput3" onchange="levelchange()"> 
+          <option value=99> 99 </option> 
+          <option value=95 selected="selected"> 95 </option>  
+          <option value=90> 90 </option> 
+          <option value="other"> ⋯ </option> 
+        </select> 
+        <input type="text" style="width:40px;" id="conflevel" class="hypinput2"> % 
+      </div>
 
-          <div class="container center">
-          <div class="row justify-content-center">
-        <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "conint" class="button btn-outline-primary" onclick="solve()">Solve</button>
-            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
-            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
-        </div>
-              </div>
-              </div>
-          
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
-        </div>
-          
+      <div class="container text-center">
+        <div class="row justify-content-center">
+          <div class="col-4 col-md-2 text-center mt-2">
+            <button id="conint" class="btn btn-outline-primary" onclick="solve()">Solve</button>
           </div>
-      
-      <div class="container" id = "samplesize">
-        <div class = "container">
-            <h5 class="text-center text-primary mb-3">Sample Size</h5>
         </div>
-        <table id="statistics">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Planning Value"><select id="planning" class="hypinput1" style="width:33px;"> <option value="sigma"> &#963; </option> <option value="pstar"> p* </option> </select></td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="planningvalue" class="hypinput2"></td>
-            <td class="statistics">&nbsp;</td> 
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Margin of Error">$E$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="margin" class="hypinput2"></td>
-          </tr>
-        </table> 
+      </div>
           
-          <div class = "text-center mt-2">
-          $\text{Confidence Level:}$
-            <select id="conlev2" class="hypinput3"> <option value=99> 99 </option> <option value=95 selected="selected"> 95 </option>  <option value=90> 90 </option> </select> % 
-        </div>
-
-          <div class="container center">
-          <div class="row justify-content-center">
-        <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "conint" class="button btn-outline-primary" onclick="samplesize()">Solve</button>
-            <!--<button id = "entervals" class="button" onclick="showvals()">Enter Values</button>
-            <button id = "enterstats" class="button" onclick="showstats()">Enter Statistics</button>-->
-        </div>
-              </div>
-              </div>
-          
-          <div class = "text-center mt-2">
-            <span class="examplelink" onclick="example4()">Example 1</span> &bull; <span class="examplelink" onclick="example5()">Example 2</span>
-        </div>
-          
-          </div>
-      
-      
+      <div class="text-center mt-2">
+        <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+      </div>
+    </div>
       
     <div class="container">
       <hr>
-          </div>
+    </div>
       
-      
-      
-      <div class="container" id="how">
-        <div id="how1" class="output" style="color: darkslategray">
-            
-            <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-     crossorigin="anonymous"></script>
-        <!-- Responsive3 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="5116243734"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-                </div>
-            
-        </div>
-        <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So, if we're constructing a confidence interval for the population mean (μ), we use the sample mean ($\bar{x}$), because the sample mean provides a point estimate (or single-value estimate) of the population mean. Since the sample mean is easy to calculate ($\bar{x} = \sum{x}/n$), the focus will be on finding the margin of error. The formula we use to compute the margin of error for a confidence interval of the population mean depends on whether the population standard deviation (σ) is known or unknown. The two formulas are shown below. If the population standard deviation is unknown, the sample standard deviation (s) is used instead. To change from $\sigma$ known to $\sigma$ unknown in the Confidence Interval Calculator, click on $\boxed{σ}$ and select $\boxed{s}$.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td></td>
-                <td>$\sigma$ Known</td>
-                <td>$\sigma$ Unknown</td>
-              </tr>
-              <tr>
-                <td>Margin of Error</td>  
-                <td>$ z_{\alpha/2} \dfrac{\sigma}{\sqrt{{\color{Black} n}}} $</td>
-                <td>$ t_{\alpha/2} \dfrac{s}{\sqrt{n}} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">In order to find the value of $ z_{\alpha/2} $ (or $ t_{\alpha/2} $) for the margin of error, we must first find the value of $\alpha/2$. We start by setting 1 - $\alpha$ equal to the confidence coefficient, which is simply the decimal form of the confidence level. So, for example, if the confidence level is 95%, the confidence coefficient is .95. As another example, if the confidence level is 90%, the confidence coefficient is .90. The next step is to solve for $\alpha/2$. So, continuing with our first example, we would have 1 - $\alpha$ = .95. From there, we get that $\alpha$ = .05 and thus $\alpha/2$ is equal to .025. For our second example, we have 1 - $\alpha$ = .90, which means $\alpha$ = .10 and thus $\alpha/2$ = .05. The most commonly used confidence level is 95% while 90% and 99% are also popular. An interval estimate constructed at a confidence level of 95% is called a 95% confidence interval. To change the confidence level, click on $\boxed{95\%}$. You can input your own confidence level by selecting $\boxed{...}$.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Confidence Level</td>
-                <td>Confidence Coefficient</td>
-              </tr>
-              <tr> 
-                <td>99%</td>
-                <td>.99</td>
-              </tr>
-              <tr> 
-                <td>95%</td>
-                <td>.95</td>
-              </tr>
-              <tr> 
-                <td>90%</td>
-                <td>.90</td>
-              </tr>
-            </table>
-            <br>
-            
-
-            <p class = "p1">Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $) for the margin of error part of the confidence interval. We will start by explaining how to find $z_{\alpha/2}$. The primary difference between finding the value of $z_{\alpha/2}$ and $t_{\alpha/2}$ is that for the former we use the standard normal, or z, distribution and for the latter we use the t-distribution. We can get $z_{\alpha/2}$ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the standard normal (z) distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1). Note that if you want to enter your data you can click on the switch symbol.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas1" width="375" height="188"></canvas><canvas id="howCanvas2" width="375" height="188"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">Finally, we can put the point estimate and margin of error together to make the confidence interval for the population mean. The confidence interval is created by adding and subtracting the margin of error from the point estimate. If the population standard deviation ($\sigma$) is known, the margin of error is given by $z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. So the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If the population standard deviation ($\sigma$) is unknown, the margin of error is $t_{\alpha/2} \frac{s}{\sqrt{n}}$. So the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level. So a 95% confidence interval of the population mean is an range of values that the population mean has a 95% chance of being contained in. </p>
-            
-            <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Responsive2 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="2627397291"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
-            
-            <p class = "p1">If we're constructing a confidence interval of the population proportion, we use the sample proportion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean and sample proportion are easy to calculate, the focus will be on finding the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
-            
-            <table>
-              <tr>
-                <td></td>
-                <td>Population Proportion</td>
-              </tr>
-              <tr>
-                <td>Margin of Error</td>  
-                <td>$ z_{\alpha/2} \sqrt{\dfrac{\bar{p}(1-\bar{p})}{n}} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">Sometimes, when dealing with confidence intervals, we are interested in achieving a certain margin of error. In order to achieve the margin of error that we want, we can adjusted the sample size. The formula for this can be easily derived from the margin of error formula and is shown below. In the formula, $E$ is the desired margin of error. If the population standard deviation is unknown, a planning value is used for $\sigma$.  </p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Sample Size</td>
-              </tr>
-              <tr> 
-                <td>$ n = \dfrac{(z_{\alpha/2})^2 \sigma ^2}{E^2} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> The sample size needed to achieve the desired margin of error can also be found for confidence intervals about the population proportion. Again, the formula for this can be easily derived from the margin of error formula and is shown below. In the formula, $E$ is the desired margin of error and $p^*$ is the planning value. </p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Sample Size</td>
-              </tr>
-              <tr> 
-                <td>$ n = \dfrac{(z_{\alpha/2})^2 p^* (1-p^*)}{E^2} $</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> Confidence intervals is closely related to the statistical area of hypothesis testing. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Hypothesis teting can be done using the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. The calculator on this page solves confidence intervals for one population mean. Sometimes we're interest in confidnece intervals about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. </p>
- 
+    <div class="container" id="how">
+      <div id="how1" class="output" style="color: darkslategray">
+        <div class="text-center mt-2 mb-2">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816" crossorigin="anonymous"></script>
+          <!-- Responsive3 -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-3595688914204816"
+               data-ad-slot="5116243734"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
         </div>
       </div>
-      
+        
+      <div id="how2" class="how" style="color: darkslategray">
+        <p class="p1">A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So, if we're constructing a confidence interval for the population mean (μ), we use the sample mean ($\bar{x}$), because the sample mean provides a point estimate (or single-value estimate) of the population mean. Since the sample mean is easy to calculate ($\bar{x} = \sum{x}/n$), the focus will be on finding the margin of error. The formula we use to compute the margin of error for a confidence interval of the population mean depends on whether the population standard deviation (σ) is known or unknown. The two formulas are shown below. If the population standard deviation is unknown, the sample standard deviation (s) is used instead. To change from $\sigma$ known to $\sigma$ unknown in the Confidence Interval Calculator, click on $\boxed{σ}$ and select $\boxed{s}$.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td></td>
+            <td>$\sigma$ Known</td>
+            <td>$\sigma$ Unknown</td>
+          </tr>
+          <tr>
+            <td>Margin of Error</td>  
+            <td>$ z_{\alpha/2} \dfrac{\sigma}{\sqrt{{\color{Black} n}}} $</td>
+            <td>$ t_{\alpha/2} \dfrac{s}{\sqrt{n}} $</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">In order to find the value of $ z_{\alpha/2} $ (or $ t_{\alpha/2} $) for the margin of error, we must first find the value of $\alpha/2$. We start by setting 1 - $\alpha$ equal to the confidence coefficient, which is simply the decimal form of the confidence level. So, for example, if the confidence level is 95%, the confidence coefficient is .95. As another example, if the confidence level is 90%, the confidence coefficient is .90. The next step is to solve for $\alpha/2$. So, continuing with our first example, we would have 1 - $\alpha$ = .95. From there, we get that $\alpha$ = .05 and thus $\alpha/2$ is equal to .025. For our second example, we have 1 - $\alpha$ = .90, which means $\alpha$ = .10 and thus $\alpha/2$ = .05. The most commonly used confidence level is 95% while 90% and 99% are also popular. An interval estimate constructed at a confidence level of 95% is called a 95% confidence interval. To change the confidence level, click on $\boxed{95\%}$. You can input your own confidence level by selecting $\boxed{...}$.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Confidence Level</td>
+            <td>Confidence Coefficient</td>
+          </tr>
+          <tr> 
+            <td>99%</td>
+            <td>.99</td>
+          </tr>
+          <tr> 
+            <td>95%</td>
+            <td>.95</td>
+          </tr>
+          <tr> 
+            <td>90%</td>
+            <td>.90</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">Now that we know the value of $\alpha/2$, we can find $ z_{\alpha/2} $ (or $ t_{\alpha/2} $) for the margin of error part of the confidence interval. We will start by explaining how to find $z_{\alpha/2}$. The primary difference between finding the value of $z_{\alpha/2}$ and $t_{\alpha/2}$ is that for the former we use the standard normal, or z, distribution and for the latter we use the t-distribution. We can get $z_{\alpha/2}$ by finding the z-value that provides an area of $\alpha/2$ in the upper tail of the standard normal (z) distribution. Similarly, $ t_{\alpha/2} $ is the t-value that provides an area of $\alpha/2$ in the upper tail of the t-distribution. If $\sigma$ is known and we're using the z distribution, it is useful to calculate the area to the left since that is what the z-table gives us. The t-table gives us the upper tail area but the particular t-distribution depends on the degrees of freedom, which is simply one less than the sample size (degrees of freedom = n - 1). Note that if you want to enter your data you can click on the switch symbol.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td><canvas id="howCanvas1" width="375" height="188"></canvas><canvas id="howCanvas2" width="375" height="188"></canvas></td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">Finally, we can put the point estimate and margin of error together to make the confidence interval for the population mean. The confidence interval is created by adding and subtracting the margin of error from the point estimate. If the population standard deviation ($\sigma$) is known, the margin of error is given by $z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. So the confidence interval will be given by $\bar{x} \pm z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$. If the population standard deviation ($\sigma$) is unknown, the margin of error is $t_{\alpha/2} \frac{s}{\sqrt{n}}$. So the confidence interval will be given by $\bar{x} \pm t_{\alpha/2} \frac{s}{\sqrt{n}}$. The confidence interval gives a range of values the population parameter is likely to be in. The likeliness that the interval contains the parameter is determined by the confidence level. So a 95% confidence interval of the population mean is an range of values that the population mean has a 95% chance of being contained in. </p>
+            
+        <div class="text-center mt-2 mb-2">
+          <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816" crossorigin="anonymous"></script>
+          <!-- Responsive2 -->
+          <ins class="adsbygoogle"
+               style="display:block"
+               data-ad-client="ca-pub-3595688914204816"
+               data-ad-slot="2627397291"
+               data-ad-format="auto"
+               data-full-width-responsive="true"></ins>
+          <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+        </div>
+            
+        <p class="p1">If we're constructing a confidence interval of the population proportion, we use the sample proportion. The confidence interval is created by adding and subtracting the margin of error from the point estimate. Since the sample mean and sample proportion are easy to calculate, the focus will be on finding the margin of error. To switch from confidence intervals about the population mean to the population proportion, click on $\boxed{\bar{x}}$ and select $\boxed{\bar{p}}$.</p>
+            
+        <table>
+          <tr>
+            <td></td>
+            <td>Population Proportion</td>
+          </tr>
+          <tr>
+            <td>Margin of Error</td>  
+            <td>$ z_{\alpha/2} \sqrt{\dfrac{\bar{p}(1-\bar{p})}{n}} $</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">Sometimes, when dealing with confidence intervals, we are interested in achieving a certain margin of error. In order to achieve the margin of error that we want, we can adjusted the sample size. The formula for this can be easily derived from the margin of error formula and is shown below. In the formula, $E$ is the desired margin of error. If the population standard deviation is unknown, a planning value is used for $\sigma$.  </p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Sample Size</td>
+          </tr>
+          <tr> 
+            <td>$ n = \dfrac{(z_{\alpha/2})^2 \sigma ^2}{E^2} $</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1"> The sample size needed to achieve the desired margin of error can also be found for confidence intervals about the population proportion. Again, the formula for this can be easily derived from the margin of error formula and is shown below. In the formula, $E$ is the desired margin of error and $p^*$ is the planning value. </p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Sample Size</td>
+          </tr>
+          <tr> 
+            <td>$ n = \dfrac{(z_{\alpha/2})^2 p^* (1-p^*)}{E^2} $</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1"> Confidence intervals is closely related to the statistical area of hypothesis testing. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Hypothesis teting can be done using the <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. The calculator on this page solves confidence intervals for one population mean. Sometimes we're interest in confidnece intervals about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. </p>
+      </div>
+    </div>
       
     <div id="confoutputs">
-        
       <div class="container">
-        <div id="output0">
-        </div>
+        <div id="output0"></div>
       </div>
-      
       
       <div class="container text-center" id="canvascontainer0">
-        <canvas id="myCanvas0" width="375" height="188" ></canvas>
+        <canvas id="myCanvas0" width="375" height="188"></canvas>
       </div>
       
       <div class="container">
-        <div id="output">
-        </div>
+        <div id="output"></div>
       </div>
       
-     <div class="container">
-        <div id="output1">
-        </div>
+      <div class="container">
+        <div id="output1"></div>
       </div>
       
       <div class="container text-center" id="canvascontainer">
-        <canvas id="myCanvas" width="375" height="188" ></canvas>
+        <canvas id="myCanvas" width="375" height="188"></canvas>
       </div>
       
       <div class="container mb-2 text-center">
-        <div id="output2">
-        </div>
+        <div id="output2"></div>
       </div>
-
-        
-        </div>
+    </div>
       
-      <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Responsive1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8250424918"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-          </div>
+    <div class="text-center mt-2 mb-2">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816" crossorigin="anonymous"></script>
+      <!-- Responsive1 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3595688914204816"
+           data-ad-slot="8250424918"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
       
-          <footer id="footer">
-              <div class="container" id="explanation">
-                  <p  class="text-center" style="background-color:white">
-
-                  <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Definition
-                  </a> &bull;
-                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Formula
-                  </a> &bull;
-                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Explanation
-                  </a> 
-
-                </p>
-                <div class="collapse" id="collapseExample" data-parent="#explanation">
-                  <div class="card card-body" id="descriptiontext">
-
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample2" data-parent="#explanation">
-                  <div class="card card-body" id="formulatext">
-
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample3" data-parent="#explanation">
-                  <div class="card card-body" id="explanationtext">
-
-                  </div>
-                </div>
-
-                      </div>
+    <footer id="footer">
               
-              <div class="container" id="samples">
-                  <span class="examplelink" onclick="switchsize()" id="switchsize">Sample Size</span>
-                  <span class="examplelink" onclick="switchconfidence()" id="switchconfidence">Confidence Intervals</span>
-            </div>
-              <div class="container">
-                  <hr>
-              </div>
-          <p> 
-              &copy; 2025 <a href="/about.html">Stats Solver</a> 
-              
-              </p>
-          </footer>
+      <div class="container">
+        <hr>
+      </div>
       
+      <p>&copy; 2025 <a href="/about.html">Stats Solver</a></p>
+    </footer>
       
-    <!--  style="border:1px solid #d3d3d3;"-->
-    <!-- <div style = "height: 400px"></div>-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script src="/js/confidencem.js"></script>
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/js/confidence.js"></script>
+    
+    <!-- Initialize tooltips -->
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
   </body>
 </html>

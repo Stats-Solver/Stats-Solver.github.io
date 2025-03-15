@@ -1,37 +1,11 @@
-$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#expconf").hide();
-$("#switchconfidence").hide(); $("#switchsize").show();
-$("#samplesize").hide(); $("#confidence").show(); 
-$("#datainput").hide(); $("#valuesinput").show();
-$("#canvascontainer0").hide();  $("#581773186").hide();
-$("#confoutputs").hide();
+datainput.hidden = true; conflevel.hidden = true;
 
-$("#conflevel").hide();
+type = "values"; leveltype = "premade";
 
-type = "values"
-leveltype = "premade"
-
-$(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-    })
-
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
-
-var canvas = document.getElementById("myCanvas0");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
-
-var canvas = document.getElementById("howCanvas1");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
-
-var canvas = document.getElementById("howCanvas2");
-var ctx = canvas.getContext("2d");
-ctx.scale(1.25, 1.25);
-
-
+var canvas = document.getElementById("myCanvas"); var ctx = canvas.getContext("2d"); ctx.scale(1.25, 1.25);
+var canvas = document.getElementById("myCanvas0"); var ctx = canvas.getContext("2d"); ctx.scale(1.25, 1.25);
+var canvas = document.getElementById("howCanvas1"); var ctx = canvas.getContext("2d"); ctx.scale(1.25, 1.25);
+var canvas = document.getElementById("howCanvas2"); var ctx = canvas.getContext("2d");ctx.scale(1.25, 1.25);
 
 how1(); how2();
 
@@ -39,11 +13,10 @@ function levelchange(){
     var levelinput = document.getElementById("conlev").value;
     if (levelinput == "other") {
         $("#conflevel").show(); $("#conlev").hide();
-        leveltype = "custom"
+        conflevel.hidden="false"; conlev.hidden="true";
+        leveltype = "custom";
     }
 }
-
-
 
 function how1(){
         var exp = 2.71828;
@@ -187,31 +160,6 @@ function how2(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function sum(input){
              
  if (toString.call(input) !== "[object Array]")
@@ -242,11 +190,7 @@ $(document).ready(function(){
 });
 
 function showvals(){
-    $("#values").show(); 
-    $("#statistics").hide();
-    $("#entervals").hide();
-    $("#enterstats").show();
-    
+    values.hidden="false"; statistics.hidden="true"; entervals.hidden="true"; enterstats.hidden="false";
 }
 
 function showstats(){
@@ -493,13 +437,14 @@ function tinv(p, dof) {
 }
 
 function solve(){
-    $("#explanation").show(); $("#samples").hide();
-    $("#confoutputs").show(); $("#how").hide();
-     $("#581773186").show();
+    //$("#explanation").show(); $("#samples").hide();
+    //$("#confoutputs").show(); $("#how").hide();
+    //$("#581773186").show();
+    confoutputs.hidden=false; how.hidden=true;
     if (type == "values") {
-        conint()
+        conint();
     } else if (type == "data") {
-        condata()
+        condata();
     }
 }
 
@@ -680,7 +625,8 @@ function conint(){
 
 
 function conint1(){
-    $("#canvascontainer").show();$("#expconf").show();
+    //$("#canvascontainer").show();$("#expconf").show();
+    canvascontainer.hidden=false; //expconf.hidden=false;
     var sigma = document.getElementById("sigma").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
     var xbar = document.getElementById("xbar").value;
@@ -699,19 +645,7 @@ function conint1(){
     var anslowt = xbar - marginerrort; var anshight = (parseFloat(xbar)+marginerrort)
     var exp = 2.71828;
     
-    if (sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that the population mean is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$ \\bar{x} \\pm z_{\\alpha/2} \\dfrac{\\sigma}{\\sqrt{n}} $"
-        document.getElementById("explanationtext").innerHTML = "The right side of the plus/minus sign in the confidence interval is called the margin of error."
-    } else if (sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that the population mean is likely to be in."
-        document.getElementById("formulatext").innerHTML = "$ \\bar{x} \\pm t_{\\alpha/2} \\dfrac{s}{\\sqrt{n}} $"
-        document.getElementById("explanationtext").innerHTML = "The right side of the plus/minus sign in the confidence interval is called the margin of error."
-    } 
-    
-    // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
-    // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
-    
+        
     if (sigma == "known") {
         document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ "
     } else if (sigma == "unknown") {
@@ -790,17 +724,14 @@ function conint1(){
      // curve through the last two points
      ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
     
-    
     ctx.stroke();
 
-    
     var zvalue = toFixing(zalphahalf,1);
     var zvalue1 = (zvalue - .1).toFixed(1);
     var zvalue2 = (parseFloat(zvalue) + .1).toFixed(1);
     var zalphahalfr = zalphahalf.toFixed(2); 
     var zseconddec = (""+zalphahalfr)[3];
     var colm = zseconddec
-    
     
     if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
          var valstart = 0; 
@@ -898,22 +829,14 @@ function conint1(){
 
         table62 = "<td>$"+ size +"$</td><td>$"+tinv(.20,size).toFixed(3)+"$</td><td>$"+tinv(.10,size).toFixed(3)+"$</td><td>$"+tinv(.05,size).toFixed(3)+"$</td><td>$"+tinv(.025,size).toFixed(3)+"$</td><td>$"+tinv(.01,size).toFixed(3)+"$</td><td bgcolor='lightgray'>$"+tinv(.005,size).toFixed(3)+"$</td>"
     }
-    
-    
-    
-    
+
     var tablet = "<table><tr>"+table41+"</tr><tr style='border-top: thin solid'>"+table4+"</tr><tr style='border-bottom: thin solid'>"+table5+"</tr><tr>"+table61+"</tr><tr>"+table6+"</tr><tr>"+table62+"</tr></table>"
-    
-    // $$"+xbar + "\\pm " + zalphahalf.toFixed(2) + " \\frac{"+stdev+"}{\\sqrt{"+size+"}}$$ 
-    // $$" + xbar + "\\pm" + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}}$$
-    
-    
+
     if (sigma == "known") {
         document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = {\\color{RoyalBlue}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"}$$"+tablez + "$$ z_{\\alpha/2} = {\\color{RoyalBlue}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} = " + zalphahalf.toFixed(2) + " \\frac{"+stdev+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}"+parseFloat(marginerror.toFixed(2))+"} $$  $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm z_{\\alpha/2} \\frac{\\sigma}{\\sqrt{n}} $$ $$"+xbar + "\\pm " +parseFloat(marginerror.toFixed(2)) + " $$ $$ \\boxed{" + parseFloat(anslow.toFixed(2)) + "\\text{ to }" + parseFloat(anshigh.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshigh.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
     } else if (sigma == "unknown") {
         document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+stdev+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$"+xbar + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslowt.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshight.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
     } 
-    
     MathJax.typeset();
 }
 
@@ -1119,12 +1042,10 @@ function example2() {
 function example11(){
     var x = document.getElementById("samplestat").value;
     if (x == "mean") {
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-        document.getElementById('size').value="30"
-        document.getElementById('xbar').value="24"
-        document.getElementById('stdev').value="6"
-        document.getElementById('sigma').value="known"
-        document.getElementById('conlev').value=95
+        sd1.hidden=false; sd2.hidden=false; sd3.hidden=false;
+        document.getElementById('size').value="30"; document.getElementById('xbar').value="24";
+        document.getElementById('stdev').value="6"; document.getElementById('sigma').value="known"; 
+        document.getElementById('conlev').value=95;
     } else if (x == "proportion") {
         $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
         document.getElementById('size').value="100"
