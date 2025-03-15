@@ -1393,3 +1393,4 @@ function switchconfidence() {
     $("#output0").hide(); $("#output").hide(); $("#output1").show(); $("#output2").show(); 
     $("#explanation").hide(); $("#canvascontainer0").hide(); $("#canvascontainer").show();
 }
+

@@ -40,6 +40,56 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
+    
+    <style>
+  /* Search field styles */
+  .navbar-nav.right-menu {
+    margin-left: auto;
+  }
+  .navbar-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1;
+  }
+  .search-container {
+    position: relative;
+    width: 240px;
+  }
+  .search-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: transparent;
+    border: none;
+    padding: 0 10px;
+  }
+  .search-button:focus {
+    outline: none;
+    box-shadow: none;
+  }
+  
+  /* For mobile responsiveness */
+  @media (max-width: 991.98px) {
+    .navbar-center {
+      position: relative;
+      left: auto;
+      transform: none;
+      width: 100%;
+      margin: 1rem 0;
+      order: 3;
+    }
+    .search-container {
+      width: 100%;
+    }
+    .navbar-nav.right-menu {
+      margin-left: 0;
+      width: 100%;
+      order: 2;
+    }
+  }
+</style>
       
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -48,52 +98,63 @@
   </head>
   <body>
     <div class="container">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="/index.html">
-            <img src="/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid position-relative">
+      <a class="navbar-brand" href="/index.html">
+        <img src="/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Calculators
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
-                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
-                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
-                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
-                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
-                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
-                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
-                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
-                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
-                </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Tables
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
-                  <li><a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a></li>
-                  <li><a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a></li>
-                  <li><a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a></li>
-                  <li><a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/help.html">Help</a>
-              </li>
-            </ul>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Centered search form -->
+        <form class="d-flex navbar-center">
+          <div class="search-container">
+            <input class="form-control" type="search" placeholder="Search topics..." aria-label="Search">
+            <button class="search-button" type="submit">
+              <i class="fas fa-search"></i>
+            </button>
           </div>
-        </div>
-      </nav>
+        </form>
+        
+        <!-- Right-aligned navigation items -->
+        <ul class="navbar-nav right-menu mb-2 mb-lg-0">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Calculators
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+              <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+              <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+              <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+              <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+              <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+              <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+              <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+              <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+              <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Tables
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+              <li><a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a></li>
+              <li><a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a></li>
+              <li><a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a></li>
+              <li><a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a></li>
+            </ul>
+          </li>
+          <!--<li class="nav-item">
+            <a class="nav-link" href="/help.html">Help</a>
+          </li>-->
+        </ul>
+      </div>
     </div>
+  </nav>
+</div>
     
     <div class="container">
       <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em">
@@ -198,7 +259,7 @@
       </div>
         
       <div id="how2" class="how" style="color: darkslategray">
-        <p class="p1">A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So, if we're constructing a confidence interval for the population mean (μ), we use the sample mean ($\bar{x}$), because the sample mean provides a point estimate (or single-value estimate) of the population mean. Since the sample mean is easy to calculate ($\bar{x} = \sum{x}/n$), the focus will be on finding the margin of error. The formula we use to compute the margin of error for a confidence interval of the population mean depends on whether the population standard deviation (σ) is known or unknown. The two formulas are shown below. If the population standard deviation is unknown, the sample standard deviation (s) is used instead. To change from $\sigma$ known to $\sigma$ unknown in the Confidence Interval Calculator, click on $\boxed{σ}$ and select $\boxed{s}$.</p>
+        <p class="p1">A confidence interval is made up of two parts, the point estimate and the margin of error. The point estimate is simply the sample statistic corresponding to the population parameter of interest. So, if we're constructing a confidence interval for the population mean (μ), we use the sample mean ($\bar{x}$), because the sample mean provides a point estimate (or single-value estimate) of the population mean. Since the sample mean is relatively simple to calculate ($\bar{x} = \sum{x}/n$), the focus will be on finding the margin of error. The formula we use to compute the margin of error for a confidence interval of the population mean depends on whether the population standard deviation (σ) is known or unknown. The two formulas are shown below. If the population standard deviation is unknown, the sample standard deviation (s) is used instead. To change from $\sigma$ known to $\sigma$ unknown in the Confidence Interval Calculator, click on $\boxed{σ}$ and select $\boxed{s}$.</p>
 
         <table style="width:100%">
           <tr>
@@ -355,6 +416,7 @@
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="/js/confidence.js"></script>
+    <script src="/js/search.js"></script>
     
     <!-- Initialize tooltips -->
     <script>
