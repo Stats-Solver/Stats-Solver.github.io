@@ -11,7 +11,7 @@
       
     <link rel="stylesheet" type="text/css" href="./css/style.css">
 
-    <title>Stats Solver - Step-by-Step Statistics Solutions</title>
+    <title>Stats Solver - Step-by-Step Statistics Help</title>
       
     <link rel="icon" href="solver.png">
       
@@ -108,23 +108,25 @@
       <div class="p-5 mb-4 bg-light rounded-3 text-center">
         <div class="container-fluid py-3">
           <img src="bell-curve.png" width="220" height="90" alt="bell curve" style="mix-blend-mode: multiply;" class="mb-2">
-          <h1 class="display-5 fw-bold" style="font-size: 2em">Step-by-Step Statistics Solutions</h1>
+          <h1 class="display-5 fw-bold" style="font-size: 2em">Step-by-Step Statistics Help</h1>
           <p class="fs-4">Get help on your statistics homework with our easy-to-use calculators.</p>
-          <a href="hypothesis-testing.html" class="btn btn-primary btn-lg">Get Started</a>
+          <!--<a href="hypothesis-testing.html" class="btn btn-primary btn-lg">Get Started</a>-->
+          <button type="button" class="btn btn-primary btn-lg px-4 me-md-2 fw-bold"  onClick="document.getElementById('calculators').scrollIntoView();">View Calculators</button>
+          <button type="button" class="btn btn-outline-secondary btn-lg px-4"  onClick="document.getElementById('tables').scrollIntoView();">View Tables</button>
         </div>
       </div>
     </div>
       
     <div class="container">
       <h2 class="page-header">Welcome!</h2>
-      <p>Here, you will find all the help you need to be successful in your statistics classes. Check out our statistics calculators to get step-by-step solutions to almost any statistics problems. Choose from topics such as numerical summaries, confidence intervals, hypothesis testing, linear regression and more.</p>
+      <p>Here, you will find all the help you need to be successful in your statistics classes. Check out our statistics calculators to get step-by-step solutions to almost any statistics problem. Choose from topics such as numerical summaries, continuous distributions, confidence intervals, hypothesis testing, linear regression and more.</p>
     </div>  
       
     <div class="container">
       <hr>
     </div>
        
-    <div class="container mb-4">
+    <div class="container mb-4" id="calculators">
       <div class="text-center mb-4">
         <img src="calculator.png" width="42" height="49" alt="statistics calculator" style="display: block; margin-left: auto; margin-right: auto;" class="mb-1">
         <h3>Calculators</h3>
@@ -211,11 +213,11 @@
       </div>
     </div>
 
-    <div class="container">
+    <!--<div class="container">
       <hr>
-    </div>
+    </div>-->
        
-    <div class="container mb-5">
+    <div class="container mb-5"  id="tables">
       <div class="text-center mb-4">
         <img src="table.png" width="41" height="49" alt="statistics table" style="display: block; margin-left: auto; margin-right: auto;" class="mb-1">
         <h3>Tables</h3>
@@ -227,7 +229,7 @@
           <div class="card h-100 text-center">
             <div class="card-body">
               <h5 class="card-title"><a href="tables/standard-normal.html">Standard Normal</a></h5>
-              <p class="card-text">Cumulative probabilities for the z-distribution</p>
+              <p class="card-text">Cumulative probabilities for the z-distribution.</p>
             </div>
           </div>
         </div>
@@ -235,7 +237,7 @@
           <div class="card h-100 text-center">
             <div class="card-body">
               <h5 class="card-title"><a href="tables/t-distribution.html">t-Distribution</a></h5>
-              <p class="card-text">Critical values for Student's t-distribution</p>
+              <p class="card-text">Critical values for Student's t-distribution.</p>
             </div>
           </div>
         </div>
@@ -243,7 +245,7 @@
           <div class="card h-100 text-center">
             <div class="card-body">
               <h5 class="card-title"><a href="tables/chi-square.html">Chi-Square</a></h5>
-              <p class="card-text">Critical values for chi-square distribution</p>
+              <p class="card-text">Critical values for chi-square distribution.</p>
             </div>
           </div>
         </div>
@@ -253,7 +255,7 @@
           <div class="card h-100 text-center">
             <div class="card-body">
               <h5 class="card-title"><a href="tables/f-distribution.html">F-Distribution</a></h5>
-              <p class="card-text">Critical values for Snedecor's F-distribution</p>
+              <p class="card-text">Critical values for Snedecor's F-distribution.</p>
             </div>
           </div>
         </div>
@@ -282,7 +284,7 @@
       <div class="container">
         <hr>
       </div>
-      <p>&copy; 2025 <a href="about.html">Stats Solver</a></p>
+      <p>&copy; 2025 <a href="about.html" style="text-decoration: none">Stats Solver</a></p>
     </footer>
       
     <!-- Bootstrap Bundle with Popper -->
