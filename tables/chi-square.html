@@ -1,67 +1,63 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-      
-      <link rel="stylesheet" type="text/css" href="/css/style.css">
-      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
-      <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
-      
-    <title>Chi-Square Distribution Table - Stats Solver</title>
-      
-      <link rel="icon" href="/solver.png">
-      
-      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      
-                <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'UA-170214906-1');
-    </script>
-      
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-      
-      <script type="text/javascript">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Interactive Chi-Square distribution table for statistics">
+  <title>Chi-Square Distribution Table - Stats Solver</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="/solver.png">
+  
+  <!-- CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+  <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+  <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
+  
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'UA-170214906-1');
+    
+    // Event snippet for Page view conversion
+    gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
+  </script>
+  
+  <!-- Google AdSense -->
+  <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+  
+  <!-- Media.net -->
+  <script type="text/javascript">
     window._mNHandle = window._mNHandle || {};
     window._mNHandle.queue = window._mNHandle.queue || [];
     medianet_versionId = "3121199";
-</script>
-<script src="https://contextual.media.net/dmedianet.js?cid=8CU4R757V" async="async"></script>
+  </script>
+  <script src="https://contextual.media.net/dmedianet.js?cid=8CU4R757V" async="async"></script>
+</head>
 
-          <!-- Event snippet for Page view conversion page -->
-    <script>
-      gtag('event', 'conversion', {'send_to': 'AW-606424473/otEfCKWO5dsBEJmblaEC'});
-    </script>
-
-      
-  </head>
-  <body>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
+<body>
+  <!-- Navigation Bar -->
+  <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/index.html">
+        <img src="/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
+      </a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ml-auto">
-          
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             Calculators
+            <a class="nav-link dropdown-toggle" href="#" id="calculatorsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Calculators
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <div class="dropdown-menu" aria-labelledby="calculatorsDropdown">
               <a class="dropdown-item" href="/tables-and-graphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="/numerical-summaries.html">Numerical Summaries</a>
               <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
@@ -73,96 +69,82 @@
               <a class="dropdown-item" href="/linear-regression.html">Linear Regression</a>
             </div>
           </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="tablesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Tables
             </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="standard-normal.html">Standard Normal</a>
-                <a class="dropdown-item" href="t-distribution.html">t-Distribution</a>
-                <a class="dropdown-item" href="chi-square.html">Chi-Square</a>
-                <a class="dropdown-item" href="f-distribution.html">F-Distribution</a>
+            <div class="dropdown-menu" aria-labelledby="tablesDropdown">
+              <a class="dropdown-item" href="standard-normal.html">Standard Normal</a>
+              <a class="dropdown-item" href="t-distribution.html">t-Distribution</a>
+              <a class="dropdown-item" href="chi-square.html">Chi-Square</a>
+              <a class="dropdown-item" href="f-distribution.html">F-Distribution</a>
             </div>
           </li>
-            <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="/help.html">Help <span class="sr-only">(current)</span></a>
           </li>
         </ul>
       </div>
-      
     </nav>
-          </div>
-    
-      
-    <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="chi-square.html">Chi-Square</a></h1>
+  </div>
+  
+  <!-- Page Header -->
+  <div class="container">
+    <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em">
+      <a href="chi-square.html">Chi-Square Distribution</a>
+    </h1>
+    <h2 class="text-center mt-0" style="font-size: 1em">Interactive Table</h2>
+  </div>
+  
+  <div class="container">
+    <hr>
+  </div>
+  
+  <!-- Main Content -->
+  <table style="width:100%" class="text-center">
+    <tr>
+      <td><canvas id="Canvas1" width="375" height="188"></canvas></td>
+    </tr>
+  </table>
+  
+  <div class="container">
+    <div id="output"></div>
+  </div>
+  
+  <!-- Footer -->
+  <footer id="footer">
+    <div class="container">
+      <span class="examplelink" onclick="download()">Download PDF</span>
     </div>
-      
-      <div class="container">
+    <div class="container">
       <hr>
-          </div>
-      
-       <table style="width:100%" class="text-center">
-              <tr>
-                <td><canvas id="Canvas1" width="375" height="188"></canvas></td>
-              </tr>
-            </table>
-      
-      <div class="container">
-        <div id="output">
-        </div>
-      </div>
-      
-
-      
-
-      
-      
-      
-          <footer id="footer">
-              <div class="container">
-                  <span class="examplelink" onclick="download()">Download PDF</span>
-            </div>
-              <div class="container">
-                <hr>
-            </div>
-          <p> 
-              &copy; 2025 <a href="/about.html">Stats Solver</a> 
-            </p>  
-
-          </footer>
-      
-    <!--<div style = "height: 400px"></div>-->  
-    <!-- Optional JavaScript -->  
-      
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      
-      
-      
-                    <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script> 
- 
-      
-      
-      <script src="js/chisqu.js"></script>
-  </body>
+    </div>
+    <p>&copy; 2025 <a href="/about.html">Stats Solver</a></p>
+  </footer>
+  
+  <!-- JavaScript -->
+  <!-- jQuery, Popper.js, Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+  
+  <!-- MathJax -->
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script>
+    window.MathJax = {
+      loader: {load: ['[tex]/ams']},
+      tex: {
+        packages: {'[+]': ['ams']},
+        inlineMath: [['$', '$'], ['\\(', '\\']]
+      },
+      svg: {
+        fontCache: 'global'
+      }
+    };
+  </script>
+  
+  <!-- Custom Scripts -->
+  <script src="js/chisqu.js"></script>
+</body>
 </html>
