@@ -201,13 +201,11 @@ function showstats(){
 }
 
 function switchdata() {
-    $("#datainput").show(); $("#valuesinput").hide();
-    type = "data"
+    datainput.hidden = false; valuesinput.hidden = true; type = "data";
 }
 
 function switchvalues() {
-    $("#datainput").hide(); $("#valuesinput").show();
-    type = "values"
+    datainput.hidden = true; valuesinput.hidden = false; type = "values";
 }
 
 function normalcdf(X){   //HASTINGS.  MAX ERROR = .000001
@@ -476,11 +474,6 @@ function condata() {
     var anslowt = xbar - marginerrort; var anshight = (parseFloat(xbar)+marginerrort)
     var exp = 2.71828;
     
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that the population mean is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$ \\bar{x} \\pm t_{\\alpha/2} \\dfrac{s}{\\sqrt{n}} $"
-    document.getElementById("explanationtext").innerHTML = "The right side of the plus/minus sign in the confidence interval is called the margin of error."
-
-    
     
     var f = [];
     var i;
@@ -604,7 +597,7 @@ function condata() {
     document.getElementById("output1").innerHTML = " $$ n = {\\color{RoyalBlue}" + size + "} \\quad \\bar{x}  = {\\color{RoyalBlue}" + parseFloat(mn.toFixed(2)) + "} \\quad \\ s =  {\\color{RoyalBlue}"+parseFloat(ansstd.toFixed(2))+"} $$  $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ $$ \\text{Degrees of Freedom:} $$ $$ df = n - 1 = "+size+ " - 1 = {\\color{RoyalBlue}"+sizem1+"}   $$"
     
     
-    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+parseFloat(ansstd.toFixed(2))+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$  $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$"+parseFloat(xbar.toFixed(2)) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslowt.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshight.toFixed(2))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a> "
+    document.getElementById("output2").innerHTML = tablet + "$$ t_{\\alpha/2} = {\\color{RoyalBlue}"+talphahalf.toFixed(3)+"} $$ $$ \\text{Margin of Error:} $$ $$ t_{\\alpha/2} \\frac{s}{\\sqrt{n}} = " + talphahalf.toFixed(3) + "\\frac{"+parseFloat(ansstd.toFixed(2))+"}{\\sqrt{"+size+"}} = {\\color{RoyalBlue}" +parseFloat(marginerrort.toFixed(2)) + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$  $$ \\bar{x} \\pm t_{\\alpha/2} \\frac{s}{\\sqrt{n}} $$ $$"+parseFloat(xbar.toFixed(2)) + "\\pm" +parseFloat(marginerrort.toFixed(2)) + "$$ $$ \\boxed{" + parseFloat(anslowt.toFixed(2)) + "\\text{ to }" + parseFloat(anshight.toFixed(2)) + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslowt.toFixed(2))+" \\leq \\mu \\leq "+parseFloat(anshight.toFixed(2))+" $$ "
     
     
     
@@ -842,7 +835,8 @@ function conint1(){
 }
 
 function conint2(){
-    $("#canvascontainer").show();$("#expconf").show();
+    //$("#canvascontainer").show();$("#expconf").show();
+    canvascontainer.hidden = false;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
     var pbar = document.getElementById("xbar").value;
     var conlev = document.getElementById("conlev").value;
@@ -852,11 +846,7 @@ function conint2(){
     var marginerror = zalphahalf * Math.sqrt((pbar*(1-pbar))/size);
     var anslow = pbar - marginerror; var anshigh = (parseFloat(pbar)+marginerror);
     var exp = 2.71828;
-    
-    document.getElementById("descriptiontext").innerHTML = "A confidence interval provides a range of values that the population proportion is likely to be in."
-    document.getElementById("formulatext").innerHTML = "$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\dfrac{\\bar{p}(1-\\bar{p})}{n}} $"
-    document.getElementById("explanationtext").innerHTML = "The right side of the plus/minus sign in the confidence interval is called the margin of error."
-    
+        
     // $$ \\text{Conf. Level}= "+conlev+"\\% \\rightarrow \\text{Conf. Coeff.}= "+ concoeff.toFixed(2).replace(/^0+/, '')+" $$
     
     document.getElementById("output1").innerHTML = " $$ 1 - \\alpha = \\text{Confidence Coefficient} $$ $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha / 2 = {\\color{RoyalBlue}"+ alphahalf.toFixed(3).replace(/^0+/, '') +"} $$ "
@@ -1015,7 +1005,7 @@ function conint2(){
     
     // $$" + pbar + "\\pm" + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}}$$
     
-    document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = {\\color{RoyalBlue}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"} $$"+tablez + "$$ z_{\\alpha/2} = {\\color{RoyalBlue}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} = " + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}} = {\\color{RoyalBlue}" +marginerror.toFixed(4).replace(/^0+/, '') + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$"+pbar + "\\pm" +marginerror.toFixed(4).replace(/^0+/, '') + "$$ $$ \\boxed{" + anslow.toFixed(4).replace(/^0+/, '') + "\\text{ to }" + anshigh.toFixed(4).replace(/^0+/, '') + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(4))+" \\leq p \\leq "+parseFloat(anshigh.toFixed(4))+" $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>  "
+    document.getElementById("output2").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = {\\color{RoyalBlue}"+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"} $$"+tablez + "$$ z_{\\alpha/2} = {\\color{RoyalBlue}"+zalphahalf.toFixed(2)+"} $$ $$ \\text{Margin of Error:} $$ $$  z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} = " + zalphahalf.toFixed(2) + "\\sqrt{\\frac{"+pbar+"(1-"+pbar+")}{"+size+"}} = {\\color{RoyalBlue}" +marginerror.toFixed(4).replace(/^0+/, '') + "} $$ $$ " + conlev + "\\% \\text{ Confidence Interval:} $$ $$ \\bar{p} \\pm z_{\\alpha/2} \\sqrt{\\frac{\\bar{p}(1-\\bar{p})}{n}} $$ $$"+pbar + "\\pm" +marginerror.toFixed(4).replace(/^0+/, '') + "$$ $$ \\boxed{" + anslow.toFixed(4).replace(/^0+/, '') + "\\text{ to }" + anshigh.toFixed(4).replace(/^0+/, '') + "} $$ $$ \\text{Interpretation:} $$ $$ "+conlev+"\\%  \\text{ confident } "+parseFloat(anslow.toFixed(4))+" \\leq p \\leq "+parseFloat(anshigh.toFixed(4))+" $$  "
     
     MathJax.typeset();
 }
@@ -1048,7 +1038,7 @@ function example11(){
         document.getElementById('stdev').value="6"; document.getElementById('sigma').value="known"; 
         document.getElementById('conlev').value=95;
     } else if (x == "proportion") {
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        sd1.hidden=true; sd2.hidden=true; sd3.hidden=true;
         document.getElementById('size').value="100"
         document.getElementById('xbar').value=".25"
         document.getElementById('conlev').value=95
@@ -1064,14 +1054,14 @@ function example11(){
 function example22(){
     var x = document.getElementById("samplestat").value;
     if (x == "mean") {
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        sd1.hidden=false; sd2.hidden=false; sd3.hidden=false;
         document.getElementById('size').value="50"
         document.getElementById('xbar').value="16"
         document.getElementById('stdev').value="4"
         document.getElementById('sigma').value="unknown"
         document.getElementById('conlev').value=99
     } else if (x == "proportion") {
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        sd1.hidden=true; sd2.hidden=true; sd3.hidden=true;
         document.getElementById('size').value="500"
         document.getElementById('xbar').value=".60"
         document.getElementById('conlev').value=90
@@ -1083,314 +1073,14 @@ function example22(){
     }
 }
 
-function example3(){
-    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
-    document.getElementById("samplestat").value = "proportion"
-    document.getElementById('size').value="100"
-    document.getElementById('xbar').value=".25"
-    document.getElementById('conlev').value=95
-}
-
 function samplestat() {
     var x = document.getElementById("samplestat").value;
     if (x == "mean"){
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+        sd1.hidden=false; sd2.hidden=false; sd3.hidden=false;
     } else if (x == "proportion"){
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        sd1.hidden=true; sd2.hidden=true; sd3.hidden=true;
     } else if (x == "standard"){
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+        sd1.hidden=true; sd2.hidden=true; sd3.hidden=true;
     } 
-}
-
-
-function samplesize() {
-    var planning = document.getElementById("planning").value
-    if (planning == "sigma") {
-        calcsize1()
-    } else if (planning == "pstar") {
-        calcsize2()
-    }
-}
-
-function calcsize1() {
-    var planval = document.getElementById("planningvalue").value
-    var margerr = document.getElementById('margin').value
-    var conlev = document.getElementById('conlev2').value
-    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
-    var zalphahalf = NormSInv(1 - alphahalf);
-    var ans = (zalphahalf*zalphahalf*planval*planval)/(margerr*margerr)
-    var exp = 2.71828;
-        
-    document.getElementById("output0").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
-
-    
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("myCanvas0");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(230, 100);
-    ctx.lineTo(230, 130);
-    ctx.lineTo(279, 130);
-    ctx.lineTo(279, 118);
-    ctx.quadraticCurveTo(260, 120, 230, 100);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    
-    
-    ctx.moveTo(230, 135);
-    ctx.lineTo(230, 125);
-
-    
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
-
-
-    ctx.fillText("z",285,132);
-    ctx.fillText("z",228,145);
-    ctx.fillText("α/2",234,147);
-
-
-    
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke();
-
-    
-    var zvalue = toFixing(zalphahalf,1);
-    var zalphahalfr = zalphahalf.toFixed(2); 
-    var zseconddec = (""+zalphahalfr)[3];
-    
-    
-    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
-         var valstart = 0; 
-         var valend = 4;
-    } else if (zseconddec == 3) {
-         var valstart = 1; 
-         var valend = 5;
-    } else if (zseconddec == 4) {
-         var valstart = 2; 
-         var valend = 6;
-    } else if ((zseconddec == 5)) {
-         var valstart = 3; 
-         var valend = 7;
-    } else if (zseconddec == 6) {
-         var valstart = 4; 
-         var valend = 8;
-    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
-         var valstart = 5; 
-         var valend = 9;
-    }
-    
-    
-    table1 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
-    }
-    
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
-    }
-    
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
-
-    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2 \\sigma^2}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + "^2}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\rightarrow \\boxed{" + Math.ceil(ans) + "} \\end{align} $$"
-    
-    MathJax.typeset();
-}
-
-function calcsize2() {
-    var planval = document.getElementById("planningvalue").value
-    var margerr = document.getElementById('margin').value
-    var conlev = document.getElementById('conlev2').value
-    var concoeff = .01*conlev; var alpha = 1 - concoeff; var alphahalf = alpha / 2;
-    var zalphahalf = NormSInv(1 - alphahalf);
-    var ans = (zalphahalf*zalphahalf*planval*(1-planval))/(margerr*margerr)
-    var exp = 2.71828;
-        
-    document.getElementById("output0").innerHTML = " $$ 1 - \\alpha = " + concoeff.toFixed(2).replace(/^0+/, '') + "\\rightarrow \\alpha = "+alpha.toFixed(2).replace(/^0+/, '')+ "\\rightarrow \\alpha / 2 = "+ alphahalf.toFixed(3).replace(/^0+/, '') +"$$ "
-
-    
-    var f = [];
-    var i;
-    for (i = 0; i < 60; i++) {
-      var j = (i-30)/10
-      f[i] = parseFloat(((1/Math.sqrt(2*3.14))*Math.pow(exp,(-(j*j)/2))))
-    }
-    
-    var c = document.getElementById("myCanvas0");
-    var ctx = c.getContext("2d");
-    ctx.clearRect(0, 0, 300, 150);
-    
-    ctx.strokeStyle = 'lightgray';
-    ctx.beginPath();
-    ctx.moveTo(230, 100);
-    ctx.lineTo(230, 130);
-    ctx.lineTo(279, 130);
-    ctx.lineTo(279, 118);
-    ctx.quadraticCurveTo(260, 120, 230, 100);
-    ctx.stroke();
-    ctx.fillStyle = "lightgray";
-    ctx.fill();
-    
-    ctx.strokeStyle = 'black';
-    ctx.fillStyle = "black";
-    
-    ctx.beginPath();
-    ctx.moveTo(20, 130);
-    ctx.lineTo(280, 130);
-    
-    
-    ctx.moveTo(230, 135);
-    ctx.lineTo(230, 125);
-
-    
-    ctx.moveTo(150, 135);
-    ctx.lineTo(150, 125);
-    ctx.fillText("0",148,145);
-    
-    ctx.fillText(alphahalf.toFixed(3).replace(/^0+/, ''),246,105);
-
-
-    ctx.fillText("z",285,132);
-    ctx.fillText("z",228,145);
-    ctx.fillText("α/2",234,147);
-
-
-    
-    var points = []
-    
-    for (i = 0; i < 60; i++) {
-      points[i] = {x:20 + 4.4*i, y:120 - 250*f[i]}
-		}
-    
-        // move to the first point
-       ctx.moveTo(points[0].x, points[0].y);
-   
-   
-
-
-       for (i = 1; i < points.length - 2; i ++)
-       {
-          var xc = (points[i].x + points[i + 1].x) / 2;
-          var yc = (points[i].y + points[i + 1].y) / 2;
-          ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
-       }
-     // curve through the last two points
-     ctx.quadraticCurveTo(points[i].x, points[i].y, points[i+1].x,points[i+1].y);
-    
-    
-    ctx.stroke();
-
-    
-    var zvalue = toFixing(zalphahalf,1);
-    var zalphahalfr = zalphahalf.toFixed(2); 
-    var zseconddec = (""+zalphahalfr)[3];
-    
-    
-    if (zseconddec == 0 || zseconddec == 1 || zseconddec == 2) {
-         var valstart = 0; 
-         var valend = 4;
-    } else if (zseconddec == 3) {
-         var valstart = 1; 
-         var valend = 5;
-    } else if (zseconddec == 4) {
-         var valstart = 2; 
-         var valend = 6;
-    } else if ((zseconddec == 5)) {
-         var valstart = 3; 
-         var valend = 7;
-    } else if (zseconddec == 6) {
-         var valstart = 4; 
-         var valend = 8;
-    } else if (zseconddec == 7 || zseconddec == 8 || zseconddec == 9) {
-         var valstart = 5; 
-         var valend = 9;
-    }
-    
-    
-    table1 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table1 += "<td>$" + (0.01 * r).toFixed(2).replace(/^0+/, '') + "$</td>";
-    }
-    
-    table3 = []
-    for (var r = valstart; r < valend + 1; r++){
-        table3 += "<td>$" + normalcdf(parseFloat(zvalue) + parseFloat(.01*r)).toFixed(4).replace(/^0+/, '') + "$</td>";
-    }
-    
-    var tablez = "<table><tr style='border-bottom: thin solid; border-top: thin solid'><td>$z$</td>"+table1+"</tr><tr><td>$"+zvalue+"$</td>"+table3+"</tr></table>"
-    
-    document.getElementById("output").innerHTML = "$$\\text{Area to Left} = 1 - \\alpha/2 = 1 - "+alphahalf.toFixed(3).replace(/^0+/, '')+" = "+(1-alphahalf).toFixed(3).replace(/^0+/, '') +"$$"+tablez + "$$ z_{\\alpha/2} = "+zalphahalf.toFixed(2)+" $$ $$ \\begin{align} n &= \\frac{(z_{\\alpha/2})^2p^*(1-p^*)}{E^2} \\\\ &= \\frac{(" + parseFloat(zalphahalf.toFixed(2)) + ")^2 " + planval + " (1-" + planval + ")}{" + margerr + "^2} \\\\ &= " + parseFloat(ans.toFixed(2)) + " \\rightarrow \\boxed{" + Math.ceil(ans) + "} \\end{align} $$"
-    
-    MathJax.typeset();
-}
-
-function example4(){
-    document.getElementById("planning").value = "sigma"
-    document.getElementById("planningvalue").value = "9.65"
-    document.getElementById('margin').value="2"
-    document.getElementById('conlev2').value=95
-}
-
-function example5(){
-    document.getElementById("planning").value = "pstar"
-    document.getElementById("planningvalue").value = ".44"
-    document.getElementById('margin').value=".025"
-    document.getElementById('conlev2').value=95
-}
-
-function switchsize() {
-    $("#samplesize").show(); $("#confidence").hide();
-    $("#switchsize").hide(); $("#switchconfidence").show();
-    $("#output0").show(); $("#output").show(); $("#output1").hide(); $("#output2").hide();
-    $("#explanation").hide(); $("#canvascontainer0").show(); $("#canvascontainer").hide();
-}
- 
-function switchconfidence() {
-    $("#samplesize").hide(); $("#confidence").show();
-    $("#switchsize").show(); $("#switchconfidence").hide();
-    $("#output0").hide(); $("#output").hide(); $("#output1").show(); $("#output2").show(); 
-    $("#explanation").hide(); $("#canvascontainer0").hide(); $("#canvascontainer").show();
 }
 
