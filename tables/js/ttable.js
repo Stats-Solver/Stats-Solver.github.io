@@ -505,23 +505,7 @@ function graph1(z,d){
     ctx.beginPath();
     ctx.moveTo(20, 130);
     ctx.lineTo(280, 130);
-    ctx.fillText("t",285,132);
-    //ctx.fillText("t",18 + .434*(300+100*tval),145);
-    ctx.fillText(tval,Math.min(8 + .434*(300+100*tval),8 + .434*(300+100*2.97)),145);
-    //if (z == 1) {
-    //    ctx.fillText(".20",55 + .434*(300+100*lessval),95);
-    //} else if (z == 2) {
-    //    ctx.fillText(".10",45 + .434*(300+100*lessval),105);
-    //} else if (z == 3) {
-    //    ctx.fillText(".05",41 + .434*(300+100*lessval),114);
-    //} else if (z == 4) {
-    //    ctx.fillText(".025",35 + .434*(300+100*lessval),119);
-    //} else if (z == 5) {
-    //    ctx.fillText(".01",25 + .434*(300+100*lessval),120);
-    //} else if (z == 6) {
-    //    ctx.fillText(".005",20 + .434*(300+100*lessval),120);
-    //}
-    //ctx.fillText("df = "+d,220,40);
+    ctx.fillText("t",Math.min(18.5 + .434*(300+100*tval),18.5 + .434*(300+100*2.97)),145);
     ctx.moveTo(Math.min(20 + .433*(300+100*tval),20 + .433*(300+100*2.97)), 135);
     ctx.lineTo(Math.min(20 + .433*(300+100*tval),20 + .433*(300+100*2.97)), 125);
     if (Math.abs(z) >= .2){
@@ -529,7 +513,6 @@ function graph1(z,d){
         ctx.lineTo(150, 125);
         ctx.fillText("0",147,145); 
     }
-    //ctx.fillText("σ=1",225,50);
     var points = []
     for (i = 0; i < 600; i++) {
         points[i] = {x:20 + .433*i, y:130 - 275*f[i]}
