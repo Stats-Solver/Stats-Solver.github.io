@@ -133,7 +133,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Z
     'z-scores': '/numerical-summaries.html',
     'z-test': '/hypothesis-testing.html',
-    'z-distribution': '/continuous-distributions.html',
+    'z-distribution calculator': '/continuous-distributions.html',
+    'z-distribution table': '/tables/standard-normal.html',
     
     // Add categories directly
     'graphs': '/tables-and-graphs.html',

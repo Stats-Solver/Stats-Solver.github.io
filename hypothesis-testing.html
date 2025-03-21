@@ -3,41 +3,86 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="The easy-to-use hypothesis testing calculator gives you step-by-step solutions to the test statistic, p-value, critical value and more.">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/hypstyle.css">
+    <link rel="icon" href="./solver.png">
+    <link rel="canonical" href="https://www.statssolver.com/hypothesis-testing.html" />
       
-      <link rel="stylesheet" type="text/css" href="./css/hypstyle.css">
-
-                         <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script>  
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        loader: {load: ['[tex]/ams']},
+        tex: {
+          packages: {'[+]': ['ams']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
       
     <title>Hypothesis Testing Calculator with Steps - Stats Solver</title>
       
-      <link rel="icon" href="./solver.png">
+    <!-- Search field styles -->
+    <style>
+      /* Search field styles */
+      .navbar-nav.right-menu {
+        margin-left: auto;
+      }
+      .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .search-container {
+        position: relative;
+        width: 240px;
+      }
+      .search-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        border: none;
+        padding: 0 10px;
+      }
+      .search-button:focus {
+        outline: none;
+        box-shadow: none;
+      }
       
-   <!--  <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
+      /* For mobile responsiveness */
+      @media (max-width: 991.98px) {
+        .navbar-center {
+          position: relative;
+          left: auto;
+          transform: none;
+          width: 100%;
+          margin: 1rem 0;
+          order: 3;
+        }
+        .search-container {
+          width: 100%;
+        }
+        .navbar-nav.right-menu {
+          margin-left: 0;
+          width: 100%;
+          order: 2;
+        }
+      }
+    </style>
 
-      
-                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -46,127 +91,127 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-      <link rel="canonical" href="https://www.statssolver.com/hypothesis-testing.html" />
-      
-
   </head>
   <body>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid position-relative">
+          <a class="navbar-brand" href="/index.html">
+            <img src="/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Calculators
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="linear-regression.html">Linear Regression</a>
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-
-    </nav>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Centered search form -->
+            <form class="d-flex navbar-center">
+              <div class="search-container">
+                <input class="form-control" type="search" placeholder="Search statistics topics..." aria-label="Search">
+                <button class="search-button" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+            
+            <!-- Right-aligned navigation items -->
+            <ul class="navbar-nav right-menu mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Calculators
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tables
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a></li>
+                  <li><a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a></li>
+                  <li><a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a></li>
+                  <li><a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
+        </div>
+      </nav>
+    </div>
     
-      
-    <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="hypothesis-testing.html">Hypothesis Testing</a></h1>
-        <h2 class="text-center mt-0" style="font-size: 1em">Step-by-Step Calculator</h2>
+    <div class="container">
+      <h1 class="page-header text-center mt-2 mb-0 text-primary" style="font-size: 1.5em">
+        <a href="hypothesis-testing.html" style="text-decoration: none">Hypothesis Testing</a>
+      </h1>
+      <h2 class="text-center mt-0" style="font-size: 1em">Step-by-Step Calculator</h2>
     </div>
       
-      <div class="container">
+    <div class="container">
       <hr>
-          </div>
+    </div>
       
-      
-      
-      <div class="container" id="hypothesis">
+    <div class="container" id="hypothesis">
+      <table>
+        <tr>
+          <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Null Hypothesis">$H_o$: </td>
+          <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td> 
+          <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
+          <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""> <span id="muknottest">&mu;₀</span> </td>
+        </tr>
+        <tr>
+          <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Alternative Hypothesis">$H_a$: </td>
+          <td class="statistics"> <span id="parameter2">&mu;</span></td>
+          <td class="statistics"> <span id="less"> < </span> <span id="greater"> > </span> <span id="notequal"> &ne; </span></td>
+          <td class="statistics" style="text-align:left">&thinsp; <span id="muknotvalue">&mu;₀</span></td>
+        </tr>
+      </table>
           
-        <table>
+      <div id="valuesinput">
+        <table class="mt-2">
           <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
-            <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td> 
-            <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""> <span id = "muknottest">&mu;₀</span> </td>
-          </tr>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
-            <td class="statistics"> <span id = "parameter2">&mu;</span></td>
-            <td class="statistics"> <span id = "less"> < </span> <span id = "greater"> > </span> <span id = "notequal"> &ne; </span></td>
-            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvalue">&mu;₀</span></td>
-          </tr>
-        </table>
-          
-          <div id="valuesinput">
-          <table class = "mt-2">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
+            <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Sample Size">$n$</td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="size" class="hypinput2"></td>
             <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Statistic"><span id = "samplestat">$\bar{x}$</span></td>
+            <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Sample Statistic"><span id="samplestat">$\bar{x}$</span></td>
             <td class="statistics"> = </td>
             <td class="statistics"><input type="text" style="width:50px;" id="xbar" class="hypinput2"></td>
             <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
+            <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Standard Deviation" id="sd1"><select id="sigma" class="hypinput1"> <option value="known"> &#963; </option> <option value="unknown"> s </option> </select></td>
             <td class="statistics" id="sd2"> = </td>
             <td class="statistics" id="sd3"><input type="text" style="width:50px;" id="stdev" class="hypinput2"></td>
             <td class="statistics"></td>
             <td class="statistics">
-            <svg onclick="switchdata()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
+              <i class="fas fa-random" onclick="switchdata()"></i>
             </td>
           </tr>
         </table> 
-          </div>
+      </div>
           
-          <div class="container center mt-2" id="datainput">      
-             <table class = "mt-2">
+      <div class="container text-center" id="datainput">      
+        <table class="mt-2">
           <tr>
-            <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values"  size="30"> </td>
+            <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values" size="30"> </td>
             <td class="statistics"></td>
             <td class="statistics">
-                <svg onclick="switchtest()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                  <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-                  <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-                </svg>
+              <i class="fas fa-random" onclick="switchtest()"></i>
             </td>
           </tr>
         </table>  
-        </div>
+      </div>
           
-          <div id="testinput">
-          <table class = "mt-2">
+      <div id="testinput">
+        <table class="mt-2">
           <tr>
             <td class="statistics">$\text{Test Statistic: }$</td>
             <td class="statistics"><select onchange="switchzt()" id="teststat" class="hypinput1"> <option value="z"> z </option> <option value="t"> t </option> </select></td>
@@ -174,337 +219,232 @@
             <td class="statistics"><input type="text" style="width:60px;" id="testvalue" class="hypinput2"></td>
             <td class="statistics"></td>
             <td class="statistics">
-            <svg onclick="switchvalues()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
+              <i class="fas fa-random" onclick="switchvalues()"></i>
             </td>
           </tr>
         </table>
-              <table class="mt-2" id = "degfreedom">
+        <table class="mt-2" id="degfreedom">
           <tr>
             <td class="statistics">$\text{Degrees of Freedom: } $</td>  
             <td class="statistics">$df$</td>
             <td class="statistics">=</td>
             <td class="statistics"><input type="text" style="width:50px;" id="degfreeval" class="hypinput2"></td>
           </tr>
-            </table>
-          </div>
-          
-          
-          
-          <table class = "mt-2">
-          <tr>
-            <td class="statistics">$ \text{Level of Significance: } $</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics" style="text-align:left">
-                <select id="alpha" class="hypinputalpha" onchange="alphachange()"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> <option value="other"> ⋯ </option> </select>
-                <input type="text" style="width:40px;" id="alphaval" class="hypinput2">
-              
-              </td>
-             
-          </tr>
-        </table> 
-          
-          
-          
-          </div>
- 
-      <div class="container" id="type2error">
-        <div class = "container">
-            <h5 class="text-center text-primary mb-3">Type II Error</h5>
-        </div>
-        <table>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Null Hypothesis">$H_o$: </td>
-            <td class="statistics">$\mu$</td> 
-            <td class="statistics"> <select id="tailt" class="hypinput1" onchange="tailsignst()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
-            <td class="statistics"> <input type="text" style="width:40px;" id="muknott" class="hypinput2" oninput="muknotvalt()" placeholder=""></td>
-
-          </tr>
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Alternative Hypothesis">$H_a$: </td>
-            <td class="statistics"> $\mu$</td>
-            <td class="statistics"> <span id = "lesst"> < </span> <span id = "greatert"> > </span> <span id = "notequalt"> &ne; </span></td>
-            <td class="statistics" style="text-align:left">&thinsp; <span id = "muknotvaluet">$\mu_0$</span></td>
-          </tr>
-        </table>  
-          
-          <table class = "mt-2">
-          <tr>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Sample Size">$n$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="sizet" class="hypinput2"></td>
-            <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Population Standard Deviation" id="sd1t"> &#963; </td>
-            <td class="statistics" id="sd2t"> = </td>
-            <td class="statistics" id="sd3t"><input type="text" style="width:50px;" id="stdevt" class="hypinput2"></td>
-            <td class="statistics">&nbsp;</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Population Mean"><span id = "samplestat">$\mu$</span></td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:50px;" id="mut" class="hypinput2"></td>
-          </tr>
         </table>
+      </div>
           
-          <table class = "mt-2">
-          <tr>
-            <td class="statistics">$\text{Level of Significance: }$</td>
-            <td class="statistics" data-toggle="tooltip" data-placement="top" title="Level of Significance">$\alpha$</td>
-            <td class="statistics"> = </td>
-            <td class="statistics" style="text-align:left"><select id="alphat" class="hypinputalpha"> <option value=".1"> .10 </option><option value=".05"  selected="selected"> .05 </option> <option value=".01"> .01 </option> </select></td>
-          </tr>
-        </table>
-          </div>
+      <table class="mt-2">
+        <tr>
+          <td class="statistics">$ \text{Level of Significance: } $</td>
+          <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Level of Significance">$\alpha$</td>
+          <td class="statistics"> = </td>
+          <td class="statistics" style="text-align:left">
+            <select id="alpha" class="hypinputalpha" onchange="alphachange()"> <option value=".1"> .10 </option><option value=".05" selected="selected"> .05 </option> <option value=".01"> .01 </option> <option value="other"> ⋯ </option> </select>
+            <input type="text" style="width:40px;" id="alphaval" class="hypinput2">
+          </td>
+        </tr>
+      </table> 
+    </div>
 
-          <div class="container center">
-          <div class="row justify-content-center">
-        <div class = "col-4 col-md-2 text-center mt-2">
-            <button id = "hyptest" class="button btn-outline-primary" onclick="solve()">Solve</button>
-            <!--<button id = "entervalues" class="button" onclick="entervalues()">Enter Values</button>-->
-              <!--<a href="#" onclick="entervalues()">Enter Values</a>-->
+    <div class="container center">
+      <div class="row justify-content-center">
+        <div class="col-4 col-md-2 text-center mt-2">
+          <button id="hyptest" class="btn btn-outline-primary" onclick="solve()">Solve</button>
         </div>
-          </div>
-              </div>
+      </div>
+    </div>
       
-      <div class = "text-center mt-2" id = "hypexamples">
-            <span class="examplelink" onclick="example1()">Example 1</span>  &bull; <span class="examplelink" onclick="example2()">Example 2</span>
-        </div>
-      
-      <div class = "text-center mt-2" id = "typeexamples">
-            <span class="examplelink" onclick="example3()">Example 1</span>  &bull; <span class="examplelink" onclick="example4()">Example 2</span>
-        </div>
-      
-      
+    <div class="text-center mt-2" id="hypexamples">
+      <span class="examplelink" onclick="example1()">Example 1</span> &bull; <span class="examplelink" onclick="example2()">Example 2</span>
+    </div>
       
     <div class="container">
       <hr>
-          </div>
+    </div>
 
-      <div class="container" id="how">
+    <div class="container" id="how">
+      <div id="how2" class="how" style="color: darkslategray">
+        <p class="p1">The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
+
+        <table style="width:100%">
+          <tr>
+            <td></td>
+            <td>$\sigma$ Known</td>
+            <td>$\sigma$ Unknown</td>
+          </tr>
+          <tr>
+            <td>Test Statistic</td>  
+            <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{{\color{Black} n}}}  $</td>
+            <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Lower Tail Test</td>
+            <td>Upper Tail Test</td>
+            <td>Two-Tailed Test</td>
+          </tr>
+          <tr>
+            <td>$H_0 \colon \mu \geq \mu_0$</td>
+            <td>$H_0 \colon \mu \leq \mu_0$</td>
+            <td>$H_0 \colon \mu = \mu_0$</td>
+          </tr>
+          <tr>
+            <td>$H_a \colon \mu < \mu_0$</td>
+            <td>$H_a \colon \mu > \mu_0$</td>
+            <td>$H_a \colon \mu \neq \mu_0$</td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. </p>
+
+        <table style="width:100%">
+          <tr>
+            <td><canvas id="howCanvas1" width="350" height="175"></canvas><canvas id="howCanvas2" width="350" height="175"></canvas><canvas id="howCanvas3" width="350" height="175"></canvas></td>
+          </tr>
+        </table>
+        <br>
+            
+        <p class="p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
+            
+        <p class="p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td><canvas id="howCanvas4" width="350" height="175"></canvas><canvas id="howCanvas5" width="350" height="175"></canvas><canvas id="howCanvas6" width="350" height="175"></canvas></td>
+          </tr>
+        </table>
+
+        <p class="p1">To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Lower Tail Test</td>
+            <td>Upper Tail Test</td>
+            <td>Two-Tailed Test</td>
+          </tr>
+          <tr>
+            <td>If $z \leq -z_\alpha$, reject $H_0$.</td>
+            <td>If $z \geq z_\alpha$, reject $H_0$.</td>
+            <td>If $z \leq -z_{\alpha/2}$ or $z \geq z_{\alpha/2}$, reject $H_0$.</td>
+          </tr>
+          <tr>
+            <td>If $t \leq -t_\alpha$, reject $H_0$.</td>
+            <td>If $t \geq t_\alpha$, reject $H_0$.</td>
+            <td>If $t \leq -t_{\alpha/2}$ or $t \geq t_{\alpha/2}$, reject $H_0$.</td>
+          </tr>
+        </table>
+        <br>
           
-        <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
+        <p class="p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. There are two types of errors you can make:  Type I Error and Type II Error. A Type I Error is committed if you reject the null hypothesis when the null hypothesis is true. Ideally, we'd like to accept the null hypothesis when the null hypothesis is true. A Type II Error is committed if you accept the null hypothesis when the alternative hypothesis is true. Ideally, we'd like to reject the null hypothesis when the alternative hypothesis is true.</p>
 
-            <table style="width:100%">
-              <tr>
-                <td></td>
-                <td>$\sigma$ Known</td>
-                <td>$\sigma$ Unknown</td>
-              </tr>
-              <tr>
-                <td>Test Statistic</td>  
-                <td>$ z = \dfrac{\bar{x}-\mu_0}{\sigma/\sqrt{{\color{Black} n}}}  $</td>
-                <td>$ t = \dfrac{\bar{x}-\mu_0}{s/\sqrt{n}} $</td>
-              </tr>
-            </table>
-            <br>
+        <table>
+          <tr>
+            <td></td>
+            <td></td>
+            <td colspan="2">Condition</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td style="border-right: thin solid; border-bottom: thin solid"></td>
+            <td style="border-bottom: thin solid">$H_0$ True</td>
+            <td style="border-bottom: thin solid">$H_a$ True</td>
+          </tr>
+          <tr>
+            <td rowspan="2">Conclusion</td>
+            <td style="border-right: thin solid">Accept $H_0$</td>
+            <td>Correct</td>
+            <td>Type II Error</td>
+          </tr>
+          <tr>
+            <td style="border-right: thin solid">Reject $H_0$</td>
+            <td>Type I Error</td>
+            <td>Correct</td>
+          </tr>
+        </table>
+        <br>
             
-            <p class = "p1">Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Lower Tail Test</td>
-                <td>Upper Tail Test</td>
-                <td>Two-Tailed Test</td>
-              </tr>
-              <tr>
-                <td>$H_0 \colon \mu \geq \mu_0$</td>
-                <td>$H_0 \colon \mu \leq \mu_0$</td>
-                <td>$H_0 \colon \mu = \mu_0$</td>
-              </tr>
-              <tr>
-                <td>$H_a \colon \mu < \mu_0$</td>
-                <td>$H_a \colon \mu > \mu_0$</td>
-                <td>$H_a \colon \mu \neq \mu_0$</td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. </p>
-
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas1" width="350" height="175"></canvas><canvas id="howCanvas2" width="350" height="175"></canvas><canvas id="howCanvas3" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
-
-          
-            
-            <p class = "p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td><canvas id="howCanvas4" width="350" height="175"></canvas><canvas id="howCanvas5" width="350" height="175"></canvas><canvas id="howCanvas6" width="350" height="175"></canvas></td>
-              </tr>
-            </table>
-
-            <p class = "p1">To test the hypothesis in the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis.</p>
-
-            <table style="width:100%">
-              <tr>
-                <td>Lower Tail Test</td>
-                <td>Upper Tail Test</td>
-                <td>Two-Tailed Test</td>
-              </tr>
-              <tr>
-                <td>If $z \leq -z_\alpha$, reject $H_0$.</td>
-                <td>If $z \geq z_\alpha$, reject $H_0$.</td>
-                <td>If $z \leq -z_{\alpha/2}$ or $z \geq z_{\alpha/2}$, reject $H_0$.</td>
-              </tr>
-              <tr>
-                <td>If $t \leq -t_\alpha$, reject $H_0$.</td>
-                <td>If $t \geq t_\alpha$, reject $H_0$.</td>
-                <td>If $t \leq -t_{\alpha/2}$ or $t \geq t_{\alpha/2}$, reject $H_0$.</td>
-              </tr>
-            </table>
-          <br>
-          
-            <p class = "p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. There are two types of errors you can make:  Type I Error and Type II Error. A Type I Error is committed if you reject the null hypothesis when the null hypothesis is true. Ideally, we'd like to accept the null hypothesis when the null hypothesis is true. A Type II Error is committed if you accept the null hypothesis when the alternative hypothesis is true. Ideally, we'd like to reject the null hypothesis when the alternative hypothesis is true.</p>
-
-            <table>
-              <tr>
-                <td></td>
-                <td></td>
-                <td colspan="2">Condition</td>
-                <td></td>
-              </tr>
-              <tr>
-                <td></td>
-                <td style = "border-right: thin solid; border-bottom: thin solid"></td>
-                <td style = "border-bottom: thin solid">$H_0$ True</td>
-                <td style = "border-bottom: thin solid">$H_a$ True</td>
-              </tr>
-              <tr>
-                <td rowspan="2">Conclusion</td>
-                <td style = "border-right: thin solid">Accept $H_0$</td>
-                <td>Correct</td>
-                <td>Type II Error</td>
-              </tr>
-              <tr>
-                <td style = "border-right: thin solid">Reject $H_0$</td>
-                <td>Type I Error</td>
-                <td>Correct</td>
-              </tr>
-            </table>
-          <br>
-            
-          <p class = "p1"> Hypothesis testing is closely related to the statistical area of confidence intervals. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Confidence intervals can be found using the <a href="confidence-interval.html">Confidence Interval Calculator</a>. The calculator on this page does hypothesis tests for one population mean. Sometimes we're interest in hypothesis tests about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. The probability of a Type II Error can be calculated by clicking on the link at the bottom of the page. </p> 
-            
-        </div>
-
+        <p class="p1"> Hypothesis testing is closely related to the statistical area of confidence intervals. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Confidence intervals can be found using the <a href="confidence-intervals.html">Confidence Interval Calculator</a>. The calculator on this page does hypothesis tests for one population mean. Sometimes we're interest in hypothesis tests about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. The probability of a Type II Error can be calculated by clicking on the link at the bottom of the page. </p> 
       </div>
+    </div>
       
-      <div id = "hypoutputs">
-
-     <div class="container">
+    <div id="hypoutputs">
+      <div class="container">
         <div id="output1" class="output">
         </div>
       </div>
       
       <div class="container text-center">
-      <canvas id="myCanvas1" width="375" height="188" ></canvas>
+        <canvas id="myCanvas1" width="375" height="188"></canvas>
       </div>
       
       <div class="container">
         <div id="output2" class="output">
         </div>
       </div>
-          
-
-          
-        <div class="container">
+      
+      <div class="container">
         <div id="output21" class="output">
         </div>
       </div>
       
       <div class="container text-center">
-      <canvas id="myCanvas2" width="375" height="188" ></canvas>
+        <canvas id="myCanvas2" width="375" height="188"></canvas>
       </div>
       
       <div class="container">
         <div id="output3" class="output">
         </div>
       </div>
-      
-      </div>
+    </div>
 
-      <div id = "typeoutputs">
-      
+    <div id="typeoutputs">
       <div class="container">
         <div id="output4" class="output">
         </div>
       </div>
+    </div>
+
+    <div class="text-center mt-2 mb-0">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816" crossorigin="anonymous"></script>
+      <!-- Responsive1 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3595688914204816"
+           data-ad-slot="8250424918"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
       
-      
+    <footer id="footer">
+
+      <div class="container">
+        <hr>
       </div>
-
-        <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Responsive1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8250424918"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-          </div>
+      <p>&copy; 2025 <a href="/about.html" style="text-decoration: none">Stats Solver</a></p>
+    </footer>
       
-          <footer id="footer">
-              <div class="container" id="explanation">
-                  <p  class="text-center" style="background-color:white">
-
-                  <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Definition
-                  </a> &bull;
-                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Formula
-                  </a> &bull;
-                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Explanation
-                  </a> 
-
-                </p>
-                <div class="collapse" id="collapseExample" data-parent="#explanation">
-                  <div class="card card-body" id="descriptiontext">
-
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample2" data-parent="#explanation">
-                  <div class="card card-body" id="formulatext">
-
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample3" data-parent="#explanation">
-                  <div class="card card-body" id="explanationtext">
-
-                  </div>
-                </div>
-
-                      </div>
-
-              <div class="container">
-                  <hr>
-              </div>
-          <p> 
-              &copy; 2025 <a href="/about.html">Stats Solver</a> 
-              
-              </p>
-          </footer>
-      
-    <!--<div style = "height: 400px"></div>-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script src="/js/hypothesism.js"></script>
+<!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/js/hypothesis.js"></script>
+    <script src="/js/search.js"></script>
+    
+    <!-- Initialize tooltips -->
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
   </body>
 </html>
+    

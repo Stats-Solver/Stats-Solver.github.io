@@ -1,25 +1,21 @@
-$("#greater").hide(); $("#notequal").hide(); $("#explanation").hide();$("#greatert").hide(); $("#notequalt").hide();
-$("#typeexamples").hide(); $("#hypexamples").show(); $("#switchhypothesis").hide(); $("#switchtype").show();
-$("#datainput").hide(); $("#valuesinput").show(); $("#hypothesis").show(); $("#type2error").hide(); $("#581773186").hide();
-$("#hypoutputs").hide(); $("#testinput").hide(); $("#muknottest").hide();
-
-$("#degfreedom").hide();
-
-$("#alphaval").hide();
+greater.hidden = true;
+notequal.hidden = true;
+testinput.hidden = true;
+datainput.hidden = true;
+alphaval.hidden = true;
+muknottest.hidden = true;
 
 
 type = "hypothesis"
 inputtype = "values"
 alphatype = "premade"
 
-$(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-    })
 
 function alphachange(){
     var alphainput = document.getElementById("alpha").value;
     if (alphainput == "other") {
-        $("#alphaval").show(); $("#alpha").hide();
+        alphaval.hidden = false;
+        alpha.hidden = true;
         alphatype = "custom"
     }
 }
@@ -50,49 +46,32 @@ function toFixing(num, fixed) {
     return num.toString().match(re)[0];
 }
 
-function switchtype() {
-    type = "type2error"
-    $("#hypothesis").hide(); $("#type2error").show();
-    $("#switchtype").hide(); $("#switchhypothesis").show();
-    $("#hypoutputs").hide(); $("#typeoutputs").show();
-    $("#hypexamples").hide(); $("#typeexamples").show();
-}
-
-function switchhypothesis() {
-    type = "hypothesis"
-    $("#hypothesis").show(); $("#type2error").hide();
-    $("#switchhypothesis").hide(); $("#switchtype").show();
-    $("#hypoutputs").show(); $("#typeoutputs").hide();
-    $("#typeexamples").hide(); $("#hypexamples").show();
-}
-
 function switchzt() {
     var teststat = document.getElementById("teststat").value;
     if (teststat == "t") {
-        $("#degfreedom").show();
+        degfreedom.hidden = false;
     } else if (teststat == "z") {
-        $("#degfreedom").hide();
+        degfreedom.hidden = true;
     }
 }
 
 
 function switchdata() {
-    $("#datainput").show(); $("#valuesinput").hide();
+    datainput.hidden = false;
+    valuesinput.hidden = true;
     inputtype = "data"
 }
 
 function switchtest() {
-    $("#testinput").show(); $("#datainput").hide();
+    testinput.hidden = false;
+    datainput.hidden = true;
     inputtype = "test"
-    //document.getElementById("muknot").disabled = true;
-    //$("#muknottest").show(); $("#muknot").hide();
 }
 
 function switchvalues() {
-    $("#testinput").hide(); $("#valuesinput").show();
+    testinput.hidden = true;
+    valuesinput.hidden = false;
     inputtype = "values"
-    //document.getElementById("muknot").disabled = false;
-    //$("#muknottest").hide(); $("#muknot").show();
 }
 
 var canvas = document.getElementById("myCanvas1");
@@ -348,21 +327,6 @@ function how3(){
         ctx.stroke();
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function how4(){
         var exp = 2.71828;
         var f = [];
@@ -587,46 +551,28 @@ function how6(){
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function parameter() {
     var x = document.getElementById("parameter1").value;
     if (x == "mean"){
+        sd1.hidden = false;
+        sd2.hidden = false;
+        sd3.hidden = false;
         document.getElementById("parameter2").innerHTML = "&mu;";
         document.getElementById("muknotvalue").innerHTML = "&mu;₀";
-        $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
         document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
     } else if (x == "proportion"){
+        sd1.hidden = true;
+        sd2.hidden = true;
+        sd3.hidden = true;
         document.getElementById("parameter2").innerHTML = "p";
         document.getElementById("muknotvalue").innerHTML = "p₀";
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
         document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
     } else if (x == "variance"){
+        sd1.hidden = true;
+        sd2.hidden = true;
+        sd3.hidden = true;
         document.getElementById("parameter2").innerHTML = "&#963;²";
         document.getElementById("muknotvalue").innerHTML = "&#963;₀²";
-        $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
         document.getElementById("samplestat").innerHTML = "$s$";
     } 
     MathJax.typeset();
@@ -635,34 +581,34 @@ function parameter() {
 function tailsigns() {
     var x = document.getElementById("tail").value;
     if (x == "lower"){
-        $("#less").show();
-        $("#greater").hide();
-        $("#notequal").hide();
+        less.hidden = false;
+        greater.hidden = true;
+        notequal.hidden = true;
     } else if (x == "upper"){
-        $("#less").hide();
-        $("#greater").show();
-        $("#notequal").hide();
+        less.hidden = true;
+        greater.hidden = false;
+        notequal.hidden = true;
     } else if (x == "two") {
-        $("#less").hide();
-        $("#greater").hide();
-        $("#notequal").show();
+        less.hidden = false;
+        greater.hidden = false;
+        notequal.hidden = true;
     } 
 }
 
 function tailsignst() {
     var x = document.getElementById("tailt").value;
     if (x == "lower"){
-        $("#lesst").show();
-        $("#greatert").hide();
-        $("#notequalt").hide();
+        lesst.hidden = false;
+        greatert.hidden = true;
+        notequalt.hidden = true;
     } else if (x == "upper"){
-        $("#lesst").hide();
-        $("#greatert").show();
-        $("#notequalt").hide();
+        lesst.hidden = true;
+        greatert.hidden = false;
+        notequalt.hidden = true;
     } else if (x == "two") {
-        $("#lesst").hide();
-        $("#greatert").hide();
-        $("#notequalt").show();
+        lesst.hidden = true;
+        greatert.hidden = true;
+        notequalt.hidden = false;
     } 
 }
 
@@ -960,63 +906,21 @@ function tinv(p, dof) {
 	
 }
 
-
-
-
-
 function solve() {
-    $("#explanation").show(); $("#samples").hide();
-    $("#hypoutputs").show(); $("#how").hide();
-    $("#581773186").show();
+    //explanation.hidden = false;
+    //samples.hidden = true;
+    hypoutputs.hidden = false;
+    how.hidden = true;
+    //$("#explanation").show(); 
+    //$("#samples").hide();
+    //$("#hypoutputs").show(); 
+    //$("#how").hide();
+    //$("#581773186").show();
     if (type == "hypothesis") {
         hyptest()
     } else if (type == "type2error") {
         type2()
     }
-}
-
-function type2() {
-    var tail = document.getElementById("tailt").value;
-    var muknot = document.getElementById("muknott").value;
-    var size = document.getElementById("sizet").value; var sizem1 = size - 1;
-    var mu = document.getElementById("mut").value;
-    var stdev = document.getElementById("stdevt").value;
-    var alpha = document.getElementById("alphat").value;
-    
-    var zcless = (NormSInv(alpha)).toFixed(2)
-    var xbarl = (zcless * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2)
-    var zl = parseFloat(((xbarl - mu) / (stdev/Math.sqrt(size))).toFixed(2))
-    var zlprob = (normalcdf(zl)).toFixed(4)
-    var betal = (1 - zlprob).toFixed(4)
-    
-    var zcgreat = (NormSInv(1-alpha)).toFixed(2)
-    var xbarg = parseFloat((zcgreat * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2)).toFixed(2)
-    var zg = parseFloat(((xbarg - mu) / (stdev/Math.sqrt(size))).toFixed(2))
-    var zgprob = (normalcdf(zg)).toFixed(4)
-    var betag = zgprob
-    
-    var zcless2 = (NormSInv(alpha/2)).toFixed(2)
-    var zcgreat2 = (NormSInv(1-alpha/2)).toFixed(2)
-    var xbarl2 = (zcless2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2)
-    var xbarg2 = parseFloat((zcgreat2 * (stdev / Math.sqrt(size)) + parseFloat(muknot)).toFixed(2))
-    var zl2 = parseFloat(((xbarl2 - mu) / (stdev/Math.sqrt(size))).toFixed(2))
-    var zg2 = parseFloat(((xbarg2 - mu) / (stdev/Math.sqrt(size))).toFixed(2))
-    var zl2prob = (normalcdf(zl2)).toFixed(4)
-    var zg2prob = (normalcdf(zg2)).toFixed(4)
-    var beta2 = (zg2prob - zl2prob).toFixed(4)
-    
-    if (tail == "lower") {
-        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless+"  $$  $$ \\bar{x} \\leq "+xbarl+"  $$ $$ z = \\frac{"+xbarl+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+zl+" $$ $$ \\begin{align} \\beta &= P(z \\geq "+zl+") = 1 - P(z \\leq "+zl+") \\\\ &= 1 - "+zlprob+" = \\boxed{"+betal+"} \\end{align} $$ "
-    } else if (tail == "upper") {
-        document.getElementById("output4").innerHTML = " $$ \\text{Reject } H_0 \\text{ if } z = \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat+"  $$ $$ \\bar{x} \\geq "+xbarg+"  $$ $$ z = \\frac{"+xbarg+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+zg+" $$ $$ \\begin{align} \\beta &= P(z \\leq "+zg+") = \\boxed{"+betag+"} \\end{align} $$ "
-    } else if (tail == "two") {
-        document.getElementById("output4").innerHTML = " $$ \\begin{align} \\text{Reject } H_0 \\text{ if } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\leq "+zcless2+" \\\\ \\text{or } z &= \\frac{\\bar{x}-"+muknot+"}{"+stdev+"/ \\sqrt{"+size+"}} \\geq "+zcgreat2+" \\end{align} $$  $$ \\bar{x} \\leq "+xbarl2+" \\text{ or } \\bar{x} \\geq "+xbarg2+" $$ $$ z = \\frac{"+xbarl2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}}  = "+zl2+"  $$ $$ z = \\frac{"+xbarg2+"-"+mu+"}{"+stdev+"/ \\sqrt{"+size+"}} = "+zg2+" $$ $$ \\begin{align} \\beta &= P("+zl2+" \\leq z \\leq "+zg2+") \\\\ &= P(z \\leq "+zg2+") - P(z \\leq "+zl2+") \\\\ &= "+zg2prob+" - "+zl2prob+" = \\boxed{"+beta2+"} \\end{align} $$ "
-    }
-    
-    
-    
-    MathJax.typeset();
-    
 }
 
 function hyptest(){
@@ -1031,7 +935,8 @@ function hyptest(){
 }
 
 function hyptest1(){
-    $("#output21").show();
+    output21.hidden = false;
+    //$("#output21").show();
     if (inputtype == "values") {
         var sigma = document.getElementById("sigma").value;
         var size = document.getElementById("size").value; var sizem1 = size - 1; var sizem2 = size - 2;
@@ -1087,16 +992,7 @@ function hyptest1(){
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
     var tcless = -tinv(alpha,sizem1); var tcmore = tinv(alpha,sizem1)
     var tctwo1 = -tinv(alpha/2,sizem1); var tctwo2 = tinv(alpha/2,sizem1); 
-    var exp = 2.71828;
-    if (sigma == "known") {
-        document.getElementById("descriptiontext").innerHTML = "A hypothesis test is used to determine whether the population mean is less than, greater than or different than some value."
-        document.getElementById("formulatext").innerHTML = "$ z =\\dfrac{\\bar{x}-\\mu_o}{\\sigma / \\sqrt{n}} $"
-        document.getElementById("explanationtext").innerHTML = "Rejecting the null hypothesis means accepting the alternative hypothesis."
-    } else if (sigma == "unknown") {
-        document.getElementById("descriptiontext").innerHTML = "A hypothesis test is used to determine whether the population mean is less than, greater than or different than some value."
-        document.getElementById("formulatext").innerHTML = "$ t =\\dfrac{\\bar{x}-\\mu_o}{s / \\sqrt{n}} $"
-        document.getElementById("explanationtext").innerHTML = "Rejecting the null hypothesis means accepting the alternative hypothesis."
-    } 
+    var exp = 2.71828; 
     if (sigma == "known" && tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "z";
@@ -2046,17 +1942,17 @@ function hyptest1(){
         ctx.stroke();  
     }
     if (tail == "lower" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\leq -z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
     } else if (tail == "upper" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(2) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } z \\geq z_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
     } else if (tail == "two" && sigma == "known") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Values:} $$ $$ "+cvalsymb1+" = {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "}  \\text{ and } "+cvalsymb2+" = {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret+" <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Values:} $$ $$ "+cvalsymb1+" = {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "}  \\text{ and } "+cvalsymb2+" = {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } z \\leq -z_\\alpha \\text{ or if } z \\geq z_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret
     } else if (tail == "lower" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\leq -t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(3)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
     } else if (tail == "upper" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret + "<a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(3) + "} $$ $$ \\text{Rejection Rule: Reject } H_0 \\text{ if } t \\geq t_\\alpha $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(3)+" $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$" + interpret
     } else if (tail == "two" && sigma == "unknown") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Values:} $$ $$ "+cvalsymb1+" = {\\color{RoyalBlue}" + ctwo1.toFixed(3) + "} \\text{ and } "+cvalsymb2+" = {\\color{RoyalBlue}"+ctwo2.toFixed(3) + "} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret+" <a href = 'mailto: contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Values:} $$ $$ "+cvalsymb1+" = {\\color{RoyalBlue}" + ctwo1.toFixed(3) + "} \\text{ and } "+cvalsymb2+" = {\\color{RoyalBlue}"+ctwo2.toFixed(3) + "} $$ $$ \\text{Rejection Rule:} $$ $$ \\text{Reject } H_0 \\text{ if } t \\leq -t_\\alpha \\text{ or if } t \\geq t_\\alpha $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "+interpret
     }
     MathJax.typeset();
 }
@@ -2819,12 +2715,14 @@ function example1(){
     if (inputtype == "values") {
             var x = document.getElementById("parameter1").value;
             if (x == "mean") {
-                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                sd1.hidden = false;
+                sd2.hidden = false;
+                sd3.hidden = false;
+                less.hidden = false;
+                greater.hidden = true;
+                notequal.hidden = true;
                 document.getElementById("parameter2").innerHTML = "&mu;"
                 document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
-                $("#less").show();
-                $("#greater").hide();
-                $("#notequal").hide();
                 document.getElementById('tail').value="lower"
                 document.getElementById('muknot').value="30"
                 document.getElementById('muknotvalue').innerHTML="30"
@@ -2835,12 +2733,14 @@ function example1(){
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
             } else if (x == "proportion") {
-                $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+                sd1.hidden = true;
+                sd2.hidden = true;
+                sd3.hidden = true;
+                less.hidden = true;
+                greater.hidden = true;
+                notequal.hidden = false;
                 document.getElementById("parameter2").innerHTML = "p"
                 document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
-                $("#less").hide();
-                $("#greater").hide();
-                $("#notequal").show();
                 document.getElementById('tail').value="two"
                 document.getElementById('muknot').value=".30"
                 document.getElementById('muknotvalue').innerHTML=".30"
@@ -2850,11 +2750,13 @@ function example1(){
                 MathJax.typeset();
             } 
         } else if (inputtype == "data") {
-                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                sd1.hidden = false;
+                sd2.hidden = false;
+                sd3.hidden = false;
+                less.hidden = false;
+                greater.hidden = true;
+                notequal.hidden = true;
                 document.getElementById("parameter2").innerHTML = "&mu;"
-                $("#less").show();
-                $("#greater").hide();
-                $("#notequal").hide();
                 document.getElementById('tail').value="lower"
                 document.getElementById('muknot').value="4"
                 document.getElementById('muknotvalue').innerHTML="4"
@@ -2863,15 +2765,17 @@ function example1(){
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
         } else if (inputtype == "test") {
+                degfreedom.hidden = false;
+                sd1.hidden = false;
+                sd2.hidden = false;
+                sd3.hidden = false;
+                less.hidden = false;
+                greater.hidden = true;
+                notequal.hidden = true;
                 document.getElementById('muknot').value=""
                 document.getElementById('muknotvalue').innerHTML="&mu;₀"
                 document.getElementById("teststat").value = "z"
-                $("#degfreedom").hide();
-                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
                 document.getElementById("parameter2").innerHTML = "&mu;"
-                $("#less").show();
-                $("#greater").hide();
-                $("#notequal").hide();
                 document.getElementById('tail').value="lower"
                 document.getElementById('testvalue').value="-1.73"
                 document.getElementById('alpha').value=".05"
@@ -2883,13 +2787,15 @@ function example2(){
     if (inputtype == "values") {
             var x = document.getElementById("parameter1").value;
             if (x == "mean") {
-                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                sd1.hidden = false;
+                sd2.hidden = false;
+                sd3.hidden = false;
+                less.hidden = true;
+                greater.hidden = false;
+                notequal.hidden = true;
                 document.getElementById("parameter1").value = "mean"
                 document.getElementById("parameter2").innerHTML = "&mu;"
                 document.getElementById("samplestat").innerHTML = "$\\bar{x}$";
-                $("#less").hide();
-                $("#greater").show();
-                $("#notequal").hide();
                 document.getElementById('tail').value="upper"
                 document.getElementById('muknot').value="14"
                 document.getElementById('muknotvalue').innerHTML="14"
@@ -2900,12 +2806,14 @@ function example2(){
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
             } else if (x == "proportion") {
-                $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
+                sd1.hidden = true;
+                sd2.hidden = true;
+                sd3.hidden = true;
+                less.hidden = true;
+                greater.hidden = true;
+                notequal.hidden = false;
                 document.getElementById("parameter2").innerHTML = "p"
                 document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
-                $("#less").hide();
-                $("#greater").hide();
-                $("#notequal").show();
                 document.getElementById('tail').value="lower"
                 document.getElementById('muknot').value=".65"
                 document.getElementById('muknotvalue').innerHTML=".65"
@@ -2915,11 +2823,13 @@ function example2(){
                 MathJax.typeset();
             } 
         } else if (inputtype == "data") {
-                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
+                sd1.hidden = false;
+                sd2.hidden = false;
+                sd3.hidden = false;
+                less.hidden = true;
+                greater.hidden = false;
+                notequal.hidden = true;
                 document.getElementById("parameter2").innerHTML = "&mu;"
-                $("#less").hide();
-                $("#greater").show();
-                $("#notequal").hide();
                 document.getElementById('tail').value="upper"
                 document.getElementById('muknot').value="5"
                 document.getElementById('muknotvalue').innerHTML="5"
@@ -2928,66 +2838,28 @@ function example2(){
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
         } else if (inputtype == "test") {
-                document.getElementById('muknot').value=""
-                document.getElementById('muknotvalue').innerHTML="&mu;₀"
-                document.getElementById("teststat").value = "t"
+                degfreedom.hidden = false;
+                sd1.hidden = false;
+                sd2.hidden = false;
+                sd3.hidden = false;
+                less.hidden = true;
+                greater.hidden = false;
+                notequal.hidden = true;
                 $("#degfreedom").show();
-                $("#sd1").show(); $("#sd2").show(); $("#sd3").show();
-                document.getElementById("parameter2").innerHTML = "&mu;"
+                $("#sd1").show(); 
+                $("#sd2").show(); 
+                $("#sd3").show();
                 $("#less").hide();
                 $("#greater").show();
                 $("#notequal").hide();
+                document.getElementById('muknot').value=""
+                document.getElementById('muknotvalue').innerHTML="&mu;₀"
+                document.getElementById("teststat").value = "t"
+                document.getElementById("parameter2").innerHTML = "&mu;"
                 document.getElementById('tail').value="upper"
                 document.getElementById('testvalue').value="2.06"
                 document.getElementById('degfreeval').value="19"
                 document.getElementById('alpha').value=".05"
                 MathJax.typeset();
         }
-}
-
-
-
-function example3(){
-        $("#lesst").show();
-        $("#greatert").hide();
-        $("#notequalt").hide();
-        document.getElementById('tailt').value="lower"
-        document.getElementById('muknott').value="120"
-        document.getElementById('muknotvaluet').innerHTML="120"
-        document.getElementById('sizet').value="36"
-        document.getElementById('mut').value="112"
-        document.getElementById('stdevt').value="12"
-        document.getElementById('alphat').value=".05"
-        MathJax.typeset();
-}
-
-function example4(){
-        $("#lesst").hide();
-        $("#greatert").hide();
-        $("#notequalt").show();
-        document.getElementById('tailt').value="two"
-        document.getElementById('muknott').value="15"
-        document.getElementById('muknotvaluet').innerHTML="15"
-        document.getElementById('sizet').value="100"
-        document.getElementById('mut').value="12.5"
-        document.getElementById('stdevt').value="7.5"
-        document.getElementById('alphat').value=".05"
-        MathJax.typeset();
-}
-
-function example5(){
-    $("#sd1").hide(); $("#sd2").hide(); $("#sd3").hide();
-    document.getElementById("parameter1").value = "proportion"
-    document.getElementById("parameter2").innerHTML = "p"
-    document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
-    $("#less").hide();
-    $("#greater").hide();
-    $("#notequal").show();
-    document.getElementById('tail').value="two"
-    document.getElementById('muknot').value=".20"
-    document.getElementById('muknotvalue').innerHTML=".20"
-    document.getElementById('size').value="400"
-    document.getElementById('xbar').value=".175"
-    document.getElementById('alpha').value=".05"
-    MathJax.typeset();
 }
