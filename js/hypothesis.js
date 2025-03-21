@@ -4,6 +4,8 @@ testinput.hidden = true;
 datainput.hidden = true;
 alphaval.hidden = true;
 muknottest.hidden = true;
+myCanvas1.hidden = true;
+myCanvas2.hidden = true;
 
 
 type = "hypothesis"
