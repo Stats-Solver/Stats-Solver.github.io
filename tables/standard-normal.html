@@ -3,7 +3,7 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Numerical summaries calculator with steps. Solve the mean, median, mode, variance, standard deviation, covariance, correlation coefficient and more.">
   <title>Standard Normal Distribution Interactive Table - Stats Solver</title>
   
@@ -11,11 +11,61 @@
   <link rel="icon" href="/solver.png">
   
   <!-- CSS -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" type="text/css" href="/css/style.css">
   <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
   <link rel="stylesheet" type="text/css" href="/css/numstyle.css">
+  
+  <style>
+    /* Search field styles */
+    .navbar-nav.right-menu {
+      margin-left: auto;
+    }
+    .navbar-center {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 1;
+    }
+    .search-container {
+      position: relative;
+      width: 240px;
+    }
+    .search-button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: transparent;
+      border: none;
+      padding: 0 10px;
+    }
+    .search-button:focus {
+      outline: none;
+      box-shadow: none;
+    }
+    
+    /* For mobile responsiveness */
+    @media (max-width: 991.98px) {
+      .navbar-center {
+        position: relative;
+        left: auto;
+        transform: none;
+        width: 100%;
+        margin: 1rem 0;
+        order: 3;
+      }
+      .search-container {
+        width: 100%;
+      }
+      .navbar-nav.right-menu {
+        margin-left: 0;
+        width: 100%;
+        order: 2;
+      }
+    }
+  </style>
   
   <!-- Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
@@ -32,43 +82,56 @@
   <!-- Navigation -->
   <div class="container">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/index.html">
-        <img src="/stats-solver-logo.png" alt="Stats Solver Logo" width="188" height="25" style="mix-blend-mode: multiply;">
-      </a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+      <div class="container-fluid position-relative">
+        <a class="navbar-brand" href="/index.html">
+          <img src="/stats-solver-logo.png" alt="Stats Solver Logo" width="188" height="25" style="mix-blend-mode: multiply;">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Calculators
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="/numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="/basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="/discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="/continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="/sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="/confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="/linear-regression.html">Linear Regression</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <!-- Centered search form -->
+          <form class="d-flex navbar-center">
+            <div class="search-container">
+              <input class="form-control" type="search" placeholder="Search statistics topics..." aria-label="Search">
+              <button class="search-button" type="submit">
+                <i class="fas fa-search"></i>
+              </button>
             </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="f-distribution.html">F-Distribution</a>
-            </div>
-          </li>
-        </ul>
+          </form>
+          
+          <!-- Right-aligned navigation items -->
+          <ul class="navbar-nav right-menu mb-2 mb-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Calculators
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                <li><a class="dropdown-item" href="/tables-and-graphs.html">Tables and Graphs</a></li>
+                <li><a class="dropdown-item" href="/numerical-summaries.html">Numerical Summaries</a></li>
+                <li><a class="dropdown-item" href="/basic-probability.html">Basic Probability</a></li>
+                <li><a class="dropdown-item" href="/discrete-distributions.html">Discrete Distributions</a></li>
+                <li><a class="dropdown-item" href="/continuous-distributions.html">Continuous Distributions</a></li>
+                <li><a class="dropdown-item" href="/sampling-distributions.html">Sampling Distributions</a></li>
+                <li><a class="dropdown-item" href="/confidence-intervals.html">Confidence Intervals</a></li>
+                <li><a class="dropdown-item" href="/hypothesis-testing.html">Hypothesis Testing</a></li>
+                <li><a class="dropdown-item" href="/linear-regression.html">Linear Regression</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Tables
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                <li><a class="dropdown-item" href="standard-normal.html">Standard Normal</a></li>
+                <li><a class="dropdown-item" href="t-distribution.html">t-Distribution</a></li>
+                <li><a class="dropdown-item" href="chi-square.html">Chi-Square</a></li>
+                <li><a class="dropdown-item" href="f-distribution.html">F-Distribution</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   </div>
@@ -76,7 +139,7 @@
   <!-- Header -->
   <div class="container">
     <h1 class="page-header text-center mt-2 mb-0 text-primary" style="font-size: 1.5em">
-      <a href="standard-normal.html">Standard Normal Distribution</a>
+      <a href="standard-normal.html" style="text-decoration: none">Standard Normal Distribution</a>
     </h1>
     <h2 class="text-center mt-0" style="font-size: 1em">Interactive Table</h2>
     <hr>
@@ -238,16 +301,16 @@
   <!-- Footer -->
   <footer id="footer" class="mt-4">
     <div class="container text-center">
-      <a href="ztable.pdf" download="ztable.pdf">Download PDF</a>
+      <!--<a href="ztable.pdf" download="ztable.pdf">Download PDF</a>-->
       <hr>
-      <p>&copy; <span id="current-year">2023</span> <a href="/about.html">Stats Solver</a></p>
+      <p>&copy; <span id="current-year">2023</span> <a href="/about.html" style="text-decoration: none">Stats Solver</a></p>
     </div>
   </footer>
   
   <!-- JavaScript -->
   <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha384-vtXRMe3mGCbOeY7l30aIg8H9p3GdeSe4IFlP6G8JMa7o7lXvnz3GFKzPxzJdPfGK" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.min.js" integrity="sha384-+sLIOodYLS7CIrQpBjl+C7nPvqq+FbNUBDunl/OZv93DB7Ln/533i8e/mZXLi/P+" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
   
   <!-- MathJax -->
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -270,5 +333,6 @@
   
   <!-- Custom JS -->
   <script src="js/standard.js"></script>
+  <script src="/js/search.js"></script>
 </body>
 </html>
