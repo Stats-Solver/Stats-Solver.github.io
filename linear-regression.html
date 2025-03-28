@@ -3,24 +3,98 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="The easy-to-use simple linear regression calculator gives you step-by-step solutions to the estimated regression equation, coefficient of determination and more.">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
       
-      <link rel="stylesheet" type="text/css" href="/css/style.css">
-      <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
-      <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
-      <link rel="stylesheet" type="text/css" href="/css/simpstyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/tabgrastyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/timestyle.css">
+    <link rel="stylesheet" type="text/css" href="/css/simpstyle.css">
+    <link rel="icon" href="/solver.png">
+    <link rel="canonical" href="https://www.statssolver.com/simple-regression.html" />
+      
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        loader: {load: ['[tex]/ams']},
+        tex: {
+          packages: {'[+]': ['ams']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+
+    <!-- Search field styles -->
+    <style>
+      /* Search field styles */
+      .navbar-nav.right-menu {
+        margin-left: auto;
+      }
+      .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .search-container {
+        position: relative;
+        width: 240px;
+      }
+      .search-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        border: none;
+        padding: 0 10px;
+      }
+      .search-button:focus {
+        outline: none;
+        box-shadow: none;
+      }
+      
+      /* For mobile responsiveness */
+      @media (max-width: 991.98px) {
+        .navbar-center {
+          position: relative;
+          left: auto;
+          transform: none;
+          width: 100%;
+          margin: 1rem 0;
+          order: 3;
+        }
+        .search-container {
+          width: 100%;
+        }
+        .navbar-nav.right-menu {
+          margin-left: 0;
+          width: 100%;
+          order: 2;
+        }
+      }
+
+      .examplelink {
+        cursor: pointer;
+        color: #0d6efd;
+      }
+      .examplelink:hover {
+        text-decoration: underline;
+      }
+    </style>
 
     <title>Linear Regression Calculator with Steps - Stats Solver</title>
       
-      <link rel="icon" href="/solver.png">
-      
-      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-      
-                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -29,250 +103,243 @@
 
       gtag('config', 'UA-170214906-1');
     </script>
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-      <link rel="canonical" href="https://www.statssolver.com/simple-regression.html" />
-      
   </head>
   <body>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid position-relative">
+          <a class="navbar-brand" href="/index.html">
+            <img src="/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Calculators
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="linear-regression.html">Linear Regression</a>
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a>
-              <a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Centered search form -->
+            <form class="d-flex navbar-center">
+              <div class="search-container">
+                <input class="form-control" type="search" placeholder="Search statistics topics..." aria-label="Search">
+                <button class="search-button" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+            
+            <!-- Right-aligned navigation items -->
+            <ul class="navbar-nav right-menu mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Calculators
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tables
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="tables/standard-normal.html">Standard Normal</a></li>
+                  <li><a class="dropdown-item" href="tables/t-distribution.html">t-Distribution</a></li>
+                  <li><a class="dropdown-item" href="tables/chi-square.html">Chi-Square</a></li>
+                  <li><a class="dropdown-item" href="tables/f-distribution.html">F-Distribution</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
+        </div>
+      </nav>
+    </div>
     
-      
-    <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="linear-regression.html">Linear Regression</a></h1>
+    <div class="container">
+      <h1 class="page-header text-center mt-2 mb-0 text-primary" style="font-size: 1.5em">
+        <a href="linear-regression.html" style="text-decoration: none">Linear Regression</a>
+      </h1>
       <h2 class="text-center mt-0" style="font-size: 1em">Step-by-Step Calculator</h2>
     </div>
       
-      <div class="container">
-      <hr>
-          </div>
-      
-      <div class="container">
-          <div class="row  justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values">
-        </div>
-        <div class="col-4 col-md-2 mb-3" id = "blankx">
-            
-        </div>
-
-         </div>     
+    <div class="container">
+      <hr class="mt-0 mb-2">
     </div>
-      
-      <div class="container">
-          <div class="row justify-content-center">
-        <div class="col-8 col-md-3 mb-3">
-            <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values">
-        </div>
-        <div class="col-4 col-md-2 mb-3" id = "blanky">
-        </div>
-        <div class="col-4 col-md-2 mb-3" id="xval">      
-        $x=$ <input type="text" style="width:50px;" id="xvalue" class="hypinput2">
-        </div>    
-        <div class="col-4 col-md-2 mb-3" id="sumsquares">
-            <select class="form-control" id="sumsquaresval">
-                <option value="error">Error</option>
-                <option value="total">Total</option>
-                <option value="regression">Regression</option>
-            </select>
-        </div>
-        <div class="col-4 col-md-2 mb-3" id="meansquares">
-            <select class="form-control" id="meansquaresval">
-                <option value="error">Error</option>
-                <option value="regression">Regression</option>
-            </select>
-        </div>
-        <div class="col-4 col-md-2 mb-3" id="standerr">
-            <select class="form-control" id="standarderrorval">
-                <option value="estimate">Estimate</option>
-                <option value="slope">Slope</option>
-            </select>
-        </div>
-        <div class="col-4 col-md-2 mb-3" id="sigtests">
-            <select class="form-control" id="sigval">
-                <option value="ttest">t-Test</option>
-                <option value="ftest">F-Test</option>
-            </select>
-        </div>
-        <div class="col-4 col-md-2 mb-3" id="xpval">      
-        $x_p=$ <input type="text" style="width:50px;" id="xpvalue" class="hypinput2">
-        </div>  	
-
-    </div>
-          </div>
-
-      
-      
-      <div class="container">
-          <div class="row justify-content-center">
-        
-        <div class="col-8 col-md-3 mb-2">
-            <select id="stat" class="form-control" onchange="showthings()">
-                <option value="choose">Choose One</option>
-                <option value="equation">Regression Equation</option>
-                <option value="interpretation">Interpretation</option>
-                <option value="prediction">Predicted Value</option>
-                <option value="sumsqu">Sum of Squares</option>
-                <option value="rsquared">Coefficient of Determination</option>
-                <option value="correlation">Correlation Coefficient</option>
-                <option value="meansqu">Mean Square</option>
-                <option value="standard">Standard Error</option>
-                <option value="significance">Test for Significance</option>
-                <option value="confinterval">Confidence Interval</option>
-                <option value="predinterval">Prediction Interval</option>
-                <!--<option value="resplot">Residuals</option>
-                <option value="leverage">Leverage</option>
-                <option value="standardized">Standardized Residuals</option>
-                 <option value="computer">Computer Output</option> -->
-            </select>
-        </div> 
-              <div class="col-4 col-md-2 inputWrapper">
-            <button id = "buttoncross" class="button btn-outline-primary" onclick="stat()">Solve</button>
-        </div> 
-              </div>
-    </div>
-      
-
-      
-                <div class = "text-center" id = "label1">
-            <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
-        </div>
-     
-      
       
     <div class="container">
-        <hr>
+      <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+          <input type="text" id="valuesx" class="form-control" placeholder="Enter X Values">
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="blankx">
+            
+        </div>
+      </div>     
+    </div>
+      
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-3">
+          <input type="text" id="valuesy" class="form-control" placeholder="Enter Y Values">
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="blanky">
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="xval">      
+          $x=$ <input type="text" style="width:50px;" id="xvalue" class="form-control form-control-sm d-inline-block">
+        </div>    
+        <div class="col-4 col-md-2 mb-3" id="sumsquares">
+          <select class="form-select" id="sumsquaresval">
+            <option value="error">Error</option>
+            <option value="total">Total</option>
+            <option value="regression">Regression</option>
+          </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="meansquares">
+          <select class="form-select" id="meansquaresval">
+            <option value="error">Error</option>
+            <option value="regression">Regression</option>
+          </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="standerr">
+          <select class="form-select" id="standarderrorval">
+            <option value="estimate">Estimate</option>
+            <option value="slope">Slope</option>
+          </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="sigtests">
+          <select class="form-select" id="sigval">
+            <option value="ttest">t-Test</option>
+            <option value="ftest">F-Test</option>
+          </select>
+        </div>
+        <div class="col-4 col-md-2 mb-3" id="xpval">      
+          $x_p=$ <input type="text" style="width:50px;" id="xpvalue" class="form-control form-control-sm d-inline-block">
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-8 col-md-3 mb-2">
+          <select id="stat" class="form-select" onchange="showthings()">
+            <option value="choose">Choose One</option>
+            <option value="equation">Regression Equation</option>
+            <option value="sumsqu">Sum of Squares</option>
+            <option value="rsquared">Coefficient of Determination</option>
+            <option value="meansqu">Mean Square</option>
+            <option value="standard">Standard Error</option>
+            <option value="significance">Test for Significance</option>
+          </select>
+        </div> 
+        <div class="col-4 col-md-2">
+          <button id="buttoncross" class="btn btn-outline-primary" onclick="stat()">Solve</button>
+        </div> 
+      </div>
+    </div>
+      
+    <div class="text-center mt-1 mb-1" id="label1">
+      <span class="examplelink" onclick="examplevalues()">Example 1</span> &bull; <span class="examplelink" onclick="examplevalues2()">Example 2</span>
+    </div>
+     
+    <div class="container">
+      <hr class = "mt-1">
     </div>
       
     <div class="container" id="how">
-
-        <div id="how2" class="how" style="color: darkslategray">
-            <p class = "p1">In simple linear regression, the starting point is the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. It provides a mathematical relationship between the dependent variable (y) and the independent variable (x). Furthermore, it can be used to predict the value of y for a given value of x. There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The formulas for the slope and intercept are derived from the least squares method: min Σ(y - ŷ)<sup>2</sup>. The graph of the estimated regression equation is known as the estimated regression line.</p>
-            <table style="width:100%" class="text-center">
-              <tr>
-                <td><canvas id="howCanvas1" width="375" height="250"></canvas></td>
-              </tr>
-            </table>
-            <p class = "p1">After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted r<sup>2</sup>, provides a measure of goodness of fit for the estimated regression equation. Before we can find the r<sup>2</sup>, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.</p>
-            <table class="text-center">
-              <tr>
-                <td colspan="2">Sum of Squares</td>
-              </tr>
-              <tr style = "text-align: left">
-                <td>Error</td>
-                <td>$ \text{SSE} = \sum (y-\hat{y})^{\color{Black} 2} $</td>
-              </tr>
-              <tr style = "text-align: left">
-                <td>Regression</td>
-                <td>$ \text{SSR} = \sum (\hat{y}-\bar{y})^2 $</td>
-              </tr>
-              <tr style = "text-align: left">
-                <td>Total</td>
-                <td>$ \text{SST} = \sum (\hat{y}-\bar{y})^2 $</td>
-              </tr>
-            </table>
-            <br>
-            <p class = "p1">Now that we know the sum of squares, we can calculate the coefficient of determination. The r<sup>2</sup> is the ratio of the SSR to the SST. It takes a value between zero and one, with zero indicating the worst fit and one indicating a perfect fit. A perfect fit indicates all the points in a scatter diagram will lie on the estimated regression line. When interpreting the r<sup>2</sup>, the first step is to convert its value to a percentage. Then it can be interpreted as the percentage of the variability in y explained by the estimated regression equation. </p>
-            
-            <table style="width:100%" class="text-center">
-              <tr>
-                  <td>Coefficient of Determination</td>
-              </tr>
+      <div id="how2" class="how" style="color: darkslategray">
+        <p class="p1">In simple linear regression, the starting point is the estimated regression equation: ŷ = b<sub>0</sub> + b<sub>1</sub>x. It provides a mathematical relationship between the dependent variable (y) and the independent variable (x). Furthermore, it can be used to predict the value of y for a given value of x. There are two things we need to get the estimated regression equation: the slope (b<sub>1</sub>) and the intercept (b<sub>0</sub>). The formulas for the slope and intercept are derived from the least squares method: min Σ(y - ŷ)<sup>2</sup>. The graph of the estimated regression equation is known as the estimated regression line.</p>
+        <div class="text-center">
+          <canvas id="howCanvas1" width="375" height="250"></canvas>
+        </div>
+        <p class="p1">After the estimated regression equation, the second most important aspect of simple linear regression is the coefficient of determination. The coefficient of determination, denoted r<sup>2</sup>, provides a measure of goodness of fit for the estimated regression equation. Before we can find the r<sup>2</sup>, we must find the values of the three sum of squares: Sum of Squares Total (SST), Sum of Squares Regression (SSR) and Sum of Squares Error (SSE). The relationship between them is given by SST = SSR + SSE. So, given the value of any two sum of squares, the third one can be easily found.</p>
+        <table class="table table-sm">
+          <thead class="text-center">
             <tr>
-                <td>$ r^2 = \dfrac{\text{SSR}}{\text{SST}} $</td>
-              </tr>
-            </table>
-            <br> 
-            <p class = "p1">The sample correlation coefficient can be calculated using the coefficient of determination, indicating a close relationship between regression and correlation. Regression can be thought of as a stronger version of regression. While correlation tells us the sign and strength of a relationship, regression quantifies the relationship to facilitate prediction. To get the sample correlation coefficient, simply take the square root of the coefficient of determination, with the sign being the same sign as the slope.</p>
-            
-            
-            <p class = "p1">The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. There are two ways of testing for significance, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. </p>
-            <table style="width:100%" class="text-center">
-              <tr>
-                <td>Mean Square Error</td>
-                <td>Standard Error of Estimate</td>
-              </tr>
+              <th colspan="2">Sum of Squares</th>
+            </tr>
+          </thead>
+          <tbody>
             <tr>
-                <td>$ \text{MSE} = \dfrac{\text{SSE}}{n-2}$</td>
-                <td>$ s = \sqrt{\text{MSE}} $</td>
-              </tr>
-            </table>
-            <br>
-            <p class = "p1">The t test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, b<sub>1</sub>, by the estimated standard deviation of b<sub>1</sub>, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t distribution with n-2 degrees of freedom. In simple linear regression, the F test amounts to the same hypothesis test as the t test. The only difference will be the test statistic and the probability distribution used. </p>
-            <table style="width:100%" class="text-center">
-              <tr>
-                <td>t Test</td>
-                <td>Test Statistic</td>
-              </tr>
+              <td>Error</td>
+              <td>$ \text{SSE} = \sum (y-\hat{y})^{\color{Black} 2} $</td>
+            </tr>
             <tr>
-                <td> $ H_0: \beta_1 = 0 $ <br> $ H_a: \beta_1 \neq 0 $ </td>
-                <td>$ t = \dfrac{b_1}{s_{b_1}} $</td>
-              </tr>
-            </table>
-            <br>
-            <p class = "p1">Confidence intervals and predictions intervals can be constructed around the estimated regression line. In both cases, the intervals will be narrowest near the mean of x and get wider the further they move from the mean. The differennce between them is that a confidence interval gives a range for the expected value of y. A prediction interval gives a range for the predicted value of y. Confidence intervals will be narrower than prediction intervals. </p>
-            <table style="width:100%" class="text-center">
-              <tr>
-                <td><canvas id="howCanvas2" width="375" height="250"></canvas></td>
-              </tr>
-            </table>
-            <p class = "p1"> In a simple linear regression, there is only one independent variable (x). However, we may want to include more than one independent vartiable to improve the predictive power of our regression. This is known as multiple regression, which can be solved using our <a href="multiple-regression.html">Multiple Regression Calculator</a>. One of the most important parts of regression is testing for significance. The two tests for signficance, t test and F test, are examples of hypothesis tests. Hypothesis testing can be done using our <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>  
-            
- 
+              <td>Regression</td>
+              <td>$ \text{SSR} = \sum (\hat{y}-\bar{y})^2 $</td>
+            </tr>
+            <tr>
+              <td>Total</td>
+              <td>$ \text{SST} = \sum (y-\bar{y})^2 $</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="p1">Now that we know the sum of squares, we can calculate the coefficient of determination. The r<sup>2</sup> is the ratio of the SSR to the SST. It takes a value between zero and one, with zero indicating the worst fit and one indicating a perfect fit. A perfect fit indicates all the points in a scatter diagram will lie on the estimated regression line. When interpreting the r<sup>2</sup>, the first step is to convert its value to a percentage. Then it can be interpreted as the percentage of the variability in y explained by the estimated regression equation. </p>
+        <table class="table table-sm text-center">
+          <thead>
+            <tr>
+              <th>Coefficient of Determination</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$ r^2 = \dfrac{\text{SSR}}{\text{SST}} $</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="p1">The sample correlation coefficient can be calculated using the coefficient of determination, indicating a close relationship between regression and correlation. Regression can be thought of as a stronger version of regression. While correlation tells us the sign and strength of a relationship, regression quantifies the relationship to facilitate prediction. To get the sample correlation coefficient, simply take the square root of the coefficient of determination, with the sign being the same sign as the slope.</p>
+        
+        <p class="p1">The next step in regression analysis is to test for significance. That is, we want to determine whether there is a statistically significant relationship between x and y. There are two ways of testing for significance, either with a t-Test or an F-Test. The first step in both tests is to calculate the Mean Square Error (MSE), which provides an estimate of the variance of the error. The square root of the MSE is called the Standard Error of Estimate and provides an estimate of the standard deviation of the error. </p>
+        <table class="table table-sm text-center">
+          <thead>
+            <tr>
+              <th>Mean Square Error</th>
+              <th>Standard Error of Estimate</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>$ \text{MSE} = \dfrac{\text{SSE}}{n-2}$</td>
+              <td>$ s = \sqrt{\text{MSE}} $</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="p1">The t test is a hypothesis test about the true value of the slope, denoted $\beta_1$. The test statistic for this hypothesis test is calculated by dividing the estimated slope, b<sub>1</sub>, by the estimated standard deviation of b<sub>1</sub>, $ s_{b_1}$. The latter is calculated using the formula $ s_{b_1} = \frac{s}{\sqrt{\sum (x-\bar{x})^2}} $. The test statistic is then used to conduct the hypothesis, using a t distribution with n-2 degrees of freedom. In simple linear regression, the F test amounts to the same hypothesis test as the t test. The only difference will be the test statistic and the probability distribution used. </p>
+        <table class="table table-sm text-center">
+          <thead>
+            <tr>
+              <th>t Test</th>
+              <th>Test Statistic</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td> $ H_0: \beta_1 = 0 $ <br> $ H_a: \beta_1 \neq 0 $ </td>
+              <td>$ t = \dfrac{b_1}{s_{b_1}} $</td>
+            </tr>
+          </tbody>
+        </table>
+        <p class="p1">Confidence intervals and predictions intervals can be constructed around the estimated regression line. In both cases, the intervals will be narrowest near the mean of x and get wider the further they move from the mean. The differennce between them is that a confidence interval gives a range for the expected value of y. A prediction interval gives a range for the predicted value of y. Confidence intervals will be narrower than prediction intervals. </p>
+        <div class="text-center">
+          <canvas id="howCanvas2" width="375" height="250"></canvas>
+        </div>
+        <p class="p1"> In a simple linear regression, there is only one independent variable (x). However, we may want to include more than one independent vartiable to improve the predictive power of our regression. This is known as multiple regression, which can be solved using our <a href="multiple-regression.html">Multiple Regression Calculator</a>. One of the most important parts of regression is testing for significance. The two tests for signficance, t test and F test, are examples of hypothesis tests. Hypothesis testing can be done using our <a href="hypothesis-testing.html">Hypothesis Testing Calculator</a>. </p>  
       </div>
-      </div>
+    </div>
       
-      <div id = "simpoutputs">
-          
+    <div id="simpoutputs">
       <div class="container">
-        <div id="output">
+        <div id="output" class="output">
         </div>
       </div>
       
-      
       <div class="container text-center">
-      <canvas id="myCanvas" width="375" height="188" ></canvas>
+        <canvas id="myCanvas" width="375" height="188"></canvas>
       </div>
       
       <div class="container">
@@ -281,104 +348,53 @@
       </div>
       
       <div class="container container2 text-center">
-      <div id="charts" style="width: 500px; height: 300px;"></div>
+        <div id="charts" style="width: 500px; height: 300px;"></div>
       </div>
           
       <div class="container text-center">
-      <canvas id="myCanvas2" width="375" height="188" ></canvas>
+        <canvas id="myCanvas2" width="375" height="188"></canvas>
       </div>
           
       <div class="container text-center">
         <div id="output3">
         </div>
       </div>
-                 
-       
-      </div>
+    </div>
 
-        <div class="text-center mt-2 mb-2">
+    <div class="text-center mt-2 mb-2">
       <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
              crossorigin="anonymous"></script>
-        <!-- Responsive1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8250424918"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-          </div>
+      <!-- Responsive1 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3595688914204816"
+           data-ad-slot="8250424918"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
       
-          <footer id="footer">
-              <div class="container">
-                  <div class="container" id="explanation">
-                  <p  class="text-center" style="background-color:white">
-                  <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Definition
-                  </a> &bull;
-                <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Formula
-                  </a> &bull;
-                <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-                    Explanation
-                  </a>
-                </p>
-                <div class="collapse" id="collapseExample" data-parent="#explanation">
-                  <div class="card card-body" id="descriptiontext">
-
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample2" data-parent="#explanation">
-                  <div class="card card-body" id="formulatext">
-
-                  </div>
-                </div>
-                <div class="collapse" id="collapseExample3" data-parent="#explanation">
-                  <div class="card card-body" id="explanationtext">
-
-                  </div>
-                </div>
-                      </div>
-                <hr>
-            </div>
-          <p> 
-              &copy; 2025 <a href="/about.html">Stats Solver</a> 
-              
-              </p>
-          </footer>
+    <footer id="footer">
+      <div class="container">
+        <hr>
+      </div>
+      <p>&copy; 2025 <a href="/about.html" style="text-decoration: none">Stats Solver</a></p>
+    </footer>
       
-    <!--<div style = "height: 400px"></div>-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      
-                          <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
-        };
-        </script>
-      
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script> 
-      
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      
-      <script src="/js/simplem.js"></script>
-      
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/js/linear.js"></script>
+    <script src="/js/search.js"></script>
+    
+    <!-- Initialize tooltips -->
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
   </body>
 </html>
