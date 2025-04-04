@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The easy-to-use hypothesis testing calculator gives you step-by-step solutions to the test statistic, p-value, critical value and more.">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
+    <link rel="icon" href="/pics/solver.png">
+    <link rel="canonical" href="https://www.statssolver.com/hypothesis-testing.html" />
+      
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      window.MathJax = {
+        loader: {load: ['[tex]/ams']},
+        tex: {
+          packages: {'[+]': ['ams']},
+          inlineMath: [['$', '$'], ['\\(', '\\)']]
+        },
+        svg: {
+          fontCache: 'global'
+        }
+      };
+    </script>
+      
+    <title>AI Statistics Calculator with Steps - Stats Solver</title>
+      
+    <!-- Search field styles -->
+    <style>
+      /* Search field styles */
+      .navbar-nav.right-menu {
+        margin-left: auto;
+      }
+      .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .search-container {
+        position: relative;
+        width: 240px;
+      }
+      .search-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        border: none;
+        padding: 0 10px;
+      }
+      .search-button:focus {
+        outline: none;
+        box-shadow: none;
+      }
+      
+      /* For mobile responsiveness */
+      @media (max-width: 991.98px) {
+        .navbar-center {
+          position: relative;
+          left: auto;
+          transform: none;
+          width: 100%;
+          margin: 1rem 0;
+          order: 3;
+        }
+        .search-container {
+          width: 100%;
+        }
+        .navbar-nav.right-menu {
+          margin-left: 0;
+          width: 100%;
+          order: 2;
+        }
+      }
+    </style>
+    
+    <!-- Add this to your head section -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4/dist/tesseract.min.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-170214906-1');
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid position-relative">
+          <a class="navbar-brand" href="/index.html">
+            <img src="/pics/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Centered search form -->
+            <form class="d-flex navbar-center">
+              <div class="search-container">
+                <input class="form-control" type="search" placeholder="Search statistics topics..." aria-label="Search">
+                <button class="search-button" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+            
+            <!-- Right-aligned navigation items -->
+            <ul class="navbar-nav right-menu mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Calculators
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tables
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="/tables/standard-normal.html">Standard Normal</a></li>
+                  <li><a class="dropdown-item" href="/tables/t-distribution.html">t-Distribution</a></li>
+                  <li><a class="dropdown-item" href="/tables/chi-square.html">Chi-Square</a></li>
+                  <li><a class="dropdown-item" href="/tables/f-distribution.html">F-Distribution</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+    
+    <div class="container">
+      <h1 class="page-header text-center mt-2 mb-0 text-primary" style="font-size: 1.5em">
+        <a href="hypothesis-testing.html" style="text-decoration: none">Stats Solver AI</a>
+      </h1>
+      <h2 class="text-center mt-0" style="font-size: 1em">Statistics Calculator</h2>
+    </div>
+      
+    <div class="container">
+      <hr class = "mt-0 mb-2">
+    </div>
+      
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8 mb-4">
+      <div class="card">
+        <div class="card-header bg-light">
+          <h3 class="m-0 text-center">Upload Statistics Problem</h3>
+        </div>
+        <div class="card-body">
+          <p class="text-center mb-3">Take a photo of your statistics problem or upload an image to get a step-by-step solution</p>
+          
+          <div class="text-center mb-3">
+            <input type="file" id="imageInput" accept="image/*" class="form-control-file d-none">
+            <button class="btn btn-outline-primary" onclick="document.getElementById('imageInput').click()">
+              <i class="fas fa-upload me-2"></i>Choose Image
+            </button>
+          </div>
+          
+          <div id="previewContainer" class="text-center mb-3" style="display: none;">
+            <img id="previewImage" class="img-fluid rounded" alt="Problem preview" style="max-height: 300px;">
+          </div>
+          
+          <div class="text-center">
+            <button id="uploadButton" class="btn btn-primary" disabled onclick="processImage()">
+              Solve Problem
+            </button>
+          </div>
+          
+          <div class="text-center mt-3 mb-0">
+        <span class="examplelink" onclick="exampleImage1()">Example 1</span> &bull; <span class="examplelink" onclick="exampleImage2()">Example 2</span>
+      </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="loadingIndicator" style="display: none;">
+  <div class="row justify-content-center">
+    <div class="col-md-8 text-center mb-4">
+      <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+      <p class="mt-2">Processing your image...</p>
+    </div>
+  </div>
+</div>
+
+<div class="container" id="resultContainer" style="display: none;">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card mb-4">
+        <div class="card-header bg-light">
+          <h3 class="m-0">Recognized Problem</h3>
+        </div>
+        <div class="card-body">
+          <p id="recognizedText" class="mb-0 p1"></p>
+        </div>
+      </div>
+      
+      <div class="card">
+        <div class="card-header bg-light">
+          <h3 class="m-0">Solution Steps</h3>
+        </div>
+        <div class="card-body">
+          <div id="solutionSteps"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Add this before the closing body tag, right before the other script tags -->
+<script>
+  // Get DOM elements
+  const imageInput = document.getElementById('imageInput');
+  const previewContainer = document.getElementById('previewContainer');
+  const previewImage = document.getElementById('previewImage');
+  const uploadButton = document.getElementById('uploadButton');
+  const loadingIndicator = document.getElementById('loadingIndicator');
+  const resultContainer = document.getElementById('resultContainer');
+  const recognizedText = document.getElementById('recognizedText');
+  const solutionSteps = document.getElementById('solutionSteps');
+  
+  // Handle file selection
+  imageInput.addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    
+    if (file && file.type.startsWith('image/')) {
+      // Create preview
+      const reader = new FileReader();
+      
+      reader.onload = function(e) {
+        previewImage.src = e.target.result;
+        previewContainer.style.display = 'block';
+        uploadButton.disabled = false;
+      };
+      
+      reader.readAsDataURL(file);
+    } else {
+      previewContainer.style.display = 'none';
+      uploadButton.disabled = true;
+    }
+  });
+  
+  // Process image function
+  async function processImage() {
+  const file = imageInput.files[0];
+  
+  if (!file) return;
+  
+  // Show loading indicator
+  loadingIndicator.style.display = 'block';
+  resultContainer.style.display = 'none';
+  
+  try {
+    // Create an image URL for Tesseract
+    const imageUrl = URL.createObjectURL(file);
+    
+    // Initialize Tesseract worker
+    const worker = await Tesseract.createWorker();
+    
+    // Set recognition options - adjust these based on your needs
+    await worker.loadLanguage('eng');
+    await worker.initialize('eng');
+    await worker.setParameters({
+      tessedit_char_whitelist: '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ+-=()[]{}.,;:<>/*&^%$#@!?"\' ',
+      preserve_interword_spaces: '1',
+    });
+    
+    // Perform OCR
+    const { data: { text } } = await worker.recognize(imageUrl);
+    
+    // Clean up
+    await worker.terminate();
+    URL.revokeObjectURL(imageUrl);
+    
+    // Process the recognized text
+    const cleanedText = cleanRecognizedText(text);
+    
+    // Display the recognized text
+    recognizedText.textContent = cleanedText;
+    
+    // Generate a solution (this would be your AI part)
+    generateSolution(cleanedText);
+    
+  } catch (error) {
+    console.error('OCR Error:', error);
+    alert('An error occurred during image processing. Please try again.');
+    loadingIndicator.style.display = 'none';
+  }
+}
+
+function cleanRecognizedText(text) {
+  // Basic cleaning - you may need to customize based on recognition quality
+  return text
+    .replace(/\n+/g, ' ')          // Replace multiple newlines with space
+    .replace(/\s+/g, ' ')          // Replace multiple spaces with single space
+    .replace(/(\d) (\. )/g, '$1$2') // Fix decimal points
+    .trim();
+}
+
+function generateSolution(problemText) {
+  // In a real implementation, this would call your AI backend
+  // For now, we'll just simulate a response
+  
+  // Hide loading indicator
+  loadingIndicator.style.display = 'none';
+  
+  // Show results container
+  resultContainer.style.display = 'block';
+  
+  // For demo purposes - in reality, you would send the text to your backend
+  // and get a real solution
+  
+  // Sample solution for demonstration
+  solutionSteps.innerHTML = `
+    <ol class="statistics">
+      <li>
+        <p class="p1">Recognized problem:</p>
+        <p class="p1">${problemText}</p>
+      </li>
+      <li>
+        <p class="p1">Analysis:</p>
+        <p class="p1">This appears to be a probability problem involving sample data.</p>
+      </li>
+      <li>
+        <p class="p1">Solution approach:</p>
+        <p class="p1">The solution would depend on the specific details of the problem.</p>
+      </li>
+      <li>
+        <p class="p1">Note:</p>
+        <p class="p1">In a full implementation, this would be generated by an AI model that understands statistics problems.</p>
+      </li>
+    </ol>
+  `;
+}  
+  // Example functions
+  function exampleImage1() {
+    // Show loading indicator
+    loadingIndicator.style.display = 'block';
+    resultContainer.style.display = 'none';
+    
+    // Hide file preview if visible
+    previewContainer.style.display = 'none';
+    
+    // Simulate processing
+    setTimeout(function() {
+      loadingIndicator.style.display = 'none';
+      resultContainer.style.display = 'block';
+      
+      recognizedText.textContent = "A new drug shows that 85 out of 100 patients had reduced symptoms. Test at the 5% significance level whether the drug is effective.";
+      
+      solutionSteps.innerHTML = `
+        <ol class="statistics">
+          <li>
+            <p class="p1">Set up the hypotheses:</p>
+            <p class="p1">H₀: p ≤ 0.5 (drug is not effective)</p>
+            <p class="p1">H₁: p > 0.5 (drug is effective)</p>
+          </li>
+          <li>
+            <p class="p1">Calculate the test statistic:</p>
+            <p class="p1">p̂ = 85/100 = 0.85</p>
+            <p class="p1">z = (p̂ - p₀)/√(p₀(1-p₀)/n) = (0.85 - 0.5)/√(0.5(1-0.5)/100) = 7</p>
+          </li>
+          <li>
+            <p class="p1">Find the critical value:</p>
+            <p class="p1">For α = 0.05 in an upper tail test, z_α = 1.645</p>
+          </li>
+          <li>
+            <p class="p1">Make a decision:</p>
+            <p class="p1">Since z = 7 > 1.645, we reject H₀</p>
+          </li>
+          <li>
+            <p class="p1">Conclusion:</p>
+            <p class="p1">There is sufficient evidence to conclude that the drug is effective at the 5% significance level.</p>
+          </li>
+        </ol>
+      `;
+    }, 1500);
+  }
+  
+  function exampleImage2() {
+    // Show loading indicator
+    loadingIndicator.style.display = 'block';
+    resultContainer.style.display = 'none';
+    
+    // Hide file preview if visible
+    previewContainer.style.display = 'none';
+    
+    // Simulate processing
+    setTimeout(function() {
+      loadingIndicator.style.display = 'none';
+      resultContainer.style.display = 'block';
+      
+      recognizedText.textContent = "The weights of bags of flour are normally distributed with mean μ and standard deviation 0.2 lb. A sample of 25 bags has a mean weight of 5.1 lb. Test the claim that μ = 5 lb at the 1% significance level.";
+      
+      solutionSteps.innerHTML = `
+        <ol class="statistics">
+          <li>
+            <p class="p1">Set up the hypotheses:</p>
+            <p class="p1">H₀: μ = 5</p>
+            <p class="p1">H₁: μ ≠ 5</p>
+          </li>
+          <li>
+            <p class="p1">Calculate the test statistic:</p>
+            <p class="p1">z = (x̄ - μ₀)/(σ/√n) = (5.1 - 5)/(0.2/√25) = 2.5</p>
+          </li>
+          <li>
+            <p class="p1">Find the critical values:</p>
+            <p class="p1">For α = 0.01 in a two-tailed test, z_α/2 = 2.576</p>
+          </li>
+          <li>
+            <p class="p1">Make a decision:</p>
+            <p class="p1">Since |z| = 2.5 < 2.576, we fail to reject H₀</p>
+          </li>
+          <li>
+            <p class="p1">Conclusion:</p>
+            <p class="p1">There is insufficient evidence to reject the claim that μ = 5 lb at the 1% significance level.</p>
+          </li>
+        </ol>
+      `;
+    }, 1500);
+  }
+</script>
+
+
+      
+    <footer id="footer">
+
+      <div class="container">
+        <hr>
+      </div>
+      <p>&copy; 2025 <a href="/about.html" style="text-decoration: none">Stats Solver</a></p>
+    </footer>
+      
+<!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="/calculators/js/hypothesis.js"></script>
+    <script src="/calculators/js/search.js"></script>
+    
+    <!-- Initialize tooltips -->
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      })
+    </script>
+  </body>
+</html>
+    
