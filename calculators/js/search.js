@@ -9,105 +9,105 @@ document.addEventListener('DOMContentLoaded', function() {
 
     
     // B
-    'bar chart': '/calculators/tables-and-graphs.html',
+    'bar chart': '/calculators/table-and-graph.html',
     'bayes theorem': '/calculators/basic-probability.html',
-    'binomial distribution': '/calculators/discrete-distributions.html',
-    'box plot': '/calculators/tables-and-graphs.html',
+    'binomial distribution': '/calculators/discrete-distribution.html',
+    'box plot': '/calculators/table-and-graph.html',
     
     // C
-    'chebyshev': '/calculators/numerical-summaries.html',
-    'chi-square calculator': '/calculators/continuous-distributions.html',
+    'chebyshev': '/calculators/numerical-summary.html',
+    'chi-square calculator': '/calculators/continuous-distribution.html',
     'chi-square table': '/tables/chi-square.html',
     'coefficient of determination': '/calculators/linear-regression.html',
-    'coefficient of variation': '/calculators/numerical-summaries.html',
-    'column percentages': '/calculators/tables-and-graphs.html',
+    'coefficient of variation': '/calculators/numerical-summary.html',
+    'column percentages': '/calculators/table-and-graph.html',
     'combinations': '/calculators/basic-probability.html',
     'complement': '/calculators/basic-probability.html',
     'conditional probability': '/calculators/basic-probability.html',
-    'correlation': '/calculators/numerical-summaries.html',
-    'covariance': '/calculators/numerical-summaries.html',
-    'crosstabulation': '/calculators/tables-and-graphs.html',
-    'cumulative frequency': '/calculators/tables-and-graphs.html',
-    'cumulative percent': '/calculators/tables-and-graphs.html',
-    'cumulative relative': '/calculators/tables-and-graphs.html',
+    'correlation': '/calculators/numerical-summary.html',
+    'covariance': '/calculators/numerical-summary.html',
+    'crosstabulation': '/calculators/table-and-graph.html',
+    'cumulative frequency': '/calculators/table-and-graph.html',
+    'cumulative percent': '/calculators/table-and-graph.html',
+    'cumulative relative': '/calculators/table-and-graph.html',
     
     // D
-    'discrete uniform': '/calculators/discrete-distributions.html',
+    'discrete uniform': '/calculators/discrete-distribution.html',
     
     // E
-    'empirical rule': '/calculators/numerical-summaries.html',
+    'empirical rule': '/calculators/numerical-summary.html',
     'estimated regression': '/calculators/linear-regression.html',
-    'expected value': '/calculators/discrete-distributions.html',
+    'expected value': '/calculators/discrete-distribution.html',
     'experiments': '/calculators/basic-probability.html',
-    'exponential distribution': '/calculators/continuous-distributions.html',
+    'exponential distribution': '/calculators/continuous-distribution.html',
     
     // F
-    'f-distribution calculator': '/calculators/continuous-distributions.html',
+    'f-distribution calculator': '/calculators/continuous-distribution.html',
     'f-distribution table': '/tables/f-distribution.html',
-    'five-number summary': '/calculators/numerical-summaries.html',
-    'frequency distribution': '/calculators/tables-and-graphs.html',
+    'five-number summary': '/calculators/numerical-summary.html',
+    'frequency distribution': '/calculators/table-and-graph.html',
     
     // G
-    'geometric mean': '/calculators/numerical-summaries.html',
+    'geometric mean': '/calculators/numerical-summary.html',
     
     // H
-    'histogram': '/calculators/tables-and-graphs.html',
-    'hypergeometric': '/calculators/discrete-distributions.html',
+    'histogram': '/calculators/table-and-graph.html',
+    'hypergeometric': '/calculators/discrete-distribution.html',
     
     // I
-    'interquartile range': '/calculators/numerical-summaries.html',
+    'interquartile range': '/calculators/numerical-summary.html',
     'intersection': '/calculators/basic-probability.html',
     
     // L
     'linear regression': '/calculators/linear-regression.html',
     
     // M
-    'mean': '/calculators/numerical-summaries.html',
+    'mean': '/calculators/numerical-summary.html',
     'mean square error': '/calculators/linear-regression.html',
     'mean square regression': '/calculators/linear-regression.html',
-    'median': '/calculators/numerical-summaries.html',
-    'mode': '/calculators/numerical-summaries.html',
+    'median': '/calculators/numerical-summary.html',
+    'mode': '/calculators/numerical-summary.html',
     
     // N
-    'normal distribution': '/calculators/continuous-distributions.html',
-    'normal approximation': '/calculators/continuous-distributions.html',
+    'normal distribution': '/calculators/continuous-distribution.html',
+    'normal approximation': '/calculators/continuous-distribution.html',
     
     // P
-    'percent frequency': '/calculators/tables-and-graphs.html',
-    'percentiles': '/calculators/numerical-summaries.html',
+    'percent frequency': '/calculators/table-and-graph.html',
+    'percentiles': '/calculators/numerical-summary.html',
     'permutations': '/calculators/basic-probability.html',
-    'pie chart': '/calculators/tables-and-graphs.html',
-    'poisson': '/calculators/discrete-distributions.html',
-    'population correlation': '/calculators/numerical-summaries.html',
-    'population covariance': '/calculators/numerical-summaries.html',
-    'population mean': '/calculators/numerical-summaries.html',
-    'population standard deviation': '/calculators/numerical-summaries.html',
-    'population variance': '/calculators/numerical-summaries.html',
+    'pie chart': '/calculators/table-and-graph.html',
+    'poisson': '/calculators/discrete-distribution.html',
+    'population correlation': '/calculators/numerical-summary.html',
+    'population covariance': '/calculators/numerical-summary.html',
+    'population mean': '/calculators/numerical-summary.html',
+    'population standard deviation': '/calculators/numerical-summary.html',
+    'population variance': '/calculators/numerical-summary.html',
     'probability': '/calculators/basic-probability.html',
     
     // Q
-    'quartiles': '/calculators/numerical-summaries.html',
+    'quartiles': '/calculators/numerical-summary.html',
     
     // R
-    'range': '/calculators/numerical-summaries.html',
-    'relative frequency': '/calculators/tables-and-graphs.html',
-    'row percentages': '/calculators/tables-and-graphs.html',
+    'range': '/calculators/numerical-summary.html',
+    'relative frequency': '/calculators/table-and-graph.html',
+    'row percentages': '/calculators/table-and-graph.html',
     'regression': '/calculators/linear-regression.html',
     
     // S
-    'sample correlation': '/calculators/numerical-summaries.html',
-    'sample covariance': '/calculators/numerical-summaries.html',
-    'sample mean': '/calculators/numerical-summaries.html',
-    'sample size': '/calculators/confidence-intervals.html',
+    'sample correlation': '/calculators/numerical-summary.html',
+    'sample covariance': '/calculators/numerical-summary.html',
+    'sample mean': '/calculators/numerical-summary.html',
+    'sample size': '/calculators/confidence-interval.html',
     'sample space': '/calculators/basic-probability.html',
-    'sample standard deviation': '/calculators/numerical-summaries.html',
-    'sample variance': '/calculators/numerical-summaries.html',
-    'scatter diagram': '/calculators/tables-and-graphs.html',
+    'sample standard deviation': '/calculators/numerical-summary.html',
+    'sample variance': '/calculators/numerical-summary.html',
+    'scatter diagram': '/calculators/table-and-graph.html',
     'standard error of estimate': '/calculators/linear-regression.html',
-    'standard deviation': '/calculators/numerical-summaries.html',
-    'standard error of the mean': '/calculators/sampling-distributions.html',
+    'standard deviation': '/calculators/numerical-summary.html',
+    'standard error of the mean': '/calculators/sampling-distribution.html',
     'standard error of slope': '/calculators/linear-regression.html',
-    'standard normal calculator': '/calculators/continuous-distributions.html',
+    'standard normal calculator': '/calculators/continuous-distribution.html',
     'sum of squares error': '/calculators/linear-regression.html',
     'sum of squares regression': '/calculators/linear-regression.html',
     'sum of squares total': '/calculators/linear-regression.html',
@@ -116,36 +116,36 @@ document.addEventListener('DOMContentLoaded', function() {
     'statistics table': 'index.html#tables',
     
     // T
-    't-distribution calculator': '/calculators/continuous-distributions.html',
+    't-distribution calculator': '/calculators/continuous-distribution.html',
     't-distribution table': '/tables/t-distribution.html',
-    'time plot': '/calculators/tables-and-graphs.html',
-    'trendline': '/calculators/tables-and-graphs.html',
+    'time plot': '/calculators/table-and-graph.html',
+    'trendline': '/calculators/table-and-graph.html',
     
     // U
-    'uniform distribution': '/calculators/continuous-distributions.html',
+    'uniform distribution': '/calculators/continuous-distribution.html',
     'union': '/calculators/basic-probability.html',
     
     // V
-    'variance': '/calculators/numerical-summaries.html',
+    'variance': '/calculators/numerical-summary.html',
     
     // W
-    'weighted mean': '/calculators/numerical-summaries.html',
+    'weighted mean': '/calculators/numerical-summary.html',
     
     // Z
-    'z-scores': '/calculators/numerical-summaries.html',
+    'z-scores': '/calculators/numerical-summary.html',
     'z-test': '/calculators/hypothesis-testing.html',
-    'z-distribution calculator': '/calculators/continuous-distributions.html',
+    'z-distribution calculator': '/calculators/continuous-distribution.html',
     'z-distribution table': '/tables/standard-normal.html',
     
     // Add categories directly
-    'graphs': '/calculators/tables-and-graphs.html',
-    'numerical': '/calculators/numerical-summaries.html',
+    'graphs': '/calculators/table-and-graph.html',
+    'numerical': '/calculators/numerical-summary.html',
     'probability': '/calculators/basic-probability.html',
-    'distributions': '/calculators/continuous-distributions.html',
-    'discrete distributions': '/calculators/discrete-distributions.html',
-    'continuous distributions': '/calculators/continuous-distributions.html',
-    'sampling': '/calculators/sampling-distributions.html',
-    'confidence': '/calculators/confidence-intervals.html',
+    'distributions': '/calculators/continuous-distribution.html',
+    'discrete distributions': '/calculators/discrete-distribution.html',
+    'continuous distributions': '/calculators/continuous-distribution.html',
+    'sampling': '/calculators/sampling-distribution.html',
+    'confidence': '/calculators/confidence-interval.html',
     'hypothesis': '/calculators/hypothesis-testing.html',
     'regression': '/calculators/linear-regression.html'
   };
