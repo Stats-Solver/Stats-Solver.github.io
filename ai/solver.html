@@ -358,92 +358,35 @@ async function generateSolution(problemText) {
   }
 }
   // Example functions
-  function exampleImage1() {
-    // Show loading indicator
-    loadingIndicator.style.display = 'block';
-    resultContainer.style.display = 'none';
-    
-    // Hide file preview if visible
-    previewContainer.style.display = 'none';
-    
-    // Simulate processing
-    setTimeout(function() {
-      loadingIndicator.style.display = 'none';
-      resultContainer.style.display = 'block';
-      
-      recognizedText.textContent = "A new drug shows that 85 out of 100 patients had reduced symptoms. Test at the 5% significance level whether the drug is effective.";
-      
-      solutionSteps.innerHTML = `
-        <ol class="statistics">
-          <li>
-            <p class="p1">Set up the hypotheses:</p>
-            <p class="p1">H₀: p ≤ 0.5 (drug is not effective)</p>
-            <p class="p1">H₁: p > 0.5 (drug is effective)</p>
-          </li>
-          <li>
-            <p class="p1">Calculate the test statistic:</p>
-            <p class="p1">p̂ = 85/100 = 0.85</p>
-            <p class="p1">z = (p̂ - p₀)/√(p₀(1-p₀)/n) = (0.85 - 0.5)/√(0.5(1-0.5)/100) = 7</p>
-          </li>
-          <li>
-            <p class="p1">Find the critical value:</p>
-            <p class="p1">For α = 0.05 in an upper tail test, z_α = 1.645</p>
-          </li>
-          <li>
-            <p class="p1">Make a decision:</p>
-            <p class="p1">Since z = 7 > 1.645, we reject H₀</p>
-          </li>
-          <li>
-            <p class="p1">Conclusion:</p>
-            <p class="p1">There is sufficient evidence to conclude that the drug is effective at the 5% significance level.</p>
-          </li>
-        </ol>
-      `;
-    }, 1500);
-  }
+async function exampleImage1() {
+  // Show loading indicator
+  loadingIndicator.style.display = 'block';
+  resultContainer.style.display = 'none';
+  previewContainer.style.display = 'none';
   
-  function exampleImage2() {
-    // Show loading indicator
-    loadingIndicator.style.display = 'block';
-    resultContainer.style.display = 'none';
-    
-    // Hide file preview if visible
-    previewContainer.style.display = 'none';
-    
-    // Simulate processing
-    setTimeout(function() {
-      loadingIndicator.style.display = 'none';
-      resultContainer.style.display = 'block';
-      
-      recognizedText.textContent = "The weights of bags of flour are normally distributed with mean μ and standard deviation 0.2 lb. A sample of 25 bags has a mean weight of 5.1 lb. Test the claim that μ = 5 lb at the 1% significance level.";
-      
-      solutionSteps.innerHTML = `
-        <ol class="statistics">
-          <li>
-            <p class="p1">Set up the hypotheses:</p>
-            <p class="p1">H₀: μ = 5</p>
-            <p class="p1">H₁: μ ≠ 5</p>
-          </li>
-          <li>
-            <p class="p1">Calculate the test statistic:</p>
-            <p class="p1">z = (x̄ - μ₀)/(σ/√n) = (5.1 - 5)/(0.2/√25) = 2.5</p>
-          </li>
-          <li>
-            <p class="p1">Find the critical values:</p>
-            <p class="p1">For α = 0.01 in a two-tailed test, z_α/2 = 2.576</p>
-          </li>
-          <li>
-            <p class="p1">Make a decision:</p>
-            <p class="p1">Since |z| = 2.5 < 2.576, we fail to reject H₀</p>
-          </li>
-          <li>
-            <p class="p1">Conclusion:</p>
-            <p class="p1">There is insufficient evidence to reject the claim that μ = 5 lb at the 1% significance level.</p>
-          </li>
-        </ol>
-      `;
-    }, 1500);
-  }
+  const exampleText = "A new drug shows that 85 out of 100 patients had reduced symptoms. Test at the 5% significance level whether the drug is effective.";
+  
+  // Display the recognized text
+  recognizedText.textContent = exampleText;
+  
+  // Call the AI API instead of hardcoded solution
+  await generateSolution(exampleText);
+}
+
+async function exampleImage2() {
+  // Show loading indicator
+  loadingIndicator.style.display = 'block';
+  resultContainer.style.display = 'none';
+  previewContainer.style.display = 'none';
+  
+  const exampleText = "The weights of bags of flour are normally distributed with mean μ and standard deviation 0.2 lb. A sample of 25 bags has a mean weight of 5.1 lb. Test the claim that μ = 5 lb at the 1% significance level.";
+  
+  // Display the recognized text
+  recognizedText.textContent = exampleText;
+  
+  // Call the AI API instead of hardcoded solution
+  await generateSolution(exampleText);
+}
 </script>
 
 
