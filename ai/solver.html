@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="/css/hypstyle.css">
     <link rel="icon" href="/pics/solver.png">
-    <link rel="canonical" href="https://www.statssolver.com/hypothesis-testing.html" />
+    <link rel="canonical" href="https://www.statssolver.com/ai/solver.html" />
       
     <!-- MathJax -->
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -29,7 +29,7 @@
       };
     </script>
       
-    <title>AI Statistics Calculator with Steps - Stats Solver</title>
+    <title>AI Statistics Solver - Stats Solver</title>
       
     <!-- Search field styles -->
     <style>
@@ -120,19 +120,27 @@
             <!-- Right-aligned navigation items -->
             <ul class="navbar-nav right-menu mb-2 mb-lg-0">
               <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  AI Tools
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="solver.html">Solver</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                   Calculators
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
-                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
-                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
-                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
-                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
-                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
-                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
-                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
-                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
-                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                  <li><a class="dropdown-item" href="/calculators/table-and-graph.html">Table and Graph</a></li>
+                  <li><a class="dropdown-item" href="/calculators/numerical-summary.html">Numerical Summary</a></li>
+                  <li><a class="dropdown-item" href="/calculators/basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="/calculators/discrete-distribution.html">Discrete Distribution</a></li>
+                  <li><a class="dropdown-item" href="/calculators/continuous-distribution.html">Continuous Distribution</a></li>
+                  <li><a class="dropdown-item" href="/calculators/sampling-distribution.html">Sampling Distribution</a></li>
+                  <li><a class="dropdown-item" href="/calculators/confidence-intervals.html">Confidence Interval</a></li>
+                  <li><a class="dropdown-item" href="/calculators/hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="/calculators/linear-regression.html">Linear Regression</a></li>
                 </ul>
               </li>
               <li class="nav-item dropdown">
@@ -154,51 +162,44 @@
     
     <div class="container">
       <h1 class="page-header text-center mt-2 mb-0 text-primary" style="font-size: 1.5em">
-        <a href="hypothesis-testing.html" style="text-decoration: none">Stats Solver AI</a>
+        <a href="solver.html" style="text-decoration: none">AI Statistics Solver</a>
       </h1>
-      <h2 class="text-center mt-0" style="font-size: 1em">Statistics Calculator</h2>
     </div>
       
     <div class="container">
-      <hr class = "mt-0 mb-2">
+      <hr class = "mt-2 mb-2">
     </div>
       
 <div class="container">
   <div class="row justify-content-center">
-    <div class="col-md-8 mb-4">
-      <div class="card">
-        <div class="card-header bg-light">
-          <h3 class="m-0 text-center">Upload Statistics Problem</h3>
-        </div>
-        <div class="card-body">
-          <p class="text-center mb-3">Take a photo of your statistics problem or upload an image to get a step-by-step solution</p>
-          
-          <div class="text-center mb-3">
+    <div class="col-md-8 mt-1 mb-2">          
+          <div class="text-center mb-2">
             <input type="file" id="imageInput" accept="image/*" class="form-control-file d-none">
             <button class="btn btn-outline-primary" onclick="document.getElementById('imageInput').click()">
-              <i class="fas fa-upload me-2"></i>Choose Image
+              <i class="fas fa-upload me-2"></i>Upload Problem
             </button>
           </div>
-          
-          <div id="previewContainer" class="text-center mb-3" style="display: none;">
-            <img id="previewImage" class="img-fluid rounded" alt="Problem preview" style="max-height: 300px;">
-          </div>
-          
-          <div class="text-center">
+
+          <div class="text-center mt-1">
             <button id="uploadButton" class="btn btn-primary" disabled onclick="processImage()">
-              Solve Problem
+              Solve
             </button>
           </div>
           
-          <div class="text-center mt-3 mb-0">
+          <div class="text-center mt-2 mb-0">
         <span class="examplelink" onclick="exampleImage1()">Example 1</span> &bull; <span class="examplelink" onclick="exampleImage2()">Example 2</span>
-      </div>
-          
-        </div>
       </div>
     </div>
   </div>
 </div>
+    
+<div class="container">
+      <hr class = "mt-0 mb-2">
+    </div>
+    
+    <div id="previewContainer" class="text-center mb-2" style="display: none;">
+            <img id="previewImage" class="img-fluid rounded" alt="Problem preview" style="max-height: 300px;">
+          </div>
 
 <div class="container" id="loadingIndicator" style="display: none;">
   <div class="row justify-content-center">
@@ -325,41 +326,37 @@ function cleanRecognizedText(text) {
     .trim();
 }
 
-function generateSolution(problemText) {
-  // In a real implementation, this would call your AI backend
-  // For now, we'll just simulate a response
-  
-  // Hide loading indicator
-  loadingIndicator.style.display = 'none';
-  
-  // Show results container
-  resultContainer.style.display = 'block';
-  
-  // For demo purposes - in reality, you would send the text to your backend
-  // and get a real solution
-  
-  // Sample solution for demonstration
-  solutionSteps.innerHTML = `
-    <ol class="statistics">
-      <li>
-        <p class="p1">Recognized problem:</p>
-        <p class="p1">${problemText}</p>
-      </li>
-      <li>
-        <p class="p1">Analysis:</p>
-        <p class="p1">This appears to be a probability problem involving sample data.</p>
-      </li>
-      <li>
-        <p class="p1">Solution approach:</p>
-        <p class="p1">The solution would depend on the specific details of the problem.</p>
-      </li>
-      <li>
-        <p class="p1">Note:</p>
-        <p class="p1">In a full implementation, this would be generated by an AI model that understands statistics problems.</p>
-      </li>
-    </ol>
-  `;
-}  
+async function generateSolution(problemText) {
+  try {
+    const response = await fetch('/api/analyze-problem', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ problemText })
+    });
+
+    if (!response.ok) {
+      throw new Error('Failed to analyze problem');
+    }
+
+    const result = await response.json();
+    
+    // Hide loading indicator
+    loadingIndicator.style.display = 'none';
+    
+    // Show results
+    resultContainer.style.display = 'block';
+    
+    // Display the AI analysis
+    solutionSteps.innerHTML = result.analysis;
+
+  } catch (error) {
+    console.error('Error:', error);
+    loadingIndicator.style.display = 'none';
+    alert('Failed to analyze the problem. Please try again.');
+  }
+}
   // Example functions
   function exampleImage1() {
     // Show loading indicator
