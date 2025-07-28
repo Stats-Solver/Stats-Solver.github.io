@@ -203,33 +203,10 @@
             <td class="statistics"> <input type="text" class="form-control" id="xvalues" placeholder="Enter Values" size="30"> </td>
             <td class="statistics"></td>
             <td class="statistics">
-              <i class="fas fa-random" onclick="switchtest()"></i>
-            </td>
-          </tr>
-        </table>  
-      </div>
-          
-      <div id="testinput">
-        <table class="mt-2">
-          <tr>
-            <td class="statistics">$\text{Test Statistic: }$</td>
-            <td class="statistics"><select onchange="switchzt()" id="teststat" class="hypinput1"> <option value="z"> z </option> <option value="t"> t </option> </select></td>
-            <td class="statistics"> = </td>
-            <td class="statistics"><input type="text" style="width:60px;" id="testvalue" class="hypinput2"></td>
-            <td class="statistics"></td>
-            <td class="statistics">
               <i class="fas fa-random" onclick="switchvalues()"></i>
             </td>
           </tr>
-        </table>
-        <table class="mt-2" id="degfreedom">
-          <tr>
-            <td class="statistics">$\text{Degrees of Freedom: } $</td>  
-            <td class="statistics">$df$</td>
-            <td class="statistics">=</td>
-            <td class="statistics"><input type="text" style="width:50px;" id="degfreeval" class="hypinput2"></td>
-          </tr>
-        </table>
+        </table>  
       </div>
           
       <table class="mt-2">
@@ -263,7 +240,7 @@
 
     <div class="container" id="how">
       <div id="how2" class="how" style="color: darkslategray">
-        <p class="p1">The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
+        <p class="p1">Hypothesis testing is a procedure for testing a hypothesis about the value of a population parameter, such as the population mean (μ), using sample data. The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
 
         <table style="width:100%">
           <tr>
@@ -279,7 +256,7 @@
         </table>
         <br>
             
-        <p class="p1">Next, the test statistic is used to conduct the test using either the p-value approach or critical value approach. The particular steps taken in each approach largely depend on the form of the hypothesis test: lower tail, upper tail or two-tailed. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
+        <p class="p1">Next, the test statistic is used to conduct the test using one of two possible approaches: the p-value approach or critical value approach. Regardless of which approach you use, you will end up with the same conclusion given that your solution is correct. The particular steps taken in each approach largely depend on the form of the hypothesis test. There are one-tailed tests and two-tailed tests, where a one-tailed test can either be lower tail test or upper tail. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
 
         <table style="width:100%">
           <tr>
@@ -300,7 +277,7 @@
         </table>
         <br>
             
-        <p class="p1">In the p-value approach, the test statistic is used to calculate a p-value. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. </p>
+        <p class="p1">In the p-value approach, the test statistic is used to calculate a p-value. The "p" in "p-value" stands for probability. It is the probabiliy of getting a value for the test statistic as opposed to the null hypothesis, assuming the null hypothesis is true. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. Since probability corresponds to area in the normal distribution, the p-value in a lower tailed test can be viewed as the area in the distribution to the left of the test statistic.</p>
 
         <table style="width:100%">
           <tr>
@@ -309,8 +286,18 @@
         </table>
         <br>
             
-        <p class="p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
-            
+        <p class="p1">To test the hypothesis in the p-value approach, compare the p-value to the level of significance (α). If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Rejection Rule</td>  
+          </tr>
+          <tr>  
+            <td>Reject $H_0$ if $p$-value $\leq \alpha$</td>
+          </tr>
+        </table>
+        <br>
+        
         <p class="p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate the critical value. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
 
         <table style="width:100%">
@@ -369,7 +356,7 @@
         </table>
         <br>
             
-        <p class="p1"> Hypothesis testing is closely related to the statistical area of confidence intervals. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. Confidence intervals can be found using the <a href="confidence-interval.html">Confidence Interval Calculator</a>. The calculator on this page does hypothesis tests for one population mean. Sometimes we're interest in hypothesis tests about two population means. These can be solved using the <a href="two-population.html">Two Population Calculator</a>. The probability of a Type II Error can be calculated by clicking on the link at the bottom of the page. </p> 
+        <p class="p1"> Hypothesis testing is closely related to the statistical area of confidence intervals. If the hypothesized value of the population mean is outside of the confidence interval, we can reject the null hypothesis. The calculator on this page does hypothesis tests for one population mean. Sometimes we're interest in hypothesis tests about two population means. </p> 
       </div>
     </div>
       

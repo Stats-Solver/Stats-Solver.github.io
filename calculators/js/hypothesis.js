@@ -1,6 +1,5 @@
 greater.hidden = true;
 notequal.hidden = true;
-testinput.hidden = true;
 datainput.hidden = true;
 alphaval.hidden = true;
 muknottest.hidden = true;
@@ -64,14 +63,8 @@ function switchdata() {
     inputtype = "data"
 }
 
-function switchtest() {
-    testinput.hidden = false;
-    datainput.hidden = true;
-    inputtype = "test"
-}
-
 function switchvalues() {
-    testinput.hidden = true;
+    datainput.hidden = true;
     valuesinput.hidden = false;
     inputtype = "values"
 }
