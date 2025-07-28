@@ -328,7 +328,7 @@ function cleanRecognizedText(text) {
 
 async function generateSolution(problemText) {
   try {
-    const response = await fetch('/api/analyze-problem', {
+    const response = await fetch('/api/problem', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
