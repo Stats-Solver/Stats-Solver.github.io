@@ -906,6 +906,8 @@ function solve() {
     //samples.hidden = true;
     hypoutputs.hidden = false;
     how.hidden = true;
+    myCanvas1.hidden = false;
+    myCanvas2.hidden = false;
     //$("#explanation").show(); 
     //$("#samples").hide();
     //$("#hypoutputs").show(); 
