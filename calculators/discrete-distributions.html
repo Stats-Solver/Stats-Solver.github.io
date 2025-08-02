@@ -95,7 +95,7 @@
     
       
     <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="discrete-distributions.html">Discrete Distributions Calculator</a></h1>
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="discrete-distributions.html">Discrete Distributions</a></h1>
     </div>
       
     <div class="container">
@@ -730,32 +730,52 @@
       
       <div class="container" id="how">
        <div id="how1" class="output" style="color: darkslategray">
-         
-           <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-     crossorigin="anonymous"></script>
-        <!-- Responsive3 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="5116243734"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-                </div>
-           
+   
         </div>
         <div id="how2" class="how" style="color: darkslategray">
             
+          <p class="p1"> A <strong>random variable</strong>, usually denoted by x, describes the outcome of a random process (or "experiment") numerically. For example, suppose you toss a coin. Then the possible outcomes from this experiment are heads and tails. We could define a random variable x to take the value 1 if the coin lands heads and 0 if it lands tails. Since x assigns a number which depends on the outcome of the random process, it is a random variable. There are two types of random variables: discrete and continuous. A discrete random variable takes a finite number of values or a countably infinite number of values such as 0, 1, 2, .... A continuous random variable can take any value inside of some interval or set of intervals.</p>
             
-            <p class = "p1"> A discrete probability distribution is the probability distribution for a discrete random variable. A discrete random variable takes whole number values such 0, 1, 2 and so on while a continuous random variable can take any value inside of an interval. Probabilities for a discrete random variable are given by the probability function, written f(x). There are two requirements for the probability function. The first is that the value of each f(x) is at least zero. The second requirement is that the values of f(x) sum to one. </p>
+          <table style="width:25%">
+              <tr>
+                <td>Outcome </td>
+                <td>Random Variable (x) </td>
+              </tr>
+              <tr>
+                  <td>Tails </td>
+                <td>0 </td>
+              </tr>
+              <tr>
+                <td>Heads</td>
+                <td>1 </td>
+              </tr>
+            </table>
+            <br>
+          
+          <p class="p1">A <strong>probability distribution</strong> describes how probabilities are distributed over values of a random variable. The probability distribution for a discrete random variable is known as a discrete distribution while the probabiliy distribution for a continuous random variable is called a continuous distribution. There are several ways of representing the probability distribution of a random variable. For a discrete random variable, we can simply list the values of the random variable and the corresponding values in a table. However, a table doesn't work for a continuous random variable. Other ways of representing a probability distribution are a formula and a graph, which works for both discrete and continuous random variables. </p> 
+          
+          <table style="width:25%">
+              <tr>
+                <td>Random Variable (x) </td>
+                <td>Probability</td>
+              </tr>
+              <tr>
+                <td>0 </td>
+                <td>.5 </td>
+              </tr>
+              <tr>
+                <td>1</td>
+                <td>.5 </td>
+              </tr>
+            </table>
+            <br>
+          
+          <p class = "p1"> Probabilities for a discrete random variable are provided by the <strong>probability function</strong>, written f(x) or sometimes p(x). For example, in the experiment of tossing a coin with a random variable x = 1 for heads and x = 0 for tails, we have f(0) = f(1) = 1/2. This is simply because the probability of heads and tails are both 50% or 1/2. There are two requirements for the probability function. The first is that the value of each f(x) is at least zero. The second requirement is that the values of f(x) sum to one. Note that for a continuous random variable we don't use a probability function. We use something called a probability density function, which is actually writen the same way as the probability function - f(x). </p>
 
 
             <table style="width:100%">
               <tr>
-                <td>Requirements for Probability Function </td>
+                <td>Probability Function </td>
               </tr>
               <tr>
                 <td>$ f(x) \geq {\color{Black}0} $ </td>
@@ -766,31 +786,38 @@
             </table>
             <br>
             
-            <p class = "p1"> A discrete probability distribution can be represented in a couple of different ways. One common method is to present it in a table, where the first column is the different values of x and the second column is the probabilities, or f(x). Another method is to create a graph with the values of x on the horizontal axis and the values of f(x) on the vertical axis. A third way is to provide a formula for the probability function. The simplest example of this method is the discrete uniform probability distribution. </p>
+            <p class = "p1"> As mentioned before, a discrete distribution can be represented in a couple of different ways: table, graph or formula. A simple example of a table is the random variable for a coin toss. The simplest example of graph method is known as the <strong>discrete uniform distribution</strong>. Here, the probability for each value of the random variable is equal to 1 divided by the number of possible values, denoted n. Actually, the coin toss is an example of a discrete uniform distribution. This is because the random variable can take two possible values (0 or 1) and the probability of each value is 1/2. Another example of a discrete uniform distribution is rolling a die, where the probability of 1 through 6 is 1/6. </p>
 
 
             <table style="width:100%">
               <tr>
-                <td>Discrete Uniform Probability Function </td>
+                <td>Discrete Uniform Distribution</td>
               </tr>
               <tr>
                 <td>$ f(x) = \dfrac{1}{n} $ </td>
               </tr>
-                <tr>
-                <td>$ n $ = number of values of $x$ </td>
-              </tr>
             </table>
             <br>
             
-            <p class = "p1"> Discrete random variables can be described using the expected value and variance. The expected value, or mean, measures the central location of the random variable. The variance measures the variability in the values of the random variable. When the discrete probability distribution is presented as a table, it is straight-forward to calculate the expected value and variance by expanding the table. The expected value can be calculated by adding a column for xf(x). The variance can be computed by adding three rows: x-μ, (x-μ)<sup>2</sup> and (x-μ)<sup>2</sup>f(x). </p>
-            
+            <p class = "p1"> The probability distribution of a random variable can be summarized in a couple of different ways. One way is to use the <strong>expected value</strong>, which is also known as the mean, and written E(x) or u. The expected value of a random variable, just like the mean of a variable, measures the central location of the random variable. It can be thought of as the long-run average of the random variable if we repeated the experiment many times. For a discrete random variable, the expected value is calculated by summing the products of the random variables and the corresponding probabilities.  So, for our coin toss example, we have the expected value equals 1*(1/2) + 0*(1/2) = 1/2 which is what we would expect on average in the long-run.   </p>
+             
             <table style="width:100%">
               <tr>
                 <td> Expected Value </td>
-                <td> Variance </td>
               </tr>
               <tr>
                 <td>$ E(x) = \sum x f(x) $ </td>
+              </tr>
+            </table>
+            <br>
+          
+            <p class = "p1">The <strong>variance</strong> of a random variables, denoted by Var(x) or sigma^2, measures the variability in the values of the random variable. Note that sigma^2 is the same notation used for the population variance, just as mu^2 is used for both the expected value and population mean. When the discrete probability distribution is presented as a table, it is straight-forward to calculate the expected value and variance by expanding the table. Computing the variance involves use of the expected value. It is the sum of the product of the squared deviations of the random variable from the expected value and the corresponding probabilities.  </p>
+            
+            <table style="width:100%">
+              <tr>
+                <td> Variance </td>
+              </tr>
+              <tr>
                 <td>$ \text{Var}(x)  = \sum (x - \mu)^2 f(x) $ </td>
               </tr>
             </table>
@@ -798,32 +825,24 @@
             
             <p class = "p1"> The standard deviation can be found by taking the square root of the variance. Like the variance, the standard deviation is a measure of variability for a discrete random variable. However, unlike the variance, it is in the same units as the random variable. The reason the variance is not in the same units as the random variable is because its formula involves squaring the difference between x and the mean. So, the units of the variance are in the units of the random variable squared. Taking the square root brings the value back to the same units as the random variable. </p>
             
-            <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Responsive2 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="2627397291"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
+            <table style="width:100%">
+              <tr>
+                <td> Standard Deviation </td>
+              </tr>
+              <tr>
+                <td>$ \sigma  = \sqrt{\text{Var}(x)} $ </td>
+              </tr>
+            </table>
+            <br>
 
-            <p class = "p1"> The binomial probability distribution is associated with a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p). </p>
+            <p class = "p1"> The most important discrete distribution is the binomial distribution. It is the probability distribution corresponding to a certain type of experiment, known as a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p). </p>
             
             <table style="width:100%">
               <tr>
-                <td>Binomial Probability Function </td>
+                <td>Binomial Distribution </td>
               </tr>
               <tr>
                 <td>$ f(x) = {n \choose x} p^x (1-p)^{(n-x)} $ </td>
-              </tr>
-              <tr>
-                <td>$ {n \choose x} = \dfrac{n!}{x!(n-x)!} $ </td>
               </tr>
             </table>
             <br>
@@ -832,7 +851,7 @@
             
             <table style="width:100%">
               <tr>
-                <td>Poisson Probability Function </td>
+                <td>Poisson Distribution </td>
               </tr>
               <tr>
                 <td>$ f(x) = \dfrac{\mu^x e^{-\mu}}{x!} $ </td>
@@ -844,16 +863,14 @@
             
             <table style="width:100%">
               <tr>
-                <td>Hypergeometric Probability Function </td>
+                <td>Hypergeometric Distribution </td>
               </tr>
               <tr>
                 <td>$ f(x) = \dfrac{{r \choose x}{N-r \choose n-\cancel{x}}}{{N \choose n}} $ </td>
               </tr>
             </table>
             <br>
-            
-            <p class = "p1"> Discrete probability distributions are probability distributions for discrete random variables. A closely related topic in statistics is continuous probability distributions. Continuous distributions are probability distributions for continuous random variables. Probabilities for continuous probability distributions can be found using the <a href = "continuous-distribution.html">Continuous Distribution Calculator</a>. The most common of the continuous probability distributions is normal probability distribution. Probabilities in general can be found using the <a href = "basic-probability.html">Basic Probabality Calculator</a>. </p>
-            
+                        
         </div>
       </div>
 

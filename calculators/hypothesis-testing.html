@@ -140,7 +140,6 @@
                   <li><a class="dropdown-item" href="/tables/standard-normal.html">Standard Normal</a></li>
                   <li><a class="dropdown-item" href="/tables/t-distribution.html">t-Distribution</a></li>
                   <li><a class="dropdown-item" href="/tables/chi-square.html">Chi-Square</a></li>
-                  <li><a class="dropdown-item" href="/tables/f-distribution.html">F-Distribution</a></li>
                 </ul>
               </li>
             </ul>
@@ -163,7 +162,7 @@
       <table>
         <tr>
           <td class="statistics" data-bs-toggle="tooltip" data-bs-placement="top" title="Null Hypothesis">$H_o$: </td>
-          <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> </select></td> 
+          <td class="statistics"><select id="parameter1" class="hypinput1" onchange="parameter()"> <option value="mean"> &mu; </option> <option value="proportion"> p </option> <option value="variance"> σ² </option><option value="diffmeans"> μ₁-μ₂ </option> <option value="diffproportions"> p₁-p₂ </option> <option value="variance"> σ₁²-σ₂² </option></select></td> 
           <td class="statistics"> <select id="tail" class="hypinput1" onchange="tailsigns()"> <option value="lower"> &#8805; </option> <option value="upper"> &#8804;     </option> <option value="two">=</option> </select></td>
           <td class="statistics"> <input type="text" style="width:40px;" id="muknot" class="hypinput2" oninput="muknotval()" placeholder=""> <span id="muknottest">&mu;₀</span> </td>
         </tr>
@@ -240,7 +239,7 @@
 
     <div class="container" id="how">
       <div id="how2" class="how" style="color: darkslategray">
-        <p class="p1">Hypothesis testing is a procedure for testing a hypothesis about the value of a population parameter, such as the population mean (μ), using sample data. The first step in hypothesis testing is to calculate the test statistic. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
+        <p class="p1">Hypothesis testing is a procedure for testing a hypothesis about the value of a population parameter, such as the population mean (μ), using sample data. The first step in hypothesis testing is to calculate the <strong>test statistic</strong>. The formula for the test statistic depends on whether the population standard deviation (σ) is known or unknown. If σ is known, our hypothesis test is known as a z test and we use the z distribution. If σ is unknown, our hypothesis test is known as a t test and we use the t distribution. Use of the t distribution relies on the degrees of freedom, which is equal to the sample size minus one. Furthermore, if the population standard deviation σ is unknown, the sample standard deviation s is used instead. To switch from σ known to σ unknown, click on $\boxed{\sigma}$ and select $\boxed{s}$ in the Hypothesis Testing Calculator. </p>
 
         <table style="width:100%">
           <tr>
@@ -256,7 +255,7 @@
         </table>
         <br>
             
-        <p class="p1">Next, the test statistic is used to conduct the test using one of two possible approaches: the p-value approach or critical value approach. Regardless of which approach you use, you will end up with the same conclusion given that your solution is correct. The particular steps taken in each approach largely depend on the form of the hypothesis test. There are one-tailed tests and two-tailed tests, where a one-tailed test can either be lower tail test or upper tail. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
+        <p class="p1">Next, the test statistic is used to conduct the test using one of two possible approaches: the p-value approach or critical value approach. Regardless of which approach you use, you will end up with the same conclusion given that your solution is correct. The particular steps taken in each approach largely depend on the <strong>form of the test</strong>. There are one-tailed tests and two-tailed tests, where a one-tailed test can either be lower tail test or upper tail. The form can easily be identified by looking at the alternative hypothesis (H<sub>a</sub>). If there is a less than sign in the alternative hypothesis then it is a lower tail test, greater than sign is an upper tail test and inequality is a two-tailed test. To switch from a lower tail test to an upper tail or two-tailed test, click on $\boxed{\geq}$ and select $\boxed{\leq}$ or $\boxed{=}$, respectively.</p>
 
         <table style="width:100%">
           <tr>
@@ -277,7 +276,7 @@
         </table>
         <br>
             
-        <p class="p1">In the p-value approach, the test statistic is used to calculate a p-value. The "p" in "p-value" stands for probability. It is the probabiliy of getting a value for the test statistic as opposed to the null hypothesis, assuming the null hypothesis is true. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. Since probability corresponds to area in the normal distribution, the p-value in a lower tailed test can be viewed as the area in the distribution to the left of the test statistic.</p>
+        <p class="p1">In the p-value approach, the test statistic is used to calculate a <strong>p-value</strong>. The "p" in "p-value" stands for probability. It is the probabiliy of getting a value for the test statistic as opposed to the null hypothesis, assuming the null hypothesis is true. If the test is a lower tail test, the p-value is the probability of getting a value for the test statistic at least as small as the value from the sample. If the test is an upper tail test, the p-value is the probability of getting a value for the test statistic at least as large as the value from the sample. In a two-tailed test, the p-value is the probability of getting a value for the test statistic at least as unlikely as the value from the sample. Since probability corresponds to area in the normal distribution, the p-value in a lower tailed test can be viewed as the area in the distribution to the left of the test statistic.</p>
 
         <table style="width:100%">
           <tr>
@@ -286,7 +285,7 @@
         </table>
         <br>
             
-        <p class="p1">To test the hypothesis using the p-value approach, compare the p-value to the level of significance (α). The level of significance is defined as the probability of rejecting the null hypothesis when the null is true as an equality. Thus if the level of significance is set to 5% (α=.05), this means that you're allowing only 5% of rejecting the null hypothesis if the null is true. This means you can be 95% confident in your conclusion from the hypothesis test. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
+        <p class="p1">To test the hypothesis using the p-value approach, compare the p-value to the <strong>level of significance</strong> (α). The level of significance is defined as the probability of rejecting the null hypothesis when the null is true as an equality. Thus if the level of significance is set to 5% (α=.05), this means that you're allowing only 5% of rejecting the null hypothesis if the null is true. This means you can be 95% confident in your conclusion from the hypothesis test. If the p-value is less than or equal to the level of signifance, reject the null hypothesis. If the p-value is greater than the level of significance, do not reject the null hypothesis. This method remains unchanged regardless of whether it's a lower tail, upper tail or two-tailed test. To change the level of significance, click on $\boxed{.05}$. Note that if the test statistic is given, you can calculate the p-value from the test statistic by clicking on the switch symbol twice. </p>
         
         <table style="width:100%">
           <tr>
@@ -301,7 +300,7 @@
         </table>
         <br>
         
-        <p class="p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate a critical value. The critical value is denoted in different ways depending on the form of the hypothesis test and whether or not σ is known. If σ is known, the critical value is either denoted $z_\alpha$, $-z_\alpha$ or $\pm z_{\alpha/2}$. If σ is unknown, the critical value is either denoted $t_\alpha$, $-t_\alpha$ or $\pm t_{\alpha/2}$. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
+        <p class="p1">In the critical value approach, the level of significance ($\alpha$) is used to calculate a <strong>critical value</strong>. The critical value is denoted in different ways depending on the form of the hypothesis test and whether or not σ is known. If σ is known, the critical value is either denoted $z_\alpha$, $-z_\alpha$ or $\pm z_{\alpha/2}$. If σ is unknown, the critical value is either denoted $t_\alpha$, $-t_\alpha$ or $\pm t_{\alpha/2}$. In a lower tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the lower tail of the sampling distribution of the test statistic. In an upper tail test, the critical value is the value of the test statistic providing an area of $\alpha$ in the upper tail of the sampling distribution of the test statistic. In a two-tailed test, the critical values are the values of the test statistic providing areas of $\alpha / 2$ in the lower and upper tail of the sampling distribution of the test statistic.</p>
 
         <table style="width:100%">
           <tr>
@@ -309,7 +308,7 @@
           </tr>
         </table>
 
-        <p class="p1">To test the hypothesis using the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis. We end up with six rejections rules for the critical value approach whereas there is only one for the p-value approach. Another way of thinking about the rejecting rules is that we reject the null hypothesis if the test statistic falls into the rejection zone. </p>
+        <p class="p1">To test the hypothesis using the critical value approach, compare the critical value to the test statistic. Unlike the p-value approach, the method we use to decide whether to reject the null hypothesis depends on the form of the hypothesis test. In a lower tail test, if the test statistic is less than or equal to the critical value, reject the null hypothesis. In an upper tail test, if the test statistic is greater than or equal to the critical value, reject the null hypothesis. In a two-tailed test, if the test statistic is less than or equal the lower critical value or greater than or equal to the upper critical value, reject the null hypothesis. We end up with six rejections rules for the critical value approach whereas there is only one for the p-value approach. Another way of thinking about the rejecting rules is that we reject the null hypothesis if the test statistic falls into the <strong>rejection zone</strong>. </p>
 
         <table style="width:100%">
           <tr>
@@ -330,7 +329,7 @@
         </table>
         <br>
           
-        <p class="p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. This is because we are using a sample, or part of the population, to make a conclusion about the entire population. Since samples are select randomly, there is always a chance that we select one that doesn't reflect the population. There are two types of errors you can make in hypothesis testing. The first one is called a type I error and the second is a type II error. A type I error is committed when you reject the null hypothesis and the null hypothesis is true. Ideally, we would like to always accept the null hypothesis when the null hypothesis is true. A type II error is committed when you accept the null hypothesis and the alternative hypothesis is true. Ideally, we'd like to always reject the null hypothesis when the alternative hypothesis is true.</p>
+        <p class="p1">When conducting a hypothesis test, there is always a chance that you come to the wrong conclusion. This is because we are using a sample, or part of the population, to make a conclusion about the entire population. Since samples are select randomly, there is always a chance that we select one that doesn't reflect the population. There are two types of errors you can make in hypothesis testing. The first one is called a <strong>type I error</strong> and the second is a <strong>type II error</strong>. A type I error is committed when you reject the null hypothesis and the null hypothesis is true. Ideally, we would like to always accept the null hypothesis when the null hypothesis is true. A type II error is committed when you accept the null hypothesis and the alternative hypothesis is true. Ideally, we'd like to always reject the null hypothesis when the alternative hypothesis is true.</p>
 
         <table>
           <tr>
@@ -358,7 +357,28 @@
           </tr>
         </table>
         <br>
-            
+        
+        <p class="p1">The discussion above regards hypothesis tests about the mean, proportion and variance of a single populaion. Sometimes we have <strong>two populations</strong> and we want to do a hypothesis test about their means. In this case we are interested in doing hypothesis tests about the difference of the two population means (μ₁-μ₂). There are still the same three forms of the hypothesis test: lower-tail, upper-tail and two-tailed. The only differences are that μ is replaced by μ₁-μ₂ and μ₀ is replaced by D₀. While μ₀ is the hypothesized value of the population mean, D₀ is the hypothesized difference of the two population means. To see the importance of a hypothesis test about the difference of two population means, consider a two-tailed test with D₀=0. In this case the null hypothesis test simplifies to H₀: μ₁ = μ₂, so it's a hypothesis test about whether the two population means are equal. </p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Lower Tail Test</td>
+            <td>Upper Tail Test</td>
+            <td>Two-Tailed Test</td>
+          </tr>
+          <tr>
+            <td>$H_0 \colon \mu_1-\mu_2 \geq D_0$</td>
+            <td>$H_0 \colon \mu_1-\mu_2 \leq D_0$</td>
+            <td>$H_0 \colon \mu_1-\mu_2 = D_0$</td>
+          </tr>
+          <tr>
+            <td>$H_a \colon \mu_1-\mu_2 < D_0$ </td>
+            <td>$H_a \colon \mu_1-\mu_2 > D_0$ </td>
+            <td>$H_a \colon \mu_1-\mu_2 \neq D_0$ </td>
+          </tr>
+        </table>
+        <br>
+        
       </div>
     </div>
       
