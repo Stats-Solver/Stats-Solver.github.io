@@ -584,9 +584,9 @@ function tailsigns() {
         greater.hidden = false;
         notequal.hidden = true;
     } else if (x == "two") {
-        less.hidden = false;
-        greater.hidden = false;
-        notequal.hidden = true;
+        less.hidden = true;
+        greater.hidden = true;
+        notequal.hidden = false;
     } 
 }
 
@@ -1955,6 +1955,7 @@ function hyptest1(){
 }
 
 function hyptest2(){
+    output21.hidden=true;
     //$("#output21").hide();
     var tail = document.getElementById("tail").value;
     var pknot = document.getElementById("muknot").value;
@@ -2856,3 +2857,4 @@ function example2(){
                 MathJax.typeset();
         }
 }
+                                                                                                                                                                                                                                                                                                                                                                                                                                   
