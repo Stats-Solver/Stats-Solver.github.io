@@ -2695,11 +2695,11 @@ function hyptest2(){
 
     
     if (tail == "lower") {
-        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+" $$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cless.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignlower+cvalsymb+" = "+cless.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "
     } else if (tail == "upper") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\text{Critical Value: }"+cvalsymb+" = {\\color{RoyalBlue}" + cmore.toFixed(2) + "} $$ $$"+testsymb+"="+test.toFixed(2) +critsignupper +" "+ cvalsymb+" = "+cmore.toFixed(2)+"$$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "
     } else if (tail == "two") {
-        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ <a href = 'mailto: 	contact@statssolver.com'>Send Feedback</a>"
+        document.getElementById("output3").innerHTML = tablec+"$$ \\begin{align} \\text{Critical Values: } "+cvalsymb1+" &= {\\color{RoyalBlue}" + ctwo1.toFixed(2) + "} \\\\ \\text{ and } "+cvalsymb2+" &= {\\color{RoyalBlue}"+ctwo2.toFixed(2) + "} \\end{align} $$ $$ " + twocrit+ " $$ $$ \\text{Conclusion: } \\boxed{" + concl + "} $$ "
     }
 
     MathJax.typeset();
@@ -2803,9 +2803,9 @@ function example2(){
                 sd1.hidden = true;
                 sd2.hidden = true;
                 sd3.hidden = true;
-                less.hidden = true;
+                less.hidden = false;
                 greater.hidden = true;
-                notequal.hidden = false;
+                notequal.hidden = true;
                 document.getElementById("parameter2").innerHTML = "p"
                 document.getElementById("samplestat").innerHTML = "$\\bar{p}$";
                 document.getElementById('tail').value="lower"
