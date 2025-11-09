@@ -1,28 +1,12 @@
-$("#expectedtable").show();$("#values").hide(); $("#enterstats").hide(); $("#explanation").hide();
-$("#variance").hide(); $("#standard").hide();
-$("#expected2").hide(); $("#expected4").hide(); $("#expected5").hide(); $("#expected6").hide();
-$("#expected7").hide(); $("#expected8").hide(); $("#expected9").hide(); $("#expected10").hide();
-$("#variance2").hide(); $("#variance4").hide(); $("#variance5").hide(); $("#variance6").hide();
-$("#variance7").hide(); $("#variance8").hide(); $("#variance9").hide(); $("#variance10").hide();
-$("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
-$("#equal").hide(); $("#less").hide(); $("#greater").hide();
-$("#equal2").hide(); $("#less2").hide(); $("#greater2").hide();
-$("#equal3").hide(); $("#less3").hide(); $("#greater3").hide();
-$("#expected").show(); $("#expectedprobs").show(); 
-$("#make2").hide(); $("#make3").show(); $("#make4").hide(); $("#make5").hide();
-$("#make6").hide(); $("#make7").hide(); $("#make8").hide(); $("#make9").hide(); $("#make10").hide();
-$("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
-$("#row8").hide(); $("#row9").hide(); $("#row10").hide();
-$("#expectedexamples").show(); $("#standardexamples").hide(); 
-$("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
-$("#tableprobs").hide(); $("#tableexpected").hide(); $("#tablevariance").hide(); $("#tablestandard").hide(); $("#tablevalidity").hide(); $("#tablegraph").hide();
-$("#probswitch").hide(); $("#explanation").hide();$("#formula").hide(); $("#uniform").hide(); $("#frequency").hide();
-$("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
-$("#581773186").hide();$("#discoutputs").hide();
+row4.hidden=true;row5.hidden=true;row6.hidden=true;row7.hidden=true;
+row8.hidden=true;row9.hidden=true;row10.hidden=true;
+make2s.hidden=true;make4s.hidden=true;make5s.hidden=true;make6s.hidden=true;
+make7s.hidden=true;make8s.hidden=true;make9s.hidden=true;make10s.hidden=true;
+
+
+
 tablekind = "probability"; frequencytype = "distribution"; formulatype = "probability"; uniformtype = "probability"; binomialtype = "probability"
-$(function () {
-            $('[data-toggle="tooltip"]').tooltip()
-    })
+
 function factorial(n) {
     if (n > 0) {
         return (n != 1) ? n * factorial(n - 1) : 1;

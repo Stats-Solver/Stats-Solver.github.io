@@ -3,40 +3,93 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Discrete distribution calculator with steps. Solve the expected value, variance, standard deviation, binomial distribution, poisson distribution and hypergeomtric distribution.">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
       
-      <link rel="stylesheet" type="text/css" href="/css/discstyle.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <link rel="stylesheet" type="text/css" href="/css/discstyle.css">
 
-                         <!-- MathJax -->
-        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
-        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-        <script>window.MathJax = {
-            loader: {load: ['[tex]/ams']},
-            tex: {packages: {'[+]': ['ams']}}
+    <!-- MathJax -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>window.MathJax = {
+        loader: {load: ['[tex]/ams']},
+        tex: {packages: {'[+]': ['ams']}}
+    };
+    </script>
+    <script>
+    MathJax = {
+        tex: {
+            inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+            fontCache: 'global'
+            }
         };
-        </script>
-        <script>
-        MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']]
-                },
-                svg: {
-                fontCache: 'global'
-                }
-            };
-        </script>  
+    </script>  
+    
+    <style>
+      /* Search field styles */
+      .navbar-nav.right-menu {
+        margin-left: auto;
+      }
+      .navbar-center {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+      }
+      .search-container {
+        position: relative;
+        width: 240px;
+      }
+      .search-button {
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        background: transparent;
+        border: none;
+        padding: 0 10px;
+      }
+      .search-button:focus {
+        outline: none;
+        box-shadow: none;
+      }
+      
+      /* For mobile responsiveness */
+      @media (max-width: 991.98px) {
+        .navbar-center {
+          position: relative;
+          left: auto;
+          transform: none;
+          width: 100%;
+          margin: 1rem 0;
+          order: 3;
+        }
+        .search-container {
+          width: 100%;
+        }
+        .navbar-nav.right-menu {
+          margin-left: 0;
+          width: 100%;
+          order: 2;
+        }
+      }
+    </style>
       
     <title>Discrete Distributions Calculator with Steps - Stats Solver</title>
       
-      <link rel="icon" href="/pics/solver.png">
+    <link rel="icon" href="/pics/solver.png">
       
-      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       
-                <!-- Global site tag (gtag.js) - Google Analytics -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -46,916 +99,567 @@
       gtag('config', 'UA-170214906-1');
     </script>
       
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
-      <link rel="canonical" href="https://www.statssolver.com/calculators/discrete-distributions.html" />
+    <link rel="canonical" href="https://www.statssolver.com/calculators/discrete-distributions.html" />
       
   </head>
   <body>
-      <div class="container">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <a class="navbar-brand" href="/index.html"><img src="/pics/stats-solver-logo.png" alt = "logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid position-relative">
+          <a class="navbar-brand" href="/index.html"><img src="/pics/stats-solver-logo.png" alt="logo" width="188" height="25" style="mix-blend-mode: multiply;"></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
-            </button>
+          </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ml-auto">
-          
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Calculators
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
-              <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
-              <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
-              <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
-              <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
-              <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
-              <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="linear-regression.html">Linear Regression</a>
-            </div>
-          </li>
-            <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            Tables
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tables/standard-normal.html">Standard Normal</a>
-              <a class="dropdown-item" href="/tables/t-distribution.html">t-Distribution</a>
-              <a class="dropdown-item" href="/tables/chi-square.html">Chi-Square</a>
-            </div>
-          </li>
-        </ul>
-      </div>
-    </nav>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <!-- Centered search form -->
+            <form class="d-flex navbar-center" action="/search.html" method="get">
+              <div class="search-container">
+                <input class="form-control" type="search" placeholder="Search statistics topics..." aria-label="Search" name="q">
+                <button class="search-button" type="submit">
+                  <i class="fas fa-search"></i>
+                </button>
+              </div>
+            </form>
+            
+            <!-- Right-aligned navigation items -->
+            <ul class="navbar-nav right-menu mb-2 mb-lg-0">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Calculators
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown1">
+                  <li><a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a></li>
+                  <li><a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a></li>
+                  <li><a class="dropdown-item" href="basic-probability.html">Basic Probability</a></li>
+                  <li><a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a></li>
+                  <li><a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a></li>
+                  <li><a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a></li>
+                  <li><a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a></li>
+                  <li><a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a></li>
+                  <li><a class="dropdown-item" href="linear-regression.html">Linear Regression</a></li>
+                </ul>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Tables
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown2">
+                  <li><a class="dropdown-item" href="/tables/standard-normal.html">Standard Normal</a></li>
+                  <li><a class="dropdown-item" href="/tables/t-distribution.html">t-Distribution</a></li>
+                  <li><a class="dropdown-item" href="/tables/chi-square.html">Chi-Square</a></li>
+                </ul>
+              </li>
+            </ul>
           </div>
+        </div>
+      </nav>
+    </div>
     
-      
-    <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="discrete-distributions.html">Discrete Distributions</a></h1>
+    <div class="container">
+      <h1 class="page-header text-center mt-2 mb-0 text-primary" style="font-size: 1.5em">
+        <a href="discrete-distributions.html" style="text-decoration: none">Discrete Distributions</a>
+      </h1>
     </div>
       
     <div class="container">
-      <hr class = "mt-2 mb-2">
+      <hr class="mt-2 mb-2">
     </div>
   
-      
-      <div class="container mb-3" id="expected">
-        <table id = "expectedtable">
-          <tr style='border-bottom: thin solid'>
-            <td>$x$</td>
-            <td>$f(x)$</td>
-          </tr>
-            <tr>
-            <td><input class = "combperm" type="text" id="x1" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f1" style = "text-align: center;"></td>
-          </tr>
-            <tr>
-            <td><input class = "combperm" type="text" id="x2" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f2" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row3">
-            <td><input class = "combperm" type="text" id="x3" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f3" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row4">
-            <td><input class = "combperm" type="text" id="x4" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f4" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row5">
-            <td><input class = "combperm" type="text" id="x5" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f5" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row6">
-            <td><input class = "combperm" type="text" id="x6" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f6" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row7">
-            <td><input class = "combperm" type="text" id="x7" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f7" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row8">
-            <td><input class = "combperm" type="text" id="x8" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f8" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row9">
-            <td><input class = "combperm" type="text" id="x9" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f9" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row10">
-            <td><input class = "combperm" type="text" id="x10" style = "text-align: center;"></td>
-            <td><input class = "combperm" type="text" id="f10" style = "text-align: center;"></td>
-          </tr>
-            <tr id="make2">
-            <td></td>
-            <td><svg onclick = "make3()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make3">
-                    <td><svg onclick = "make2()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make4()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make4">
-                    <td><svg onclick = "make3()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make5()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make5">
-                    <td><svg onclick = "make4()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make6()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make6">
-                    <td><svg onclick = "make5()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make7()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make7">
-                    <td><svg onclick = "make6()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make8()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make8">
-                    <td><svg onclick = "make7()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make9()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make9">
-                    <td><svg onclick = "make8()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make10()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make10">
-                    <td><svg onclick = "make9()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-            <td></td>
-          </tr>
-        </table> 
-          <div class = " text-center mt-2" id="tableprobs">
-            $P(x$ <select id="probtype1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probval">)
-            &nbsp;
-            <svg onclick="tableswitchvalidity()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id="tablegraph">
-            $\text{Draw Graph}$
-            &nbsp;
-            <svg onclick="tableswitchvalidity()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div>
-          <div class = " text-center mt-2" id="tablevalidity">
-            $\text{Check Validity}$
-            &nbsp;
-            <svg onclick="tableswitchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div>
-          <div class = " text-center mt-2" id = "tableexpected">
-            $\text{Expected Value}$
-              &nbsp;
-            <svg onclick="tableswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "tablevariance">
-            $\text{Variance}$
-              &nbsp;
-            <svg onclick="tableswitchstandard()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "tablestandard">
-            $\text{Standard Deviation}$
-              &nbsp;
-            <svg onclick="tableswitchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div>
-          </div>
+    <!-- Probability Distribution -->
+    <div class="container mb-3" id="expected">
+      <table id="expectedtable">
+        <tr style='border-bottom: thin solid'>
+          <td>$x$</td>
+          <td>$f(x)$</td>
+        </tr>
+        <tr>
+          <td><input class="combperm" type="text" id="x1" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f1" style="text-align: center;"></td>
+        </tr>
+        <tr>
+          <td><input class="combperm" type="text" id="x2" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f2" style="text-align: center;"></td>
+        </tr>
+        <tr id="row3">
+          <td><input class="combperm" type="text" id="x3" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f3" style="text-align: center;"></td>
+        </tr>
+        <tr id="row4">
+          <td><input class="combperm" type="text" id="x4" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f4" style="text-align: center;"></td>
+        </tr>
+        <tr id="row5">
+          <td><input class="combperm" type="text" id="x5" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f5" style="text-align: center;"></td>
+        </tr>
+        <tr id="row6">
+          <td><input class="combperm" type="text" id="x6" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f6" style="text-align: center;"></td>
+        </tr>
+        <tr id="row7">
+          <td><input class="combperm" type="text" id="x7" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f7" style="text-align: center;"></td>
+        </tr>
+        <tr id="row8">
+          <td><input class="combperm" type="text" id="x8" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f8" style="text-align: center;"></td>
+        </tr>
+        <tr id="row9">
+          <td><input class="combperm" type="text" id="x9" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f9" style="text-align: center;"></td>
+        </tr>
+        <tr id="row10">
+          <td><input class="combperm" type="text" id="x10" style="text-align: center;"></td>
+          <td><input class="combperm" type="text" id="f10" style="text-align: center;"></td>
+        </tr>
+        <tr id="make2s">
+          <td></td>
+          <td><i class="fas fa-arrow-down" onclick="make3()"></i></td>
+        </tr>
+        <tr id="make3s">
+          <td><i class="fas fa-arrow-up" onclick="make2()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make4()"></i></td>
+        </tr>
+        <tr id="make4s">
+          <td><i class="fas fa-arrow-up" onclick="make3()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make5()"></i></td>
+        </tr>
+        <tr id="make5s">
+          <td><i class="fas fa-arrow-up" onclick="make4()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make6()"></i></td>
+        </tr>
+        <tr id="make6s">
+          <td><i class="fas fa-arrow-up" onclick="make5()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make7()"></i></td>
+        </tr>
+        <tr id="make7s">
+          <td><i class="fas fa-arrow-up" onclick="make6()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make8()"></i></td>
+        </tr>
+        <tr id="make8s">
+          <td><i class="fas fa-arrow-up" onclick="make7()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make9()"></i></td>
+        </tr>
+        <tr id="make9s">
+          <td><i class="fas fa-arrow-up" onclick="make8()"></i></td>
+          <td><i class="fas fa-arrow-down" onclick="make10()"></i></td>
+        </tr>
+        <tr id="make10s">
+          <td><i class="fas fa-arrow-up" onclick="make9()"></i></td>
+          <td></td>
+        </tr>
+      </table> 
+      <div class="text-center mt-2" id="tableprobs">
+        $P(x$ <select id="probtype1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> </select> <input class="combperm" type="text" id="probval">)
+      </div> 
+    </div>
 
+    
       
+    <!-- Discrete Uniform Distribution -->  
+    <div class="container mb-3" id="uniform">
+      <table>
+        <tr>
+          <td>$\text{Number of Values: } n $</td>
+          <td>$ = $</td>
+          <td><select id="uniformval" class="hypinput1 probtype" onchange="univalues()"> <option value="2" selected>2</option> <option value="3"> 3 </option> <option value="4"> 4 </option> <option value="5"> 5 </option><option value="6"> 6 </option> </select></td>
+        </tr>
+      </table>
+      <div class="text-center mt-2" id="uniformprobability">
+        $P(x$ <select id="probtypeuni" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> </select> <input class="combperm" type="text" id="unival">)
+      </div> 
+      <div class="text-center mt-2" id="uniformexpected">
+        $E(x)$
+        &nbsp;
+        <i class="fas fa-random" onclick="switchvarianceu()"></i>
+      </div> 
+      <div class="text-center mt-2" id="uniformvariance">
+        $\text{Var}(x)$
+        &nbsp;
+        <i class="fas fa-random" onclick="switchprobabilityu()"></i>
+      </div> 
+    </div> 
       
-      <div class="container mb-3" id="frequency">
-        <table id = "frequencytable">
-          <tr style='border-bottom: thin solid'>
-            <td>$\text{Value}$</td>
-            <td></td>
-            <td>$\text{Frequency}$</td>
-          </tr>
-            <tr>
-            <td><input class = "combperm" type="text" id="x1f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f1f" style = "text-align: center;"></td>
-          </tr>
-            <tr>
-            <td><input class = "combperm" type="text" id="x2f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f2f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row3f">
-            <td><input class = "combperm" type="text" id="x3f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f3f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row4f">
-            <td><input class = "combperm" type="text" id="x4f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f4f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row5f">
-            <td><input class = "combperm" type="text" id="x5f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f5f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row6f">
-            <td><input class = "combperm" type="text" id="x6f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f6f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row7f">
-            <td><input class = "combperm" type="text" id="x7f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f7f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row8f">
-            <td><input class = "combperm" type="text" id="x8f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f8f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row9f">
-            <td><input class = "combperm" type="text" id="x9f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f9f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="row10f">
-            <td><input class = "combperm" type="text" id="x10f" style = "text-align: center;"></td>
-            <td></td>
-            <td><input class = "combperm" type="text" id="f10f" style = "text-align: center;"></td>
-          </tr>
-            <tr id="make2f">
-            <td></td>
-            <td><svg onclick = "make3f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make3f">
-                    <td><svg onclick = "make2()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td></td>
-                    <td><svg onclick = "make4f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make4f">
-                    <td><svg onclick = "make3f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td></td>
-                    <td><svg onclick = "make5f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make5f">
-                    <td><svg onclick = "make4f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td></td>
-                    <td><svg onclick = "make6f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make6f">
-                    <td><svg onclick = "make5f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make7f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make7f">
-                    <td><svg onclick = "make6f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make8f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make8f">
-                    <td><svg onclick = "make7f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make9f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make9f">
-                    <td><svg onclick = "make8f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-                    <td><svg onclick = "make10f()" class="bi bi-arrow-down" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M4.646 9.646a.5.5 0 0 1 .708 0L8 12.293l2.646-2.647a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 0-.708z"/>
-          <path fill-rule="evenodd" d="M8 2.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V3a.5.5 0 0 1 .5-.5z"/>
-        </svg></td>
-                  </tr>
-                    <tr id="make10f">
-                    <td><svg onclick = "make9f()" class="bi bi-arrow-up" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-          <path fill-rule="evenodd" d="M8 3.5a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-1 0V4a.5.5 0 0 1 .5-.5z"/>
-          <path fill-rule="evenodd" d="M7.646 2.646a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1-.708.708L8 3.707 5.354 6.354a.5.5 0 1 1-.708-.708l3-3z"/>
-        </svg></td>
-            <td></td>
-          </tr>
-        </table> 
-          
+    <!-- Formula Distribution -->   
+    <div class="container mb-3" id="formula">
+      <table>
+        <tr>
+          <td rowspan="2">$f(x)=$</td>
+          <td>$x$</td>
+        </tr>
+        <tr style='border-top: thin solid'>
+          <td><select id="formulaval" class="hypinput1 probtype" onchange="forvalues()" style="width:35px;"> <option value="3">3</option> <option value="6"> 6 </option> <option value="10" selected> 10 </option> <option value="15"> 15 </option><option value="21"> 21 </option> </select></td>
+        </tr>
+      </table> 
+      
+      <div class="text-center mt-2" id="formulaprobs">
+        $P(x$ <select id="probtypefrml1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> </select> <input class="combperm" type="text" id="probvalfrml">)
+      </div> 
+      
+      <div class="text-center mt-2" id="formulaexpected">
+        $E(x)$
+        &nbsp;
+        <i class="fas fa-random" onclick="frmlswitchvariance()"></i>
+      </div> 
+      
+      <div class="text-center mt-2" id="formulavariance">
+        $\text{Var}(x)$
+        &nbsp;
+        <i class="fas fa-random" onclick="frmlswitchprobability()"></i>
+      </div> 
+    </div>
 
-          
-          <div class = " text-center mt-2" id="frequencydist">
-            $\text{Probability Distribution}$
-            &nbsp;
-            <svg onclick="fswitchvalidity()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "frequencyvalidity">
-            $\text{Check Validity}$
-              &nbsp;
-            <svg onclick="fswitchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id="frequencyprobs">
-            $P(x$ <select id="probtype1f" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probvalf">)
-            &nbsp;
-            <svg onclick="fswitchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div>
-          <div class = " text-center mt-2" id = "frequencygraph">
-            $\text{Draw Graph}$
-              &nbsp;
-            <svg onclick="fswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div>
-          <div class = " text-center mt-2" id = "frequencyexpected">
-            $\text{Expected Value}$
-              &nbsp;
-            <svg onclick="fswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "frequencyvariance">
-            $\text{Variance}$
-              &nbsp;
-            <svg onclick="fswitchstandard()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "frequencystandard">
-            $\text{Standard Deviation}$
-              &nbsp;
-            <svg onclick="fswitchdistribution()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          </div>
+    <!-- Binomial Distribution -->  
+    <div class="container mb-3" id="binomial">
+      <table>
+        <tr>
+          <td>$\text{Trials: }n$</td>
+          <td>$=$</td>
+          <td><input class="combperm" type="text" id="trials"></td>
+          <td>&nbsp; &nbsp;</td>
+          <td>$\text{Prob: }p$</td>
+          <td>$=$</td>
+          <td><input class="combperm" type="text" id="psuccess"></td>
+        </tr>
+      </table> 
+      <div class="text-center mt-2" id="binomialprobability">
+        $P(x$ <select id="probtype" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> </select> <input class="combperm" type="text" id="binval">)
+        &nbsp;
+        <i class="fas fa-random" onclick="switchexpected()"></i>
+      </div> 
+      <div class="text-center mt-2" id="binomialexpected">
+        $\text{Expected Value}$
+        &nbsp;
+        <i class="fas fa-random" onclick="switchvariance()"></i>
+      </div> 
+      <div class="text-center mt-2" id="binomialvariance">
+        $\text{Variance}$
+        &nbsp;
+        <i class="fas fa-random" onclick="switchstandard()"></i>
+      </div> 
+      <div class="text-center mt-2" id="binomialstandard">
+        $\text{Standard Deviation}$
+        &nbsp;
+        <i class="fas fa-random" onclick="switchprobability()"></i>
+      </div>
+    </div> 
       
-
-<!---------------------------------------------------- Discrete Uniform Distribution ---------------------------------------------------------------------->   
+    <!-- Poisson Distribution -->   
+    <div class="container mb-3" id="poisson">
+      <table>
+        <tr>
+          <td>$\text{Mean: } \mu $</td>
+          <td>$ = $</td>
+          <td><input class="combperm" type="text" id="meanocc"></td>
+        </tr>
+      </table> 
+      <div class="text-center mt-2">
+        $P(x$ <select id="probtype2" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> </select> <input class="combperm" type="text" id="poissval">)
+      </div> 
+    </div>
       
-      <div class="container mb-3" id="uniform">
-          <table>
-          <tr>
-            <td>$\text{Number of Values: } n $</td>
-            <td>$ = $</td>
-            <td><select id="uniformval" class="hypinput1 probtype" onchange="univalues()"> <option value="2" selected>2</option> <option value="3"> 3 </option> <option value="4"> 4 </option> <option value="5"> 5 </option><option value="6"> 6 </option>  </select></td>
-            </tr>
-        </table>
-          <div class = " text-center mt-2" id = "uniformprobability">
-            $P(x$ <select id="probtypeuni" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="unival">)
-        </div> 
-          <div class = " text-center mt-2" id = "uniformexpected">
-            $E(x)$
-              &nbsp;
-            <svg onclick="switchvarianceu()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "uniformvariance">
-            $\text{Var}(x)$
-              &nbsp;
-            <svg onclick="switchprobabilityu()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          </div> 
+    <!-- Hypergeometric Distribution -->
+    <div class="container mb-3" id="hypergeometric">
+      <table>
+        <tr>
+          <td data-bs-toggle="tooltip" data-bs-placement="top" title="Number of Trials">$ n $</td>
+          <td>$ = $</td>
+          <td><input class="combperm" type="text" id="ntrials"></td>
+          <td>&nbsp; &nbsp;</td>
+          <td data-bs-toggle="tooltip" data-bs-placement="top" title="Population Size">$ N $</td>
+          <td>$ = $</td>
+          <td><input class="combperm" type="text" id="popsize"></td>
+          <td>&nbsp; &nbsp;</td>
+          <td data-bs-toggle="tooltip" data-bs-placement="top" title="Successes in Population">$ r $</td>
+          <td>$ = $</td>
+          <td><input class="combperm" type="text" id="popsucc"></td>
+        </tr>
+      </table> 
       
-<!---------------------------------------------------- Formula Distribution ---------------------------------------------------------------------->        
-      
-      <div class="container mb-3" id="formula">
-        <table>
-          <tr>
-            <td rowspan="2">$f(x)=$</td>
-            <td>$x$</td>
-          </tr>
-            <tr style='border-top: thin solid'>
-            <td><select id="formulaval" class="hypinput1 probtype" onchange="forvalues()" style="width:35px;"> <option value="3">3</option> <option value="6"> 6 </option> <option value="10" selected> 10 </option> <option value="15"> 15 </option><option value="21"> 21 </option>  </select></td>
-          </tr>
-        </table> 
-          
-          
-          <div class = " text-center mt-2" id="formulaprobs">
-            $P(x$ <select id="probtypefrml1" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="probvalfrml">)
-            
-        </div> 
-          
-          <div class = " text-center mt-2" id = "formulaexpected">
-            $E(x)$
-              
-              &nbsp;
-              
-            <svg onclick="frmlswitchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          
-          <div class = " text-center mt-2" id = "formulavariance">
-            $\text{Var}(x)$
-              
-              &nbsp;
-              
-            <svg onclick="frmlswitchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          
-          </div>
-
-      
-  <!-------------------------------------------------------- Binomial Distribution ------------------------------------------------------------------------>      
-        
-      <div class="container mb-3" id="binomial">
-          <table>
-          <tr>
-            <td>$\text{Trials: }n$</td>
-            <td>$=$</td>
-            <td><input class = "combperm" type="text" id="trials"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td>$\text{Prob: }p$</td>
-            <td>$=$</td>
-            <td><input class = "combperm" type="text" id="psuccess"></td>
-            </tr>
-        </table> 
-          <!--  data-toggle="tooltip" data-placement="top" title="Number of Trials"
-             data-toggle="tooltip" data-placement="top" title="Probability of Success"
-            -->
-          <div class = " text-center mt-2" id = "binomialprobability">
-            $P(x$ <select id="probtype" class="hypinput1 probtype" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="binval">)
-            &nbsp;
-            <svg onclick="switchexpected()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "binomialexpected">
-            $\text{Expected Value}$
-              &nbsp;
-            <svg onclick="switchvariance()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "binomialvariance">
-            $\text{Variance}$
-              &nbsp;
-            <svg onclick="switchstandard()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div> 
-          <div class = " text-center mt-2" id = "binomialstandard">
-            $\text{Standard Deviation}$
-              &nbsp;
-            <svg onclick="switchprobability()" width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-shuffle" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-              <path fill-rule="evenodd" d="M0 3.5A.5.5 0 0 1 .5 3H1c2.202 0 3.827 1.24 4.874 2.418.49.552.865 1.102 1.126 1.532.26-.43.636-.98 1.126-1.532C9.173 4.24 10.798 3 13 3v1c-1.798 0-3.173 1.01-4.126 2.082A9.624 9.624 0 0 0 7.556 8a9.624 9.624 0 0 0 1.317 1.918C9.828 10.99 11.204 12 13 12v1c-2.202 0-3.827-1.24-4.874-2.418A10.595 10.595 0 0 1 7 9.05c-.26.43-.636.98-1.126 1.532C4.827 11.76 3.202 13 1 13H.5a.5.5 0 0 1 0-1H1c1.798 0 3.173-1.01 4.126-2.082A9.624 9.624 0 0 0 6.444 8a9.624 9.624 0 0 0-1.317-1.918C4.172 5.01 2.796 4 1 4H.5a.5.5 0 0 1-.5-.5z"/>
-              <path d="M13 5.466V1.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192zm0 9v-3.932a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384l-2.36 1.966a.25.25 0 0 1-.41-.192z"/>
-            </svg>
-        </div>
-          </div> 
-      
-  <!-------------------------------------------------------- Poisson Distribution ------------------------------------------------------------------------>      
-      
-      <div class="container mb-3" id="poisson">
-        <table>
-          <tr>
-            <td>$\text{Mean: } \mu $</td>
-            <td>$ = $</td>
-            <td><input class = "combperm" type="text" id="meanocc"></td>
-            </tr>
-        </table> 
-          <!--  data-toggle="tooltip" data-placement="top" title="Expected Value" -->
-        <div class = " text-center mt-2">
-            $P(x$ <select id="probtype2" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="poissval">)
-        </div> 
-          
-          </div>
-      
-      
-      <div class="container mb-3" id="hypergeometric">
-        <table>
-          <tr>
-            <td data-toggle="tooltip" data-placement="top" title="Number of Trials">$ n $</td>
-            <td>$ = $</td>
-            <td><input class = "combperm" type="text" id="ntrials"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Population Size">$ N $</td>
-            <td>$ = $</td>
-            <td><input class = "combperm" type="text" id="popsize"></td>
-            <td>&nbsp; &nbsp;</td>
-            <td data-toggle="tooltip" data-placement="top" title="Successes in Population">$ r $</td>
-            <td>$ = $</td>
-            <td><input class = "combperm" type="text" id="popsucc"></td>
-            </tr>
-        </table> 
-          
-
-            <div class = " text-center mt-2">
-            $P(x$ <select id="probtype3" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option>   </select>   <input class = "combperm" type="text" id="hypval">)
-        </div> 
-          
-          
-          </div>
-      
-      
-            <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-8 col-md-3">
-                <select id="stat" class="form-control" onchange="showstuff()">
-                    <option value="choose">Choose One</option>
-                    <!--<option value="random">Random Variable</option>-->
-                    <option value="probability">Probability Distribution</option>
-                    <option value="frequency">Frequency Distribution</option>
-                    <option value="uniform">Discrete Uniform Dist.</option>
-                    <!--<option value="bivariate">Bivariate Distribution</option>-->
-                    <option value="binomial">Binomial Distribution</option>
-                    <option value="poisson">Poisson Distribution</option>
-                    <option value="hypergeometric">Hypergeometric Dist.</option>
-                    <option value="formula">Formula Distribution</option>
-                </select>
-                </div>
-                <div class="col-4 col-md-2">
-                    <button id = "buttoncov" class="button btn-outline-primary" onclick="stat()">Solve</button>
-                </div> 
-            </div>
-                
-                <div class = "text-center mt-2" id = "expectedexamples">
-            <span class="examplelink" onclick="exampleexpected()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexpected2()">Example 2</span>
-        </div>
-                
-                <div class = "text-center mt-2" id = "standardexamples">
-            <span class="examplelink" onclick="examplestandard()">Example 1</span> &bull; <span class="examplelink" onclick="examplestandard2()">Example 2</span>
-        </div>
-                
-
-                
-        <div class = "text-center mt-2" id = "formulaexamples">
-            <span class="examplelink" onclick="exampleformula()">Example 1</span> &bull; <span class="examplelink" onclick="exampleformula2()">Example 2</span>
-        </div> 
-                
-        <div class = "text-center mt-2" id = "frequencyexamples">
-            <span class="examplelink" onclick="examplefrequency()">Example 1</span> &bull; <span class="examplelink" onclick="examplefrequency2()">Example 2</span>
-        </div> 
-                
-        <div class = "text-center mt-2" id = "uniformexamples">
-            <span class="examplelink" onclick="exampleuniform()">Example 1</span> &bull; <span class="examplelink" onclick="exampleuniform2()">Example 2</span>
-        </div>
-
-                <div class = "text-center mt-2" id = "binomialexamples">
-            <span class="examplelink" onclick="examplebinomial()">Example 1</span> &bull; <span class="examplelink" onclick="examplebinomial2()">Example 2</span>
-        </div>
-                
-                <div class = "text-center mt-2" id = "poissonexamples">
-            <span class="examplelink" onclick="examplepoisson()">Example 1</span> &bull; <span class="examplelink" onclick="examplepoisson2()">Example 2</span>
-        </div>
-                
-                <div class = "text-center mt-2" id = "hypergeometricexamples">
-            <span class="examplelink" onclick="examplehypergeometric()">Example 1</span> &bull; <span class="examplelink" onclick="examplehypergeometric2()">Example</span>
-        </div>
-        </div>
-        
-      
+      <div class="text-center mt-2">
+        $P(x$ <select id="probtype3" class="hypinput1" onchange=""> <option value="equal">=</option> <option value="lessequal"> &#8804; </option> <option value="less"> < </option> <option value="greaterequal"> &#8805; </option> <option value="greater"> > </option> </select> <input class="combperm" type="text" id="hypval">)
+      </div> 
+    </div>
+    
+    <!-- Distribution Selection -->
     <div class="container">
-      <hr>
-          </div>
-      
- 
-      
-      
-      
-      <div class="container" id="how">
-       <div id="how1" class="output" style="color: darkslategray">
-   
+      <div class="row justify-content-center">
+        <div class="col-8 col-md-3">
+          <select id="stat" class="form-select" onchange="showstuff()">
+            <option value="choose">Choose One</option>
+            <option value="probability">Probability</option>
+            <option value="probability">Expected Value</option>
+            <option value="probability">Variance</option>
+            <option value="probability">Standard Deviation</option>
+            <option value="uniform">Discrete Uniform</option>
+            <option value="binomial">Binomial Distribution</option>
+            <option value="poisson">Poisson Distribution</option>
+            <option value="hypergeometric">Hypergeometric</option>
+          </select>
         </div>
-        <div id="how2" class="how" style="color: darkslategray">
-            
-          <p class="p1"> A <strong>random variable</strong>, usually denoted by x, describes the outcome of a random process (or "experiment") numerically. For example, suppose you toss a coin. Then the possible outcomes from this experiment are heads and tails. We could define a random variable x to take the value 1 if the coin lands heads and 0 if it lands tails. Since x assigns a number which depends on the outcome of the random process, it is a random variable. There are two types of random variables: discrete and continuous. A discrete random variable takes a finite number of values or a countably infinite number of values such as 0, 1, 2, .... A continuous random variable can take any value inside of some interval or set of intervals.</p>
-            
-          <table style="width:25%">
-              <tr>
-                <td>Outcome </td>
-                <td>Random Variable (x) </td>
-              </tr>
-              <tr>
-                  <td>Tails </td>
-                <td>0 </td>
-              </tr>
-              <tr>
-                <td>Heads</td>
-                <td>1 </td>
-              </tr>
-            </table>
-            <br>
-          
-          <p class="p1">A <strong>probability distribution</strong> describes how probabilities are distributed over values of a random variable. The probability distribution for a discrete random variable is known as a discrete distribution while the probabiliy distribution for a continuous random variable is called a continuous distribution. There are several ways of representing the probability distribution of a random variable. For a discrete random variable, we can simply list the values of the random variable and the corresponding values in a table. However, a table doesn't work for a continuous random variable. Other ways of representing a probability distribution are a formula and a graph, which works for both discrete and continuous random variables. </p> 
-          
-          <table style="width:25%">
-              <tr>
-                <td>Random Variable (x) </td>
-                <td>Probability</td>
-              </tr>
-              <tr>
-                <td>0 </td>
-                <td>.5 </td>
-              </tr>
-              <tr>
-                <td>1</td>
-                <td>.5 </td>
-              </tr>
-            </table>
-            <br>
-          
-          <p class = "p1"> Probabilities for a discrete random variable are provided by the <strong>probability function</strong>, written f(x) or sometimes p(x). For example, in the experiment of tossing a coin with a random variable x = 1 for heads and x = 0 for tails, we have f(0) = f(1) = 1/2. This is simply because the probability of heads and tails are both 50% or 1/2. There are two requirements for the probability function. The first is that the value of each f(x) is at least zero. The second requirement is that the values of f(x) sum to one. Note that for a continuous random variable we don't use a probability function. We use something called a probability density function, which is actually writen the same way as the probability function - f(x). </p>
-
-
-            <table style="width:100%">
-              <tr>
-                <td>Probability Function </td>
-              </tr>
-              <tr>
-                <td>$ f(x) \geq {\color{Black}0} $ </td>
-              </tr>
-                <tr>
-                <td>$ \sum f(x) = 1 $ </td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> As mentioned before, a discrete distribution can be represented in a couple of different ways: table, graph or formula. A simple example of a table is the random variable for a coin toss. The simplest example of graph method is known as the <strong>discrete uniform distribution</strong>. Here, the probability for each value of the random variable is equal to 1 divided by the number of possible values, denoted n. Actually, the coin toss is an example of a discrete uniform distribution. This is because the random variable can take two possible values (0 or 1) and the probability of each value is 1/2. Another example of a discrete uniform distribution is rolling a die, where the probability of 1 through 6 is 1/6. </p>
-
-
-            <table style="width:100%">
-              <tr>
-                <td>Discrete Uniform Distribution</td>
-              </tr>
-              <tr>
-                <td>$ f(x) = \dfrac{1}{n} $ </td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> The probability distribution of a random variable can be summarized in a couple of different ways. One way is to use the <strong>expected value</strong>, which is also known as the mean, and written E(x) or u. The expected value of a random variable, just like the mean of a variable, measures the central location of the random variable. It can be thought of as the long-run average of the random variable if we repeated the experiment many times. For a discrete random variable, the expected value is calculated by summing the products of the random variables and the corresponding probabilities.  So, for our coin toss example, we have the expected value equals 1*(1/2) + 0*(1/2) = 1/2 which is what we would expect on average in the long-run.   </p>
-             
-            <table style="width:100%">
-              <tr>
-                <td> Expected Value </td>
-              </tr>
-              <tr>
-                <td>$ E(x) = \sum x f(x) $ </td>
-              </tr>
-            </table>
-            <br>
-          
-            <p class = "p1">The <strong>variance</strong> of a random variables, denoted by Var(x) or sigma^2, measures the variability in the values of the random variable. Note that sigma^2 is the same notation used for the population variance, just as mu^2 is used for both the expected value and population mean. When the discrete probability distribution is presented as a table, it is straight-forward to calculate the expected value and variance by expanding the table. Computing the variance involves use of the expected value. It is the sum of the product of the squared deviations of the random variable from the expected value and the corresponding probabilities.  </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td> Variance </td>
-              </tr>
-              <tr>
-                <td>$ \text{Var}(x)  = \sum (x - \mu)^2 f(x) $ </td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> The standard deviation can be found by taking the square root of the variance. Like the variance, the standard deviation is a measure of variability for a discrete random variable. However, unlike the variance, it is in the same units as the random variable. The reason the variance is not in the same units as the random variable is because its formula involves squaring the difference between x and the mean. So, the units of the variance are in the units of the random variable squared. Taking the square root brings the value back to the same units as the random variable. </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td> Standard Deviation </td>
-              </tr>
-              <tr>
-                <td>$ \sigma  = \sqrt{\text{Var}(x)} $ </td>
-              </tr>
-            </table>
-            <br>
-
-            <p class = "p1"> The most important discrete distribution is the binomial distribution. It is the probability distribution corresponding to a certain type of experiment, known as a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p). </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td>Binomial Distribution </td>
-              </tr>
-              <tr>
-                <td>$ f(x) = {n \choose x} p^x (1-p)^{(n-x)} $ </td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> The Poisson probability distribution is useful when the random variable measures the number of occurrences over an interval of time or space. It is associated with a Poisson experiment. A Poisson experiment is one in which the probability of an occurrence is the same for any two intervals of the same length and occurrences are independent of each other. Probabilities for a Poisson probability distribution can be calculated using the Poisson probability function. </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td>Poisson Distribution </td>
-              </tr>
-              <tr>
-                <td>$ f(x) = \dfrac{\mu^x e^{-\mu}}{x!} $ </td>
-              </tr>
-            </table>
-            <br>
-            
-            <p class = "p1"> The hypergeometric probabiity distribution is very similar to the binomial probability distributionn. The differences are that in a hypergeometric distribution, the trials are not independent and the probability of success changes from trial to trial. Another difference between the two is that for the binomial probability function, we use the probability of success, p. For the hypergeometric probability distribution, we use the number of successes, r, in the population, N. The expected value and variance are given by E(x) = n$\left(\frac{r}{N}\right)$ and Var(x) = n$\left(\frac{r}{N}\right) \left(1 - \frac{r}{N}\right) \left(\frac{N-n}{N-1}\right)$. </p>
-            
-            <table style="width:100%">
-              <tr>
-                <td>Hypergeometric Distribution </td>
-              </tr>
-              <tr>
-                <td>$ f(x) = \dfrac{{r \choose x}{N-r \choose n-\cancel{x}}}{{N \choose n}} $ </td>
-              </tr>
-            </table>
-            <br>
-                        
-        </div>
+        <div class="col-4 col-md-2">
+          <button id="buttoncov" class="btn btn-outline-primary" onclick="stat()">Solve</button>
+        </div> 
+      </div>
+      
+      <!-- Examples -->
+      <div class="text-center mt-2" id="expectedexamples">
+        <span class="examplelink" onclick="exampleexpected()">Example 1</span> &bull; <span class="examplelink" onclick="exampleexpected2()">Example 2</span>
+      </div>
+      
+      <div class="text-center mt-2" id="standardexamples">
+        <span class="examplelink" onclick="examplestandard()">Example 1</span> &bull; <span class="examplelink" onclick="examplestandard2()">Example 2</span>
+      </div>
+      
+      <div class="text-center mt-2" id="formulaexamples">
+        <span class="examplelink" onclick="exampleformula()">Example 1</span> &bull; <span class="examplelink" onclick="exampleformula2()">Example 2</span>
+      </div> 
+      
+      <div class="text-center mt-2" id="frequencyexamples">
+        <span class="examplelink" onclick="examplefrequency()">Example 1</span> &bull; <span class="examplelink" onclick="examplefrequency2()">Example 2</span>
+      </div> 
+      
+      <div class="text-center mt-2" id="uniformexamples">
+        <span class="examplelink" onclick="exampleuniform()">Example 1</span> &bull; <span class="examplelink" onclick="exampleuniform2()">Example 2</span>
       </div>
 
+      <div class="text-center mt-2" id="binomialexamples">
+        <span class="examplelink" onclick="examplebinomial()">Example 1</span> &bull; <span class="examplelink" onclick="examplebinomial2()">Example 2</span>
+      </div>
       
-      <div id = "discoutputs">
-     <div class="container">
+      <div class="text-center mt-2" id="poissonexamples">
+        <span class="examplelink" onclick="examplepoisson()">Example 1</span> &bull; <span class="examplelink" onclick="examplepoisson2()">Example 2</span>
+      </div>
+      
+      <div class="text-center mt-2" id="hypergeometricexamples">
+        <span class="examplelink" onclick="examplehypergeometric()">Example 1</span> &bull; <span class="examplelink" onclick="examplehypergeometric2()">Example</span>
+      </div>
+    </div>
+    
+    <div class="container">
+      <hr>
+    </div>
+    
+    <!-- Educational Content -->
+    <div class="container" id="how">
+      <div id="how1" class="output" style="color: darkslategray">
+      </div>
+      
+      <div id="how2" class="how" style="color: darkslategray">
+        <p class="p1">A <strong>random variable</strong>, usually denoted by x, describes the outcome of a random process (or "experiment") numerically. For example, suppose you toss a coin. Then the possible outcomes from this experiment are heads and tails. We could define a random variable x to take the value 1 if the coin lands heads and 0 if it lands tails. Since x assigns a number which depends on the outcome of the random process, it is a random variable. There are two types of random variables: discrete and continuous. A discrete random variable takes a finite number of values or a countably infinite number of values such as 0, 1, 2, .... A continuous random variable can take any value inside of some interval or set of intervals.</p>
+        
+        <table style="width:25%">
+          <tr>
+            <td>Outcome </td>
+            <td>Random Variable </td>
+          </tr>
+          <tr>
+            <td>Tails </td>
+            <td>0 </td>
+          </tr>
+          <tr>
+            <td>Heads</td>
+            <td>1 </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">A <strong>probability distribution</strong> describes how probabilities are distributed over values of a random variable. The probability distribution for a discrete random variable is known as a discrete distribution while the probabiliy distribution for a continuous random variable is called a continuous distribution. There are several ways of representing the probability distribution of a random variable. For a discrete random variable, we can simply list the values of the random variable and the corresponding values in a table. However, a table doesn't work for a continuous random variable. Other ways of representing a probability distribution are a formula and a graph, which works for both discrete and continuous random variables.</p> 
+        
+        <table style="width:25%">
+          <tr>
+            <td>Random Variable </td>
+            <td>Probability</td>
+          </tr>
+          <tr>
+            <td>0 </td>
+            <td>.5 </td>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>.5 </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">Probabilities for a discrete random variable are provided by the <strong>probability function</strong>, written f(x) or sometimes p(x). For example, in the experiment of tossing a coin with a random variable x = 1 for heads and x = 0 for tails, we have f(0) = f(1) = .5. This is simply because the probability of heads and tails are both 50% or .5. There are two requirements for the probability function. The first is that the value of each f(x) is at least zero. The second requirement is that the values of f(x) sum to one. Note that for a continuous random variable we don't use a probability function. We use something called a probability density function, which is actually writen the same way as the probability function - f(x).</p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Probability Function </td>
+          </tr>
+          <tr>
+            <td>$ f(0) = .5 $ </td>
+          </tr>
+          <tr>
+            <td>$ f(1) = .5 $ </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">As mentioned before, a discrete distribution can be represented in a couple of different ways: table, graph or formula. A simple example of a table is the random variable for a coin toss. The simplest example of graph method is known as the <strong>discrete uniform distribution</strong>. Here, the probability for each value of the random variable is equal to 1 divided by the number of possible values, denoted n. Actually, the coin toss is an example of a discrete uniform distribution. This is because the random variable can take two possible values (0 or 1) and the probability of each value is 1/2. Another example of a discrete uniform distribution is rolling a die, where the probability of 1 through 6 is 1/6.</p>
+
+        <table style="width:100%">
+          <tr>
+            <td>Discrete Uniform</td>
+          </tr>
+          <tr>
+            <td>$ f(x) = \dfrac{1}{n} $ </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">The probability distribution of a random variable can be summarized in a couple of different ways. One way is to use the <strong>expected value</strong>, which is also known as the mean, and written E(x) or u. The expected value of a random variable, just like the mean of a variable, measures the central location of the random variable. It can be thought of as the long-run average of the random variable if we repeated the experiment many times. For a discrete random variable, the expected value is calculated by summing the products of the random variables and the corresponding probabilities. So, for our coin toss example, we have the expected value equals 1*(1/2) + 0*(1/2) = 1/2 which is what we would expect on average in the long-run.</p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Expected Value </td>
+          </tr>
+          <tr>
+            <td>$ E(x) = \sum x f(x) $ </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">The <strong>variance</strong> of a random variables, denoted by Var(x) or sigma^2, measures the variability in the values of the random variable. Note that sigma^2 is the same notation used for the population variance, just as mu^2 is used for both the expected value and population mean. When the discrete probability distribution is presented as a table, it is straight-forward to calculate the expected value and variance by expanding the table. Computing the variance involves use of the expected value. It is the sum of the product of the squared deviations of the random variable from the expected value and the corresponding probabilities.</p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Variance </td>
+          </tr>
+          <tr>
+            <td>$ \text{Var}(x) = \sum (x - \mu)^2 f(x) $ </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">The <strong>standard deviation</strong> can be found by taking the square root of the variance. Like the variance, the standard deviation is a measure of variability for a discrete random variable. However, unlike the variance, it is in the same units as the random variable. The reason the variance is not in the same units as the random variable is because its formula involves squaring the difference between x and the mean. So, the units of the variance are in the units of the random variable squared. Taking the square root brings the value back to the same units as the random variable.</p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Standard Deviation </td>
+          </tr>
+          <tr>
+            <td>$ \sigma = \sqrt{\text{Var}(x)} $ </td>
+          </tr>
+        </table>
+        <br>
+
+        <p class="p1">The most important discrete distribution is the <strong>binomial distribution</strong>. It is the probability distribution corresponding to a certain type of experiment, known as a binomial experiment. A binomial experiment consists of a sequence of n trials with two outcomes possible in each trial. The two outcomes are labeled "success" and "failure" with probabilities of p and 1-p, respectively. The probabilities of success and failure do not change from trial to trial and the trials are independent. The probability of x successes in n trials is given by the binomial probability function. The expected value and variance are given by E(x) = np and Var(x) = np(1-p).</p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Binomial Distribution </td>
+          </tr>
+          <tr>
+            <td>$ f(x) = {n \choose x} p^x (1-p)^{(n-x)} $ </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">The <strong>Poisson distribution</strong> is useful when the random variable measures the number of occurrences over an interval of time or space. It is associated with a Poisson experiment. A Poisson experiment is one in which the probability of an occurrence is the same for any two intervals of the same length and occurrences are independent of each other. Probabilities for a Poisson probability distribution can be calculated using the Poisson probability function.</p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Poisson Distribution </td>
+          </tr>
+          <tr>
+            <td>$ f(x) = \dfrac{\mu^x e^{-\mu}}{x!} $ </td>
+          </tr>
+        </table>
+        <br>
+        
+        <p class="p1">The <strong>hypergeometric distribution</strong> is very similar to the binomial probability distributionn. The differences are that in a hypergeometric distribution, the trials are not independent and the probability of success changes from trial to trial. Another difference between the two is that for the binomial probability function, we use the probability of success, p. For the hypergeometric probability distribution, we use the number of successes, r, in the population, N. The expected value and variance are given by E(x) = n$\left(\frac{r}{N}\right)$ and Var(x) = n$\left(\frac{r}{N}\right) \left(1 - \frac{r}{N}\right) \left(\frac{N-n}{N-1}\right)$.</p>
+        
+        <table style="width:100%">
+          <tr>
+            <td>Hypergeometric Distribution </td>
+          </tr>
+          <tr>
+            <td>$ f(x) = \dfrac{{r \choose x}{N-r \choose n-\cancel{x}}}{{N \choose n}} $ </td>
+          </tr>
+        </table>
+        <br>
+      </div>
+    </div>
+
+    <!-- Results and Output Section -->
+    <div id="discoutputs">
+      <div class="container">
         <div id="output" style="text-align: center">
         </div>
       </div>
       
       <div class="container text-center">
-      <canvas id="myCanvas" width="300" height="150" ></canvas>
+        <canvas id="myCanvas" width="300" height="150"></canvas>
       </div>
           
-         <div class="container container2 text-center">
-      <div id="charts" style="width: 500px; height: 300px;"></div>
-          </div> 
-          
-          
-        </div>
+      <div class="container container2 text-center">
+        <div id="charts" style="width: 500px; height: 300px;"></div>
+      </div> 
+    </div>
 
-      <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Responsive1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8250424918"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-          </div>
+    <div class="text-center mt-2 mb-2">
+      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816" crossorigin="anonymous"></script>
+      <!-- Responsive1 -->
+      <ins class="adsbygoogle"
+           style="display:block"
+           data-ad-client="ca-pub-3595688914204816"
+           data-ad-slot="8250424918"
+           data-ad-format="auto"
+           data-full-width-responsive="true"></ins>
+      <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+      </script>
+    </div>
      
-      
-          <footer id="footer">
-              <div class="container">
-                  <div class="container" id="explanation">
-          <p  class="text-center" style="background-color:white">
-              <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Definition
-          </a> &bull;
-              <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Formula
-          </a> &bull;
-          <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Explanation
-          </a>
-        </p>
-        <div class="collapse" id="collapseExample" data-parent="#explanation">
-          <div class="card card-body" id="descriptiontext">
-
-          </div>
-        </div>
-              <div class="collapse" id="collapseExample2" data-parent="#explanation">
-          <div class="card card-body" id="formulatext">
-
-          </div>
-        </div>
-              <div class="collapse" id="collapseExample3" data-parent="#explanation">
-          <div class="card card-body" id="explanationtext">
-
-          </div>
-        </div>
-              </div>
-                  <!--<p>Related: <a href="continuous.html">Continuous Distributions Calculator</a> </p>-->
-                <hr>
+    <!-- Footer -->
+    <footer id="footer">
+      <div class="container">
+        <div class="container" id="explanation">
+          <p class="text-center" style="background-color:white">
+            <a data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Definition
+            </a> &bull;
+            <a data-bs-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Formula
+            </a> &bull;
+            <a data-bs-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
+              Explanation
+            </a>
+          </p>
+          <div class="collapse" id="collapseExample" data-bs-parent="#explanation">
+            <div class="card card-body" id="descriptiontext">
             </div>
-          <p> 
-              &copy; 2025 <a href="/about.html">Stats Solver</a> 
-              
-              </p>
-          </footer>
-      
-      
-    <!--  style="border:1px solid #d3d3d3;"-->
-    <!-- <div style = "height: 400px"></div>-->
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-      <script src="/calculators/js/min/discrete.js"></script>
+          </div>
+          <div class="collapse" id="collapseExample2" data-bs-parent="#explanation">
+            <div class="card card-body" id="formulatext">
+            </div>
+          </div>
+          <div class="collapse" id="collapseExample3" data-bs-parent="#explanation">
+            <div class="card card-body" id="explanationtext">
+            </div>
+          </div>
+        </div>
+        <hr>
+      </div>
+      <p>&copy; 2025 <a href="/about.html">Stats Solver</a></p>
+    </footer>
+    
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="/calculators/js/discrete.js"></script>
+    
+    <!-- Initialize tooltips -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+          return new bootstrap.Tooltip(tooltipTriggerEl)
+        })
+      });
+    </script>
   </body>
 </html>

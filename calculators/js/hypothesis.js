@@ -1955,7 +1955,7 @@ function hyptest1(){
 }
 
 function hyptest2(){
-    $("#output21").hide();
+    //$("#output21").hide();
     var tail = document.getElementById("tail").value;
     var pknot = document.getElementById("muknot").value;
     var size = document.getElementById("size").value; var sizem1 = size - 1;
@@ -1969,10 +1969,6 @@ function hyptest2(){
     var zctwo1 = NormSInv(alpha/2); var zctwo2 = Math.abs(NormSInv(alpha/2)); 
     var exp = 2.71828;
     
-    document.getElementById("descriptiontext").innerHTML = "A hypothesis test is used to determine whether the population proportion is less than, greater than or different than some value."
-    document.getElementById("formulatext").innerHTML = "$ z = \\dfrac{\\bar{p}-p_0}{\\sqrt{\\dfrac{p_0(1-p_0)}{n}}} $"
-    document.getElementById("explanationtext").innerHTML = "Rejecting the null hypothesis means accepting the alternative hypothesis."
-
     if (tail == "lower"){
         var testtype = "<b>Lower Tail Test</b>"
         var testsymb = "z";
