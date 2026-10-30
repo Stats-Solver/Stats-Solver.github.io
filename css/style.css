@@ -1,3 +1,7 @@
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
 #output{
     text-align: center;
 }
@@ -34,7 +38,7 @@ body {
   min-height: 100vh;
   position: relative;
   margin: 0;
-  padding-bottom: 100px; //height of the footer
+  padding-bottom: 100px; /* height of the footer */
 }
 
 footer {
