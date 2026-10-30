@@ -4,7 +4,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Continuous distributions calculator with steps. Solve the uniform distribution, standard normal distribution, normal distribution and exponential distribution.">
+    <meta name="description" content="Continuous distribution calculator with steps. Solve the uniform distribution, standard normal distribution, normal distribution and exponential distribution.">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -30,11 +30,10 @@
             };
         </script>  
       
-    <title>Continuous Distributions Calculator with Steps - Stats Solver</title>
+    <title>Continuous Distribution Calculator - Stats Solver</title>
       
       <link rel="icon" href="/pics/solver.png">
       
-      <script data-ad-client="ca-pub-3595688914204816" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
       
                 <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-170214906-1"></script>
@@ -70,13 +69,13 @@
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
               <a class="dropdown-item" href="tables-and-graphs.html">Tables and Graphs</a>
               <a class="dropdown-item" href="numerical-summaries.html">Numerical Summaries</a>
-              <a class="dropdown-item" href="basic-probability.html">Basic Probability</a>
+              <a class="dropdown-item" href="basic-probability.html">Probability</a>
               <a class="dropdown-item" href="discrete-distributions.html">Discrete Distributions</a>
               <a class="dropdown-item" href="continuous-distributions.html">Continuous Distributions</a>
               <a class="dropdown-item" href="sampling-distributions.html">Sampling Distributions</a>
               <a class="dropdown-item" href="confidence-intervals.html">Confidence Intervals</a>
               <a class="dropdown-item" href="hypothesis-testing.html">Hypothesis Testing</a>
-              <a class="dropdown-item" href="linear-regression.html">Linear Regression</a>
+              <a class="dropdown-item" href="linear-regression.html">Simple Linear Regression</a>
             </div>
           </li>
             <li class="nav-item dropdown">
@@ -96,7 +95,7 @@
     
       
     <div class = "container">
-        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="continuous-distributions.html">Continuous Distributions</a></h1>
+        <h1 class="page-header text-center mt-2 text-primary" style="font-size: 1.5em"><a href="continuous-distributions.html">Continuous Distribution Calculator</a></h1>
     </div>
       
     <div class="container">
@@ -606,20 +605,6 @@
             
             <p class = "p1">Now that we know how to calculate probabilities for the z-distribution, we can calculate probabilities for any normal distribution. We can do this by converting from normal to standard normal, using the formula $z=\frac{x-\mu}{\sigma}$. So, given a problem to calculate probability for a normal distribution, we start by converting the values to z-values. Then, depending on the type of z distribution probability type it is, we rewrite the problem so it's in terms of the probability that z less than or equal to a value. Then we use the z-table to find those probabilities and compute our answer. </p>
             
-            <div class="text-center mt-2 mb-2">
-            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-                 crossorigin="anonymous"></script>
-            <!-- Responsive2 -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-3595688914204816"
-                 data-ad-slot="2627397291"
-                 data-ad-format="auto"
-                 data-full-width-responsive="true"></ins>
-            <script>
-                 (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
-            </div>
             
             <p class = "p1"> The normal probability distribution can be used to approximate probabilities for the binomial probability distribution. This may be necessary in situations where the binomial probabilities are difficult to compute. This calculation is done using the continuity correction factor. This is necessary because the normal distribution is a continuous distribution while the binomial distribution is a discrete distribution. Since the probability of a single value is zero in a continuous distribution, adding and subtracting .5 from the value and finding the probability in between solves this problem. </p>
             
@@ -721,56 +706,31 @@
           
       </div>
       
-        <div class="text-center mt-2 mb-2">
-      <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3595688914204816"
-             crossorigin="anonymous"></script>
-        <!-- Responsive1 -->
-        <ins class="adsbygoogle"
-             style="display:block"
-             data-ad-client="ca-pub-3595688914204816"
-             data-ad-slot="8250424918"
-             data-ad-format="auto"
-             data-full-width-responsive="true"></ins>
-        <script>
-             (adsbygoogle = window.adsbygoogle || []).push({});
-        </script>
-          </div>
       
           <footer id="footer">
               <div class="container">
                   <div class="container" id="explanation">
-          <p  class="text-center" style="background-color:white">
-          <a data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Definition
-          </a> &bull;
-        <a data-toggle="collapse" href="#collapseExample2" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Formula
-          </a> &bull;
-        <a data-toggle="collapse" href="#collapseExample3" role="button" aria-expanded="false" aria-controls="collapseExample">
-            Explanation
-          </a>
-        </p>
-        <div class="collapse" id="collapseExample" data-parent="#explanation">
-          <div class="card card-body" id="descriptiontext">
-
-          </div>
-        </div>
-        <div class="collapse" id="collapseExample2" data-parent="#explanation">
-          <div class="card card-body" id="formulatext">
-
-          </div>
-        </div>
-        <div class="collapse" id="collapseExample3" data-parent="#explanation">
-          <div class="card card-body" id="explanationtext">
-
-          </div>
-        </div>
+                    <p class="text-center" style="background-color:white">
+                      <a data-toggle="collapse" href="#learnMore" role="button" aria-expanded="false" aria-controls="learnMore">
+                        Learn More
+                      </a>
+                    </p>
+                    <div class="collapse" id="learnMore" data-parent="#explanation">
+                      <div class="card card-body">
+                        <div id="descriptiontext" class="mb-3">
+                        </div>
+                        <div id="formulatext" class="mb-3">
+                        </div>
+                        <div id="explanationtext">
+                        </div>
+                      </div>
+                    </div>
               </div>
                   <!--<p>Related: <a href="discrete.html">Discrete Distributions Calculator</a> </p>-->
                 <hr>
             </div>
           <p> 
-              &copy; 2025 <a href="/about.html">Stats Solver</a> 
+              &copy; 2026 <a href="/about.html">Stats Solver</a> 
               
               </p>
           </footer>
