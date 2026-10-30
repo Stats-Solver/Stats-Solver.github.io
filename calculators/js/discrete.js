@@ -1,7 +1,18 @@
-row4.hidden=true;row5.hidden=true;row6.hidden=true;row7.hidden=true;
-row8.hidden=true;row9.hidden=true;row10.hidden=true;
-make2s.hidden=true;make4s.hidden=true;make5s.hidden=true;make6s.hidden=true;
-make7s.hidden=true;make8s.hidden=true;make9s.hidden=true;make10s.hidden=true;
+$("#expectedtable").show(); $("#explanation").hide();
+$("#binomial").hide(); $("#poisson").hide(); $("#hypergeometric").hide();
+$("#expected").show();
+$("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+$("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+$("#expectedexamples").show(); $("#standardexamples").hide();
+$("#poissonexamples").hide(); $("#binomialexamples").hide(); $("#hypergeometricexamples").hide();
+$("#tableprobs").hide();
+$("#explanation").hide(); $("#formula").hide(); $("#uniform").hide();
+$("#formulaexamples").hide(); $("#frequencyexamples").hide(); $("#uniformexamples").hide();
+$("#discoutputs").hide();
+$("#row4").hide(); $("#row5").hide(); $("#row6").hide(); $("#row7").hide();
+$("#row8").hide(); $("#row9").hide(); $("#row10").hide();
+$("#make2s").hide(); $("#make4s").hide(); $("#make5s").hide(); $("#make6s").hide();
+$("#make7s").hide(); $("#make8s").hide(); $("#make9s").hide(); $("#make10s").hide();
 
 
 
